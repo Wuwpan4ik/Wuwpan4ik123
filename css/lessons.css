@@ -1,0 +1,258 @@
+.Lessons{
+    padding: 30px 40px 10px;
+}
+
+.media{
+    display: flex;
+    justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.media-cart{
+	width: 28%;
+	height: 70%;
+    margin-bottom: 4em;
+}
+
+.media-cart p{
+    margin: 10px 0px 10px;
+    font-size: 15px;
+    color: #737480;
+}
+
+.media-cart h3{
+    margin: 5px 0px 10px;
+    font-size: 24px;
+}
+
+.media-cart-img{
+    border-radius: 16px;
+    width: 100%;
+    height: 55vh;
+}
+
+.media-cart #half_input{
+    width: 60%;
+	height: 48px;
+    border-radius: 7px 0 0 7px;
+    border: 1px solid #E1E3E6;
+}
+
+.media-cart input::placeholder{
+    font-size: 16px;
+    padding: 16px;
+	color: #757D8A;
+}
+
+.media-cart button{
+    width: 40%;
+	height: 48px;
+    border-radius: 0 7px 7px 0;
+    color: #9EA2A9;
+    background-color:#F8F8F8;
+    transition: 0.3s ease-in;
+    cursor: pointer;
+	border: 1px solid #E1E3E6;
+}
+
+.media-cart button:hover{
+    border-radius: 0 7px 7px 0;
+    color: white;
+    background-color: #37ea8c;
+    transition: 0.2s ease-in;
+    cursor: pointer;
+}
+
+.btn-delete-edit{
+    display: flex;
+    justify-content: space-between;
+}
+.btn-delete-edit button{
+    width: 45%;
+    height: 48px;
+    font-size: 15px;
+    color: white;
+    background: linear-gradient(180deg, #08B395 0%, #0C977F 100%);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+    margin-top: 1em;
+}
+
+.btn-delete-edit button:hover{
+	background: none;
+    border: 1px solid #74a3f5;
+    color: #74a3f5;
+    background-color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+    margin-top: 1em;
+}
+
+.btn-upload{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btn-upload button{
+    width: 25vh;
+    height: 4vh;
+    font-size: 15px;
+    border: 1px solid #74a3f5;
+    color: white;
+    background-color: #74a3f5;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+}
+
+.btn-upload button:hover{
+    border: 1px solid #74a3f5;
+    color: #74a3f5;
+    background-color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+    margin-top: 1em;
+}
+
+.btn-upload input{
+    border: none;
+}
+
+.placeholder{
+	display: flex;
+	justify-content: center;
+    height: 55vh;
+	border: 2px dashed #F0F0F0;
+	border-radius: 16px;
+}
+
+.create-ico{
+	width: 45px;
+}
+
+.create-new{
+	display: flex;
+	cursor: pointer;
+}
+
+.create-new p{
+	padding-left: 18px;
+	width: 120px;
+	font-size: 18px;
+	color: #757D8A;
+}
+
+.create-new label{
+	cursor: pointer;
+}
+
+.create-new span{
+	display: inline-block;
+	height: 48px;
+	line-height: 48px;
+	vertical-align: top;
+	padding-left: 5px;
+}
+
+.proj_name{
+	color: #404D61;
+	font-weight: 700;
+	font-size: 24px;
+	height: 48px;
+	outline: none; 
+	border: none;
+}
+
+#insert{
+	display: flex;
+	margin: 0px;
+}
+
+.none{
+	background: transparent;
+	border: none;
+}
+
+.project_video{
+	z-index: 2;
+	width: 20%;
+	height: 52vh;
+	display:none;
+	position: absolute;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input:checked + label + video {
+    display: block;
+}
+
+.media-cart-img label{
+	display: inline-block;
+	background-color: black;
+	width: 20%;
+	height: 1vh;
+	border-radius: 99px;
+	
+}
+
+input:checked + label {
+	background-color: black;
+	background-clip: padding-box;
+    background-color: #F8F8F8;
+    color: #5A6474;
+	font-weight: 700;
+}
+
+.videoname {
+	width: 100%;
+	border-radius: 8px;
+	margin: 10px 0px;
+	height: 48px;
+    border-radius: 8px;
+    border: 1px solid #E1E3E6;
+}
+
+.videoname:focus{
+	outline: none;
+    border: 1px solid #4E73F8;
+	box-shadow: 0 0 0 4px rgba(31,45,207,0.2);
+}
+
+.new_name button{
+	width: 100%;
+	line-height: 48px;
+	font-size: 18px;
+	height: 48px;
+	color: #FFFFFF;
+	background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);
+	border-radius: 8px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

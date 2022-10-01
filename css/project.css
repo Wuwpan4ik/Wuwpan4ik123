@@ -1,0 +1,11 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.Project{
+    display: flex;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+}

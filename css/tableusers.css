@@ -1,0 +1,32 @@
+.Tableusers{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 40px 5px;
+    font-size: 17px;
+}
+
+.table_ava{
+	width: 32px;
+	height: 32px;
+	border-radius: 99px;
+	vertical-align: top;
+	margin: 0vh 1vh 0vh 1vh;
+}
+
+.table_ico{
+	width: 15px;
+	margin: 0vh 1vh 0vh 1vh;
+}
+
+td, th {
+	line-height: 32px;
+	font-weight: 400;
+    padding: 16px 20px;
+	 width:5vh;
+	 text-align: left;
+	 color: #5A6474;
+}
+
+#grey{
+	background-color: #F8F8F8;
+}

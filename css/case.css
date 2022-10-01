@@ -1,0 +1,134 @@
+.Case{
+    padding: 30px 30px 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-price{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.cart-boosted{
+    width: 97%;
+    height: 30%;
+    border: 1px solid orange;
+    background-color: #f6f0ec;
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 2em;
+}
+
+.cart{
+    width: 97%;
+    height: 30%;
+    border: 1px solid #d0d0d0;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 24px;
+}
+
+.service{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.image-service img{
+    width: 8vh;
+    margin-top: 4px;
+    line-height: 2px;
+    margin-right: 10px;
+    border-radius: 15px;
+}
+
+.timer{
+    display: flex;
+    align-items: center;
+    margin-left: 25vh;
+}
+
+.service-text {
+    display: flex;
+    flex-direction: column;
+	justify-content: space-between;
+    line-height: 2px;
+}
+
+.price{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+    line-height: 2px;
+}
+
+.price h2{
+	float: right;
+	align-self: end;
+}
+	
+.service-text-2{
+    margin-bottom: 10px;
+}
+
+.status span{
+    font-size: 20px;
+    color: rgb(0, 147, 41);
+    background-color: #d7f1d7;
+    padding: 0 12px 4px;
+    border-radius: 7px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+
+}
+
+.status-1 span{
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.96);
+    background-color: orange;
+    padding: 0 12px 4px;
+    border-radius: 7px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.time-more-btn{
+    display: flex;
+    justify-content: space-between;
+}
+
+.time-more-btn button{
+    width: 220px;
+    height: 40px;
+    font-size: 18px;
+    color: white;
+    background-color: #4E73F8;
+    border-radius: 8px;
+	border: none;
+    cursor: pointer;
+    transition: 0.4s ease;
+}
+
+.time-more-btn button:hover{
+	border: 1px #4E73F8 solid;
+    color: #4E73F8;
+    background-color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.4s ease;
+}
+
+.starrating{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.starrating h2{
+	margin: 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 18px;
+}
