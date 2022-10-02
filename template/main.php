@@ -24,7 +24,7 @@
 
 <div class="app">
 
-    <?php include 'sidebar.php';?>
+    <?php include 'default/sidebar.php';?>
 
     <div class="feed">
 

@@ -2,6 +2,7 @@
 abstract class ACore {
 
     protected $m;
+    protected $pr;
 
     public function __construct() {
         $this->m = new User();

@@ -9,7 +9,7 @@
   </head>
   <body>
         <div class="Cases">
-            <?php include 'sidebar.php';?>
+            <?php include 'default/sidebar.php';?>
             <div class="feed">
                 <div class="feed-header">
                     <h2>Кейсы</h2>

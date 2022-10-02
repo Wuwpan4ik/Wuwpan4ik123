@@ -11,5 +11,10 @@
             $result = $this->db->query("SELECT * FROM user");
             return $result;
         }
+
+        public function getAllProjects() {
+            $result = $this->db->query("SELECT * FROM course WHERE author_id = " . $_SESSION['user']['id']);
+            return $result;
+        }
     }
 ?>
