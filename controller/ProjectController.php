@@ -51,11 +51,13 @@
         }
 
         public function addVideo () {
+            $uid = $_GET['id'];
+
             $res = $this->m->db->query("SELECT * FROM course WHERE author_id = ".$_SESSION['user']['id']." ORDER BY `id` DESC LIMIT 1");
 
-            move_uploaded_file($_FILES['video_uploader']['tmp_name'], "./uploads/projects/".$_SESSION['user']['id']."_".$res[0]['name']."/".$_FILES['video_uploader']['name']);
+            move_uploaded_file($_FILES['video_uploader']['tmp_name'], "./uploads/projects/".$uid."_".$res[0]['name']."/".$_FILES['video_uploader']['name']);
 
-            $path = "./uploads/projects/".$_SESSION['user']['id']."_".$res[0]['name']."/".$_FILES['video_uploader']['name'];
+            $path = "./uploads/projects/".$uid."_".$res[0]['name']."/".$_FILES['video_uploader']['name'];
 
             $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`) VALUES (".$res[0]['id'].",'Укажите заголовок','Укажите описание', '$path')");
         }
@@ -71,13 +73,27 @@
             }
 
             $this->m->db->execute("DELETE FROM course WHERE id = ". $_GET['id']);
-            rmdir("./uploads/projects/".$_SESSION['user']['id']."_" . $project[0]['name']);
+            rmdir("./uploads/projects/".$_GET['id']."_" . $project[0]['name']);
 
             return True;
         }
 
         public function get_content()
         {
-            header("location:javascript://history.go(-1)");
+            echo '<!DOCTYPE html>
+			<html lang="en">
+			<head>
+			<meta charset="UTF-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<title>Document</title>
+			</head>
+			<body>
+				<script>
+				    let a = location.protocol + \'//\' + location.host + location.pathname + \'?option=project\';
+					window.location.replace(a);
+				</script>
+			</body>
+			</html>';
         }
     }

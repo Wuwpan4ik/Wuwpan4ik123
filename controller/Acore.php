@@ -6,7 +6,7 @@ abstract class ACore {
     public function __construct() {
         $this->m = new User();
         if(!isset($_SESSION['user']['id'])) {
-            header("Location:?option=login");
+            header("Location:?option=registration");
         }
         if(isset($_GET['option'])) {
             $this->get_body(trim(strip_tags($_GET['option'])));
