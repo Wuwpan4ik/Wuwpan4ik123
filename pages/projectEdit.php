@@ -1,7 +1,7 @@
 <?php
 class ProjectEdit extends ACore {
     public function get_content() {
-        $result = $this->m->getContentProjectEdit();
+        $result = $this->m->getContentForProjectEdit();
         return $result;
     }
 

@@ -10,11 +10,13 @@
             $res = $this->m->db->query("SELECT * FROM course WHERE id = ".$_GET['id']);
             if (!$this->isUser($res[0]['author_id'])) return False;
 
+            $idDir = $_GET['id'];
+
             if($_POST['title'] != "") {
 
                 $name = $_POST['title'];
 
-                rename("./uploads/projects/" . $_SESSION['user']['id'] . "_" . $res[0]['name'], "./uploads/projects/" . $_SESSION['user']['id'] . "_" . $name);
+                rename("./uploads/projects/" . $idDir . "_" . $res[0]['name'], "./uploads/projects/" . $idDir . "_" . $name);
 
                 $pathname = $this->m->db->query("SELECT * FROM course_content WHERE course_id = ".$res[0]['id']);
 
@@ -39,11 +41,13 @@
         }
 
         public function createDir () {
-            $directory = $this->m->db->execute("INSERT INTO course (`id`, `author_id`, `name`, `price`) VALUES (NULL, '$uid', 'Новый проект', 0)");
+            $uid = $_SESSION['user']['id'];
+
+            $this->m->db->execute("INSERT INTO course (`id`, `author_id`, `name`, `price`) VALUES (NULL, '$uid', 'Новый проект', 0)");
+
+            $directory = $this->m->db->query("SELECT * FROM course WHERE author_id = ". $uid . " ORDER BY ID DESC LIMIT 1");
 
             mkdir("./uploads/projects/".$directory[0]['id']."_Новый проект");
-
-            $uid = $_SESSION['user']['id'];
         }
 
         public function addVideo () {
