@@ -12,7 +12,7 @@
             return $result;
         }
 
-        public function getAllProjects() {
+        public function getUserProjects() {
             $result = $this->db->query("SELECT * FROM course WHERE author_id = " . $_SESSION['user']['id'] . " GROUP BY id");
             return $result;
         }
@@ -25,6 +25,12 @@
         public function getContentProjectEdit() {
             $result = $this->db->query("SELECT * FROM course WHERE id = ".$_GET['id']);
             $videos = $this->db->query("SELECT * FROM course_content WHERE course_id = ".$result[0]['id']);
+            return [$result, $videos];
+        }
+
+        public function getContentForProjectPage() {
+            $result = $this->getUserProjects();
+            $videos = $this->db->query("SELECT * FROM course_content");
             return [$result, $videos];
         }
     }

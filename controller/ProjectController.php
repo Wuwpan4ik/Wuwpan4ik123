@@ -1,15 +1,20 @@
 <?php
     class ProjectController extends ACore
     {
+        private function isUser($checkId) {
+            return $_SESSION['user']['id'] == $checkId;
+        }
+
         public function setName()
         {
-            $res = $this->m->db->query("SELECT * FROM course WHERE author_id = ".$_SESSION['user']['id']." ORDER BY `id` DESC LIMIT 1");
+            $res = $this->m->db->query("SELECT * FROM course WHERE id = ".$_GET['id']);
+            if (!$this->isUser($res[0]['author_id'])) return False;
 
             if($_POST['title'] != "") {
 
                 $name = $_POST['title'];
 
-                rename("../uploads/projects/" . $_SESSION['user']['id'] . "_" . $res[0]['name'], "../uploads/projects/" . $_SESSION['user']['id'] . "_" . $name);
+                rename("./uploads/projects/" . $_SESSION['user']['id'] . "_" . $res[0]['name'], "./uploads/projects/" . $_SESSION['user']['id'] . "_" . $name);
 
                 $pathname = $this->m->db->query("SELECT * FROM course_content WHERE course_id = ".$res[0]['id']);
 
@@ -34,11 +39,11 @@
         }
 
         public function createDir () {
-            mkdir("./uploads/projects/".$_SESSION['user']['id']."_Новый проект");
+            $directory = $this->m->db->execute("INSERT INTO course (`id`, `author_id`, `name`, `price`) VALUES (NULL, '$uid', 'Новый проект', 0)");
+
+            mkdir("./uploads/projects/".$directory[0]['id']."_Новый проект");
 
             $uid = $_SESSION['user']['id'];
-
-            $this->m->db->execute("INSERT INTO course (`id`, `author_id`, `name`, `price`) VALUES (NULL, '$uid', 'Новый проект', 0)");
         }
 
         public function addVideo () {
@@ -51,7 +56,7 @@
             $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`) VALUES (".$res[0]['id'].",'Укажите заголовок','Укажите описание', '$path')");
         }
 
-        public function delete () {
+        public function deleteDir () {
 
             $uid = $_SESSION['user']['id'];
 
@@ -62,8 +67,9 @@
             }
 
             $this->m->db->execute("DELETE FROM course WHERE id = ". $_GET['id']);
-
             rmdir("./uploads/projects/".$_SESSION['user']['id']."_" . $project[0]['name']);
+
+            return True;
         }
 
         public function get_content()

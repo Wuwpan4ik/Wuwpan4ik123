@@ -1,5 +1,5 @@
 <?php
-class Registration extends ACore
+class Registration extends ACoreAdmin
 {
     public function get_content() {}
 }

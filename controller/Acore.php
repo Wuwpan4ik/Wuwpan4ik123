@@ -2,12 +2,16 @@
 abstract class ACore {
 
     protected $m;
-    protected $pr;
 
     public function __construct() {
         $this->m = new User();
-        if($_GET['option']) {
+        if(!isset($_SESSION['user']['id'])) {
+            header("Location:?option=login");
+        }
+        if(isset($_GET['option'])) {
             $this->get_body(trim(strip_tags($_GET['option'])));
+        } else {
+            header("Location:?option=Main");
         }
     }
 
