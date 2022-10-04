@@ -1,0 +1,175 @@
+<html><head>
+    <meta charset="utf-8">
+    <title>Моя тестовая страница</title>
+    <link rel="stylesheet" href="css/cases.css">
+    <link rel="stylesheet" href="css/feed.css">
+    <link rel="stylesheet" href="css/case.css">
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+        <div class="Cases">
+            
+  
+    <meta charset="utf-8">
+    <title>Моя тестовая страница</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/sidebaroption.css">
+    <link rel="stylesheet" href="css/userprofile.css">
+    
+    
+                    <div class="nav">
+            <div class="sidebar" style="height:88vh;">
+				<a href="login.php">
+					<div class="sidebarOption">
+						<div class="option">
+							<img class="ico" src="img/Log.svg">
+								<h2>Войти</h2>
+						</div>
+					</div>
+				</a>
+				<a href="registration.php">
+					<div class="sidebarOption">
+						<div class="option">
+							<img class="ico" src="img/Reg.svg">
+								<h2>Зарегистрироваться</h2>
+						</div>
+					</div>
+				</a>
+            </div>
+            <div class="contactSignout">
+                <div class="sidebarOption">
+                    <img class="ico" src="img/Support.svg">
+                    <h2>Поддержка</h2>
+                </div>
+            </div>
+        </div>
+            
+            <div class="feed">
+                <div class="feed-header">
+                    <h2>Кейсы</h2>
+                    <div class="buttonsFeed">
+                        <button class="ico_button"><img class="ico" src="img/Shield.svg"></button>
+                        <button class="ico_button"><img class="ico" src="img/Bell.svg"></button>
+                        <button id="apps" class="ico_button">Заявки</button>
+                    </div>
+                </div>
+                <div class="Case">
+                    <div class="cart-boosted">
+                        <div class="service-price">
+                            <div class="service">
+                                <div class="image-service">
+                                    <img src="img/inst.png">
+                                </div>
+                                <div class="service-text">
+                                    <h2>Курс менеджер инстаграм</h2>
+                                    <div class="starrating">
+                                        <p>InstaKilogram из Москвы</p>
+                                        <h2><img src="img/Star.svg" class="ico"> 4.1</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="price">
+                                <h2>109 100Р - 160 000Р в месяц</h2>
+                                <div class="timer">
+									<img src="img/Time.svg" class="ico">
+                                    <p> недавно</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="status-1">
+                            <span>Boosted</span>
+                        </div>
+                        <div class="service-text-2">
+                            <p>Этот кейс – это история о том, как прокачать языковую онлайн школу для детей, запустив
+                                проект с нуля с начала пандемии, и увеличить количество преподавателей в 7 раз, получив
+                                3061 заявку из таргета Инстаграм. Об этом кейсе мы и рассказываем в этой статье.</p>
+                        </div>
+                        <div class="time-more-btn">
+                            <p>29 января 2022</p>
+                            <button>
+                                Узнать больше
+                            </button>
+                        </div>
+                    </div>
+                    <div class="cart">
+                        <div class="service-price">
+                            <div class="service">
+                                <div class="image-service">
+                                    <img src="img/Netflix.jpeg">
+                                </div>
+                                <div class="service-text">
+                                    <h2>Курсы по режиссуре</h2>
+                                    <div class="starrating">
+                                        <p>Lexa из Армении</p>
+                                        <h2><img src="img/Star.svg" class="ico"> 4.4</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="price">
+                                <h2>109 100Р - 160 000Р в месяц</h2>
+                                <div class="timer">
+									<img src="img/Time.svg" class="ico">
+                                    <p>4 дня назад</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="status">
+                            <span>Кино</span>
+                        </div>
+                        <div class="service-text-2">
+                            <p>Калинин В.С. – руководитель мастерских режиссуры ВГИК, доцент режиссуры кино и телевидения,
+                                режиссёр, федеральный эксперт в области профессионального образования, сценарист,
+                                лауреат отечественных, зарубежных премий. «Можно долго говорить о том, что я уникален и это факт!
+                                За меня всё скажет интернет». Читай отзывы, смотри YouTube</p>
+                        </div>
+                        <div class="time-more-btn">
+                            <p>29 января 2022</p>
+                            <button>
+                                Узнать больше
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body></html>
