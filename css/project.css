@@ -1,11 +1,1 @@
-body{
-    margin: 0;
-    padding: 0;
-}
-
-.Project{
-    display: flex;
-    background-color: white;
-    height: 100%;
-    width: 100%;
-}
+body{    margin: 0;    padding: 0;}.Project{    display: flex;    background-color: white;    height: 100%;    width: 100%;}.new_name div{    position: relative;}.new_name div label{    position: absolute;    top: 10px;    left: 10px;    font-size: 13px;}.new_name div textarea {    padding-top: 15px;    padding-left: 15px;    font-size: 16px;}.new_name div input{    padding-top: 10px;}.new_name button img{    transform: translateY(5px);    padding-right: 10px;}
