@@ -37,7 +37,7 @@ function addFormItem () {
         '                        <option value="name">Имя</option>\n' +
         '                        <option value="tel">Телефон</option>'
 
-    form.children[count - 1пше].after(div);
+    form.children[count - 1].after(div);
     if (count > 2) {
         document.querySelector('.addFormInput').classList.add('display-none');
         return false;
