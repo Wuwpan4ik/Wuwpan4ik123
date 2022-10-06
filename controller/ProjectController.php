@@ -92,6 +92,21 @@
             return True;
         }
 
+        public function addButtonView() {
+            if (isset($_POST['first_do'])) {
+                $first_do = $_POST['first_do'];
+            }
+            if (isset($_POST['form_id-1'])) {
+                $form_input_1 = $_POST['form_id-1'];
+            }
+            if (isset($_POST['form_id-2'])) {
+                $form_input_2 = $_POST['form_id-2'];
+            }
+            if (isset($_POST['form_id-3'])) {
+                $form_input_3 = $_POST['form_id-3'];
+            }
+        }
+
         public function get_content()
         {
             echo '<!DOCTYPE html>

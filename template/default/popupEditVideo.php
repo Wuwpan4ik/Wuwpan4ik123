@@ -10,7 +10,7 @@
         <form method="POST" class="popup__body-container">
             <div class="popup__body-block">
                 <div class="popup__body-item">
-                    <label for="first_do">После нажатия на кнопку:</label>
+                    <label for="first_do">Дейсвтие после просмотра:</label>
                     <select name="first_do" id="first_do">
                         <option value="list" selected>Список уроков</option>
                         <option value="form">Форма заявки</option>
