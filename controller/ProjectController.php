@@ -92,9 +92,14 @@
             return True;
         }
 
-        public function addButtonView() {
+        public function initVideoButton() {
+            //Форма
+            $id_video = $_POST['id_item'];
+            if (!$this->isUser($id_video)) return False;
             if (isset($_POST['first_do'])) {
                 $first_do = $_POST['first_do'];
+            } else {
+                return False;
             }
             if (isset($_POST['form_id-1'])) {
                 $form_input_1 = $_POST['form_id-1'];
@@ -105,7 +110,21 @@
             if (isset($_POST['form_id-3'])) {
                 $form_input_3 = $_POST['form_id-3'];
             }
+            switch ($_POST['first_do']) {
+                case "form": {
+                    $videoBtnHTML = "";
+                }
+                case "list": {
+                    $videoBtnHTML = "";
+                }
+                case "nextLesson": {
+                    $videoBtnHTML = "";
+                }
+            }
+            $this->m->db->execute("UPDATE `course_content` SET `after_video_view` = '$videoBtnHTML' WHERE id = '$id_video'");
+            return True;
         }
+
 
         public function get_content()
         {

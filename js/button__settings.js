@@ -4,6 +4,7 @@ const entryDisplay = document.querySelector('#popup__background');
 const popup = document.querySelector('#popup');
 const buttonChanges = document.querySelectorAll('.button__edit');
 const form = document.querySelector('#popup__body-form');
+const id_item = document.querySelector('#id_item');
 
 function toggleOverflow () {
     body.classList.toggle("overflow-hidden");
@@ -11,6 +12,7 @@ function toggleOverflow () {
 
 buttonChanges.forEach((item) => {
     item.addEventListener('click', function () {
+        id_item.value = item.parentElement.querySelector('input[type="hidden"]').value;
         entryDisplay.classList.toggle('display-block');
         toggleOverflow();
     });

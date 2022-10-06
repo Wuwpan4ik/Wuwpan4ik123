@@ -8,13 +8,13 @@
             </div>
         </div>
         <form method="POST" class="popup__body-container">
+            <input id="id_item" type="hidden" value="">
             <div class="popup__body-block">
                 <div class="popup__body-item">
                     <label for="first_do">Дейсвтие после просмотра:</label>
                     <select name="first_do" id="first_do">
                         <option value="list" selected>Список уроков</option>
                         <option value="form">Форма заявки</option>
-                        <option value="nextLesson">Открыть следующий урок</option>
                     </select>
                 </div>
                 <div class="popup__body-item">
@@ -22,7 +22,6 @@
                     <select name="third_do" id="third_do">
                         <option value="list" selected>Список уроков</option>
                         <option value="form">Форма заявки</option>
-                        <option value="nextLesson">Открыть следующий урок</option>
                     </select>
                 </div>
             </div>
@@ -41,7 +40,6 @@
                     <select name="second_do" id="second_do">
                         <option value="list" selected>Список уроков</option>
                         <option value="form">Форма заявки</option>
-                        <option value="nextLesson">Открыть следующий урок</option>
                     </select>
                 </div>
             </div>
