@@ -80,7 +80,7 @@
         }
 
         public function renameVideo() {
-            $courseContent = $this->m->db->query("SELECT * FROM `course_content` WHERE id = ".$_GET['id']);
+            $courseContent = $this->m->db->query("SELECT * FROM `course_content` WHERE id = ".$_GET['id_item']);
             $res = $this->m->db->query("SELECT * FROM `course` WHERE id = ".$courseContent[0]['course_id']);
             if (!$this->isUser($res[0]['author_id'])) return False;
 
@@ -88,7 +88,7 @@
             $description = $_POST['description'];
             $button_text = $_POST['button_text'];
             $this->m->db->execute("UPDATE `course_content` SET `name` = '$name', `description` = '$description',
-                            `button_text` = '$button_text' WHERE `id` = " . $_GET['id']);
+                            `button_text` = '$button_text' WHERE `id` = " . $_GET['id_item']);
             return True;
         }
 
@@ -138,7 +138,23 @@
 			</head>
 			<body>
 				<script>
-				    let a = location.protocol + \'//\' + location.host + location.pathname + \'?option=Project\';
+				    let ur = document.URL;
+                    var url = new URL(ur);
+                    var option = url.searchParams.get("option");
+                    var method = url.searchParams.get("method");
+                    let id = url.searchParams.get("id");
+                    let optionName = "";
+                    let idNumber = "";
+                    
+                    if (method === "addVideo" || method === "renameVideo") {
+                        optionName = "ProjectEdit"
+                    } else {
+                        optionName = "Project"
+                    }
+                    if (id) {
+                        idNumber = \'&id=\' + id;
+                    }
+				    let a = location.protocol + \'//\' + location.host + location.pathname + \'?option=\' + optionName + idNumber;
 					window.location.replace(a);
 				</script>
 			</body>

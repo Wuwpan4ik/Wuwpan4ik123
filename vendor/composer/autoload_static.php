@@ -14,6 +14,7 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'ACore' => __DIR__ . '/../..' . '/controller/Acore.php',
         'ACoreAdmin' => __DIR__ . '/../..' . '/controller/ACoreAdmin.php',
         'Account' => __DIR__ . '/../..' . '/pages/account.php',
+        'AccountController' => __DIR__ . '/../..' . '/controller/AccountController.php',
         'Analytics' => __DIR__ . '/../..' . '/pages/analytics.php',
         'Cases' => __DIR__ . '/../..' . '/pages/cases.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
