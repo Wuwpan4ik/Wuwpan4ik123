@@ -1,5 +1,17 @@
 <?php
     class LoginController extends ACoreAdmin {
+        private function validate_data ($email, $name) {
+            if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+                $_SESSION['error']['email_message'] = 'Неверный email';
+            }
+            if ((int)$this->m->db->query("SELECT count(*) FROM user WHERE email = " . $_POST[email]) > 0) {
+                $_SESSION['error']['email_message'] = 'Почта либо занята, либо это ваша';
+            }
+            if (preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$_POST['name'])) {
+                $_SESSION['error']['name_message'] = 'Имя содержит запрещенные знаки';
+            }
+        }
+
         public function login () {
             $email = $_POST['email'];
             $password = $_POST['pass'];
@@ -14,10 +26,12 @@
                     'status' => $res[0]['status'],
                     'avatar' => $res[0]['avatar'],
                     'name' => $res[0]['name'],
+                    'subname' => $res[0]['subname'],
                     'email' => $res[0]['email'],
                     'role' => $res[0]['role'],
                     'sub_id' => $res[0]['subscription_id'],
                     'course_id' => $res[0]['course_id'],
+                    'site_url' => $res[0]['site_url']
                 ];
                 $response = "С возвращением, ".$_SESSION["user"]["name"];
             }
@@ -45,10 +59,8 @@
                 $ava = "uploads/ava/1.jpg";
             }
 
-            $res = $this->db->db->query("SELECT * FROM user WHERE email = '$email'");
-            if(count($res) != 0){
-                $response = "На этот адрес электронной почты уже был зарегистрирован аккаунт";
-            }
+            $this->validate_data($email, $name);
+            if (isset($_SESSION['email_message']) || isset($_SESSION['name_message'])) return False;
 
             else {
 

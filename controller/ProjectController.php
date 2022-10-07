@@ -41,16 +41,6 @@
             return True;
         }
 
-        public function createDir () {
-            $uid = $_SESSION['user']['id'];
-
-            $this->m->db->execute("INSERT INTO course (`id`, `author_id`, `name`, `price`) VALUES (NULL, '$uid', 'Новый проект', 0)");
-
-            $directory = $this->m->db->query("SELECT * FROM course WHERE author_id = ". $uid . " ORDER BY ID DESC LIMIT 1");
-
-            mkdir("./uploads/projects/".$directory[0]['id']."_Новый проект");
-        }
-
         public function addVideo () {
             $uid = $_GET['id'];
 
@@ -61,22 +51,6 @@
             $path = "./uploads/projects/".$uid."_".$res[0]['name']."/".$_FILES['video_uploader']['name'];
 
             $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`) VALUES (".$res[0]['id'].",'Укажите заголовок','Укажите описание', '$path')");
-        }
-
-        public function deleteDir () {
-
-            $uid = $_SESSION['user']['id'];
-
-            $project = $this->m->db->query("SELECT * FROM course WHERE id = ". $_GET['id'] . " LIMIT 1");
-
-            if ($project[0]['author_id'] != $uid) {
-                return False;
-            }
-
-            $this->m->db->execute("DELETE FROM course WHERE id = ". $_GET['id']);
-            rmdir("./uploads/projects/".$_GET['id']."_" . $project[0]['name']);
-
-            return True;
         }
 
         public function renameVideo() {

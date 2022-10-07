@@ -18,6 +18,7 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'Analytics' => __DIR__ . '/../..' . '/pages/analytics.php',
         'Cases' => __DIR__ . '/../..' . '/pages/cases.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'DirectoryController' => __DIR__ . '/../..' . '/controller/DirectoryController.php',
         'Login' => __DIR__ . '/../..' . '/pages/login.php',
         'LoginController' => __DIR__ . '/../..' . '/controller/LoginController.php',
         'Main' => __DIR__ . '/../..' . '/pages/main.php',
@@ -26,6 +27,7 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'ProjectController' => __DIR__ . '/../..' . '/controller/ProjectController.php',
         'ProjectEdit' => __DIR__ . '/../..' . '/pages/projectEdit.php',
         'Registration' => __DIR__ . '/../..' . '/pages/registration.php',
+        'UrlController' => __DIR__ . '/../..' . '/controller/UrlController.php',
         'smallPlayer' => __DIR__ . '/../..' . '/pages/smallPlayer.php',
     );
 

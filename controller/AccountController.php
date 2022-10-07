@@ -1,35 +1,70 @@
 <?php
 class AccountController extends ACore {
 
-    private function validate_data ($email, $name, $subname) {
-        if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-            $_SESSION['error']['email_message'] = 'Неверный email';
+    public function IsFreedomSiteName () {
+        $site_url = $_GET['site_url'];
+
+        if ((int)$this->m->db->query("SELECT count(*) FROM user WHERE `site_url` = " . $site_url) > 0) {
+            return False;
         }
-        if ((int)$this->m->db->query("SELECT count(*) FROM user WHERE email = " . $_POST[email]) > 0) {
-            $_SESSION['error']['email_message'] = 'Почта либо занята, либо это ваша';
-        }
-        if (preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$_POST['name'])) {
-            $_SESSION['error']['name_message'] = 'Имя содержит запрещенные знаки';
-        }
-        if (preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$_POST['subname'])) {
-            $_SESSION['error']['subname_message'] = 'Фамилия содержит запрещенные знаки';
-        }
+        return True;
     }
 
     public function SaveSettings() {
-        $email = $_POST['email'];
-        $subname = $_POST['subname'];
-        $name = $_POST['name'];
+        $user = $this->m->db->query("SELECT * FROM user WHERE `id` = ". $_SESSION['user']['id']);
 
-        // Проверка валидности
-        $this->validate_data($email, $name, $subname);
-        if (isset($_SESSION['email_message']) || isset($_SESSION['name_message']) || isset($_SESSION['subname_message'])) return False;
-        // Проверка валидности
+        if (strlen($_POST['email']) == 0) {
+            $email = $user[0]['email'];
+        } else {
+            $temp_email = $_POST['email'];
+            if (!filter_var($temp_email, FILTER_VALIDATE_EMAIL)) {
+                $_SESSION['error']['email_message'] = 'Неверный email';
+                return False;
+            }
 
-        $this->m->db->execute("UPDATE user SET `email` = '$email', `subname` = '$subname', `subname` = '$subname' WHERE id = " . $_SESSION['user']['id']);
+            if ((int)$this->m->db->query("SELECT count(*) FROM user WHERE email = '$temp_email'") > 0) {
+                $_SESSION['error']['email_message'] = 'Почта либо занята, либо это ваша';
+                return False;
+            }
+            $email = $_POST['email'];
+        }
+
+        if (strlen($_POST['name']) == 0) {
+            $name = $user[0]['name'];
+        } else {
+            if (preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$_POST['name'])) {
+                $_SESSION['error']['name_message'] = 'Имя содержит запрещенные знаки';
+                return False;
+            }
+            $name = $_POST['name'];
+        }
+
+        if (strlen($_POST['subname']) == 0) {
+            $subname = $user[0]['subname'];
+        } else {
+            if (preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$_POST['subname'])) {
+                $_SESSION['error']['subname_message'] = 'Фамилия содержит запрещенные знаки';
+                return False;
+            }
+            $subname = $_POST['subname'];
+        }
+
+        if (strlen($_POST['site_url']) == 0) {
+            $site_url = $user[0]['site_url'];
+        } else {
+            $site_url = $_POST['site_url'];
+            $count = (int)($this->m->db->query("SELECT * FROM user WHERE `site_url` = '$site_url'"));
+            if ($count != 0) {
+                $_SESSION['error']['url_message'] = 'Данный Url уже занят';
+                return False;
+            }
+        }
+
+        $this->m->db->execute("UPDATE user SET `email` = '$email', `name` = '$name', `subname` = '$subname', `site_url` = '$site_url' WHERE id = " . $_SESSION['user']['id']);
         $_SESSION["user"]['name'] = $name;
         $_SESSION["user"]['subname'] = $subname;
         $_SESSION["user"]['email'] = $email;
+        $_SESSION["user"]['site_url'] = $site_url;
         return true;
     }
 
