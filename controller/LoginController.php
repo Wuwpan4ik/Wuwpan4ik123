@@ -74,7 +74,7 @@
 			</head>
 			<body>
 				<script>
-					window.location.replace("?option=main");
+					window.location.replace("?option=Main");
 				</script>
 			</body>
 			</html>';

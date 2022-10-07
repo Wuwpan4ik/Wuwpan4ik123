@@ -138,7 +138,7 @@
 			</head>
 			<body>
 				<script>
-				    let a = location.protocol + \'//\' + location.host + location.pathname + \'?option=project\';
+				    let a = location.protocol + \'//\' + location.host + location.pathname + \'?option=Project\';
 					window.location.replace(a);
 				</script>
 			</body>
