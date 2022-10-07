@@ -6,6 +6,10 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit113aa6f48300210152e47d56e3735559
 {
+    public static $files = array (
+        '1d5a77609116b3a7d9f7b9e9c18687a5' => __DIR__ . '/../..' . '/model/User.php',
+    );
+
     public static $classMap = array (
         'ACore' => __DIR__ . '/../..' . '/controller/Acore.php',
         'ACoreAdmin' => __DIR__ . '/../..' . '/controller/ACoreAdmin.php',
@@ -13,7 +17,6 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'Analytics' => __DIR__ . '/../..' . '/pages/analytics.php',
         'Cases' => __DIR__ . '/../..' . '/pages/cases.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'Database' => __DIR__ . '/../..' . '/model/connect.php',
         'Login' => __DIR__ . '/../..' . '/pages/login.php',
         'LoginController' => __DIR__ . '/../..' . '/controller/LoginController.php',
         'Main' => __DIR__ . '/../..' . '/pages/main.php',
@@ -22,7 +25,6 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'ProjectController' => __DIR__ . '/../..' . '/controller/ProjectController.php',
         'ProjectEdit' => __DIR__ . '/../..' . '/pages/projectEdit.php',
         'Registration' => __DIR__ . '/../..' . '/pages/registration.php',
-        'User' => __DIR__ . '/../..' . '/model/User.php',
         'smallPlayer' => __DIR__ . '/../..' . '/pages/smallPlayer.php',
     );
 

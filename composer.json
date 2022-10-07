@@ -1,9 +1,11 @@
 {
     "autoload": {
         "classmap": [
-            "controller/",
-            "pages/",
-            "model"
+            "./controller/",
+            "./pages/"
+        ],
+        "files": [
+            "./model/User.php"
         ]
     }
 }
