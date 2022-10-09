@@ -20,7 +20,7 @@ return array(
     'NewProject' => $baseDir . '/pages/newProject.php',
     'Project' => $baseDir . '/pages/Project.php',
     'ProjectController' => $baseDir . '/controller/ProjectController.php',
-    'ProjectEdit' => $baseDir . '/pages/projectEdit.php',
+    'ProjectEdit' => $baseDir . '/pages/ProjectEdit.php',
     'Registration' => $baseDir . '/pages/registration.php',
     'UrlController' => $baseDir . '/controller/UrlController.php',
     'smallPlayer' => $baseDir . '/pages/smallPlayer.php',
