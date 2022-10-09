@@ -59,6 +59,11 @@
                 $ava = "uploads/ava/1.jpg";
             }
 
+            $res = $this->db->db->query("SELECT * FROM user WHERE email = '$email'");
+            if(count($res) != 0){
+                $response = "На этот адрес электронной почты уже был зарегистрирован аккаунт";
+            }
+
             $this->validate_data($email, $name);
             if (isset($_SESSION['email_message']) || isset($_SESSION['name_message'])) return False;
 

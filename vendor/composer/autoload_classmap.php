@@ -18,7 +18,7 @@ return array(
     'LoginController' => $baseDir . '/controller/LoginController.php',
     'Main' => $baseDir . '/pages/main.php',
     'NewProject' => $baseDir . '/pages/newProject.php',
-    'Project' => $baseDir . '/pages/project.php',
+    'Project' => $baseDir . '/pages/Project.php',
     'ProjectController' => $baseDir . '/controller/ProjectController.php',
     'ProjectEdit' => $baseDir . '/pages/projectEdit.php',
     'Registration' => $baseDir . '/pages/registration.php',
