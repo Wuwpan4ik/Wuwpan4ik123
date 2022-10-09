@@ -1,12 +1,51 @@
 <?php
     class DirectoryController extends ACore {
 
+        private function isUser($checkId)
+        {
+            return $_SESSION['user']['id'] == $checkId;
+        }
+
+        public function setName()
+        {
+            $res = $this->m->db->query("SELECT * FROM course WHERE id = ".$_GET['id']);
+            if (!$this->isUser($res[0]['author_id'])) return False;
+
+            $idDir = $_GET['id'];
+
+            if(isset($_POST['title'])) {
+
+                $last_name = $res[0]['name'];
+
+                $name = $_POST['title'];
+
+                rename("./uploads/projects/$idDir". "_" ."$last_name", "./uploads/projects/$idDir" . "_" . "$name");
+
+                $paths = $this->m->db->query("SELECT * FROM course_content WHERE course_id = '$idDir'");
+
+                $this->m->db->execute("UPDATE `course` SET `name`='$name' WHERE id = '$idDir'");
+
+                foreach ($paths as $path) {
+                    $id = $path['id'];
+
+                    $pages = explode("/", $path['video']);
+
+                    $pages[3] = $idDir . "_" . $name;
+
+                    $changed = implode("/", $pages);
+
+                    $this->m->db->execute("UPDATE `course_content` SET `video` = '$changed' WHERE id = '$id'");
+                }
+            }
+            return True;
+        }
+
         public function Create () {
             $uid = $_SESSION['user']['id'];
 
             $this->m->db->execute("INSERT INTO course (`id`, `author_id`, `name`, `price`) VALUES (NULL, '$uid', 'Новый проект', 0)");
 
-            $directory = $this->m->db->query("SELECT * FROM course WHERE author_id = ". $uid . " ORDER BY ID DESC LIMIT 1");
+            $directory = $this->m->db->query("SELECT * FROM course WHERE author_id = '$uid'  ORDER BY ID DESC LIMIT 1");
 
             mkdir("./uploads/projects/".$directory[0]['id']."_Новый проект");
         }

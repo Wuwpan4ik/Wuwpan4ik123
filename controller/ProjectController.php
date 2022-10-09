@@ -1,54 +1,19 @@
 <?php
     class ProjectController extends ACore
     {
-        private function isUser($checkId) {
+        private function isUser($checkId)
+        {
             return $_SESSION['user']['id'] == $checkId;
         }
-
-        public function setName()
-        {
-            $res = $this->m->db->query("SELECT * FROM course WHERE id = ".$_GET['id']);
-            if (!$this->isUser($res[0]['author_id'])) return False;
-
-            $idDir = $_GET['id'];
-
-            if($_POST['title'] != "") {
-
-                $name = $_POST['title'];
-
-                rename("./uploads/projects/" . $idDir . "_" . $res[0]['name'], "./uploads/projects/" . $idDir . "_" . $name);
-
-                $pathname = $this->m->db->query("SELECT * FROM course_content WHERE course_id = ".$res[0]['id']);
-
-                $this->m->db->execute("UPDATE `course` SET `name`='$name' WHERE id = " . $res[0]['id']);
-
-                $updater = $this->m->db->link->prepare("UPDATE `course_content` SET `video` = ? WHERE id = ?");
-
-                foreach ($pathname as $path) {
-
-                    $pages = explode("/", $path[4]);
-
-                    $pages[2] = $res['author_id'] . "_" . $name;
-
-                    $changed = implode("/", $pages);
-
-                    $updater->bind_param("ss", $changed, $path[0]);
-
-                    $updater->execute();
-
-                }
-            }
-            return True;
-        }
-
+        
         public function addVideo () {
             $uid = $_GET['id'];
 
-            $res = $this->m->db->query("SELECT * FROM course WHERE author_id = ".$_SESSION['user']['id']." ORDER BY `id` DESC LIMIT 1");
+            $res = $this->m->db->query("SELECT * FROM course WHERE id = '$uid' ORDER BY `id` DESC LIMIT 1");
 
             move_uploaded_file($_FILES['video_uploader']['tmp_name'], "./uploads/projects/".$uid."_".$res[0]['name']."/".$_FILES['video_uploader']['name']);
 
-            $path = "./uploads/projects/".$uid."_".$res[0]['name']."/".$_FILES['video_uploader']['name'];
+            $path = "./uploads/projects/$uid"."_".$res[0]['name']."/".$_FILES['video_uploader']['name'];
 
             $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`) VALUES (".$res[0]['id'].",'Укажите заголовок','Укажите описание', '$path')");
         }
