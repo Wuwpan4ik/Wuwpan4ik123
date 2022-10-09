@@ -6,6 +6,11 @@
             return $_SESSION['user']['id'] == $checkId;
         }
 
+        public function addUserTelecom()
+        {
+
+        }
+
         public function addVideo () {
             $uid = $_GET['id'];
 
