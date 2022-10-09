@@ -95,7 +95,7 @@ p{
   max-width: 330px;
   max-height: 200px;
   text-align: center;
-  padding: 20px 50px 20px;
+  padding: 20px 50px 20px !important;
   border-radius: 20px;
   position: absolute;
   top: 0;
