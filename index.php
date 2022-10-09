@@ -13,6 +13,7 @@
             require_once "model/$class.php";
         }
     });
+    require_once 'vendor/autoload.php';
 
     if(isset($_GET['option'])) {
         $class = trim(strip_tags($_GET['option']));
