@@ -38,16 +38,6 @@
 
                 }
             }
-        }
-
-        public function createDir () {
-            $uid = $_SESSION['user']['id'];
-
-            $this->m->db->execute("INSERT INTO course (`id`, `author_id`, `name`, `price`) VALUES (NULL, '$uid', 'Новый проект', 0)");
-
-            $directory = $this->m->db->query("SELECT * FROM course WHERE author_id = ". $uid . " ORDER BY ID DESC LIMIT 1");
-
-            mkdir("./uploads/projects/".$directory[0]['id']."_Новый проект");
             return True;
         }
 
@@ -63,15 +53,11 @@
             $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`) VALUES (".$res[0]['id'].",'Укажите заголовок','Укажите описание', '$path')");
         }
 
-        public function deleteDir () {
-
-            $uid = $_SESSION['user']['id'];
         public function renameVideo() {
             $courseContent = $this->m->db->query("SELECT * FROM `course_content` WHERE id = ".$_GET['id_item']);
             $res = $this->m->db->query("SELECT * FROM `course` WHERE id = ".$courseContent[0]['course_id']);
             if (!$this->isUser($res[0]['author_id'])) return False;
 
-            $project = $this->m->db->query("SELECT * FROM course WHERE id = ". $_GET['id'] . " LIMIT 1");
             $name = $_POST['name'];
             $description = $_POST['description'];
             $button_text = $_POST['button_text'];
@@ -80,7 +66,6 @@
             return True;
         }
 
-            if ($project[0]['author_id'] != $uid) {
         public function initVideoButton() {
             //Форма
             $id_video = $_POST['id_item'];
@@ -90,10 +75,6 @@
             } else {
                 return False;
             }
-
-            $this->m->db->execute("DELETE FROM course WHERE id = ". $_GET['id']);
-            rmdir("./uploads/projects/".$_GET['id']."_" . $project[0]['name']);
-
             if (isset($_POST['form_id-1'])) {
                 $form_input_1 = $_POST['form_id-1'];
             }
@@ -131,7 +112,6 @@
 			</head>
 			<body>
 				<script>
-				    let a = location.protocol + \'//\' + location.host + location.pathname + \'?option=project\';
 				    let ur = document.URL;
                     var url = new URL(ur);
                     var option = url.searchParams.get("option");

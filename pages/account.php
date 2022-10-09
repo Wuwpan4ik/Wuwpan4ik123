@@ -1,8 +1,7 @@
 <?php
-    class Account extends Acore {
+class Account extends ACore
+{
+    public function get_content() {
 
-        function get_content()
-        {
-        }
     }
 }
