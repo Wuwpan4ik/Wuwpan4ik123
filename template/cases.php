@@ -12,7 +12,11 @@
             <?php include 'default/sidebar.php';?>
             <div class="feed">
                 <div class="feed-header">
-                    <h2>Кейсы</h2>
+                    <div class="header__arrow">
+                        <span class="button__back">
+                        <img src="/img/ArrowLeft.svg" alt=""></span>
+                        <h2>Доступные проекты</h2>
+                    </div>
                     <div class="buttonsFeed">
                         <button class="ico_button"><img class="ico" src="img/Shield.svg"></button>
                         <button class="ico_button"><img class="ico" src="img/Bell.svg"></button>
@@ -29,7 +33,7 @@
                                 <div class="service-text">
                                     <h2>Курс менеджер инстаграм</h2>
                                     <div class="starrating">
-                                        <p>InstaKilogram из Москвы</p>
+                                        <p><span class="name">InstaKilogram</span> из Москвы</p>
                                         <h2><img src="img/Star.svg" class="ico"> 4.1</h2>
                                     </div>
                                 </div>
@@ -66,7 +70,7 @@
                                 <div class="service-text">
                                     <h2>Курсы по режиссуре</h2>
                                     <div class="starrating">
-                                        <p>Lexa из Армении</p>
+                                        <p><span class="name">Lexa</span> из Армении</p>
                                         <h2><img src="img/Star.svg" class="ico"> 4.4</h2>
                                     </div>
                                 </div>
