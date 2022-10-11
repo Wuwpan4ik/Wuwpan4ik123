@@ -1,4 +1,5 @@
-<html><head>
+<html>
+  <head>
     <meta charset="utf-8">
     <title>Моя тестовая страница</title>
     <link rel="stylesheet" href="css/cases.css">
@@ -8,46 +9,14 @@
   </head>
   <body>
         <div class="Cases">
-            
-  
-    <meta charset="utf-8">
-    <title>Моя тестовая страница</title>
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/sidebar.css">
-    <link rel="stylesheet" href="css/sidebaroption.css">
-    <link rel="stylesheet" href="css/userprofile.css">
-    
-    
-                    <div class="nav">
-            <div class="sidebar" style="height:88vh;">
-				<a href="login.php">
-					<div class="sidebarOption">
-						<div class="option">
-							<img class="ico" src="img/Log.svg">
-								<h2>Войти</h2>
-						</div>
-					</div>
-				</a>
-				<a href="registration.php">
-					<div class="sidebarOption">
-						<div class="option">
-							<img class="ico" src="img/Reg.svg">
-								<h2>Зарегистрироваться</h2>
-						</div>
-					</div>
-				</a>
-            </div>
-            <div class="contactSignout">
-                <div class="sidebarOption">
-                    <img class="ico" src="img/Support.svg">
-                    <h2>Поддержка</h2>
-                </div>
-            </div>
-        </div>
-            
+            <?php include 'default/sidebar.php';?>
             <div class="feed">
                 <div class="feed-header">
-                    <h2>Кейсы</h2>
+                    <div class="header__arrow">
+                        <span class="button__back">
+                        <img src="/img/ArrowLeft.svg" alt=""></span>
+                        <h2>Доступные проекты</h2>
+                    </div>
                     <div class="buttonsFeed">
                         <button class="ico_button"><img class="ico" src="img/Shield.svg"></button>
                         <button class="ico_button"><img class="ico" src="img/Bell.svg"></button>
@@ -59,12 +28,12 @@
                         <div class="service-price">
                             <div class="service">
                                 <div class="image-service">
-                                    <img src="img/inst.png">
+                                    <img src="img/inst.png"/>
                                 </div>
                                 <div class="service-text">
                                     <h2>Курс менеджер инстаграм</h2>
                                     <div class="starrating">
-                                        <p>InstaKilogram из Москвы</p>
+                                        <p><span class="name">InstaKilogram</span> из Москвы</p>
                                         <h2><img src="img/Star.svg" class="ico"> 4.1</h2>
                                     </div>
                                 </div>
@@ -96,12 +65,12 @@
                         <div class="service-price">
                             <div class="service">
                                 <div class="image-service">
-                                    <img src="img/Netflix.jpeg">
+                                    <img src="img/Netflix.jpeg"/>
                                 </div>
                                 <div class="service-text">
                                     <h2>Курсы по режиссуре</h2>
                                     <div class="starrating">
-                                        <p>Lexa из Армении</p>
+                                        <p><span class="name">Lexa</span> из Армении</p>
                                         <h2><img src="img/Star.svg" class="ico"> 4.4</h2>
                                     </div>
                                 </div>
@@ -133,43 +102,5 @@
                 </div>
             </div>
         </div>
-  
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
-</body></html>
+  </body>
+</html>
