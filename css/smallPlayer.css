@@ -1,0 +1,487 @@
+body{
+    background: rgba(0, 0, 0, 0.8);
+    margin: 0;
+}
+._conatiner{
+    max-width: 500px;
+    margin: 0 auto;
+}
+._conatiner-player{
+    max-width: 390px;
+    margin: 0 auto;
+}
+.smallPlayer {
+
+}
+
+/* Основные стили */
+/* Слайдер */
+.slick-slider {
+    min-width: 0;
+}
+
+/* Ограничивающая оболочка */
+.slick-list {
+    overflow: hidden;
+}
+
+/* Лента слайдов */
+.slick-track {
+    display: flex;
+    align-items: flex-start;
+}
+
+/* Стрелка влево */
+.slick-arrow.slick-prev {
+    left: 0;
+}
+/* Стрелка вправо */
+.slick-arrow.slick-next {
+    right: 0;
+}
+/* Конкретный слайдер */
+.slider {
+}
+
+
+.slick-dots {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slick-dots li {
+    list-style: none;
+    width: 25%;
+    margin: 0 0 0 4px;
+}
+
+.slick-dots ul {
+    position: absolute;
+    top: 42px;
+    z-index: 2;
+    display: flex;
+    width: 395px;
+}
+
+.slick-dots button {
+    font-size: 0;
+    width: 100%;
+    background-color: #fff;
+    opacity: 0.5;
+    height: 4px;
+    border: none;
+    border-radius: 30px;
+
+}
+
+.slick-dots li.slick-active button {
+    width: 0;
+    background-color: #fff;
+    opacity: 1;
+    border: none;
+    border-radius: 30px;
+}
+
+.slider__item {
+    position: relative;
+    height: 100vh;
+}
+
+.slider__item img {
+    max-width: 100%;
+}
+
+.slider__video-item{
+    position: absolute;
+    max-width: 500px;
+    height: 100%;
+    object-fit: cover;
+}
+
+/*----------------------------------------*/
+.slider__item-info{
+    position: absolute;
+    bottom: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #fff;
+    z-index:4;
+}
+
+.slider__item-title{
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 109.5%;
+}
+
+.slider__item-text{
+    margin: 12px 0 0 0;
+    line-height: 17px;
+}
+
+.button {
+    background: #3E8AFB;
+    box-shadow: 0px 3px 0px #3168BB, 0px 10px 30px rgba(62, 138, 251, 0.6);
+    border-radius: 6px;
+    color: #fff;
+    border: none;
+}
+
+.slider__item-socialNetwork{
+    display: flex;
+    justify-content: space-around;
+    margin: 22px 0 0 0;
+}
+
+.slider__item-button button{
+    margin: 30px 0 0 0;
+    padding: 19px 42px;
+}
+
+/*----------------------------------------*/
+.slider__header{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: 9%;
+    left: 10%;
+    width: 100%;
+    z-index: 11;
+    color: #fff;
+}
+
+.slider__header-logo{
+    display: flex;
+    align-items: center;
+}
+
+.slider__header-logo-text{
+    margin: 0 0 0 6px;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.slider__header-views{
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+}
+
+.slider__header-views-count{
+    margin: 0 0 0 5px;
+    font-size: 12px;
+    opacity: 0.5;
+}
+
+/*----------------------------------------*/
+.overlay{
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+    z-index: 6;
+
+}
+
+.pause__video{
+    position: absolute;
+    top: 25%;
+    left: 35%;
+    display: flex;
+    width: 137px;
+    height: 137px;
+    opacity: 0;
+    transition: 0.6s;
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 50px 80px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    z-index: 7;
+
+}
+
+.pause__video.pauseVideo-active{
+    opacity: 1;
+}
+
+.overlay.overlay-active{
+    display: block;
+}
+
+.popup{
+    width:88%;
+    position: absolute;
+    bottom: -70%;
+    background-color: #fff;
+    text-align: center;
+    border-radius: 30px 30px 0 0;
+    padding: 0 25px;
+    opacity: 0;
+    transition: 0.6s;
+}
+
+.popup.popup-active{
+    opacity: 1;
+    bottom: 0;
+}
+
+.popup-title{
+    margin: 20px 0 0 0;
+    font-weight: 900;
+    font-size: 30px;
+    line-height: 109.5%;
+}
+
+.popup-text{
+    font-weight: 600;
+    line-height: 17px;
+    margin: 12px 0 0 0;
+    padding: 0 50px;
+}
+
+.popup__bonus-text span{
+    color: #EA2323;
+}
+
+.popup__bonus-form-input{
+    position: relative;
+    margin: 28px 0 0 0;
+}
+
+.input-img{
+    position: absolute;
+    top: 19px;
+    left: 17px;
+}
+
+.input input{
+    width: 75%;
+    background: #F4F4F4;
+    border-radius: 6px;
+    border: none;
+    padding: 21px 45px;
+}
+
+.button-form button{
+    margin: 16px 0 20px 0;
+    width: 100%;
+    padding: 19px 0;
+}
+/*----------------------------------------*/
+.popup__allLessons{
+    max-height: 782px;
+}
+
+.popup__allLessons-form-buy button{
+    width: 100%;
+    padding: 19px 0;
+}
+
+.popup__allLessons-form-notBuy button{
+    margin: 20px 0 30px 0;
+    width: 100%;
+    padding: 19px 0;
+    background: #6A6A6A;
+    box-shadow: 0px 3px 0px #494949, 0px 10px 30px rgba(105, 106, 108, 0.6);
+}
+
+.popup__allLessons-body{
+    display: flex;
+    flex-direction: column;
+    max-height: 760px;
+    margin: 10px 0 0 0;
+    overflow: auto;
+}
+
+.popup__allLessons-body::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.popup-item{
+    display: flex;
+    align-items: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 10px 0 0 0;
+    margin: 5px 0 0 0;
+}
+
+.popup__allLessons-item-video{
+    width: 50%;
+    position: relative;
+    border-radius: 20px;
+}
+
+.popup__allLessons-text{
+    font-weight: 300;
+    font-size: 14px;
+    opacity: 0.6;
+}
+
+.popup__allLessons-item-video-play{
+    position: absolute;
+    top: 35%;
+    left: 40%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0px 50px 80px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+}
+
+.popup__allLessons-item-info{
+    text-align: left;
+    width: 50%;
+}
+
+.popup__allLessons-item-info-header{
+    display: flex;
+    align-items: center;
+}
+
+.popup__allLessons-item-info-header-number{
+    display: flex;
+    width: 14px;
+    height: 20px;
+    font-weight: 300;
+    font-size: 10px;
+    padding: 0 0 0 6px;
+    align-items: center;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    background: #444444;
+    border-radius: 50%;
+}
+
+.popup__allLessons-item-info-header-time{
+    margin: 0 0 0 10px;
+    font-weight: 300;
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.popup__allLessons-item-info-title{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: rgba(0, 0, 0, 0.6);
+    margin: 15px 0 0 0;
+}
+
+/*----------------------------------------*/
+.popup__buy-title{
+    text-align: left;
+    margin: 0 0 0 15px;
+}
+
+.popup__buy-body{
+    margin: 20px 0 0 0;
+}
+
+.popup__buy-item{
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 10px 0 10px 0;
+}
+
+.popup__buy-price{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0 0 0;
+}
+
+.popup__buy-price-title{
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    opacity: 0.6;
+}
+
+.popup__buy-price-cost{
+    font-weight: 500;
+    font-size: 18px;
+    color: #EA3A3A;
+}
+
+.popup__buy-register{
+    margin: 20px 0 0 0;
+}
+
+.popup__buy-body-form{
+    position: relative;
+    margin: 10px 0 0 0;
+}
+
+.popup__buy-form-buy-button{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.popup__buy-form-buy {
+    width: 30%;
+}
+
+.popup__buy-form-buy button {
+    background: #6A6A6A;
+    box-shadow: 0px 3px 0px #494949, 0px 10px 30px rgb(105 106 108 / 60%);
+}
+
+.popup__buy-form-back {
+    width: 65%;
+}
+
+@media screen and (max-width:992px) {
+
+    ._conatiner{
+        max-width: 500px;
+    }
+    .slider__video-item{
+        max-width: 500px;
+
+    }
+    .slider__header{
+        left: 3%;
+    }
+
+}
+
+@media screen and (max-width:768px) {
+
+    ._conatiner{
+        max-width: 414px;
+    }
+
+    .slider__video-item{
+        max-width: 414px;
+    }
+
+}
+@media screen and (max-width:414px) {
+    ._conatiner{
+        max-width: 100%;
+    }
+
+    .slider__video-item{
+        max-width: 100%;
+    }
+
+}
+
+
