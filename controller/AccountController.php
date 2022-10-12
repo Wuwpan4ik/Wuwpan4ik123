@@ -22,7 +22,7 @@ class AccountController extends ACore {
                 return False;
             }
 
-            if ((int)$this->m->db->query("SELECT count(*) FROM user WHERE email = '$temp_email'") > 0) {
+            if (count($this->m->db->query("SELECT * FROM user WHERE email = '$temp_email'")) != 0) {
                 $_SESSION['error']['email_message'] = 'Почта либо занята, либо это ваша';
                 return False;
             }
