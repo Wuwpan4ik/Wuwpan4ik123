@@ -55,8 +55,9 @@ body{
 .slick-dots li {
     list-style: none;
     width: 25%;
-    margin: 0px 0 0 4px;
+    margin: 0 0 0 4px;
 }
+
 .slick-dots ul {
     position: absolute;
     top: 42px;
@@ -183,6 +184,7 @@ body{
     z-index: 6;
 
 }
+
 .pause__video{
     position: absolute;
     top: 25%;
@@ -201,9 +203,11 @@ body{
     z-index: 7;
 
 }
+
 .pause__video.pauseVideo-active{
     opacity: 1;
 }
+
 .overlay.overlay-active{
     display: block;
 }
@@ -226,6 +230,7 @@ body{
     bottom: 0;
 
 }
+
 .popup-title{
     margin: 20px 0 0 0;
     font-style: normal;
@@ -233,24 +238,29 @@ body{
     font-size: 30px;
     line-height: 109.5%;
 }
+
 .popup-text{
     font-weight: 600;
     line-height: 17px;
     margin: 12px 0 0 0;
     padding: 0 50px;
 }
+
 .popup__bonus-text span{
     color: #EA2323;
 }
+
 .popup__bonus-form-input{
     position: relative;
     margin: 28px 0 0 0;
 }
+
 .input-img{
     position: absolute;
     top: 19px;
     left: 17px;
 }
+
 .input input{
     width: 75%;
     background: #F4F4F4;
@@ -268,13 +278,12 @@ body{
 .popup__allLessons{
     max-height: 782px;
 }
-.popup__allLessons-form{
 
-}
 .popup__allLessons-form-buy button{
     width: 100%;
     padding: 19px 0;
 }
+
 .popup__allLessons-form-notBuy button{
     margin: 20px 0 30px 0;
     width: 100%;
@@ -282,6 +291,7 @@ body{
     background: #6A6A6A;
     box-shadow: 0px 3px 0px #494949, 0px 10px 30px rgba(105, 106, 108, 0.6);
 }
+
 .popup__allLessons-body{
     display: flex;
     flex-direction: column;
@@ -294,6 +304,7 @@ body{
     width: 0;
     height: 0;
 }
+
 .popup-item{
     display: flex;
     align-items: center;
@@ -301,6 +312,7 @@ body{
     padding: 10px 0 0 0;
     margin: 5px 0 0 0;
 }
+
 .popup__allLessons-item-video{
     width: 50%;
     position: relative;
@@ -325,15 +337,18 @@ body{
     box-shadow: 0px 50px 80px rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(10px);
 }
+
 .popup__allLessons-item-info{
     text-align: left;
     width: 50%;
 }
+
 .popup__allLessons-item-info-header{
     display: flex;
     align-items: center;
 
 }
+
 .popup__allLessons-item-info-header-number{
     display: flex;
     width: 14px;
@@ -347,12 +362,14 @@ body{
     background: #444444;
     border-radius: 50%;
 }
+
 .popup__allLessons-item-info-header-time{
     margin: 0 0 0 10px;
     font-weight: 300;
     font-size: 10px;
     color: rgba(0, 0, 0, 0.6);
 }
+
 .popup__allLessons-item-info-title{
     font-weight: 500;
     font-size: 14px;
@@ -360,57 +377,70 @@ body{
     color: rgba(0, 0, 0, 0.6);
     margin: 15px 0 0 0;
 }
+
 /*----------------------------------------*/
 .popup__buy-title{
     text-align: left;
     margin: 0 0 0 15px;
 }
+
 .popup__buy-body{
     margin: 20px 0 0 0;
 }
+
 .popup__buy-item{
     border-top: 1px solid rgba(0, 0, 0, 0.05);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     padding: 10px 0 10px 0;
 }
+
 .popup__buy-price{
     display: flex;
     justify-content: space-between;
     margin: 20px 0 0 0;
 }
+
 .popup__buy-price-title{
     font-weight: 500;
     font-size: 18px;
     line-height: 22px;
     opacity: 0.6;
 }
+
 .popup__buy-price-cost{
     font-weight: 500;
     font-size: 18px;
     color: #EA3A3A;
 }
+
 .popup__buy-register{
     margin: 20px 0 0 0;
 }
+
 .popup__buy-body-form{
     position: relative;
     margin: 10px 0 0 0;
 }
+
 .popup__buy-form-buy-button{
     display: flex;
     justify-content: space-between;
     width: 100%;
 }
+
 .popup__buy-form-buy {
     width: 30%;
 }
+
 .popup__buy-form-buy button {
     background: #6A6A6A;
     box-shadow: 0px 3px 0px #494949, 0px 10px 30px rgb(105 106 108 / 60%);
 }
+
 .popup__buy-form-back {
     width: 65%;
 }
+
 @media screen and (max-width:992px) {
 
     ._conatiner{
@@ -424,22 +454,23 @@ body{
         left: 3%;
     }
 }
+
 @media screen and (max-width:768px) {
 
-._conatiner{
-    max-width: 414px;
-}
-.slider__video-item{
-    max-width: 414px;
-}
+    ._conatiner{
+        max-width: 414px;
+    }
+    .slider__video-item{
+        max-width: 414px;
+    }
 }
 @media screen and (max-width:414px) {
-._conatiner{
-    max-width: 100%;
-}
-.slider__video-item{
-    max-width: 100%;
-}
+    ._conatiner{
+        max-width: 100%;
+    }
+    .slider__video-item{
+        max-width: 100%;
+    }
 }
 
 
