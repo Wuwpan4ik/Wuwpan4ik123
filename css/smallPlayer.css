@@ -77,7 +77,6 @@ body{
 
 }
 
-
 .slick-dots li.slick-active button {
     width: 0;
     background-color: #fff;
@@ -94,12 +93,14 @@ body{
 .slider__item img {
     max-width: 100%;
 }
+
 .slider__video-item{
     position: absolute;
     max-width: 500px;
     height: 100%;
     object-fit: cover;
 }
+
 /*----------------------------------------*/
 .slider__item-info{
     position: absolute;
@@ -112,15 +113,18 @@ body{
     color: #fff;
     z-index:4;
 }
+
 .slider__item-title{
     font-size: 30px;
     font-weight: 900;
     line-height: 109.5%;
 }
+
 .slider__item-text{
     margin: 12px 0 0 0;
     line-height: 17px;
 }
+
 .button {
     background: #3E8AFB;
     box-shadow: 0px 3px 0px #3168BB, 0px 10px 30px rgba(62, 138, 251, 0.6);
@@ -128,11 +132,13 @@ body{
     color: #fff;
     border: none;
 }
+
 .slider__item-socialNetwork{
     display: flex;
     justify-content: space-around;
     margin: 22px 0 0 0;
 }
+
 .slider__item-button button{
     margin: 30px 0 0 0;
     padding: 19px 42px;
@@ -149,14 +155,16 @@ body{
     z-index: 11;
     color: #fff;
 }
+
 .slider__header-logo{
     display: flex;
     align-items: center;
 }
+
 .slider__header-logo-text{
     margin: 0 0 0 6px;
     font-weight: 700;
-    font-size: 12.5233px;
+    font-size: 12px;
 }
 
 .slider__header-views{
@@ -165,10 +173,10 @@ body{
     display: flex;
     align-items: center;
 }
+
 .slider__header-views-count{
     margin: 0 0 0 5px;
-    font-weight: 400;
-    font-size: 12.5233px;
+    font-size: 12px;
     opacity: 0.5;
 }
 
@@ -195,7 +203,7 @@ body{
     opacity: 0;
     transition: 0.6s;
     background: rgba(255, 255, 255, 0.3);
-    box-shadow: 0px 50px 80px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 50px 80px rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(10px);
     align-items: center;
     justify-content: center;
@@ -222,18 +230,15 @@ body{
     padding: 0 25px;
     opacity: 0;
     transition: 0.6s;
-
 }
 
 .popup.popup-active{
     opacity: 1;
     bottom: 0;
-
 }
 
 .popup-title{
     margin: 20px 0 0 0;
-    font-style: normal;
     font-weight: 900;
     font-size: 30px;
     line-height: 109.5%;
@@ -318,11 +323,13 @@ body{
     position: relative;
     border-radius: 20px;
 }
+
 .popup__allLessons-text{
     font-weight: 300;
     font-size: 14px;
     opacity: 0.6;
 }
+
 .popup__allLessons-item-video-play{
     position: absolute;
     top: 35%;
@@ -346,7 +353,6 @@ body{
 .popup__allLessons-item-info-header{
     display: flex;
     align-items: center;
-
 }
 
 .popup__allLessons-item-info-header-number{
@@ -453,6 +459,7 @@ body{
     .slider__header{
         left: 3%;
     }
+
 }
 
 @media screen and (max-width:768px) {
@@ -460,17 +467,21 @@ body{
     ._conatiner{
         max-width: 414px;
     }
+
     .slider__video-item{
         max-width: 414px;
     }
+
 }
 @media screen and (max-width:414px) {
     ._conatiner{
         max-width: 100%;
     }
+
     .slider__video-item{
         max-width: 100%;
     }
+
 }
 
 
