@@ -10,16 +10,20 @@ $(document).ready(function(){
     });
     var video = document.querySelectorAll('.slider__video-item');
 
+    var width = 0;
 
     Array.from(video).forEach((elem)=> {
         elem.addEventListener('click', function (){
-            setInterval(function () {
+            const interval = setInterval(function () {
                 var progressBar = document.querySelector('.slick-dots li.slick-active button')
-                var width = parseInt(
+                width = parseInt(
                     (elem.currentTime * 94) / elem.duration
                 );
-                progressBar.style.width = width + 'px';
-
+                progressBar.style.background  = `linear-gradient(to right,white 0%, white ${width}%,lightgrey ${width}% , lightgrey ${100 - width}%)`;
+                console.log(width)
+                if (elem.paused) {
+                    clearInterval(interval);
+                }
             }, 300);
             if (this.paused) {
                 this.play();
