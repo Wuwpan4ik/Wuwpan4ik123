@@ -22,8 +22,8 @@ class AccountController extends ACore {
                 return False;
             }
 
-            if ((int)$this->m->db->query("SELECT count(*) FROM user WHERE email = '$temp_email'") > 0) {
-                $_SESSION['error']['email_message'] = 'Почта либо занята, либо это ваша';
+            if (count($this->m->db->query("SELECT * FROM user WHERE email = '$temp_email'")) != 0) {
+                $_SESSION['error']['email_message'] = $temp_email;
                 return False;
             }
             $email = $_POST['email'];
