@@ -6,6 +6,7 @@
         {
             $this->m = new User();
         }
+
         function get_content()
         {
             $site_url = $_GET['site_url'];
