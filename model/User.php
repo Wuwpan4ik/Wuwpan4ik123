@@ -18,19 +18,19 @@
         }
 
         public function getUserProjects() {
-            $result = $this->db->query("SELECT * FROM course WHERE author_id = " . $_SESSION['user']['id'] . " GROUP BY id");
+            $result = $this->db->query("SELECT * FROM funnel WHERE author_id = " . $_SESSION['user']['id'] . " GROUP BY id");
             return $result;
         }
 
         public function getContentForProjectEdit() {
-            $result = $this->db->query("SELECT * FROM course WHERE id = ".$_GET['id']);
-            $videos = $this->db->query("SELECT * FROM course_content WHERE course_id = ".$result[0]['id']);
+            $result = $this->db->query("SELECT * FROM funnel WHERE id = ".$_GET['id']);
+            $videos = $this->db->query("SELECT * FROM funnel_content WHERE funnel_id = ".$result[0]['id']);
             return [$result, $videos];
         }
 
         public function getContentForProjectPage() {
             $result = $this->getUserProjects();
-            $videos = $this->db->query("SELECT * FROM course_content");
+            $videos = $this->db->query("SELECT * FROM funnel_content");
             return [$result, $videos];
         }
     }

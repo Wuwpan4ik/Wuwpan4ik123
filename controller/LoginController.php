@@ -27,9 +27,6 @@
                     'first_name' => $res[0]['first_name'], // поменял name - first_name
                     'second_name' => $res[0]['second_name'], // добавить в форму - first_name
                     'email' => $res[0]['email'],
-                    'role' => $res[0]['role'],
-                    'sub_id' => $res[0]['subscription_id'],
-                    'course_id' => $res[0]['course_id'],
                     'site_url' => $res[0]['site_url']
                 ];
                 $response = "С возвращением, ".$_SESSION["user"]["name"];
@@ -73,9 +70,10 @@
             if (isset($_SESSION['email_message']) || isset($_SESSION['first_name_message'])) return False;
 
             else {
-                $this->db->db->execute("INSERT INTO `user` (`gender`, `niche`, `avatar`, `first_name`, `email`, `password`, `role`, `subscription_id`, `course_id`) VALUES ('$gender', '$niche', '$ava', '$first_name', '$email', '$password', '', '0', '0')");
+                $this->db->db->execute("INSERT INTO `user` (`gender`, `niche`, `avatar`, `first_name`, `email`, `password`) VALUES ('$gender', '$niche', '$ava', '$first_name', '$email', '$password')");
                 $_SESSION['error']['registration_message'] = "Регистрация прошла успешно";
             }
+            return true;
         }
 
         public function logout() {

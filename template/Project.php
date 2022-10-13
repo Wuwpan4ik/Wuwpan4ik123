@@ -59,7 +59,7 @@
 						$i=1;
 
 						foreach($content[1] as $v){
-                            if ($v['course_id'] == $p['id']) {
+                            if ($v['funnel_id'] == $p['id']) {
 							if($i == 1){?>
 
 								<input checked="checked" type="radio" id="<?=$v['id']?>" name="<?=$p['id']?>_video"/>
