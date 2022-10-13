@@ -7,6 +7,11 @@
             $this->db = $db;
         }
 
+        public function getCurrentUser() {
+            $result = $this->db->query("SELECT * FROM user WHERE id = " . $_SESSION['user']['id']);
+            return $result;
+        }
+
         public function getAllUsers() {
             $result = $this->db->query("SELECT * FROM user");
             return $result;

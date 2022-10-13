@@ -24,8 +24,8 @@ class AccountController extends ACore {
             $_SESSION['user']['avatar'] = $path;
         }
 
-        $niche = $_POST['niche'];
-        $gender = $_POST['gender'];
+        $niche = strlen($_POST['niche']) != 0 ? $_POST['niche'] : $_SESSION['user']['niche'];
+        $gender = strlen($_POST['gender']) != 0 ? $_POST['gender'] : $_SESSION['user']['gender'];
 
         $this->m->db->execute("UPDATE `user` SET `gender`='$gender',`niche`='$niche' WHERE `id` = " . $_SESSION['user']['id']);
     }
@@ -43,30 +43,30 @@ class AccountController extends ACore {
             }
 
             if (count($this->m->db->query("SELECT * FROM user WHERE email = '$temp_email'")) != 0) {
-                $_SESSION['error']['email_message'] = $temp_email;
+                $_SESSION['error']['email_message'] = 'Такой email уже зарегистрирован';
                 return False;
             }
             $email = $_POST['email'];
         }
 
         if (strlen($_POST['first_name']) == 0) {
-            $name = $user[0]['first_name'];
+            $first_name = $user[0]['first_name'];
         } else {
-            if (preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$_POST['name'])) {
+            if (preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$_POST['first_name'])) {
                 $_SESSION['error']['first_name_message'] = 'Имя содержит запрещенные знаки';
                 return False;
             }
-            $name = $_POST['first_name'];
+            $first_name = $_POST['first_name'];
         }
 
         if (strlen($_POST['second_name']) == 0) {
-            $subname = $user[0]['second_name'];
+            $second_name = $user[0]['second_name'];
         } else {
-            if (preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$_POST['subname'])) {
+            if (preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$_POST['second_name'])) {
                 $_SESSION['error']['second_name_message'] = 'Фамилия содержит запрещенные знаки';
                 return False;
             }
-            $subname = $_POST['second_name'];
+            $second_name = $_POST['second_name'];
         }
 
         if (strlen($_POST['site_url']) == 0) {
@@ -80,9 +80,9 @@ class AccountController extends ACore {
             }
         }
 
-        $this->m->db->execute("UPDATE user SET `email` = '$email', `name` = '$name', `second_name` = 'second_name', `site_url` = '$site_url' WHERE id = " . $_SESSION['user']['id']);
+        $this->m->db->execute("UPDATE user SET `email` = '$email', `first_name` = '$first_name', `second_name` = 'second_name', `site_url` = '$site_url' WHERE id = " . $_SESSION['user']['id']);
         $_SESSION["user"]['name'] = $name;
-        $_SESSION["user"]['subname'] = $subname;
+        $_SESSION["user"]['second_name'] = $second_name;
         $_SESSION["user"]['email'] = $email;
         $_SESSION["user"]['site_url'] = $site_url;
         return true;
