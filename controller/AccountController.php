@@ -10,6 +10,26 @@ class AccountController extends ACore {
         return True;
     }
 
+    public function saveAdditionalSettings() {
+
+        if($_FILES['file_upload']['name']){
+
+            if($_SESSION['user']['avatar'] != "uploads/ava/1.jpg"){
+                unlink("../".$_SESSION['user']['avatar']);
+            }
+            move_uploaded_file($_FILES['file_upload']['tmp_name'], "./uploads/ava/".$_SESSION['user']['email']."_".$_FILES['file_upload']['name']);
+            $path = "uploads/ava/".$_SESSION['user']['email']."_".$_FILES['file_upload']['name'];
+            $this->m->db->execute("UPDATE `user` SET `avatar` = '$path' WHERE `id` = " . $_SESSION['user']['id']);
+
+            $_SESSION['user']['avatar'] = $path;
+        }
+
+        $niche = $_POST['niche'];
+        $gender = $_POST['gender'];
+
+        $this->m->db->execute("UPDATE `user` SET `gender`='$gender',`niche`='$niche' WHERE `id` = " . $_SESSION['user']['id']);
+    }
+
     public function SaveSettings() {
         $user = $this->m->db->query("SELECT * FROM user WHERE `id` = ". $_SESSION['user']['id']);
 
@@ -29,24 +49,24 @@ class AccountController extends ACore {
             $email = $_POST['email'];
         }
 
-        if (strlen($_POST['name']) == 0) {
-            $name = $user[0]['name'];
+        if (strlen($_POST['first_name']) == 0) {
+            $name = $user[0]['first_name'];
         } else {
             if (preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$_POST['name'])) {
-                $_SESSION['error']['name_message'] = 'Имя содержит запрещенные знаки';
+                $_SESSION['error']['first_name_message'] = 'Имя содержит запрещенные знаки';
                 return False;
             }
-            $name = $_POST['name'];
+            $name = $_POST['first_name'];
         }
 
-        if (strlen($_POST['subname']) == 0) {
-            $subname = $user[0]['subname'];
+        if (strlen($_POST['second_name']) == 0) {
+            $subname = $user[0]['second_name'];
         } else {
             if (preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$_POST['subname'])) {
-                $_SESSION['error']['subname_message'] = 'Фамилия содержит запрещенные знаки';
+                $_SESSION['error']['second_name_message'] = 'Фамилия содержит запрещенные знаки';
                 return False;
             }
-            $subname = $_POST['subname'];
+            $subname = $_POST['second_name'];
         }
 
         if (strlen($_POST['site_url']) == 0) {
@@ -60,7 +80,7 @@ class AccountController extends ACore {
             }
         }
 
-        $this->m->db->execute("UPDATE user SET `email` = '$email', `name` = '$name', `subname` = '$subname', `site_url` = '$site_url' WHERE id = " . $_SESSION['user']['id']);
+        $this->m->db->execute("UPDATE user SET `email` = '$email', `name` = '$name', `second_name` = 'second_name', `site_url` = '$site_url' WHERE id = " . $_SESSION['user']['id']);
         $_SESSION["user"]['name'] = $name;
         $_SESSION["user"]['subname'] = $subname;
         $_SESSION["user"]['email'] = $email;

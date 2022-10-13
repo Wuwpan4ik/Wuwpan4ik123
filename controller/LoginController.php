@@ -23,10 +23,9 @@
                     'id' => $res[0]['id'],
                     'gender' => $res[0]['gender'],
                     'niche' => $res[0]['niche'],
-                    'status' => $res[0]['status'],
                     'avatar' => $res[0]['avatar'],
-                    'name' => $res[0]['name'],
-                    'subname' => $res[0]['subname'],
+                    'first_name' => $res[0]['first_name'], // поменял name - first_name
+                    'second_name' => $res[0]['second_name'], // добавить в форму - first_name
                     'email' => $res[0]['email'],
                     'role' => $res[0]['role'],
                     'sub_id' => $res[0]['subscription_id'],
@@ -41,7 +40,7 @@
         }
 
         public function registration () {
-            $name = $_POST['name'];
+            $first_name = $_POST['first_name'];
 
             $gender = $_POST['gender'];
 
@@ -51,11 +50,11 @@
 
             $password = $_POST['pass'];
 
-            $ava = "uploads/ava/" . $email. "_" .$_FILES['avatar']['name'];
+            $ava = "uploads/ava/" . $email. "_" .$_FILES['avatar']['first_name'];
 
             move_uploaded_file($_FILES['avatar']['tmp_name'], "./".$ava);
 
-            if(!$_FILES['avatar']['name']){
+            if(!$_FILES['avatar']['first_name']){
                 $ava = "uploads/ava/1.jpg";
             }
 
@@ -64,12 +63,12 @@
                 $response = "На этот адрес электронной почты уже был зарегистрирован аккаунт";
             }
 
-            $this->validate_data($email, $name);
-            if (isset($_SESSION['email_message']) || isset($_SESSION['name_message'])) return False;
+            $this->validate_data($email, $first_name);
+            if (isset($_SESSION['email_message']) || isset($_SESSION['first_name_message'])) return False;
 
             else {
 
-                $this->db->db->execute("INSERT INTO `user` (`id`, `gender`, `niche`, `status`, `avatar`, `name`, `email`, `password`, `role`, `subscription_id`, `course_id`) VALUES (NULL, '$gender', '$niche', '', '$ava', '$name', '$email', '$password', '', '0', '0')");
+                $this->db->db->execute("INSERT INTO `user` (`id`, `gender`, `niche`, `status`, `avatar`, `first_name`, `email`, `password`, `role`, `subscription_id`, `course_id`) VALUES (NULL, '$gender', '$niche', '', '$ava', '$first_name', '$email', '$password', '', '0', '0')");
                 $response = "Регистрация прошла успешно";
             }
             $_SESSION['message'] = $response;
