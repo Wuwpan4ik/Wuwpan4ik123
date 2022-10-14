@@ -8,7 +8,7 @@
 
         public function setName()
         {
-            $res = $this->m->db->query("SELECT * FROM course WHERE id = ".$_GET['id']);
+            $res = $this->m->db->query("SELECT * FROM funnel WHERE id = ".$_GET['id']);
             if (!$this->isUser($res[0]['author_id'])) return False;
 
             $idDir = $_GET['id'];
@@ -21,9 +21,9 @@
 
                 rename("./uploads/projects/$idDir". "_" ."$last_name", "./uploads/projects/$idDir" . "_" . "$name");
 
-                $paths = $this->m->db->query("SELECT * FROM course_content WHERE course_id = '$idDir'");
+                $paths = $this->m->db->query("SELECT * FROM funnel_content WHERE funnel_id = '$idDir'");
 
-                $this->m->db->execute("UPDATE `course` SET `name`='$name' WHERE id = '$idDir'");
+                $this->m->db->execute("UPDATE funnel SET `name` = '$name' WHERE id = '$idDir'");
 
                 foreach ($paths as $path) {
                     $id = $path['id'];
@@ -34,7 +34,7 @@
 
                     $changed = implode("/", $pages);
 
-                    $this->m->db->execute("UPDATE `course_content` SET `video` = '$changed' WHERE id = '$id'");
+                    $this->m->db->execute("UPDATE `funnel_content` SET `video` = '$changed' WHERE id = '$id'");
                 }
             }
             return True;
@@ -43,9 +43,9 @@
         public function Create () {
             $uid = $_SESSION['user']['id'];
 
-            $this->m->db->execute("INSERT INTO course (`id`, `author_id`, `name`, `price`) VALUES (NULL, '$uid', 'Новый проект', 0)");
+            $this->m->db->execute("INSERT INTO funnel (`author_id`, `name`, `description`, `price`) VALUES ('$uid', 'Новый проект', 'Описание' , 0)");
 
-            $directory = $this->m->db->query("SELECT * FROM course WHERE author_id = '$uid'  ORDER BY ID DESC LIMIT 1");
+            $directory = $this->m->db->query("SELECT * FROM funnel WHERE author_id = '$uid'  ORDER BY ID DESC LIMIT 1");
 
             mkdir("./uploads/projects/".$directory[0]['id']."_Новый проект");
         }
@@ -54,13 +54,13 @@
 
             $uid = $_SESSION['user']['id'];
 
-            $project = $this->m->db->query("SELECT * FROM course WHERE id = ". $_GET['id'] . " LIMIT 1");
+            $project = $this->m->db->query("SELECT * FROM funnel WHERE id = ". $_GET['id'] . " LIMIT 1");
 
             if ($project[0]['author_id'] != $uid) {
                 return False;
             }
 
-            $this->m->db->execute("DELETE FROM course WHERE id = ". $_GET['id']);
+            $this->m->db->execute("DELETE FROM funnel WHERE id = ". $_GET['id']);
             rmdir("./uploads/projects/".$_GET['id']."_" . $project[0]['name']);
 
             return True;

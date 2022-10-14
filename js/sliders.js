@@ -8,15 +8,14 @@ $(document).ready(function(){
         appendDots: $('.slick-dots'),
         slidesToShow:1
     });
-    var video = document.querySelectorAll('.slider__video-item');
+    const video = document.querySelectorAll('.slider__video-item');
+    let width = 0;
 
     function stopVideos() {
         Array.from(video).forEach((elem)=> {
             elem.pause();
         })
     }
-
-    var width = 0;
 
     Array.from(video).forEach((elem)=> {
         elem.addEventListener('click', function (){
@@ -48,7 +47,6 @@ $(document).ready(function(){
         stopVideos();
     });
 
-
     slider.on('beforeChange', function (event, slick ) {
         stopVideos();
         Array.from(video).forEach((elem)=> {
@@ -64,5 +62,6 @@ $(document).ready(function(){
             }, 300);
         })
     });
+
 });
 

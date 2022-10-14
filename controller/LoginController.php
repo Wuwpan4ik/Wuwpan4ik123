@@ -4,11 +4,11 @@
             if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                 $_SESSION['error']['email_message'] = 'Неверный email';
             }
-            if ((int)$this->m->db->query("SELECT count(*) FROM user WHERE email = " . $_POST[email]) > 0) {
+            if (count($this->db->db->query("SELECT * FROM user WHERE email = '$email'")) != 0) {
                 $_SESSION['error']['email_message'] = 'Почта либо занята, либо это ваша';
             }
             if (preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$_POST['name'])) {
-                $_SESSION['error']['name_message'] = 'Имя содержит запрещенные знаки';
+                $_SESSION['error']['first_name_message'] = 'Имя содержит запрещенные знаки';
             }
         }
 
@@ -23,14 +23,10 @@
                     'id' => $res[0]['id'],
                     'gender' => $res[0]['gender'],
                     'niche' => $res[0]['niche'],
-                    'status' => $res[0]['status'],
                     'avatar' => $res[0]['avatar'],
-                    'name' => $res[0]['name'],
-                    'subname' => $res[0]['subname'],
+                    'first_name' => $res[0]['first_name'], // поменял name - first_name
+                    'second_name' => $res[0]['second_name'], // добавить в форму - first_name
                     'email' => $res[0]['email'],
-                    'role' => $res[0]['role'],
-                    'sub_id' => $res[0]['subscription_id'],
-                    'course_id' => $res[0]['course_id'],
                     'site_url' => $res[0]['site_url']
                 ];
                 $response = "С возвращением, ".$_SESSION["user"]["name"];
@@ -41,7 +37,7 @@
         }
 
         public function registration () {
-            $name = $_POST['name'];
+            $first_name = $_POST['first_name'];
 
             $gender = $_POST['gender'];
 
@@ -61,18 +57,23 @@
 
             $res = $this->db->db->query("SELECT * FROM user WHERE email = '$email'");
             if(count($res) != 0){
-                $response = "На этот адрес электронной почты уже был зарегистрирован аккаунт";
+                $_SESSION['error']['registration_message'] = "На этот адрес электронной почты уже был зарегистрирован аккаунт";
+                return false;
             }
+            print_r($first_name);
+            print_r($gender);
+            print_r($niche);
+            print_r($email);
+            print_r($password);
 
-            $this->validate_data($email, $name);
-            if (isset($_SESSION['email_message']) || isset($_SESSION['name_message'])) return False;
+            $this->validate_data($email, $first_name);
+            if (isset($_SESSION['email_message']) || isset($_SESSION['first_name_message'])) return False;
 
             else {
-
-                $this->db->db->execute("INSERT INTO `user` (`id`, `gender`, `niche`, `status`, `avatar`, `name`, `email`, `password`, `role`, `subscription_id`, `course_id`) VALUES (NULL, '$gender', '$niche', '', '$ava', '$name', '$email', '$password', '', '0', '0')");
-                $response = "Регистрация прошла успешно";
+                $this->db->db->execute("INSERT INTO `user` (`gender`, `niche`, `avatar`, `first_name`, `email`, `password`) VALUES ('$gender', '$niche', '$ava', '$first_name', '$email', '$password')");
+                $_SESSION['error']['registration_message'] = "Регистрация прошла успешно";
             }
-            $_SESSION['message'] = $response;
+            return true;
         }
 
         public function logout() {

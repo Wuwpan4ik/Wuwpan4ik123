@@ -9,24 +9,24 @@
         public function addVideo () {
             $uid = $_GET['id'];
 
-            $res = $this->m->db->query("SELECT * FROM course WHERE id = '$uid' ORDER BY `id` DESC LIMIT 1");
+            $res = $this->m->db->query("SELECT * FROM funnel WHERE id = '$uid' ORDER BY `id` DESC LIMIT 1");
 
             move_uploaded_file($_FILES['video_uploader']['tmp_name'], "./uploads/projects/".$uid."_".$res[0]['name']."/".$_FILES['video_uploader']['name']);
 
             $path = "./uploads/projects/$uid"."_".$res[0]['name']."/".$_FILES['video_uploader']['name'];
 
-            $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`) VALUES (".$res[0]['id'].",'Укажите заголовок','Укажите описание', '$path')");
+            $this->m->db->execute("INSERT INTO funnel_content (`funnel_id`, `name`, `description`, `video`) VALUES (".$res[0]['id'].",'Укажите заголовок','Укажите описание', '$path')");
         }
 
         public function renameVideo() {
-            $courseContent = $this->m->db->query("SELECT * FROM `course_content` WHERE id = ".$_GET['id_item']);
-            $res = $this->m->db->query("SELECT * FROM `course` WHERE id = ".$courseContent[0]['course_id']);
+            $funnelContent = $this->m->db->query("SELECT * FROM `funnel_content` WHERE id = ".$_GET['id_item']);
+            $res = $this->m->db->query("SELECT * FROM `funnel` WHERE id = ".$funnelContent[0]['funnel_id']);
             if (!$this->isUser($res[0]['author_id'])) return False;
 
             $name = $_POST['name'];
             $description = $_POST['description'];
             $button_text = $_POST['button_text'];
-            $this->m->db->execute("UPDATE `course_content` SET `name` = '$name', `description` = '$description',
+            $this->m->db->execute("UPDATE `funnel_content` SET `name` = '$name', `description` = '$description',
                             `button_text` = '$button_text' WHERE `id` = " . $_GET['id_item']);
             return True;
         }
@@ -60,7 +60,7 @@
                     $videoBtnHTML = "";
                 }
             }
-            $this->m->db->execute("UPDATE `course_content` SET `after_video_view` = '$videoBtnHTML' WHERE id = '$id_video'");
+            $this->m->db->execute("UPDATE `funnel_content` SET `after_video_view` = '$videoBtnHTML' WHERE id = '$id_video'");
             return True;
         }
 
