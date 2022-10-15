@@ -54,9 +54,10 @@
 
             $project = $this->m->db->query("SELECT * FROM funnel WHERE id = ". $_GET['id'] . " LIMIT 1");
 
-            if ($this->isUser($project[0]['author_id'])) return False;
+            if (!$this->isUser($project[0]['author_id'])) return False;
 
             $this->m->db->execute("DELETE FROM funnel WHERE id = ". $_GET['id']);
+
             rmdir("./uploads/projects/".$_GET['id']."_" . $project[0]['name']);
 
             return True;

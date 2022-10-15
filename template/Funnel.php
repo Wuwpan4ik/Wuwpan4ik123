@@ -96,7 +96,7 @@
 
                             <input type="hidden" value="<?=$p['id']?>" >
 
-                            <button type="submit" onclick="window.location.href = '?option=ProjectEdit&id=<?=$p['id']?>';"">Изменить</button>
+                            <button type="submit" onclick="window.location.href = '?option=FunnelEdit&id=<?=$p['id']?>';"">Изменить</button>
 
                             <button class="reboot" type="submit" onclick="deleteDirectory(this)">Удалить</button>
 
