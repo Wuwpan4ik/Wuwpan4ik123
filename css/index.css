@@ -1,13 +1,9 @@
-.index{
 
-    padding: 25px 40px;
-
-}
 
 
 
 .boxes{
-    
+    padding-right:40px;
 
     display: flex;
 
@@ -21,7 +17,7 @@
 
 .box{
 
-    background-color: #f1f3f8;
+    background-color: #F8F8F8;
 
     border-radius: 10px;
 
@@ -41,13 +37,35 @@
 
 }
 
+.box:hover{
+    background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);
+    transition:0.2s ease;
+    color:white;
+}
+.box:hover p{
+    color:white;
+}
+
 .box p, h3{
-    margin-left:16px
+    margin-left:16px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    transition:0.2s ease;
+}
+.box p{
+    font-weight: 400;
+font-size: 18px;
+line-height: 24px;
+}
+.box p img{
+    margin-left:10px;
 }
 
 
 
 .header{
+    padding-right:40px;
 
 	display: flex;
 

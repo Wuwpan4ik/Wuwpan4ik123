@@ -1,6 +1,6 @@
 .feed{
 
-	margin-left: 21.7%;
+	margin-left: 19.7%;
 
     flex: 3;
 
@@ -11,6 +11,8 @@
 
 
 .feed-header {
+	
+	padding:0px 40px 0px 40px;
 
     height: 48px;
 
@@ -24,17 +26,18 @@
 
     z-index: 100;
 
-    border-bottom: 1px solid #f1ebe5;
+    border-bottom:1px solid #E1E3E6;
 
-    padding: 25px 40px;
+    margin:24px 0px 24px 0px;
+	padding-bottom:24px;
 
 }
 
 
 
 .feed-header h2 {
-
-	margin: 0px;
+	align-self:center;
+	margin-left:20px;
 
 	vertical-align: middle;
 
@@ -48,6 +51,9 @@
 
 }
 
+.header h2 , p , .boxes{
+	margin-left:40px;
+}
 
 
 .feed-menu{

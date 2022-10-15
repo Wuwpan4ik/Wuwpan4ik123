@@ -1,52 +1,114 @@
-.UserProfile{
-    height: 64px;
-    display: flex;
-    padding: 10px 5px 30px 14px;
-	justify-content: space-between;
-}
-
-#avatar{
-    width: 64px;
-    height: 64px;
-    border-radius: 99px;
-}
-
-.UserProfile p{
-    color: #757D8A;
-    margin: 0;
-    line-height: 24px;
-    height: 24px;
-    font-size: 14px;
-    font-family: "DM Sans", sans-serif;
-    font-weight: inherit;
-}
-
-.UserProfile h1{
-    margin: 0;
-    line-height: 32px;
-    height: 32px;
-    font-size: 24px;
-    color: #5A6474;
-
-}
-
-.text-info{
-    padding:8px;
-    text-align: justify;
-}
-
-.buttons{
-    position: relative;
-    top:20px;
-}
-
-#msg{
-    background-color: #EF2C2C;
-    line-height: 24px;
-    color: #FFFFFF;
-    margin: 20px 5px;
-    width: 24px;
-    height: 24px;
-    border: none;
-    border-radius: 99px;
+.UserProfile{
+
+    height: 64px;
+
+    display: flex;
+
+    padding: 10px 5px 30px 14px;
+
+	justify-content: space-between;
+
+}
+
+
+
+#avatar{
+
+    width: 64px;
+
+    height: 64px;
+
+    border-radius: 99px;
+
+}
+
+
+
+.UserProfile p{
+
+    color: #757D8A;
+
+    margin: 0;
+
+    font-weight: 400;
+
+    font-size: 14px;
+
+    line-height: 24px;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-weight: inherit;
+
+}
+
+
+
+.UserProfile h1{
+    font-weight:700;
+
+    margin: 0;
+
+    line-height: 32px;
+
+    height: 32px;
+
+    font-size: 24px;
+
+    color: #5A6474;
+
+
+
+}
+
+
+
+.text-info{
+
+    padding:8px;
+
+    text-align: justify;
+
+}
+
+
+
+.buttons{
+
+    position: relative;
+
+    top:20px;
+
+}
+
+
+
+#msg{
+    margin:0 auto;
+
+    align-self:Center;
+
+    padding: 0px 7.5px;
+
+    font-weight: 700;
+
+    font-size: 14px;
+
+    line-height: 20px;
+
+    background-color: #EF2C2C;
+
+    color: #FFFFFF;
+
+    border: none;
+
+    border-radius: 99px;
+
+}
+.sidebarOptions{
+    display:flex;
+    align-items:center;
+}
+.userProfileContent{
+    display:flex;
 }

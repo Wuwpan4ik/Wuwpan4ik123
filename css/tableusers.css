@@ -1,13 +1,24 @@
 .Tableusers{
 
+	margin-left:40px;
+
     display: flex;
 
     flex-direction: column;
 
-    padding: 20px 40px 5px;
+	padding-right:40px;
 
     font-size: 17px;
+	
+	padding-top:24px;
 
+}
+
+
+
+td b{
+	position: relative;
+	top:5px;
 }
 
 

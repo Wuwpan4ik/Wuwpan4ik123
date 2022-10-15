@@ -26,7 +26,11 @@
 
                 <div class="feed-header">
 
-                    <h2>Доступные проекты</h2>
+                <div class="header__arrow">
+                        <span class="button__back">
+                        <img src="/img/ArrowLeft.svg" alt=""></span>
+                        <h2>Мои воронки</h2>
+                    </div>
 
                     <div class="buttonsFeed">
 

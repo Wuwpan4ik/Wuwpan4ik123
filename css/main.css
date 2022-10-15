@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
+*{
+  font-family: 'DM Sans', sans-serif;
+    font-style:normal;
+}
 body{
   overflow-x:hidden;
   width: 100%;
@@ -33,6 +38,7 @@ code {
   height: 48px;
   white-space: normal;
   vertical-align: middle;
+  margin-left:12px;
 }
 
 #apps{
@@ -170,10 +176,16 @@ span.button__back:hover{
   
 }
 span.button__back{
-  margin-right:19px;
   max-height:10px;
   padding: 19px;
   align-self:center;
   background: #F8F8F8;
   border-radius: 99px;
+}
+.fixedHeader{
+  text-transform: uppercase;
+}
+
+.noBG{
+  background-image:none;
 }
