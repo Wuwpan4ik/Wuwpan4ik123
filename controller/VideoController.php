@@ -1,5 +1,5 @@
 <?php
-class ProjectController extends ACore
+class VideoController extends ACore
 {
     private function isUser($checkId)
     {
@@ -9,13 +9,23 @@ class ProjectController extends ACore
     public function addVideo () {
         $uid = $_GET['id'];
 
-        $res = $this->m->db->query("SELECT * FROM funnel WHERE id = '$uid' ORDER BY `id` DESC LIMIT 1");
+        $folder = $_GET['folder'];
 
-        move_uploaded_file($_FILES['video_uploader']['tmp_name'], "./uploads/projects/".$uid."_".$res[0]['name']."/".$_FILES['video_uploader']['name']);
+        if ($folder == 'funnel') {
+            $res = $this->m->db->query("SELECT * FROM funnel WHERE id = '$uid' ORDER BY `id` DESC LIMIT 1");
+        } elseif ($folder == 'course') {
+            $res = $this->m->db->query("SELECT * FROM course WHERE id = '$uid' ORDER BY `id` DESC LIMIT 1");
+        }
 
-        $path = "./uploads/projects/$uid"."_".$res[0]['name']."/".$_FILES['video_uploader']['name'];
+        move_uploaded_file($_FILES['video_uploader']['tmp_name'], "./uploads/$folder/".$uid."_".$res[0]['name']."/".$_FILES['video_uploader']['name']);
 
-        $this->m->db->execute("INSERT INTO funnel_content (`funnel_id`, `name`, `description`, `video`) VALUES (".$res[0]['id'].",'Укажите заголовок','Укажите описание', '$path')");
+        $path = "./uploads/$folder/$uid"."_".$res[0]['name']."/".$_FILES['video_uploader']['name'];
+
+        if ($folder == 'funnel') {
+            $this->m->db->execute("INSERT INTO funnel_content (`funnel_id`, `name`, `description`, `video`) VALUES (".$res[0]['id'].",'Укажите заголовок','Укажите описание', '$path')");
+        } elseif ($folder == 'course') {
+            $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`) VALUES (".$res[0]['id'].",'Укажите заголовок','Укажите описание', '$path')");
+        }
     }
 
     public function renameVideo() {
@@ -86,9 +96,17 @@ class ProjectController extends ACore
                     let idNumber = "";
                     
                     if (method === "addVideo" || method === "renameVideo") {
-                        optionName = "FunnelEdit"
+                        if (option === "FunnelController") {
+                            optionName = "FunnelEdit"
+                        } else {
+                            optionName = "CourseEdit"
+                        }
                     } else {
-                        optionName = "Funnel"
+                        if (option === "FunnelController") {
+                            optionName = "Funnel"
+                        } else {
+                            optionName = "Course"
+                        }
                     }
                     if (id) {
                         idNumber = \'&id=\' + id;

@@ -19,6 +19,7 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'Cases' => __DIR__ . '/../..' . '/pages/cases.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Course' => __DIR__ . '/../..' . '/pages/course.php',
+        'CourseEdit' => __DIR__ . '/../..' . '/pages/courseEdit.php',
         'DirectoryController' => __DIR__ . '/../..' . '/controller/DirectoryController.php',
         'Funnel' => __DIR__ . '/../..' . '/pages/funnel.php',
         'FunnelEdit' => __DIR__ . '/../..' . '/pages/funnelEdit.php',
@@ -27,9 +28,9 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'Main' => __DIR__ . '/../..' . '/pages/main.php',
         'NewProject' => __DIR__ . '/../..' . '/pages/newProject.php',
         'Project' => __DIR__ . '/../..' . '/pages/project.php',
-        'ProjectController' => __DIR__ . '/../..' . '/controller/FunnelController.php',
         'Registration' => __DIR__ . '/../..' . '/pages/registration.php',
         'UrlController' => __DIR__ . '/../..' . '/controller/UrlController.php',
+        'VideoController' => __DIR__ . '/../..' . '/controller/VideoController.php',
         'smallPlayer' => __DIR__ . '/../..' . '/pages/smallPlayer.php',
     );
 

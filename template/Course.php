@@ -59,7 +59,7 @@
                             $i=1;
 
                             foreach($content[1] as $v){
-                                if ($v['funnel_id'] == $p['id']) {
+                                if ($v['course_id'] == $p['id']) {
                                     if($i == 1){?>
 
                                         <input checked="checked" type="radio" id="<?=$v['id']?>" name="<?=$p['id']?>_video"/>
@@ -80,23 +80,15 @@
 
                         </div>
 
-                        <p>Воронка №<?=$k?></p>
+                        <p>Курс №<?=$k?></p>
 
                         <h3><?=$p['name']?></h3>
-
-                        <div style="display:flex;">
-
-                            <input id="half_input" placeholder="https://translate.google.ru"/>
-
-                            <button type="submit">Копировать</button>
-
-                        </div>
 
                         <div class="btn-delete-edit">
 
                             <input type="hidden" value="<?=$p['id']?>" >
 
-                            <button type="submit" onclick="window.location.href = '?option=ProjectEdit&id=<?=$p['id']?>';"">Изменить</button>
+                            <button type="submit" onclick="window.location.href = '?option=CourseEdit&id=<?=$p['id']?>';"">Изменить</button>
 
                             <button class="reboot" type="submit" onclick="deleteDirectory(this)">Удалить</button>
 
@@ -110,11 +102,11 @@
 
                     <div class="btn-upload">
 
-                        <a  href="?option=DirectoryController&method=Create" class="create-new">
+                        <a  href="?option=DirectoryController&method=Create&folder=course" class="create-new">
 
                             <img src="img/Create.svg" class="create-ico">
 
-                            <p>Создать новый проект</p>
+                            <p>Создать<br> новый курс</p>
 
                         </a>
 
@@ -155,7 +147,7 @@
         entryDisplay.classList.add('display-block');
         toggleOverflow();
         deletes.addEventListener('click',function () {
-            window.location.href = '?option=DirectoryController&method=Delete&id='+ elem.parentElement.children[0].value;
+            window.location.href = '?option=DirectoryController&method=Delete&id='+ elem.parentElement.children[0].value + '&folder=course';
         });
     }
     notDelete.onclick = function (event) {

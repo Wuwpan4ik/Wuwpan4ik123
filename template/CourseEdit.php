@@ -30,7 +30,7 @@
 
                 <a href="?option=Project"><button class="back_button"><img class="ico" src="img/StickLeft.svg"></button></a>
 
-                <form action="?option=DirectoryController&method=setName&id=<?=$content[0][0]['id']?>&folder=funnel" method="POST" id="insert">
+                <form action="?option=DirectoryController&method=setName&id=<?=$content[0][0]['id']?>&folder=course" method="POST" id="insert">
 
                     <h2 id="display_name"><?=$content[0][0]['name']?></h2>
 
@@ -86,12 +86,7 @@
                                 <label for="description">Укажите описание:</label>
                                 <textarea style="resize: none; height: 60px;" name="description" class="videoname" placeholder="<?=$v['description']?>" required></textarea>
                             </div>
-                            <div>
-                                <label for="button_text">Текст для кнопки:</label>
-                                <input name="button_text" class="videoname" type="text" placeholder="<?=$v['button_text']?>" required>
-                            </div>
                             <input type="hidden" value="<?=$v['id']?>">
-                            <button type="button" class="button__edit" style="background: #757D8A;"><img style="width: 22px;" src="../img/printer.png">Действие для кнопки</button>
                             <button type="submit">Сохранить</button>
 
                         </form>
@@ -106,7 +101,7 @@
 
                     <div class="btn-upload">
 
-                        <form id="upload_form" action="?option=VideoController&method=addVideo&id=<?=$content[0][0]['id']?>&folder=funnel" enctype="multipart/form-data" method="post">
+                        <form id="upload_form" action="?option=VideoController&method=addVideo&id=<?=$content[0][0]['id']?>&folder=course" enctype="multipart/form-data" method="post">
 
                             <a class="create-new">
 
@@ -129,8 +124,6 @@
     </div>
 
 </div>
-
-<?php include 'default/popupEditVideo.php';?>
 <script src="../js/button__settings.js"></script>
 </body>
 

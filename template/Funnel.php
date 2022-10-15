@@ -110,11 +110,11 @@
 
                     <div class="btn-upload">
 
-                        <a  href="?option=DirectoryController&method=Create" class="create-new">
+                        <a  href="?option=DirectoryController&method=Create&folder=funnel" class="create-new">
 
                             <img src="img/Create.svg" class="create-ico">
 
-                            <p>Создать новый проект</p>
+                            <p>Создать<br> новую воронку</p>
 
                         </a>
 
@@ -155,7 +155,7 @@
         entryDisplay.classList.add('display-block');
         toggleOverflow();
         deletes.addEventListener('click',function () {
-            window.location.href = '?option=DirectoryController&method=Delete&id='+ elem.parentElement.children[0].value;
+            window.location.href = '?option=DirectoryController&method=Delete&id='+ elem.parentElement.children[0].value + '&folder=funnel';
         });
     }
     notDelete.onclick = function (event) {

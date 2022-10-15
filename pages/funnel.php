@@ -1,7 +1,7 @@
 <?php
 class Funnel extends ACore {
     public function get_content() {
-        $result = $this->m->getContentForProjectPage();
+        $result = $this->m->getContentForFunnelPage();
         return $result;
     }
 

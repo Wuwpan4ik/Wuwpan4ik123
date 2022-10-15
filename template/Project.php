@@ -26,7 +26,7 @@
 
                 <div class="feed-header">
 
-                    <h2>Доступные проекты</h2>
+                    <h2>Мои проекты</h2>
 
                     <div class="buttonsFeed">
 

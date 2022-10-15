@@ -1,7 +1,7 @@
 <?php
-class Course extends ACore {
+class CourseEdit extends ACore {
     public function get_content() {
-        $result = $this->m->getContentForCoursePage();
+        $result = $this->m->getContentForCourseEdit();
         return $result;
     }
 
