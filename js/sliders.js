@@ -3,6 +3,7 @@ $(document).ready(function(){
         arrows:false,
         dots:true,
         swipe: false,
+        lazyLoad: true,
         appendDots: $('.slick-dots'),
         slidesToShow:1
     });
