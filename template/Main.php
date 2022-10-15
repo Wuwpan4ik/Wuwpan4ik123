@@ -137,7 +137,7 @@
 
                         <tr id="white">
 
-                            <td><img class="table_ava" src="<?=$item['avatar']?>"/><b><?=$item['name']?></b></td>
+                            <td><img class="table_ava" src="<?=$item['avatar']?>"/><b><?=$item['first_name']?></b></td>
 
                             <td><?=$item['email']?></td>
 
@@ -151,7 +151,7 @@
 
                         <tr id="grey">
 
-                            <td><img class="table_ava" src="<?=$item['avatar']?>"/><b><?=$item['name']?></b></td>
+                            <td><img class="table_ava" src="<?=$item['avatar']?>"/><b><?=$item['first_name']?></b></td>
 
                             <td><?=$item['email']?></td>
 
