@@ -23,5 +23,5 @@ return array(
     'ProjectEdit' => $baseDir . '/pages/projectEdit.php',
     'Registration' => $baseDir . '/pages/registration.php',
     'UrlController' => $baseDir . '/controller/UrlController.php',
-    'smallPlayer' => $baseDir . '/pages/smallPlayer.php',
+    'smallPlayer' => $baseDir . '/pages/SmallPlayer.php',
 );
