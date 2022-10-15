@@ -5,13 +5,16 @@ body{
 ._conatiner{
     max-width: 500px;
     margin: 0 auto;
+    height: 100%;
+    overflow: hidden;
 }
 ._conatiner-player{
     max-width: 390px;
     margin: 0 auto;
 }
-.smallPlayer {
 
+.smallPlayer__slick-slider{
+    position: relative;
 }
 
 /* Основные стили */
@@ -211,16 +214,16 @@ body{
 
 }
 
-.pause__video.pauseVideo-active{
+.pause__video.active{
     opacity: 1;
 }
 
-.overlay.overlay-active{
+.overlay.active{
     display: block;
 }
 
 .popup{
-    width:88%;
+    width: 89.7%;
     position: absolute;
     bottom: -70%;
     background-color: #fff;
@@ -231,7 +234,7 @@ body{
     transition: 0.6s;
 }
 
-.popup.popup-active{
+.popup.active{
     opacity: 1;
     bottom: 0;
 }
@@ -266,7 +269,7 @@ body{
 }
 
 .input input{
-    width: 75%;
+    width: 80%;
     background: #F4F4F4;
     border-radius: 6px;
     border: none;
@@ -282,7 +285,14 @@ body{
 .popup__allLessons{
     max-height: 782px;
 }
-
+.popup__allLessons-form{
+    position: absolute;
+    width: 80%;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    background-color: #fff;
+}
 .popup__allLessons-form-buy button{
     width: 100%;
     padding: 19px 0;
@@ -300,7 +310,7 @@ body{
     display: flex;
     flex-direction: column;
     max-height: 760px;
-    margin: 10px 0 0 0;
+    margin: 10px 0 30px 0;
     overflow: auto;
 }
 
@@ -331,7 +341,7 @@ body{
 
 .popup__allLessons-item-video-play{
     position: absolute;
-    top: 35%;
+    top: 30%;
     left: 40%;
     align-items: center;
     justify-content: center;
@@ -384,6 +394,12 @@ body{
 }
 
 /*----------------------------------------*/
+.popup__buy{
+
+}
+.popup__buy.active{
+
+}
 .popup__buy-title{
     text-align: left;
     margin: 0 0 0 15px;

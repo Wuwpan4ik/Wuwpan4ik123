@@ -1,7 +1,8 @@
 $(document).ready(function(){
-    $('.slider').slick({
+    const slider = $('.slider').slick({
         arrows:true,
         dots:true,
+        swipe: false,
         prevArrow: false,
         nextArrow: false,
         appendDots: $('.slick-dots'),
@@ -19,11 +20,16 @@ $(document).ready(function(){
     Array.from(video).forEach((elem)=> {
         elem.addEventListener('click', function (){
             const interval = setInterval(function () {
-                let progressBar = document.querySelector('.slick-dots li.slick-active button')
-                width = (elem.currentTime * 94) / elem.duration;
+                var progressBar = document.querySelector('.slick-dots li.slick-active button')
+                width = parseInt(
+                    (elem.currentTime * 100) / elem.duration
+                );
                 progressBar.style.background  = `linear-gradient(to right,white 0%, white ${width}%,lightgrey ${width}% , lightgrey ${100 - width}%)`;
                 if (elem.paused) {
                     clearInterval(interval);
+                }
+                if (elem.ended){
+                    slider.slick("slickNext");
                 }
             }, 300);
             if (this.paused) {
@@ -37,12 +43,18 @@ $(document).ready(function(){
         })
     })
 
-    $('.slider').on('beforeChange', function (event, slick) {
+    slider.on('afterChange', function (event, slick ) {
+        stopVideos();
+    });
+
+    slider.on('beforeChange', function (event, slick ) {
         stopVideos();
         Array.from(video).forEach((elem)=> {
             const interval = setInterval(function () {
                 var progressBar = document.querySelector('.slick-dots li.slick-active button')
-                width = (elem.currentTime * 94) / elem.duration;
+                width = parseInt(
+                    (elem.currentTime * 100) / elem.duration
+                );
                 progressBar.style.background  = `linear-gradient(to right,white 0%, white ${width}%,lightgrey ${width}% , lightgrey ${100 - width}%)`;
                 if (elem.paused) {
                     clearInterval(interval);
@@ -51,8 +63,5 @@ $(document).ready(function(){
         })
     });
 
-    $('.slider').on('afterChange', function (event, slick ) {
-        stopVideos();
-    });
 });
 
