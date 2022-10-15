@@ -18,6 +18,29 @@
 
 <body>
 
+<style>
+    .progress {
+        background-color: #3fee8c;
+        position: relative;
+        margin: 20px;
+        height: 1.2rem;
+    }
+    .progress-bar {
+        background-color: #7eeed8;
+        width: 100%;
+        height: 1.2rem;
+    }
+    progress::-webkit-progress-value {
+        background: #3fee8c;
+    }
+    progress::-webkit-progress-bar {
+        background: #1e1e3c;
+    }
+    progress::-moz-progress-bar {
+        background: #3fee8c;
+    }
+</style>
+
 <div class="Project">
 
     <?php include 'default/sidebar.php';?>
@@ -103,13 +126,20 @@
 
                         <form id="upload_form" action="?option=VideoController&method=addVideo&id=<?=$content[0][0]['id']?>&folder=course" enctype="multipart/form-data" method="post">
 
-                            <a class="create-new">
+                            <input accept=".mp4" style="display:none;" id="video" name="video_uploader" type="file"/>
 
-                                <input accept=".mp4" style="display:none;" id="video" name="video_uploader" type="file" onchange='document.getElementById("upload_form").submit()'/>
+                            <label for="video"><img src="img/Create.svg" class="create-ico"><span>Добавьте видео</span></label>
 
-                                <label for="video"><img src="img/Create.svg" class="create-ico"><span>Добавьте видео</span></label>
+                            <div class="progress" id="progressDiv">
+                                <progress id="progressBar" value="0" max="100" style="width:100%; height: 1.2rem;"></progress>
+                            </div>
 
-                            </a>
+                            <div class="form-group">
+                                <h3 id="status"></h3>
+                                <p id="uploaded_progress"></p>
+                            </div>
+
+                            <button type="button" onclick="uploadFileHandler()">Сохранить</button>
 
                         </form>
 
@@ -125,6 +155,43 @@
 
 </div>
 <script src="../js/button__settings.js"></script>
+<script>
+    function _(abc) {
+        return document.getElementById(abc);
+    }
+    function uploadFileHandler() {
+        var file = document.getElementById("video").files[0];
+        var formdata = new FormData();
+        formdata.append("video_uploader", file);
+        var ajax = new XMLHttpRequest();
+        ajax.upload.addEventListener("progress", progressHandler, false);
+        ajax.addEventListener("load", completeHandler, false)
+        ajax.addEventListener("error", errorHandler, false);
+        ajax.addEventListener("abort", abortHandler, false);
+        ajax.open("POST", "?option=VideoController&method=addVideo&id=<?=$content[0][0]['id']?>&folder=course");
+        ajax.send(formdata);
+    }
+    function progressHandler(event) {
+        var loaded = new Number((event.loaded / 1048576));//Make loaded a "number" and divide bytes to get Megabytes
+        var total = new Number((event.total / 1048576));//Make total file size a "number" and divide bytes to get Megabytes
+        _("uploaded_progress").innerHTML = "Uploaded " + loaded.toPrecision(5) + " Megabytes of " + total.toPrecision(5);//String output
+        var percent = (event.loaded / event.total) * 100;//Get percentage of upload progress
+        _("progressBar").value = Math.round(percent);//Round value to solid
+        _("status").innerHTML = Math.round(percent) + "% uploaded";//String output
+    }
+    function completeHandler(event) {
+        _("status").innerHTML = event.target.responseText;//Build and show response text
+        _("progressBar").value = 0;//Set progress bar to 0
+        document.getElementById('progressDiv').style.display = 'none';//Hide progress bar
+        location.reload();
+    }
+    function errorHandler(event) {
+        _("status").innerHTML = "Upload Failed";//Switch status to upload failed
+    }
+    function abortHandler(event) {
+        _("status").innerHTML = "Upload Aborted";//Switch status to aborted
+    }
+</script>
 </body>
 
 </html>

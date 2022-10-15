@@ -69,6 +69,8 @@
             $folder = $_GET['folder'];
             if (is_null($folder)) return False;
 
+            $code = uniqid($more_entropy = true);
+
             if ($folder == 'funnel') {
                 $name = '_Новая воронка';
 
@@ -80,7 +82,7 @@
 
                 $name = '_Новый курс';
 
-                $this->m->db->execute("INSERT INTO course (`author_id`, `name`, `description`, `price`) VALUES ('$uid', 'Новый курс', 'Описание' , 0)");
+                $this->m->db->execute("INSERT INTO course (`author_id`, `name`, `description`, `price`, `uniqu_code`) VALUES ('$uid', 'Новый курс', 'Описание' , 0, '$code')");
 
                 $directory = $this->m->db->query("SELECT * FROM course WHERE author_id = '$uid'  ORDER BY ID DESC LIMIT 1");
 
