@@ -1,10 +1,8 @@
 $(document).ready(function(){
     const slider = $('.slider').slick({
-        arrows:true,
+        arrows:false,
         dots:true,
         swipe: false,
-        prevArrow: false,
-        nextArrow: false,
         appendDots: $('.slick-dots'),
         slidesToShow:1
     });
@@ -20,10 +18,8 @@ $(document).ready(function(){
     Array.from(video).forEach((elem)=> {
         elem.addEventListener('click', function (){
             const interval = setInterval(function () {
-                var progressBar = document.querySelector('.slick-dots li.slick-active button')
-                width = parseInt(
-                    (elem.currentTime * 100) / elem.duration
-                );
+                let progressBar = document.querySelector('.slick-dots li.slick-active button')
+                width = (elem.currentTime * 100) / elem.duration;
                 progressBar.style.background  = `linear-gradient(to right,white 0%, white ${width}%,lightgrey ${width}% , lightgrey ${100 - width}%)`;
                 if (elem.paused) {
                     clearInterval(interval);
@@ -52,9 +48,7 @@ $(document).ready(function(){
         Array.from(video).forEach((elem)=> {
             const interval = setInterval(function () {
                 var progressBar = document.querySelector('.slick-dots li.slick-active button')
-                width = parseInt(
-                    (elem.currentTime * 100) / elem.duration
-                );
+                width = (elem.currentTime * 100) / elem.duration;
                 progressBar.style.background  = `linear-gradient(to right,white 0%, white ${width}%,lightgrey ${width}% , lightgrey ${100 - width}%)`;
                 if (elem.paused) {
                     clearInterval(interval);

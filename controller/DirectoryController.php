@@ -52,13 +52,9 @@
 
         public function Delete () {
 
-            $uid = $_SESSION['user']['id'];
-
             $project = $this->m->db->query("SELECT * FROM funnel WHERE id = ". $_GET['id'] . " LIMIT 1");
 
-            if ($project[0]['author_id'] != $uid) {
-                return False;
-            }
+            if ($this->isUser($project[0]['author_id'])) return False;
 
             $this->m->db->execute("DELETE FROM funnel WHERE id = ". $_GET['id']);
             rmdir("./uploads/projects/".$_GET['id']."_" . $project[0]['name']);

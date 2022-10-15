@@ -13,7 +13,9 @@ return array(
     'Analytics' => $baseDir . '/pages/analytics.php',
     'Cases' => $baseDir . '/pages/cases.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'Course' => $baseDir . '/pages/course.php',
     'DirectoryController' => $baseDir . '/controller/DirectoryController.php',
+    'Funnel' => $baseDir . '/pages/funnel.php',
     'Login' => $baseDir . '/pages/login.php',
     'LoginController' => $baseDir . '/controller/LoginController.php',
     'Main' => $baseDir . '/pages/main.php',
@@ -23,5 +25,5 @@ return array(
     'ProjectEdit' => $baseDir . '/pages/projectEdit.php',
     'Registration' => $baseDir . '/pages/registration.php',
     'UrlController' => $baseDir . '/controller/UrlController.php',
-    'smallPlayer' => $baseDir . '/pages/SmallPlayer.php',
+    'smallPlayer' => $baseDir . '/pages/smallPlayer.php',
 );
