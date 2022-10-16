@@ -8,6 +8,7 @@
     <link type="text/css" rel="stylesheet" href="../css/smallPlayer.css">
 </head>
 <body>
+<?php print_r($content);?>
 <div class="smallPlayer _conatiner">
     <div class="smallPlayer__slick-slider">
         <div class="slider__pagination _conatiner-player">

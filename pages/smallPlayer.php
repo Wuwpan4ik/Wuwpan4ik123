@@ -1,5 +1,8 @@
 <?php
-class smallPlayer extends ACoreAdmin
+class SmallPlayer extends ACore
 {
-    public function get_content() {}
+    public function get_content() {
+        $content = $this->m->getVideosForPlayer();
+        return $content;
+    }
 }

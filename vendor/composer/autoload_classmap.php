@@ -17,6 +17,7 @@ return array(
     'CourseEdit' => $baseDir . '/pages/courseEdit.php',
     'DirectoryController' => $baseDir . '/controller/DirectoryController.php',
     'Funnel' => $baseDir . '/pages/funnel.php',
+    'FunnelController' => $baseDir . '/controller/FunnelController.php',
     'FunnelEdit' => $baseDir . '/pages/funnelEdit.php',
     'Login' => $baseDir . '/pages/login.php',
     'LoginController' => $baseDir . '/controller/LoginController.php',
@@ -24,7 +25,7 @@ return array(
     'NewProject' => $baseDir . '/pages/newProject.php',
     'Project' => $baseDir . '/pages/project.php',
     'Registration' => $baseDir . '/pages/registration.php',
+    'SmallPlayer' => $baseDir . '/pages/smallPlayer.php',
     'UrlController' => $baseDir . '/controller/UrlController.php',
     'VideoController' => $baseDir . '/controller/VideoController.php',
-    'smallPlayer' => $baseDir . '/pages/smallPlayer.php',
 );

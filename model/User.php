@@ -50,5 +50,11 @@
             $videos = $this->db->query("SELECT * FROM course_content");
             return [$result, $videos];
         }
+
+        public function getVideosForPlayer()
+        {
+            $result = $this->db->query("SELECT * FROM funnel WHERE id = ". $_GET['id']);
+            return $result;
+        }
     }
 ?>

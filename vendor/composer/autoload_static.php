@@ -22,6 +22,7 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'CourseEdit' => __DIR__ . '/../..' . '/pages/courseEdit.php',
         'DirectoryController' => __DIR__ . '/../..' . '/controller/DirectoryController.php',
         'Funnel' => __DIR__ . '/../..' . '/pages/funnel.php',
+        'FunnelController' => __DIR__ . '/../..' . '/controller/FunnelController.php',
         'FunnelEdit' => __DIR__ . '/../..' . '/pages/funnelEdit.php',
         'Login' => __DIR__ . '/../..' . '/pages/login.php',
         'LoginController' => __DIR__ . '/../..' . '/controller/LoginController.php',
@@ -29,9 +30,9 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'NewProject' => __DIR__ . '/../..' . '/pages/newProject.php',
         'Project' => __DIR__ . '/../..' . '/pages/project.php',
         'Registration' => __DIR__ . '/../..' . '/pages/registration.php',
+        'SmallPlayer' => __DIR__ . '/../..' . '/pages/smallPlayer.php',
         'UrlController' => __DIR__ . '/../..' . '/controller/UrlController.php',
         'VideoController' => __DIR__ . '/../..' . '/controller/VideoController.php',
-        'smallPlayer' => __DIR__ . '/../..' . '/pages/smallPlayer.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

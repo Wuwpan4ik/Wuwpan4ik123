@@ -116,7 +116,7 @@
 
                         <div style="display:flex;">
 
-                            <input id="half_input" value="https://course-creator.io/?option=SmallPlayer&id=<?=$p['id']?>" disabled/>
+                            <input id="half_input" value="?option=smallPlayer&id=<?=$p['id']?>" disabled/>
 
                             <button onclick="copy_link(this)" type="submit">Копировать</button>
 
