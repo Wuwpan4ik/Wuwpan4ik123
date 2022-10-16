@@ -13,8 +13,10 @@
             <div class="feed">
                 <div class="feed-header">
                     <div class="header__arrow">
-                        <span class="button__back">
-                        <img src="/img/ArrowLeft.svg" alt=""></span>
+                        <a class="button__back" href="?option=Main">
+                             <img src="/img/ArrowLeft.svg" alt="">
+                        </a>
+
                         <h2>Доступные проекты</h2>
                     </div>
                     <div class="buttonsFeed">
@@ -31,7 +33,7 @@
                                     <img src="img/inst.png"/>
                                 </div>
                                 <div class="service-text">
-                                    <h2>Курс менеджер инстаграм</h2>
+                                    <h2 class="service-titile">Курс менеджер инстаграм</h2>
                                     <div class="starrating">
                                         <p><span class="name">InstaKilogram</span> из Москвы</p>
                                         <h2><img src="img/Star.svg" class="ico"> 4.1</h2>
@@ -68,7 +70,7 @@
                                     <img src="img/Netflix.jpeg"/>
                                 </div>
                                 <div class="service-text">
-                                    <h2>Курсы по режиссуре</h2>
+                                    <h2 class="service-titile">Курсы по режиссуре</h2>
                                     <div class="starrating">
                                         <p><span class="name">Lexa</span> из Армении</p>
                                         <h2><img src="img/Star.svg" class="ico"> 4.4</h2>

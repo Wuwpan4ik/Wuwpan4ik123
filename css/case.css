@@ -17,7 +17,7 @@
     gap: 24px;
 }
 
-span.button__back{
+a.button__back{
 
     margin-right:19px;
 
@@ -46,12 +46,9 @@ span.button__back{
 }
 
 
-
 .service-price{
 
     display: flex;
-
-    justify-content: space-between;
 
     margin-bottom: 20px;
 
@@ -116,12 +113,10 @@ span.name{
 
 
 .service{
-
+    width: 70%;
     display: flex;
 
     flex-direction: row;
-
-    justify-content: center;
 
 }
 
@@ -151,14 +146,12 @@ span.name{
 
     align-items: center;
 
-    margin-left: 25vh;
 
 }
 
 
 
 .service-text {
-
     font-size:18px;
 
     display: flex;
@@ -169,12 +162,17 @@ span.name{
 
     line-height: 2px;
 
+
+}
+.service-titile{
+    padding: 0 20px 0 0;
+    word-break:break-all;
+    line-height: 32px;
 }
 
 
-
 .price{
-
+    width: 30%;
 	display: flex;
 
 	flex-direction: column;
@@ -190,7 +188,7 @@ span.name{
 .price h2{
 
 	float: right;
-
+    line-height: 32px;
 	align-self: end;
 
 }
