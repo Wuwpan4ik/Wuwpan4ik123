@@ -163,7 +163,7 @@
 
                                 <div class="image-carts">
                                   
-                                  <?php foreach ($content as $tariff) {?>
+                                  <?php foreach ($content[1] as $tariff) {?>
 
                                     <div class="cart">
 
