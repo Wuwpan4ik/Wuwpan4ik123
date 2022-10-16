@@ -244,9 +244,9 @@
 
                         <div style="display:flex;">
 
-                            <input id="half_input" placeholder="https://translate.google.ru"/>
+                            <input id="half_input" value="https://course-creator.io/?option=SmallPlayer&id=<?=$p['id']?>" disabled/>
 
-                            <button type="submit">Копировать</button>
+                            <button onclick="copy_link(this)" type="submit">Копировать</button>
 
                         </div>
 
@@ -309,6 +309,20 @@
     let deletes = document.querySelector('.popup__delete');
     let entryDisplay = document.querySelector('#popup__background');
     let body = document.querySelector('body');
+
+    function copy_link(elem) {
+        var copyTextarea = document.createElement("textarea");
+        copyTextarea.style.position = "fixed";
+        copyTextarea.style.opacity = "0";
+        copyTextarea.textContent = elem.parentElement.querySelector("#half_input").value;
+
+        document.body.appendChild(copyTextarea);
+        copyTextarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(copyTextarea);
+    }
+
+
     function toggleOverflow () {
         body.classList.toggle("overflow-hidden");
     }
