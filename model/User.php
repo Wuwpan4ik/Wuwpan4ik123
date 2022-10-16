@@ -23,8 +23,8 @@
         }
         
         public function getTariffs () {
-        $result = $this->db->query("SELECT * FROM tariffs");
-		return $result;
+            $result = $this->db->query("SELECT * FROM tariffs");
+            return $result;
 		}
 
         public function getContentForFunnelEdit() {
