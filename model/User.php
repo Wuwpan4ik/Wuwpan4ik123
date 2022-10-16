@@ -21,6 +21,11 @@
             $result = $this->db->query("SELECT * FROM funnel WHERE author_id = " . $_SESSION['user']['id'] . " GROUP BY id");
             return $result;
         }
+        
+        public function getTariffs () {
+        $result = $this->db->query("SELECT * FROM tariffs");
+		return $result;
+		}
 
         public function getContentForFunnelEdit() {
             $result = $this->db->query("SELECT * FROM funnel WHERE id = ".$_GET['id']);
