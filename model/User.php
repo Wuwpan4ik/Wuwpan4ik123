@@ -53,7 +53,22 @@
 
         public function getVideosForPlayer()
         {
-            $result = $this->db->query("SELECT * FROM funnel WHERE id = ". $_GET['id']);
+            $id = $_GET['id'];
+            $result = $this->db->query("SELECT  course.id,
+                                                course.name,
+                                                course.description,
+                                                course.price,
+                                                content.name AS 'content_name',
+                                                content.description AS 'content_description',
+                                                content.popup,
+                                                content.video,
+                                                content.button_text,
+                                                user_info.avatar,
+                                                user_info.first_name
+                                                FROM `course` AS course
+                                                INNER JOIN `funnel` AS funnel ON course.id = funnel.course_id AND funnel.id = '$id'
+                                                INNER JOIN `funnel_content` AS content ON content.funnel_id = funnel.id
+                                                INNER JOIN `user` AS user_info ON funnel.author_id = user_info.id");
             return $result;
         }
     }

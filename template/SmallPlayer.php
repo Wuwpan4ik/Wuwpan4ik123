@@ -8,26 +8,26 @@
     <link type="text/css" rel="stylesheet" href="../css/smallPlayer.css">
 </head>
 <body>
-<?php print_r($content);?>
 <div class="smallPlayer _conatiner">
     <div class="smallPlayer__slick-slider">
         <div class="slider__pagination _conatiner-player">
             <div class="slick-dots"></div>
         </div>
         <div class="slider">
+            <? foreach ($content as $item) { ?>
             <div class="slider__item ">
                 <div class="slider__video">
                     <video id="123" class="slider__video-item"
-                    <source  class="video" src="../videoTest/mafioznik-zubenko.mp4" />
+                    <source  class="video" src=".<?=$item['video']?>" />
                     </video>
                 </div>
                 <div class="slider__header _conatiner-player ">
                     <div class="slider__header-logo">
                         <div class="slider__header-logo-img">
-                            <img src="../img/smallPlayer/Logo.svg" alt="">
+                            <img width="48  px" src="<?=$item['avatar']?>" alt="">
                         </div>
                         <div class="slider__header-logo-text">
-                            Центр Ратнера
+                            <?=$item['first_name']?>
                         </div>
                     </div>
                     <div class="slider__header-views">
@@ -41,28 +41,41 @@
                 </div>
                 <div class="slider__item-info _conatiner-player">
                     <div class="slider__item-title">
-                        Заберите ваш персональный подарок прямо сейчас
+                        <?=$item['content_name']?>
                     </div>
                     <div class="slider__item-text">
-                        Тысяча способов научиться решать проблемы самостоятельно!
+                        <?=$item['content_description']?>
                     </div>
                     <div class="slider__item-button button-open">
-                        <button  class="button">Получить подарок</button>
+                        <button  class="button"><?=$item['button_text']?></button>
                     </div>
                 </div>
-
+                <? $popup = json_decode($item['popup']);
+                if (isset($popup->form)) { ?>
                 <div class="overlay-bonus overlay">
                     <div class="popup__bonus  popup">
                         <div class="popup__bonus-body">
                             <div class="popup__bonus-title  popup-title">Введите ваш email что бы продолжить просмотр</div>
                             <div class="popup__bonus-text popup-text"><span> Бонус:</span> получите книгу - Тысяча способов научиться решать проблемы самостоятельно!</div>
                             <div class="popup__bonus-form">
+                                <? foreach ($popup->form as $input) {
+                                    ?>
                                 <div class="popup__bonus-form-input input">
                                     <div class="popup__bonus-form-input-email input-img">
-                                        <img src="../img/smallPlayer/email.svg" alt="">
+                                        <?
+                                        $value = '';
+                                        if ($input == 'email') {
+                                            $value = 'email';
+                                        } elseif ($input == 'name') {
+                                            $value = 'account';
+                                        } elseif ($input == 'tel') {
+                                            $value = 'phone';
+                                        }?>
+                                        <img src="../img/smallPlayer/<?=$value ?>.svg" alt="">
                                     </div>
-                                    <input type="text" placeholder="Ваш email">
+                                    <input name="<?=$input?>" type="text" placeholder="Ваш <?=$input?>">
                                 </div>
+                                    <? } ?>
                                 <div class="popup__bonus-form-button button-form">
                                     <button class="button">Получить подарок</button>
                                 </div>
@@ -73,248 +86,252 @@
                 <div class="pause__video">
                     <img src="../img/smallPlayer/pause.svg" alt="">
                 </div>
-            </div>
-            <div class="slider__item">
-                <div class="slider__header _conatiner-player ">
-                    <div class="slider__header-logo">
-                        <div class="slider__header-logo-img">
-                            <img src="../img/smallPlayer/Logo.svg" alt="">
-                        </div>
-                        <div class="slider__header-logo-text">
-                            Центр Ратнера
-                        </div>
-                    </div>
-                    <div class="slider__header-views">
-                        <div class="slider__header-views-img">
-                            <img src="../img/smallPlayer/views.svg" alt="">
-                        </div>
-                        <div class="slider__header-views-count">
-                            126
-                        </div>
-                    </div>
-                </div>
-                <div class="slider__video">
-                    <video  class="slider__video-item"
-                    <source src="../videoTest/mafioznik-zubenko.mp4" />
-                    </video>
-                </div>
-                <div class="slider__item-info _conatiner-player">
-                    <div class="slider__item-title ">
-                        Хотите посмотреть другие уроки из данного курса
-                    </div>
-                    <div class="slider__item-text">
-                        Курс включает в себя 24 урока
-                    </div>
-                    <div class="slider__item-button allLessons-button button-open">
-                        <button  class="button" >Посмотреть другие уроки</button>
-                    </div>
-                </div>
-                <div class="overlay-allLessons overlay">
-                    <div class="popup__allLessons popup">
-                        <div class="popup__allLessons-body">
-                            <div class="popup__allLessons-title popup-title">Все уроки курса:</div>
-                            <div class="popup__allLessons-text popup-text">Курс состоить из 24 уроков по 20 минут</div>
+            <? } ?>
+                <? if (isset($popup->list)) { ?>
+                    <div class="overlay-allLessons overlay">
+                        <div class="popup__allLessons popup">
                             <div class="popup__allLessons-body">
-                                <div class="popup__allLessons-item popup-item">
-                                    <div class="popup__allLessons-item-video">
-                                        <div class="popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
-                                    </div>
-                                    <div class="popup__allLessons-item-info">
-                                        <div class="popup__allLessons-item-info-header">
-                                            <div class="popup__allLessons-item-info-header-number">
-                                                01
+                                <div class="popup__allLessons-title popup-title">Все уроки курса:</div>
+                                <div class="popup__allLessons-text popup-text">Курс состоить из 24 уроков по 20 минут</div>
+                                <div class="popup__allLessons-body">
+                                    <div class="popup__allLessons-item popup-item">
+                                        <div class="popup__allLessons-item-video">
+                                            <div class="popup__allLessons-item-video-play">
+                                                <img src="../img/smallPlayer/play.png" alt="">
                                             </div>
-                                            <div class="popup__allLessons-item-info-header-time">
-                                                22 минуты
+                                            <img src="../img/smallPlayer/Group1426.png" alt="">
+                                        </div>
+                                        <div class="popup__allLessons-item-info">
+                                            <div class="popup__allLessons-item-info-header">
+                                                <div class="popup__allLessons-item-info-header-number">
+                                                    01
+                                                </div>
+                                                <div class="popup__allLessons-item-info-header-time">
+                                                    22 минуты
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="popup__allLessons-item-info-title">
-                                            Управление гневом внутри себя
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="popup__allLessons-item popup-item" >
-                                    <div class="popup__allLessons-item-video">
-                                        <div class="popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
-                                    </div>
-                                    <div class="popup__allLessons-item-info">
-                                        <div class="popup__allLessons-item-info-header">
-                                            <div class="popup__allLessons-item-info-header-number">
-                                                01
+                                            <div class="popup__allLessons-item-info-title">
+                                                Управление гневом внутри себя
                                             </div>
-                                            <div class="popup__allLessons-item-info-header-time">
-                                                22 минуты
-                                            </div>
-                                        </div>
-                                        <div class="popup__allLessons-item-info-title">
-                                            Управление гневом внутри себя
                                         </div>
                                     </div>
-                                </div>
-                                <div class="popup__allLessons-item popup-item">
-                                    <div class="popup__allLessons-item-video">
-                                        <div class="popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
-                                    </div>
-                                    <div class="popup__allLessons-item-info">
-                                        <div class="popup__allLessons-item-info-header">
-                                            <div class="popup__allLessons-item-info-header-number">
-                                                01
+                                    <div class="popup__allLessons-item popup-item" >
+                                        <div class="popup__allLessons-item-video">
+                                            <div class="popup__allLessons-item-video-play">
+                                                <img src="../img/smallPlayer/play.png" alt="">
                                             </div>
-                                            <div class="popup__allLessons-item-info-header-time">
-                                                22 минуты
+                                            <img src="../img/smallPlayer/Group1426.png" alt="">
+                                        </div>
+                                        <div class="popup__allLessons-item-info">
+                                            <div class="popup__allLessons-item-info-header">
+                                                <div class="popup__allLessons-item-info-header-number">
+                                                    01
+                                                </div>
+                                                <div class="popup__allLessons-item-info-header-time">
+                                                    22 минуты
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="popup__allLessons-item-info-title">
-                                            Управление гневом внутри себя
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="popup__allLessons-item popup-item">
-                                    <div class="popup__allLessons-item-video">
-                                        <div class="popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
-                                    </div>
-                                    <div class="popup__allLessons-item-info">
-                                        <div class="popup__allLessons-item-info-header">
-                                            <div class="popup__allLessons-item-info-header-number">
-                                                01
+                                            <div class="popup__allLessons-item-info-title">
+                                                Управление гневом внутри себя
                                             </div>
-                                            <div class="popup__allLessons-item-info-header-time">
-                                                22 минуты
-                                            </div>
-                                        </div>
-                                        <div class="popup__allLessons-item-info-title">
-                                            Управление гневом внутри себя
                                         </div>
                                     </div>
-                                </div>
-                                <div class="popup__allLessons-item popup-item">
-                                    <div class="popup__allLessons-item-video">
-                                        <div class="popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
+                                    <div class="popup__allLessons-item popup-item">
+                                        <div class="popup__allLessons-item-video">
+                                            <div class="popup__allLessons-item-video-play">
+                                                <img src="../img/smallPlayer/play.png" alt="">
+                                            </div>
+                                            <img src="../img/smallPlayer/Group1426.png" alt="">
                                         </div>
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
+                                        <div class="popup__allLessons-item-info">
+                                            <div class="popup__allLessons-item-info-header">
+                                                <div class="popup__allLessons-item-info-header-number">
+                                                    01
+                                                </div>
+                                                <div class="popup__allLessons-item-info-header-time">
+                                                    22 минуты
+                                                </div>
+                                            </div>
+                                            <div class="popup__allLessons-item-info-title">
+                                                Управление гневом внутри себя
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="popup__allLessons-item-info">
-                                        <div class="popup__allLessons-item-info-header">
-                                            <div class="popup__allLessons-item-info-header-number">
-                                                01
+                                    <div class="popup__allLessons-item popup-item">
+                                        <div class="popup__allLessons-item-video">
+                                            <div class="popup__allLessons-item-video-play">
+                                                <img src="../img/smallPlayer/play.png" alt="">
                                             </div>
-                                            <div class="popup__allLessons-item-info-header-time">
-                                                22 минуты
+                                            <img src="../img/smallPlayer/Group1426.png" alt="">
+                                        </div>
+                                        <div class="popup__allLessons-item-info">
+                                            <div class="popup__allLessons-item-info-header">
+                                                <div class="popup__allLessons-item-info-header-number">
+                                                    01
+                                                </div>
+                                                <div class="popup__allLessons-item-info-header-time">
+                                                    22 минуты
+                                                </div>
+                                            </div>
+                                            <div class="popup__allLessons-item-info-title">
+                                                Управление гневом внутри себя
                                             </div>
                                         </div>
-                                        <div class="popup__allLessons-item-info-title">
-                                            Управление гневом внутри себя
+                                    </div>
+                                    <div class="popup__allLessons-item popup-item">
+                                        <div class="popup__allLessons-item-video">
+                                            <div class="popup__allLessons-item-video-play">
+                                                <img src="../img/smallPlayer/play.png" alt="">
+                                            </div>
+                                            <img src="../img/smallPlayer/Group1426.png" alt="">
+                                        </div>
+                                        <div class="popup__allLessons-item-info">
+                                            <div class="popup__allLessons-item-info-header">
+                                                <div class="popup__allLessons-item-info-header-number">
+                                                    01
+                                                </div>
+                                                <div class="popup__allLessons-item-info-header-time">
+                                                    22 минуты
+                                                </div>
+                                            </div>
+                                            <div class="popup__allLessons-item-info-title">
+                                                Управление гневом внутри себя
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="popup__allLessons-form">
-                            <div class="popup__allLessons-form-buy button-open">
-                                <button class="button button-buy">Купить весь курс за 2 000 руб.</button>
+                            <div class="popup__allLessons-form">
+                                <div class="popup__allLessons-form-buy button-open">
+                                    <button class="button button-buy">Купить весь курс за 2 000 руб.</button>
+                                </div>
+                                <div class="popup__allLessons-form-notBuy">
+                                    <button class="button button-notBuy">Пока не хочу покупать</button>
+                                </div>
                             </div>
-                            <div class="popup__allLessons-form-notBuy">
-                                <button class="button button-notBuy">Пока не хочу покупать</button>
-                            </div>
                         </div>
                     </div>
-
-                </div>
+                <? } ?>
             </div>
-            <div class="slider__item">
-                <div class="slider__header _conatiner-player ">
-                    <div class="slider__header-logo">
-                        <div class="slider__header-logo-img">
-                            <img src="../img/smallPlayer/Logo.svg" alt="">
-                        </div>
-                        <div class="slider__header-logo-text">
-                            Центр Ратнера
-                        </div>
-                    </div>
-                    <div class="slider__header-views">
-                        <div class="slider__header-views-img">
-                            <img src="../img/smallPlayer/views.svg" alt="">
-                        </div>
-                        <div class="slider__header-views-count">
-                            126
-                        </div>
-                    </div>
-                </div>
-                <div class="slider__video">
-                    <video  class="slider__video-item"
-                    <source src="../videoTest/mafioznik-zubenko.mp4" />
-                    </video>
-                </div>
-                <div class="slider__item-info _conatiner-player">
-                    <div class="slider__item-title ">
-                        Хотите посмотреть другие уроки из данного курса
-                    </div>
-                    <div class="slider__item-text">
-                        Курс включает в себя 24 урока
-                    </div>
-                    <div class="slider__item-button">
-                        <button  class=" button button-open">Посмотреть другие уроки</button>
-                    </div>
-                </div>
-            </div>
-            <div class="slider__item">
-                <div class="slider__header _conatiner-player ">
-                    <div class="slider__header-logo">
-                        <div class="slider__header-logo-img">
-                            <img src="../img/smallPlayer/Logo.svg" alt="">
-                        </div>
-                        <div class="slider__header-logo-text">
-                            Центр Ратнера
-                        </div>
-                    </div>
-                    <div class="slider__header-views">
-                        <div class="slider__header-views-img">
-                            <img src="../img/smallPlayer/views.svg" alt="">
-                        </div>
-                        <div class="slider__header-views-count">
-                            126
-                        </div>
-                    </div>
-                </div>
-                <div class="slider__video">
-                    <video  class="slider__video-item"
-                    <source src="../videoTest/mafioznik-zubenko.mp4" />
-                    </video>
-                </div>
-                <div class="slider__item-info _conatiner-player">
-                    <div class="slider__item-title ">
-                        Хотите посмотреть другие уроки из данного курса
-                    </div>
-                    <div class="slider__item-text">
-                        Курс включает в себя 24 урока
-                    </div>
-                    <div class="slider__item-socialNetwork">
-                        <div class="slider__item-socialNetwork-Telegram">
-                            <a href=""><img src="../img/smallPlayer/Telegram.png" alt=""></a>
-                        </div>
-                        <div class="slider__item-socialNetwork-Vk">
-                            <a href=""><img src="../img/smallPlayer/VK.png" alt=""></a>
-                        </div>
-                        <div class="slider__item-socialNetwork-youtube">
-                            <a href=""><img src="../img/smallPlayer/Youtube.png" alt=""></a>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+            <? } ?>
+<!--            <div class="slider__item">-->
+<!--                <div class="slider__header _conatiner-player ">-->
+<!--                    <div class="slider__header-logo">-->
+<!--                        <div class="slider__header-logo-img">-->
+<!--                            <img src="../img/smallPlayer/Logo.svg" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="slider__header-logo-text">-->
+<!--                            Центр Ратнера-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="slider__header-views">-->
+<!--                        <div class="slider__header-views-img">-->
+<!--                            <img src="../img/smallPlayer/views.svg" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="slider__header-views-count">-->
+<!--                            126-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="slider__video">-->
+<!--                    <video  class="slider__video-item"-->
+<!--                    <source src="../videoTest/mafioznik-zubenko.mp4" />-->
+<!--                    </video>-->
+<!--                </div>-->
+<!--                <div class="slider__item-info _conatiner-player">-->
+<!--                    <div class="slider__item-title ">-->
+<!--                        Хотите посмотреть другие уроки из данного курса-->
+<!--                    </div>-->
+<!--                    <div class="slider__item-text">-->
+<!--                        Курс включает в себя 24 урока-->
+<!--                    </div>-->
+<!--                    <div class="slider__item-button allLessons-button button-open">-->
+<!--                        <button  class="button" >Посмотреть другие уроки</button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                -->
+<!--            </div>-->
+<!--            <div class="slider__item">-->
+<!--                <div class="slider__header _conatiner-player ">-->
+<!--                    <div class="slider__header-logo">-->
+<!--                        <div class="slider__header-logo-img">-->
+<!--                            <img src="../img/smallPlayer/Logo.svg" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="slider__header-logo-text">-->
+<!--                            Центр Ратнера-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="slider__header-views">-->
+<!--                        <div class="slider__header-views-img">-->
+<!--                            <img src="../img/smallPlayer/views.svg" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="slider__header-views-count">-->
+<!--                            126-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="slider__video">-->
+<!--                    <video  class="slider__video-item"-->
+<!--                    <source src="../videoTest/mafioznik-zubenko.mp4" />-->
+<!--                    </video>-->
+<!--                </div>-->
+<!--                <div class="slider__item-info _conatiner-player">-->
+<!--                    <div class="slider__item-title ">-->
+<!--                        Хотите посмотреть другие уроки из данного курса-->
+<!--                    </div>-->
+<!--                    <div class="slider__item-text">-->
+<!--                        Курс включает в себя 24 урока-->
+<!--                    </div>-->
+<!--                    <div class="slider__item-button">-->
+<!--                        <button  class=" button button-open">Посмотреть другие уроки</button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="slider__item">-->
+<!--                <div class="slider__header _conatiner-player ">-->
+<!--                    <div class="slider__header-logo">-->
+<!--                        <div class="slider__header-logo-img">-->
+<!--                            <img src="../img/smallPlayer/Logo.svg" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="slider__header-logo-text">-->
+<!--                            Центр Ратнера-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="slider__header-views">-->
+<!--                        <div class="slider__header-views-img">-->
+<!--                            <img src="../img/smallPlayer/views.svg" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="slider__header-views-count">-->
+<!--                            126-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="slider__video">-->
+<!--                    <video  class="slider__video-item"-->
+<!--                    <source src="../videoTest/mafioznik-zubenko.mp4" />-->
+<!--                    </video>-->
+<!--                </div>-->
+<!--                <div class="slider__item-info _conatiner-player">-->
+<!--                    <div class="slider__item-title ">-->
+<!--                        Хотите посмотреть другие уроки из данного курса-->
+<!--                    </div>-->
+<!--                    <div class="slider__item-text">-->
+<!--                        Курс включает в себя 24 урока-->
+<!--                    </div>-->
+<!--                    <div class="slider__item-socialNetwork">-->
+<!--                        <div class="slider__item-socialNetwork-Telegram">-->
+<!--                            <a href=""><img src="../img/smallPlayer/Telegram.png" alt=""></a>-->
+<!--                        </div>-->
+<!--                        <div class="slider__item-socialNetwork-Vk">-->
+<!--                            <a href=""><img src="../img/smallPlayer/VK.png" alt=""></a>-->
+<!--                        </div>-->
+<!--                        <div class="slider__item-socialNetwork-youtube">-->
+<!--                            <a href=""><img src="../img/smallPlayer/Youtube.png" alt=""></a>-->
+<!--                        </div>-->
+<!---->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
         <div class="popup__buy popup">
             <div class="popup__buy-body">
@@ -379,7 +396,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
