@@ -68,8 +68,8 @@
                                                 user_info.first_name
                                                 FROM `course` AS course
                                                 INNER JOIN `funnel` AS funnel ON course.id = funnel.course_id AND funnel.id = '$id'
-                                                INNER JOIN `funnel_content` AS content ON content.funnel_id = funnel.id
-                                                INNER JOIN `user` AS user_info ON funnel.author_id = user_info.id");
+                                                INNER JOIN `user` AS user_info ON funnel.author_id = user_info.id
+                                                INNER JOIN `funnel_content` AS content ON content.funnel_id = funnel.id GROUP BY content.id");
             $course_content = $this->db->query("SELECT course_content.name,
                                                 course_content.description,
                                                 course_content.video,

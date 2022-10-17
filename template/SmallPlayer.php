@@ -15,7 +15,9 @@
         </div>
         <div class="slider">
 
-            <?php foreach ($content['funnel_content'] as $item) { ?>
+            <?php foreach ($content['funnel_content'] as $item) {
+                $popup = json_decode($item['popup']);
+            ?>
             <div class="slider__item ">
                 <div class="slider__video">
                     <video id="123" class="slider__video-item"
@@ -47,11 +49,14 @@
                     <div class="slider__item-text">
                         <?=$item['content_description']?>
                     </div>
+                    <?php
+                    if (isset($popup)) { ?>
                     <div class="slider__item-button button-open">
                         <button  class="button"><?=$item['button_text']?></button>
                     </div>
+                    <?php } ?>
                 </div>
-                <?php $popup = json_decode($item['popup']);
+                <?php
                 if (isset($popup->form)) { ?>
                 <div class="overlay-bonus overlay">
                     <div class="popup__bonus  popup">

@@ -77,7 +77,7 @@
 
                         <video preload="metadata" controls="controls" class="media-cart-img" src="<?=$v['video']?>"></video>
 
-                        <form method="POST" class="new_name" action="?option=FunnelController&method=renameVideo&id_item=<?=$v['id']?>&id=<?=$content[0][0]['id']?>">
+                        <form method="POST" class="new_name" action="?option=VideoController&method=renameVideo&id_item=<?=$v['id']?>&id=<?=$content[0][0]['id']?>">
                             <div>
                                 <label for="name">Укажите заголовок:</label>
                                 <input name="name" class="videoname" type="text" placeholder="<?=$v['name']?>" required>
