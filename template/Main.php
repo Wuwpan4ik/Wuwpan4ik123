@@ -7,6 +7,7 @@
     <meta charset="utf-8">
 
     <title>ccio</title>
+    <link rel="stylesheet" href="css/nullCss.css">
 
     <link rel="stylesheet" type="text/css" href="./css/app.css">
 
@@ -130,38 +131,28 @@
 
                 <?
                 $i = 1;
-
                 foreach($content as $item){
+                    ?>
 
-                    if ($i % 2 == 0){?>
+                    <tr id="<?php if ($i % 2 == 0){ echo "white";} else { echo "grey"; }?>">
 
-                        <tr id="white">
+                        <td>
+                            <div class="table__name">
+                                <img class="table_ava" src="<?=$item['avatar']?>"/>
+                                <b><?=$item['first_name']?></b>
+                            </div>
+                        </td>
 
-                            <td><img class="table_ava" src="<?=$item['avatar']?>"/><b><?=$item['first_name']?></b></td>
+                        <td><?=$item['email']?></td>
 
-                            <td><?=$item['email']?></td>
+                        <td><?=$item['status']?></td>
 
-                            <td><?=$item['status']?></td>
+                        <td><?=$item['niche']?></td>
 
-                            <td><?=$item['niche']?></td>
-
-                        </tr>
-
-                    <?}else{?>
-
-                        <tr id="grey">
-
-                            <td><img class="table_ava" src="<?=$item['avatar']?>"/><b><?=$item['first_name']?></b></td>
-
-                            <td><?=$item['email']?></td>
-
-                            <td><?=$item['status']?></td>
-
-                            <td><?=$item['niche']?></td>
-
-                        </tr>
-
-                    <?} $i= $i+1;}?>
+                    </tr>
+                    <?
+                    $i= $i+1;}
+                ?>
 
                 </tbody>
 

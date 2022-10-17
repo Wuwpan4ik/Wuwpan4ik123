@@ -33,6 +33,7 @@
 
     padding: 5px 0px 10px 0px;
 
+    margin: 24px 0 0 0;
     text-align: left;
 
     line-height: 1em;
@@ -41,8 +42,16 @@
 
 }
 
-.box p, h3{
-    margin-left:16px
+.box p{
+    display: flex;
+    margin:24px 0 0 16px;
+    align-items: center;
+
+}
+.box h3{
+    display: flex;
+    margin-left:16px;
+    align-items: center;
 }
 
 
@@ -53,7 +62,18 @@
 
 	justify-content: space-between;
 
+
+
 }
+
+
+.header h2{
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+
+}
+
 
 
 

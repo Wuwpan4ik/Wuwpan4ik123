@@ -6,6 +6,8 @@
 
     <title>Моя тестовая страница</title>
 
+    <link rel="stylesheet" href="css/nullCss.css">
+
     <link rel="stylesheet" href="css/analytics.css">
 
     <link rel="stylesheet" href="css/feed.css">

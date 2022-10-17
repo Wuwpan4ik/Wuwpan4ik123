@@ -17,8 +17,6 @@ code {
 
 .ico{
   cursor: pointer;
-  width: 20px;
-  height: 20px;
   padding: 12px;
 }
 .buttonsFeed{
@@ -54,6 +52,7 @@ p{
   font-weight:400;
 	font-size: 18px;
 	color: #757D8A;
+  align-items: center;
 }
 
 .header__arrow{
@@ -63,7 +62,6 @@ p{
 }
 
 #date{
-	margin-top: 30px;
 	display: flex;
 	line-height: 48px;
 	font-size: 18px;

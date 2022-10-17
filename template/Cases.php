@@ -2,6 +2,7 @@
   <head>
     <meta charset="utf-8">
     <title>Моя тестовая страница</title>
+    <link rel="stylesheet" href="css/nullCss.css">
     <link rel="stylesheet" href="css/cases.css">
     <link rel="stylesheet" href="css/feed.css">
     <link rel="stylesheet" href="css/case.css">
