@@ -17,7 +17,7 @@ return array(
     'CourseEdit' => $baseDir . '/pages/courseEdit.php',
     'DirectoryController' => $baseDir . '/controller/DirectoryController.php',
     'Funnel' => $baseDir . '/pages/funnel.php',
-    'FunnelController' => $baseDir . '/controller/FunnelController.php',
+    'FunnelController' => $baseDir . '/controller/MessengerController.php',
     'FunnelEdit' => $baseDir . '/pages/funnelEdit.php',
     'Login' => $baseDir . '/pages/login.php',
     'LoginController' => $baseDir . '/controller/LoginController.php',

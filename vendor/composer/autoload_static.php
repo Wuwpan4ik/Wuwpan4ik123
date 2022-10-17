@@ -22,7 +22,7 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'CourseEdit' => __DIR__ . '/../..' . '/pages/courseEdit.php',
         'DirectoryController' => __DIR__ . '/../..' . '/controller/DirectoryController.php',
         'Funnel' => __DIR__ . '/../..' . '/pages/funnel.php',
-        'FunnelController' => __DIR__ . '/../..' . '/controller/FunnelController.php',
+        'FunnelController' => __DIR__ . '/../..',
         'FunnelEdit' => __DIR__ . '/../..' . '/pages/funnelEdit.php',
         'Login' => __DIR__ . '/../..' . '/pages/login.php',
         'LoginController' => __DIR__ . '/../..' . '/controller/LoginController.php',

@@ -1,8 +1,8 @@
 <?php
-    class FunnelController extends ACore {
-        
+    class MessengerController extends ACore {
 
         public function get_content()
         {
+
         }
     }

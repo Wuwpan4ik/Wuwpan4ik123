@@ -163,7 +163,7 @@
 
                                 <div class="image-carts">
                                   
-                                  <?php foreach ($content as $tariff) {?>
+                                  <?php foreach ($content[1] as $tariff) {?>
 
                                     <div class="cart">
 
@@ -207,7 +207,7 @@
 
                         <div class="input-upload">
 
-							<img src="<?=$content[0]['avatar']?>" id="ava_preload">
+							<img src="<?=$content[0][0]['avatar']?>" id="ava_preload">
 
                             <input id="ava" type="file" name="file_upload" accept=".jpg, .png, .jpeg" onchange="function_return()"/>
 
@@ -226,7 +226,7 @@
                                     <?
                                     $options = ["Изотерика", "Обучение", "Дизайн", "Политика", "Спорт", "Игры", "Животные"];
                                     for($i = 0; $i<7; $i++){
-                                        if($options[$i] == $content[0]['niche']){?><option selected="selected"><?=$options[$i]?></option>
+                                        if($options[$i] == $content[0][0]['niche']){?><option selected="selected"><?=$options[$i]?></option>
                                         <?}else{?><option><?=$options[$i]?></option><?}
                                     }
                                     ?>
@@ -245,11 +245,11 @@
 
                                 <div class="choose">
 
-                                    <input <?if($content[0]['gender'] == "M"){?> checked <?}?> style="display:none;" style="display:none;" value="M" id="M" name="gender" type="radio"/>
+                                    <input <?if($content[0][0]['gender'] == "M"){?> checked <?}?> style="display:none;" style="display:none;" value="M" id="M" name="gender" type="radio"/>
 
 									<label for="M"><span class="dot"></span></label>Мужской
 
-                                    <input <?if($content[0]['gender'] == "W"){?> checked <?}?> style="display:none;" value="W" id="W" name="gender" type="radio"/>
+                                    <input <?if($content[0][0]['gender'] == "W"){?> checked <?}?> style="display:none;" value="W" id="W" name="gender" type="radio"/>
 
 									<label for="W"><span class="dot"></span></label>Женский
 
