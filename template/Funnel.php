@@ -116,7 +116,7 @@
 
                         <div style="display:flex;">
 
-                            <input id="half_input" value="?option=smallPlayer&id=<?=$p['id']?>" disabled/>
+                            <input id="half_input" value="<?=isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https://" : "http://" . $_SERVER['SERVER_NAME']?>?option=SmallPlayer&id=<?=$p['id']?>" disabled/>
 
                             <button onclick="copy_link(this)" type="submit">Копировать</button>
 
