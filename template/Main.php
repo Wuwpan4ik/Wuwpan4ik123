@@ -130,26 +130,10 @@
 
                 <?
                 $i = 1;
-
                 foreach($content as $item){
+                    ?>
 
-                    if ($i % 2 == 0){?>
-
-                        <tr id="white">
-
-                            <td><img class="table_ava" src="<?=$item['avatar']?>"/><b><?=$item['first_name']?></b></td>
-
-                            <td><?=$item['email']?></td>
-
-                            <td><?=$item['status']?></td>
-
-                            <td><?=$item['niche']?></td>
-
-                        </tr>
-
-                    <?}else{?>
-
-                        <tr id="grey">
+                        <tr id="<?php if ($i % 2 == 0){ echo "white";} else { echo "grey"; }?>">
 
                             <td><img class="table_ava" src="<?=$item['avatar']?>"/><b><?=$item['first_name']?></b></td>
 
@@ -160,8 +144,9 @@
                             <td><?=$item['niche']?></td>
 
                         </tr>
-
-                    <?} $i= $i+1;}?>
+                    <?
+                    $i= $i+1;}
+                ?>
 
                 </tbody>
 

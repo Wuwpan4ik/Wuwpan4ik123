@@ -404,7 +404,7 @@
                                     <div class="rightSideFirst_header">
                                         <img src="/img/credit-card.svg" alt="">
                                         <div class="rightSideFirstText1">
-                                            <h1>50 893 ₽</h3>
+                                            <h3>50 893 ₽</h3>
                                             <span>Общая прибыль</span>
                                         </div>
                                         <div class="rightSideFirstText2">
