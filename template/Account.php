@@ -71,7 +71,7 @@
                                             <h2>Ваш Email</h2>
 
                                             <input name="email" class="full" type="email" placeholder="<? echo $_SESSION['user']['email'] ?>"/>
-                                            <? echo $_SESSION['error']['email_message'] ?>
+                                            <?php if(isset($_SESSION['error']['email_message'])) echo $_SESSION['error']['email_message'] ?>
                                         </div>
 
                                         <h2>Кто вы?</h2>
@@ -82,9 +82,9 @@
 
                                             <input name="second_name" class="half" placeholder="<? echo $_SESSION['user']['second_name'] ?>"/>
 
-                                            <? echo $_SESSION['error']['first_name_message'] ?>
+                                            <?php if(isset($_SESSION['error']['first_name_message'])) echo $_SESSION['error']['first_name_message'] ?>
 
-                                            <? echo $_SESSION['error']['second_name_message'] ?>
+                                            <?php if(isset($_SESSION['error']['second_name_message'])) echo $_SESSION['error']['second_name_message'] ?>
 
                                         </div>
 
@@ -94,7 +94,7 @@
 
                                             <input id="check_url" name="site_url" class="full" placeholder="<? if (isset($_SESSION["user"]['site_url'])) {echo $_SESSION["user"]['site_url'];} else { echo "Ваш сайт";} ?>"/>
 
-                                            <div id="message"><? echo $_SESSION['error']['url_message'] ?></div>
+                                            <div id="message"><? if(isset($_SESSION['error']['url_message'])) echo $_SESSION['error']['url_message'] ?></div>
                                         </div>
 
                                         <div class="about-btn">
