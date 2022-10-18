@@ -1,127 +1,97 @@
 body{
-
     margin: 0;
-
     padding: 0;
-
 }
-
-
-
 .Project{
-
-    display: flex;
-
-    background-color: white;
-
     height: 100%;
-
     width: 100%;
-
+    display: flex;
+    background-color: white;
 }
-
 .new_name div{
     position: relative;
 }
-
 .new_name div label{
     position: absolute;
     top: 10px;
     left: 10px;
     font-size: 13px;
 }
-
 .new_name div textarea {
     padding-top: 15px;
     padding-left: 15px;
     font-size: 16px;
 }
-
 .new_name div input{
     padding-top: 10px;
 }
-
 .new_name button img{
     transform: translateY(5px);
     padding-right: 10px;
 }
-
 #popup {
     padding: 0 !important;
 }
-
 .popup__edit {
     max-width: 1000px !important;
     max-height: 600px !important;
 }
-
 .overflow-hidden {
     overflow: hidden;
 }
-
 .close__btn{
-    background: #F8F8F8 !important;
-    padding: 20px 30px;
     border: none;
     border-radius: 40%;
+    padding: 20px 30px;
+    background: #F8F8F8 !important;
     cursor: pointer;
 }
 .close__btn img {
     height: 24px;
 }
-
 .popup__header {
     display: flex;
     justify-content: space-between;
     padding: 0 30px;
 }
-
 .popup__header-container {
     padding: 10px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
-
 .popup__edit-btn {
+    border: none;
+    border-radius: 12px;
+    padding: 7px 32px;
     font-size: 22px;
     color: white;
     background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);
-    padding: 7px 32px;
-    border: none;
-    border-radius: 12px;
     cursor: pointer;
 }
-
 .popup__body-container {
     display: flex;
     justify-content: space-between;
     padding: 24px 40px;
 }
-
 .popup__body-block {
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
 }
-
 .popup__body-item {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-
 .popup__body-item label{
-    font-style: normal;
     font-weight: 500;
     font-size: 18px;
     line-height: 24px;
     color: #404D61;
 }
-
 .addFormInput img {
     height: 16px;
 }
-
 .display-none {
     display: none;
 }

@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="Case">
-                    <div class="cart-boosted">
+                    <div class="cart inst">
                         <div class="service-price">
                             <div class="service">
                                 <div class="image-service">
@@ -49,8 +49,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="status-1">
-                            <span>Boosted</span>
+                        <div class="status-container">
+                            <div class="Boosted status">Boosted</div>
+                            <div class="Boosted status">Boosted</div>
                         </div>
                         <div class="service-text-2">
                             <p>Этот кейс – это история о том, как прокачать языковую онлайн школу для детей, запустив
@@ -86,8 +87,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="status">
-                            <span>Кино</span>
+                        <div class="status-container">
+                            <div class="Cinema status">Кино</div>
                         </div>
                         <div class="service-text-2">
                             <p>Калинин В.С. – руководитель мастерских режиссуры ВГИК, доцент режиссуры кино и телевидения,

@@ -1,292 +1,1 @@
-.AboutUser{
-    display: flex;
-    flex-direction: column;
-    padding: 20px 30px 10px;
-    width: 65%;
-}
-
-.bloc-tabs {
-    display: flex;
-}
-.tabs {
-    padding: 15px;
-    text-align: center;
-    width: 54%;
-    background: rgba(128, 128, 128, 0.075);
-    cursor: pointer;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.274);
-    box-sizing: content-box;
-    position: relative;
-    outline: none;
-}
-.tabs:not(:last-child){
-    border-right: 1px solid rgba(0, 0, 0, 0.274);
-}
-
-.active-tabs  {
-    background: white;
-    border-bottom: 1px solid transparent;
-}
-
-.active-tabs::before {
-    content: "";
-    display: block;
-    position: absolute;
-    top: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% + 2px);
-    height: 5px;
-    background: rgb(88, 147, 241);
-}
-
-button {
-    border: none;
-
-}
-.content-tabs {
-    flex-grow : 1;
-}
-.content {
-    background: white;
-    padding: 20px;
-    width: 100%;
-    height: 100%;
-    display: none;
-}
-.content h2 {
-    padding: 0px 0 5px 0px;
-}
-.content hr {
-    width: 100px;
-    height: 2px;
-    background: #222;
-    margin-bottom: 5px;
-}
-.content p {
-    width: 100%;
-    height: 100%;
-}
-.active-content {
-    display: block;
-}
-
-.mytabs {
-    display: flex;
-    flex-wrap: wrap;
-	justify-content: center;
-	margin-top: 32px;
-}
-.mytabs input[type="radio"] {
-    display: none;
-}
-.mytabs label {
-	color: #757D8A;
-    line-height: 27px;
-    padding: 4px;
-    background: #F8F8F8;
-    font-weight: 500;
-	text-align: center;
-    width: 32%;
-    transition: 0.2s ease-in;
-	border: 1px #E1E3E6 solid;
-	border-width: 1px 0px 1px 0px;
-}
-
-#oplab{
-	border-width: 1px 0px 1px 1px;
-	border-radius: 8px 0px 0px 8px;
-}
-
-#cllab{
-	border-width: 1px 1px 1px 0px;
-	border-radius: 0px 8px 8px 0px;
-}
-
-.mytabs .tab {
-    width: 100%;
-    background: #fff;
-    order: 1;
-    display: none;
-}
-.mytabs .tab h2 {
-    font-size: 18px;
-	font-weight: 500;
-	margin-top: 32px;
-}
-
-.mytabs p{
-	width: 100%;
-	font-size: 16px;
-	margin: 0px;
-	background-color: #F8F8F8;
-	border-radius: 8px;
-	transition: 0.2s ease-in;
-}
-
-.mytabs input:checked + label + .tab {
-    display: block;
-}
-
-.mytabs input:checked + label p {
-    background-color: white;
-}
-
-.mytabs input:checked + label {
-	background-clip: padding-box;
-    background-color: #F8F8F8;
-    color: #5A6474;
-	font-weight: 700;
-}
-
-.cart{
-	margin-bottom: 16px;
-    border: 1px solid #e2e2e2;
-    border-radius: 10px;
-    width: 40vh;
-	box-shadow: 0px 4px 2px -2px rgba(27, 46, 94, 0.02);
-}
-
-.info-cart p{
-	font-weight: 400;
-	font-size: 14px;
-	color: #757D8A;
-	background-color: white;
-}
-
-.info-cart span{
-    margin: 5px 1px 10px;
-    width: 4vh;
-    border-radius: 5px;
-    padding: 5px 10px 5px;
-    color: #74a3f5;
-    background: rgba(78, 115, 248, 0.08);
-}
-
-.info-cart img{
-    width: 100%;
-	height: 128px;
-    border-radius: 10px;
-	margin: 16px 0px;
-}
-
-.info-cart{
-    padding: 24px;
-}
-
-.info-cart button{
-    width: 100%;
-    height: 48px;
-    font-size: 15px;
-    border: 1px solid #74a3f5;
-    color: #74a3f5;
-    background: white;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.2s ease-in;
-}
-
-.info-cart button:hover{
-    font-size: 15px;
-    border: 1px solid #74a3f5;
-    color: white;
-    background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.2s ease-in;
-}
-
-h3{
-	font-weight: 700;
-	font-size: 16px;
-}
-
-.image-carts{
-    display: flex;
-	flex-wrap: wrap;
-    justify-content: space-between;
-	width: 85vh;
-}
-
-.prodamus-input input{
-    height: 4vh;
-    font-size: 15px;
-    border: 1px solid #737480;
-    border-radius: 5px;
-	padding: 10px;
-}
-
-.about{
-    width: 100%;
-    height: 100%;
-}
-
-.about h2{
-	margin-top: 32px;
-}
-
-.prodamus-input{
-    width: 85vh;
-}
-
-.prodamus-input h2{
-	margin-top: 32px;
-}
-
-.field{
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-}
-
-.full{
-	width: 100%;
-}
-
-.half{
-	width: 48%;
-}
-
-.about input{
-    height: 4vh;
-    font-size: 15px;
-    border: 1px solid #737480;
-    border-radius: 5px;
-	padding: 10px;
-}
-
-.about-btn button:hover{
-    width: 85vh;
-    height: 4vh;
-    font-size: 15px;
-    border: 1px solid #74a3f5;
-    color: #74a3f5;
-    background: white;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.2s ease-in;
-}
-
-.about-btn button{
-    width: 85vh;
-    height: 4vh;
-    font-size: 15px;
-    border: 1px solid #74a3f5;
-    color: white;
-    background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.2s ease-in;
-    margin-top: 36px;
-}
-
-input::placeholder{
-    text-align: top left;
-    padding: 10px 0px 10px;
-}
-
-input:focus{
-	outline: none;
-    border: 1px solid #4E73F8;
-	box-shadow: 0 0 0 4px rgba(31,45,207,0.2);
-}
+.AboutUser{    width: 50%;    display: flex;    flex-direction: column;    padding: 20px 30px 10px;}.AboutUser h2{    font-weight: 700;    font-size: 24px;    line-height: 32px;}.AboutUser p{    font-size: 14px;    line-height: 18px;}.bloc-tabs {    display: flex;}.tabs {    position: relative;    width: 54%;    border-bottom: 1px solid rgba(0, 0, 0, 0.274);    outline: none;    text-align: center;    background: rgba(128, 128, 128, 0.075);    box-sizing: content-box;    cursor: pointer;}.tabs:not(:last-child){    border-right: 1px solid rgba(0, 0, 0, 0.274);}.active-tabs  {    border-bottom: 1px solid transparent;    background: white;}.active-tabs::before {    position: absolute;    top: -5px;    left: 50%;    transform: translateX(-50%);    display: block;    width: calc(100% + 2px);    height: 5px;    background: rgb(88, 147, 241);}button {    border: none;}.content-tabs {    flex-grow : 1;}.content {    display: none;    width: 100%;    height: 100%;    background: white;    padding: 20px;}.content h2 {    padding: 0px 0 5px 0px;}.content hr {    width: 100px;    height: 2px;    margin-bottom: 5px;    background: #222;}.content p {    width: 100%;    height: 100%;}.active-content {    display: block;}.mytabs {    display: flex;    flex-wrap: wrap;	justify-content: center;    margin-top: 32px;    align-items: center;}.mytabs input[type="radio"] {    display: none;}.mytabs label {    width: 33%;    padding: 4px;    border: 1px #E1E3E6 solid;    border-width: 1px 0px 1px 0px;    font-weight: 500;    text-align: center;    line-height: 27px;    background: #F8F8F8;    transition: 0.2s ease-in;}.mytabs label p {    padding: 10px 0;}#oplab{	border-width: 1px 0px 1px 1px;	border-radius: 8px 0px 0px 8px;}#cllab{	border-width: 1px 1px 1px 0px;	border-radius: 0px 8px 8px 0px;}.mytabs .tab {    display: none;    width: 100%;    order: 1;    background: #fff;}.mytabs .tab h2 {    margin-top: 32px;    font-size: 18px;	font-weight: 500;}.mytabs p{    width: 100%;	font-size: 16px;	background-color: #F8F8F8;	border-radius: 8px;	transition: 0.2s ease-in;}.mytabs input:checked + label + .tab {    display: block;}.mytabs input:checked + label p {    padding: 10px  0;    background-color: white;}.mytabs input:checked + label {    font-weight: 700;    color: #5A6474;	background-clip: padding-box;    background-color: #F8F8F8;}.cart{    width: 40vh;	margin-bottom: 16px;    border: 1px solid #e2e2e2;    border-radius: 10px;	box-shadow: 0px 4px 2px -2px rgba(27, 46, 94, 0.02);}.info-cart p{	font-weight: 400;	font-size: 14px;	color: #757D8A;	background-color: white;}.info-cart span{    width: 4vh;    border-radius: 5px;    margin: 5px 1px 10px;    padding: 5px 10px 5px;    color: #74a3f5;    background: rgba(78, 115, 248, 0.08);}.info-cart img{    width: 100%;	height: 128px;    border-radius: 10px;	margin: 16px 0px;}.info-cart button{    width: 100%;    height: 48px;    border: 1px solid #74a3f5;    border-radius: 10px;    cursor: pointer;    font-size: 15px;    color: #74a3f5;    background: white;    transition: 0.2s ease-in;}.info-cart button:hover{    cursor: pointer;    border-radius: 10px;    border: 1px solid #74a3f5;    font-size: 15px;    color: white;    background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);    transition: 0.2s ease-in;}h3{	font-weight: 700;	font-size: 16px;}.image-carts{    width: 85vh;    display: flex;	flex-wrap: wrap;    justify-content: space-between;}.prodamus-input input{    height: 4vh;    border: 1px solid #737480;    border-radius: 5px;    padding: 10px;    font-size: 15px;}.about{    width: 100%;    height: 100%;}.about h2{	margin-top: 32px;}.prodamus-input{    width: 85vh;}.prodamus-input h2{	margin-top: 32px;}.field{	display: flex;	flex-wrap: wrap;	justify-content: space-between;}.full{	width: 100%;}.half{	width: 48%;}.about input{    height: 4vh;    border: 1px solid #737480;    border-radius: 5px;    padding: 10px;    font-size: 15px;}.about-btn button:hover{    width: 100%;    height: 4vh;    border-radius: 10px;    border: 1px solid #74a3f5;    cursor: pointer;    font-size: 15px;    color: #74a3f5;    background: white;    transition: 0.2s ease-in;}.about-btn button{    width: 100%;    height: 4vh;    border: 1px solid #74a3f5;    border-radius: 10px;    cursor: pointer;    margin-top: 36px;    font-size: 15px;    color: white;    background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);    transition: 0.2s ease-in;}input::placeholder{    padding: 10px 0px 10px;    text-align: top left;}input:focus{    border: 1px solid #4E73F8;    outline: none;	box-shadow: 0 0 0 4px rgba(31,45,207,0.2);}.input-warn{    border: 1px solid #EF2C2C !important;    outline: none;    box-shadow: 0 0 0 4px rgba(255, 89, 89, 0.2);}
