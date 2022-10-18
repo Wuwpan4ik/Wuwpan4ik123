@@ -3,17 +3,16 @@ $(document).ready(function(){
         let slider = $(this).parent().find('.slider').slick({
             arrows:false,
             dots:true,
-            swipe: false,
             lazyLoad: true,
             appendDots: $(this).parent().find('.slick-dots'),
             slidesToShow:1
         });
+
         function stopVideos() {
             $(this).find('.slider__video-item').each(function (){
                 this.pause();
             })
         }
-
         let width = 0;
 
         $(this).find('.slider__video-item').each(function () {
@@ -24,10 +23,7 @@ $(document).ready(function(){
                     width = (videoLocal.currentTime * 100) / videoLocal.duration;
                     progressBar.style.background = `linear-gradient(to right,white 0%, white ${width}%,lightgrey ${width}% , lightgrey ${100 - width}%)`;
                     if (videoLocal.paused) {
-                        var highestTimeoutId = setTimeout(";");
-                        for (var i = 0 ; i < highestTimeoutId ; i++) {
-                            clearTimeout(i);
-                        }
+                        clearInterval(interval);
                     }
                     if (videoLocal.ended){
                         slider.slick("slickNext");
@@ -74,7 +70,7 @@ $(document).ready(function(){
                         }
                     }
                 }, 300);
-            })
+            });
         });
     });
 });

@@ -51,6 +51,12 @@
             return [$result, $videos];
         }
 
+        public function getUserMessengers() {
+            $user_id = $_SESSION['user']['id'];
+            $result = $this->db->query("SELECT * FROM chats WHERE `user_from` = '$user_id' OR `user_to` = '$user_id'");
+            return $result;
+        }
+
         public function getVideosForPlayer()
         {
             $id = $_GET['id'];

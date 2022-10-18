@@ -20,8 +20,8 @@
             ?>
             <div class="slider__item ">
                 <div class="slider__video">
-                    <video id="123" class="slider__video-item"
-                    <source  class="video" src=".<?=$item['video']?>" />
+                    <video id="123" class="slider__video-item" autoplay="autoplay">
+                    <source class="video" src=".<?=$item['video']?>" />
                     </video>
                 </div>
                 <div class="slider__header _conatiner-player ">
@@ -211,7 +211,6 @@
 <script src="../js/script.js" ></script>
 <script src="../js/slick.min.js"></script>
 <script src="../js/sliders.js"></script>
-
 
 </body>
 </html>
