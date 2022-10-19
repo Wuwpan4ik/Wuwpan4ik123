@@ -69,7 +69,7 @@
 
         <div class="Lessons">
 
-            <div class="media">
+            <div class="media _container">
 
                 <?php
                 foreach($content[1] as $v){?>
