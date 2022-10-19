@@ -112,17 +112,17 @@
 
                 <thead class="fixedHeader">
 
-                <tr>
+					<tr>
 
-                    <th>Имя<img class="table_ico" src="img/StickDown.svg"></th>
+						<th>Имя<button cursor="pointer" class="order_button" value="first_name"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
-                    <th>Email<img class="table_ico" src="img/StickDown.svg"></th>
+						<th>Email<button class="order_button" value="email"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
-                    <th>Статус<img class="table_ico" src="img/StickDown.svg"></th>
+						<th>Статус<button class="order_button" value=""><img class="table_ico" src="img/StickDown.svg"></button></th>
 
-                    <th>Продукт<img class="table_ico" src="img/StickDown.svg"></th>
+						<th>Продукт<button class="order_button" value="niche"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
-                </tr>
+					</tr>
 
                 </thead>
 
@@ -130,14 +130,14 @@
 
                 <?
                 $i = 1;
-
+				
                 foreach($content as $item){
 
                     if ($i % 2 == 0){?>
 
                         <tr id="white">
 
-                            <td><img class="table_ava" src="<?=$item['avatar']?>"/><b><?=$item['name']?></b></td>
+                            <td><img class="table_ava" src="<?=$item['avatar']?>"/><b><?=$item['first_name']?></b></td>
 
                             <td><?=$item['email']?></td>
 
@@ -151,7 +151,7 @@
 
                         <tr id="grey">
 
-                            <td><img class="table_ava" src="<?=$item['avatar']?>"/><b><?=$item['name']?></b></td>
+                            <td><img class="table_ava" src="<?=$item['avatar']?>"/><b><?=$item['first_name']?></b></td>
 
                             <td><?=$item['email']?></td>
 
@@ -174,5 +174,35 @@
 </div>
 
 </body>
+
+  <script>
+            const order_button = document.querySelectorAll('.order_button');
+            const tab = document.querySelector('#viewTab');
+			
+			for (var i = 0; i < order_button.length; ++i) {
+				order_button[i].addEventListener('click', function(e) {
+					if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){
+						this.innerHTML = '<img class="table_ico" src="img/StickUp.svg">';
+						var  param = this.value;
+					}else{
+						this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
+						param = "id";
+					}
+					const request = new XMLHttpRequest();
+
+					const url = "?option=SortController&method=get_content&order=" +param;
+
+					request.open('GET', url);
+
+					request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+					request.addEventListener("readystatechange", () => {
+						if (request.readyState === 4 && request.status === 200) {
+							tab.innerHTML = request.responseText;
+						}
+					});
+					request.send();
+				});
+			};
+        </script>
 
 </html>
