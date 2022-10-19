@@ -28,6 +28,7 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'ProjectEdit' => __DIR__ . '/../..' . '/pages/projectEdit.php',
         'Registration' => __DIR__ . '/../..' . '/pages/registration.php',
         'UrlController' => __DIR__ . '/../..' . '/controller/UrlController.php',
+        'SortController' => __DIR__ . '/../..' . '/controller/SortController.php',
         'smallPlayer' => __DIR__ . '/../..' . '/pages/smallPlayer.php',
     );
 
