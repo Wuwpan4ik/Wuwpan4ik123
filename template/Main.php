@@ -139,8 +139,6 @@
 
                             <td><?php if(isset($item['email'])) echo htmlspecialchars($item['email'])?></td>
 
-                            <td><img class="table_ava" src="<?=$item['avatar']?>"/><b><?=$item['first_name']?></b></td>
-
                             <td><?php if(isset($item['status'])) echo htmlspecialchars($item['status'])?></td>
 
                             <td><?php if(isset($item['niche'])) echo htmlspecialchars($item['niche'])?></td>
