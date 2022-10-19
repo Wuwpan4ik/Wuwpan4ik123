@@ -2,8 +2,10 @@
     <div id="popup" class="popup__edit">
         <div class="popup__header-container">
             <div class="popup__header">
-                <button class="close__btn"><img src="../../img/ArrowLeft.svg" alt="Назад"></button>
-                <h2 class="display_name">Настройка действий</h2>
+                <div class="popup__header-left">
+                    <button class="close__btn"><img src="../../img/ArrowLeft.svg" alt="Назад"></button>
+                    <h2 class="display_name">Настройка действий</h2>
+                </div>
                 <button type="button" class="popup__edit-btn">Сохранить</button>
             </div>
         </div>

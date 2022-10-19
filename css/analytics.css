@@ -151,7 +151,6 @@ button {
     width: 0;
 }
 .header{
-    width: 70%;
     display: flex;
     gap:20px;
     justify-content: space-between;
@@ -203,7 +202,6 @@ tbody input{
 	color: white;
 }
 .Tableusers{
-    width: 90%;
     display: flex;
     flex-direction: column;
     font-size: 17px;
