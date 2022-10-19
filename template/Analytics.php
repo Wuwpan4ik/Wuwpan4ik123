@@ -6,6 +6,8 @@
 
     <title>Моя тестовая страница</title>
 
+    <link rel="stylesheet" href="css/nullCss.css">
+
     <link rel="stylesheet" href="css/analytics.css">
 
     <link rel="stylesheet" href="css/feed.css">
@@ -64,7 +66,7 @@
 
 							</div>
 
-                            <table cellSpacing="0">
+                            <table class="table" cellSpacing="0">
 
                                 <thead class="fixedHeader">
 
@@ -368,9 +370,7 @@
 
                     <div class="tab">
 
-                        <div class="Geo">
 
-                        </div>
                         <div class="geo__profit">
                             <div class="profit__leftSide">
                                 <div class="profit__row">

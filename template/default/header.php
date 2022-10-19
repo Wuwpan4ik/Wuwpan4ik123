@@ -10,6 +10,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" href="css/nullCss.css">
+
     <link rel="stylesheet" href="css/auth.css">
 
     <link rel="stylesheet" href="css/profilesetting.css">
