@@ -203,13 +203,9 @@
 
 
 .btn-upload{
-
     display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
+    align-items: center;
+    width: 100%;
 }
 
 
@@ -273,17 +269,15 @@
 
 
 .placeholder{
-
     width: 300px;
     height:55vh;
-
+    padding: 0 25px;
 	display: flex;
-
 	justify-content: center;
-
+    align-items: center;
     background: url("../img/placeholder-bgc.png");
 	border-radius: 16px;
-
+    box-sizing: border-box;
 }
 
 
