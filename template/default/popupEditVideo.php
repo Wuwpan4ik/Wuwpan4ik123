@@ -45,7 +45,7 @@
                     </select>
                 </div>
             </div>
-            <button type="submit">а</button>
+
         </form>
     </div>
 </div>

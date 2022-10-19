@@ -166,7 +166,6 @@ span.button__back{
   box-sizing: content-box;
   display: flex;
   flex-direction: column;
-  width: 95%;
   gap: 10px;
   background: white;
   padding: 25px;
