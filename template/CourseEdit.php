@@ -73,53 +73,12 @@
                 <?php
                 foreach($content[1] as $v){?>
 
-                    <div class="media-cart">
-
-                        <video preload="metadata" controls="controls" class="media-cart-img" src="<?=$v['video']?>"></video>
-
-                        <form method="POST" class="new_name" action="?option=FunnelController&method=renameVideo&id_item=<?=$v['id']?>&id=<?=$content[0][0]['id']?>">
-                            <div>
-                                <label for="name">Укажите заголовок:</label>
-                                <input name="name" class="videoname" type="text" placeholder="<?=$v['name']?>" required>
-                            </div>
-                            <div>
-                                <label for="description">Укажите описание:</label>
-                                <textarea style="resize: none; height: 60px;" name="description" class="videoname" placeholder="<?=$v['description']?>" required></textarea>
-                            </div>
-                            <input type="hidden" value="<?=$v['id']?>">
-                            <button type="submit">Сохранить</button>
-
-                        </form>
-
-                    </div>
+                    <?php include 'default/media-cart.php'?>
 
                 <?}
 
                 ?>
-
-                <div class="media-cart placeholder">
-
-                    <div class="btn-upload">
-
-                        <form class="upload__form" id="upload_form" enctype="multipart/form-data" method="post">
-
-                            <input class="upload_video" accept=".mp4" style="display:none;" id="video" name="video_uploader" type="file"/>
-
-                            <label class="upload_video upload__label" for="video"><img src="img/Create.svg" class="create-ico"><span>Добавьте видео</span></label>
-
-                            <div class="progress" id="progressDiv">
-                                <progress id="progressBar" value="0" max="100" style="width:100%; height: 1.2rem;">
-                                </progress>
-                            </div>
-
-                            <button class="upload_video" type="button" onclick="uploadFileHandler()">Сохранить</button>
-
-                        </form>
-
-                    </div>
-
-                </div>
-
+                <?php include 'default/add_new_video.php'?>
             </div>
 
         </div>

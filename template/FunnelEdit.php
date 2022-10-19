@@ -73,54 +73,13 @@
                 <?php
                 foreach($content[1] as $v){?>
 
-                    <div class="media-cart">
-
-                        <video preload="metadata" controls="controls" class="media-cart-img" src="<?=$v['video']?>"></video>
-
-                        <form method="POST" class="new_name" action="?option=VideoController&method=renameVideo&id_item=<?=$v['id']?>&id=<?=$content[0][0]['id']?>">
-                            <div>
-                                <label for="name">Укажите заголовок:</label>
-                                <input name="name" class="videoname" type="text" placeholder="<?=$v['name']?>" required>
-                            </div>
-                            <div>
-                                <label for="description">Укажите описание:</label>
-                                <textarea style="resize: none; height: 60px;" name="description" class="videoname" placeholder="<?=$v['description']?>" required></textarea>
-                            </div>
-                            <div>
-                                <label for="button_text">Текст для кнопки:</label>
-                                <input name="button_text" class="videoname" type="text" placeholder="<?=$v['button_text']?>" required>
-                            </div>
-                            <input type="hidden" value="<?=$v['id']?>">
-                            <button type="button" class="button__edit" style="background: #757D8A;"><img style="width: 22px;" src="../img/printer.png">Действие для кнопки</button>
-                            <button type="submit">Сохранить</button>
-
-                        </form>
-
-                    </div>
+                    <?php include 'default/media-cart.php'?>
 
                 <?}
 
                 ?>
 
-                <div class="media-cart placeholder">
-
-                    <div class="btn-upload">
-
-                        <form id="upload_form" action="?option=VideoController&method=addVideo&id=<?=$content[0][0]['id']?>&folder=funnel" enctype="multipart/form-data" method="post">
-
-                            <a class="create-new">
-
-                                <input accept=".mp4" style="display:none;" id="video" name="video_uploader" type="file" onchange='document.getElementById("upload_form").submit()'/>
-
-                                <label for="video"><img src="img/Create.svg" class="create-ico"><span>Добавьте видео</span></label>
-
-                            </a>
-
-                        </form>
-
-                    </div>
-
-                </div>
+                <?php include 'default/add_new_video.php'?>
 
             </div>
 
@@ -132,6 +91,39 @@
 
 <?php include 'default/popupEditVideo.php';?>
 <script src="../js/button__settings.js"></script>
+<script>
+    function _(abc) {
+        return document.getElementById(abc);
+    }
+    function uploadFileHandler() {
+        var file = document.getElementById("video").files[0];
+        if (file.length === 0) {
+            return false;
+        }
+        document.querySelectorAll('.upload_video').forEach((elem) => {
+            elem.style.display = 'none';
+        })
+        _("progressBar").classList.add('active');
+        var formdata = new FormData();
+        formdata.append("video_uploader", file);
+        var ajax = new XMLHttpRequest();
+        ajax.upload.addEventListener("progress", progressHandler, false);
+        ajax.addEventListener("load", completeHandler, false)
+        ajax.open("POST", "?option=VideoController&method=addVideo&id=<?=$content[0][0]['id']?>&folder=funnel");
+        ajax.send(formdata);
+    }
+    function progressHandler(event) {
+        var loaded = new Number((event.loaded / 1048576));//Make loaded a "number" and divide bytes to get Megabytes
+        var total = new Number((event.total / 1048576));//Make total file size a "number" and divide bytes to get Megabytes
+        var percent = (event.loaded / event.total) * 100;//Get percentage of upload progress
+        _("progressBar").value = Math.round(percent);//Round value to solid
+    }
+    function completeHandler(event) {
+        _("progressBar").value = 0;//Set progress bar to 0
+        document.getElementById('progressDiv').style.display = 'none';//Hide progress bar
+        location.reload();
+    }
+</script>
 </body>
 
 </html>

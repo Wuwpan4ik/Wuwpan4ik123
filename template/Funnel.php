@@ -138,9 +138,9 @@
 
                 <div class="media-cart placeholder">
 
-                    <div class="btn-upload">
+                    <div class="btn-upload" style="width: auto;">
 
-                        <a  href="?option=DirectoryController&method=Create&folder=funnel" class="create-new">
+                        <a href="?option=DirectoryController&method=Create&folder=funnel" class="create-new">
 
                             <img src="../img/Create.svg" class="create-ico">
 

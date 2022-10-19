@@ -129,7 +129,7 @@
 
                 <div class="media-cart placeholder">
 
-                    <div class="btn-upload">
+                    <div class="btn-upload" style="width: auto;">
 
                         <a  href="?option=DirectoryController&method=Create&folder=course" class="create-new">
 

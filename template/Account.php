@@ -163,7 +163,7 @@
 
                                 <div class="image-carts">
                                   
-                                  <?php foreach ($content[1] as $tariff) {?>
+                                  <?php if(isset($content[1])) { foreach ($content[1] as $tariff) {?>
 
                                     <div class="cart">
 
@@ -182,8 +182,8 @@
                                         </div>
 
                                     </div>
-									
-									                <?}?>
+
+                                  <?} }?>
 
                                 </div>
 
