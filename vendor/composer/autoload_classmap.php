@@ -23,5 +23,6 @@ return array(
     'ProjectEdit' => $baseDir . '/pages/projectEdit.php',
     'Registration' => $baseDir . '/pages/registration.php',
     'UrlController' => $baseDir . '/controller/UrlController.php',
+    'SortController' => $baseDir . '/controller/SortController.php',
     'smallPlayer' => $baseDir . '/pages/smallPlayer.php',
 );
