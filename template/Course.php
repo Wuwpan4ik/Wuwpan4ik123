@@ -6,7 +6,9 @@
 
     <title>Моя тестовая страница</title>
     <link rel="stylesheet" href="css/sidebar.css">
+
     <link rel="stylesheet" href="css/nullCss.css">
+
     <link rel="stylesheet" href="css/project.css">
 
     <link rel="stylesheet" href="css/feed.css">
@@ -43,7 +45,7 @@
 
         <div class="Lessons">
 
-            <div class="media">
+            <div class="media _container">
 
                 <?php
 

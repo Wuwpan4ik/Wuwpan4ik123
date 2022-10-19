@@ -134,3 +134,15 @@ body{
 .display-none {
     display: none;
 }
+
+.button-edit {
+    height: 48px;
+    width: 100%;
+    margin-top: 20px;
+    background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);
+    border-radius: 8px;
+}
+
+.button-create {
+    background: linear-gradient(180deg, #08B395 0%, #0C977F 100%);
+}
