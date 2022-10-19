@@ -1,12 +1,5 @@
 <?php
-    class UrlController {
-        protected $m;
-
-        public function __construct()
-        {
-            $this->m = new User();
-        }
-
+    class UrlController extends ACore {
         function get_content()
         {
             $site_url = $_GET['site_url'];

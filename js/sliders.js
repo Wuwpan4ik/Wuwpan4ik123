@@ -1,62 +1,77 @@
 $(document).ready(function(){
-    const slider = $('.slider').slick({
-        arrows:false,
-        dots:true,
-        swipe: false,
-        lazyLoad: true,
-        appendDots: $('.slick-dots'),
-        slidesToShow:1
-    });
-    const video = document.querySelectorAll('.slider__video-item');
-    let width = 0;
+    $('.slider').each(function() {
+        let slider = $(this).parent().find('.slider').slick({
+            arrows:false,
+            dots:true,
+            lazyLoad: true,
+            appendDots: $(this).parent().find('.slick-dots'),
+            slidesToShow:1
+        });
 
-    function stopVideos() {
-        Array.from(video).forEach((elem)=> {
-            elem.pause();
-        })
-    }
-
-    Array.from(video).forEach((elem)=> {
-        elem.addEventListener('click', function (){
-            const interval = setInterval(function () {
-                let progressBar = document.querySelector('.slick-dots li.slick-active button')
-                width = (elem.currentTime * 100) / elem.duration;
-                progressBar.style.background  = `linear-gradient(to right,white 0%, white ${width}%,lightgrey ${width}% , lightgrey ${100 - width}%)`;
-                if (elem.paused) {
-                    clearInterval(interval);
-                }
-                if (elem.ended){
-                    slider.slick("slickNext");
-                }
-            }, 300);
-            if (this.paused) {
-                Array.from(video).forEach((elem)=> {
-                    elem.pause();
-                })
-                this.play();
-            } else {
+        function stopVideos() {
+            $(this).find('.slider__video-item').each(function (){
                 this.pause();
-            }
-        })
-    })
+            })
+        }
+        let width = 0;
 
-    slider.on('afterChange', function (event, slick ) {
-        stopVideos();
-    });
-
-    slider.on('beforeChange', function (event, slick ) {
-        stopVideos();
-        Array.from(video).forEach((elem)=> {
-            const interval = setInterval(function () {
-                var progressBar = document.querySelector('.slick-dots li.slick-active button')
-                width = (elem.currentTime * 100) / elem.duration;
-                progressBar.style.background  = `linear-gradient(to right,white 0%, white ${width}%,lightgrey ${width}% , lightgrey ${100 - width}%)`;
-                if (elem.paused) {
-                    clearInterval(interval);
+        $(this).find('.slider__video-item').each(function () {
+            this.addEventListener('click', function (){
+                let videoLocal = this;
+                const interval = setInterval(function () {
+                    let progressBar = videoLocal.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector('.slick-dots li.slick-active button');
+                    width = (videoLocal.currentTime * 100) / videoLocal.duration;
+                    progressBar.style.background = `linear-gradient(to right,white 0%, white ${width}%,lightgrey ${width}% , lightgrey ${100 - width}%)`;
+                    if (videoLocal.paused) {
+                        clearInterval(interval);
+                    }
+                    if (videoLocal.ended){
+                        slider.slick("slickNext");
+                    }
+                }, 300);
+                if (this.paused) {
+                    this.play();
+                } else {
+                    this.pause();
                 }
-            }, 300);
+            })
         })
-    });
 
+        $(this).on('afterChange', function (event, slick ) {
+            stopVideos();
+            $(this).find('.slider__video-item').each(function () {
+                let videoLocal = this;
+                const interval = setInterval(function () {
+                    let progressBar = videoLocal.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector('.slick-dots li.slick-active button');
+                    width = (videoLocal.currentTime * 100) / videoLocal.duration;
+                    progressBar.style.background = `linear-gradient(to right,white 0%, white ${width}%,lightgrey ${width}% , lightgrey ${100 - width}%)`;
+                    if (videoLocal.paused) {
+                        var highestTimeoutId = setTimeout(";");
+                        for (var i = 0 ; i < highestTimeoutId ; i++) {
+                            clearTimeout(i);
+                        }
+                    }
+                }, 300);
+            })
+        });
+
+        $(this).on('beforeChange', function (event, slick ) {
+            stopVideos();
+            $(this).find('.slider__video-item').each(function () {
+                let videoLocal = this;
+                const interval = setInterval(function () {
+                    let progressBar = videoLocal.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector('.slick-dots li.slick-active button');
+                    width = (videoLocal.currentTime * 100) / videoLocal.duration;
+                    progressBar.style.background = `linear-gradient(to right,white 0%, white ${width}%,lightgrey ${width}% , lightgrey ${100 - width}%)`;
+                    if (videoLocal.paused) {
+                        var highestTimeoutId = setTimeout(";");
+                        for (var i = 0 ; i < highestTimeoutId ; i++) {
+                            clearTimeout(i);
+                        }
+                    }
+                }, 300);
+            });
+        });
+    });
 });
 

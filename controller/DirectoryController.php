@@ -147,7 +147,7 @@
                     let optionName = "";
                     let idNumber = "";
                     
-                    if (method === "addVideo" || method === "renameVideo") {
+                    if (method in ["addVideo", "renameVideo", "initVideoButton"]) {
                         if (folder === "funnel") {
                             optionName = "FunnelEdit"
                         } else {

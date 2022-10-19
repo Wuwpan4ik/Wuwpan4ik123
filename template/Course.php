@@ -53,30 +53,59 @@
                     <div class="media-cart">
 
                         <div class="media-cart-img">
+                            <div class="smallPlayer _conatiner">
+                                <div class="smallPlayer__slick-slider">
+                                    <div class="slider__pagination _conatiner-player">
+                                        <div class="slick-dots"></div>
+                                    </div>
+                                    <div class="slider">
+                                        <?
 
-                            <?
+                                        $i=1;
 
-                            $i=1;
+                                        foreach($content[1] as $v){
+                                            if ($v['course_id'] == $p['id']) {?>
 
-                            foreach($content[1] as $v){
-                                if ($v['course_id'] == $p['id']) {
-                                    if($i == 1){?>
-
-                                        <input checked="checked" type="radio" id="<?=$v['id']?>" name="<?=$p['id']?>_video"/>
-
-                                    <?}else{?>
-
-                                        <input type="radio" id="<?=$v['id']?>" name="<?=$p['id']?>_video"/>
-
-                                    <?}?>
-
-                                    <label for="<?=$v['id']?>" style="width: calc(95% / 4);"></label>
-
-                                    <video class="project_video" preload="metadata" controls="controls" src="<?=$v['video']?>">
-
-                                    </video>
-
-                                    <?$i++;}}?>
+                                                <div class="slider__item ">
+                                                    <div class="slider__video">
+                                                        <video id="123" class="slider__video-item"
+                                                        <source  class="video" src="<?=$v['video']?>" />
+                                                        </video>
+                                                    </div>
+                                                    <div class="slider__header _conatiner-player ">
+                                                        <div class="slider__header-logo">
+                                                            <div class="slider__header-logo-img">
+                                                                <img src="../img/smallPlayer/Logo.svg" alt="">
+                                                            </div>
+                                                            <div class="slider__header-logo-text">
+                                                                <?=$_SESSION['user']['first_name']?>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slider__header-views">
+                                                            <div class="slider__header-views-img">
+                                                                <img src="../img/smallPlayer/views.svg" alt="">
+                                                            </div>
+                                                            <div class="slider__header-views-count">
+                                                                126
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="slider__item-info _conatiner-player">
+                                                        <div class="slider__item-title">
+                                                            <?=$v['description']?>
+                                                        </div>
+                                                        <div class="slider__item-text">
+                                                            Курс включает в себя 24 урока
+                                                        </div>
+                                                    </div>
+                                                    <div class="pause__video">
+                                                        <img src="../img/smallPlayer/pause.svg" alt="">
+                                                    </div>
+                                                </div>
+                                                <?$i++;}}?>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
 
@@ -100,7 +129,7 @@
 
                 <div class="media-cart placeholder">
 
-                    <div class="btn-upload">
+                    <div class="btn-upload" style="width: auto;">
 
                         <a  href="?option=DirectoryController&method=Create&folder=course" class="create-new">
 
@@ -132,7 +161,10 @@
         </div>
     </div>
 </div>
-<script src="../js/script.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
+<script src="../js/script.js" ></script>
+<script src="../js/slick.min.js"></script>
+<script src="../js/sliders.js"></script>
 
 <script>
     let deleteButtons = document.querySelectorAll('.reboot');
