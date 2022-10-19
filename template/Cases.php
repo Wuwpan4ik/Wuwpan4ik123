@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
-        <div class="Cases">
+        <div class="Cases ">
             <?php include 'default/sidebar.php';?>
             <div class="feed">
                 <div class="feed-header">
@@ -26,7 +26,7 @@
                         <button id="apps" class="ico_button">Заявки</button>
                     </div>
                 </div>
-                <div class="Case">
+                <div class="Case _container">
                     <div class="cart inst">
                         <div class="service-price">
                             <div class="service">

@@ -5,7 +5,6 @@ body{
 .Analytics{
     height: 100%;
     width: 100%;
-    display: flex;
     background-color: white;
 }
 .Components{
@@ -77,22 +76,27 @@ button {
     display: flex;
     flex-wrap: wrap;
     justify-content: start;
-	margin-top: 30px;
 }
+
 .mytabs input{
     display: none;
+
 }
 .mytabs label {
     width: 25%;
     border: 1px #E1E3E6 solid;
     border-width: 1px 0px 1px 0px;
     padding: 4px;
+
     text-align: center;
     font-weight: 500;
     line-height: 27px;
     color: #757D8A;
     background: #F8F8F8;
     transition: 0.2s ease-in;
+}
+.mytabs label:nth-child(2){
+    margin: 0 0 0 40px ;
 }
 .mytabs label p {
     padding: 10px 0;
@@ -104,6 +108,9 @@ button {
 #cllab{
 	border-width: 1px 1px 1px 0px;
 	border-radius: 0px 8px 8px 0px;
+}
+.tab{
+
 }
 .mytabs .tab {
     width: 100%;
@@ -144,14 +151,24 @@ button {
     width: 0;
 }
 .header{
-    width: 50%;
+    width: 70%;
     display: flex;
     gap:20px;
     justify-content: space-between;
-    margin: 15px 0 0 0;
-	align-items: center;
+    align-items: center;
+    margin: 30px 0 0 0;
+
+}
+.header__title{
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
 }
 .head_buttons{
+    display: flex;
+    gap: 20px;
+}
+.head_buttons button{
 	display: flex;
     cursor:pointer;
     padding-right: 16px;

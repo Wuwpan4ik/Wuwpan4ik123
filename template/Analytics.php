@@ -28,7 +28,8 @@
 
                     <h2>Доступные проекты</h2>
 
-                    <div class="buttonsFeed">
+                    <div class="buttonsFeeda ">
+
 
                         <button class="ico_button"><img class="ico" src="img/Shield.svg"></button>
 
@@ -46,23 +47,21 @@
 
                     <label id="oplab" for="About"><p>Клиенты</p></label>
 
-                    <div class="tab">
+                    <div class="tab _container">
 
                         <div class="Tableusers">
 
                             <div class="header">
+                                <div class="header__title">
+								    <h2>Список ваших клиентов</h2>
+                                </div>
+                                <div class="head_buttons">
+                                    <button class="ico_button "><img class="ico" src="img/Filter.svg">Фильтры</button>
 
-								<h2>Список ваших клиентов</h2>
+                                    <button class="ico_button "><img class="ico" src="img/Download.svg">Выгрузить</button>
 
-								<div class="header">
-
-									<button class="ico_button head_buttons"><img class="ico" src="img/Filter.svg">Фильтры</button>
-
-									<button class="ico_button head_buttons"><img class="ico" src="img/Download.svg">Выгрузить</button>
-
-									<input style="display:block; padding-left:35px;" class="ico_button" placeholder="Поиск">
-
-								</div>
+                                    <input style="display:block; padding-left:35px;" class="ico_button" placeholder="Поиск">
+                                </div>
 
 							</div>
 

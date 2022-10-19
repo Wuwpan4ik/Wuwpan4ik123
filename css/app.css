@@ -5,6 +5,5 @@ body{
 
 .app{
   height: 100%;
-  display: flex;
   background-color: white;
 }

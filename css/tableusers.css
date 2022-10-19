@@ -1,7 +1,7 @@
 .Tableusers{
     display: flex;
     flex-direction: column;
-    padding: 20px 40px 5px;
+	margin: 24px 0 0 0;
     font-size: 17px;
 }
 .table__name{

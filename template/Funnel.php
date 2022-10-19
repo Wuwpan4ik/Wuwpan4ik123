@@ -42,9 +42,9 @@
 
         </div>
 
-        <div class="Lessons">
+        <div class="Lessons ">
 
-            <div class="media">
+            <div class="media _container">
 
                 <?php
 
