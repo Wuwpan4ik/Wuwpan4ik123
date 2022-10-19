@@ -129,12 +129,10 @@
 
                 <tbody id="viewTab">
 
-                <?
+                <?php
                 $i = 1;
                 foreach($content as $item){
                     ?>
-
-<<<<<<< HEAD
                         <tr id="<?php if ($i % 2 == 0){ echo "white";} else { echo "grey"; }?>">
 
                             <td><img class="table_ava" src="<?php if(isset($item['avatar'])) echo htmlspecialchars($item['avatar'])?>"/><b><?php if(isset($item['first_name'])) echo htmlspecialchars($item['first_name'])?></b></td>
@@ -146,25 +144,7 @@
                             <td><?php if(isset($item['niche'])) echo htmlspecialchars($item['niche'])?></td>
 
                         </tr>
-=======
-                    <tr id="<?php if ($i % 2 == 0){ echo "white";} else { echo "grey"; }?>">
-
-                        <td>
-                            <div class="table__name">
-                                <img class="table_ava" src="<?=$item['avatar']?>"/>
-                                <b><?=$item['first_name']?></b>
-                            </div>
-                        </td>
-
-                        <td><?=$item['email']?></td>
-
-                        <td><?=$item['status']?></td>
-
-                        <td><?=$item['niche']?></td>
-
-                    </tr>
->>>>>>> noffakeWork
-                    <?
+                    <?php
                     $i= $i+1;}
                 ?>
 
