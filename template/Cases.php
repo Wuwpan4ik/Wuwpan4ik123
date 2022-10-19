@@ -2,19 +2,22 @@
   <head>
     <meta charset="utf-8">
     <title>Моя тестовая страница</title>
+    <link rel="stylesheet" href="css/nullCss.css">
     <link rel="stylesheet" href="css/cases.css">
     <link rel="stylesheet" href="css/feed.css">
     <link rel="stylesheet" href="css/case.css">
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
-        <div class="Cases">
+        <div class="Cases ">
             <?php include 'default/sidebar.php';?>
             <div class="feed">
                 <div class="feed-header">
                     <div class="header__arrow">
-                        <span class="button__back">
-                        <img src="/img/ArrowLeft.svg" alt=""></span>
+                        <a class="button__back" href="?option=Main">
+                             <img src="/img/ArrowLeft.svg" alt="">
+                        </a>
+
                         <h2>Доступные проекты</h2>
                     </div>
                     <div class="buttonsFeed">
@@ -23,15 +26,15 @@
                         <button id="apps" class="ico_button">Заявки</button>
                     </div>
                 </div>
-                <div class="Case">
-                    <div class="cart-boosted">
+                <div class="Case _container">
+                    <div class="cart inst">
                         <div class="service-price">
                             <div class="service">
                                 <div class="image-service">
                                     <img src="img/inst.png"/>
                                 </div>
                                 <div class="service-text">
-                                    <h2>Курс менеджер инстаграм</h2>
+                                    <h2 class="service-titile">Курс менеджер инстаграм</h2>
                                     <div class="starrating">
                                         <p><span class="name">InstaKilogram</span> из Москвы</p>
                                         <h2><img src="img/Star.svg" class="ico"> 4.1</h2>
@@ -46,8 +49,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="status-1">
-                            <span>Boosted</span>
+                        <div class="status-container">
+                            <div class="Boosted status">Boosted</div>
+                            <div class="Boosted status">Boosted</div>
                         </div>
                         <div class="service-text-2">
                             <p>Этот кейс – это история о том, как прокачать языковую онлайн школу для детей, запустив
@@ -68,7 +72,7 @@
                                     <img src="img/Netflix.jpeg"/>
                                 </div>
                                 <div class="service-text">
-                                    <h2>Курсы по режиссуре</h2>
+                                    <h2 class="service-titile">Курсы по режиссуре</h2>
                                     <div class="starrating">
                                         <p><span class="name">Lexa</span> из Армении</p>
                                         <h2><img src="img/Star.svg" class="ico"> 4.4</h2>
@@ -83,8 +87,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="status">
-                            <span>Кино</span>
+                        <div class="status-container">
+                            <div class="Cinema status">Кино</div>
                         </div>
                         <div class="service-text-2">
                             <p>Калинин В.С. – руководитель мастерских режиссуры ВГИК, доцент режиссуры кино и телевидения,

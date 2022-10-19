@@ -7,5 +7,8 @@
         "files": [
             "./model/User.php"
         ]
-    }
+    },
+  "require": {
+    "ext-json": "*"
+  }
 }

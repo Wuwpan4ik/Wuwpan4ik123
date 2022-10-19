@@ -7,6 +7,7 @@
     <meta charset="utf-8">
 
     <title>ccio</title>
+    <link rel="stylesheet" href="css/nullCss.css">
 
     <link rel="stylesheet" type="text/css" href="./css/app.css">
 
@@ -43,8 +44,8 @@
             </div>
 
         </div>
-
-        <div class="index">
+        <div class="_container">
+        <div class="index ">
 
             <div class="header">
 
@@ -105,7 +106,6 @@
             </div>
 
         </div>
-
         <div class="Tableusers">
 
             <table cellSpacing="0">
@@ -128,47 +128,34 @@
 
                 <tbody id="viewTab">
 
-                <?
+                <?php
                 $i = 1;
-				
+
                 foreach($content as $item){
+                    ?>
+                        <tr id="<?php if ($i % 2 == 0){ echo "white";} else { echo "grey"; }?>">
 
-                    if ($i % 2 == 0){?>
+                            <td><img class="table_ava" src="<?php if(isset($item['avatar'])) echo htmlspecialchars($item['avatar'])?>"/><b><?php if(isset($item['first_name'])) echo htmlspecialchars($item['first_name'])?></b></td>
 
-                        <tr id="white">
-
-                            <td><img class="table_ava" src="<?=$item['avatar']?>"/><b><?=$item['first_name']?></b></td>
-
-                            <td><?=$item['email']?></td>
-
-                            <td><?=$item['status']?></td>
-
-                            <td><?=$item['niche']?></td>
-
-                        </tr>
-
-                    <?}else{?>
-
-                        <tr id="grey">
+                            <td><?php if(isset($item['email'])) echo htmlspecialchars($item['email'])?></td>
 
                             <td><img class="table_ava" src="<?=$item['avatar']?>"/><b><?=$item['first_name']?></b></td>
 
-                            <td><?=$item['email']?></td>
+                            <td><?php if(isset($item['status'])) echo htmlspecialchars($item['status'])?></td>
 
-                            <td><?=$item['status']?></td>
-
-                            <td><?=$item['niche']?></td>
+                            <td><?php if(isset($item['niche'])) echo htmlspecialchars($item['niche'])?></td>
 
                         </tr>
-
-                    <?} $i= $i+1;}?>
+                    <?php
+                    $i= $i+1;}
+                ?>
 
                 </tbody>
 
             </table>
 
         </div>
-
+        </div>
     </div>
 
 </div>

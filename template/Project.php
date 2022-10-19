@@ -5,6 +5,7 @@
     <meta charset="utf-8">
 
     <title>Моя тестовая страница</title>
+    <link rel="stylesheet" href="css/nullCss.css">
 
     <link rel="stylesheet" href="css/project.css">
 
@@ -26,7 +27,7 @@
 
                 <div class="feed-header">
 
-                    <h2>Доступные проекты</h2>
+                    <h2>Мои проекты</h2>
 
                     <div class="buttonsFeed">
 
@@ -35,92 +36,6 @@
                         <button class="ico_button"><img class="ico" src="img/Bell.svg"></button>
 
                         <button id="apps" class="ico_button">Заявки</button>
-
-                    </div>
-
-                </div>
-
-                <div class="Lessons">
-
-                    <div class="media">
-
-					<?php
-
-					$k = 1;
-
-					foreach($content[0] as $p){?>
-
-						<div class="media-cart">
-
-						<div class="media-cart-img">
-
-						<?
-
-						$i=1;
-
-						foreach($content[1] as $v){
-                            if ($v['course_id'] == $p['id']) {
-							if($i == 1){?>
-
-								<input checked="checked" type="radio" id="<?=$v['id']?>" name="<?=$p['id']?>_video"/>
-
-							<?}else{?>
-
-								<input type="radio" id="<?=$v['id']?>" name="<?=$p['id']?>_video"/>
-
-							<?}?>
-
-							<label for="<?=$v['id']?>" style="width: calc(95% / 4);"></label>
-
-							<video class="project_video" preload="metadata" controls="controls" src="<?=$v['video']?>">
-
-							</video>
-
-						<?$i++;}}?>
-
-						</div>
-
-							<p>Воронка №<?=$k?></p>
-
-                            <h3><?=$p['name']?></h3>
-
-                            <div style="display:flex;">
-
-								<input id="half_input" placeholder="https://translate.google.ru"/>
-
-								<button type="submit">Копировать</button>
-
-							</div>
-
-                            <div class="btn-delete-edit">
-
-                                <input type="hidden" value="<?=$p['id']?>" >
-
-                                <button type="submit" onclick="window.location.href = '?option=ProjectEdit&id=<?=$p['id']?>';"">Изменить</button>
-
-                                <button class="reboot" type="submit" onclick="deleteDirectory(this)">Удалить</button>
-
-                            </div>
-
-                        </div>
-
-					<?$k++;}?>
-
-                        <div class="media-cart placeholder">
-
-                            <div class="btn-upload">
-
-                                <a  href="?option=DirectoryController&method=Create" class="create-new">
-
-									<img src="img/Create.svg" class="create-ico">
-
-									<p>Создать новый проект</p>
-
-								</a>
-
-                            </div>
-
-                        </div>
 
                     </div>
 

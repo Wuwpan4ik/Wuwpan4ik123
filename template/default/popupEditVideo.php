@@ -7,8 +7,8 @@
                 <button type="button" class="popup__edit-btn">Сохранить</button>
             </div>
         </div>
-        <form method="POST" class="popup__body-container">
-            <input id="id_item" type="hidden" value="">
+        <form id="initButton" action="?option=VideoController&method=initVideoButton" method="POST" class="popup__body-container">
+            <input id="id_item" name="id_item" type="hidden" value="">
             <div class="popup__body-block">
                 <div class="popup__body-item">
                     <label for="first_do">Дейсвтие после просмотра:</label>
@@ -43,6 +43,7 @@
                     </select>
                 </div>
             </div>
+            <button type="submit">а</button>
         </form>
     </div>
 </div>

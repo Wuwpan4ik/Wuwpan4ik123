@@ -1,64 +1,34 @@
 .Tableusers{
-
     display: flex;
-
     flex-direction: column;
-
-    padding: 20px 40px 5px;
-
+	margin: 24px 0 0 0;
     font-size: 17px;
-
 }
-
-
-
+.table__name{
+	display: flex;
+	align-items: center;
+}
 .table_ava{
-
 	width: 32px;
-
 	height: 32px;
-
 	border-radius: 99px;
-
-	vertical-align: top;
-
 	margin: 0vh 1vh 0vh 1vh;
-
 }
-
-
-
 .table_ico{
-
 	width: 15px;
-
 	margin: 0vh 1vh 0vh 1vh;
-
 }
-
-
-
+td{
+	width: 25%;
+}
 td, th {
-
-	line-height: 20px;
-
-	font-weight: 400;
-
     padding: 16px 20px;
-
-	 width:5vh;
-
-	 text-align: left;
-
-	 color: #5A6474;
-
+	font-weight: 400;
+	line-height: 20px;
+	text-align: left;
+	color: #5A6474;
 }
-
-
-
 #grey{
-
 	background-color: #F8F8F8;
-
 }
 
