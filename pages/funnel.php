@@ -5,5 +5,6 @@ class Funnel extends ACore {
         return $result;
     }
 
-    public function obr() {}
+    public function obr() {
+    }
 }
