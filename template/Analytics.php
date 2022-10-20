@@ -73,7 +73,7 @@
 
 									<tr>
 
-										<th id="thop">ФИО</th>
+										<th id="thop"><input id="main_check" type="checkbox" style="display:inline-block;">ФИО</th>
 
 										<th><button class="order_button" value="give_money"><img class="table_ico" src="img/StickDown.svg"></button>Сумма</th>
 
@@ -98,8 +98,8 @@
 										
 										<tr>
 
-											<td class="nick"> <input type="checkbox"><?=$content[1][$i]["first_name"] . " " . $content[1][$i]["second_name"]?></td>
-											
+											<td class="nick"> <input type="checkbox" class="check_user"><?=$content[1][$i]["first_name"] . " " . $content[1][$i]["second_name"]?></td>
+
 											<td><?=$client["give_money"]?> ₽</td>
 
 											<td><?=$content[1][$i]["email"]?></td>
@@ -114,7 +114,7 @@
 
 												<span>
 
-													<img class="table_ico" src="img/Option.svg">
+													<button class="del_but"  value="<?=$client["id"]?>"><img class="table_ico" src="img/Option.svg"></button>
 
 													<img class="table_ico" src="img/Dots.svg">
 
@@ -202,6 +202,33 @@
         </div>
 
   </body>
+  
+  <script>
+			// удаление клиента (не робит)
+			const client_del = document.querySelectorAll('del_but');
+				
+				for (var i = 0; i < client_del.length; ++i) {
+                client_del.addEventListener('click',function () {
+                    window.location.href = '?option=AnalController&method=delClient&id = '+ this.value;
+                });
+            };
+  </script>
+  
+	<script>
+				// выделение чекбоксов (чет тоже не работает)
+				const check_user = document.querySelectorAll('.check_user');
+				const main_check = document.querySelector('#main_check');
+				
+				for (var i = 0; i < check_user.length; ++i) {
+				main_check.addEventListener('click', function() {
+							if(main_check.checked == true){
+								check_user[i].checked = true;
+							}else{
+								check_user[i].checked = false;
+							};	
+						});
+					};
+	</script>
   
 	  <script>
 				const order_button = document.querySelector('.order_button');
