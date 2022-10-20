@@ -1,5 +1,5 @@
 <?php
-    class SortController {
+    class SortController extends ACore {
 		protected $m;
 
         public function __construct()
@@ -45,5 +45,10 @@
 							</tr>';
 
 						} $i= $i+1;}			
+        }
+
+        function obr()
+        {
+            // TODO: Implement obr() method.
         }
     }

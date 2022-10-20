@@ -169,4 +169,9 @@
 			</body>
 			</html>';
         }
+
+        function obr()
+        {
+            // TODO: Implement obr() method.
+        }
     }

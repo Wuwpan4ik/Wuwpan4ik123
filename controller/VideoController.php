@@ -27,6 +27,7 @@ class VideoController extends ACore
         } elseif ($folder == 'course') {
             $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`) VALUES (".$res[0]['id'].",'Укажите заголовок','Укажите описание', '$path')");
         }
+        return true;
     }
 
     public function renameVideo() {
@@ -99,34 +100,14 @@ class VideoController extends ACore
 			</head>
 			<body>
 				<script>
-				    let ur = document.URL;
-                    var url = new URL(ur);
-                    var option = url.searchParams.get("option");
-                    var method = url.searchParams.get("method");
-                    let id = url.searchParams.get("id");
-                    let optionName = "";
-                    let idNumber = "";
-                    
-                    if (method === "addVideo" || method === "renameVideo") {
-                        if (option === "FunnelController") {
-                            optionName = "FunnelEdit"
-                        } else {
-                            optionName = "CourseEdit"
-                        }
-                    } else {
-                        if (option === "FunnelController") {
-                            optionName = "Funnel"
-                        } else {
-                            optionName = "Course"
-                        }
-                    }
-                    if (id) {
-                        idNumber = \'&id=\' + id;
-                    }
-				    let a = location.protocol + \'//\' + location.host + location.pathname + \'?option=\' + optionName + idNumber;
-					window.location.replace(a);
+//				    window.history.go(-1)
 				</script>
 			</body>
 			</html>';
+    }
+
+    function obr()
+    {
+        // TODO: Implement obr() method.
     }
 }

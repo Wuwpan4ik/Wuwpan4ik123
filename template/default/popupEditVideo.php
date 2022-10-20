@@ -6,7 +6,7 @@
                     <button class="close__btn"><img src="../../img/ArrowLeft.svg" alt="Назад"></button>
                     <h2 class="display_name">Настройка действий</h2>
                 </div>
-                <button type="button" class="popup__edit-btn">Сохранить</button>
+                <button type="button" onclick="save();" class="popup__edit-btn">Сохранить</button>
             </div>
         </div>
         <form id="initButton" action="?option=VideoController&method=initVideoButton" method="POST" class="popup__body-container">
@@ -45,7 +45,7 @@
                     </select>
                 </div>
             </div>
-
+            <button type="submit" id="send__edit-video" hidden="hidden"></button>
         </form>
     </div>
 </div>

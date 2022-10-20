@@ -14,4 +14,9 @@
                 echo '<div style="color: orangered;">Такой Url занят</div>';
             }
         }
+
+        function obr()
+        {
+            // TODO: Implement obr() method.
+        }
     }
