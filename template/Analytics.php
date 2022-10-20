@@ -75,7 +75,7 @@
 
 										<th id="thop">ФИО</th>
 
-										<th><img class="table_ico" src="img/StickDown.svg">Сумма</th>
+										<th><button class="order_button" value="give_money"><img class="table_ico" src="img/StickDown.svg"></button>Сумма</th>
 
 										<th>Email</th>
 
@@ -91,7 +91,7 @@
 
                                 </thead>
 
-                                <tbody>
+                                <tbody id="conTab">
 
 									<?php $i = 0;
 									foreach($content[0] as $client){?>
@@ -202,5 +202,33 @@
         </div>
 
   </body>
+  
+	  <script>
+				const order_button = document.querySelector('.order_button');
+				const tab = document.querySelector('#conTab');
+				
+					order_button.addEventListener('click', function(e) {
+						if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){
+							this.innerHTML = '<img class="table_ico" src="img/StickUp.svg">';
+							var  param = this.value;
+						}else{
+							this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
+							param = this.value + " DESC";
+						}
+						const request = new XMLHttpRequest();
+
+						const url = "?option=SortController&method=get_sum&sort=" +param;
+
+						request.open('GET', url);
+
+						request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+						request.addEventListener("readystatechange", () => {
+							if (request.readyState === 4 && request.status === 200) {
+								tab.innerHTML = request.responseText;
+							}
+						});
+						request.send();
+					});
+        </script>
 
 </html>
