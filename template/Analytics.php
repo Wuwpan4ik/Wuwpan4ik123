@@ -73,33 +73,33 @@
 
 									<tr>
 
-										<th id="thop">ФИО</th>
+										<th id="thop"><input id="main_check" type="checkbox" style="display:inline-block;">ФИО</th>
 
-										<th><img class="table_ico" src="img/StickDown.svg">Сумма</th>
+										<th><button class="order_button" value="give_money"><img class="table_ico" src="img/StickDown.svg"></button>Сумма</th>
 
-										<th>Email</th>
+										<th><button class="order_button" value="email"><img class="table_ico" src="img/StickDown.svg"></button>Email</th>
 
-										<th>Телефон</th>
+										<th><button class="order_button" value="tel"><img class="table_ico" src="img/StickDown.svg"></button>Телефон</th>
 
-										<th>Задача</th>
+										<th><button class="order_button" value="quest"><img class="table_ico" src="img/StickDown.svg"></button>Задача</th>
 										
-										<th>Дата создания</th>
+										<th><button class="order_button" value="date"><img class="table_ico" src="img/StickDown.svg"></button>Дата создания</th>
 
-										<th id="thcl">Источник клиента</th>
+										<th id="thcl"><button class="order_button" value="source"><img class="table_ico" src="img/StickDown.svg"></button>Источник клиента</th>
 
 									</tr>
 
                                 </thead>
 
-                                <tbody>
+                                <tbody id="conTab">
 
 									<?php $i = 0;
 									foreach($content[0] as $client){?>
 										
 										<tr>
 
-											<td class="nick"> <input type="checkbox"><?=$content[1][$i]["first_name"] . " " . $content[1][$i]["second_name"]?></td>
-											
+											<td class="nick"> <input type="checkbox" class="check_user"><?=$content[1][$i]["first_name"] . " " . $content[1][$i]["second_name"]?></td>
+
 											<td><?=$client["give_money"]?> ₽</td>
 
 											<td><?=$content[1][$i]["email"]?></td>
@@ -114,7 +114,7 @@
 
 												<span>
 
-													<img class="table_ico" src="img/Option.svg">
+													<button class="del_but"  value="<?=$client["id"]?>"><img class="table_ico" src="img/Option.svg"></button>
 
 													<img class="table_ico" src="img/Dots.svg">
 
@@ -202,5 +202,56 @@
         </div>
 
   </body>
+  
+  <script>
+			// удаление клиента (не робит)
+			const client_del = document.querySelectorAll('del_but');
+				
+				for (var i = 0; i < client_del.length; ++i) {
+                client_del.addEventListener('click',function () {
+                    window.location.href = '?option=AnalController&method=delClient&id = '+ this.value;
+                });
+            };
+  </script>
+  
+	<script>
+        // выделение чекбоксов (чет тоже не работает)
+        let check_user = document.querySelectorAll('.check_user');
+        const main_check = document.querySelector('#main_check');
+        main_check.addEventListener('click', function (e) {
+            let check_user = document.querySelectorAll('.check_user');
+                Array.prototype.forEach.call(check_user, function(cb){
+                    cb.checked = e.target.checked;
+                });
+            });
+	</script>
+  
+	  <script>
+				const order_button = document.querySelector('.order_button');
+				const tab = document.querySelector('#conTab');
+				
+					order_button.addEventListener('click', function(e) {
+						if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){
+							this.innerHTML = '<img class="table_ico" src="img/StickUp.svg">';
+							var param = this.value;
+						}else{
+							this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
+							param = this.value + " DESC";
+						}
+						const request = new XMLHttpRequest();
+
+						const url = "?option=SortController&method=get_sum&sort=" +param;
+
+						request.open('GET', url);
+
+						request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+						request.addEventListener("readystatechange", () => {
+							if (request.readyState === 4 && request.status === 200) {
+								tab.innerHTML = request.responseText;
+							}
+						});
+						request.send();
+					});
+        </script>
 
 </html>

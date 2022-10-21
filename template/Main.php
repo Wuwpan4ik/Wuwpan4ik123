@@ -169,10 +169,10 @@
 				order_button[i].addEventListener('click', function(e) {
 					if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){
 						this.innerHTML = '<img class="table_ico" src="img/StickUp.svg">';
-						var  param = this.value;
+						var  param = this.value + " DESC";
 					}else{
 						this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
-						param = "id";
+						param = this.value;
 					}
 					const request = new XMLHttpRequest();
 

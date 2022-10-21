@@ -28,5 +28,6 @@ return array(
     'SmallPlayer' => $baseDir . '/pages/smallPlayer.php',
     'SortController' => $baseDir . '/controller/SortController.php',
     'UrlController' => $baseDir . '/controller/UrlController.php',
+	'AnalController' => $baseDir . '/controller/AnalController.php',
     'VideoController' => $baseDir . '/controller/VideoController.php',
 );
