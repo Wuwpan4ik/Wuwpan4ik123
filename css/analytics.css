@@ -226,9 +226,34 @@ td, th {
     text-align: left;
     color: #757D8A;
 }
+tr{
+    transition: 0.8s;
+}
+.th-title{
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
 th{
 	background-color:#F8F8F8;
 }
+.basket_delete{
+    height: 24px;
+    transition: 0.8s;
+}
+.completed{
+    background-color: #4E73F8;
+    transition: 0.8s;
+    cursor: pointer;
+}
+.completed td{
+    color: #fff;
+    transition: 0.8s;
+}
+.completed .basket_delete{
+    filter: invert(100%) sepia(5%) saturate(0%) hue-rotate(221deg) brightness(106%) contrast(105%);
+}
+
 #thop{
 	border-radius: 8px 0px 0px 8px;
 }
@@ -237,11 +262,12 @@ th{
 }
 .table_ico{
     cursor:pointer;
-	padding-right: 15px;
+
 }
 .iconed{
 	display: flex;
 	justify-content: space-between;
+    align-items: center;
 }
 .iconed img{
     vertical-align: middle;

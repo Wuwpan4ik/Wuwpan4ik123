@@ -71,19 +71,19 @@
 
                                 <thead class="fixedHeader">
 
-                                <tr>
+                                <tr >
 
                                     <th id="thop">ФИО</th>
 
-                                    <th><img class="table_ico" src="img/StickDown.svg">Сумма</th>
+                                    <th> <div class="th-title"> <img class="table_ico" src="img/StickDown.svg">Сумма</div></th>
 
-                                    <th>Email</th>
+                                    <th><div class="th-title"> <img class="table_ico" src="img/StickDown.svg">Email</div></th>
 
-                                    <th>Телефон</th>
+                                    <th><div class="th-title"> <img class="table_ico" src="img/StickDown.svg">Телефон</div></th>
 
-                                    <th>Комментарий</th>
+                                    <th> <div class="th-title"> <img class="table_ico" src="img/StickDown.svg">Комментарий</div></th>
 
-                                    <th id="thcl">Источник клиента</th>
+                                    <th id="thcl"><div class="th-title"> <img class="table_ico" src="img/StickDown.svg">Источник клиента</div></th>
 
                                 </tr>
 
@@ -93,7 +93,7 @@
 
                                 <tr>
 
-                                    <td class="nick"> <input type="checkbox">UserUser</td>
+                                    <td class="nick"> <input class="checkbox" type="checkbox">UserUser</td>
                                     
                                     <td>1300 ₽</td>
 
@@ -105,251 +105,13 @@
 
                                     <td class="iconed">Соц. сети
 
-										<span>
-
-											<img class="table_ico" src="img/Option.svg">
-
-											<img class="table_ico" src="img/Dots.svg">
-
-										</span>
+                                        <img class="basket_delete" src="../img/basket_delete.svg" alt="">
 
 									</td>
 
-                                </tr>
+                                </tr >
 
-                                <tr>
-
-                                    <td class="nick"> <input type="checkbox">UserUser</td>
-
-                                    <td>1300 ₽</td>
-
-                                    <td>UserUser@mail.ru</td>
-
-                                    <td>8982323404</td>
-
-                                    <td>WhoWhoWho</td>
-
-                                    <td class="iconed">Соц. сети
-
-										<span>
-
-											<img class="table_ico" src="img/Option.svg">
-
-											<img class="table_ico" src="img/Dots.svg">
-
-										</span>
-
-									</td>
-
-                                </tr>
-
-								<tr>
-
-                                    <td class="nick"> <input type="checkbox">UserUser</td>
-
-                                    <td>1300 ₽</td>
-
-                                    <td>UserUser@mail.ru</td>
-
-                                    <td>8982323404</td>
-
-                                    <td>WhoWhoWho</td>
-
-                                    <td class="iconed">Соц. сети
-
-										<span>
-
-											<img class="table_ico" src="img/Option.svg">
-
-											<img class="table_ico" src="img/Dots.svg">
-
-										</span>
-
-									</td>
-
-                                </tr>
-
-								<tr>
-
-                                    <td class="nick"> <input type="checkbox">UserUser</td>
-
-                                    <td>1300 ₽</td>
-
-                                    <td>UserUser@mail.ru</td>
-
-                                    <td>8982323404</td>
-
-                                    <td>WhoWhoWho</td>
-
-                                    <td class="iconed">Соц. сети
-
-										<span>
-
-											<img class="table_ico" src="img/Option.svg">
-
-											<img class="table_ico" src="img/Dots.svg">
-
-										</span>
-
-									</td>
-
-                                </tr>
-
-								<tr>
-
-                                    <td class="nick"> <input type="checkbox">UserUser</td>
-
-                                    <td>1300 ₽</td>
-
-                                    <td>UserUser@mail.ru</td>
-
-                                    <td>8982323404</td>
-
-                                    <td>WhoWhoWho</td>
-
-                                    <td class="iconed">Соц. сети
-
-										<span>
-
-											<img class="table_ico" src="img/Option.svg">
-
-											<img class="table_ico" src="img/Dots.svg">
-
-										</span>
-
-									</td>
-
-                                </tr>
-
-								<tr>
-
-                                    <td class="nick"> <input type="checkbox">UserUser</td>
-
-                                    <td>1300 ₽</td>
-
-                                    <td>UserUser@mail.ru</td>
-
-                                    <td>8982323404</td>
-
-                                    <td>WhoWhoWho</td>
-
-                                    <td class="iconed">Соц. сети
-
-										<span>
-
-											<img class="table_ico" src="img/Option.svg">
-
-											<img class="table_ico" src="img/Dots.svg">
-
-										</span>
-
-									</td>
-
-                                </tr>
-
-								<tr>
-
-                                    <td class="nick"> <input type="checkbox">UserUser</td>
-
-                                    <td>1300 ₽</td>
-
-                                    <td>UserUser@mail.ru</td>
-
-                                    <td>8982323404</td>
-
-                                    <td>WhoWhoWho</td>
-
-                                    <td class="iconed">Соц. сети
-
-										<span>
-
-											<img class="table_ico" src="img/Option.svg">
-
-											<img class="table_ico" src="img/Dots.svg">
-
-										</span>
-
-									</td>
-
-                                </tr>
-
-								<tr>
-
-                                    <td class="nick"> <input type="checkbox">UserUser</td>
-
-                                    <td>1300 ₽</td>
-
-                                    <td>UserUser@mail.ru</td>
-
-                                    <td>8982323404</td>
-
-                                    <td>WhoWhoWho</td>
-
-                                    <td class="iconed">Соц. сети
-
-										<span>
-
-											<img class="table_ico" src="img/Option.svg">
-
-											<img class="table_ico" src="img/Dots.svg">
-
-										</span>
-
-									</td>
-
-                                </tr>
-
-								<tr>
-
-                                    <td class="nick"> <input type="checkbox">UserUser</td>
-
-                                    <td>1300 ₽</td>
-
-                                    <td>UserUser@mail.ru</td>
-
-                                    <td>8982323404</td>
-
-                                    <td>WhoWhoWho</td>
-
-                                    <td class="iconed">Соц. сети
-
-										<span>
-
-											<img class="table_ico" src="img/Option.svg">
-
-											<img class="table_ico" src="img/Dots.svg">
-
-										</span>
-
-									</td>
-
-                                </tr>
-
-								<tr>
-
-                                    <td class="nick"> <input type="checkbox">UserUser</td>
-
-                                    <td>1300 ₽</td>
-
-                                    <td>UserUser@mail.ru</td>
-
-                                    <td>8982323404</td>
-
-                                    <td>WhoWhoWho</td>
-
-                                    <td class="iconed">Соц. сети
-
-										<span>
-
-											<img class="table_ico" src="img/Option.svg">
-
-											<img class="table_ico" src="img/Dots.svg">
-
-										</span>
-
-									</td>
-
-                                </tr>
+                               
 
                                 </tbody>
 
@@ -425,7 +187,7 @@
             </div>
 
         </div>
-
+        <script src="../js/script.js" ></script>
   </body>
 
 </html>
