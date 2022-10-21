@@ -215,19 +215,14 @@
   </script>
   
 	<script>
-				// выделение чекбоксов (чет тоже не работает)
-				const check_user = document.querySelectorAll('.check_user');
-				const main_check = document.querySelector('#main_check');
-				
-				for (var i = 0; i < check_user.length; ++i) {
-				main_check.addEventListener('click', function() {
-							if(main_check.checked == true){
-								check_user[i].checked = true;
-							}else{
-								check_user[i].checked = false;
-							};	
-						});
-					};
+        // выделение чекбоксов (чет тоже не работает)
+        const check_user = document.querySelectorAll('.check_user');
+        const main_check = document.querySelector('#main_check');
+        main_check.addEventListener('click', function (e) {
+                Array.prototype.forEach.call(check_user, function(cb){
+                    cb.checked = e.target.checked;
+                });
+            });
 	</script>
   
 	  <script>
@@ -237,7 +232,7 @@
 					order_button.addEventListener('click', function(e) {
 						if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){
 							this.innerHTML = '<img class="table_ico" src="img/StickUp.svg">';
-							var  param = this.value;
+							var param = this.value;
 						}else{
 							this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
 							param = this.value + " DESC";
