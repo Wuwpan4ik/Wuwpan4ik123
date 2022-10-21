@@ -75,18 +75,17 @@
 
 										<th id="thop"><input id="main_check" type="checkbox" style="display:inline-block;">ФИО</th>
 
-										<th><button class="order_button" value="give_money"><img class="table_ico" src="img/StickDown.svg"></button>Сумма</th>
+										<th><div class="th-title"><button class="order_button" value="give_money"><img class="table_ico" src="img/StickDown.svg"></button>Сумма</div></th>
 
-										<th><button class="order_button" value="email"><img class="table_ico" src="img/StickDown.svg"></button>Email</th>
+										<th><div class="th-title"><button class="order_button" value="email"><img class="table_ico" src="img/StickDown.svg"></button>Email</div></th>
 
-										<th><button class="order_button" value="tel"><img class="table_ico" src="img/StickDown.svg"></button>Телефон</th>
+										<th><div class="th-title"><button class="order_button" value="tel"><img class="table_ico" src="img/StickDown.svg"></button>Телефон</div></th>
 
-										<th><button class="order_button" value="quest"><img class="table_ico" src="img/StickDown.svg"></button>Задача</th>
+										<th><div class="th-title"><button class="order_button" value="quest"><img class="table_ico" src="img/StickDown.svg"></button>Задача</div></th>
 										
-										<th><button class="order_button" value="date"><img class="table_ico" src="img/StickDown.svg"></button>Дата создания</th>
+										<th><div class="th-title"><button class="order_button" value="date"><img class="table_ico" src="img/StickDown.svg"></button>Дата создания</div></th>
 
-										<th id="thcl"><button class="order_button" value="source"><img class="table_ico" src="img/StickDown.svg"></button>Источник клиента</th>
-
+										<th><div class="th-title"><button class="order_button" value="source"><img class="table_ico" src="img/StickDown.svg"></button>Источник клиента</div></th>
 									</tr>
 
                                 </thead>
@@ -111,20 +110,12 @@
 											<td><?=$client["achivment_date"]?></td>
 
 											<td class="iconed">Соц. сети
-
-												<span>
-
-													<button class="del_but"  value="<?=$client["id"]?>"><img class="table_ico" src="img/Option.svg"></button>
-
-													<img class="table_ico" src="img/Dots.svg">
-
-												</span>
-
+                                                <img class="basket_delete" src="../img/basket_delete.svg" alt="">
 											</td>
 
 										</tr>
 										
-									<?$i++;}?>
+									<?php $i++;}?>
 
                                 </tbody>
 
@@ -200,7 +191,7 @@
             </div>
 
         </div>
-
+        <script src="../js/script.js" ></script>
   </body>
   
   <script>

@@ -226,9 +226,34 @@ td, th {
     text-align: left;
     color: #757D8A;
 }
+tr{
+    transition: 0.8s;
+}
+.th-title{
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
 th{
 	background-color:#F8F8F8;
 }
+.basket_delete{
+    height: 24px;
+    transition: 0.8s;
+}
+.completed{
+    background-color: #4E73F8;
+    transition: 0.8s;
+    cursor: pointer;
+}
+.completed td{
+    color: #fff;
+    transition: 0.8s;
+}
+.completed .basket_delete{
+    filter: invert(100%) sepia(5%) saturate(0%) hue-rotate(221deg) brightness(106%) contrast(105%);
+}
+
 #thop{
 	border-radius: 8px 0px 0px 8px;
 }
@@ -237,11 +262,12 @@ th{
 }
 .table_ico{
     cursor:pointer;
-	padding-right: 15px;
+
 }
 .iconed{
 	display: flex;
 	justify-content: space-between;
+    align-items: center;
 }
 .iconed img{
     vertical-align: middle;
@@ -405,23 +431,28 @@ span.color3{
     align-self:Center;
     background: rgba(78, 115, 248, 0.08);
 }
+
 .rightSideFirst_header{
     display:flex;
     align-items: center;
 }
+
 .rightSideFirstText1{
     margin: 0 0 0 10px;
 }
+
 .rightSideFirstText1 h1{
     font-weight: 700;
     font-size: 22px;
     line-height: 32px;
 }
+
 .rightSideFirstText1 p{
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
 }
+
 .rightSideFirstText2{
     display:flex;
     flex-direction: column;
@@ -429,10 +460,12 @@ span.color3{
     align-items:flex-end;
     align-self: center;
 }
+
 .rightSideFirstText2 span{
     width:150px;
     display:flex;
 }
+
 .rightSideFirstText2 span.green_profit{
     cursor: auto;
 }
