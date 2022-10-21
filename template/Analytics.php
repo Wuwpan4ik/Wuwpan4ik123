@@ -216,9 +216,10 @@
   
 	<script>
         // выделение чекбоксов (чет тоже не работает)
-        const check_user = document.querySelectorAll('.check_user');
+        let check_user = document.querySelectorAll('.check_user');
         const main_check = document.querySelector('#main_check');
         main_check.addEventListener('click', function (e) {
+            let check_user = document.querySelectorAll('.check_user');
                 Array.prototype.forEach.call(check_user, function(cb){
                     cb.checked = e.target.checked;
                 });
