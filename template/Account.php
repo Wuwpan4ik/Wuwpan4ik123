@@ -249,11 +249,11 @@
 
                                 <div class="choose">
 
-                                    <input <?if($content[0][0]['gender'] == "M"){?> checked <?}?> style="display:none;" style="display:none;" value="M" id="M" name="gender" type="radio"/>
+                                    <input <?if($content[0][0]['gender'] == "M"){?> checked <?}?> value="M" id="M" name="gender" type="radio"/>
 
 									<label for="M"><span class="dot"></span></label>Мужской
 
-                                    <input <?if($content[0][0]['gender'] == "W"){?> checked <?}?> style="display:none;" value="W" id="W" name="gender" type="radio"/>
+                                    <input <?if($content[0][0]['gender'] == "W"){?> checked <?}?> value="W" id="W" name="gender" type="radio"/>
 
 									<label for="W"><span class="dot"></span></label>Женский
 
@@ -274,7 +274,7 @@
             </div>
 
         </div>
-  <? unset($_SESSION['error']) ?>
+        <? unset($_SESSION['error']) ?>
 
         <script>
             const button_submit = document.querySelector('#profile_send');
@@ -290,7 +290,7 @@
             check_button.addEventListener('click', function () {
                 const request = new XMLHttpRequest();
 
-                const url = "?option=UrlController&method=get_content&site_url=" + check_url.value;
+                const url = "?option=UrlController&site_url=" + check_url.value;
 
                 /* Здесь мы указываем параметры соединения с сервером, т.е. мы указываем метод соединения GET,
                 а после запятой мы указываем путь к файлу на сервере который будет обрабатывать наш запрос. */

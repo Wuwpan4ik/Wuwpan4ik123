@@ -22,6 +22,7 @@ function defaultPopup(){
         elem.remove();
     })
     addFormSelect();
+    document.querySelector('.addFormInput').classList.remove('display-none');
 }
 
 function addFormSelect() {

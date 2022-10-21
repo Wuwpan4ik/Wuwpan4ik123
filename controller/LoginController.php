@@ -34,6 +34,7 @@
             else {
                 $response = "Неверный логин или пароль";
             }
+            $_SESSION['message'] = $response;
         }
 
         public function registration () {

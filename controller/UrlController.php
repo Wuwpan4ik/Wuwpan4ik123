@@ -13,6 +13,7 @@
             } else {
                 echo '<div style="color: orangered;">Такой Url занят</div>';
             }
+            return True;
         }
 
         function obr()
