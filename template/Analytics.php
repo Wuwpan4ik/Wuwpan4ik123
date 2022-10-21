@@ -77,15 +77,15 @@
 
 										<th><button class="order_button" value="give_money"><img class="table_ico" src="img/StickDown.svg"></button>Сумма</th>
 
-										<th>Email</th>
+										<th><button class="order_button" value="email"><img class="table_ico" src="img/StickDown.svg"></button>Email</th>
 
-										<th>Телефон</th>
+										<th><button class="order_button" value="tel"><img class="table_ico" src="img/StickDown.svg"></button>Телефон</th>
 
-										<th>Задача</th>
+										<th><button class="order_button" value="quest"><img class="table_ico" src="img/StickDown.svg"></button>Задача</th>
 										
-										<th>Дата создания</th>
+										<th><button class="order_button" value="date"><img class="table_ico" src="img/StickDown.svg"></button>Дата создания</th>
 
-										<th id="thcl">Источник клиента</th>
+										<th id="thcl"><button class="order_button" value="source"><img class="table_ico" src="img/StickDown.svg"></button>Источник клиента</th>
 
 									</tr>
 
