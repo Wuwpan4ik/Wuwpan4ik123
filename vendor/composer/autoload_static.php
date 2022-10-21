@@ -32,11 +32,8 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'Registration' => __DIR__ . '/../..' . '/pages/registration.php',
         'SmallPlayer' => __DIR__ . '/../..' . '/pages/smallPlayer.php',
         'SortController' => __DIR__ . '/../..' . '/controller/SortController.php',
-<<<<<<< HEAD
         'UrlController' => __DIR__ . '/../..' . '/controller/UrlController.php',
-=======
 		'AnalController' => __DIR__ . '/../..' . '/controller/AnalController.php',
->>>>>>> backend
         'VideoController' => __DIR__ . '/../..' . '/controller/VideoController.php',
     );
 
