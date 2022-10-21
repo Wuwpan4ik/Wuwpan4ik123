@@ -31,4 +31,16 @@ td, th {
 #grey{
 	background-color: #F8F8F8;
 }
+.status-Free{
+	color: #4E73F8;
+}
+.status-Busy{
+	color: #F43C3C;
+}
+.status-Working{
+	color: #757D8A;
+}
+.status-OnVacation{
+	color: #FCA549;
+}
 

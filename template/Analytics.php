@@ -27,10 +27,15 @@
             <div class="feed">
 
                 <div class="feed-header">
+                    <div class="feed-header__title">
+                        <a class="button__back" href="?option=Main">
+                            <img src="/img/ArrowLeft.svg" alt="">
+                        </a>
+                        <h2>Доступные проекты</h2>
+                    </div>
 
-                    <h2>Доступные проекты</h2>
 
-                    <div class="buttonsFeeda ">
+                    <div class="buttonsFeed">
 
 
                         <button class="ico_button"><img class="ico" src="img/Shield.svg"></button>

@@ -29,15 +29,29 @@
 .media-cart #half_input{
     width: 60%;
 	height: 48px;
+    padding: 0 15px;
     border: 1px solid #E1E3E6;
     border-radius: 7px 0 0 7px;
+    background-color: #fff;
 }
+
 .media-cart input::placeholder{
     padding: 16px;
     font-size: 16px;
     color: #757D8A;
 }
-
+.copy-button{
+    border: 1px solid #E1E3E6;
+    border-radius:  0 7px 7px 0 ;
+    padding: 0 17px;
+    color: #9EA2A9;
+    background: #F8F8F8;
+}
+.copy-button:hover{
+    color: #fff;
+    background: #6FCF97;
+    border: 1px solid #FFFFFF;
+}
 .media__button{
     width: 40%;
 	height: 48px;
@@ -50,13 +64,13 @@
     background-color:#F8F8F8;
     transition: 0.3s ease-in;
 }
-.media-cart button:hover{
-    border-radius: 0 7px 7px 0;
-    color: white;
-    cursor: pointer;
-    background: linear-gradient(180deg, #08B395 0%, #0C977F 100%);
-    transition: 0.2s ease-in;
-}
+/*.media-cart button:hover{*/
+/*    border-radius: 0 7px 7px 0;*/
+/*    color: white;*/
+/*    cursor: pointer;*/
+/*    background: linear-gradient(180deg, #08B395 0%, #0C977F 100%);*/
+/*    transition: 0.2s ease-in;*/
+/*}*/
 .lesson__url{
     max-width:301px;
 }
@@ -143,7 +157,7 @@
     outline-offset: 0;
 }
 .create-new p{
-	padding-left: 18px;
+	margin-left: 18px;
 	font-size: 18px;
 	color: #757D8A;
 }

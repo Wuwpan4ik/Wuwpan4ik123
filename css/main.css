@@ -179,7 +179,10 @@ span.button__back{
 }
 
 .upload__label span {
+  font-size: 18px;
+  color: #757D8A;
   align-self: center;
+  margin: 0  0 0 16px;
 }
 
 .upload__form button:hover{

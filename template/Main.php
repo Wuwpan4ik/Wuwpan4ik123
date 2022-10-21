@@ -80,9 +80,9 @@
 
                 </div>
 
-                <div class="box">
+                <div class="box box-active">
 
-                    <p>В месяц<img class="index_ico" src="img/ArrowUp.svg"></p>
+                    <p>В месяц<img class="index_ico" src="/img/ArrowDownActive.svg"></p>
 
                     <h3>67 996Р</h3>
 
@@ -98,7 +98,7 @@
 
                 <div class="box">
 
-                    <p>Прошлый месяц<img class="index_ico" src="img/ArrowUp.svg"></p>
+                    <p>Прошлый месяц<img class="index_ico" src="img/ArrowDown.svg"></p>
 
                     <h3>77 000Р</h3>
 
@@ -140,7 +140,7 @@
 
                             <td><?php if(isset($item['email'])) echo htmlspecialchars($item['email'])?></td>
 
-                            <td><?php if(isset($item['status'])) echo htmlspecialchars($item['status'])?></td>
+                            <td><div class="status-Free"><?php if(isset($item['status'])) echo htmlspecialchars($item['status'])?></div></td>
 
                             <td><?php if(isset($item['niche'])) echo htmlspecialchars($item['niche'])?></td>
 

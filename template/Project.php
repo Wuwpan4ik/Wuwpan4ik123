@@ -28,8 +28,13 @@
             <div class="feed">
 
                 <div class="feed-header">
+                    <div class="feed-header__title">
+                        <a class="button__back" href="?option=Main">
+                            <img src="/img/ArrowLeft.svg" alt="">
+                        </a>
 
-                    <h2>Мои проекты</h2>
+                        <h2>Мои проекты</h2>
+                    </div>
 
                     <div class="buttonsFeed">
 
