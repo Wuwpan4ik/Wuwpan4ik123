@@ -50,7 +50,7 @@
 										
 					'<tr>
 
-						<td class="nick"> <input type="checkbox">' . $content[1][$i]["first_name"] . ' ' . $content[1][$i]["second_name"] . '</td>
+						<td class="nick"> <input type="checkbox" class="check_user">' . $content[1][$i]["first_name"] . ' ' . $content[1][$i]["second_name"] . '</td>
 											
 						<td>' . $client["give_money"] . ' ₽</td>
 
@@ -63,16 +63,8 @@
 						<td>' . $client["achivment_date"] . '</td>
 
 						<td class="iconed">Соц. сети
-
-							<span>
-
-								<img class="table_ico" src="img/Option.svg">
-
-								<img class="table_ico" src="img/Dots.svg">
-
-							</span>
-
-						</td>
+                            <img class="basket_delete" src="../img/basket_delete.svg" alt="">
+                        </td>
 
 					</tr>';
 										
