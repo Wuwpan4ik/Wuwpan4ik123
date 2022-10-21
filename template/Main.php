@@ -143,13 +143,13 @@
                             <td><?php if(isset($item['status']))
                                         switch ($item['status']) {
                                             case '0':
-                                                echo '<div class="status-blue">Start</div>';
+                                                echo '<div class="status status-Free">Free</div>';
                                                 break;
                                             case '1':
-                                                echo '<div class="status-red">Do working</div>';
+                                                echo '<div class="status status-Busy">Busy</div>';
                                                 break;
                                             case '2':
-                                                echo '<div class="status-green">Ready</div>';
+                                                echo '<div class="status status-Working">Working</div>';
                                                 break;
                                         }
                                 ?>
