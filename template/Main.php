@@ -140,7 +140,20 @@
 
                             <td><?php if(isset($item['email'])) echo htmlspecialchars($item['email'])?></td>
 
-                            <td><?php if(isset($item['status'])) echo htmlspecialchars($item['status'])?></td>
+                            <td><?php if(isset($item['status']))
+                                        switch ($item['status']) {
+                                            case '0':
+                                                echo '<div class="status-blue">Start</div>';
+                                                break;
+                                            case '1':
+                                                echo '<div class="status-red">Do working</div>';
+                                                break;
+                                            case '2':
+                                                echo '<div class="status-green">Ready</div>';
+                                                break;
+                                        }
+                                ?>
+                            </td>
 
                             <td><?php if(isset($item['niche'])) echo htmlspecialchars($item['niche'])?></td>
 
