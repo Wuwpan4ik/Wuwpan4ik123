@@ -48,27 +48,23 @@ class VideoController extends ACore
         $id_video = $_POST['id_item'];
         $this->m->db->query("SELECT * FROM funnel_content WHERE id = '$id_video'");
 //        if (!$this->isUser($id_video[0]['author_id'])) return False;
-        if (isset($_POST['first_do'])) {
-            $first_do = $_POST['first_do'];
-        } else {
-            return False;
-        }
 
         $videoBtnHTML = [];
-
+        $first_do = $_POST['first_do'];
         switch ($_POST['first_do']) {
+            case "pay_form":
             case "form": {
                 if (isset($_POST['form_id-1'])) {
                     $form_input_1 = $_POST['form_id-1'];
-                    $videoBtnHTML['form'] = [$form_input_1];
+                    $videoBtnHTML[$first_do] = [$form_input_1];
                 }
                 if (isset($_POST['form_id-2'])) {
                     $form_input_2 = $_POST['form_id-2'];
-                    $videoBtnHTML['form'] = array_merge(array_values($videoBtnHTML['form']), [$form_input_2]);
+                    $videoBtnHTML[$first_do] = array_merge(array_values($videoBtnHTML[$first_do]), [$form_input_2]);
                 }
                 if (isset($_POST['form_id-3'])) {
                     $form_input_3 = $_POST['form_id-3'];
-                    $videoBtnHTML['form'] = array_merge(array_values($videoBtnHTML['form']), [$form_input_3]);
+                    $videoBtnHTML[$first_do] = array_merge(array_values($videoBtnHTML[$first_do]), [$form_input_3]);
                 }
                 break;
             }
@@ -76,14 +72,17 @@ class VideoController extends ACore
                 $videoBtnHTML['list'] = true;
                 break;
             }
-            case "nextLesson": {
-                $videoBtnHTML['nextLessons'] = true;
+            case "link": {
+                $videoBtnHTML['link'] = true;
+                break;
+            }
+            case "next_lesson": {
+                $videoBtnHTML['next_lesson'] = true;
                 break;
             }
         }
         $videoBtnHTMLResult = json_encode($videoBtnHTML);
         $this->m->db->execute("UPDATE `funnel_content` SET `popup` = '$videoBtnHTMLResult' WHERE id = '$id_video'");
-        $a = $this->m->db->query("SELECT * FROM funnel_content WHERE id = $id_video");
         return True;
     }
 
@@ -100,7 +99,7 @@ class VideoController extends ACore
 			</head>
 			<body>
 				<script>
-//				    window.history.go(-1)
+				    window.history.go(-1)
 				</script>
 			</body>
 			</html>';

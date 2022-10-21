@@ -17,25 +17,16 @@
                     <select name="first_do" id="first_do">
                         <option value="list" selected>Список уроков</option>
                         <option value="form">Форма заявки</option>
-                    </select>
-                </div>
-                <div class="popup__body-item">
-                    <label for="third_do">После нажатия на кнопку:</label>
-                    <select name="third_do" id="third_do">
-                        <option value="list" selected>Список уроков</option>
-                        <option value="form">Форма заявки</option>
+                        <option value="pay_form">Форма оплаты</option>
+                        <option value="link">Переход по ссылке</option>
+                        <option value="next_lesson">Открыть следующий урок</option>
                     </select>
                 </div>
             </div>
             <div class="popup__body-block">
                 <div class="popup__body-item" id="popup__body-form">
                     <label for="form_id">Составляющие формы:</label>
-                    <select class="form_id" name="form_id-1">
-                        <option value="email" selected>Email</option>
-                        <option value="name">Имя</option>
-                        <option value="tel">Телефон</option>
-                    </select>
-                    <button class="addFormInput" onclick="addFormItem()" type="button"><img src="../../img/add.png"> Добавить поле</button>
+                    <button class="display-none addFormInput" onclick="addFormItem()" type="button"><img src="../../img/add.png"> Добавить поле</button>
                 </div>
                 <div class="popup__body-item">
                     <label for="second_do">После нажатия на кнопку:</label>

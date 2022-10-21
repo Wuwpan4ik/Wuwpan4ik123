@@ -21,7 +21,9 @@ function defaultPopup(){
     document.querySelectorAll('.form_id').forEach((elem) => {
         elem.remove();
     })
-    addFormSelect();
+    document.querySelectorAll('.link_item').forEach((elem) => {
+        elem.remove();
+    })
     document.querySelector('.addFormInput').classList.remove('display-none');
 }
 
@@ -35,15 +37,23 @@ function addFormSelect() {
         inner += `<option value="${key}">${value}</option>\n`;
     }
     div.innerHTML = inner;
+    // form.children[count - 1].after(`<button class="addFormInput" onclick="addFormItem()" type="button"><img src="../../img/add.png"> Добавить поле</button>`);
     form.children[count - 1].after(div);
+}
+
+function addFormLink() {
+    let div = document.createElement('input');
+    div.placeholder = "Укажите ссылку";
+    div.classList.add('videoname');
+    div.classList.add('link_item');
+    div.style.paddingLeft = '15px';
+    form.children[1].after(div);
 }
 
 function addFormItem () {
 
     let count = document.querySelectorAll('.form_id').length + 1;
-
     addFormSelect();
-
     if (count > 2) {
         document.querySelector('.addFormInput').classList.add('display-none');
         return false;
@@ -53,18 +63,31 @@ function addFormItem () {
 function save() {
     document.getElementById('send__edit-video').click();
 }
+
 document.addEventListener('DOMContentLoaded', function () {
-    if (first_select.value !== "form") {
+    if (!['form', 'pay_form', 'link'].includes(first_select.value)) {
         document.querySelector('#popup__body-form').style.display = 'none';
+        defaultPopup();
     } else {
         document.querySelector('#popup__body-form').style.display = 'flex';
+        defaultPopup();
+        if (first_select.value === 'link') {
+            document.querySelector('.addFormInput').classList.add('display-none');
+            addFormLink();
+        }
     }
 
     first_select.addEventListener('change', function () {
-        if (first_select.value !== "form") {
+        if (!['form', 'pay_form', 'link'].includes(first_select.value)) {
             document.querySelector('#popup__body-form').style.display = 'none';
+            defaultPopup();
         } else {
             document.querySelector('#popup__body-form').style.display = 'flex';
+            defaultPopup();
+            if (first_select.value === 'link') {
+                document.querySelector('.addFormInput').classList.add('display-none');
+                addFormLink();
+            }
         }
     });
 
