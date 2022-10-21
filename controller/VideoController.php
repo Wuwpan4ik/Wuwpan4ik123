@@ -46,8 +46,8 @@ class VideoController extends ACore
     public function initVideoButton() {
         //Форма
         $id_video = $_POST['id_item'];
-        $this->m->db->query("SELECT * FROM funnel_content WHERE id = '$id_video'");
-//        if (!$this->isUser($id_video[0]['author_id'])) return False;
+        $funnel = $this->m->db->query("SELECT * FROM funnel_content WHERE id = '$id_video'");
+        if (!$this->isUser($funnel[0]['author_id'])) return False;
 
         $videoBtnHTML = [];
         $first_do = $_POST['first_do'];
@@ -73,7 +73,9 @@ class VideoController extends ACore
                 break;
             }
             case "link": {
-                $videoBtnHTML['link'] = true;
+                if (isset($_POST['link'])) {
+                    $videoBtnHTML[$first_do] = $_POST['link'];
+                }
                 break;
             }
             case "next_lesson": {

@@ -46,6 +46,7 @@ function addFormLink() {
     div.placeholder = "Укажите ссылку";
     div.classList.add('videoname');
     div.classList.add('link_item');
+    div.name = 'link';
     div.style.paddingLeft = '15px';
     form.children[1].after(div);
 }
