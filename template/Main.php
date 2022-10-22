@@ -115,11 +115,11 @@
 
 					<tr>
 
-						<th>Имя<button cursor="pointer" class="order_button" value="first_name"><img class="table_ico" src="img/StickDown.svg"></button></th>
+						<th>Имя<button class="order_button" value="first_name"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
 						<th>Email<button class="order_button" value="email"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
-						<th>Статус<button class="order_button" value=""><img class="table_ico" src="img/StickDown.svg"></button></th>
+						<th>Статус<button class="order_button" value="status"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
 						<th>Продукт<button class="order_button" value="niche"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
