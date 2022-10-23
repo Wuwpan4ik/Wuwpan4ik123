@@ -255,6 +255,9 @@ th{
 }
 
 #thop{
+    display: flex;
+    align-items: center;
+    gap: 15px;
 	border-radius: 8px 0px 0px 8px;
 }
 #thcl{
