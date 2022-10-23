@@ -129,38 +129,6 @@
 
                 <tbody id="viewTab">
 
-                <?php
-                $i = 1;
-
-                foreach($content as $item){
-                    ?>
-                        <tr id="<?php if ($i % 2 == 0){ echo "white";} else { echo "grey"; }?>">
-
-                            <td><img class="table_ava" src="<?php if(isset($item['avatar'])) echo htmlspecialchars($item['avatar'])?>"/><b><?php if(isset($item['first_name'])) echo htmlspecialchars($item['first_name'])?></b></td>
-
-                            <td><?php if(isset($item['email'])) echo htmlspecialchars($item['email'])?></td>
-
-                            <td><?php if(isset($item['status']))
-                                        switch ($item['status']) {
-                                            case '0':
-                                                echo '<div class="status status-Free">Free</div>';
-                                                break;
-                                            case '1':
-                                                echo '<div class="status status-Busy">Busy</div>';
-                                                break;
-                                            case '2':
-                                                echo '<div class="status status-Working">Working</div>';
-                                                break;
-                                        }
-                                ?>
-                            </td>
-
-                            <td><?php if(isset($item['niche'])) echo htmlspecialchars($item['niche'])?></td>
-
-                        </tr>
-                    <?php
-                    $i= $i+1;}
-                ?>
 
                 </tbody>
 
@@ -177,6 +145,21 @@
   <script>
             const order_button = document.querySelectorAll('.order_button');
             const tab = document.querySelector('#viewTab');
+
+            let request = new XMLHttpRequest();
+
+            let url = "?option=SortController&method=get_content&order=first_name";
+
+            request.open('GET', url);
+
+            request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+            request.addEventListener("readystatechange", () => {
+                if (request.readyState === 4 && request.status === 200) {
+                    tab.innerHTML = request.responseText;
+                }
+            });
+            request.send();
+
 			
 			for (var i = 0; i < order_button.length; ++i) {
 				order_button[i].addEventListener('click', function(e) {
@@ -187,9 +170,9 @@
 						this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
 						param = this.value;
 					}
-					const request = new XMLHttpRequest();
+                    let request = new XMLHttpRequest();
 
-					const url = "?option=SortController&method=get_content&order=" +param;
+                    let url = "?option=SortController&method=get_content&order=" +param;
 
 					request.open('GET', url);
 

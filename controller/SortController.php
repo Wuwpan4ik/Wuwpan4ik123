@@ -42,11 +42,6 @@
                 <?php
                 $i= $i+1;}
         }
-
-        function obr()
-        {
-            // TODO: Implement obr() method.
-        }
 		
 		function get_sum() {
 			$get = $_GET["sort"];
@@ -74,12 +69,12 @@
 											
 						<td>' . $client["achivment_date"] . '</td>
 
-						<td class="iconed">Соц. сети
-                            <img class="basket_delete" src="../img/basket_delete.svg" alt="">
-                        </td>
-
 					</tr>';
 										
 				$i++;}
 		}
+        function obr()
+        {
+            // TODO: Implement obr() method.
+        }
     }

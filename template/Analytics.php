@@ -89,38 +89,11 @@
 										<th><div class="th-title"><button class="order_button" value="quest"><img class="table_ico" src="img/StickDown.svg"></button>Задача</div></th>
 										
 										<th><div class="th-title"><button class="order_button" value="date"><img class="table_ico" src="img/StickDown.svg"></button>Дата создания</div></th>
-
-										<th><div class="th-title"><button class="order_button" value="source"><img class="table_ico" src="img/StickDown.svg"></button>Источник клиента</div></th>
 									</tr>
 
                                 </thead>
 
                                 <tbody id="conTab">
-
-									<?php $i = 0;
-									foreach($content[0] as $client){?>
-										
-										<tr>
-
-											<td class="nick"> <input type="checkbox" class="check_user"><?=$content[1][$i]["first_name"] . " " . $content[1][$i]["second_name"]?></td>
-
-											<td><?=$client["give_money"]?> ₽</td>
-
-											<td><?=$content[1][$i]["email"]?></td>
-
-											<td><?=$content[1][$i]["telephone"]?></td>
-
-											<td><?=$client["comment"]?></td>
-											
-											<td><?=$client["achivment_date"]?></td>
-
-											<td class="iconed">Соц. сети
-                                                <img class="basket_delete" src="../img/basket_delete.svg" alt="">
-											</td>
-
-										</tr>
-										
-									<?php $i++;}?>
 
                                 </tbody>
 
@@ -131,10 +104,6 @@
                     </div>
 
                     <input type="radio" id="Integrations" name="mytabs"/>
-
-                    
-
-                    
 
                     <input type="radio" id="Tarif" name="mytabs"/>
 
@@ -225,6 +194,19 @@
 	  <script>
 				const order_button = document.querySelector('.order_button');
 				const tab = document.querySelector('#conTab');
+                let request = new XMLHttpRequest();
+
+                let url = "?option=SortController&method=get_sum&sort=";
+
+                request.open('GET', url);
+
+                request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+                request.addEventListener("readystatechange", () => {
+                    if (request.readyState === 4 && request.status === 200) {
+                        tab.innerHTML = request.responseText;
+                    }
+                });
+                request.send();
 				
 					order_button.addEventListener('click', function(e) {
 						if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){
@@ -234,9 +216,9 @@
 							this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
 							param = this.value + " DESC";
 						}
-						const request = new XMLHttpRequest();
+						let request = new XMLHttpRequest();
 
-						const url = "?option=SortController&method=get_sum&sort=" +param;
+                        let url = "?option=SortController&method=get_sum&sort=give_money";
 
 						request.open('GET', url);
 

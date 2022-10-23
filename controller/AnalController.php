@@ -5,7 +5,7 @@
 
             $delid = $_GET['id'];
 
-            $this->m->db->execute("DELETE FROM clients WHERE id = ". $_delid);
+            $this->m->db->execute("DELETE FROM clients WHERE id = ". $delid);
 
         }
 		
@@ -25,5 +25,10 @@
 				</script>
 			</body>
 			</html>';
+        }
+
+        function obr()
+        {
+            // TODO: Implement obr() method.
         }
     }
