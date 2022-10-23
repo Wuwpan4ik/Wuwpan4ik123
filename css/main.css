@@ -21,6 +21,12 @@ code {
   padding: 12px;
   cursor: pointer;
 }
+.popup__edit {
+  width: 900px;
+}
+#popup__background.display-flex {
+  display: flex;
+}
 .buttonsFeed{
   display:flex;
   gap:24px;
@@ -93,7 +99,7 @@ p{
   max-width: 330px;
   max-height: 200px;
   border-radius: 20px;
-  padding: 20px 50px 20px !important;
+  padding: 20px 30px 20px !important;
   margin: auto;
   text-align: center;
   background: #fff;

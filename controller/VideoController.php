@@ -37,9 +37,7 @@ class VideoController extends ACore
 
         $name = $_POST['name'];
         $description = $_POST['description'];
-        $button_text = $_POST['button_text'];
-        $this->m->db->execute("UPDATE `funnel_content` SET `name` = '$name', `description` = '$description',
-                            `button_text` = '$button_text' WHERE `id` = " . $_GET['id_item']);
+        $this->m->db->execute("UPDATE `funnel_content` SET `name` = '$name', `description` = '$description' WHERE `id` = " . $_GET['id_item']);
         return True;
     }
 
@@ -51,6 +49,7 @@ class VideoController extends ACore
 
         $videoBtnHTML = [];
         $first_do = $_POST['first_do'];
+        $button_text = $_POST['button_text'];
         switch ($_POST['first_do']) {
             case "pay_form":
             case "form": {
@@ -83,8 +82,21 @@ class VideoController extends ACore
                 break;
             }
         }
+        if (isset($button_text)) {
+            switch ($_POST['second_do']) {
+                case 'list':
+                    $videoBtnHTML['second_do']['list'] = true;
+                    break;
+
+                case 'next_lesson':
+                    $videoBtnHTML['second_do']['next_lesson'] = true;
+                    break;
+                case 'form':
+
+            }
+        }
         $videoBtnHTMLResult = json_encode($videoBtnHTML);
-        $this->m->db->execute("UPDATE `funnel_content` SET `popup` = '$videoBtnHTMLResult' WHERE id = '$id_video'");
+        $this->m->db->execute("UPDATE `funnel_content` SET `popup` = '$videoBtnHTMLResult', `button_text` = '$button_text'  WHERE id = '$id_video'");
         return True;
     }
 

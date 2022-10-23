@@ -12,10 +12,6 @@
             <textarea style="resize: none; height: 60px;" name="description" class="videoname" placeholder="<?=$v['description']?>" required></textarea>
         </div>
         <?php if (in_array($_GET['option'], ['Funnel', 'FunnelEdit'] )) {?>
-        <div>
-            <label for="button_text">Текст для кнопки:</label>
-            <input name="button_text" class="videoname" type="text" placeholder="<?=$v['button_text']?>" required>
-        </div>
         <input type="hidden" value="<?=$v['id']?>">
         <button type="button" class="button__edit" style="background: #757D8A;"><img style="width: 22px;" src="../img/printer.png">Действие для кнопки</button>
         <?php } ?>

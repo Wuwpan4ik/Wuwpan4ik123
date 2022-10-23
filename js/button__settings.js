@@ -6,6 +6,8 @@ const buttonChanges = document.querySelectorAll('.button__edit');
 const form = document.querySelector('#popup__body-form');
 const id_item = document.querySelector('#id_item');
 const first_select = document.querySelector('#first_do');
+const second_select = document.querySelector('#second_do');
+const button_name = document.querySelector('#video_name');
 // Поля option в форме
 const names_option = {'email': "Email", 'name': "Имя", 'tel': "Телефон"};
 
@@ -14,21 +16,20 @@ function toggleOverflow () {
 }
 
 function closePopup() {
-    entryDisplay.classList.toggle('display-block');
+    entryDisplay.classList.toggle('display-flex');
 }
 
-function defaultPopup(){
-    document.querySelectorAll('.form_id').forEach((elem) => {
+function defaultPopup(parent_elem){
+    parent_elem.parentElement.querySelectorAll('.form_id').forEach((elem) => {
         elem.remove();
     })
-    document.querySelectorAll('.link_item').forEach((elem) => {
+    parent_elem.parentElement.querySelectorAll('.link_item').forEach((elem) => {
         elem.remove();
     })
-    document.querySelector('.addFormInput').classList.remove('display-none');
 }
 
-function addFormSelect() {
-    let count = document.querySelectorAll('.form_id').length + 1;
+function addFormSelect(elem) {
+    let count = elem.parentElement.querySelectorAll('.form_id').length + 1;
     let div = document.createElement('select');
     let inner = '';
     div.classList.add('form_id');
@@ -38,25 +39,29 @@ function addFormSelect() {
     }
     div.innerHTML = inner;
     // form.children[count - 1].after(`<button class="addFormInput" onclick="addFormItem()" type="button"><img src="../../img/add.png"> Добавить поле</button>`);
-    form.children[count - 1].after(div);
+    elem.parentElement.children[count - 1].after(div);
 }
 
-function addFormLink() {
+function addFormLink(elem) {
+    let count = elem.parentElement.querySelectorAll('.link_item').length;
     let div = document.createElement('input');
     div.placeholder = "Укажите ссылку";
     div.classList.add('videoname');
     div.classList.add('link_item');
     div.name = 'link';
     div.style.paddingLeft = '15px';
-    form.children[1].after(div);
+    if (count === 0) {
+        elem.parentElement.children[1].after(div);
+    }
 }
 
-function addFormItem () {
+function addFormItem (elem) {
 
-    let count = document.querySelectorAll('.form_id').length + 1;
-    addFormSelect();
+    let count = elem.parentElement.querySelectorAll('.form_id').length + 1;
+    console.log(count)
+    addFormSelect(elem);
     if (count > 2) {
-        document.querySelector('.addFormInput').classList.add('display-none');
+        elem.parentElement.querySelector('.addFormInput').classList.add('display-none');
         return false;
     }
 }
@@ -66,36 +71,70 @@ function save() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    if (!['form', 'pay_form', 'link'].includes(first_select.value)) {
-        document.querySelector('#popup__body-form').style.display = 'none';
-        defaultPopup();
-    } else {
-        document.querySelector('#popup__body-form').style.display = 'flex';
-        defaultPopup();
-        if (first_select.value === 'link') {
-            document.querySelector('.addFormInput').classList.add('display-none');
-            addFormLink();
-        }
-    }
-
     first_select.addEventListener('change', function () {
         if (!['form', 'pay_form', 'link'].includes(first_select.value)) {
-            document.querySelector('#popup__body-form').style.display = 'none';
-            defaultPopup();
+            document.querySelector('#popup__body-form-1').style.display = 'none';
+            first_select.parentElement.querySelectorAll('.link_item').forEach((elem) => {
+                elem.classList.add('display-none');
+            })
+            defaultPopup(first_select);
         } else {
-            document.querySelector('#popup__body-form').style.display = 'flex';
-            defaultPopup();
+            document.querySelector('#popup__body-form-1').style.display = 'flex';
+            first_select.parentElement.querySelector('.addFormInput').classList.remove('display-none');
+            first_select.parentElement.querySelectorAll('.link_item').forEach((elem) => {
+                elem.classList.add('display-none');
+            })
+            defaultPopup(first_select);
             if (first_select.value === 'link') {
-                document.querySelector('.addFormInput').classList.add('display-none');
-                addFormLink();
+                document.querySelector('#popup__body-form-1').style.display = 'none';
+                addFormLink(first_select);
             }
         }
     });
 
+    second_select.addEventListener('change', function () {
+        if (!['form', 'pay_form', 'link'].includes(second_select.value)) {
+            document.querySelector('#popup__body-form-2').style.display = 'none';
+            second_select.parentElement.querySelectorAll('.link_item').forEach((elem) => {
+                elem.classList.add('display-none');
+            })
+            defaultPopup(second_select);
+        } else {
+            document.querySelector('#popup__body-form-2').style.display = 'flex';
+            second_select.parentElement.querySelector('.addFormInput').classList.remove('display-none');
+            second_select.parentElement.querySelectorAll('.link_item').forEach((elem) => {
+                elem.classList.add('display-none');
+            })
+            defaultPopup(second_select);
+            if (second_select.value === 'link') {
+                document.querySelector('#popup__body-form-2').style.display = 'none';
+                addFormLink(second_select);
+            }
+        }
+    });
+
+    // Убрать После нажатия на кнопку
+    button_name.addEventListener('input', function () {
+        if (this.value.length > 0) {
+            document.querySelectorAll('.second_do').forEach((elem) => {
+                elem.classList.add('display-block');
+                if (['form', 'pay_form'].includes(second_select.value)) {
+                    document.querySelector('#popup__body-form-2').style.display = 'flex';
+                }
+            })
+        } else {
+            document.querySelectorAll('.second_do').forEach((elem) => {
+                defaultPopup(second_select)
+                document.querySelector('#popup__body-form-2').style.display = 'none';
+                elem.classList.remove('display-block');
+            })
+        }
+    })
+
     buttonChanges.forEach((item) => {
         item.addEventListener('click', function () {
             id_item.value = item.parentElement.querySelector('input[type="hidden"]').value;
-            entryDisplay.classList.toggle('display-block');
+            entryDisplay.classList.toggle('display-flex');
             toggleOverflow();
         });
     });
