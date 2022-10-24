@@ -52,7 +52,7 @@
 
                 $k = 1;
 
-                foreach($content[0] as $p){?>
+                foreach($content[0][0] as $p){?>
 
                     <div class="media-cart">
 
@@ -67,7 +67,7 @@
 
                             $i=1;
 
-                            foreach($content[1] as $v){
+                            foreach($content[0][1] as $v){
                                 if ($v['funnel_id'] == $p['id']) {?>
 
                                     <div class="slider__item ">
@@ -124,6 +124,15 @@
                             <button class="copy-button" onclick="copy_link(this)" type="submit">Копировать</button>
 
                         </div>
+                        <form action="?option=VideoController&method=selectCourse&id=<?=$p['id']?>">
+                            <select name="course_id">
+                                <?php
+                                foreach ($content[1] as $course) { ?>
+                                    <option value="<?=$course['id']?>"><?=$course['name']?> <?=$course['id']?></option>
+                                <?php } ?>
+                            </select>
+                            <button class="copy-button" type="submit">Сохранить</button>
+                        </form>
 
                         <div class="btn-delete-edit">
 

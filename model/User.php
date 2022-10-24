@@ -53,6 +53,11 @@
             return [$result, $videos];
         }
 
+        public function getCourseUser() {
+            $result = $this->db->query("SELECT * FROM course WHERE author_id = " . $_SESSION['user']['id'] . " GROUP BY id");
+            return $result;
+        }
+
         public function getContentForCoursePage() {
             $result = $this->db->query("SELECT * FROM course WHERE author_id = " . $_SESSION['user']['id'] . " GROUP BY id");
             $videos = $this->db->query("SELECT * FROM course_content");
