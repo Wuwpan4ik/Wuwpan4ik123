@@ -204,14 +204,12 @@
   </body>
   
   <script>
-			// (удаление клиента пока не робит)
-			const client_del = document.querySelectorAll('del_but');
-				
-				for (var i = 0; i < client_del.length; ++i) {
-                client_del.addEventListener('click',function () {
-                    window.location.href = '?option=AnalController&method=delClient&id = '+ this.value;
-                });
-            };
+		let del = document.querySelectorAll('.del_but');
+		for (var i = 0; i < del.length; ++i) {
+			del[i].addEventListener('click',function () {
+				window.location.href = '?option=AnalController&method=delClient&id='+ this.value;
+			});
+		};
   </script>
   
 	<script>
