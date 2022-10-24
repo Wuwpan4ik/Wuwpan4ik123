@@ -8,8 +8,22 @@ const id_item = document.querySelector('#id_item');
 const first_select = document.querySelector('#first_do');
 const second_select = document.querySelector('#second_do');
 const button_name = document.querySelector('#video_name');
+let count_first_select = 1;
+let count_second_select = 3;
 // Поля option в форме
 const names_option = {'email': "Email", 'name': "Имя", 'tel': "Телефон"};
+
+
+// Очистка Popup
+function clearPopup () {
+    defaultPopup(first_select);
+    defaultPopup(second_select);
+    button_name.value = '';
+    document.querySelectorAll('.second_do').forEach((elem) => {
+        elem.classList.remove('display-block');
+    })
+    document.querySelector('#popup__body-form-2').style.display = 'none';
+}
 
 function toggleOverflow () {
     body.classList.toggle("overflow-hidden");
@@ -29,37 +43,40 @@ function defaultPopup(parent_elem){
 }
 
 function addFormSelect(elem) {
-    let count = elem.parentElement.querySelectorAll('.form_id').length + 1;
+    let count_block = elem.parentElement.querySelectorAll('.form_id').length;
+    let count_id = elem.parentElement.querySelectorAll('.form_id').length + 1;
+    if (elem.id === 'second_do-list') {
+        count_id = elem.parentElement.querySelectorAll('.form_id').length + 4;
+    }
     let div = document.createElement('select');
     let inner = '';
     div.classList.add('form_id');
-    div.name = 'form_id-' + count;
+    div.name = 'form_id-' + count_id;
     for (const [key, value] of Object.entries(names_option)) {
         inner += `<option value="${key}">${value}</option>\n`;
     }
     div.innerHTML = inner;
-    // form.children[count - 1].after(`<button class="addFormInput" onclick="addFormItem()" type="button"><img src="../../img/add.png"> Добавить поле</button>`);
-    elem.parentElement.children[count - 1].after(div);
+    elem.parentElement.children[count_block].after(div);
 }
 
 function addFormLink(elem) {
     let count = elem.parentElement.querySelectorAll('.link_item').length;
+    let count_id = elem.id === 'second_do' ? 2 : 1;
     let div = document.createElement('input');
     div.placeholder = "Укажите ссылку";
     div.classList.add('videoname');
     div.classList.add('link_item');
-    div.name = 'link';
+    div.name = 'link-' + count_id;
     div.style.paddingLeft = '15px';
     if (count === 0) {
-        elem.parentElement.children[1].after(div);
+        elem.parentElement.appendChild(div);
     }
 }
 
+//Задаются id блоков формы
 function addFormItem (elem) {
-
     let count = elem.parentElement.querySelectorAll('.form_id').length + 1;
-    console.log(count)
-    addFormSelect(elem);
+    addFormSelect(elem, count);
     if (count > 2) {
         elem.parentElement.querySelector('.addFormInput').classList.add('display-none');
         return false;
@@ -71,6 +88,10 @@ function save() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    if (!['form', 'pay_form'].includes(first_select.value)) {
+        document.querySelector('#popup__body-form-1').style.display = 'none';
+    }
+
     first_select.addEventListener('change', function () {
         if (!['form', 'pay_form', 'link'].includes(first_select.value)) {
             document.querySelector('#popup__body-form-1').style.display = 'none';
@@ -142,14 +163,14 @@ document.addEventListener('DOMContentLoaded', function () {
     close.addEventListener('click', function () {
         toggleOverflow();
         closePopup();
-        defaultPopup();
+        clearPopup();
     });
 
     entryDisplay.onclick = function (event) {
         if (event.target === entryDisplay) {
             toggleOverflow();
             closePopup();
-            defaultPopup();
+            clearPopup();
         }
     }
 });

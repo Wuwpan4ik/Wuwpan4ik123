@@ -36,6 +36,8 @@
                     <select class="second_do" name="second_do" id="second_do">
                         <option value="list" selected>Список уроков</option>
                         <option value="form">Форма заявки</option>
+                        <option value="pay_form">Форма оплаты</option>
+                        <option value="link">Переход по ссылке</option>
                         <option value="next_lesson">Открыть следующий урок</option>
                     </select>
                     <div class="popup__body-item display-none" id="popup__body-form-2">

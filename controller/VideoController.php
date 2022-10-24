@@ -45,54 +45,77 @@ class VideoController extends ACore
         //Форма
         $id_video = $_POST['id_item'];
         $funnel = $this->m->db->query("SELECT * FROM funnel_content WHERE id = '$id_video'");
-        if (!$this->isUser($funnel[0]['author_id'])) return False;
+//        if (!$this->isUser($funnel[0]['author_id'])) return False;
 
         $videoBtnHTML = [];
         $first_do = $_POST['first_do'];
+        $second_do = $_POST['second_do'];
         $button_text = $_POST['button_text'];
         switch ($_POST['first_do']) {
             case "pay_form":
             case "form": {
                 if (isset($_POST['form_id-1'])) {
                     $form_input_1 = $_POST['form_id-1'];
-                    $videoBtnHTML[$first_do] = [$form_input_1];
+                    $videoBtnHTML['first_do'][$first_do] = [$form_input_1];
                 }
                 if (isset($_POST['form_id-2'])) {
                     $form_input_2 = $_POST['form_id-2'];
-                    $videoBtnHTML[$first_do] = array_merge(array_values($videoBtnHTML[$first_do]), [$form_input_2]);
+                    $videoBtnHTML['first_do'][$first_do] = array_merge(array_values($videoBtnHTML['first_do'][$first_do]), [$form_input_2]);
                 }
                 if (isset($_POST['form_id-3'])) {
                     $form_input_3 = $_POST['form_id-3'];
-                    $videoBtnHTML[$first_do] = array_merge(array_values($videoBtnHTML[$first_do]), [$form_input_3]);
+                    $videoBtnHTML['first_do'][$first_do] = array_merge(array_values($videoBtnHTML['first_do'][$first_do]), [$form_input_3]);
                 }
                 break;
             }
             case "list": {
-                $videoBtnHTML['list'] = true;
+                $videoBtnHTML['first_do']['list'] = true;
                 break;
             }
             case "link": {
-                if (isset($_POST['link'])) {
-                    $videoBtnHTML[$first_do] = $_POST['link'];
+                if (isset($_POST['link-1'])) {
+                    $videoBtnHTML['first_do']['link'] = $_POST['link-1'];
                 }
                 break;
             }
             case "next_lesson": {
-                $videoBtnHTML['next_lesson'] = true;
+                $videoBtnHTML['first_do']['next_lesson'] = true;
                 break;
             }
         }
         if (isset($button_text)) {
             switch ($_POST['second_do']) {
+                case "pay_form":
+                case "form": {
+                    if (isset($_POST['form_id-4'])) {
+                        $form_input_1 = $_POST['form_id-4'];
+                        $videoBtnHTML['second_do'][$second_do] = [$form_input_1];
+                    }
+                    if (isset($_POST['form_id-5'])) {
+                        $form_input_2 = $_POST['form_id-5'];
+                        $videoBtnHTML['second_do'][$second_do] = array_merge(array_values($videoBtnHTML['second_do'][$second_do]), [$form_input_2]);
+                    }
+                    if (isset($_POST['form_id-6'])) {
+                        $form_input_3 = $_POST['form_id-6'];
+                        $videoBtnHTML['second_do'][$second_do] = array_merge(array_values($videoBtnHTML['second_do'][$second_do]), [$form_input_3]);
+                    }
+                    break;
+                }
+                case "link": {
+                    if (isset($_POST['link-2'])) {
+                        $videoBtnHTML['button_click']['link'] = $_POST['link-2'];
+                    }
+                    break;
+                }
                 case 'list':
-                    $videoBtnHTML['second_do']['list'] = true;
+                {
+                    $videoBtnHTML['button_click']['list'] = true;
                     break;
-
-                case 'next_lesson':
-                    $videoBtnHTML['second_do']['next_lesson'] = true;
+                }
+                case 'next_lesson': {
+                    $videoBtnHTML['button_click']['next_lesson'] = true;
                     break;
-                case 'form':
-
+                }
             }
         }
         $videoBtnHTMLResult = json_encode($videoBtnHTML);
