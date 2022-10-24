@@ -48,30 +48,39 @@
 			$current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
 			$last_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 2, date('Y')));
 			
-			$content[0] = $this->m->db->query("SELECT * FROM clients WHERE creator_id = " . $_SESSION['user']['id'] . " AND achivment_date BETWEEN CAST('$last_date' AS DATE) AND CAST('$current_date' AS DATE) ORDER BY " . $get);
-			$content[1] = $this->m->db->query("SELECT * FROM user WHERE id IN (SELECT client_id FROM clients WHERE creator_id = " . $_SESSION['user']['id'].")");
-			
-			$i = 0;
-			
-				foreach($content[0] as $client){ echo
+			$result = $this->m->db->query("SELECT clients.id, clients.comment, clients.achivment_date, clients.source, clients.give_money, user.first_name as first_name, user.second_name as second_name, user.email as email, user.telephone as telephone FROM clients JOIN user ON clients.client_id = user.id WHERE creator_id = " . $_SESSION['user']['id']." AND achivment_date BETWEEN CAST('$last_date' AS DATE) AND CAST('$current_date' AS DATE) ORDER BY " . $get);
+						
+				foreach($result as $client){ echo
 										
 					'<tr>
 
-						<td class="nick"> <input type="checkbox" class="check_user">' . $content[1][$i]["first_name"] . ' ' . $content[1][$i]["second_name"] . '</td>
+						<td class="nick"> <input type="checkbox" class="check_user">' . $client["first_name"] . ' ' . $client["second_name"] . '</td>
 											
 						<td>' . $client["give_money"] . ' ₽</td>
 
-						<td>' . $content[1][$i]["email"] . '</td>
+						<td>' . $client["email"] . '</td>
 
-						<td>' . $content[1][$i]["telephone"] . '</td>
+						<td>' . $client["telephone"] . '</td>
 
 						<td>' . $client["comment"] . '</td>
 											
 						<td>' . $client["achivment_date"] . '</td>
 
+						<td class="iconed">
+
+							<span>
+
+								<img class="table_ico" src="img/Trash.svg">
+
+								<img class="table_ico" src="img/Dots.svg">
+
+							</span>
+
+						</td>
+						
 					</tr>';
 										
-				$i++;}
+				}
 		}
         function obr()
         {

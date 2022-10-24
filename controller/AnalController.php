@@ -5,7 +5,7 @@
 
             $delid = $_GET['id'];
 
-            $this->m->db->execute("DELETE FROM clients WHERE id = ". $delid);
+            $this->m->db->execute("DELETE FROM clients WHERE id = " . $delid);
 
         }
 		
