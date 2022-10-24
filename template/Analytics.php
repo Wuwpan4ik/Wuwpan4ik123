@@ -79,11 +79,11 @@
 
 										<th><button class="order_button" value="email"><img class="table_ico" src="img/StickDown.svg"></button>Email</th>
 
-										<th><button class="order_button" value="tel"><img class="table_ico" src="img/StickDown.svg"></button>Телефон</th>
+										<th><button class="order_button" value="telephone"><img class="table_ico" src="img/StickDown.svg"></button>Телефон</th>
 
-										<th><button class="order_button" value="quest"><img class="table_ico" src="img/StickDown.svg"></button>Задача</th>
+										<th><button class="order_button" value="comment"><img class="table_ico" src="img/StickDown.svg"></button>Задача</th>
 										
-										<th><button class="order_button" value="date"><img class="table_ico" src="img/StickDown.svg"></button>Дата создания</th>
+										<th><button class="order_button" value="achivment_date"><img class="table_ico" src="img/StickDown.svg"></button>Дата создания</th>
 
 										<th id="thcl"><button class="order_button" value="source"><img class="table_ico" src="img/StickDown.svg"></button>Источник клиента</th>
 
@@ -93,28 +93,28 @@
 
                                 <tbody id="conTab">
 
-									<?php $i = 0;
-									foreach($content[0] as $client){?>
+									<?php
+									foreach($content as $client){?>
 										
 										<tr>
 
-											<td class="nick"> <input type="checkbox" class="check_user"><?=$content[1][$i]["first_name"] . " " . $content[1][$i]["second_name"]?></td>
+											<td class="nick"> <input type="checkbox" class="check_user"><?=$client["first_name"] . " " . $client["second_name"]?></td>
 
 											<td><?=$client["give_money"]?> ₽</td>
 
-											<td><?=$content[1][$i]["email"]?></td>
+											<td><?=$client["email"]?></td>
 
-											<td><?=$content[1][$i]["telephone"]?></td>
+											<td><?=$client["telephone"]?></td>
 
 											<td><?=$client["comment"]?></td>
 											
 											<td><?=$client["achivment_date"]?></td>
 
-											<td class="iconed">Соц. сети
+											<td class="iconed"><?=$client["source"]?>
 
 												<span>
 
-													<button class="del_but"  value="<?=$client["id"]?>"><img class="table_ico" src="img/Option.svg"></button>
+													<button class="del_but"  value="<?=$client["id"]?>"><img class="table_ico" src="img/Trash.svg"></button>
 
 													<img class="table_ico" src="img/Dots.svg">
 
@@ -124,7 +124,7 @@
 
 										</tr>
 										
-									<?$i++;}?>
+									<?}?>
 
                                 </tbody>
 
@@ -204,7 +204,7 @@
   </body>
   
   <script>
-			// удаление клиента (не робит)
+			// (удаление клиента пока не робит)
 			const client_del = document.querySelectorAll('del_but');
 				
 				for (var i = 0; i < client_del.length; ++i) {
@@ -215,7 +215,6 @@
   </script>
   
 	<script>
-        // выделение чекбоксов (чет тоже не работает)
         let check_user = document.querySelectorAll('.check_user');
         const main_check = document.querySelector('#main_check');
         main_check.addEventListener('click', function (e) {
@@ -225,33 +224,35 @@
                 });
             });
 	</script>
-  
-	  <script>
-				const order_button = document.querySelector('.order_button');
-				const tab = document.querySelector('#conTab');
-				
-					order_button.addEventListener('click', function(e) {
-						if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){
-							this.innerHTML = '<img class="table_ico" src="img/StickUp.svg">';
-							var param = this.value;
-						}else{
-							this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
-							param = this.value + " DESC";
+	
+  		<script>
+            const order_button = document.querySelectorAll('.order_button');
+            const tab = document.querySelector('#conTab');
+			
+			for (var i = 0; i < order_button.length; ++i) {
+				order_button[i].addEventListener('click', function(e) {
+					if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){
+						this.innerHTML = '<img class="table_ico" src="img/StickUp.svg">';
+						var  param = this.value + " DESC";
+					}else{
+						this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
+						param = this.value;
+					}
+					const request = new XMLHttpRequest();
+
+					const url = "?option=SortController&method=get_sum&sort=" +param;
+
+					request.open('GET', url);
+
+					request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+					request.addEventListener("readystatechange", () => {
+						if (request.readyState === 4 && request.status === 200) {
+							tab.innerHTML = request.responseText;
 						}
-						const request = new XMLHttpRequest();
-
-						const url = "?option=SortController&method=get_sum&sort=" +param;
-
-						request.open('GET', url);
-
-						request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-						request.addEventListener("readystatechange", () => {
-							if (request.readyState === 4 && request.status === 200) {
-								tab.innerHTML = request.responseText;
-							}
-						});
-						request.send();
 					});
+					request.send();
+				});
+			};
         </script>
 
 </html>
