@@ -10,6 +10,7 @@ return array(
     'ACoreAdmin' => $baseDir . '/controller/ACoreAdmin.php',
     'Account' => $baseDir . '/pages/account.php',
     'AccountController' => $baseDir . '/controller/AccountController.php',
+    'AnalController' => $baseDir . '/controller/AnalController.php',
     'Analytics' => $baseDir . '/pages/analytics.php',
     'Cases' => $baseDir . '/pages/cases.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
@@ -28,6 +29,8 @@ return array(
     'SmallPlayer' => $baseDir . '/pages/smallPlayer.php',
     'SortController' => $baseDir . '/controller/SortController.php',
     'UrlController' => $baseDir . '/controller/UrlController.php',
-	'AnalController' => $baseDir . '/controller/AnalController.php',
+    'UserLogin' => $baseDir . '/pages/userLogin.php',
+    'UserMenu' => $baseDir . '/pages/UserMenu.php',
+    'UserPasswordRecovery' => $baseDir . '/pages/userPasswordRecovery.php',
     'VideoController' => $baseDir . '/controller/VideoController.php',
 );

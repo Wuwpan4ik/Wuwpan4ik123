@@ -1,0 +1,104 @@
+@media (max-width: 414px){
+    .UserMenu{
+        height: 100vh;
+        background: #757D8A;
+    }
+    .UserMenu-header{
+        display: flex;
+        justify-content: space-between;
+        padding: 50px 0 0 0;
+    }
+    .UserMenu-header__logo{
+        justify-content: start !important;
+
+    }
+    .UserMenu-header__burger{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 36px;
+        height: 36px;
+        background-color: #fff;
+        border-radius: 50%;
+    }
+    .header__burger {
+        position: relative;
+        display: block;
+        width: 16px;
+        height: 10px;
+    }
+    .header__burger:before, .header__burger:after {
+        content: '';
+        background-color: #000;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        left: 0;
+        transition: all 0.3s ease 0s;
+    }
+    .header__burger:before {
+        top: 0;
+    }
+    .header__burger:after {
+        bottom: 0;
+    }
+    .header__burger span {
+        position: absolute;
+        background-color: #000;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        top: 4px;
+        transition: all 0.3s ease 0s;
+    }
+    /*-------------------------------------*/
+    .UserMenu-profile{
+        margin: 38px 0 0 0;
+
+    }
+    .UserMenu-profile__header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+    .UserMenu-profile__header-user{
+        display: flex;
+        align-items: center;
+    }
+    #avatar{
+        width: 64px;
+        height: 64px;
+        border-radius: 99px;
+    }
+    .UserMenu-profile__textInfo{
+        margin: 0 0 0 12px;
+    }
+    .UserMenu-profile p{
+        font-family: "DM Sans", sans-serif;
+        font-weight: inherit;
+        line-height: 24px;
+        font-size: 14px;
+        color: #fff;
+    }
+    .UserMenu-profile h1{
+        padding: 0 20px 0 0;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 32px;
+        color: #fff;
+    }
+    .UserMenu-profile-name{
+        position: relative;
+    }
+    .UserMenu-profile__settings{
+        border: 1px solid #E1E3E6;
+        box-shadow: 0 4px 2px -2px rgba(27, 46, 94, 0.02);
+        border-radius: 8px;
+        padding: 14px 20px;
+        white-space: normal;
+        vertical-align: middle;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.3);
+    }
+}
