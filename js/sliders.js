@@ -27,6 +27,13 @@ $(document).ready(function(){
                     }
                     if (videoLocal.ended){
                         slider.slick("slickNext");
+                        videoLocal.parentElement.parentElement.querySelector('.overlay-video').classList.add('active');
+                        if (pauseVideo){
+                            pauseVideo.classList.add('active');
+                        }
+                        setTimeout(function () {
+                            videoLocal.parentElement.parentElement.querySelector('.popup-video').classList.add('active');
+                        }, (20));
                     }
                 }, 300);
                 if (this.paused) {
