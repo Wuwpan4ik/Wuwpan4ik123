@@ -12,7 +12,7 @@
         <form id="initButton" action="?option=VideoController&method=initVideoButton" method="POST" class="popup__body-container">
             <input id="id_item" name="id_item" type="hidden" value="">
             <div class="popup__body-block">
-                <img src="../../img/add.png" width="280" height="400" alt="">
+                <img src="./videoTest/png-clipart-plus-plus.png" alt="">
             </div>
             <div class="popup__body-block">
                 <div class="popup__body-item">

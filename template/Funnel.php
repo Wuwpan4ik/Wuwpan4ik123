@@ -124,14 +124,15 @@
                             <button class="copy-button" onclick="copy_link(this)" type="submit">Копировать</button>
 
                         </div>
-                        <form action="?option=VideoController&method=selectCourse&id=<?=$p['id']?>">
-                            <select name="course_id">
+                        <form action="?option=VideoController&method=selectCourse" method="POST">
+                            <input type="text" name="id" hidden="hidden" value="<?=$p['id']?>">
+                            <select name="course_id" class="select__course">
                                 <?php
                                 foreach ($content[1] as $course) { ?>
-                                    <option value="<?=$course['id']?>"><?=$course['name']?> <?=$course['id']?></option>
+                                    <option <?php if ($p['course_id'] == $course['id']) echo "selected";?> value="<?=$course['id']?>"><?=$course['name']?> <?=$course['id']?></option>
                                 <?php } ?>
                             </select>
-                            <button class="copy-button" type="submit">Сохранить</button>
+                            <button class="copy-button" type="submit" style="width: 100%; padding: 10px 0; font-size: 20px;">Выбрать</button>
                         </form>
 
                         <div class="btn-delete-edit">
@@ -229,6 +230,10 @@
             entryDisplay.classList.remove('display-block');
         }
     }
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+    });
 </script>
 </body>
 

@@ -123,6 +123,18 @@ class VideoController extends ACore
         return True;
     }
 
+    public function selectCourse()
+    {
+        $id = $_POST['id'];
+        $course_id = $_POST['course_id'];
+        $course = $this->m->db->query("SELECT * from course WHERE `id` = '$course_id'");
+        $funnel = $this->m->db->query("SELECT * from funnel WHERE `id` = '$id'");
+        if (!$this->isUser($course[0]['author_id'])) return False;
+        if (!$this->isUser($funnel[0]['author_id'])) return False;
+        $this->m->db->execute("UPDATE `funnel` SET `course_id` = '$course_id' WHERE `id` = '$id'");
+        return True;
+    }
+
 
     public function get_content()
     {

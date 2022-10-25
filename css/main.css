@@ -241,3 +241,14 @@ span.button__back{
   color: #555;
   transform: translate(-25px, 7px);
 }
+
+.select__course {
+  width: 100%;
+  border: 1px solid #E1E3E6;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 20px 0 0 0;
+  appearance: none;
+  background: url(../img/arrow_custom.svg) no-repeat right;
+  background-position-x: calc(100% - 21px);
+}
