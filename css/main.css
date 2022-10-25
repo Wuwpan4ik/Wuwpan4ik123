@@ -55,6 +55,22 @@ code {
 #apps:hover{
   cursor:pointer;
 }
+.button-bell{
+  position: relative;
+}
+#msg{
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 99px;
+  line-height: 24px;
+  color: #FFFFFF;
+  background-color: #EF2C2C;
+}
+
 p{
   font-weight:400;
   font-size: 18px;

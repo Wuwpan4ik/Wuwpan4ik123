@@ -1,5 +1,17 @@
 <div class="media-cart">
-
+    <div class="media-cart__controller">
+        <div class="media-cart__controller-move">
+            <div class="media-cart__controller-move-right">
+                <button><img src="/img/Arrow-right.svg" alt=""></button>
+            </div>
+            <div class="media-cart__controller-move-left">
+                <button><img src="/img/Arrow-left.svg" alt=""></button>
+            </div>
+        </div>
+        <div class="media-cart__controller-delete">
+            <button><img src="/img/Delete.svg" alt=""></button>
+        </div>
+    </div>
     <video preload="metadata" controls="controls" class="media-cart-img" src="<?=$v['video']?>"></video>
 
     <form method="POST" class="new_name" action="?option=VideoController&method=renameVideo&id_item=<?=$v['id']?>&id=<?=$content[0][0]['id']?>">
