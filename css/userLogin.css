@@ -1,0 +1,77 @@
+@media (max-width: 414px){
+    /*UserLogin*/
+    ._container{
+        max-width: 370px;
+        margin: 0 auto;
+    }
+    .userLogin, .UserPasswordRecovery{
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        background: linear-gradient(164.42deg, #3E8AFB 2.4%, #7024C4 97.34%);
+
+    }
+    .user__logo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .user__logo-text{
+        margin:0 0 0 8px ;
+        font-weight: 600;
+        font-size: 16px;
+    }
+    .popup{
+        width: 100%;
+        align-items: center;
+        border-radius: 20px;
+        padding: 30px 24px;
+        margin: 43px 0 0 0;
+        color: #000;
+        background-color: #fff;
+    }
+    .popup__subtitle{
+        font-weight: 300;
+        opacity: 0.6;
+        line-height: 17px;
+    }
+    .popup__title{
+        font-weight: 900;
+        font-size: 30px;
+        line-height: 109.5%;
+    }
+    .popup-form{
+        margin: 20px 0 0 0;
+    }
+    .inputLog input{
+        width: 100%;
+        padding: 16px;
+        border: 1px solid #E1E3E6;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    .inputLog input:focus{
+        outline: none;
+        border: 1px solid #4E73F8;
+        box-shadow: 0 0 0 4px rgba(31,45,207,0.2);
+    }
+    .userLogin-password{
+        margin: 15px 0 0 0;
+    }
+    .button-send{
+        margin: 17px 0 0 0 ;
+    }
+    .button-send input{
+        width: 100% !important;
+    }
+    .user-text{
+        margin: 20px 0 0 0;
+    }
+    .user-text a{
+        color: #fff;
+        opacity: 0.6;
+        cursor: pointer;
+    }
+}

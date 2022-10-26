@@ -13,10 +13,12 @@
         <div class="Cases ">
             <?php include 'default/sidebar.php';?>
             <div class="feed">
+
                 <?php
                 $title = "Кейсы";
                 include ('default/header.php');
                 ?>
+
                 <div class="Case _container">
                     <div class="cart inst">
                         <div class="service-price">

@@ -34,6 +34,12 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'SmallPlayer' => __DIR__ . '/../..' . '/pages/smallPlayer.php',
         'SortController' => __DIR__ . '/../..' . '/controller/SortController.php',
         'UrlController' => __DIR__ . '/../..' . '/controller/UrlController.php',
+<<<<<<< HEAD
+=======
+        'UserLogin' => __DIR__ . '/../..' . '/pages/userLogin.php',
+        'UserMenu' => __DIR__ . '/../..' . '/pages/UserMenu.php',
+        'UserPasswordRecovery' => __DIR__ . '/../..' . '/pages/userPasswordRecovery.php',
+>>>>>>> noffakeWork
         'VideoController' => __DIR__ . '/../..' . '/controller/VideoController.php',
     );
 

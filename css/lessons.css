@@ -1,11 +1,13 @@
 .Lessons{
 }
 .media{
+
     display: flex;
     gap: 30px;
     flex-wrap: wrap;
 }
 .media-cart{
+    position: relative;
     width: 300px;
 	height: 70%;
     margin-bottom: 4em;
@@ -23,7 +25,7 @@
 }
 .media-cart-img{
     width: 100%;
-    height: 55vh;
+    height: 536px;
     border-radius: 16px;
 }
 .media-cart #half_input{
@@ -39,6 +41,29 @@
     padding: 16px;
     font-size: 16px;
     color: #757D8A;
+}
+.media-cart__controller{
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    border-radius: 16px;
+    padding: 12px 14px;
+    background: #fff;
+    z-index: 10;
+}
+.media-cart__controller-move{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.media-cart__controller-move-right, .media-cart__controller-move-left{
+    width: 18px;
+    height: 8px;
+    cursor: pointer;
 }
 .copy-button{
     border: 1px solid #E1E3E6;
@@ -131,11 +156,11 @@
 }
 .placeholder{
     width: 300px;
-    height:55vh;
+    height:536px;
 	display: flex;
 	justify-content: center;
     border-radius: 16px;
-    background: url("../img/placeholder-bgc.png");
+    background: url("../img/placeholder-bgc.png") no-repeat;
 }
 .create-ico{
 	width: 45px;
@@ -388,9 +413,6 @@ input:checked + label {
     font-size: 12px;
     opacity: 0.5;
 }
-
-
-
 
 
 

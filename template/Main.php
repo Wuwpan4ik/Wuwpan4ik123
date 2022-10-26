@@ -34,7 +34,9 @@
         $title = "Ключевые показатели";
         include ('default/header.php');
         ?>
+
         <div class="_container">
+
         <div class="index ">
 
             <div class="header">

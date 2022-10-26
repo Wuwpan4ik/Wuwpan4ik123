@@ -31,6 +31,7 @@
                 $title = "Мои проекты";
                 include ('default/header.php');
                 ?>
+
                 <div class="Lessons">
                     <div class="_container">
                         <div class="media">
