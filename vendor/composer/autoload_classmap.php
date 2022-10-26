@@ -29,11 +29,8 @@ return array(
     'SmallPlayer' => $baseDir . '/pages/smallPlayer.php',
     'SortController' => $baseDir . '/controller/SortController.php',
     'UrlController' => $baseDir . '/controller/UrlController.php',
-<<<<<<< HEAD
-=======
     'UserLogin' => $baseDir . '/pages/userLogin.php',
     'UserMenu' => $baseDir . '/pages/UserMenu.php',
     'UserPasswordRecovery' => $baseDir . '/pages/userPasswordRecovery.php',
->>>>>>> noffakeWork
     'VideoController' => $baseDir . '/controller/VideoController.php',
 );
