@@ -28,21 +28,11 @@
 
     <div class="feed">
 
-        <div class="feed-header">
-
-            <h2>Мои воронки</h2>
-
-            <div class="buttonsFeed">
-
-                <button class="ico_button"><img class="ico" src="img/Shield.svg"></button>
-
-                <button class="ico_button"><img class="ico" src="img/Bell.svg"></button>
-
-                <button id="apps" class="ico_button">Заявки</button>
-
-            </div>
-
-        </div>
+        <?php
+        $title = "Мои воронки";
+        $back = "Project";
+        include ('default/header.php');
+        ?>
 
         <div class="Lessons ">
 

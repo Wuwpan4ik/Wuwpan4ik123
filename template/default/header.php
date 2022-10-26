@@ -1,41 +1,22 @@
-<!DOCTYPE html>
+<div class="feed-header">
 
-<html lang="en">
+    <div class="feed-header__title">
+        <?php if($_GET['option'] != 'Main') { ?>
+        <a class="button__back" href="?option=<?=isset($back) ? $back : "Main" ?>">
+            <img src="/img/ArrowLeft.svg" alt="">
+        </a>
+        <?php } ?>
+        <h2><?=$title ?></h2>
+    </div>
 
-<head>
+    <div class="buttonsFeed">
 
-    <meta charset="UTF-8">
+        <button class="ico_button"><img class="ico" src="img/Shield.svg"></button>
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <button class="ico_button"><img class="ico" src="img/Bell.svg"></button>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <button id="apps" class="ico_button">Заявки</button>
 
-    <link rel="stylesheet" href="css/nullCss.css">
+    </div>
 
-    <link rel="stylesheet" href="css/auth.css">
-
-    <link rel="stylesheet" href="css/profilesetting.css">
-
-    <link rel="stylesheet" href="css/project.css">
-
-    <link rel="stylesheet" href="css/sidebar.css">
-
-    <link rel="stylesheet" href="css/sidebaroption.css">
-
-    <link rel="stylesheet" href="css/feed.css">
-
-    <link rel="stylesheet" href="css/lessons.css">
-
-    <link rel="stylesheet" href="css/main.css">
-
-    <link rel="stylesheet" type="text/css" href="./css/app.css">
-
-    <link rel="stylesheet" href="./css/index.css">
-
-    <link rel="stylesheet" href="./css/tableusers.css">
-
-    <title>Document</title>
-
-</head>
-
-<body>
+</div>
