@@ -107,6 +107,8 @@
             elem.style.display = 'none';
         })
         _("progressBar").classList.add('active');
+        _("progressText").classList.add('active');
+        document.querySelector('.btn-upload').classList.add('active');
         var formdata = new FormData();
         formdata.append("video_uploader", file);
         var ajax = new XMLHttpRequest();

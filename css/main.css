@@ -196,6 +196,9 @@ span.button__back{
   margin-top: 0;
 }
 
+.progress {
+  width: 100%;
+}
 
 #progressBar {
   display:none;
@@ -211,31 +214,44 @@ span.button__back{
   font-size:15px;
 }
 
+.btn-upload.active {
+  width: 80%;
+}
+
+#progressText {
+  display: none;
+}
+
+#progressText.active {
+  display: block;
+}
+
 #progressBar.active {
   display: block;
 }
 
 #progressBar::-webkit-progress-bar {
-  height: 40px;
-  width: 80%;
+  height: 10px;
+  width: 100%;
   margin: 0 auto;
-  background-color:#dadada;
+  background-color: rgba(255, 255, 255, 0.6);;
   border-radius:100px;
 }
 
 #progressBar::-webkit-progress-value {
   display: inline-block;
+  width: 80%;
   float: left;
-  height: 40px;
+  height: 10px;
   margin: 0 -10px 0 0;
   padding-left: 50px; /* Rounded corners requires a padding */
-  background:#ff9e2c;
+  background: #81A4FF;
   border-radius:100px;
 }
 
 #progressBar:after {
   padding: 0;
-  display: inline-block; /* Here is the magic to move with the progress */
+  width: 100%;
   float: left;
   content: attr(value) '%';
   color: #555;
