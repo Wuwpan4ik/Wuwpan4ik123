@@ -18,6 +18,7 @@ class VideoController extends ACore
             $res = $this->m->db->query("SELECT * FROM course WHERE id = '$uid' ORDER BY `id` DESC LIMIT 1");
             $count_video = count($this->m->db->query("SELECT * FROM course_content WHERE course_id = '$uid'")) + 1;
         }
+
         if (!$this->isUser($res[0]['author_id'])) return False;
 
         move_uploaded_file($_FILES['video_uploader']['tmp_name'], "./uploads/$folder/".$uid."_".$res[0]['name']."/".$_FILES['video_uploader']['name']);
@@ -29,6 +30,7 @@ class VideoController extends ACore
         } elseif ($folder == 'course') {
             $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `query_id`) VALUES (".$res[0]['id'].",'Укажите заголовок','Укажите описание', '$path', '$count_video')");
         }
+
         return true;
     }
 
