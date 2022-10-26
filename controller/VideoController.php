@@ -13,8 +13,10 @@ class VideoController extends ACore
 
         if ($folder == 'funnel') {
             $res = $this->m->db->query("SELECT * FROM funnel WHERE id = '$uid' ORDER BY `id` DESC LIMIT 1");
+            $count_video = count($this->m->db->query("SELECT * FROM funnel_content WHERE funnel_id = '$uid'")) + 1;
         } elseif ($folder == 'course') {
             $res = $this->m->db->query("SELECT * FROM course WHERE id = '$uid' ORDER BY `id` DESC LIMIT 1");
+            $count_video = count($this->m->db->query("SELECT * FROM course_content WHERE course_id = '$uid'")) + 1;
         }
         if (!$this->isUser($res[0]['author_id'])) return False;
 
@@ -23,9 +25,9 @@ class VideoController extends ACore
         $path = "./uploads/$folder/$uid"."_".$res[0]['name']."/".$_FILES['video_uploader']['name'];
 
         if ($folder == 'funnel') {
-            $this->m->db->execute("INSERT INTO funnel_content (`funnel_id`, `name`, `description`, `video`) VALUES (".$res[0]['id'].",'Укажите заголовок','Укажите описание', '$path')");
+            $this->m->db->execute("INSERT INTO funnel_content (`funnel_id`, `name`, `description`, `video`, `query_id`) VALUES (".$res[0]['id'].",'Укажите заголовок','Укажите описание', '$path', '$count_video')");
         } elseif ($folder == 'course') {
-            $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`) VALUES (".$res[0]['id'].",'Укажите заголовок','Укажите описание', '$path')");
+            $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `query_id`) VALUES (".$res[0]['id'].",'Укажите заголовок','Укажите описание', '$path', '$count_video')");
         }
         return true;
     }
