@@ -32,6 +32,7 @@ code {
   gap:24px;
 }
 .ico_button{
+  position: relative;
   height: 48px;
   border: 1px solid #E1E3E6;
   box-shadow: 0 4px 2px -2px rgba(27, 46, 94, 0.02);
