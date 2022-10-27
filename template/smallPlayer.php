@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ccio</title>
     <link rel="stylesheet" href="css/sidebar.css">
+
     <link type="text/css" rel="stylesheet" href="../css/smallPlayer.css">
+
 </head>
 <body>
 <div class="smallPlayer _conatiner">

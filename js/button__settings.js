@@ -8,6 +8,7 @@ const id_item = document.querySelector('#id_item');
 const first_select = document.querySelector('#first_do');
 const second_select = document.querySelector('#second_do');
 const button_name = document.querySelector('#video_name');
+const popup_button = document.querySelector('.button-video');
 let count_first_select = 1;
 let count_second_select = 3;
 // Поля option в форме
@@ -51,6 +52,7 @@ function addFormSelect(elem) {
     let div = document.createElement('select');
     let inner = '';
     div.classList.add('form_id');
+    div.classList.add('input_selector');
     div.name = 'form_id-' + count_id;
     for (const [key, value] of Object.entries(names_option)) {
         inner += `<option value="${key}">${value}</option>\n`;
@@ -76,6 +78,21 @@ function addFormLink(elem) {
 //Задаются id блоков формы
 function addFormItem (elem) {
     let count = elem.parentElement.querySelectorAll('.form_id').length + 1;
+
+    if (first_select.parentElement.querySelectorAll('.input_selector')) {
+        first_select.parentElement.querySelectorAll('.input_selector').forEach((elem) => {
+            let input = elem.value;
+            var div = document.createElement('div');
+            div.innerHTML = `<div class="popup__bonus-form-input input">
+                <div class="popup__bonus-form-input-email input-img">
+                    <img src="../img/smallPlayer/${input}.svg" alt="">
+                </div>
+                <input name="${input}" type="text" placeholder="Ваш ${input}">
+            </div>`;
+            document.querySelector('.popup-select-video').appendChild(div);
+        })
+    }
+
     addFormSelect(elem, count);
     if (count > 2) {
         elem.parentElement.querySelector('.addFormInput').classList.add('display-none');
@@ -111,6 +128,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 addFormLink(first_select);
             }
         }
+    //  Прелоудер
+        if (first_select.value === 'form') {
+            document.querySelector('.popup-title-video').classList.remove('display-none');
+            document.querySelector('.popup-text-video').classList.remove('display-none');
+            document.querySelector('.popup-title-video-pay').classList.add('display-none');
+        }
+        else if (first_select.value === 'pay_form') {
+            document.querySelector('.popup-title-video').classList.add('display-none');
+            document.querySelector('.popup-text-video').classList.add('display-none');
+            document.querySelector('.popup-title-video-pay').classList.remove('display-none');
+        }
     });
 
     second_select.addEventListener('change', function () {
@@ -136,7 +164,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Убрать После нажатия на кнопку
     button_name.addEventListener('input', function () {
+        popup_button.innerHTML = this.value;
+        if (this.value.length === 0) {
+            popup_button.classList.add('display-none');
+        }
         if (this.value.length > 0) {
+            popup_button.classList.remove('display-none');
             document.querySelectorAll('.second_do').forEach((elem) => {
                 elem.classList.add('display-block');
                 if (['form', 'pay_form'].includes(second_select.value)) {
@@ -171,6 +204,7 @@ document.addEventListener('DOMContentLoaded', function () {
             id_item.value = item.parentElement.querySelector('input[type="hidden"]').value;
             entryDisplay.classList.toggle('display-flex');
             toggleOverflow();
+
         });
     });
 

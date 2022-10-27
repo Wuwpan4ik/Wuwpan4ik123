@@ -414,37 +414,117 @@ input:checked + label {
     opacity: 0.5;
 }
 
+.button-video {
+    margin: 20px 0 0 0;
+    padding: 13px 30px;
+    box-shadow: 0px 3px 0px #3168bb, 0px 10px 30px rgb(62 138 251 / 60%);
+    border-radius: 6px;
+    border: none;
+    color: #fff;
+    background: #3E8AFB;
+}
 
+.popup{
+    position: absolute;
+    bottom: -70%;
+    width: 100%;
+    border-radius: 30px 30px 0 0;
+    padding: 0 25px;
+    text-align: center;
+    background-color: #fff;
+    opacity: 0;
+    transition: 0.6s;
+}
+.popup.active{
+    bottom: 0;
+    opacity: 1;
+}
+.popup-title{
+    margin: 20px 0 0 0;
+    font-weight: 900;
+    font-size: 30px;
+    line-height: 109.5%;
+}
+.popup-text{
+    margin: 12px 0 0 0;
+    padding: 0 50px;
+    font-weight: 600;
+    line-height: 17px;
+}
+.popup__bonus-text span{
+    color: #EA2323;
+}
+.popup__bonus-form-input{
+    position: relative;
+    margin: 28px 0 0 0;
+}
 
+.popup__buy-title{
+    margin: 0 0 0 15px;
+    text-align: left;
+}
+.popup__buy-body{
+    margin: 20px 0 0 0;
+}
+.popup__buy-item{
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 10px 0 10px 0;
+}
+.popup__buy-price{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0 0 0;
+}
+.popup__buy-price-title{
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    opacity: 0.6;
+}
+.popup__buy-price-cost{
+    font-weight: 500;
+    font-size: 18px;
+    color: #EA3A3A;
+}
+.popup__buy-register{
+    margin: 20px 0 0 0;
+}
+.popup__buy-body-form{
+    position: relative;
+    margin: 10px 0 0 0;
+}
 
+.popup__buy-form-buy-button{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.popup__buy-form-buy {
+    width: 30%;
+}
+.popup__buy-form-buy button {
+    background: #6A6A6A;
+    box-shadow: 0px 3px 0px #494949, 0px 10px 30px rgb(105 106 108 / 60%);
+}
+.popup__buy-form-back {
+    width: 65%;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.input-img{
+    position: absolute;
+    top: 19px;
+    left: 17px;
+}
+.input input{
+    width: 80%;
+    border-radius: 6px;
+    border: none;
+    padding: 21px 45px;
+    background: #F4F4F4;
+}
+.button-form button{
+    width: 100%;
+    padding: 19px 0;
+    margin: 16px 0 20px 0;
+}
