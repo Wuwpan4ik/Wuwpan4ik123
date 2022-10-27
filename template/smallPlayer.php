@@ -57,105 +57,32 @@
                     <?php } ?>
                 </div>
                 <?php
+                // popup при клике
                 if (isset($popup->second_do->form) || isset($popup->second_do->pay_form)) {
                     if (isset($popup->second_do->form)) {
                         $form = $popup->second_do->form;
                     } else {
                         $form = $popup->second_do->pay_form;
                     }
-                ?>
-                <div class="overlay-bonus overlay overlay-button">
-                    <div class="popup__bonus  popup popup-button">
-                        <div class="popup__bonus-body">
-                            <?php if (isset($popup->second_do->form)) { ?>
-                            <div class="popup__bonus-title  popup-title">Введите ваш email что бы продолжить просмотр</div>
-                            <div class="popup__bonus-text popup-text"><span> Бонус:</span> получите книгу - Тысяча способов научиться решать проблемы самостоятельно!</div>
-                            <?php } else if (isset($popup->second_do->pay_form)) { ?>
-                                <div class="popup__bonus-title  popup-title">Введите данные и перейдите к оплате, чтобы продолжить просмотр</div>
-                            <?php } ?>
-                            <div class="popup__bonus-form">
-                                <?php foreach ($form as $input) {
-                                    ?>
-                                <div class="popup__bonus-form-input input">
-                                    <div class="popup__bonus-form-input-email input-img">
-                                        <?php
-                                        $value = '';
-                                        if ($input == 'email') {
-                                            $value = 'email';
-                                        } elseif ($input == 'name') {
-                                            $value = 'account';
-                                        } elseif ($input == 'tel') {
-                                            $value = 'phone';
-                                        }?>
-                                        <img src="../img/smallPlayer/<?=$value ?>.svg" alt="">
-                                    </div>
-                                    <input name="<?=$input?>" type="text" placeholder="Ваш <?=$input?>">
-                                </div>
-                                    <?php } ?>
-                                <?php if (isset($popup->second_do->form)) { ?>
-                                <div class="popup__bonus-form-button button-form">
-                                    <button class="button">Получить подарок</button>
-                                </div>
-                                 <?php } else if (isset($popup->second_do->pay_form)) { ?>
-                                <div class="popup__bonus-form-button button-form">
-                                    <button class="button">Оплатить</button>
-                                </div>
-                                <?php } ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>
-            <?php
-            if (isset($popup->first_do->form) || isset($popup->first_do->pay_form)) {
-                if (isset($popup->first_do->form)) {
-                    $form = $popup->first_do->form;
-                } else {
-                    $form = $popup->first_do->pay_form;
+                    // Первое или второе действие
+                    $name = 'button';
+                    $popup__do = $popup->second_do;
+                    include 'template/default/popup__templates/popup__form.php';
+                } ?>
+<!--                Popup при просмотре-->
+                <?php
+                if (isset($popup->first_do->form) || isset($popup->first_do->pay_form)) {
+                    if (isset($popup->first_do->form)) {
+                        $form = $popup->first_do->form;
+                    } else {
+                        $form = $popup->first_do->pay_form;
+                    }
+                    // Первое или второе действие
+                    $name = 'video';
+                    $popup__do = $popup->first_do;
+                    include 'template/default/popup__templates/popup__form.php';
                 }
                 ?>
-                <div class="overlay-bonus overlay overlay-video">
-                    <div class="popup__bonus  popup popup-video">
-                        <div class="popup__bonus-body">
-                            <?php if (isset($popup->first_do->form)) { ?>
-                                <div class="popup__bonus-title  popup-title">Введите ваш email что бы продолжить просмотр</div>
-                                <div class="popup__bonus-text popup-text"><span> Бонус:</span> получите книгу - Тысяча способов научиться решать проблемы самостоятельно!</div>
-                            <?php } else if (isset($popup->first_do->pay_form)) { ?>
-                                <div class="popup__bonus-title  popup-title">Введите данные и перейдите к оплате, чтобы продолжить просмотр</div>
-                            <?php } ?>
-                            <div class="popup__bonus-form">
-                                <?php foreach ($form as $input) {
-                                    ?>
-                                    <div class="popup__bonus-form-input input">
-                                        <div class="popup__bonus-form-input-email input-img">
-                                            <?php
-                                            $value = '';
-                                            if ($input == 'email') {
-                                                $value = 'email';
-                                            } elseif ($input == 'name') {
-                                                $value = 'account';
-                                            } elseif ($input == 'tel') {
-                                                $value = 'phone';
-                                            }?>
-                                            <img src="../img/smallPlayer/<?=$value ?>.svg" alt="">
-                                        </div>
-                                        <input name="<?=$input?>" type="text" placeholder="Ваш <?=$input?>">
-                                    </div>
-                                <?php } ?>
-                                <?php if (isset($popup->first_do->form)) { ?>
-                                    <div class="popup__bonus-form-button button-form">
-                                        <button class="button">Получить подарок</button>
-                                    </div>
-                                <?php } else if (isset($popup->first_do->pay_form)) { ?>
-                                    <div class="popup__bonus-form-button button-form">
-                                        <button class="button">Оплатить</button>
-                                    </div>
-                                <?php } ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>
 
                 <?php if (isset($popup->second_do->list)) { ?>
                     <div class="overlay-allLessons overlay overlay-button">

@@ -11,8 +11,43 @@
         </div>
         <form id="initButton" action="?option=VideoController&method=initVideoButton" method="POST" class="popup__body-container">
             <input id="id_item" name="id_item" type="hidden" value="">
-            <div class="popup__body-block">
-                <img src="./videoTest/png-clipart-plus-plus.png" alt="">
+            <div class="popup__body-block" style="width: 320px;">
+                <div class="slider__item ">
+                    <div class="slider__video popup-video">
+                    </div>
+                    <div class="slider__header _conatiner-player ">
+                        <div class="slider__header-logo">
+                            <div class="slider__header-logo-img">
+                                <img width="48px" src="<?=$_SESSION["user"]['avatar']?>" alt="">
+                            </div>
+                            <div class="slider__header-logo-text">
+                                <?=$_SESSION["user"]["first_name"]?>
+                            </div>
+                        </div>
+                        <div class="slider__header-views">
+                            <div class="slider__header-views-img">
+                                <img src="../img/smallPlayer/views.svg" alt="">
+                            </div>
+                            <div class="slider__header-views-count">
+                                126
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider__item-info _conatiner-player">
+                        <div class="slider__item-title">
+
+                        </div>
+                        <div class="slider__item-text">
+
+                        </div>
+                        <?php
+                        if (isset($item['button_text']) && isset($popup->second_do)) { ?>
+                            <div class="slider__item-button button-open">
+                                <button  class="button"><?=$item['button_text']?></button>
+                            </div>
+                        <?php } ?>
+                    </div>
+                </div>
             </div>
             <div class="popup__body-block">
                 <div class="popup__body-item">

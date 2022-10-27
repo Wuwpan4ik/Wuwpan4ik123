@@ -90,7 +90,7 @@
 </div>
 
 <?php include 'default/popupEditVideo.php';?>
-<script src="../js/button__settings.js"></script>
+<script type="text/javascript" src="../js/button__settings.js"></script>
 <script>
     function _(abc) {
         return document.getElementById(abc);

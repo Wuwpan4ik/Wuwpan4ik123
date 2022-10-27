@@ -154,6 +154,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     buttonChanges.forEach((item) => {
         item.addEventListener('click', function () {
+            document.querySelector('.popup-video').removeChild(document.querySelector('.popup-video').firstChild);
+            let videos = item.parentElement.parentElement.querySelector('.media-cart-img').cloneNode(true);
+            let title = item.parentElement.parentElement.querySelector('input[name="name"]').value;
+            let desc = item.parentElement.parentElement.querySelector('input[name="description"]').value;
+            if (title.length === 0) {
+                title = 'Укажите заголовок';
+            }
+            if (desc.length === 0) {
+                desc = 'Укажите описание';
+            }
+            document.querySelector('.popup-video').appendChild(videos);
+            document.querySelector('.slider__item-title').innerHTML = title;
+            document.querySelector('.slider__item-text').innerHTML = desc;
+
             id_item.value = item.parentElement.querySelector('input[type="hidden"]').value;
             entryDisplay.classList.toggle('display-flex');
             toggleOverflow();
