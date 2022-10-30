@@ -30,6 +30,7 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'Main' => __DIR__ . '/../..' . '/pages/main.php',
         'MessengerController' => __DIR__ . '/../..' . '/controller/MessengerController.php',
         'NewProject' => __DIR__ . '/../..' . '/pages/newProject.php',
+        'PopupController' => __DIR__ . '/../..' . '/controller/PopupController.php',
         'Project' => __DIR__ . '/../..' . '/pages/project.php',
         'Registration' => __DIR__ . '/../..' . '/pages/registration.php',
         'SettingsAccountUser' => __DIR__ . '/../..' . '/pages/settingsAccountUser.php',

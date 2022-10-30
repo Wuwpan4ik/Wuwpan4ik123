@@ -25,6 +25,7 @@ return array(
     'Main' => $baseDir . '/pages/main.php',
     'MessengerController' => $baseDir . '/controller/MessengerController.php',
     'NewProject' => $baseDir . '/pages/newProject.php',
+    'PopupController' => $baseDir . '/controller/PopupController.php',
     'Project' => $baseDir . '/pages/project.php',
     'Registration' => $baseDir . '/pages/registration.php',
     'SettingsAccountUser' => $baseDir . '/pages/settingsAccountUser.php',

@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ccio</title>
     <link rel="stylesheet" href="css/sidebar.css">
+
     <link type="text/css" rel="stylesheet" href="../css/smallPlayer.css">
+
 </head>
-<body>
+<body class="body">
 <div class="smallPlayer _conatiner">
     <div class="smallPlayer__slick-slider">
         <div class="slider__pagination _conatiner-player">
@@ -57,259 +59,42 @@
                     <?php } ?>
                 </div>
                 <?php
+                // popup при клике
                 if (isset($popup->second_do->form) || isset($popup->second_do->pay_form)) {
                     if (isset($popup->second_do->form)) {
                         $form = $popup->second_do->form;
                     } else {
                         $form = $popup->second_do->pay_form;
                     }
-                ?>
-                <div class="overlay-bonus overlay overlay-button">
-                    <div class="popup__bonus  popup popup-button">
-                        <div class="popup__bonus-body">
-                            <?php if (isset($popup->second_do->form)) { ?>
-                            <div class="popup__bonus-title  popup-title">Введите ваш email что бы продолжить просмотр</div>
-                            <div class="popup__bonus-text popup-text"><span> Бонус:</span> получите книгу - Тысяча способов научиться решать проблемы самостоятельно!</div>
-                            <?php } else if (isset($popup->second_do->pay_form)) { ?>
-                                <div class="popup__bonus-title  popup-title">Введите данные и перейдите к оплате, чтобы продолжить просмотр</div>
-                            <?php } ?>
-                            <div class="popup__bonus-form">
-                                <?php foreach ($form as $input) {
-                                    ?>
-                                <div class="popup__bonus-form-input input">
-                                    <div class="popup__bonus-form-input-email input-img">
-                                        <?php
-                                        $value = '';
-                                        if ($input == 'email') {
-                                            $value = 'email';
-                                        } elseif ($input == 'name') {
-                                            $value = 'account';
-                                        } elseif ($input == 'tel') {
-                                            $value = 'phone';
-                                        }?>
-                                        <img src="../img/smallPlayer/<?=$value ?>.svg" alt="">
-                                    </div>
-                                    <input name="<?=$input?>" type="text" placeholder="Ваш <?=$input?>">
-                                </div>
-                                    <?php } ?>
-                                <?php if (isset($popup->second_do->form)) { ?>
-                                <div class="popup__bonus-form-button button-form">
-                                    <button class="button">Получить подарок</button>
-                                </div>
-                                 <?php } else if (isset($popup->second_do->pay_form)) { ?>
-                                <div class="popup__bonus-form-button button-form">
-                                    <button class="button">Оплатить</button>
-                                </div>
-                                <?php } ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>
-            <?php
-            if (isset($popup->first_do->form) || isset($popup->first_do->pay_form)) {
-                if (isset($popup->first_do->form)) {
-                    $form = $popup->first_do->form;
-                } else {
-                    $form = $popup->first_do->pay_form;
+                    // Первое или второе действие
+                    $name = 'button';
+                    $popup__do = $popup->second_do;
+                    include 'template/default/popup__templates/popup__form.php';
+                } ?>
+                <?php
+                if (isset($popup->first_do->form) || isset($popup->first_do->pay_form)) {
+                    if (isset($popup->first_do->form)) {
+                        $form = $popup->first_do->form;
+                    } else {
+                        $form = $popup->first_do->pay_form;
+                    }
+                    // Первое или второе действие
+                    $name = 'video';
+                    $popup__do = $popup->first_do;
+                    include 'template/default/popup__templates/popup__form.php';
                 }
                 ?>
-                <div class="overlay-bonus overlay overlay-video">
-                    <div class="popup__bonus  popup popup-video">
-                        <div class="popup__bonus-body">
-                            <?php if (isset($popup->first_do->form)) { ?>
-                                <div class="popup__bonus-title  popup-title">Введите ваш email что бы продолжить просмотр</div>
-                                <div class="popup__bonus-text popup-text"><span> Бонус:</span> получите книгу - Тысяча способов научиться решать проблемы самостоятельно!</div>
-                            <?php } else if (isset($popup->first_do->pay_form)) { ?>
-                                <div class="popup__bonus-title  popup-title">Введите данные и перейдите к оплате, чтобы продолжить просмотр</div>
-                            <?php } ?>
-                            <div class="popup__bonus-form">
-                                <?php foreach ($form as $input) {
-                                    ?>
-                                    <div class="popup__bonus-form-input input">
-                                        <div class="popup__bonus-form-input-email input-img">
-                                            <?php
-                                            $value = '';
-                                            if ($input == 'email') {
-                                                $value = 'email';
-                                            } elseif ($input == 'name') {
-                                                $value = 'account';
-                                            } elseif ($input == 'tel') {
-                                                $value = 'phone';
-                                            }?>
-                                            <img src="../img/smallPlayer/<?=$value ?>.svg" alt="">
-                                        </div>
-                                        <input name="<?=$input?>" type="text" placeholder="Ваш <?=$input?>">
-                                    </div>
-                                <?php } ?>
-                                <?php if (isset($popup->first_do->form)) { ?>
-                                    <div class="popup__bonus-form-button button-form">
-                                        <button class="button">Получить подарок</button>
-                                    </div>
-                                <?php } else if (isset($popup->first_do->pay_form)) { ?>
-                                    <div class="popup__bonus-form-button button-form">
-                                        <button class="button">Оплатить</button>
-                                    </div>
-                                <?php } ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>
 
-                <?php if (isset($popup->second_do->list)) { ?>
-                    <div class="overlay-allLessons overlay overlay-button">
-                        <div class="popup__allLessons popup popup-button">
-                            <div class="popup__allLessons-body">
-                                <div class="popup__allLessons-title popup-title">Все уроки курса:</div>
-                                <div class="popup__allLessons-text popup-text">Курс состоит из <?=count($content['course_content']); ?> уроков</div>
-                                <div class="popup__allLessons-body">
-                                    <?php $count = 1; foreach ($content['course_content'] as $item) { ?>
-                                    <div class="popup__allLessons-item popup-item">
-                                        <div class="popup__allLessons-item-video">
-                                            <div class="popup__allLessons-item-video-play">
-                                                <img src="../img/smallPlayer/play.png" alt="">
-                                            </div>
-                                            <img src="../img/smallPlayer/Group1426.png" alt="">
-                                        </div>
-                                        <div class="popup__allLessons-item-info">
-                                            <div class="popup__allLessons-item-info-header">
-                                                <div class="popup__allLessons-item-info-header-number">
-                                                    0<?=$count ?>
-                                                </div>
-<!--                                                <div class="popup__allLessons-item-info-header-time">-->
-<!--                                                    22 минуты-->
-<!--                                                </div>-->
-                                            </div>
-                                            <div class="popup__allLessons-item-info-title">
-                                                <?=$item['name']?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php $count += 1; } ?>
-                                </div>
-                            </div>
-                            <div class="popup__allLessons-form">
-                                <div class="popup__allLessons-form-buy button-open">
-                                    <button class="button button-buy">Купить весь курс за <?php print_r($content['course_sum']) ?> руб.</button>
-                                </div>
-                                <div class="popup__allLessons-form-notBuy">
-                                    <button class="button button-notBuy">Пока не хочу покупать</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <? } ?>
-                <?php if (isset($popup->first_do->list)) { ?>
-                    <div class="overlay-allLessons overlay overlay-video">
-                        <div class="popup__allLessons popup popup-video">
-                            <div class="popup__allLessons-body">
-                                <div class="popup__allLessons-title popup-title">Все уроки курса:</div>
-                                <div class="popup__allLessons-text popup-text">Курс состоит из <?=count($content['course_content']); ?> уроков</div>
-                                <div class="popup__allLessons-body">
-                                    <?php $count = 1; foreach ($content['course_content'] as $item) { ?>
-                                        <div class="popup__allLessons-item popup-item">
-                                            <div class="popup__allLessons-item-video">
-                                                <div class="popup__allLessons-item-video-play">
-                                                    <img src="../img/smallPlayer/play.png" alt="">
-                                                </div>
-                                                <img src="../img/smallPlayer/Group1426.png" alt="">
-                                            </div>
-                                            <div class="popup__allLessons-item-info">
-                                                <div class="popup__allLessons-item-info-header">
-                                                    <div class="popup__allLessons-item-info-header-number">
-                                                        0<?=$count ?>
-                                                    </div>
-                                                    <!--                                                <div class="popup__allLessons-item-info-header-time">-->
-                                                    <!--                                                    22 минуты-->
-                                                    <!--                                                </div>-->
-                                                </div>
-                                                <div class="popup__allLessons-item-info-title">
-                                                    <?=$item['name']?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <?php $count += 1; } ?>
-                                </div>
-                            </div>
-                            <div class="popup__allLessons-form">
-                                <div class="popup__allLessons-form-buy button-open">
-                                    <button class="button button-buy">Купить весь курс за <?php print_r($content['course_sum']) ?> руб.</button>
-                                </div>
-                                <div class="popup__allLessons-form-notBuy">
-                                    <button class="button button-notBuy">Пока не хочу покупать</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <? } ?>
+                <?php if (isset($popup->second_do->list)) {
+                    include 'template/default/popup__templates/popup__all-lessons.php'; }
+                ?>
+                <?php if (isset($popup->first_do->list)) {
+                    include 'template/default/popup__templates/popup__all-lessons.php'; }
+                ?>
             </div>
             <? } ?>
         </div>
-        <div class="popup__buy popup">
-            <div class="popup__buy-body">
-                <div class="popup__buy-title popup-title">Вы выбрали:</div>
-                <div class="popup__buy-body">
-                    <div class="popup__buy-item popup-item">
-                        <div class="popup__allLessons-item-video">
-                            <div class="popup__allLessons-item-video-play">
-                                <img src="../img/smallPlayer/play.png" alt="">
-                            </div>
-                            <img src="../img/smallPlayer/Group1426.png" alt="">
-                        </div>
-                        <div class="popup__allLessons-item-info">
-                            <div class="popup__allLessons-item-info-header">
-                                <div class="popup__allLessons-item-info-header-number">
-                                    01
-                                </div>
-                                <div class="popup__allLessons-item-info-header-time">
-                                    22 минуты
-                                </div>
-                            </div>
-                            <div class="popup__allLessons-item-info-title">
-                                Управление гневом внутри себя
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="popup__buy-price">
-                    <div class="popup__buy-price-title">
-                        Стоимость урока:
-                    </div><div class="popup__buy-price-cost">
-                        250 руб.
-                    </div>
-                </div>
-                <div class="popup__buy-register">
-                    <div class="popup__buy-body-form input">
-                        <div class="popup__bonus-form-input-account input-img">
-                            <img src="../img/smallPlayer/account.svg" alt="">
-                        </div>
-                        <input type="text" placeholder="Ваше имя">
-                    </div>
-                    <div class="popup__buy-body-form  input">
-                        <div class="popup__bonus-form-input-email input-img">
-                            <img src="../img/smallPlayer/email.svg" alt="">
-                        </div>
-                        <input type="text" placeholder="Ваш email">
-                    </div>
-                    <div class="popup__buy-body-form  input">
-                        <div class="popup__bonus-form-input-phone input-img">
-                            <img src="../img/smallPlayer/phone.svg" alt="">
-                        </div>
-                        <input type="text" placeholder="Ваш телефон">
-                    </div>
-                </div>
-
-                <div class="popup__buy-form-buy-button">
-                    <div class="popup__buy-form-buy button-form">
-                        <button class="button button-back">Назад</button>
-                    </div>
-                    <div class="popup__buy-form-back button-form">
-                        <button class="button">Перейти к оплате</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php include 'template/default/popup__templates/popup__buy.php' ?>
     </div>
 </div>
 
