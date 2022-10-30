@@ -15,9 +15,15 @@ let count_second_select = 3;
 const names_option = {'email': "Email", 'name': "Имя", 'tel': "Телефон"};
 
 function addPopup(input, button = false) {
-    document.querySelector('.test__block').remove();
-    if (input === 'link') {
+    if (input === 'list') {
+        if (document.querySelector('.test__block')) document.querySelector('.test__block').remove();
+
         let request = new XMLHttpRequest();
+
+        let class_name = 'video';
+        if (button) {
+            class_name = 'button';
+        }
 
         let url = "?option=PopupController&method=get_popup&category=" + input + "&id=" + new URL(window.location.href).searchParams.get("id");
         let funnel_id = document.querySelector('#id_item').value;
@@ -29,6 +35,7 @@ function addPopup(input, button = false) {
             if (request.readyState === 4 && request.status === 200) {
                 var html = document.createElement('div');
                 html.classList.add('test__block');
+                html.classList.add('test__block-' + class_name);
                 html.innerHTML = request.responseText;
                 document.querySelector('.slider__video').after(html);
             }
@@ -39,8 +46,10 @@ function addPopup(input, button = false) {
         if (button) {
             class_name = 'button';
         }
+        if (document.querySelector('.test__block-' + class_name)) document.querySelector('.test__block').remove()
         var html = document.createElement('div');
         html.classList.add('test__block');
+        html.classList.add('test__block-' + class_name);
         let div = `<div class="overlay-bonus overlay overlay-`+ class_name +`">
                                 <div class="popup__bonus  popup popup-`+ class_name +`">
                                     <div class="popup__bonus-body">`;
@@ -52,8 +61,13 @@ function addPopup(input, button = false) {
             div += `<div class="popup__bonus-title  popup-title">Введите данные и перейдите к оплате, чтобы продолжить
                 просмотр</div> <div class="popup__bonus-form">`
         }
-
-        document.querySelector('#popup__body-form-1').querySelectorAll('.form_id').forEach((elem) => {
+        let form_inputs = '';
+        if (class_name === 'video') {
+            form_inputs = document.querySelector('#popup__body-form-1').querySelectorAll('.form_id');
+        } else {
+            form_inputs = document.querySelector('#popup__body-form-2').querySelectorAll('.form_id');
+        }
+        form_inputs.forEach((elem) => {
             div += `<div class="popup__bonus-form-input input">
                                     <div class="popup__bonus-form-input-email input-img">
                                         <img src="../img/smallPlayer/`+ elem.value +`.svg" alt="">
@@ -184,9 +198,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     first_select.addEventListener('change', function () {
-        if ('list'.includes(first_select.value)) {
+        if (['list'].includes(first_select.value)) {
             console.log('list')
-            getPopup('list');
+            addPopup('list');
         }
 
         if (!['form', 'pay_form', 'link'].includes(first_select.value)) {
@@ -210,6 +224,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     second_select.addEventListener('change', function () {
+        if (['list'].includes(second_select.value)) {
+            console.log('list')
+            addPopup('list', true);
+        }
+
         if (!['form', 'pay_form', 'link'].includes(second_select.value)) {
             document.querySelector('#popup__body-form-2').style.display = 'none';
             second_select.parentElement.querySelectorAll('.link_item').forEach((elem) => {

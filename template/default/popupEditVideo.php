@@ -45,7 +45,6 @@
                             <button class="button button-video">Клик</button>
                         </div>
                     </div>
-                    <div class="test__block"></div>
                 </div>
             </div>
             <div class="popup__body-block">

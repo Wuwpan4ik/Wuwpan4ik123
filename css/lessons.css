@@ -385,14 +385,17 @@ input:checked + label {
 /*----------------------------------------*/
 .slider__header{
     position: absolute;
-    top: 11%;
-    left: 5%;
-    width: 100%;
+    top: 12%;
+    left: 0;
+    right: 0;
     display: flex;
+    justify-content: space-between;
+    width: 100%;
     align-items: center;
     color: #fff;
     z-index: 11;
 }
+
 .slider__header-logo{
     display: flex;
     align-items: center;
@@ -402,8 +405,9 @@ input:checked + label {
     font-weight: 700;
     font-size: 12px;
 }
-
-
+.slider__header-views{
+    display: flex;
+}
 .slider__header-views-count{
     margin: 0 0 0 5px;
     font-size: 12px;

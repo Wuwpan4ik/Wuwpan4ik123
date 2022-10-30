@@ -78,9 +78,7 @@
 
                     <?php include 'default/media-cart.php'?>
 
-                <?}
-
-                ?>
+                <?}?>
 
                 <?php include 'default/add_new_video.php'?>
 
