@@ -34,7 +34,9 @@
 
             <div class="feed-menu">
 
-                <a href="?option=Project"><button class="back_button"><img class="ico" src="img/StickLeft.svg"></button></a>
+                <a class="button__back" href="?option=Funnel">
+                    <img src="/img/ArrowLeft.svg" alt="">
+                </a>
 
                 <form action="?option=DirectoryController&method=setName&id=<?=$content[0][0]['id']?>&folder=funnel" method="POST" id="insert">
 
