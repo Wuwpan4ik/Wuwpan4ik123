@@ -1,10 +1,12 @@
-@media (max-width: 414px){
+@media (min-width: 320px){
     /*UserLogin*/
+
     ._container{
         max-width: 370px;
         margin: 0 auto;
     }
     .userLogin, .UserPasswordRecovery{
+
         height: 100vh;
         display: flex;
         flex-direction: column;

@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'ACore' => $baseDir . '/controller/Acore.php',
     'ACoreAdmin' => $baseDir . '/controller/ACoreAdmin.php',
+    'AboutTheAuthor' => $baseDir . '/pages/aboutTheAuthor.php',
     'Account' => $baseDir . '/pages/account.php',
     'AccountController' => $baseDir . '/controller/AccountController.php',
     'AnalController' => $baseDir . '/controller/AnalController.php',
@@ -26,11 +27,15 @@ return array(
     'NewProject' => $baseDir . '/pages/newProject.php',
     'Project' => $baseDir . '/pages/project.php',
     'Registration' => $baseDir . '/pages/registration.php',
+    'SettingsAccountUser' => $baseDir . '/pages/settingsAccountUser.php',
     'SmallPlayer' => $baseDir . '/pages/smallPlayer.php',
     'SortController' => $baseDir . '/controller/SortController.php',
     'UrlController' => $baseDir . '/controller/UrlController.php',
+    'UserContacts' => $baseDir . '/pages/userContacts.php',
     'UserLogin' => $baseDir . '/pages/userLogin.php',
+    'UserMain' => $baseDir . '/pages/UserMain.php',
     'UserMenu' => $baseDir . '/pages/UserMenu.php',
+    'UserNotifications' => $baseDir . '/pages/userNotifications.php',
     'UserPasswordRecovery' => $baseDir . '/pages/userPasswordRecovery.php',
     'VideoController' => $baseDir . '/controller/VideoController.php',
 );
