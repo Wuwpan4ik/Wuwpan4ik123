@@ -1,5 +1,5 @@
-<div class="overlay-allLessons overlay overlay-button">
-    <div class="popup__allLessons popup popup-button">
+<div class="overlay-allLessons overlay overlay-video">
+    <div class="popup__allLessons popup popup-button popup-video">
         <div class="popup__allLessons-body">
             <div class="popup__allLessons-title popup-title">Все уроки курса:</div>
             <div class="popup__allLessons-text popup-text">Курс состоит из <?=count($content['course_content']); ?> уроков</div>
@@ -17,9 +17,6 @@
                                 <div class="popup__allLessons-item-info-header-number">
                                     0<?=$count ?>
                                 </div>
-                                <!--                                                <div class="popup__allLessons-item-info-header-time">-->
-                                <!--                                                    22 минуты-->
-                                <!--                                                </div>-->
                             </div>
                             <div class="popup__allLessons-item-info-title">
                                 <?=$item['name']?>

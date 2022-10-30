@@ -402,12 +402,8 @@ input:checked + label {
     font-weight: 700;
     font-size: 12px;
 }
-.slider__header-views{
-    position: absolute;
-    right: 0;
-    display: flex;
-    align-items: center;
-}
+
+
 .slider__header-views-count{
     margin: 0 0 0 5px;
     font-size: 12px;

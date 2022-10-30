@@ -55,6 +55,10 @@ class VideoController extends ACore
         $first_do = $_POST['first_do'];
         $second_do = $_POST['second_do'];
         $button_text = $_POST['button_text'];
+//      Проверка ддлины
+        if (strlen($button_text) == 0) {
+            $button_text = null;
+        }
         switch ($_POST['first_do']) {
             case "pay_form":
             case "form": {
@@ -107,17 +111,17 @@ class VideoController extends ACore
                 }
                 case "link": {
                     if (isset($_POST['link-2'])) {
-                        $videoBtnHTML['button_click']['link'] = $_POST['link-2'];
+                        $videoBtnHTML['second_do']['link'] = $_POST['link-2'];
                     }
                     break;
                 }
                 case 'list':
                 {
-                    $videoBtnHTML['button_click']['list'] = true;
+                    $videoBtnHTML['second_do']['list'] = true;
                     break;
                 }
                 case 'next_lesson': {
-                    $videoBtnHTML['button_click']['next_lesson'] = true;
+                    $videoBtnHTML['second_do']['next_lesson'] = true;
                     break;
                 }
             }

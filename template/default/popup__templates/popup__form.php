@@ -28,11 +28,11 @@
                 <?php } ?>
                 <?php if (isset($popup__do->form)) { ?>
                     <div class="popup__bonus-form-button button-form">
-                        <button class="button <? if ($name == 'video') {echo 'next-lesson';} ?>">Получить подарок</button>
+                        <button class="button next-lesson ">Получить подарок</button>
                     </div>
                 <?php } else if (isset($popup__do->pay_form)) { ?>
                     <div class="popup__bonus-form-button button-form">
-                        <button class="button <? if ($name == 'video') {echo 'next-lesson';} ?>">Оплатить</button>
+                        <button class="button next-lesson">Оплатить</button>
                     </div>
                 <?php } ?>
             </div>

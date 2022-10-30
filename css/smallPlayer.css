@@ -1,4 +1,4 @@
-body{
+.body{
     background: rgba(0, 0, 0, 0.8);
     margin: 0;
 }
@@ -129,9 +129,12 @@ body{
 .slider__header{
     position: absolute;
     top: 9%;
-    left: 10%;
-    width: 100%;
+    left: 0;
+    right: 0;
     display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 20px;
     align-items: center;
     color: #fff;
     z-index: 11;
@@ -145,12 +148,11 @@ body{
     font-weight: 700;
     font-size: 20px;
 }
-.slider__header-views{
-    position: absolute;
-    right: 0;
+
+.slider__header-views {
     display: flex;
-    align-items: center;
 }
+
 .slider__header-views-count{
     margin: 0 0 0 5px;
     font-size: 12px;
