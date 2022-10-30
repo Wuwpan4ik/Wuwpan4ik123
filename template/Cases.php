@@ -13,19 +13,12 @@
         <div class="Cases ">
             <?php include 'default/sidebar.php';?>
             <div class="feed">
-                <div class="feed-header">
-                    <div class="header__arrow">
-                        <a class="button__back" href="?option=Main">
-                             <img src="/img/ArrowLeft.svg" alt="">
-                        </a>
 
-                        <h2>Доступные проекты</h2>
-                    </div>
-                    <div class="buttonsFeed">
-                        <button class="ico_button button-bell"><img class="ico" src="img/Bell.svg">  <div id="msg">5</div></button>
-                        <button id="apps" class="ico_button">Заявки</button>
-                    </div>
-                </div>
+                <?php
+                $title = "Кейсы";
+                include ('default/header.php');
+                ?>
+
                 <div class="Case _container">
                     <div class="cart inst">
                         <div class="service-price">

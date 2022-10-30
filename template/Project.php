@@ -27,24 +27,11 @@
 
             <div class="feed">
 
-                <div class="feed-header">
-                    <div class="feed-header__title">
-                        <a class="button__back" href="?option=Main">
-                            <img src="/img/ArrowLeft.svg" alt="">
-                        </a>
+                <?php
+                $title = "Мои проекты";
+                include ('default/header.php');
+                ?>
 
-                        <h2>Мои проекты</h2>
-                    </div>
-
-                    <div class="buttonsFeed">
-
-                        <button class="ico_button button-bell"><img class="ico" src="img/Bell.svg">  <div id="msg">5</div></button>
-
-                        <button id="apps" class="ico_button">Заявки</button>
-
-                    </div>
-
-                </div>
                 <div class="Lessons">
                     <div class="_container">
                         <div class="media">

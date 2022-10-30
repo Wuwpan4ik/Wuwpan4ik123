@@ -30,19 +30,13 @@
 
     <div class="feed">
 
-        <div class="feed-header">
+        <?php
+        $title = "Ключевые показатели";
+        include ('default/header.php');
+        ?>
 
-            <h2>Ключевые показатели</h2>
-
-            <div class="buttonsFeed">
-                <button class="ico_button button-bell"><img class="ico" src="img/Bell.svg">  <div id="msg">5</div></button>
-
-                <button id="apps" class="ico_button">Заявки</button>
-
-            </div>
-
-        </div>
         <div class="_container">
+
         <div class="index ">
 
             <div class="header">

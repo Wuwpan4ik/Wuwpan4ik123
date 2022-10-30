@@ -7,7 +7,7 @@
             if (count($this->db->db->query("SELECT * FROM user WHERE email = '$email'")) != 0) {
                 $_SESSION['error']['email_message'] = 'Почта либо занята, либо это ваша';
             }
-            if (preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$_POST['name'])) {
+            if (preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$name)) {
                 $_SESSION['error']['first_name_message'] = 'Имя содержит запрещенные знаки';
             }
         }
@@ -61,11 +61,6 @@
                 $_SESSION['error']['registration_message'] = "На этот адрес электронной почты уже был зарегистрирован аккаунт";
                 return false;
             }
-            print_r($first_name);
-            print_r($gender);
-            print_r($niche);
-            print_r($email);
-            print_r($password);
 
             $this->validate_data($email, $first_name);
             if (isset($_SESSION['email_message']) || isset($_SESSION['first_name_message'])) return False;

@@ -27,18 +27,11 @@
 
     <div class="feed">
 
-        <div class="feed-header">
-
-            <h2>Мои курсы</h2>
-
-            <div class="buttonsFeed">
-                <button class="ico_button button-bell"><img class="ico" src="img/Bell.svg">  <div id="msg">5</div></button>
-
-                <button id="apps" class="ico_button">Заявки</button>
-
-            </div>
-
-        </div>
+        <?php
+        $title = "Мои курсы";
+        $back = "Project";
+        include ('default/header.php');
+        ?>
 
         <div class="Lessons">
 

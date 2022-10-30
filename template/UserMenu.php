@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="css/sidebar.css">
 
 
-
 </head>
 
 <body class="body">

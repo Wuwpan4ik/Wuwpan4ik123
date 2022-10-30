@@ -28,18 +28,11 @@
 
     <div class="feed">
 
-        <div class="feed-header">
-
-            <h2>Мои воронки</h2>
-
-            <div class="buttonsFeed">
-                <button class="ico_button button-bell"><img class="ico" src="img/Bell.svg">  <div id="msg">5</div></button>
-
-                <button id="apps" class="ico_button">Заявки</button>
-
-            </div>
-
-        </div>
+        <?php
+        $title = "Мои воронки";
+        $back = "Project";
+        include ('default/header.php');
+        ?>
 
         <div class="Lessons ">
 
@@ -121,14 +114,15 @@
                             <button class="copy-button" onclick="copy_link(this)" type="submit">Копировать</button>
 
                         </div>
-                        <form action="?option=VideoController&method=selectCourse&id=<?=$p['id']?>">
-                            <select name="course_id">
+                        <form action="?option=VideoController&method=selectCourse" method="POST">
+                            <input type="text" name="id" hidden="hidden" value="<?=$p['id']?>">
+                            <select name="course_id" class="select__course">
                                 <?php
                                 foreach ($content[1] as $course) { ?>
-                                    <option value="<?=$course['id']?>"><?=$course['name']?> <?=$course['id']?></option>
+                                    <option <?php if ($p['course_id'] == $course['id']) echo "selected";?> value="<?=$course['id']?>"><?=$course['name']?> <?=$course['id']?></option>
                                 <?php } ?>
                             </select>
-                            <button class="copy-button" type="submit">Сохранить</button>
+                            <button class="copy-button" type="submit" style="width: 100%; padding: 10px 0; font-size: 20px;">Выбрать</button>
                         </form>
 
                         <div class="btn-delete-edit">
@@ -226,6 +220,10 @@
             entryDisplay.classList.remove('display-block');
         }
     }
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+    });
 </script>
 </body>
 
