@@ -17,6 +17,9 @@
 
     <link rel="stylesheet" href="css/main.css">
 
+    <link rel="stylesheet" href="css/smallPlayer.css">
+
+
 </head>
 
 <body>
@@ -75,9 +78,7 @@
 
                     <?php include 'default/media-cart.php'?>
 
-                <?}
-
-                ?>
+                <?}?>
 
                 <?php include 'default/add_new_video.php'?>
 
@@ -90,7 +91,7 @@
 </div>
 
 <?php include 'default/popupEditVideo.php';?>
-<script src="../js/button__settings.js"></script>
+<script type="text/javascript" src="../js/button__settings.js"></script>
 <script>
     function _(abc) {
         return document.getElementById(abc);

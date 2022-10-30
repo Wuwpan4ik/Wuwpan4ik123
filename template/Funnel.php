@@ -221,8 +221,13 @@
         }
     }
 
+    // Удаление лишних пагинаций в слайдерах
     document.addEventListener("DOMContentLoaded", function () {
-
+        document.querySelectorAll('.smallPlayer__slick-slider').forEach((elem) => {
+            if (elem.querySelectorAll('.slider__item').length === 0) {
+                elem.removeChild(elem.querySelector('.slider__pagination'));
+            }
+        })
     });
 </script>
 </body>

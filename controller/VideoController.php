@@ -18,6 +18,7 @@ class VideoController extends ACore
             $res = $this->m->db->query("SELECT * FROM course WHERE id = '$uid' ORDER BY `id` DESC LIMIT 1");
             $count_video = count($this->m->db->query("SELECT * FROM course_content WHERE course_id = '$uid'")) + 1;
         }
+
         if (!$this->isUser($res[0]['author_id'])) return False;
 
         move_uploaded_file($_FILES['video_uploader']['tmp_name'], "./uploads/$folder/".$uid."_".$res[0]['name']."/".$_FILES['video_uploader']['name']);
@@ -29,6 +30,7 @@ class VideoController extends ACore
         } elseif ($folder == 'course') {
             $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `query_id`) VALUES (".$res[0]['id'].",'Укажите заголовок','Укажите описание', '$path', '$count_video')");
         }
+
         return true;
     }
 
@@ -53,6 +55,10 @@ class VideoController extends ACore
         $first_do = $_POST['first_do'];
         $second_do = $_POST['second_do'];
         $button_text = $_POST['button_text'];
+//      Проверка ддлины
+        if (strlen($button_text) == 0) {
+            $button_text = null;
+        }
         switch ($_POST['first_do']) {
             case "pay_form":
             case "form": {
@@ -105,17 +111,17 @@ class VideoController extends ACore
                 }
                 case "link": {
                     if (isset($_POST['link-2'])) {
-                        $videoBtnHTML['button_click']['link'] = $_POST['link-2'];
+                        $videoBtnHTML['second_do']['link'] = $_POST['link-2'];
                     }
                     break;
                 }
                 case 'list':
                 {
-                    $videoBtnHTML['button_click']['list'] = true;
+                    $videoBtnHTML['second_do']['list'] = true;
                     break;
                 }
                 case 'next_lesson': {
-                    $videoBtnHTML['button_click']['next_lesson'] = true;
+                    $videoBtnHTML['second_do']['next_lesson'] = true;
                     break;
                 }
             }

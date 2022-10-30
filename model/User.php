@@ -102,5 +102,41 @@
             return ['funnel_content' => $funnel_content, 'course_content' => $course_content, 'course_sum' => $course_sum[0]['price']];
 
         }
+
+        public function getPopupForPreloader($id)
+        {
+            $funnel_content = $this->db->query("SELECT  
+                                                course.id,
+                                                course.name,
+                                                course.description,
+                                                course.price,
+                                                content.name AS 'content_name',
+                                                content.description AS 'content_description',
+                                                content.popup,
+                                                content.video,
+                                                content.button_text,
+                                                user_info.avatar,
+                                                user_info.first_name
+                                                FROM `course` AS course
+                                                INNER JOIN `funnel` AS funnel ON course.id = funnel.course_id AND funnel.id = '$id'
+                                                INNER JOIN `user` AS user_info ON funnel.author_id = user_info.id
+                                                INNER JOIN `funnel_content` AS content ON content.funnel_id = funnel.id GROUP BY content.id");
+            $course_content = $this->db->query("SELECT course_content.name,
+                                                course_content.description,
+                                                course_content.video,
+                                                course_content.price 
+                                                FROM `funnel` AS funnel
+                                                INNER JOIN `course_content` AS course_content ON course_content.course_id = funnel.course_id AND funnel.id = '$id'");
+            $course_sum = $this->db->query("SELECT
+                                                course.price
+                                                FROM `course` AS course
+                                                INNER JOIN `funnel` AS funnel ON funnel.course_id = course.id AND funnel.id = '$id'");
+            return ['funnel_content' => $funnel_content, 'course_content' => $course_content, 'course_sum' => $course_sum[0]['price']];
+        }
+
+        public function getPopupJson($id) {
+            $json = $this->db->query("SELECT * FROM `funnel_content` WHERE `id` = '$id'");
+            return $json;
+        }
     }
 ?>
