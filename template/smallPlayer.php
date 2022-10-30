@@ -25,7 +25,7 @@
                     </video>
                 </div>
                 <div class="slider__header _conatiner-player ">
-                    <div class="s\">
+                    <div class="slider__header-logo">
                         <div class="slider__header-logo-img">
                             <img width="48  px" src="<?=$item['avatar']?>" alt="">
                         </div>
@@ -237,7 +237,7 @@
                                     <button class="button button-buy">Купить весь курс за <?php print_r($content['course_sum']) ?> руб.</button>
                                 </div>
                                 <div class="popup__allLessons-form-notBuy">
-                                    <button class="button button-notBuy ">Пока не хочу покупать</button>
+                                    <button class="button button-notBuy">Пока не хочу покупать</button>
                                 </div>
                             </div>
                         </div>
