@@ -199,11 +199,12 @@
     bottom: -70%;
     width: 100%;
     border-radius: 30px 30px 0 0;
-
+    max-height: 80%;
     text-align: center;
     background-color: #fff;
     opacity: 0;
     transition: 0.6s;
+    overflow: hidden;
 }
 .popup.active{
     bottom: 0;
@@ -248,9 +249,6 @@
     margin: 16px 0 20px 0;
 }
 /*----------------------------------------*/
-.popup__allLessons{
-    max-height: 782px;
-}
 .popup__allLessons-form{
     position: absolute;
     bottom: 0;

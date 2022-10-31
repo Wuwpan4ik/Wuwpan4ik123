@@ -13,8 +13,6 @@
                                     <img src="../img/smallPlayer/play.png" alt="">
                                 </div>
                             </div>
-
-
                         </div>
                         <div class="popup__allLessons-item-info">
                             <div class="popup__allLessons-item-info-header">
