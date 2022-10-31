@@ -15,14 +15,16 @@
         <div class="slider__pagination _conatiner-player">
             <div class="slick-dots"></div>
         </div>
+        <?php if (!empty($content['course_content'])) { ?>
         <div class="slider">
 
-            <?php foreach ($content['funnel_content'] as $item) {
+            <?php
+                foreach ($content['funnel_content'] as $item) {
                 $popup = json_decode($item['popup']);
             ?>
             <div class="slider__item ">
                 <div class="slider__video">
-                    <video id="123" class="slider__video-item" autoplay="autoplay">
+                    <video id="123" class="slider__video-item">
                     <source class="video" src=".<?=$item['video']?>" />
                     </video>
                 </div>
@@ -92,11 +94,18 @@
                     include 'template/default/popup__templates/popup__all-lessons.php'; }
                 ?>
             </div>
-            <? } ?>
+            <?php } ?>
         </div>
-        <?php include 'template/default/popup__templates/popup__buy.php' ?>
+        <?php }?>
+        <?php if (isset($popup->second_do->list) || isset($popup->first_do->list)) {
+        include 'template/default/popup__templates/popup__buy.php';
+        } ?>
     </div>
 </div>
+
+<?php if (empty($content['course_content'])) { ?>
+    <h1 style="font-size: 34px; color: white; display:flex; justify-content: center">Вы не добавили курс, к которому будет принадлежать воронка!</h1>
+<?php } ?>
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
 <script src="../js/script.js" ></script>
