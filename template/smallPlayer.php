@@ -10,7 +10,7 @@
 
 </head>
 <body class="body">
-<div class="smallPlayer">
+<div class="smallPlayer _conatiner">
     <div class="smallPlayer__slick-slider">
         <div class="slider__pagination _conatiner-player">
             <div class="slick-dots"></div>
@@ -20,7 +20,7 @@
             <?php foreach ($content['funnel_content'] as $item) {
                 $popup = json_decode($item['popup']);
             ?>
-            <div class="smallPlayer slider__item ">
+            <div class="slider__item ">
                 <div class="slider__video">
                     <video id="123" class="slider__video-item" autoplay="autoplay">
                     <source class="video" src=".<?=$item['video']?>" />
