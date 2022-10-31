@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="media-cart__controller-delete">
-            <button><img src="/img/Delete.svg" alt=""></button>
+            <a href="?option=VideoController&method=Delete&item_id=<?=$v['id']?>&folder=<? if ($_GET['option'] == "CourseEdit") {echo 'course';} else {echo 'funnel';}?>"><img src="/img/Delete.svg" alt=""></a>
         </div>
     </div>
     <video id="123" class="media-cart-img" style="object-fit: cover;">

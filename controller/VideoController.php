@@ -21,9 +21,9 @@ class VideoController extends ACore
 
         if (!$this->isUser($res[0]['author_id'])) return False;
 
-        move_uploaded_file($_FILES['video_uploader']['tmp_name'], "./uploads/$folder/".$uid."_".$res[0]['name']."/".$_FILES['video_uploader']['name']);
+        move_uploaded_file($_FILES['video_uploader']['tmp_name'], "./uploads/$folder/".$uid."_".$res[0]['name']."/$count_video"."_".$_FILES['video_uploader']['name']);
 
-        $path = "./uploads/$folder/$uid"."_".$res[0]['name']."/".$_FILES['video_uploader']['name'];
+        $path = "./uploads/$folder/$uid"."_".$res[0]['name']."/$count_video"."_".$_FILES['video_uploader']['name'];
 
         if ($folder == 'funnel') {
             $this->m->db->execute("INSERT INTO funnel_content (`funnel_id`, `name`, `description`, `video`, `query_id`) VALUES (".$res[0]['id'].",'Укажите заголовок','Укажите описание', '$path', '$count_video')");
@@ -32,6 +32,25 @@ class VideoController extends ACore
         }
 
         return true;
+    }
+
+    public function Delete()
+    {
+        $item_id = $_GET['item_id'];
+        $folder = $_GET['folder'];
+        if ($folder == 'funnel') {
+            $path_in_files = $this->m->db->query("SELECT `video` FROM `funnel_content` WHERE id = '$item_id'");
+            $author_id = $this->m->db->query("SELECT funnel.author_id FROM `funnel_content` AS content INNER JOIN `funnel` AS funnel ON funnel.id = content.course_id");
+//            if (!$this->isUser($author_id)) return False;
+            $this->m->db->execute("DELETE FROM `funnel_content` WHERE `id` = '$item_id'");
+        } else {
+            $path_in_files = $this->m->db->query("SELECT `video` FROM `course_content` WHERE id = '$item_id'");
+            $author_id = $this->m->db->query("SELECT course.author_id FROM `course_content` AS content INNER JOIN `course` AS course ON course.id = content.course_id");
+//            if (!$this->isUser($author_id)) return False;
+            $this->m->db->execute("DELETE FROM `course_content` WHERE `id` = '$item_id'");
+        }
+        unlink($path_in_files[0]['video']);
+        return True;
     }
 
     public function renameVideo() {

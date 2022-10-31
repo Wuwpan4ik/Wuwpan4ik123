@@ -55,18 +55,20 @@ function addPopup(input, button = false) {
                                     <div class="popup__bonus-body">`;
 
         if (input === 'form') {
-            div += `<div class="popup__bonus-title  popup-title">Введите ваш email что бы продолжить просмотр</div>
+                div += `<div class="popup__bonus-title  popup-title">Введите ваш email что бы продолжить просмотр</div>
                                 <div class="popup__bonus-text popup-text"><span> Бонус:</span> получите книгу - Тысяча способов научиться решать проблемы самостоятельно!</div>`;
         } else {
             div += `<div class="popup__bonus-title  popup-title">Введите данные и перейдите к оплате, чтобы продолжить
                 просмотр</div> <div class="popup__bonus-form">`
         }
         let form_inputs = '';
+
         if (class_name === 'video') {
             form_inputs = document.querySelector('#popup__body-form-1').querySelectorAll('.form_id');
         } else {
             form_inputs = document.querySelector('#popup__body-form-2').querySelectorAll('.form_id');
         }
+
         form_inputs.forEach((elem) => {
             div += `<div class="popup__bonus-form-input input">
                                     <div class="popup__bonus-form-input-email input-img">
