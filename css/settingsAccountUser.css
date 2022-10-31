@@ -54,6 +54,7 @@
         margin: 34px 0 0 0;
         background-color: #fff;
         color: #000;
+        overflow: auto;
     }
     .userPopup__title{
         font-weight: 900;

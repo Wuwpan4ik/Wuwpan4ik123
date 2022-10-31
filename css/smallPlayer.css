@@ -2,8 +2,8 @@
     background: rgba(0, 0, 0, 0.8);
     margin: 0;
 }
-._conatiner{
-    max-width: 500px;
+.smallPlayer{
+    width: 500px;
     height: 100%;
     overflow: hidden;
     margin: 0 auto;
@@ -75,9 +75,11 @@
     background: linear-gradient(to right, lightgrey 100%, blue 0%);
     opacity: 1;
 }
+.smallPlayer.slider__item{
+    height: 100vh;
+}
 .slider__item {
     position: relative;
-    height: 100vh;
 }
 .slider__item img {
     max-width: 100%;
@@ -195,9 +197,9 @@
 .popup{
     position: absolute;
     bottom: -70%;
-    width: 89.7%;
+    width: 100%;
     border-radius: 30px 30px 0 0;
-    padding: 0 25px;
+
     text-align: center;
     background-color: #fff;
     opacity: 0;
@@ -208,12 +210,14 @@
     opacity: 1;
 }
 .popup-title{
+    color: black;
     margin: 20px 0 0 0;
     font-weight: 900;
     font-size: 30px;
     line-height: 109.5%;
 }
 .popup-text{
+    color: rgba(0, 0, 0, 0.6);
     margin: 12px 0 0 0;
     padding: 0 50px;
     font-weight: 600;
@@ -270,7 +274,7 @@
     max-height: 760px;
     display: flex;
     flex-direction: column;
-    margin: 10px 0 30px 0;
+    margin: 10px 0 80px 0;
     overflow: auto;
 }
 .popup__allLessons-body::-webkit-scrollbar {
@@ -280,14 +284,21 @@
 .popup-item{
     display: flex;
     align-items: center;
+    justify-content: center;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
     padding: 10px 0 0 0;
     margin: 5px 0 0 0;
 }
+.popup__allLessons-item{
+    display: flex;
+    width: 100%;
+}
 .popup__allLessons-item-video{
-    width: 50%;
-    position: relative;
+    width: 40%;
     border-radius: 20px;
+}
+.popup__allLessons-item-video__img{
+   position: relative;
 }
 .popup__allLessons-text{
     font-weight: 300;
@@ -296,8 +307,9 @@
 }
 .popup__allLessons-item-video-play{
     position: absolute;
-    top: 30%;
-    left: 40%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 40px;
     height: 40px;
     display: flex;
@@ -309,7 +321,7 @@
     backdrop-filter: blur(10px);
 }
 .popup__allLessons-item-info{
-    width: 50%;
+    width: 40%;
     text-align: left;
 }
 .popup__allLessons-item-info-header{
@@ -317,18 +329,19 @@
     align-items: center;
 }
 .popup__allLessons-item-info-header-number{
-    width: 14px;
+    width: 20px;
     height: 20px;
     display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
-    padding: 0 0 0 6px;
     font-weight: 300;
     font-size: 10px;
-    align-items: center;
     text-align: center;
     color: rgba(255, 255, 255, 0.6);
     background: #444444;
 }
+
 .popup__allLessons-item-info-header-time{
     margin: 0 0 0 10px;
     font-weight: 300;
@@ -336,6 +349,7 @@
     color: rgba(0, 0, 0, 0.6);
 }
 .popup__allLessons-item-info-title{
+    width: 90%;
     margin: 15px 0 0 0;
     font-weight: 500;
     font-size: 14px;
@@ -344,8 +358,9 @@
 }
 /*----------------------------------------*/
 .popup__buy-title{
-    margin: 0 0 0 15px;
+    margin: 0  15px;
     text-align: left;
+
 }
 .popup__buy-body{
     margin: 20px 0 0 0;
@@ -358,7 +373,6 @@
 .popup__buy-price{
     display: flex;
     justify-content: space-between;
-    margin: 20px 0 0 0;
 }
 .popup__buy-price-title{
     font-weight: 500;
@@ -370,6 +384,9 @@
     font-weight: 500;
     font-size: 18px;
     color: #EA3A3A;
+}
+.popup__buy-footer{
+    padding: 0 20px;
 }
 .popup__buy-register{
     margin: 20px 0 0 0;
