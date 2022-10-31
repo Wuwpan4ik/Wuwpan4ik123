@@ -29,7 +29,9 @@
 
             <div class="feed-menu">
 
-                <a href="?option=Project"><button class="back_button"><img class="ico" src="img/StickLeft.svg"></button></a>
+                <a class="button__back" href="?option=Funnel">
+                    <img src="/img/ArrowLeft.svg" alt="">
+                </a>
 
                 <form action="?option=DirectoryController&method=setName&id=<?=$content[0][0]['id']?>&folder=course" method="POST" id="insert">
 
@@ -57,11 +59,9 @@
 
             <div class="buttonsFeed">
 
-                <button class="ico_button"><img class="ico" src="img/Shield.svg"></button>
+                <button class="ico_button button-bell"><img class="ico" src="img/Bell.svg">  <div id="msg">5</div></button>
 
-                <button class="ico_button"><img class="ico" src="img/Bell.svg"></button>
-
-                <button id="apps" class="ico_button">Заявки</button>
+                <button id="apps" class="ico_button" onclick="window.location.replace('?option=Analytics')">Заявки</button>
 
             </div>
 
