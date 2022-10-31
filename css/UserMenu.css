@@ -75,6 +75,46 @@
         height: 2px;
         top: 4px;
         transition: all 0.3s ease 0s;
+    }.UserMenu-header__burger{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 36px;
+        height: 36px;
+        background-color: #fff;
+        border-radius: 50%;
+    }
+    .header__burger {
+        position: relative;
+        display: block;
+        width: 16px;
+        height: 10px;
+    }
+    .header__burger:before, .header__burger:after {
+        content: '';
+        background-color: #000;
+        position: absolute;
+        border-radius: 1px;
+        width: 100%;
+        height: 2px;
+        left: 0;
+        transition: all 0.3s ease 0s;
+    }
+    .header__burger:before {
+        top: 0;
+    }
+    .header__burger:after {
+        bottom: 0;
+    }
+    .header__burger span {
+        position: absolute;
+        background-color: #000;
+        border-radius: 1px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        top: 4px;
+        transition: all 0.3s ease 0s;
     }
     /*-------------------------------------*/
     .UserMenu-profile{

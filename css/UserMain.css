@@ -50,4 +50,56 @@
         top: 4px;
         transition: all 0.3s ease 0s;
     }
+    /*aboutTheAuthor*/
+    .availableToYou{
+        padding: 0;
+    }
+    .availableToYou.userPopup__title{
+        padding: 20px 20px 0 20px;
+    }
+    .main .popup__allLessons-item-info-header-number{
+        width: 44px;
+        height: 20px;
+        font-weight: 600;
+        font-size: 12px;
+        border-radius: 15px;
+        background: #4DAA21;
+    }
+    .aboutTheAuthor-name{
+        margin:  0 0 0 14px;
+    }
+    .aboutTheAuthor-button{
+        margin: 20px 0;
+    }
+    .aboutTheAuthor-button button{
+        width: 100%;
+        border: 1px solid #3E8AFB;
+        border-radius: 5px;
+        padding: 19px 0;
+        color: #3E8AFB
+    }
+    .availableToYou__body{
+        padding: 20px;
+    }
+    /*aboutTheAuthor*/
+    .availableToYou.userPopup__body{
+        height: auto;
+    }
+    /*otherСourses*/
+    .otherСourses{
+        width: 100%;
+        padding: 0 20px;
+        border-radius: 30px 30px 0px 0px;
+        background-color: #F4F4F4;
+    }
+    .otherСourses.userPopup__body{
+        height: auto;
+
+    }
+    .otherСourses.popup__allLessons-body{
+        margin: 0;
+    }
+    .otherСourses.userPopup__button{
+        margin: 20px 0 0 0;
+    }
 }
