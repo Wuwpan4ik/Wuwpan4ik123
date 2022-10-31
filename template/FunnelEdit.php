@@ -134,17 +134,33 @@
 <script>
     document.querySelector('.button-end').addEventListener('click', function (){
         let popup__block = document.querySelector('.test__block-video');
-        popup__block.querySelector('.overlay').classList.toggle('active');
-        setTimeout(function () {
+        popup__block.classList.toggle('active');
+        if (popup__block.classList.contains('active')) {
+            popup__block.querySelector('.overlay').classList.toggle('active');
+            setTimeout(function () {
+                popup__block.querySelector('.popup').classList.toggle('active');
+            }, (20));
+        } else {
             popup__block.querySelector('.popup').classList.toggle('active');
-        }, (20));
+            setTimeout(function () {
+                popup__block.querySelector('.overlay').classList.toggle('active');
+            }, (550));
+        }
     })
     document.querySelector('.button-click').addEventListener('click', function (){
         let popup__block = document.querySelector('.test__block-button');
-        popup__block.querySelector('.overlay').classList.toggle('active');
-        setTimeout(function () {
+        popup__block.classList.toggle('active');
+        if (popup__block.classList.contains('active')) {
+            popup__block.querySelector('.overlay').classList.toggle('active');
+            setTimeout(function () {
+                popup__block.querySelector('.popup').classList.toggle('active');
+            }, (20));
+        } else {
             popup__block.querySelector('.popup').classList.toggle('active');
-        }, (20));
+            setTimeout(function () {
+                popup__block.querySelector('.overlay').classList.toggle('active');
+            }, (550));
+        }
     })
 </script>
 </body>

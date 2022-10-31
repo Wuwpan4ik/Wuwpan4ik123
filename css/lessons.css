@@ -372,16 +372,19 @@ input:checked + label {
     font-size: 18px;
     line-height: 109.5%;
 }
+
 .slider__item-text{
     margin: 12px 0 0 0;
     font-size: 12px;
     line-height: 17px;
 }
+
 .slider__item-socialNetwork{
     display: flex;
     justify-content: space-around;
     margin: 15px 0 0 0;
 }
+
 /*----------------------------------------*/
 .slider__header{
     position: absolute;
@@ -400,14 +403,17 @@ input:checked + label {
     display: flex;
     align-items: center;
 }
+
 .slider__header-logo-text{
     margin: 0 0 0 6px;
     font-weight: 700;
     font-size: 12px;
 }
+
 .slider__header-views{
     display: flex;
 }
+
 .slider__header-views-count{
     margin: 0 0 0 5px;
     font-size: 12px;
@@ -435,16 +441,19 @@ input:checked + label {
     opacity: 0;
     transition: 0.6s;
 }
+
 .popup.active{
     bottom: 0;
     opacity: 1;
 }
+
 .popup-title{
     margin: 20px 0 0 0;
     font-weight: 900;
     font-size: 30px;
     line-height: 109.5%;
 }
+
 .popup-text{
     margin: 12px 0 0 0;
     padding: 0 50px;
