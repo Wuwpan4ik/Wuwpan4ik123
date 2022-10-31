@@ -50,8 +50,8 @@
             <div class="popup__body-block">
                 <div class="popup__body-item">
                     <div class="popup__body-item__button">
-                        <button class="" type="button" onclick="">Конец видео</button>
-                        <button class="" type="button" onclick="">Клик на кнопку</button>
+                        <button class="button-end" type="button">Конец видео</button>
+                        <button class="button-click" type="button">Клик на кнопку</button>
                     </div>
                     <label for="first_do">Дейсвтие после просмотра:</label>
                     <select name="first_do" id="first_do">

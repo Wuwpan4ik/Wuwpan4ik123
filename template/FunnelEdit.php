@@ -132,7 +132,20 @@
 </script>
 
 <script>
-    
+    document.querySelector('.button-end').addEventListener('click', function (){
+        let popup__block = document.querySelector('.test__block-video');
+        popup__block.querySelector('.overlay').classList.toggle('active');
+        setTimeout(function () {
+            popup__block.querySelector('.popup').classList.toggle('active');
+        }, (20));
+    })
+    document.querySelector('.button-click').addEventListener('click', function (){
+        let popup__block = document.querySelector('.test__block-button');
+        popup__block.querySelector('.overlay').classList.toggle('active');
+        setTimeout(function () {
+            popup__block.querySelector('.popup').classList.toggle('active');
+        }, (20));
+    })
 </script>
 </body>
 
