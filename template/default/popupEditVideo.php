@@ -42,7 +42,7 @@
 
                         </div>
                         <div class="slider__item-button button-open">
-                            <button class="button button-video">Клик</button>
+                            <button type="button" class="button button-video">Клик</button>
                         </div>
                     </div>
                 </div>
