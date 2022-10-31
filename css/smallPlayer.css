@@ -79,6 +79,7 @@
     height: 100vh;
 }
 .slider__item {
+    height: 100vh;
     position: relative;
 }
 .slider__item img {
@@ -249,7 +250,7 @@
 }
 /*----------------------------------------*/
 .popup__allLessons{
-    max-height: 782px;
+    height: 80%;
 }
 .popup__allLessons-form{
     position: absolute;
@@ -271,11 +272,15 @@
     background: #6A6A6A;
 }
 .popup__allLessons-body{
-    max-height: 760px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     margin: 10px 0 80px 0;
+}
+.popup__allLessons-body__items{
+    margin: 0 0 180px 0;
     overflow: auto;
+
 }
 .popup__allLessons-body::-webkit-scrollbar {
     width: 0;
@@ -291,6 +296,7 @@
 }
 .popup__allLessons-item{
     display: flex;
+    justify-content: space-around;
     width: 100%;
 }
 .popup__allLessons-item-video{
