@@ -13,13 +13,13 @@
 
     <link rel="stylesheet" href="css/feed.css">
 
+    <link rel="stylesheet" href="css/smallPlayer.css">
+
     <link rel="stylesheet" href="css/lessons.css">
 
     <link rel="stylesheet" href="css/main.css">
 
     <link rel="stylesheet" href="css/funnelPopup.css">
-    <link rel="stylesheet" href="css/smallPlayer.css">
-
 
 </head>
 

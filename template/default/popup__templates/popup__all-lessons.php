@@ -3,7 +3,7 @@
         <div class="popup__allLessons-body">
             <div class="popup__allLessons-title popup-title">Все уроки курса:</div>
             <div class="popup__allLessons-text popup-text">Курс состоит из <?=count($content['course_content']); ?> уроков</div>
-            <div class="popup__allLessons-body">
+            <div class="popup__allLessons-body__items">
                 <?php $count = 1; foreach ($content['course_content'] as $item) { ?>
                     <div class="popup__allLessons-item popup-item">
                         <div class="popup__allLessons-item-video">
