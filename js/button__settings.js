@@ -80,11 +80,11 @@ function addPopup(input, button = false) {
 
         if (input === 'form') {
             div += `<div class="popup__bonus-form-button button-form">
-                <button class="button next-lesson ">Получить подарок</button>
+                <button type="button" class="button next-lesson ">Получить подарок</button>
             </div>`
             } else {
             div += `<div class="popup__bonus-form-button button-form">
-                <button class="button next-lesson">Оплатить</button>
+                <button type="button" class="button next-lesson">Оплатить</button>
             </div>`
 
         }
