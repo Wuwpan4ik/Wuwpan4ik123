@@ -24,7 +24,14 @@ class Router
         $pages_url = "pages/".$path;
         $template_url = "template/".$path;
 
-        if (file_exists($template_url)) {
+        if (file_exists($pages_url)) {
+            $class = substr($path, 0, -4);
+            if (class_exists($class)) {
+                $obj = new $class;
+                $content = $obj->get_content();
+                require $template_url;
+            }
+        } else if (file_exists($template_url)) {
             require $template_url;
         }
 
@@ -37,10 +44,6 @@ class Router
                     $obj->get_content();
                 }
             }
-        }
-
-        if (file_exists($pages_url)) {
-            require $pages_url;
         }
     }
 }

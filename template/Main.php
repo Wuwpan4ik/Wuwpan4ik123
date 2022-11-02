@@ -133,49 +133,49 @@
 
 </body>
 
-<!--  <script>-->
-<!--            const order_button = document.querySelectorAll('.order_button');-->
-<!--            const tab = document.querySelector('#viewTab');-->
-<!---->
-<!--            let request = new XMLHttpRequest();-->
-<!---->
-<!--            let url = "?option=SortController&method=get_content&order=first_name";-->
-<!---->
-<!--            request.open('GET', url);-->
-<!---->
-<!--            request.setRequestHeader('Content-Type', 'application/x-www-form-url');-->
-<!--            request.addEventListener("readystatechange", () => {-->
-<!--                if (request.readyState === 4 && request.status === 200) {-->
-<!--                    tab.innerHTML = request.responseText;-->
-<!--                }-->
-<!--            });-->
-<!--            request.send();-->
-<!---->
-<!--			-->
-<!--			for (var i = 0; i < order_button.length; ++i) {-->
-<!--				order_button[i].addEventListener('click', function(e) {-->
-<!--					if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){-->
-<!--						this.innerHTML = '<img class="table_ico" src="img/StickUp.svg">';-->
-<!--						var  param = this.value + " DESC";-->
-<!--					}else{-->
-<!--						this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';-->
-<!--						param = this.value;-->
-<!--					}-->
-<!--                    let request = new XMLHttpRequest();-->
-<!---->
-<!--                    let url = "?option=SortController&method=get_content&order=" +param;-->
-<!---->
-<!--					request.open('GET', url);-->
-<!---->
-<!--					request.setRequestHeader('Content-Type', 'application/x-www-form-url');-->
-<!--					request.addEventListener("readystatechange", () => {-->
-<!--						if (request.readyState === 4 && request.status === 200) {-->
-<!--							tab.innerHTML = request.responseText;-->
-<!--						}-->
-<!--					});-->
-<!--					request.send();-->
-<!--				});-->
-<!--			};-->
-<!--        </script>-->
+  <script>
+            const order_button = document.querySelectorAll('.order_button');
+            const tab = document.querySelector('#viewTab');
+
+            let request = new XMLHttpRequest();
+
+            let url = "/SortController/Clients?order=first_name";
+
+            request.open('GET', url);
+
+            request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+            request.addEventListener("readystatechange", () => {
+                if (request.readyState === 4 && request.status === 200) {
+                    tab.innerHTML = request.responseText;
+                }
+            });
+            request.send();
+
+
+			for (var i = 0; i < order_button.length; ++i) {
+				order_button[i].addEventListener('click', function(e) {
+					if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){
+						this.innerHTML = '<img class="table_ico" src="img/StickUp.svg">';
+						var  param = this.value + " DESC";
+					}else{
+						this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
+						param = this.value;
+					}
+                    let request = new XMLHttpRequest();
+
+                    let url = "/SortController/Clients?order=" +param;
+
+					request.open('GET', url);
+
+					request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+					request.addEventListener("readystatechange", () => {
+						if (request.readyState === 4 && request.status === 200) {
+							tab.innerHTML = request.responseText;
+						}
+					});
+					request.send();
+				});
+			};
+        </script>
 
 </html>

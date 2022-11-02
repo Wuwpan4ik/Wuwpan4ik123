@@ -7,7 +7,7 @@
             $this->m = new User();
         }
 		
-        function get_content(){
+        function getClientsForMain(){
 			$get = $_GET["order"];
 			
 			$content = $this->m->db->query("SELECT * FROM user ORDER BY " . $get);
@@ -43,7 +43,7 @@
                 $i= $i+1;}
         }
 		
-		function get_sum() {
+		function getClientsForAnalytics() {
 			$get = $_GET["sort"];
 			$current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
 			$last_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 2, date('Y')));
@@ -82,8 +82,9 @@
 										
 				}
 		}
-        function obr()
-        {
-            // TODO: Implement obr() method.
-        }
+
+        function get_content(){}
+
+
+        function obr() {}
     }

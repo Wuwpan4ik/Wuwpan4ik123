@@ -177,7 +177,7 @@
 				const tab = document.querySelector('#conTab');
                 let request = new XMLHttpRequest();
 
-                let url = "?option=SortController&method=get_sum&sort=";
+                let url = "SortController/AnalyticClients?sort=";
 
                 request.open('GET', url);
 
@@ -200,7 +200,7 @@
                         }
                         let request = new XMLHttpRequest();
 
-                        let url = "?option=SortController&method=get_sum&sort=give_money";
+                        let url = "SortController/AnalyticClients?sort=give_money";
 
                         request.open('GET', url);
 
