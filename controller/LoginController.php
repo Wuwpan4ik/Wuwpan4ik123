@@ -88,7 +88,7 @@
 			</head>
 			<body>
 				<script>
-					window.location.replace("?option=Main");
+					window.location.replace("/");
 				</script>
 			</body>
 			</html>';
