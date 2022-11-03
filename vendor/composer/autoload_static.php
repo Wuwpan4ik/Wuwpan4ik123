@@ -11,7 +11,7 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
     );
 
     public static $classMap = array (
-        'ACore' => __DIR__ . '/../..' . '/controller/Acore.php',
+        'ACore' => __DIR__ . '/../..' . '/controller/ACore.php',
         'ACoreAdmin' => __DIR__ . '/../..' . '/controller/ACoreAdmin.php',
         'AboutTheAuthor' => __DIR__ . '/../..' . '/pages/aboutTheAuthor.php',
         'Account' => __DIR__ . '/../..' . '/pages/Account.php',

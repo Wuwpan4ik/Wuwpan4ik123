@@ -41,7 +41,7 @@
 
                     <h2 id="display_name"><?=$content[0][0]['name']?></h2>
 
-                    <button class="none"><img id="name_change" src="img/Pen.svg" class="ico" onclick="changeName()"></button>
+                    <button class="none"><img id="name_change" src="/img/Pen.svg" class="ico" onclick="changeName()"></button>
 
                 </form>
 
@@ -63,7 +63,7 @@
 
             <div class="buttonsFeed">
 
-                <button class="ico_button button-bell"><img class="ico" src="img/Bell.svg">  <div id="msg">5</div></button>
+                <button class="ico_button button-bell"><img class="ico" src="/img/Bell.svg">  <div id="msg">5</div></button>
 
                 <button id="apps" class="ico_button" onclick="window.location.replace('/Analytics')">Заявки</button>
 
@@ -112,7 +112,7 @@
         var ajax = new XMLHttpRequest();
         ajax.upload.addEventListener("progress", progressHandler, false);
         ajax.addEventListener("load", completeHandler, false)
-        ajax.open("POST", "Course/<?=$content[0][0]['id']?>/create");
+        ajax.open("POST", "http://localhost/Course/<?=$content[0][0]['id']?>/create");
         ajax.send(formdata);
     }
     function progressHandler(event) {

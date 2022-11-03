@@ -6,7 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'ACore' => $baseDir . '/controller/Acore.php',
+    'ACore' => $baseDir . '/controller/ACore.php',
     'ACoreAdmin' => $baseDir . '/controller/ACoreAdmin.php',
     'AboutTheAuthor' => $baseDir . '/pages/aboutTheAuthor.php',
     'Account' => $baseDir . '/pages/Account.php',

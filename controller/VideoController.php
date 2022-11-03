@@ -1,64 +1,10 @@
 <?php
 class VideoController extends ACore
 {
-    public $group;
-    public $group_content;
-
-    private function isUser($checkId)
-    {
-        return $_SESSION['user']['id'] == $checkId;
-    }
-
-    public function addVideo() {
-        $uid = $_SESSION['item_id'];
-
-        $folder = 'funnel';
-
-        if ($folder == 'funnel') {
-            $res = $this->m->db->query("SELECT * FROM `funnel` WHERE id = '$uid' ORDER BY `id` DESC LIMIT 1");
-            $count_video = count($this->m->db->query("SELECT * FROM `funnel_content` WHERE funnel_id = '$uid'")) + 1;
-        } elseif ($folder == 'course') {
-            $res = $this->m->db->query("SELECT * FROM `course`  WHERE id = '$uid' ORDER BY `id` DESC LIMIT 1");
-            $count_video = count($this->m->db->query("SELECT * FROM course_content WHERE course_id = '$uid'")) + 1;
-        }
-
-//        if (!$this->isUser($res[0]['author_id'])) return False;
-
-        move_uploaded_file($_FILES['video_uploader']['tmp_name'], "./uploads/$folder/".$uid."_".$res[0]['name']."/$count_video"."_".$_FILES['video_uploader']['name']);
-
-        $path = "/uploads/$folder/$uid"."_".$res[0]['name']."/$count_video"."_".$_FILES['video_uploader']['name'];
-
-        if ($folder == 'funnel') {
-            $this->m->db->execute("INSERT INTO `funnel_content` (`funnel_id`, `name`, `description`, `video`, `query_id`) VALUES ('$uid','Укажите заголовок','Укажите описание', '$path', '$count_video')");
-        } elseif ($folder == 'course') {
-            $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `query_id`) VALUES ('$uid','Укажите заголовок','Укажите описание', '$path', '$count_video')");
-        }
-
-        return true;
-    }
-
-    public function Delete()
-    {
-        $item_id = $_GET['item_id'];
-        $folder = $_GET['folder'];
-        if ($folder == 'funnel') {
-            $path_in_files = $this->m->db->query("SELECT `video` FROM `funnel_content` WHERE id = '$item_id'");
-            $author_id = $this->m->db->query("SELECT `$this->group`.author_id FROM `funnel_content` AS content INNER JOIN `funnel` AS funnel ON funnel.id = content.course_id");
-//            if (!$this->isUser($author_id)) return False;
-            $this->m->db->execute("DELETE FROM `funnel_content` WHERE `id` = '$item_id'");
-        } else {
-            $path_in_files = $this->m->db->query("SELECT `video` FROM `course_content` WHERE id = '$item_id'");
-            $author_id = $this->m->db->query("SELECT `$this->group`.author_id FROM `course_content` AS content INNER JOIN `course` AS course ON course.id = content.course_id");
-//            if (!$this->isUser($author_id)) return False;
-            $this->m->db->execute("DELETE FROM `course_content` WHERE `id` = '$item_id'");
-        }
-        unlink($path_in_files[0]['video']);
-        return True;
-    }
 
     public function renameVideo() {
         $funnelContent = $this->m->db->query("SELECT * FROM `funnel_content` WHERE id = ".$_GET['id_item']);
-        $res = $this->m->db->query("SELECT * FROM `$this->group` WHERE id = ".$funnelContent[0]['funnel_id']);
+        $res = $this->m->db->query("SELECT * FROM `funnel` WHERE id = ".$funnelContent[0]['funnel_id']);
         if (!$this->isUser($res[0]['author_id'])) return False;
 
         $name = $_POST['name'];
@@ -69,7 +15,7 @@ class VideoController extends ACore
 
     public function initVideoButton() {
         //Форма
-        $id_video = $_POST['id_item'];
+        $id_video = $_SESSION['item_id'];
         $funnel = $this->m->db->query("SELECT * FROM funnel_content WHERE id = '$id_video'");
 //        if (!$this->isUser($funnel[0]['author_id'])) return False;
 
@@ -168,20 +114,20 @@ class VideoController extends ACore
 
     public function get_content()
     {
-//        echo '<!DOCTYPE html>
-//			<html lang="en">
-//			<head>
-//			<meta charset="UTF-8">
-//			<meta http-equiv="X-UA-Compatible" content="IE=edge">
-//			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-//			<title>Document</title>
-//			</head>
-//			<body>
-//				<script>
-//				    window.history.go(-1)
-//				</script>
-//			</body>
-//			</html>';
+        echo '<!DOCTYPE html>
+			<html lang="en">
+			<head>
+			<meta charset="UTF-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<title>Document</title>
+			</head>
+			<body>
+				<script>
+				    window.history.go(-1)
+				</script>
+			</body>
+			</html>';
     }
 
     function obr()

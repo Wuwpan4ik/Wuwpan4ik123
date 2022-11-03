@@ -1,7 +1,7 @@
 <div class="media-cart placeholder">
 
     <div class="btn-upload">
-        <form class="upload__form" id="upload_form" enctype="multipart/form-data" method="post">
+        <form method="POST" class="upload__form" id="upload_form" enctype="multipart/form-data">
 
             <input class="upload_video" accept=".mp4" style="display:none;" id="video" onchange="uploadFileHandler()" name="video_uploader" type="file"/>
 

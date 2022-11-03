@@ -24,10 +24,14 @@
 
     $router->addRoute("/Course", "Course.php");
     $router->addRoute("/Course/$item_id", "CourseEdit.php");
-    $router->addRoute("/Course/$item_id/create", "CourseController.php", "addVideo");
+    $router->addRoute("/Course/$item_id/create", "CourseController.php", "AddVideo");
+    $router->addRoute("/Course/$item_id/delete", "CourseController.php", "DeleteVideo");
+
     $router->addRoute("/Funnel", "Funnel.php");
     $router->addRoute("/Funnel/$item_id", "FunnelEdit.php");
-    $router->addRoute("/Funnel/$item_id/create", "FunnelController.php", "addVideo");
+    $router->addRoute("/Funnel/$item_id/create", "FunnelController.php", "AddVideo");
+    $router->addRoute("/Funnel/$item_id/delete", "FunnelController.php", "DeleteVideo");
+    $router->addRoute("/Funnel/$item_id/settings", "FunnelController.php", "PopupSettings");
 
     $router->addRoute("/SortController/Clients", "SortController.php", "getClientsForMain");
     $router->addRoute("/SortController/AnalyticClients", "SortController.php", "getClientsForAnalytics");
