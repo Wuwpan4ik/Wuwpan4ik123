@@ -5,10 +5,12 @@
     require_once 'model/Routering.php';
     $url = key($_GET);
     $url_array = explode('/', $url);
-    if (count($url_array) > 1 ) {
+
+    if (count($url_array) >= 2) {
         $item_id = $url_array[1];
         $_SESSION['item_id'] = $item_id;
     }
+
     $router = new Router();
 
     $router->addRoute("/", "Main.php");
@@ -22,9 +24,10 @@
 
     $router->addRoute("/Course", "Course.php");
     $router->addRoute("/Course/$item_id", "CourseEdit.php");
-    $router->addRoute("/Course/Create", "SortController.php", "getClientsForMain");
+    $router->addRoute("/Course/$item_id/create", "CourseController.php", "addVideo");
     $router->addRoute("/Funnel", "Funnel.php");
     $router->addRoute("/Funnel/$item_id", "FunnelEdit.php");
+    $router->addRoute("/Funnel/$item_id/create", "FunnelController.php", "addVideo");
 
     $router->addRoute("/SortController/Clients", "SortController.php", "getClientsForMain");
     $router->addRoute("/SortController/AnalyticClients", "SortController.php", "getClientsForAnalytics");

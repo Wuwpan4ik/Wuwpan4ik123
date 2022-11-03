@@ -115,7 +115,7 @@
         var ajax = new XMLHttpRequest();
         ajax.upload.addEventListener("progress", progressHandler, false);
         ajax.addEventListener("load", completeHandler, false)
-        ajax.open("POST", "?option=VideoController&method=addVideo&id=<?=$content[0][0]['id']?>&folder=funnel");
+        ajax.open("POST", "/Funnel/<?=$content[0][0]['id']?>/create");
         ajax.send(formdata);
     }
     function progressHandler(event) {

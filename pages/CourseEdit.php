@@ -6,6 +6,6 @@ class CourseEdit extends ACore {
     }
 
     public function obr() {
-        return ($_SESSION['user']['id'] == $this->m->db->query("SELECT * FROM course WHERE id = ".$_GET['id'])[0]['author_id']);
+        return ($_SESSION['user']['id'] == $this->m->db->query("SELECT * FROM course WHERE id = ".$_SESSION['item_id'])[0]['author_id']);
     }
 }

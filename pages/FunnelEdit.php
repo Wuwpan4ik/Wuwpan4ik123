@@ -5,7 +5,5 @@ class FunnelEdit extends ACore {
         return $result;
     }
 
-    public function obr() {
-        return ($_SESSION['user']['id'] == $this->m->db->query("SELECT * FROM funnel WHERE id = ".$_GET['id'])[0]['author_id']);
-    }
+    public function obr() {}
 }

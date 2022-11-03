@@ -7,7 +7,7 @@ abstract class ACore {
         $this->m = new User();
         //Middleware
         if (!isset($_SESSION['user']['id'])) {
-            header("Location:Registration");
+            header("Location: reg");
         }
     }
 
