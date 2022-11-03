@@ -38,6 +38,19 @@
             return True;
         }
 
+        public function renameVideo() {
+            $item_id = $_SESSION['item_id'];
+            $funnelContent = $this->m->db->query("SELECT * FROM `funnel_content` WHERE id = $item_id");
+            $res = $this->m->db->query("SELECT * FROM `funnel` WHERE id = ".$funnelContent[0]['funnel_id']);
+            if (!$this->isUser($res[0]['author_id'])) return False;
+
+            $name = $_POST['name'];
+            $description = $_POST['description'];
+
+            $this->m->db->execute("UPDATE `funnel_content` SET `name` = '$name', `description` = '$description' WHERE `id` = '$item_id'");
+            return True;
+        }
+
         function get_content()
         {
             echo '<!DOCTYPE html>

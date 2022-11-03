@@ -9,8 +9,8 @@
                 <button type="button" onclick="save();" class="popup__edit-btn">Сохранить</button>
             </div>
         </div>
-        <form id="initButton" action="?option=VideoController&method=initVideoButton" method="POST" class="popup__body-container">
-            <input id="id_item" name="id_item" type="hidden" value="">
+        <form id="initButton" action="/Funnel/$item_id/settings" method="POST" class="popup__body-container">
+            <input id="id_item" name="item_id" type="hidden" value="">
             <div class="popup__body-block" style="width: 320px;">
                 <!--Прелоудер-->
                 <div class="slider__item">
@@ -19,7 +19,7 @@
                     <div class="slider__header _conatiner-player ">
                         <div class="slider__header-logo">
                             <div class="slider__header-logo-img">
-                                <img width="48px" src="<?=$_SESSION["user"]['avatar']?>" alt="">
+                                <img width="48px" src="/<?=$_SESSION["user"]['avatar']?>" alt="">
                             </div>
                             <div class="slider__header-logo-text">
                                 <?=$_SESSION["user"]["first_name"]?>
@@ -27,7 +27,7 @@
                         </div>
                         <div class="slider__header-views">
                             <div class="slider__header-views-img">
-                                <img src="../img/smallPlayer/views.svg" alt="">
+                                <img src="/img/smallPlayer/views.svg" alt="">
                             </div>
                             <div class="slider__header-views-count">
                                 126

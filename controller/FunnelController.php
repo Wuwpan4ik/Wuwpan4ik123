@@ -38,9 +38,21 @@
             return True;
         }
 
+        public function RenameVideo() {
+            $item_id = $_SESSION['item_id'];
+            $funnelContent = $this->m->db->query("SELECT * FROM `funnel_content` WHERE id = '$item_id'");
+            $res = $this->m->db->query("SELECT * FROM `funnel` WHERE id = ".$funnelContent[0]['funnel_id']);
+            if (!$this->isUser($res[0]['author_id'])) return False;
+
+            $name = $_POST['name'];
+            $description = $_POST['description'];
+            $this->m->db->execute("UPDATE `funnel_content` SET `name` = '$name', `description` = '$description' WHERE `id` = '$item_id'");
+            return True;
+        }
+
         public function PopupSettings() {
             //Форма
-            $id_video = $_SESSION['item_id'];
+            $id_video = $_POST['item_id'];
             $funnel = $this->m->db->query("SELECT * FROM funnel_content WHERE id = '$id_video'");
             if (!$this->isUser($funnel[0]['author_id'])) return False;
 
@@ -121,6 +133,18 @@
             }
             $videoBtnHTMLResult = json_encode($videoBtnHTML);
             $this->m->db->execute("UPDATE `funnel_content` SET `popup` = '$videoBtnHTMLResult', `button_text` = '$button_text'  WHERE id = '$id_video'");
+            return True;
+        }
+
+        public function SelectCourse()
+        {
+            $id = $_POST['id'];
+            $course_id = $_POST['course_id'];
+            $course = $this->m->db->query("SELECT * from course WHERE `id` = '$course_id'");
+            $funnel = $this->m->db->query("SELECT * from funnel WHERE `id` = '$id'");
+            if (!$this->isUser($course[0]['author_id'])) return False;
+            if (!$this->isUser($funnel[0]['author_id'])) return False;
+            $this->m->db->execute("UPDATE `funnel` SET `course_id` = '$course_id' WHERE `id` = '$id'");
             return True;
         }
 
