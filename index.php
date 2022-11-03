@@ -19,17 +19,24 @@
     $router->addRoute("/Analytics", "Analytics.php");
     $router->addRoute("/Account", "Account.php");
     $router->addRoute("/Cases", "Cases.php");
+    $router->addRoute("/SmallPlayer/$item_id", "SmallPlayer.php");
 
     $router->addRoute("/Project", "Project.php");
 
     $router->addRoute("/Course", "Course.php");
     $router->addRoute("/Course/$item_id", "CourseEdit.php");
+    $router->addRoute("/Course/create", "CourseController.php", "CreateCourse");
+    $router->addRoute("/Course-rename/$item_id", "CourseController.php", "RenameCourse");
+    $router->addRoute("/Course-delete/$item_id", "CourseController.php", "DeleteCourse");
     $router->addRoute("/Course/$item_id/create", "CourseController.php", "AddVideo");
     $router->addRoute("/Course/$item_id/delete", "CourseController.php", "DeleteVideo");
     $router->addRoute("/Course/$item_id/rename", "CourseController.php", "RenameVideo");
 
     $router->addRoute("/Funnel", "Funnel.php");
     $router->addRoute("/Funnel/$item_id", "FunnelEdit.php");
+    $router->addRoute("/Funnel/create", "FunnelController.php", "CreateFunnel");
+    $router->addRoute("/Funnel-rename/$item_id", "FunnelController.php", "RenameFunnel");
+    $router->addRoute("/Funnel-delete/$item_id", "FunnelController.php", "DeleteFunnel");
     $router->addRoute("/Funnel/$item_id/create", "FunnelController.php", "AddVideo");
     $router->addRoute("/Funnel/$item_id/delete", "FunnelController.php", "DeleteVideo");
     $router->addRoute("/Funnel/$item_id/rename", "FunnelController.php", "RenameVideo");

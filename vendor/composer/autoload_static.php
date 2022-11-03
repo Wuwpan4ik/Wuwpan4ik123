@@ -13,7 +13,6 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
     public static $classMap = array (
         'ACore' => __DIR__ . '/../..' . '/controller/ACore.php',
         'ACoreAdmin' => __DIR__ . '/../..' . '/controller/ACoreAdmin.php',
-        'AboutTheAuthor' => __DIR__ . '/../..' . '/pages/aboutTheAuthor.php',
         'Account' => __DIR__ . '/../..' . '/pages/Account.php',
         'AccountController' => __DIR__ . '/../..' . '/controller/AccountController.php',
         'AnalController' => __DIR__ . '/../..' . '/controller/AnalController.php',
@@ -30,21 +29,11 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'LoginController' => __DIR__ . '/../..' . '/controller/LoginController.php',
         'Main' => __DIR__ . '/../..' . '/pages/Main.php',
         'MessengerController' => __DIR__ . '/../..' . '/controller/MessengerController.php',
-        'NewProject' => __DIR__ . '/../..' . '/pages/newProject.php',
         'PopupController' => __DIR__ . '/../..' . '/controller/PopupController.php',
         'Project' => __DIR__ . '/../..' . '/pages/Project.php',
-        'Registration' => __DIR__ . '/../..' . '/pages/registration.php',
-        'SettingsAccountUser' => __DIR__ . '/../..' . '/pages/settingsAccountUser.php',
-        'SmallPlayer' => __DIR__ . '/../..' . '/pages/smallPlayer.php',
+        'SmallPlayer' => __DIR__ . '/../..' . '/pages/SmallPlayer.php',
         'SortController' => __DIR__ . '/../..' . '/controller/SortController.php',
         'UrlController' => __DIR__ . '/../..' . '/controller/UrlController.php',
-        'UserContacts' => __DIR__ . '/../..' . '/pages/userContacts.php',
-        'UserLogin' => __DIR__ . '/../..' . '/pages/userLogin.php',
-        'UserMain' => __DIR__ . '/../..' . '/pages/UserMain.php',
-        'UserMenu' => __DIR__ . '/../..' . '/pages/UserMenu.php',
-        'UserNotifications' => __DIR__ . '/../..' . '/pages/userNotifications.php',
-        'UserPasswordRecovery' => __DIR__ . '/../..' . '/pages/userPasswordRecovery.php',
-        'VideoController' => __DIR__ . '/../..' . '/controller/VideoController.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

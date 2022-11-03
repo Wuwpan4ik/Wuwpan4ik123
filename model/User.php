@@ -54,7 +54,7 @@
 
         public function getVideosForPlayer()
         {
-            $id = $_GET['id'];
+            $id = $_SESSION['item_id'];
             $funnel_content = $this->db->query("SELECT  
                                                 course.id,
                                                 course.name,

@@ -39,7 +39,7 @@
                     <img src="/img/ArrowLeft.svg" alt="">
                 </a>
 
-                <form action="?option=DirectoryController&method=setName&id=<?=$content[0][0]['id']?>&folder=funnel" method="POST" id="insert">
+                <form action="/Funnel-rename/<?=$content[0][0]['id']?>" method="POST" id="insert">
 
                     <h2 id="display_name"><?=$content[0][0]['name']?></h2>
 

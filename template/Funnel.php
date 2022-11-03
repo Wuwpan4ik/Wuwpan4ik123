@@ -140,7 +140,7 @@
 
                     <div class="btn-upload" style="width: auto;">
 
-                        <a href="?option=DirectoryController&method=Create&folder=funnel" class="create-new">
+                        <a href="/Funnel/create" class="create-new">
 
                             <img src="../img/Create.svg" class="create-ico">
 
@@ -202,7 +202,7 @@
         entryDisplay.classList.add('display-block');
         toggleOverflow();
         deletes.addEventListener('click',function () {
-            window.location.href = '?option=DirectoryController&method=Delete&id='+ elem.parentElement.children[0].value + '&folder=funnel';
+            window.location.href = '/Funnel-delete/'+ elem.parentElement.children[0].value;
         });
     }
     notDelete.onclick = function (event) {

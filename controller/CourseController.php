@@ -38,16 +38,81 @@
             return True;
         }
 
-        public function renameVideo() {
+        public function RenameVideo() {
             $item_id = $_SESSION['item_id'];
-            $funnelContent = $this->m->db->query("SELECT * FROM `funnel_content` WHERE id = $item_id");
-            $res = $this->m->db->query("SELECT * FROM `funnel` WHERE id = ".$funnelContent[0]['funnel_id']);
+            $courseContent = $this->m->db->query("SELECT * FROM `course_content` WHERE id = '$item_id'");
+            $res = $this->m->db->query("SELECT * FROM `course` WHERE id = ".$courseContent[0]['course_id']);
             if (!$this->isUser($res[0]['author_id'])) return False;
 
             $name = $_POST['name'];
             $description = $_POST['description'];
 
-            $this->m->db->execute("UPDATE `funnel_content` SET `name` = '$name', `description` = '$description' WHERE `id` = '$item_id'");
+            $this->m->db->execute("UPDATE `course_content` SET `name` = '$name', `description` = '$description' WHERE `id` = '$item_id'");
+            return True;
+        }
+
+        public function CreateCourse () {
+            $uid = $_SESSION['user']['id'];
+
+            $code = uniqid($more_entropy = true);
+
+            $name = '_Новый курс';
+
+            $this->m->db->execute("INSERT INTO course (`author_id`, `name`, `description`, `price`, `uniqu_code`) VALUES ('$uid', 'Новый курс', 'Описание' , 0, '$code')");
+
+            $directory = $this->m->db->query("SELECT * FROM course WHERE author_id = '$uid'  ORDER BY ID DESC LIMIT 1");
+
+            mkdir("./uploads/course/".$directory[0]['id']."$name");
+            return True;
+        }
+
+        public function DeleteCourse () {
+            $item_id = $_SESSION['item_id'];
+
+            $project = $this->m->db->query("SELECT * FROM course WHERE id = '$item_id' LIMIT 1");
+
+            if (!$this->isUser($project[0]['author_id'])) return False;
+
+            $this->m->db->execute("DELETE FROM course WHERE id = '$item_id'");
+
+            rmdir("./uploads/course/$item_id" . "_" . $project[0]['name']);
+
+            return True;
+        }
+
+        public function RenameCourse()
+        {
+            $item_id = $_SESSION['item_id'];
+
+            $res = $this->m->db->query("SELECT * FROM course WHERE id = '$item_id'");
+
+            if (!$this->isUser($res[0]['author_id'])) return False;
+
+            if(isset($_POST['title'])) {
+
+                $last_name = $res[0]['name'];
+
+                $name = $_POST['title'];
+
+                rename("./uploads/course/$item_id". "_" ."$last_name", "./uploads/course/$item_id" . "_" . "$name");
+
+                $paths = $this->m->db->query("SELECT * FROM course_content WHERE course_id = '$item_id'");
+
+                $this->m->db->execute("UPDATE course SET `name` = '$name' WHERE id = '$item_id'");
+
+                foreach ($paths as $path) {
+                    $id = $path['id'];
+
+                    $pages = explode("/", $path['video']);
+
+                    $pages[3] = $item_id . "_" . $name;
+
+                    $changed = implode("/", $pages);
+
+                    $this->m->db->execute("UPDATE `course_content` SET `video` = '$changed' WHERE id = '$id'");
+
+                }
+            }
             return True;
         }
 
