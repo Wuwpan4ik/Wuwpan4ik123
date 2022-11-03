@@ -27,7 +27,7 @@
         </div>
         <?php if (in_array($_GET['option'], ['Funnel', 'FunnelEdit'] )) {?>
         <input type="hidden" value="<?=$v['id']?>">
-        <button type="button" class="button__edit" style="background: #757D8A;"><img style="width: 22px;" src="../img/printer.png">Действие для кнопки</button>
+        <button type="button" class="button__edit" style="background: #757D8A;"><img style="width: 22px;" src="/img/printer.png">Действие для кнопки</button>
         <?php } ?>
         <button type="submit">Сохранить</button>
 

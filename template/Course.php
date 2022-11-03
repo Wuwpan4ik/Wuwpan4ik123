@@ -5,17 +5,17 @@
     <meta charset="utf-8">
 
     <title>Моя тестовая страница</title>
-    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
 
-    <link rel="stylesheet" href="css/nullCss.css">
+    <link rel="stylesheet" href="/css/nullCss.css">
 
-    <link rel="stylesheet" href="css/project.css">
+    <link rel="stylesheet" href="/css/project.css">
 
-    <link rel="stylesheet" href="css/feed.css">
+    <link rel="stylesheet" href="/css/feed.css">
 
-    <link rel="stylesheet" href="css/lessons.css">
+    <link rel="stylesheet" href="/css/lessons.css">
 
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
 
 </head>
 
@@ -110,7 +110,7 @@
 
                             <input type="hidden" value="<?=$p['id']?>" >
 
-                            <button type="submit" onclick="window.location.href = '?option=CourseEdit&id=<?=$p['id']?>';"">Изменить</button>
+                            <button type="submit" onclick="window.location.href = '/Course/<?=$p['id']?>';"">Изменить</button>
 
                             <button class="reboot" type="submit" onclick="deleteDirectory(this)">Удалить</button>
 

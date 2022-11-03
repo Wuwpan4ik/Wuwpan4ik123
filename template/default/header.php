@@ -1,8 +1,8 @@
 <div class="feed-header">
 
     <div class="feed-header__title">
-        <?php if($_GET['option'] != 'Main') { ?>
-        <a class="button__back" href="/<?=isset($back) ? $back : "Main" ?>">
+        <?php if($_SERVER['REQUEST_URI'] != '/') { ?>
+        <a class="button__back" href="/<?=isset($back) ? $back : "" ?>">
             <img src="/img/ArrowLeft.svg" alt="">
         </a>
         <?php } ?>

@@ -1,6 +1,8 @@
 <?php
 class VideoController extends ACore
 {
+    protected $group;
+
     private function isUser($checkId)
     {
         return $_SESSION['user']['id'] == $checkId;

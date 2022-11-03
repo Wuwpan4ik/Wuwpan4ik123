@@ -40,11 +40,11 @@
                                 <h3>Мои воронки</h3>
                                 <img src="../img/Course.png" alt="">
                                 <?php if ($content['count_funnel'] != 0) { ?>
-                                    <button class="button-edit" onclick="window.location.href='?option=Funnel'">
+                                    <button class="button-edit" onclick="window.location.href='Funnel'">
                                         Редактировать
                                     </button>
                                 <?php } else { ?>
-                                    <button class="button-edit button-create" onclick="window.location.href='?option=DirectoryController&method=Create&folder=funnel'">
+                                    <button class="button-edit button-create" onclick="window.location.href='DirectoryController/method=Create&folder=funnel'">
                                         Создать воронку
                                     </button>
                                 <?php } ?>
@@ -54,7 +54,7 @@
                                 <h3>Мои курсы</h3>
                                 <img src="../img/Course.png" alt="">
                                 <?php if ($content['count_course'] !== 0) { ?>
-                                    <button class="button-edit" onclick="window.location.href='?option=Course'">
+                                    <button class="button-edit" onclick="window.location.href='Course'">
                                         Редактировать
                                     </button>
                                 <?php } else { ?>
