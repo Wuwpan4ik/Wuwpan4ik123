@@ -52,12 +52,22 @@
     }
     /*aboutTheAuthor*/
     .availableToYou{
-        padding: 0;
+
     }
-    .availableToYou.userPopup__title{
+    .availableToYou__body{
+        overflow: auto;
+        margin: 20px 0 0 0;
+        height: 37%;
+
+    }
+    .Course.availableToYou__body{
+        height: 100%!important;
+        overflow: hidden;
+    }
+.availableToYou.userPopup__title{
         padding: 20px 20px 0 20px;
     }
-    .main .popup__allLessons-item-info-header-number{
+    .available-number.popup__allLessons-item-info-header-number{
         width: 44px;
         height: 20px;
         font-weight: 600;
@@ -65,8 +75,18 @@
         border-radius: 15px;
         background: #4DAA21;
     }
+    .notAvailable-number.popup__allLessons-item-info-header-number{
+        width: 44px;
+        height: 20px;
+        font-weight: 600;
+        font-size: 12px;
+        border-radius: 15px;
+        background: #444444;
+    }
     .aboutTheAuthor-name{
-        margin:  0 0 0 14px;
+        margin:  0 0 0 7px;
+        font-size: 10px;
+        opacity: 0.6;
     }
     .aboutTheAuthor-button{
         margin: 20px 0;
@@ -77,29 +97,134 @@
         border-radius: 5px;
         padding: 19px 0;
         color: #3E8AFB
+
     }
-    .availableToYou__body{
-        padding: 20px;
+    .availableToYou .userPopup__body{
+        overflow: hidden;
+    }
+    .Course{
+
     }
     /*aboutTheAuthor*/
     .availableToYou.userPopup__body{
-        height: auto;
+
     }
     /*otherСourses*/
     .otherСourses{
         width: 100%;
-        padding: 0 20px;
         border-radius: 30px 30px 0px 0px;
         background-color: #F4F4F4;
     }
+    .otherСourses__body{
+        overflow: auto;
+        height: 30%;
+    }
+    .otherСourses .userPopup__title{
+        padding: 20px;
+    }
     .otherСourses.userPopup__body{
         height: auto;
-
+        padding: 0 20px;
     }
     .otherСourses.popup__allLessons-body{
         margin: 0;
     }
     .otherСourses.userPopup__button{
+        margin: 20px 0;
+
+    }
+    /*Сourse-back */
+    .Сourse-form{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .Сourse-back{
+        width: 30%;
+    }
+    .Сourse-back button{
+        box-shadow: 0px 3px 0px #494949, 0px 10px 30px rgb(105 106 108 / 60%);
+        background: #6A6A6A;
+    }
+    .Сourse-question{
+        width: 65%;
+    }
+    /*AllLessons*/
+    .AllLessons__subtitle{
+        margin: 6px 0 0 0;
+        color: rgba(0, 0, 0, 0.6);
+        font-weight: 300;
+        line-height: 17px;
+    }
+    .AllLessons-form{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .AllLessons.availableToYou__body{
+        height: 70%;
+    }
+    .AllLessons.userPopup__button button{
+        box-shadow: 0px 3px 0px #494949, 0px 10px 30px rgb(105 106 108 / 60%);
+        background: #6A6A6A;
+    }
+    /*question*/
+    .question.userPopup{
+        height: 47%;
+    }
+    .question.input input{
+        width: 100%;
+    }
+    .question-textarea{
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+    }
+    .question-textarea textarea{
+        width: 370px;
+        height: 124px;
+        background: #F4F4F4;
+        border-radius: 6px;
+        padding: 20px 20px 20px 45px;
+        font-size: 16px;
+    }
+    .question-form{
+        display: flex;
+        justify-content: space-between;
         margin: 20px 0 0 0;
+    }
+    /*UserPlayer*/
+    .UserPlayer{
+        position: relative;
+        width: 410px;
+        margin: 0 auto;
+        height: 100vh;
+        overflow: hidden;
+    }
+    .UserPlayer__logo{
+
+    }
+
+    .UserPlayer.User-header{
+        position: absolute;
+        align-items: center;
+        width: 90%;
+        height: 10%;
+        top: 0;
+        left: 20px;
+        z-index: 2;
+    }
+    .UserPlayer video{
+        position: absolute;
+        max-width: 414px;
+        height: 100%;
+        object-fit: cover;
+
+
+    }
+    .UserPlayer.Сourse-form{
+        position: absolute;
+        bottom: -90%;
+        z-index: 4;
     }
 }

@@ -43,6 +43,7 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'UserMenu' => __DIR__ . '/../..' . '/pages/UserMenu.php',
         'UserNotifications' => __DIR__ . '/../..' . '/pages/userNotifications.php',
         'UserPasswordRecovery' => __DIR__ . '/../..' . '/pages/userPasswordRecovery.php',
+        'UserPlayer' => __DIR__ . '/../..' . '/pages/userPlayer.php',
         'VideoController' => __DIR__ . '/../..' . '/controller/VideoController.php',
     );
 

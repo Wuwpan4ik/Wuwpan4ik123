@@ -38,5 +38,6 @@ return array(
     'UserMenu' => $baseDir . '/pages/UserMenu.php',
     'UserNotifications' => $baseDir . '/pages/userNotifications.php',
     'UserPasswordRecovery' => $baseDir . '/pages/userPasswordRecovery.php',
+    'UserPlayer' => $baseDir . '/pages/userPlayer.php',
     'VideoController' => $baseDir . '/controller/VideoController.php',
 );
