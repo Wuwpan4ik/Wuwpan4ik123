@@ -72,6 +72,12 @@
             $title = "Регистрация аккаунта";
             $body = "Ваш аккаунт на<a href='http://localhost/login'>Course Creator</a><br>Почта: $this->email<br>Пароль:$this->password";
             $this->SendEmail($title, $body);
+
+            $this->m->db->execute("INSERT INTO `user` (`email`, `password`, `is_creator`) VALUES ('$this->email', '$this->password', 0)");
+            if (isset($this->name)) {
+                $this->m->db->execute("INSERT INTO `user` (`first_name`) VALUES ('$this->name') WHERE `email` = '$this->email'");
+            }
+
             return true;
         }
 
@@ -106,10 +112,6 @@
             } catch (Exception $e) {
                 $result = "error";
                 $status = "Сообщение не было отправлено. Причина ошибки: {$mail->ErrorInfo}";
-            }
-            $this->m->db->execute("INSERT INTO `user` (`email`, `password`, `is_creator`) VALUES ('$this->email', '$this->password', 0)");
-            if (isset($this->name)) {
-                $this->m->db->execute("INSERT INTO `user` (`first_name`) VALUES ('$this->name') WHERE `email` = '$this->email'");
             }
         }
 
