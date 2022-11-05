@@ -202,7 +202,7 @@
                         }
                         let request = new XMLHttpRequest();
 
-                        let url = "SortController/AnalyticClients?sort=give_money";
+                        let url = "SortController/AnalyticClients?sort=" + param;
 
                         request.open('GET', url);
 

@@ -48,19 +48,25 @@
 			$current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
 			$last_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 2, date('Y')));
 			
-			$result = $this->m->db->query("SELECT clients.id, course.name, clients.comment, clients.achivment_date, clients.source, clients.give_money, user.first_name as first_name, user.second_name as second_name, user.email as email, user.telephone as telephone FROM clients JOIN course WHERE clients.course_id = course.id JOIN user ON clients.client_id = user.id WHERE creator_id = " . $_SESSION['user']['id']." AND achivment_date BETWEEN CAST('$last_date' AS DATE) AND CAST('$current_date' AS DATE) ORDER BY " . $get);
+			$result = $this->m->db->query("SELECT clients.id, course.name as course_name, course.id as course_id, clients.comment, clients.achivment_date, clients.give_money, first_name, email, tel FROM clients JOIN course ON clients.course_id = course.id WHERE creator_id = " . $_SESSION['user']['id']);
 						
-				foreach($result as $client){ echo
+				foreach($result as $client){
+
+                    $tel = is_null($client["telephone"]) ? '-----' : $client["telephone"];
+
+                    echo
 										
 					'<tr>
 
-						<td class="nick"> <input type="checkbox" class="check_user">' . $client["first_name"] . ' ' . $client["second_name"] . '</td>
+						<td class="nick"> <input type="checkbox" class="check_user">' . $client["first_name"] . '</td>
 											
 						<td>' . $client["give_money"] . ' ₽</td>
 
 						<td>' . $client["email"] . '</td>
 
-						<td>' . $client["telephone"] . '</td>
+						<td>' . $tel  . '</td>
+						
+						<td><a href="/Course/' . $client["course_id"] . '">' . $client["course_name"] . '</td>
 
 						<td>' . $client["comment"] . '</td>
 											
@@ -71,8 +77,6 @@
 							<span>
 
 								<img class="table_ico" src="img/Trash.svg">
-
-								<img class="table_ico" src="img/Dots.svg">
 
 							</span>
 
