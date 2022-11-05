@@ -10,6 +10,20 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         '1d5a77609116b3a7d9f7b9e9c18687a5' => __DIR__ . '/../..' . '/model/User.php',
     );
 
+    public static $prefixLengthsPsr4 = array (
+        'P' => 
+        array (
+            'PHPMailer\\PHPMailer\\' => 20,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+        ),
+    );
+
     public static $classMap = array (
         'ACore' => __DIR__ . '/../..' . '/controller/ACore.php',
         'ACoreAdmin' => __DIR__ . '/../..' . '/controller/ACoreAdmin.php',
@@ -21,7 +35,7 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'Course' => __DIR__ . '/../..' . '/pages/Course.php',
         'CourseController' => __DIR__ . '/../..' . '/controller/CourseController.php',
         'CourseEdit' => __DIR__ . '/../..' . '/pages/CourseEdit.php',
-        'DirectoryController' => __DIR__ . '/../..' . '/controller/DirectoryController.php',
+        'EmailController' => __DIR__ . '/../..' . '/controller/EmailController.php',
         'Funnel' => __DIR__ . '/../..' . '/pages/Funnel.php',
         'FunnelController' => __DIR__ . '/../..' . '/controller/FunnelController.php',
         'FunnelEdit' => __DIR__ . '/../..' . '/pages/FunnelEdit.php',
@@ -39,6 +53,8 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInit113aa6f48300210152e47d56e3735559::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit113aa6f48300210152e47d56e3735559::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInit113aa6f48300210152e47d56e3735559::$classMap;
 
         }, null, ClassLoader::class);

@@ -18,23 +18,37 @@
 
             $res = $this->db->db->query("SELECT * FROM user WHERE email = '$email' AND password = '$password'");
 
-            if(count($res) != 0){
-                $_SESSION["user"] = [
-                    'id' => $res[0]['id'],
-                    'gender' => $res[0]['gender'],
-                    'niche' => $res[0]['niche'],
-                    'avatar' => $res[0]['avatar'],
-                    'first_name' => $res[0]['first_name'], // поменял name - first_name
-                    'second_name' => $res[0]['second_name'], // добавить в форму - first_name
-                    'email' => $res[0]['email'],
-                    'site_url' => $res[0]['site_url']
-                ];
-                $response = "С возвращением, ".$_SESSION["user"]["name"];
+            if ($res[0]['is_creator'] == 0) {
+                if(count($res) != 0){
+                    $_SESSION["user_buyer"] = [
+                        'id' => $res[0]['id'],
+                        'email' => $res[0]['email']
+                    ];
+                    $response = "С возвращением, ".$_SESSION["user"]["name"];
+                }
+                else {
+                    $response = "Неверный логин или пароль";
+                }
+            } else {
+                if(count($res) != 0){
+                    $_SESSION["user"] = [
+                        'id' => $res[0]['id'],
+                        'gender' => $res[0]['gender'],
+                        'niche' => $res[0]['niche'],
+                        'avatar' => $res[0]['avatar'],
+                        'first_name' => $res[0]['first_name'],
+                        'second_name' => $res[0]['second_name'],
+                        'email' => $res[0]['email'],
+                        'site_url' => $res[0]['site_url']
+                    ];
+                    $response = "С возвращением, ".$_SESSION["user"]["name"];
+                }
+                else {
+                    $response = "Неверный логин или пароль";
+                }
+                $_SESSION['message'] = $response;
             }
-            else {
-                $response = "Неверный логин или пароль";
-            }
-            $_SESSION['message'] = $response;
+            return True;
         }
 
         public function registration () {
