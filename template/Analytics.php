@@ -95,7 +95,7 @@
 
                     <div class="tab">
 
-
+                        <div class="_container">
                         <div class="geo__profit">
                             <div class="profit__leftSide">
                                 <div class="profit__row">
@@ -137,11 +137,17 @@
                                             <span class="green_profit">14.6%</span>
                                         </div>
                                     </div>
+                                    <div class="Analytics-graphic__totalProfit">
+                                        <canvas id="totalProfit"></canvas>
+                                    </div>
                                 </div>
-                                <div class="rightSideSecond"></div>
-                            </div>
-                        </div>
+                                <div class="rightSideSecond">
 
+                                </div>
+                            </div>
+
+                        </div>
+                        </div>
                     </div>
 
                 </div>
@@ -214,5 +220,6 @@
                     });
                 });
         </script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+  <script src="../js/charts.js"></script>
 </html>

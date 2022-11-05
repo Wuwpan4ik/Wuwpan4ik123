@@ -21,7 +21,7 @@
 		$current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
 		$last_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 2, date('Y')));
 		
-        $result = $this->db->query("SELECT clients.id, clients.comment, clients.achivment_date, clients.source, clients.give_money, user.first_name as first_name, user.second_name as second_name, user.email as email, user.telephone as telephone FROM clients JOIN user ON clients.client_id = user.id WHERE creator_id = " . $_SESSION['user']['id']." AND achivment_date BETWEEN CAST('$last_date' AS DATE) AND CAST('$current_date' AS DATE)");
+        $result = $this->db->query("SELECT clients.id, clients.comment, clients.achivment_date, clients.give_money, user.first_name as first_name, user.second_name as second_name, user.email as email, user.telephone as telephone FROM clients JOIN user ON clients.client_id = user.id WHERE creator_id = " . $_SESSION['user']['id']." AND achivment_date BETWEEN CAST('$last_date' AS DATE) AND CAST('$current_date' AS DATE)");
 		return $result;
 		}
 

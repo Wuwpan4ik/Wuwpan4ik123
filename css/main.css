@@ -285,3 +285,8 @@ span.button__back{
   background: url(../img/arrow_custom.svg) no-repeat right;
   background-position-x: calc(100% - 21px);
 }
+/*Analytics*/
+.Analytics-graphic__totalProfit{
+  width: 312px;
+  height: 302px;
+}
