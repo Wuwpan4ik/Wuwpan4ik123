@@ -54,7 +54,7 @@
                         <?=$item['content_description']?>
                     </div>
                     <?php
-                    if (isset($item['button_text']) && isset($popup->second_do)) { ?>
+                    if (isset($item['button_text'])) { ?>
                     <div class="slider__item-button button-open">
                         <button  class="button"><?=$item['button_text']?></button>
                     </div>

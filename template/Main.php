@@ -31,7 +31,7 @@
     <div class="feed">
 
         <?php
-        $title = "Ключевые показатели";
+        $title = "Ключевые показатели".$_SESSION['mail'];
         include ('default/header.php');
         ?>
 

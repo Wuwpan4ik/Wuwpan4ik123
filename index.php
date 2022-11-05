@@ -37,6 +37,7 @@
     $router->addRoute("/Funnel/create", "FunnelController.php", "CreateFunnel");
     $router->addRoute("/Funnel-rename/$item_id", "FunnelController.php", "RenameFunnel");
     $router->addRoute("/Funnel-delete/$item_id", "FunnelController.php", "DeleteFunnel");
+    $router->addRoute("/Funnel-select/$item_id", "FunnelController.php", "SelectCourse");
     $router->addRoute("/Funnel/$item_id/create", "FunnelController.php", "AddVideo");
     $router->addRoute("/Funnel/$item_id/delete", "FunnelController.php", "DeleteVideo");
     $router->addRoute("/Funnel/$item_id/rename", "FunnelController.php", "RenameVideo");
@@ -46,6 +47,8 @@
     $router->addRoute("/SortController/AnalyticClients", "SortController.php", "getClientsForAnalytics");
     $router->addRoute("/LoginController/login", "LoginController.php", 'login');
     $router->addRoute("/LoginController/logout", "LoginController.php", 'logout');
+
+    $router->addRoute("/send-email", "EmailController.php", 'SendEmail');
 
 
     $router->route("/$url");

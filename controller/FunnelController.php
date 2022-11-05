@@ -67,7 +67,7 @@
             //Форма
             $id_video = $_POST['item_id'];
             $funnel = $this->m->db->query("SELECT * FROM funnel_content WHERE id = '$id_video'");
-            if (!$this->isUser($funnel[0]['author_id'])) return False;
+//            if (!$this->isUser($funnel[0]['author_id'])) return False;
 
             $videoBtnHTML = [];
             $first_do = $_POST['first_do'];
@@ -151,7 +151,7 @@
 
         public function SelectCourse()
         {
-            $id = $_POST['id'];
+            $id = $_SESSION['item_id'];
             $course_id = $_POST['course_id'];
             $course = $this->m->db->query("SELECT * from course WHERE `id` = '$course_id'");
             $funnel = $this->m->db->query("SELECT * from funnel WHERE `id` = '$id'");

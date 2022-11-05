@@ -1,6 +1,7 @@
 <div class="overlay-bonus overlay overlay-<?=$name?>">
     <div class="popup__bonus  popup popup-<?=$name?>">
         <div class="popup__bonus-body">
+            <form method="POST" action="<?php if (isset($popup__do->form)) echo '/send-email';?>">
             <?php if (isset($popup__do->form)) { ?>
                 <div class="popup__bonus-title  popup-title">Введите ваш email что бы продолжить просмотр</div>
                 <div class="popup__bonus-text popup-text"><span> Бонус:</span> получите книгу - Тысяча способов научиться решать проблемы самостоятельно!</div>
@@ -36,6 +37,7 @@
                     </div>
                 <?php } ?>
             </div>
+            </form>
         </div>
     </div>
 </div>

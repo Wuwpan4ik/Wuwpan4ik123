@@ -111,7 +111,7 @@
                             <button class="copy-button" onclick="copy_link(this)" type="submit">Копировать</button>
 
                         </div>
-                        <form action="?option=VideoController&method=selectCourse" method="POST">
+                        <form action="/Funnel-select/<?=$p['id']?>" method="POST">
                             <input type="text" name="id" hidden="hidden" value="<?=$p['id']?>">
                             <select name="course_id" class="select__course">
                                 <?php
