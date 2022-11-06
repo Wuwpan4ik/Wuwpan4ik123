@@ -1,6 +1,7 @@
 const ctx = document.getElementById('totalProfit').getContext('2d');
 
 const myChart = new Chart(ctx, {
+
     type: 'line',
     data: {
         labels: ['','пн', 'вт', 'ср', 'чт', ''],
@@ -13,9 +14,9 @@ const myChart = new Chart(ctx, {
             pointBackdropPadding: 2,
             pointWidth: 2,
             pointBackgroundWidth: 6,
-            pointBackgroundColor: '#4E73F8',
-            pointBorderWidth: 10,
-            pointBorderColor: 'rgba(78, 115, 248, 0.24)',
+            pointBackgroundColor: '#fff',
+            pointBorderWidth: 3,
+            pointBorderColor: '#4E73F8',
 
         }]
     },
@@ -25,10 +26,10 @@ const myChart = new Chart(ctx, {
             y: {
                 ticks: {
                     display: false
-                },
-                grid: {
+                },grid: {
                     display: false
                 }
+
             },
         },
         responsive: true,

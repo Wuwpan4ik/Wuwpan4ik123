@@ -141,9 +141,6 @@
                                         <canvas id="totalProfit"></canvas>
                                     </div>
                                 </div>
-                                <div class="rightSideSecond">
-
-                                </div>
                             </div>
 
                         </div>
