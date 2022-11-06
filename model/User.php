@@ -65,6 +65,7 @@
                                                 content.popup,
                                                 content.video,
                                                 content.button_text,
+                                                user_info.id as 'author_id',
                                                 user_info.avatar,
                                                 user_info.first_name
                                                 FROM `course` AS course

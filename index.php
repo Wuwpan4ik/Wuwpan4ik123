@@ -49,8 +49,8 @@
     $router->addRoute("/LoginController/logout", "LoginController.php", 'logout');
 
     $router->addRoute("/send-email", "EmailController.php", 'RegistrateUser');
-    $router->addRoute("/create-client", "ClientsController.php", 'Create');
-
+    $router->addRoute("/ClientsController/create-client", "ClientsController.php", 'Create');
+    $router->addRoute("/ClientsController/$item_id/delete", "ClientsController.php", 'Delete');
 
     $router->route("/$url");
 

@@ -76,7 +76,7 @@
 
 							<span>
 
-								<img class="table_ico" src="img/Trash.svg">
+								<a href="/ClientsController/' . $client['id'] . '/delete"><img class="table_ico" src="img/Trash.svg"></a>
 
 							</span>
 

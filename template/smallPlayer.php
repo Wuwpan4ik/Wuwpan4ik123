@@ -71,6 +71,8 @@
                     // Первое или второе действие
                     $name = 'button';
                     $popup__do = $popup->second_do;
+                    $id = $item['id'];
+                    $author_id = $item['author_id'];
                     include 'template/default/popup__templates/popup__form.php';
                 } ?>
                 <?php
@@ -83,6 +85,8 @@
                     // Первое или второе действие
                     $name = 'video';
                     $popup__do = $popup->first_do;
+                    $id = $item['id'];
+                    $author_id = $item['author_id'];
                     include 'template/default/popup__templates/popup__form.php';
                 }
                 ?>
