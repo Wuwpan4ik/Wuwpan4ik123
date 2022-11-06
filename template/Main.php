@@ -33,7 +33,7 @@
     <div class="feed">
 
         <?php
-        $title = "Ключевые показатели".$_SESSION['mail'];
+        $title = "Ключевые показатели";
         include ('default/header.php');
         ?>
 
@@ -112,7 +112,7 @@
 
 						<th>Email<button class="order_button" value="email"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
-						<th>Статус<button class="order_button" value="status"><img class="table_ico" src="img/StickDown.svg"></button></th>
+						<th>Телефон<button class="order_button" value="telephone"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
 						<th>Продукт<button class="order_button" value="niche"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
@@ -139,7 +139,7 @@
 
   <script>
             const order_button = document.querySelectorAll('.order_button');
-            const tab = document.querySelector('#viewTab');
+            let tab = document.querySelector('#viewTab');
 
             let request = new XMLHttpRequest();
 
@@ -160,7 +160,7 @@
 				order_button[i].addEventListener('click', function(e) {
 					if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){
 						this.innerHTML = '<img class="table_ico" src="img/StickUp.svg">';
-						var  param = this.value + " DESC";
+						var param = this.value + " DESC";
 					}else{
 						this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
 						param = this.value;
@@ -175,11 +175,12 @@
 					request.addEventListener("readystatechange", () => {
 						if (request.readyState === 4 && request.status === 200) {
 							tab.innerHTML = request.responseText;
+                            console.log(request.responseText)
 						}
 					});
 					request.send();
 				});
-			};
+			}
         </script>
 
 </html>

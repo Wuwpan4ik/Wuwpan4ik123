@@ -44,7 +44,7 @@
                                         Редактировать
                                     </button>
                                 <?php } else { ?>
-                                    <button class="button-edit button-create" onclick="window.location.href='DirectoryController/method=Create&folder=funnel'">
+                                    <button class="button-edit button-create" onclick="window.location.href='/Funnel/create'">
                                         Создать воронку
                                     </button>
                                 <?php } ?>
@@ -58,7 +58,7 @@
                                         Редактировать
                                     </button>
                                 <?php } else { ?>
-                                    <button class="button-edit button-create" onclick="window.location.href='?option=DirectoryController&method=Create&folder=course'">
+                                    <button class="button-edit button-create" onclick="window.location.href='/Course/create'">
                                         Создать курс
                                     </button>
                                 <?php } ?>

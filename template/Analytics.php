@@ -67,9 +67,9 @@
 
 										<th><div class="th-title"><button class="order_button" value="email"><img class="table_ico" src="img/StickDown.svg"></button>Email</div></th>
 
-										<th><div class="th-title"><button class="order_button" value="telephone"><img class="table_ico" src="img/StickDown.svg"></button>Телефон</div></th>
+										<th><div class="th-title"><button class="order_button" value="tel"><img class="table_ico" src="img/StickDown.svg"></button>Телефон</div></th>
 
-                                        <th><div class="th-title"><button class="order_button" value="telephone"><img class="table_ico" src="img/StickDown.svg"></button>Курс</div></th>
+                                        <th><div class="th-title"><button class="order_button" value="course_id"><img class="table_ico" src="img/StickDown.svg"></button>Курс</div></th>
 
 										<th><div class="th-title"><button class="order_button" value="comment"><img class="table_ico" src="img/StickDown.svg"></button>Задача</div></th>
 										
@@ -158,15 +158,6 @@
         <script src="../js/script.js" ></script>
   </body>
   
-  <script>
-		let del = document.querySelectorAll('.del_but');
-		for (var i = 0; i < del.length; ++i) {
-			del[i].addEventListener('click',function () {
-				window.location.href = '?option=AnalController&method=delClient&id='+ this.value;
-			});
-		};
-  </script>
-  
 	<script>
         let check_user = document.querySelectorAll('.check_user');
         const main_check = document.querySelector('#main_check');
@@ -183,7 +174,7 @@
 				const tab = document.querySelector('#conTab');
                 let request = new XMLHttpRequest();
 
-                let url = "SortController/AnalyticClients?sort=";
+                let url = "SortController/AnalyticClients?sort=id";
 
                 request.open('GET', url);
 

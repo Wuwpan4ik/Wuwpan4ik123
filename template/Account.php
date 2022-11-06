@@ -57,7 +57,7 @@
 
                                 <div class="about">
 
-                                    <form method="POST" action="?option=AccountController&method=SaveSettings">
+                                    <form method="POST" action="/Course-rename/MainSettings">
 
                                         <div class="field">
 
@@ -81,20 +81,6 @@
 
                                         </div>
 
-<!--                                        <div class="field">-->
-<!---->
-<!--                                            <h2>Напишите имя вашего сайта</h2>-->
-<!---->
-<!--                                            <input id="check_url" name="site_url" class="full" placeholder="--><?// if (isset($_SESSION["user"]['site_url'])) {echo $_SESSION["user"]['site_url'];} else { echo "Ваш сайт";} ?><!--"/>-->
-<!---->
-<!--                                            <div id="message">--><?// if(isset($_SESSION['error']['url_message'])) echo $_SESSION['error']['url_message'] ?><!--</div>-->
-<!--                                        </div>-->
-<!---->
-<!--                                        <div class="about-btn">-->
-<!---->
-<!--                                            <button id="check_button" type="button">Проверить домен</button>-->
-<!---->
-<!--                                        </div>-->
                                         <div class="about-btn">
 
                                             <button id="profile_send" type="submit">Сохранить</button>

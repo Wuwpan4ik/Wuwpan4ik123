@@ -17,13 +17,17 @@
     $router->addRoute("/reg", "Registration.php");
     $router->addRoute("/login", "Login.php");
     $router->addRoute("/Analytics", "Analytics.php");
-    $router->addRoute("/Account", "Account.php");
     $router->addRoute("/Cases", "Cases.php");
     $router->addRoute("/SmallPlayer/$item_id", "SmallPlayer.php");
+
+    $router->addRoute("/Account", "Account.php");
+    $router->addRoute("/Course-rename/MainSettings", "AccountController.php", "SaveSettings");
+
 
     $router->addRoute("/Project", "Project.php");
 
     $router->addRoute("/Course", "Course.php");
+
     $router->addRoute("/Course/$item_id", "CourseEdit.php");
     $router->addRoute("/Course/create", "CourseController.php", "CreateCourse");
     $router->addRoute("/Course-rename/$item_id", "CourseController.php", "RenameCourse");
