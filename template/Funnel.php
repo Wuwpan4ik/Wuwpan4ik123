@@ -92,9 +92,6 @@
                                                 Курс включает в себя 24 урока
                                             </div>
                                         </div>
-                                        <div class="pause__video">
-                                            <img src="../img/smallPlayer/pause.svg" alt="">
-                                        </div>
                                     </div>
                                     <?$i++;}}?>
                                     </div>
