@@ -95,6 +95,14 @@
 
 <?php include 'default/popupEditVideo.php';?>
 <script type="text/javascript" src="../js/button__settings.js"></script>
+
+<script>
+    function onButtonEdit(elem) {
+        elem.classList.add('display-none');
+        elem.parentElement.querySelector('.button__edit').classList.remove('display-none');
+    }
+</script>
+
 <script>
     function _(abc) {
         return document.getElementById(abc);

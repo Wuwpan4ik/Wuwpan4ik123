@@ -295,6 +295,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
         });
     });
+    document.querySelector('.slider__item').addEventListener('click', function (elem){
+        document.querySelector('.popup').classList.remove('active');
+        setTimeout(function () {
+            document.querySelector('.overlay').classList.remove('active');
+        }, (500));
+    });
 
     close.addEventListener('click', function () {
         toggleOverflow();

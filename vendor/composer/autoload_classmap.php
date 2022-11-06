@@ -35,6 +35,7 @@ return array(
     'Project' => $baseDir . '/pages/Project.php',
     'SmallPlayer' => $baseDir . '/pages/SmallPlayer.php',
     'SortController' => $baseDir . '/controller/SortController.php',
+    'StatisticsController' => $baseDir . '/controller/StatisticsController.php',
     'UrlController' => $baseDir . '/controller/UrlController.php',
     'UserPlayer' => $baseDir . '/pages/userPlayer.php',
 );

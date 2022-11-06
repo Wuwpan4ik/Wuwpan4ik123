@@ -27,7 +27,8 @@
         </div>
         <?php if (strstr($_SERVER['REQUEST_URI'], 'Funnel' )) {?>
         <input type="hidden" value="<?=$v['id']?>">
-        <button type="button" class="button__edit" style="background: #757D8A;"><img style="width: 22px;" src="/img/printer.png">Действие для кнопки</button>
+        <button type="button" class="button-add-button-edit" onclick="onButtonEdit(this)">Добавить кнопку</button>
+        <button type="button" class="button__edit display-none" style="background: #757D8A;"><img style="width: 22px;" src="/img/printer.png">Действие для кнопки</button>
         <?php } ?>
         <button type="submit">Сохранить</button>
 

@@ -42,7 +42,7 @@
 
                         </div>
                         <div class="slider__item-button button-open">
-                            <button type="button" class="button button-video">Клик</button>
+                            <button type="button" class="button button-video button-click">Клик</button>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,6 @@
                 <div class="popup__body-item">
                     <div class="popup__body-item__button">
                         <button class="button-end" type="button">Конец видео</button>
-                        <button class="button-click" type="button">Клик на кнопку</button>
                     </div>
                     <label for="first_do">Дейсвтие после просмотра:</label>
                     <select name="first_do" id="first_do">

@@ -54,6 +54,7 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'Project' => __DIR__ . '/../..' . '/pages/Project.php',
         'SmallPlayer' => __DIR__ . '/../..' . '/pages/SmallPlayer.php',
         'SortController' => __DIR__ . '/../..' . '/controller/SortController.php',
+        'StatisticsController' => __DIR__ . '/../..' . '/controller/StatisticsController.php',
         'UrlController' => __DIR__ . '/../..' . '/controller/UrlController.php',
         'UserPlayer' => __DIR__ . '/../..' . '/pages/userPlayer.php',
     );

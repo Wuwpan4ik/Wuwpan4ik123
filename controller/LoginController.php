@@ -80,7 +80,7 @@
             if (isset($_SESSION['email_message']) || isset($_SESSION['first_name_message'])) return False;
 
             else {
-                $this->db->db->execute("INSERT INTO `user` (`gender`, `niche`, `avatar`, `first_name`, `email`, `password`) VALUES ('$gender', '$niche', '$ava', '$first_name', '$email', '$password')");
+                $this->db->db->execute("INSERT INTO `user` (`gender`, `niche`, `avatar`, `first_name`, `email`, `password`, `is_creator`) VALUES ('$gender', '$niche', '$ava', '$first_name', '$email', '$password', 1)");
                 $_SESSION['error']['registration_message'] = "Регистрация прошла успешно";
             }
             return true;
