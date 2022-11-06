@@ -46,10 +46,12 @@
     $router->addRoute("/SortController/Clients", "SortController.php", "getClientsForMain");
     $router->addRoute("/SortController/AnalyticClients", "SortController.php", "getClientsForAnalytics");
     $router->addRoute("/LoginController/login", "LoginController.php", 'login');
+    $router->addRoute("/LoginController/reg", "LoginController.php", 'registration');
     $router->addRoute("/LoginController/logout", "LoginController.php", 'logout');
 
     $router->addRoute("/send-email", "EmailController.php", 'RegistrateUser');
-    $router->addRoute("/ClientsController/create-client", "ClientsController.php", 'Create');
+    $router->addRoute("/ClientsController/create-client", "ClientsController.php", 'AddApplication');
+    $router->addRoute("/ClientsController/buy", "ClientsController.php", 'BuyCourse');
     $router->addRoute("/ClientsController/$item_id/delete", "ClientsController.php", 'Delete');
 
     $router->route("/$url");

@@ -16,15 +16,20 @@
         private $email;
         private $name;
         private $password;
+        private $phone;
 
         public function RequestValidate()
         {
             $this->email = $_POST['email'];
             if (isset($_POST['name'])) {
                 $this->name = $_POST['name'];
-                if (!preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$this->name)) {
-                    return false;
-                }
+//                if (!preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$this->name)) {
+//                    return false;
+//                }
+            }
+
+            if (isset($_POST['phone'])) {
+                $this->phone = $_POST['phone'];
             }
 
             if (isset($_POST['password'])) {
@@ -61,7 +66,7 @@
         public function ResetPassword() {
             if (!$this->RequestValidate()) return false;
             $title = "Смена пароля";
-            $body = "Ваш новый пароль на<a href='http://localhost/login'>Course Creator</a><br>Пароль:$this->password";
+            $body = "Ваш новый пароль на <a href='http://localhost/login'>Course Creator</a><br>Пароль:$this->password";
             $this->SendEmail($title, $body);
             return true;
         }
@@ -70,12 +75,17 @@
         {
             if (!$this->RequestValidate()) return false;
             $title = "Регистрация аккаунта";
-            $body = "Ваш аккаунт на<a href='http://localhost/login'>Course Creator</a><br>Почта: $this->email<br>Пароль:$this->password";
+            $body = "Ваш аккаунт на <a href='http://localhost/login'>Course Creator</a><br>Почта: $this->email<br>Пароль:$this->password";
             $this->SendEmail($title, $body);
 
             $this->m->db->execute("INSERT INTO `user` (`email`, `password`, `is_creator`) VALUES ('$this->email', '$this->password', 0)");
+
             if (isset($this->name)) {
                 $this->m->db->execute("INSERT INTO `user` (`first_name`) VALUES ('$this->name') WHERE `email` = '$this->email'");
+            }
+
+            if (isset($this->phone)) {
+                $this->m->db->execute("INSERT INTO `user` (`telephone`) VALUES ('$this->phone') WHERE `email` = '$this->email'");
             }
 
             return true;

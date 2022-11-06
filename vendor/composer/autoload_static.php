@@ -30,6 +30,7 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'Account' => __DIR__ . '/../..' . '/pages/Account.php',
         'AccountController' => __DIR__ . '/../..' . '/controller/AccountController.php',
         'AnalController' => __DIR__ . '/../..' . '/controller/AnalController.php',
+        'Analytics' => __DIR__ . '/../..' . '/pages/Analytics.php',
         'Cases' => __DIR__ . '/../..' . '/pages/Cases.php',
         'ClientsController' => __DIR__ . '/../..' . '/controller/ClientsController.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
@@ -55,12 +56,6 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'SmallPlayer' => __DIR__ . '/../..' . '/pages/SmallPlayer.php',
         'SortController' => __DIR__ . '/../..' . '/controller/SortController.php',
         'UrlController' => __DIR__ . '/../..' . '/controller/UrlController.php',
-        'UserContacts' => __DIR__ . '/../..' . '/pages/userContacts.php',
-        'UserLogin' => __DIR__ . '/../..' . '/pages/userLogin.php',
-        'UserMain' => __DIR__ . '/../..' . '/pages/UserMain.php',
-        'UserMenu' => __DIR__ . '/../..' . '/pages/UserMenu.php',
-        'UserNotifications' => __DIR__ . '/../..' . '/pages/userNotifications.php',
-        'UserPasswordRecovery' => __DIR__ . '/../..' . '/pages/userPasswordRecovery.php',
         'UserPlayer' => __DIR__ . '/../..' . '/pages/userPlayer.php',
     );
 

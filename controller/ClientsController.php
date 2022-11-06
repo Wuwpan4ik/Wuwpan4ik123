@@ -3,34 +3,89 @@
 
         private $email;
         private $name;
-        private $tel;
+        private $phone;
+
+        private function GetClient($creator_id, $course_id) {
+            return $this->m->db->query("SELECT * FROM `clients` WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
+        }
 
         public function RequestValidate()
         {
             $this->email = $_POST['email'];
             if (isset($_POST['name'])) {
                 $this->name = $_POST['name'];
-                if (!preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$this->name)) {
-                    return false;
-                }
+//                if (!preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$this->name)) {
+//                    return false;
+//                }
             }
             if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
                 return false;
             }
-            if (isset($_POST['tel'])) {
-                $this->tel = $_POST['tel'];
+
+            if (isset($_POST['phone'])) {
+                $this->phone = $_POST['phone'];
             } else {
-                $this->tel = null;
+                $this->phone = null;
             }
+
             return True;
         }
 
-        public function Create() {
+        public function AddApplication() {
             if (!$this->RequestValidate()) return false;
+            $buy_progress = include './settings/buy_progress.php';
             $creator_id = $_POST['creator_id'];
             $course_id = $_POST['course_id'];
-            $comment = 'Оставить заявку';
-            $this->InsertToTable($creator_id, $course_id, $comment);
+            $comment = 'Заявка';
+            $client = $this->GetClient($creator_id, $course_id);
+            if (count($client) == 1){
+                if ($client[0]['buy_progress'] < $buy_progress[$comment]) {
+                    $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]' WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
+                }
+            } else {
+                $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment]);
+            }
+            return true;
+        }
+
+        public function BuyCourse() {
+            if (!$this->RequestValidate()) return false;
+
+            $buy_progress = include './settings/buy_progress.php';
+            $creator_id = $_POST['creator_id'];
+            $course_id = $_POST['course_id'];
+            $comment = 'Купил курс';
+            $client = $this->GetClient($creator_id, $course_id);
+
+            if (count($client) == 1){
+                if ($client[0]['buy_progress'] < $buy_progress[$comment]) {
+                    $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]' WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
+                }
+            } else {
+                $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment]);
+
+                $sURL = (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] === 'on') ? "https" : "http") . "://$_SERVER[HTTP_HOST]/send-email"; // URL-адрес POST
+                $sPD = "email=".$this->email; // Данные POST
+                if (isset($this->name)) {
+                    $sPD = $sPD . '&name=' . $this->name;
+                }
+                if (isset($this->phone)) {
+                    $sPD = $sPD . '&phone=' . $this->phone;
+                }
+                $aHTTP = array(
+                    'http' => // Обертка, которая будет использоваться
+                        array(
+                            'method'  => 'POST', // Метод запроса
+                            // Ниже задаются заголовки запроса
+                            'header'  => 'Content-type: application/x-www-form-urlencoded',
+                            'content' => $sPD
+                        )
+                );
+                $context = stream_context_create($aHTTP);
+                $contents = file_get_contents($sURL, false, $context);
+                echo $contents;
+            }
+            return true;
         }
 
         public function Delete() {
@@ -43,8 +98,8 @@
             return true;
         }
 
-        public function InsertToTable($creator_id, $course_id, $comment) {
-            $this->m->db->execute("INSERT INTO `clients` (`first_name`, `email`, `tel`, `creator_id`, `course_id`, `comment`, `give_money`) VALUES ('$this->name', '$this->email', '$this->tel', '$creator_id', '$course_id', '$comment', 0)");
+        public function InsertToTable($creator_id, $course_id, $buy_progress) {
+            $this->m->db->execute("INSERT INTO `clients` (`first_name`, `email`, `tel`, `creator_id`, `course_id`, `give_money`, `buy_progress`) VALUES ('$this->name', '$this->email', '$this->phone', '$creator_id', '$course_id', 0, '$buy_progress')");
             return true;
         }
 
