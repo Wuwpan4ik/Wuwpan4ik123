@@ -1,8 +1,8 @@
 <div class="feed-header">
 
     <div class="feed-header__title">
-        <?php if($_GET['option'] != 'Main') { ?>
-        <a class="button__back" href="?option=<?=isset($back) ? $back : "Main" ?>">
+        <?php if($_SERVER['REQUEST_URI'] != '/') { ?>
+        <a class="button__back" href="/<?=isset($back) ? $back : "" ?>">
             <img src="/img/ArrowLeft.svg" alt="">
         </a>
         <?php } ?>
@@ -13,7 +13,7 @@
 
         <button class="ico_button button-bell"><img class="ico" src="img/Bell.svg">  <div id="msg">5</div></button>
 
-        <button id="apps" class="ico_button" onclick="window.location.replace('?option=Analytics')">Заявки</button>
+        <button id="apps" class="ico_button" onclick="window.location.replace('Analytics')">Заявки</button>
 
     </div>
 

@@ -21,7 +21,7 @@
 			</head>
 			<body>
 				<script>
-					window.location.replace("?option=Analytics");
+					window.location.replace("/Analytics");
 				</script>
 			</body>
 			</html>';

@@ -5,17 +5,17 @@
     <meta charset="utf-8">
 
     <title>Моя тестовая страница</title>
-    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
 
-    <link rel="stylesheet" href="css/nullCss.css">
+    <link rel="stylesheet" href="/css/nullCss.css">
 
-    <link rel="stylesheet" href="css/project.css">
+    <link rel="stylesheet" href="/css/project.css">
 
-    <link rel="stylesheet" href="css/feed.css">
+    <link rel="stylesheet" href="/css/feed.css">
 
-    <link rel="stylesheet" href="css/lessons.css">
+    <link rel="stylesheet" href="/css/lessons.css">
 
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
 
 
 </head>
@@ -106,12 +106,12 @@
 
                         <div style="display:flex;">
 
-                            <input id="half_input" value="<?=isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https://" : "http://" . $_SERVER['SERVER_NAME']?>?option=SmallPlayer&id=<?=$p['id']?>" disabled/>
+                            <input id="half_input" value="<?=isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https://" : "http://" . $_SERVER['SERVER_NAME']?>/SmallPlayer/<?=$p['id']?>" disabled/>
 
                             <button class="copy-button" onclick="copy_link(this)" type="submit">Копировать</button>
 
                         </div>
-                        <form action="?option=VideoController&method=selectCourse" method="POST">
+                        <form action="/Funnel-select/<?=$p['id']?>" method="POST">
                             <input type="text" name="id" hidden="hidden" value="<?=$p['id']?>">
                             <select name="course_id" class="select__course">
                                 <?php
@@ -126,7 +126,7 @@
 
                             <input type="hidden" value="<?=$p['id']?>" >
 
-                            <button type="submit" onclick="window.location.href = '?option=FunnelEdit&id=<?=$p['id']?>';"">Изменить</button>
+                            <button type="submit" onclick="window.location.href = '/Funnel/<?=$p['id']?>';"">Изменить</button>
 
                             <button class="reboot" type="submit" onclick="deleteDirectory(this)">Удалить</button>
 
@@ -140,7 +140,7 @@
 
                     <div class="btn-upload" style="width: auto;">
 
-                        <a href="?option=DirectoryController&method=Create&folder=funnel" class="create-new">
+                        <a href="/Funnel/create" class="create-new">
 
                             <img src="../img/Create.svg" class="create-ico">
 
@@ -202,7 +202,7 @@
         entryDisplay.classList.add('display-block');
         toggleOverflow();
         deletes.addEventListener('click',function () {
-            window.location.href = '?option=DirectoryController&method=Delete&id='+ elem.parentElement.children[0].value + '&folder=funnel';
+            window.location.href = '/Funnel-delete/'+ elem.parentElement.children[0].value;
         });
     }
     notDelete.onclick = function (event) {
