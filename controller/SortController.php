@@ -59,7 +59,7 @@
 										
 					'<tr>
 
-						<td class="nick"> <input type="checkbox" class="check_user">' . $client["first_name"] . '</td>
+						<td class="nick"> <input type="checkbox" class="check_user">' . mb_strimwidth($client["first_name"], 0, 8, '') . '</td>
 											
 						<td>' . $client["give_money"] . ' ₽</td>
 

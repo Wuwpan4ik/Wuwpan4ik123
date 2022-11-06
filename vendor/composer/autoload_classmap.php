@@ -10,7 +10,6 @@ return array(
     'ACoreAdmin' => $baseDir . '/controller/ACoreAdmin.php',
     'Account' => $baseDir . '/pages/Account.php',
     'AccountController' => $baseDir . '/controller/AccountController.php',
-    'AnalController' => $baseDir . '/controller/AnalController.php',
     'Analytics' => $baseDir . '/pages/Analytics.php',
     'Cases' => $baseDir . '/pages/Cases.php',
     'ClientsController' => $baseDir . '/controller/ClientsController.php',

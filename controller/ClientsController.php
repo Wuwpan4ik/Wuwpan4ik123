@@ -9,6 +9,10 @@
             return $this->m->db->query("SELECT * FROM `clients` WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
         }
 
+        private function GetPriceOfCourse($course_id) {
+            return $this->m->db->query("SELECT * FROM `course` WHERE id = '$course_id'");
+        }
+
         public function RequestValidate()
         {
             $this->email = $_POST['email'];
@@ -48,6 +52,7 @@
             return true;
         }
 
+//      Без какой либо зависимости, что человек уже купил видео курса (покупает по полной)
         public function BuyCourse() {
             if (!$this->RequestValidate()) return false;
 
@@ -56,13 +61,14 @@
             $course_id = $_POST['course_id'];
             $comment = 'Купил курс';
             $client = $this->GetClient($creator_id, $course_id);
+            $give_money = $client[0]['give_money'] + $this->GetPriceOfCourse($course_id)[0]['price'];
 
             if (count($client) == 1){
                 if ($client[0]['buy_progress'] < $buy_progress[$comment]) {
-                    $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]' WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
+                    $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]', `give_money` = '$give_money' WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
                 }
             } else {
-                $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment]);
+                $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], $give_money);
 
                 $sURL = (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] === 'on') ? "https" : "http") . "://$_SERVER[HTTP_HOST]/send-email"; // URL-адрес POST
                 $sPD = "email=".$this->email; // Данные POST
@@ -98,8 +104,9 @@
             return true;
         }
 
-        public function InsertToTable($creator_id, $course_id, $buy_progress) {
-            $this->m->db->execute("INSERT INTO `clients` (`first_name`, `email`, `tel`, `creator_id`, `course_id`, `give_money`, `buy_progress`) VALUES ('$this->name', '$this->email', '$this->phone', '$creator_id', '$course_id', 0, '$buy_progress')");
+        public function InsertToTable($creator_id, $course_id, $buy_progress, $course_price) {
+            $current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
+            $this->m->db->execute("INSERT INTO `clients` (`first_name`, `email`, `tel`, `creator_id`, `course_id`, `give_money`, `buy_progress`, `achivment_date`) VALUES ('$this->name', '$this->email', '$this->phone', '$creator_id', '$course_id', '$course_price', '$buy_progress', '$current_date')");
             return true;
         }
 
