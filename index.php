@@ -61,6 +61,8 @@
     $router->addRoute("/PopupController/get_popup", "PopupController.php", 'get_popup');
 
     $router->addRoute("/StatisticsController/GetStatistics", "StatisticsController.php", 'GetAllStatistics');
+    $router->addRoute("/StatisticsController/GetWeek", "StatisticsController.php", 'GetWeekGraph');
+
     $router->route("/$url");
 
 ?>

@@ -18,8 +18,14 @@
         }
 
         public function GetAllStatistics() {
-            $result = ["prev_week" => $this->GetPrevWeekStatistics()[0]['give_money'], "week" => $this->GetWeekStatistics()[0]['give_money'],
-                "prev_month" => $this->GetPrevMonthsStatistics()[0]['give_money'], "month" => $this->GetMonthsStatistics()[0]['give_money']];
+            $result = ["prev_week" => $this->GetPrevWeekStatistics(), "week" => $this->GetWeekStatistics(),
+                "prev_month" => $this->GetPrevMonthsStatistics(), "month" => $this->GetMonthsStatistics()];
+            echo json_encode($result);
+        }
+
+        public function GetWeekGraph()
+        {
+            $result = $this->m->GetWeekGraph();
             echo json_encode($result);
         }
 

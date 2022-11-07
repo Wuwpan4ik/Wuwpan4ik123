@@ -152,6 +152,7 @@
             if (array.prev_week == null) {
                 console.log('ud');
             }
+            console.log(array)
             if (array.week) {
                 document.getElementById('this_week').innerHTML = array.week + "₽";
             }
