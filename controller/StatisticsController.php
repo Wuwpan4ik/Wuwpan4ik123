@@ -19,13 +19,13 @@
 
         public function GetAllStatistics() {
             $result = ["prev_week" => $this->GetPrevWeekStatistics(), "week" => $this->GetWeekStatistics(),
-                "prev_month" => $this->GetPrevMonthsStatistics(), "month" => $this->GetMonthsStatistics()];
+                "prev_month" => $this->GetPrevMonthsStatistics(), "month" => $this->GetMonthsStatistics(), "full_value" => $this->m->GetFullValue()];
             echo json_encode($result);
         }
 
         public function GetWeekGraph()
         {
-            $result = $this->m->GetWeekGraph();
+            $result = ['prev' => $this->m->GetWeekGraph()];
             echo json_encode($result);
         }
 

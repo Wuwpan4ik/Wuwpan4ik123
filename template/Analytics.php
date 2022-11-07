@@ -103,21 +103,21 @@
                                 <div class="profit__row">
                                     <div class="profit__item">
                                         <div class="profit_header"><h3>Доход за неделю</h3><span>Неделя</span></div>
-                                        <div class="profit_sum"><span id="this_week">50 893 ₽</span> <span class="green_profit">14.6%</span>
+                                        <div class="profit_sum"><span id="this_week">50 893 ₽</span> <span class="green_profit week_procent">14.6%</span>
                                         </div> 
-                                        <div class="profit_footer">На  <span class="green_text">10,256 ₽ </span>больше</div>         
+                                        <div class="profit_footer">На  <span id="week_diff"></span> <span id="week_diff-text"></span></div>
                                     </div>
                                     <div class="profit__item profit_down">
                                         <div class="profit_header"><h3>Доход за месяц</h3><span>Месяц</span></div>
                                         <div class="profit_sum"><span id="this_month">210 893 ₽</span> <span class="red_profit">4.16%</span>
                                         </div> 
-                                        <div class="profit_footer">На  <span class="red_text">20,597 ₽ </span>меньше</div>         
+                                        <div class="profit_footer">На  <span id="month_diff"></span> <span id="month_diff-text"></span></div>
                                     </div>
                                 </div>
                                 <div class="allprofit">
                                     <div class="profit_header"><h3>Общий доход</h3><div class="profit_header_dots"></div>
                                     </div>
-                                    <div class="profit_sum">1 390 164 ₽ <span class="red_profit">14.6%</span></div>
+                                    <div class="profit_sum"><span id="full_value"></span></div>
                                     <div class="numbers">
                                         <div class="numbers_item">0-5000 <span class="color1"></span></div>
                                         <div class="numbers_item">>50 000<span class="color2"></span></div>
@@ -131,12 +131,12 @@
                                     <div class="rightSideFirst_header">
                                         <img src="/img/credit-card.svg" alt="">
                                         <div class="rightSideFirstText1">
-                                            <h3>50 893 ₽</h3>
+                                            <h3 id="full_week_value"></h3>
                                             <span>Общая прибыль</span>
                                         </div>
                                         <div class="rightSideFirstText2">
                                             <span>Неделя</span>
-                                            <span class="green_profit">14.6%</span>
+                                            <span class="green_profit week_procent">14.6%</span>
                                         </div>
                                     </div>
                                     <div class="Analytics-graphic__totalProfit">
@@ -156,7 +156,7 @@
                                             <span>показатели доходности</span>
                                         </div>
                                         <div class="rightSideFirstText2">
-                                            <span class="green_profit">14.6%</span>
+                                            <span class="green_profit week_procent">14.6%</span>
                                         </div>
                                     </div>
                                     <div class="profit_footer">На  <span class="green_text">10,256 ₽ </span>больше</div>
@@ -202,6 +202,39 @@
           if (array.prev_month) {
               document.getElementById('last_month').innerHTML = array.prev_month + "₽";
           }
+          if (array.full_value) {
+              document.getElementById('full_week_value').innerText = array.week + "₽";
+          }
+          if (array.full_value) {
+              document.getElementById('full_value').innerText = array.full_value + "₽";
+          }
+          let week_diff = array.week - array.prev_week;
+          let month_diff = array.month - array.prev_month;
+
+          if (week_diff > 0) {
+              document.getElementById('week_diff-text').innerText = 'больше';
+              document.getElementById('week_diff').classList.add('green_text');
+          } else {
+              document.getElementById('week_diff-text').innerText = 'меньше';
+              document.getElementById('week_diff').classList.add('red_text');
+          }
+          if (month_diff > 0) {
+              document.getElementById('month_diff-text').innerText = 'больше';
+              document.getElementById('month_diff').classList.add('green_text');
+          } else {
+              document.getElementById('month_diff-text').innerText = 'меньше';
+              document.getElementById('month_diff').classList.add('red_text');
+          }
+          document.getElementById('week_diff').innerText = week_diff + "₽";
+          document.getElementById('month_diff').innerText = month_diff + "₽";
+
+          document.querySelectorAll(".week_procent").forEach((elem) => {
+              if (array.prev_week !== 0) {
+                  elem.innerHTML = array.week / array.prev_week * 100 + "%";
+              } else {
+                  elem.style.display = 'none';
+              }
+          });
       }
   });
   request1.send();

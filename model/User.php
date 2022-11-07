@@ -100,12 +100,22 @@
             return $sum;
         }
 
+        public function GetFullValue()
+        {
+            $sum = 0;
+            $result = $this->db->query("SELECT give_money from clients WHERE `creator_id` = " . $_SESSION['user']['id']);
+            foreach ($result as $item) {
+                $sum += $item['give_money'];
+            }
+            return $sum;
+        }
+
         public function GetWeekGraph()
         {
             $current_date_6 = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 6, date('Y')));
             $current_date_5 = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 5, date('Y')));
             $current_date_4 = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 4, date('Y')));
-            $current_date_3 = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 3, date('Y')));$current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 6, date('Y')));
+            $current_date_3 = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 3, date('Y')));
             $current_date_2 = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 2, date('Y')));
             $current_date_1 = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 1, date('Y')));
             $current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
@@ -134,7 +144,7 @@
                     $array[6] += $item['give_money'];
                 }
             }
-            return $array;
+            return array_reverse($array);
         }
 
         public function getVideosForPlayer()

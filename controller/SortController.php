@@ -10,7 +10,7 @@
         function getClientsForMain(){
 			$get = $_GET["order"];
 			
-			$content = $this->m->db->query("SELECT * FROM `user` WHERE `is_creator` <> 0 ORDER BY $get" );
+			$content = $this->m->db->query("SELECT * FROM `user` WHERE `is_creator` <> 1 ORDER BY $get" );
 			
             $i = 1;
 
