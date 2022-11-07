@@ -69,6 +69,8 @@
 
 										<th><div class="th-title"><button class="order_button" value="telephone"><img class="table_ico" src="img/StickDown.svg"></button>Телефон</div></th>
 
+                                        <th><div class="th-title"><button class="order_button" value="telephone"><img class="table_ico" src="img/StickDown.svg"></button>Курс</div></th>
+
 										<th><div class="th-title"><button class="order_button" value="comment"><img class="table_ico" src="img/StickDown.svg"></button>Задача</div></th>
 										
 										<th><div class="th-title"><button class="order_button" value="achivment_date"><img class="table_ico" src="img/StickDown.svg"></button>Дата создания</div></th>
@@ -170,6 +172,7 @@
             </div>
 
         </div>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
         <script src="../js/script.js" ></script>
   </body>
   
@@ -198,7 +201,7 @@
 				const tab = document.querySelector('#conTab');
                 let request = new XMLHttpRequest();
 
-                let url = "?option=SortController&method=get_sum&sort=";
+                let url = "SortController/AnalyticClients?sort=";
 
                 request.open('GET', url);
 
@@ -221,7 +224,7 @@
                         }
                         let request = new XMLHttpRequest();
 
-                        let url = "?option=SortController&method=get_sum&sort=give_money";
+                        let url = "SortController/AnalyticClients?sort=" + param;
 
                         request.open('GET', url);
 

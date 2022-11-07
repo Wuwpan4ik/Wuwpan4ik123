@@ -5,17 +5,17 @@
     <meta charset="utf-8">
 
     <title>Моя тестовая страница</title>
-    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
 
-    <link rel="stylesheet" href="css/nullCss.css">
+    <link rel="stylesheet" href="/css/nullCss.css">
 
-    <link rel="stylesheet" href="css/project.css">
+    <link rel="stylesheet" href="/css/project.css">
 
-    <link rel="stylesheet" href="css/feed.css">
+    <link rel="stylesheet" href="/css/feed.css">
 
-    <link rel="stylesheet" href="css/lessons.css">
+    <link rel="stylesheet" href="/css/lessons.css">
 
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
 
 </head>
 
@@ -110,7 +110,7 @@
 
                             <input type="hidden" value="<?=$p['id']?>" >
 
-                            <button type="submit" onclick="window.location.href = '?option=CourseEdit&id=<?=$p['id']?>';"">Изменить</button>
+                            <button type="submit" onclick="window.location.href = '/Course/<?=$p['id']?>';"">Изменить</button>
 
                             <button class="reboot" type="submit" onclick="deleteDirectory(this)">Удалить</button>
 
@@ -124,7 +124,7 @@
 
                     <div class="btn-upload" style="width: auto;">
 
-                        <a  href="?option=DirectoryController&method=Create&folder=course" class="create-new">
+                        <a  href="/Course/create" class="create-new">
 
                             <img src="img/Create.svg" class="create-ico">
 
@@ -172,7 +172,7 @@
         entryDisplay.classList.add('display-block');
         toggleOverflow();
         deletes.addEventListener('click',function () {
-            window.location.href = '?option=DirectoryController&method=Delete&id='+ elem.parentElement.children[0].value + '&folder=course';
+            window.location.href = '/Course-delete/'+ elem.parentElement.children[0].value;
         });
     }
     notDelete.onclick = function (event) {

@@ -2,30 +2,56 @@
     session_start();
     header("Content-Type:text/html;charset=UTF-8");
     require_once 'vendor/autoload.php';
+    require_once 'model/Routering.php';
+    $url = key($_GET);
+    $url_array = explode('/', $url);
 
-    if(isset($_GET['option'])) {
-        $class = trim(strip_tags($_GET['option']));
-        if(isset($_GET['method'])) {
-            $method = trim(strip_tags($_GET['method']));
-        }
-    }
-    else {
-        $class = 'Main';
+    if (count($url_array) >= 2) {
+        $item_id = $url_array[1];
+        $_SESSION['item_id'] = $item_id;
     }
 
+    $router = new Router();
 
-    if(class_exists($class)) {
+    $router->addRoute("/", "Main.php");
+    $router->addRoute("/reg", "Registration.php");
+    $router->addRoute("/login", "Login.php");
+    $router->addRoute("/Analytics", "Analytics.php");
+    $router->addRoute("/Account", "Account.php");
+    $router->addRoute("/Cases", "Cases.php");
+    $router->addRoute("/SmallPlayer/$item_id", "SmallPlayer.php");
 
-        $obj = new $class;
-        if (isset($method)) {
-            if (method_exists($obj, $method)) {
-                $obj->$method();
-            }
-        }
+    $router->addRoute("/Project", "Project.php");
 
-    }
-    else {
-        exit("<p>Нет данных для входа</p>");
-    }
+    $router->addRoute("/Course", "Course.php");
+    $router->addRoute("/Course/$item_id", "CourseEdit.php");
+    $router->addRoute("/Course/create", "CourseController.php", "CreateCourse");
+    $router->addRoute("/Course-rename/$item_id", "CourseController.php", "RenameCourse");
+    $router->addRoute("/Course-delete/$item_id", "CourseController.php", "DeleteCourse");
+    $router->addRoute("/Course/$item_id/create", "CourseController.php", "AddVideo");
+    $router->addRoute("/Course/$item_id/delete", "CourseController.php", "DeleteVideo");
+    $router->addRoute("/Course/$item_id/rename", "CourseController.php", "RenameVideo");
+
+    $router->addRoute("/Funnel", "Funnel.php");
+    $router->addRoute("/Funnel/$item_id", "FunnelEdit.php");
+    $router->addRoute("/Funnel/create", "FunnelController.php", "CreateFunnel");
+    $router->addRoute("/Funnel-rename/$item_id", "FunnelController.php", "RenameFunnel");
+    $router->addRoute("/Funnel-delete/$item_id", "FunnelController.php", "DeleteFunnel");
+    $router->addRoute("/Funnel-select/$item_id", "FunnelController.php", "SelectCourse");
+    $router->addRoute("/Funnel/$item_id/create", "FunnelController.php", "AddVideo");
+    $router->addRoute("/Funnel/$item_id/delete", "FunnelController.php", "DeleteVideo");
+    $router->addRoute("/Funnel/$item_id/rename", "FunnelController.php", "RenameVideo");
+    $router->addRoute("/Funnel/$item_id/settings", "FunnelController.php", "PopupSettings");
+
+    $router->addRoute("/SortController/Clients", "SortController.php", "getClientsForMain");
+    $router->addRoute("/SortController/AnalyticClients", "SortController.php", "getClientsForAnalytics");
+    $router->addRoute("/LoginController/login", "LoginController.php", 'login');
+    $router->addRoute("/LoginController/logout", "LoginController.php", 'logout');
+
+    $router->addRoute("/send-email", "EmailController.php", 'RegistrateUser');
+    $router->addRoute("/ClientsController/create-client", "ClientsController.php", 'Create');
+    $router->addRoute("/ClientsController/$item_id/delete", "ClientsController.php", 'Delete');
+
+    $router->route("/$url");
 
 ?>

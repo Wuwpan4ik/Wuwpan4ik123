@@ -5,15 +5,19 @@
     <meta charset="utf-8">
 
     <title>Моя тестовая страница</title>
-    <link rel="stylesheet" href="css/sidebar.css">
-    <link rel="stylesheet" href="css/nullCss.css">
-    <link rel="stylesheet" href="css/project.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
 
-    <link rel="stylesheet" href="css/feed.css">
+    <link rel="stylesheet" href="/css/nullCss.css">
 
-    <link rel="stylesheet" href="css/lessons.css">
+    <link rel="stylesheet" href="/css/project.css">
 
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/feed.css">
+
+    <link rel="stylesheet" href="/css/smallPlayer.css">
+
+    <link rel="stylesheet" href="/css/lessons.css">
+
+    <link rel="stylesheet" href="/css/main.css">
 
 </head>
 
@@ -29,15 +33,15 @@
 
             <div class="feed-menu">
 
-                <a class="button__back" href="?option=Funnel">
+                <a class="button__back" href="/Course">
                     <img src="/img/ArrowLeft.svg" alt="">
                 </a>
 
-                <form action="?option=DirectoryController&method=setName&id=<?=$content[0][0]['id']?>&folder=course" method="POST" id="insert">
+                <form action="/Course-rename/<?=$content[0][0]['id']?>" method="POST" id="insert">
 
                     <h2 id="display_name"><?=$content[0][0]['name']?></h2>
 
-                    <button class="none"><img id="name_change" src="img/Pen.svg" class="ico" onclick="changeName()"></button>
+                    <button class="none"><img id="name_change" src="/img/Pen.svg" class="ico" onclick="changeName()"></button>
 
                 </form>
 
@@ -59,9 +63,9 @@
 
             <div class="buttonsFeed">
 
-                <button class="ico_button button-bell"><img class="ico" src="img/Bell.svg">  <div id="msg">5</div></button>
+                <button class="ico_button button-bell"><img class="ico" src="/img/Bell.svg">  <div id="msg">5</div></button>
 
-                <button id="apps" class="ico_button" onclick="window.location.replace('?option=Analytics')">Заявки</button>
+                <button id="apps" class="ico_button" onclick="window.location.replace('/Analytics')">Заявки</button>
 
             </div>
 
@@ -101,12 +105,14 @@
             elem.style.display = 'none';
         })
         _("progressBar").classList.add('active');
+        _("progressText").classList.add('active');
+        document.querySelector('.btn-upload').classList.add('active');
         var formdata = new FormData();
         formdata.append("video_uploader", file);
         var ajax = new XMLHttpRequest();
         ajax.upload.addEventListener("progress", progressHandler, false);
         ajax.addEventListener("load", completeHandler, false)
-        ajax.open("POST", "?option=VideoController&method=addVideo&id=<?=$content[0][0]['id']?>&folder=course");
+        ajax.open("POST", "http://localhost/Course/<?=$content[0][0]['id']?>/create");
         ajax.send(formdata);
     }
     function progressHandler(event) {
@@ -116,7 +122,7 @@
         _("progressBar").value = Math.round(percent);//Round value to solid
     }
     function completeHandler(event) {
-       _("progressBar").value = 0;//Set progress bar to 0
+        _("progressBar").value = 0;//Set progress bar to 0
         document.getElementById('progressDiv').style.display = 'none';//Hide progress bar
         location.reload();
     }

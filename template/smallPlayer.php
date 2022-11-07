@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ccio</title>
-    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
 
-    <link type="text/css" rel="stylesheet" href="../css/smallPlayer.css">
+    <link type="text/css" rel="stylesheet" href="/css/smallPlayer.css">
 
 </head>
 <body class="body">
@@ -31,7 +31,7 @@
                 <div class="slider__header _conatiner-player ">
                     <div class="slider__header-logo">
                         <div class="slider__header-logo-img">
-                            <img width="48  px" src="<?=$item['avatar']?>" alt="">
+                            <img width="48  px" src="/<?=$item['avatar']?>" alt="">
                         </div>
                         <div class="slider__header-logo-text">
                             <?=$item['first_name']?>
@@ -54,7 +54,7 @@
                         <?=$item['content_description']?>
                     </div>
                     <?php
-                    if (isset($item['button_text']) && isset($popup->second_do)) { ?>
+                    if (isset($item['button_text'])) { ?>
                     <div class="slider__item-button button-open">
                         <button  class="button"><?=$item['button_text']?></button>
                     </div>
@@ -71,6 +71,8 @@
                     // Первое или второе действие
                     $name = 'button';
                     $popup__do = $popup->second_do;
+                    $id = $item['id'];
+                    $author_id = $item['author_id'];
                     include 'template/default/popup__templates/popup__form.php';
                 } ?>
                 <?php
@@ -83,6 +85,8 @@
                     // Первое или второе действие
                     $name = 'video';
                     $popup__do = $popup->first_do;
+                    $id = $item['id'];
+                    $author_id = $item['author_id'];
                     include 'template/default/popup__templates/popup__form.php';
                 }
                 ?>
@@ -104,7 +108,7 @@
 </div>
 
 <?php if (empty($content['course_content'])) { ?>
-    <h1 style="font-size: 34px; color: white; display:flex; justify-content: center">Вы не добавили курс, к которому будет принадлежать воронка!</h1>
+    <h1 style="font-size: 34px; color: white; display:flex; justify-content: center">Вы не добавили курс, к которому будет принадлежать воронка или внутри него нет видео!</h1>
 <?php } ?>
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>

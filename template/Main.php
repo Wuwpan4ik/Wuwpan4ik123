@@ -33,7 +33,7 @@
     <div class="feed">
 
         <?php
-        $title = "Ключевые показатели";
+        $title = "Ключевые показатели".$_SESSION['mail'];
         include ('default/header.php');
         ?>
 
@@ -143,7 +143,7 @@
 
             let request = new XMLHttpRequest();
 
-            let url = "?option=SortController&method=get_content&order=first_name";
+            let url = "/SortController/Clients?order=first_name";
 
             request.open('GET', url);
 
@@ -155,7 +155,7 @@
             });
             request.send();
 
-			
+
 			for (var i = 0; i < order_button.length; ++i) {
 				order_button[i].addEventListener('click', function(e) {
 					if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){
@@ -167,7 +167,7 @@
 					}
                     let request = new XMLHttpRequest();
 
-                    let url = "?option=SortController&method=get_content&order=" +param;
+                    let url = "/SortController/Clients?order=" +param;
 
 					request.open('GET', url);
 

@@ -10,31 +10,49 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         '1d5a77609116b3a7d9f7b9e9c18687a5' => __DIR__ . '/../..' . '/model/User.php',
     );
 
+    public static $prefixLengthsPsr4 = array (
+        'P' => 
+        array (
+            'PHPMailer\\PHPMailer\\' => 20,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+        ),
+    );
+
     public static $classMap = array (
-        'ACore' => __DIR__ . '/../..' . '/controller/Acore.php',
+        'ACore' => __DIR__ . '/../..' . '/controller/ACore.php',
         'ACoreAdmin' => __DIR__ . '/../..' . '/controller/ACoreAdmin.php',
-        'AboutTheAuthor' => __DIR__ . '/../..' . '/pages/aboutTheAuthor.php',
-        'Account' => __DIR__ . '/../..' . '/pages/account.php',
+        'Account' => __DIR__ . '/../..' . '/pages/Account.php',
         'AccountController' => __DIR__ . '/../..' . '/controller/AccountController.php',
         'AnalController' => __DIR__ . '/../..' . '/controller/AnalController.php',
-        'Analytics' => __DIR__ . '/../..' . '/pages/analytics.php',
-        'Cases' => __DIR__ . '/../..' . '/pages/cases.php',
+        'Cases' => __DIR__ . '/../..' . '/pages/Cases.php',
+        'ClientsController' => __DIR__ . '/../..' . '/controller/ClientsController.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'Course' => __DIR__ . '/../..' . '/pages/course.php',
-        'CourseEdit' => __DIR__ . '/../..' . '/pages/courseEdit.php',
-        'DirectoryController' => __DIR__ . '/../..' . '/controller/DirectoryController.php',
-        'Funnel' => __DIR__ . '/../..' . '/pages/funnel.php',
-        'FunnelEdit' => __DIR__ . '/../..' . '/pages/funnelEdit.php',
-        'Login' => __DIR__ . '/../..' . '/pages/login.php',
+        'Course' => __DIR__ . '/../..' . '/pages/Course.php',
+        'CourseController' => __DIR__ . '/../..' . '/controller/CourseController.php',
+        'CourseEdit' => __DIR__ . '/../..' . '/pages/CourseEdit.php',
+        'EmailController' => __DIR__ . '/../..' . '/controller/EmailController.php',
+        'Funnel' => __DIR__ . '/../..' . '/pages/Funnel.php',
+        'FunnelController' => __DIR__ . '/../..' . '/controller/FunnelController.php',
+        'FunnelEdit' => __DIR__ . '/../..' . '/pages/FunnelEdit.php',
+        'Login' => __DIR__ . '/../..' . '/pages/Login.php',
         'LoginController' => __DIR__ . '/../..' . '/controller/LoginController.php',
-        'Main' => __DIR__ . '/../..' . '/pages/main.php',
+        'Main' => __DIR__ . '/../..' . '/pages/Main.php',
         'MessengerController' => __DIR__ . '/../..' . '/controller/MessengerController.php',
-        'NewProject' => __DIR__ . '/../..' . '/pages/newProject.php',
+        'PHPMailer\\PHPMailer\\Exception' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/Exception.php',
+        'PHPMailer\\PHPMailer\\OAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuth.php',
+        'PHPMailer\\PHPMailer\\OAuthTokenProvider' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuthTokenProvider.php',
+        'PHPMailer\\PHPMailer\\PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/PHPMailer.php',
+        'PHPMailer\\PHPMailer\\POP3' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/POP3.php',
+        'PHPMailer\\PHPMailer\\SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/SMTP.php',
         'PopupController' => __DIR__ . '/../..' . '/controller/PopupController.php',
-        'Project' => __DIR__ . '/../..' . '/pages/project.php',
-        'Registration' => __DIR__ . '/../..' . '/pages/registration.php',
-        'SettingsAccountUser' => __DIR__ . '/../..' . '/pages/settingsAccountUser.php',
-        'SmallPlayer' => __DIR__ . '/../..' . '/pages/smallPlayer.php',
+        'Project' => __DIR__ . '/../..' . '/pages/Project.php',
+        'SmallPlayer' => __DIR__ . '/../..' . '/pages/SmallPlayer.php',
         'SortController' => __DIR__ . '/../..' . '/controller/SortController.php',
         'UrlController' => __DIR__ . '/../..' . '/controller/UrlController.php',
         'UserContacts' => __DIR__ . '/../..' . '/pages/userContacts.php',
@@ -44,12 +62,13 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'UserNotifications' => __DIR__ . '/../..' . '/pages/userNotifications.php',
         'UserPasswordRecovery' => __DIR__ . '/../..' . '/pages/userPasswordRecovery.php',
         'UserPlayer' => __DIR__ . '/../..' . '/pages/userPlayer.php',
-        'VideoController' => __DIR__ . '/../..' . '/controller/VideoController.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInit113aa6f48300210152e47d56e3735559::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit113aa6f48300210152e47d56e3735559::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInit113aa6f48300210152e47d56e3735559::$classMap;
 
         }, null, ClassLoader::class);
