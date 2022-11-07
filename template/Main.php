@@ -69,7 +69,7 @@
 
                     <p>Эта неделя<img class="index_ico" src="img/ArrowUp.svg"></p>
 
-                    <h3>74 996Р</h3>
+                    <h3 id="this_week">74 996 Руб.</h3>
 
                 </div>
 
@@ -77,7 +77,7 @@
 
                     <p>В месяц<img class="index_ico" src="/img/ArrowDownActive.svg"></p>
 
-                    <h3>67 996Р</h3>
+                    <h3 id="this_month">67 996 Руб.</h3>
 
                 </div>
 
@@ -85,7 +85,7 @@
 
                     <p>Прошлая неделя<img class="index_ico" src="img/ArrowUp.svg"></p>
 
-                    <h3>54 435Р</h3>
+                    <h3 id="prev_week">0 Руб.</h3>
 
                 </div>
 
@@ -93,7 +93,7 @@
 
                     <p>Прошлый месяц<img class="index_ico" src="img/ArrowDown.svg"></p>
 
-                    <h3>77 000Р</h3>
+                    <h3 id="prev_month">0 Руб.</h3>
 
                 </div>
 
@@ -137,50 +137,81 @@
 
 </body>
 
-  <script>
-            const order_button = document.querySelectorAll('.order_button');
-            let tab = document.querySelector('#viewTab');
+<script>
 
-            let request = new XMLHttpRequest();
+    let request1 = new XMLHttpRequest();
 
-            let url = "/SortController/Clients?order=first_name";
+    let url1 = "/StatisticsController/GetStatistics";
 
-            request.open('GET', url);
+    request1.open('GET', url1);
 
-            request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-            request.addEventListener("readystatechange", () => {
-                if (request.readyState === 4 && request.status === 200) {
-                    tab.innerHTML = request.responseText;
+    request1.setRequestHeader('Content-Type', 'application/x-www-form-url');
+    request1.addEventListener("readystatechange", () => {
+        if (request1.readyState === 4 && request1.status === 200) {
+            const array = JSON.parse(request1.responseText);
+            if (array.prev_week == null) {
+                console.log('ud');
+            }
+            if (array.week) {
+                document.getElementById('this_week').innerHTML = array.week + "₽";
+            }
+            if (array.month) {
+                document.getElementById('this_month').innerHTML = array.month + "₽";
+            }
+            if (array.prev_week) {
+                document.getElementById('last_week').innerHTML = array.prev_week + "₽";
+            }
+            if (array.prev_month) {
+                document.getElementById('last_month').innerHTML = array.prev_month + "₽";
+            }
+        }
+    });
+    request1.send();
+</script>
+
+
+<script>
+        const order_button = document.querySelectorAll('.order_button');
+        let tab = document.querySelector('#viewTab');
+
+        let request = new XMLHttpRequest();
+
+        let url = "/SortController/Clients?order=first_name";
+
+        request.open('GET', url);
+
+        request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+        request.addEventListener("readystatechange", () => {
+            if (request.readyState === 4 && request.status === 200) {
+                tab.innerHTML = request.responseText;
+            }
+        });
+        request.send();
+
+
+        for (var i = 0; i < order_button.length; ++i) {
+            order_button[i].addEventListener('click', function(e) {
+                if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){
+                    this.innerHTML = '<img class="table_ico" src="img/StickUp.svg">';
+                    var param = this.value + " DESC";
+                }else{
+                    this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
+                    param = this.value;
                 }
+                let request = new XMLHttpRequest();
+
+                let url = "/SortController/Clients?order=" +param;
+
+                request.open('GET', url);
+
+                request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+                request.addEventListener("readystatechange", () => {
+                    if (request.readyState === 4 && request.status === 200) {
+                        tab.innerHTML = request.responseText;
+                    }
+                });
+                request.send();
             });
-            request.send();
-
-
-			for (var i = 0; i < order_button.length; ++i) {
-				order_button[i].addEventListener('click', function(e) {
-					if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){
-						this.innerHTML = '<img class="table_ico" src="img/StickUp.svg">';
-						var param = this.value + " DESC";
-					}else{
-						this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
-						param = this.value;
-					}
-                    let request = new XMLHttpRequest();
-
-                    let url = "/SortController/Clients?order=" +param;
-
-					request.open('GET', url);
-
-					request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-					request.addEventListener("readystatechange", () => {
-						if (request.readyState === 4 && request.status === 200) {
-							tab.innerHTML = request.responseText;
-                            console.log(request.responseText)
-						}
-					});
-					request.send();
-				});
-			}
-        </script>
-
+        }
+    </script>
 </html>

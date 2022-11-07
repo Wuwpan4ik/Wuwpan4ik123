@@ -103,13 +103,13 @@
                                 <div class="profit__row">
                                     <div class="profit__item">
                                         <div class="profit_header"><h3>Доход за неделю</h3><span>Неделя</span></div>
-                                        <div class="profit_sum">50 893 ₽ <span class="green_profit">14.6%</span>
+                                        <div class="profit_sum"><span id="this_week">50 893 ₽</span> <span class="green_profit">14.6%</span>
                                         </div> 
                                         <div class="profit_footer">На  <span class="green_text">10,256 ₽ </span>больше</div>         
                                     </div>
                                     <div class="profit__item profit_down">
                                         <div class="profit_header"><h3>Доход за месяц</h3><span>Месяц</span></div>
-                                        <div class="profit_sum">210 893 ₽ <span class="red_profit">4.16%</span>
+                                        <div class="profit_sum"><span id="this_month">210 893 ₽</span> <span class="red_profit">4.16%</span>
                                         </div> 
                                         <div class="profit_footer">На  <span class="red_text">20,597 ₽ </span>меньше</div>         
                                     </div>
@@ -157,60 +157,91 @@
         <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
         <script src="../js/script.js" ></script>
   </body>
-  
-	<script>
+<script>
+
+  let request1 = new XMLHttpRequest();
+
+  let url1 = "/StatisticsController/GetStatistics";
+
+  request1.open('GET', url1);
+
+  request1.setRequestHeader('Content-Type', 'application/x-www-form-url');
+  request1.addEventListener("readystatechange", () => {
+      if (request1.readyState === 4 && request1.status === 200) {
+          const array = JSON.parse(request1.responseText);
+          if (array.prev_week == null) {
+              console.log('ud');
+          }
+          if (array.week) {
+              document.getElementById('this_week').innerHTML = array.week + "₽";
+          }
+          if (array.month) {
+              document.getElementById('this_month').innerHTML = array.month + "₽";
+          }
+          if (array.prev_week) {
+              document.getElementById('last_week').innerHTML = array.prev_week + "₽";
+          }
+          if (array.prev_month) {
+              document.getElementById('last_month').innerHTML = array.prev_month + "₽";
+          }
+      }
+  });
+  request1.send();
+</script>
+
+<script>
+    let check_user = document.querySelectorAll('.check_user');
+    const main_check = document.querySelector('#main_check');
+    main_check.addEventListener('click', function (e) {
         let check_user = document.querySelectorAll('.check_user');
-        const main_check = document.querySelector('#main_check');
-        main_check.addEventListener('click', function (e) {
-            let check_user = document.querySelectorAll('.check_user');
-                Array.prototype.forEach.call(check_user, function(cb){
-                    cb.checked = e.target.checked;
+            Array.prototype.forEach.call(check_user, function(cb){
+                cb.checked = e.target.checked;
+            });
+        });
+</script>
+
+  <script>
+            const order_button = document.querySelectorAll('.order_button');
+            const tab = document.querySelector('#conTab');
+            let request = new XMLHttpRequest();
+
+            let url = "SortController/AnalyticClients?sort=id";
+
+            request.open('GET', url);
+
+            request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+            request.addEventListener("readystatechange", () => {
+                if (request.readyState === 4 && request.status === 200) {
+                    tab.innerHTML = request.responseText;
+                }
+            });
+            request.send();
+
+            order_button.forEach((elem) => {
+                elem.addEventListener('click', function(e) {
+                    if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){
+                        this.innerHTML = '<img class="table_ico" src="img/StickUp.svg">';
+                        var param = this.value;
+                    }else{
+                        this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
+                        param = this.value + " DESC";
+                    }
+                    let request = new XMLHttpRequest();
+
+                    let url = "SortController/AnalyticClients?sort=" + param;
+
+                    request.open('GET', url);
+
+                    request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+                    request.addEventListener("readystatechange", () => {
+                        if (request.readyState === 4 && request.status === 200) {
+                            tab.innerHTML = request.responseText;
+                        }
+                    });
+                    request.send();
                 });
             });
-	</script>
-  
-	  <script>
-				const order_button = document.querySelectorAll('.order_button');
-				const tab = document.querySelector('#conTab');
-                let request = new XMLHttpRequest();
-
-                let url = "SortController/AnalyticClients?sort=id";
-
-                request.open('GET', url);
-
-                request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-                request.addEventListener("readystatechange", () => {
-                    if (request.readyState === 4 && request.status === 200) {
-                        tab.innerHTML = request.responseText;
-                    }
-                });
-                request.send();
-
-                order_button.forEach((elem) => {
-                    elem.addEventListener('click', function(e) {
-                        if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){
-                            this.innerHTML = '<img class="table_ico" src="img/StickUp.svg">';
-                            var param = this.value;
-                        }else{
-                            this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
-                            param = this.value + " DESC";
-                        }
-                        let request = new XMLHttpRequest();
-
-                        let url = "SortController/AnalyticClients?sort=" + param;
-
-                        request.open('GET', url);
-
-                        request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-                        request.addEventListener("readystatechange", () => {
-                            if (request.readyState === 4 && request.status === 200) {
-                                tab.innerHTML = request.responseText;
-                            }
-                        });
-                        request.send();
-                    });
-                });
-        </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-  <script src="../js/charts.js"></script>
+    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<script src="../js/charts.js"></script>
 </html>

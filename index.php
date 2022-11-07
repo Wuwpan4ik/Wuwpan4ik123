@@ -60,6 +60,7 @@
     $router->addRoute("/ClientsController/$item_id/delete", "ClientsController.php", 'Delete');
     $router->addRoute("/PopupController/get_popup", "PopupController.php", 'get_popup');
 
+    $router->addRoute("/StatisticsController/GetStatistics", "StatisticsController.php", 'GetAllStatistics');
     $router->route("/$url");
 
 ?>
