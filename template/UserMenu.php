@@ -47,7 +47,8 @@
                     </div>
                 </div>
                 <div class="UserMenu-list">
-                    <a href="">
+
+                    <a href="?option=UserMain">
 
                         <div class="UserMenu-list__option sidebarOption <? if ($_GET['option'] == 'Main') echo 'active'; ?>" >
 
@@ -90,7 +91,7 @@
                                 <h2>Уведомления</h2>
 
                             </div>
-                            <div class="notification-score" >5</div>
+                            <div class="notification-score" ><?=$content?></div>
 
                         </div>
 

@@ -29,7 +29,7 @@ return array(
     'Project' => $baseDir . '/pages/project.php',
     'Registration' => $baseDir . '/pages/registration.php',
     'SettingsAccountUser' => $baseDir . '/pages/settingsAccountUser.php',
-    'SmallPlayer' => $baseDir . '/pages/smallPlayer.php',
+    'SmallPlayer' => $baseDir . '/pages/SmallPlayer.php',
     'SortController' => $baseDir . '/controller/SortController.php',
     'UrlController' => $baseDir . '/controller/UrlController.php',
     'UserContacts' => $baseDir . '/pages/userContacts.php',

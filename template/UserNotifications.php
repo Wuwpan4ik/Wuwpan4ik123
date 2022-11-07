@@ -36,54 +36,24 @@
         </div>
         <div class="userPopup__body">
             <div class="UserNotifications-cards">
-                <div class="UserNotifications-item item-like">
+				<?php foreach($content as $nt){?>
+                <div class="UserNotifications-item <?=$nt["class"]?>">
                     <div class="UserNotifications-item__img">
                         <img src="../img/UserNotifications/like.svg" alt="">
                     </div>
                     <div class="UserNotifications-item__text">
-                        Доступ к курсу - Управление гневом внутри себя, открыт
+                        <?=$nt["body"]?>
                     </div>
                     <div class="UserNotifications-item__info">
                         <div class="UserNotifications-item__info-time">
-                            18:40
+                            <?=$nt["time"]?>
                         </div>
                         <div class="UserNotifications-item__info-date">
-                            25.10.2022
+                            <?=$nt["date"]?>
                         </div>
                     </div>
                 </div>
-                <div class="UserNotifications-item item-warn">
-                    <div class="UserNotifications-item__img">
-                        <img src="../img/UserNotifications/warn.svg" alt="">
-                    </div>
-                    <div class="UserNotifications-item__text">
-                        Доступ к курсу - Управление гневом внутри себя, зыкрыт
-                    </div>
-                    <div class="UserNotifications-item__info">
-                        <div class="UserNotifications-item__info-time">
-                            09:40
-                        </div>
-                        <div class="UserNotifications-item__info-date">
-                            25.10.2022
-                        </div>
-                    </div>
-                </div>
-                <div class="UserNotifications-item item-lite">
-                    <div class="UserNotifications-item__img">
-                        <img src="../img/UserNotifications/lite.svg" alt="">
-                    </div>
-                    <div class="UserNotifications-item__text">
-                        Ваш пароль изменен
-                    </div>
-                    <div class="UserNotifications-item__info">
-                        <div class="UserNotifications-item__info-time">
-                            22:40
-                        </div>
-                        <div class="UserNotifications-item__info-date">
-                            25.12.2022
-                        </div>
-                    </div>
-                </div>
+				<?}?>
             </div>
         </div>
         <div class="userPopup__button">

@@ -26,15 +26,17 @@
                     Войдите в аккаунт
                 </div>
                 <div class="userLogin-form popup-form">
-                    <div class="userLogin-email inputLog">
-                        <input placeholder="Ваш Email" type="email">
-                    </div>
-                    <div class="userLogin-password inputLog">
-                        <input placeholder="Введите пароль" type="password">
-                    </div>
-                    <div class="button-send ">
-                        <input type="submit" id="apps">
-                    </div>
+					<form method="POST" action="?option=LoginController&method=login">
+						<div class="userLogin-email inputLog">
+							<input placeholder="Ваш Email" type="email" name="email">
+						</div>
+						<div class="userLogin-password inputLog">
+							<input placeholder="Введите пароль" type="password" name="pass">
+						</div>
+						<div class="button-send ">
+							<input type="submit" id="apps">
+						</div>
+					</form>
                 </div>
 
             </div>
