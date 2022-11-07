@@ -158,12 +158,6 @@
             if (array.month) {
                 document.getElementById('this_month').innerHTML = array.month + "₽";
             }
-            if (array.prev_week) {
-                document.getElementById('last_week').innerHTML = array.prev_week + "₽";
-            }
-            if (array.prev_month) {
-                document.getElementById('last_month').innerHTML = array.prev_month + "₽";
-            }
         }
     });
     request1.send();
