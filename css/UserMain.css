@@ -50,9 +50,12 @@
         top: 4px;
         transition: all 0.3s ease 0s;
     }
-    /*aboutTheAuthor*/
-    .availableToYou{
-
+    /*availableToYou*/
+    .availableToYou.userPopup{
+        display: none;
+    }
+    .active{
+        display: block!important;
     }
     .availableToYou__body{
         overflow: auto;
@@ -60,11 +63,15 @@
         height: 37%;
 
     }
+    /*Course*/
+    .Course.userPopup{
+        display: none;
+    }
     .Course.availableToYou__body{
         height: 100%!important;
         overflow: hidden;
     }
-.availableToYou.userPopup__title{
+    .availableToYou.userPopup__title{
         padding: 20px 20px 0 20px;
     }
     .available-number.popup__allLessons-item-info-header-number{
@@ -83,6 +90,11 @@
         border-radius: 15px;
         background: #444444;
     }
+    /*aboutTheAuthor*/
+    .aboutTheAuthor.userPopup{
+        display: none;
+    }
+
     .aboutTheAuthor-name{
         margin:  0 0 0 7px;
         font-size: 10px;
@@ -105,10 +117,8 @@
     .Course{
 
     }
-    /*aboutTheAuthor*/
-    .availableToYou.userPopup__body{
 
-    }
+
     /*otherСourses*/
     .otherСourses{
         width: 100%;
@@ -150,6 +160,9 @@
         width: 65%;
     }
     /*AllLessons*/
+    .AllLessons{
+        display: none;
+    }
     .AllLessons__subtitle{
         margin: 6px 0 0 0;
         color: rgba(0, 0, 0, 0.6);
@@ -170,7 +183,8 @@
     }
     /*question*/
     .question.userPopup{
-        height: 47%;
+        display: none;
+        height: 49%;
     }
     .question.input input{
         width: 100%;
@@ -217,14 +231,16 @@
     .UserPlayer video{
         position: absolute;
         max-width: 414px;
-        height: 100%;
+        height: 90%;
         object-fit: cover;
 
 
     }
+
     .UserPlayer.Сourse-form{
         position: absolute;
         bottom: -90%;
         z-index: 4;
+        opacity: 0.5;
     }
 }

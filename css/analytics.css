@@ -294,10 +294,9 @@ h3{
     margin-left: 48px;
 }
 .profit__leftSide{
-    width:50%;
+    width:46%;
 }
 .profit__row{
-    max-width:94%;
     display:flex;
     justify-content: space-between;
     margin-top:24px;
@@ -358,6 +357,7 @@ span.green_text{
 }
 .geo__profit{
     display:flex;
+    gap: 21px;
 }
 .profit_down{
     border: 1px solid #FCA549;
@@ -374,14 +374,12 @@ span.red_text{
     background: rgba(244, 60, 60, 0.24);
 }
 .allprofit{
-    max-width:90.5%;
     display:flex;
     flex-direction: column;
     border: 1px solid #E1E3E6;
     border-radius: 8px;
     padding: 24px;
     margin-top:24px;
-    margin-bottom:50px;
     box-shadow: 0px 0px 4px #E1E3E6;
 }
 .numbers{
@@ -471,7 +469,5 @@ span.color3{
 }
 /*Analytics*/
 .Analytics-graphic__totalProfit{
-    width: 264px;
-    height: 128px;
     margin: 34px 0 0 0;
 }
