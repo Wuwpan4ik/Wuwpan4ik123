@@ -92,9 +92,11 @@
                 ?>
 
                 <?php if (isset($popup->second_do->list)) {
+                    $name = 'button';
                     include 'template/default/popup__templates/popup__all-lessons.php'; }
                 ?>
                 <?php if (isset($popup->first_do->list)) {
+                    $name = 'video';
                     include 'template/default/popup__templates/popup__all-lessons.php'; }
                 ?>
             </div>
@@ -115,6 +117,9 @@
 <script src="../js/script.js" ></script>
 <script src="../js/slick.min.js"></script>
 <script src="../js/sliders.js"></script>
+<script>
+
+</script>
 </body>
 </html>
 

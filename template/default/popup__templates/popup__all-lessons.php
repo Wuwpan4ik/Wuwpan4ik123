@@ -1,5 +1,5 @@
-<div class="overlay-allLessons overlay overlay-video">
-    <div class="popup__allLessons popup popup-button">
+    <div class="overlay-allLessons overlay overlay-<?=$name?>">
+    <div class="popup__allLessons popup popup-<?=$name?>">
         <div class="popup__allLessons-body">
             <div class="popup__allLessons-title popup-title">Все уроки курса:</div>
             <div class="popup__allLessons-text popup-text">Курс состоит из <?=count($content['course_content']); ?> уроков</div>

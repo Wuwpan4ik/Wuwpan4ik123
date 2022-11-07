@@ -52,6 +52,11 @@
             return $result;
         }
 
+        public function GetMonthValue()
+        {
+            return array_sum($this->db->query("SELECT * from clients WHERE `achivment_date` AND `creator_id` = " . $_SESSION['user']['id']));
+        }
+
         public function getVideosForPlayer()
         {
             $id = $_SESSION['item_id'];
@@ -98,6 +103,7 @@
                                                 content.popup,
                                                 content.video,
                                                 content.button_text,
+                                                user_info.id as 'author_id',
                                                 user_info.avatar,
                                                 user_info.first_name
                                                 FROM `course` AS course
@@ -109,7 +115,7 @@
                                                 course_content.video,
                                                 course_content.price 
                                                 FROM `funnel` AS funnel
-                                                INNER JOIN `course_content` AS course_content ON course_content.course_id = funnel.course_id AND funnel.id = '$id'");
+                                                INNER JOIN `course_content` AS course_content ON course_content.course_id = funnel.course_id AND funnel.id = $id");
             $course_sum = $this->db->query("SELECT
                                                 course.price
                                                 FROM `course` AS course

@@ -94,6 +94,46 @@
             return true;
         }
 
+        public function BuyVideo() {
+            $buy_progress = include './settings/buy_progress.php';
+            $creator_id = $_POST['creator_id'];
+            $course_id = $_POST['course_id'];
+            $comment = 'Купил видео';
+            $client = $this->GetClient($creator_id, $course_id);
+            $video_cost = $_POST['video_cost'];
+            $give_money = $client[0]['give_money'] + $video_cost;
+
+            if (count($client) == 1){
+                if ($client[0]['buy_progress'] < $buy_progress[$comment]) {
+                    $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]', `give_money` = '$give_money' WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
+                }
+            } else {
+                $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], $give_money);
+
+                $sURL = (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] === 'on') ? "https" : "http") . "://$_SERVER[HTTP_HOST]/send-email"; // URL-адрес POST
+                $sPD = "email=".$this->email; // Данные POST
+                if (isset($this->name)) {
+                    $sPD = $sPD . '&name=' . $this->name;
+                }
+                if (isset($this->phone)) {
+                    $sPD = $sPD . '&phone=' . $this->phone;
+                }
+                $aHTTP = array(
+                    'http' => // Обертка, которая будет использоваться
+                        array(
+                            'method'  => 'POST', // Метод запроса
+                            // Ниже задаются заголовки запроса
+                            'header'  => 'Content-type: application/x-www-form-urlencoded',
+                            'content' => $sPD
+                        )
+                );
+                $context = stream_context_create($aHTTP);
+                $contents = file_get_contents($sURL, false, $context);
+                echo $contents;
+            }
+            return true;
+        }
+
         public function Delete() {
             $item_id = $_SESSION['item_id'];
             $query = $this->m->db->query("SELECT * FROM `clients` WHERE `creator_id` = " . $_SESSION['user']['id'] . " AND `id` = '$item_id'");

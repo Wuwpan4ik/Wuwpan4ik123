@@ -55,8 +55,10 @@
 
     $router->addRoute("/send-email", "EmailController.php", 'RegistrateUser');
     $router->addRoute("/ClientsController/create-client", "ClientsController.php", 'AddApplication');
-    $router->addRoute("/ClientsController/buy", "ClientsController.php", 'BuyCourse');
+    $router->addRoute("/ClientsController/CourseBuy", "ClientsController.php", 'BuyCourse');
+    $router->addRoute("/ClientsController/CourseVideo", "ClientsController.php", 'BuyVideo');
     $router->addRoute("/ClientsController/$item_id/delete", "ClientsController.php", 'Delete');
+    $router->addRoute("/PopupController/get_popup", "PopupController.php", 'get_popup');
 
     $router->route("/$url");
 

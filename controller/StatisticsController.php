@@ -2,7 +2,11 @@
     class StatisticsController extends ACore {
 
         function GetMonthsStatistics(){
-            $_SESSION[];
+            return $this->m->GetMonthValue();
+        }
+
+        function GetMonthsStatistics(){
+            return $this->m->GetMonthValue();
         }
 
         function get_content()

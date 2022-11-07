@@ -25,7 +25,7 @@ function addPopup(input, button = false) {
         }
         if (document.querySelector('.test__block-' + class_name)) document.querySelector('.test__block-'+ class_name).remove()
 
-        let url = "?option=PopupController&method=get_popup&category=" + input + "&id=" + new URL(window.location.href).searchParams.get("id");
+        let url = "/PopupController/get_popup?category=" + input + "&id=" + new URL(window.location.href).searchParams.get("id");
         let funnel_id = document.querySelector('#id_item').value;
         url += "&funnel_id=" + funnel_id;
         request.open('GET', url);
