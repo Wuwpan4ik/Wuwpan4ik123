@@ -1,8 +1,8 @@
 <?php
-class UserMain extends ACore
+class UserContacts extends ACore
 {
     public function get_content() {
-		$result = $this->m->getContentForUserCoursePage();
+		$result = $this->m->getCourseAuthor();
         return $result;
     }
 

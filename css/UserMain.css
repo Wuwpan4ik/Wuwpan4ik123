@@ -108,16 +108,11 @@
         border: 1px solid #3E8AFB;
         border-radius: 5px;
         padding: 19px 0;
-        color: #3E8AFB
-
+        color: #3E8AFB;
     }
     .availableToYou .userPopup__body{
         overflow: hidden;
     }
-    .Course{
-
-    }
-
 
     /*otherСourses*/
     .otherСourses{
@@ -140,7 +135,6 @@
     }
     .otherСourses.userPopup__button{
         margin: 20px 0;
-
     }
     /*Сourse-back */
     .Сourse-form{
@@ -298,4 +292,3 @@
     vertical-align: top;
     border-radius: 27px;
 }
-

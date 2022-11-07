@@ -1,9 +1,8 @@
 <?php
-class UserMain extends ACore
+class UserPasswordRecovery extends ACore
 {
     public function get_content() {
-		$result = $this->m->getContentForUserCoursePage();
-        return $result;
+
     }
 
     function obr()
