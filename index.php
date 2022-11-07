@@ -3,6 +3,7 @@
     header("Content-Type:text/html;charset=UTF-8");
     require_once 'vendor/autoload.php';
     require_once 'model/Routering.php';
+    $item_id = 0;
     $url = key($_GET);
     $url_array = explode('/', $url);
 
@@ -19,6 +20,7 @@
     $router->addRoute("/Analytics", "Analytics.php");
     $router->addRoute("/Cases", "Cases.php");
     $router->addRoute("/SmallPlayer/$item_id", "SmallPlayer.php");
+    $router->addRoute("/1", "UserMain.php");
 
     $router->addRoute("/Account", "Account.php");
     $router->addRoute("/Course-rename/MainSettings", "AccountController.php", "SaveSettings");
