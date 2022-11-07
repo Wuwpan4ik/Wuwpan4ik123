@@ -34,7 +34,7 @@
     </div>
 
     <div class="popup__container">
-        <div class=" aboutTheAuthor userPopup ">
+        <div class=" aboutTheAuthor userPopup active ">
             <div class="aboutTheAuthor userPopup__title">
                 Выберите автора:
             </div>
@@ -165,7 +165,7 @@
             </div>
         </div>
 
-        <div class=" availableToYou  userPopup active">
+        <div class=" availableToYou  userPopup  ">
 
                <div class="availableToYou userPopup__title">
                    Вам доступны:
@@ -400,7 +400,7 @@
 
         </div>
 
-        <div class=" Course  userPopup ">
+        <div class=" Course  userPopup  ">
 
             <div class="Course userPopup__title">
                 Управление гневом внутри себя
@@ -420,7 +420,7 @@
                                     <div class="popup__allLessons-item-info">
                                         <div class="popup__allLessons-item-info-header">
                                             <div class=" aboutTheAuthor popup__allLessons-item-info-header-number available-number">
-                                                Курс 1
+                                                Урок 1
                                             </div>
                                             <div class="aboutTheAuthor-name">
                                                 10:44
@@ -445,7 +445,7 @@
                                     <div class="popup__allLessons-item-info">
                                         <div class="popup__allLessons-item-info-header">
                                             <div class=" aboutTheAuthor popup__allLessons-item-info-header-number available-number">
-                                                Курс 2
+                                                Урок 2
                                             </div>
                                             <div class="aboutTheAuthor-name">
                                                 10:44
@@ -471,7 +471,7 @@
                                     <div class="popup__allLessons-item-info">
                                         <div class="popup__allLessons-item-info-header">
                                             <div class=" aboutTheAuthor popup__allLessons-item-info-header-number available-number">
-                                                Курс 2
+                                                Урок 2
                                             </div>
                                             <div class="aboutTheAuthor-name">
                                                 10:44
@@ -496,8 +496,8 @@
                                     </div>
                                     <div class="popup__allLessons-item-info">
                                         <div class="popup__allLessons-item-info-header">
-                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number available-number">
-                                                Курс 2
+                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number notAvailable-number">
+                                                Урок 2
                                             </div>
                                             <div class="aboutTheAuthor-name">
                                                 10:44
@@ -522,8 +522,8 @@
                                     </div>
                                     <div class="popup__allLessons-item-info">
                                         <div class="popup__allLessons-item-info-header">
-                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number available-number">
-                                                Курс 2
+                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number notAvailable-number">
+                                                Урок 2
                                             </div>
                                             <div class="aboutTheAuthor-name">
                                                 10:44
@@ -548,8 +548,8 @@
                                     </div>
                                     <div class="popup__allLessons-item-info">
                                         <div class="popup__allLessons-item-info-header">
-                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number available-number">
-                                                Курс 2
+                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number notAvailable-number">
+                                              Урок 2
                                             </div>
                                             <div class="aboutTheAuthor-name">
                                                 10:44
@@ -574,8 +574,8 @@
                                     </div>
                                     <div class="popup__allLessons-item-info">
                                         <div class="popup__allLessons-item-info-header">
-                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number available-number">
-                                                Курс 2
+                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number notAvailable-number">
+                                                Урок 2
                                             </div>
                                             <div class="aboutTheAuthor-name">
                                                 10:44
@@ -593,7 +593,7 @@
                 </div>
             </div>
             <div class="Сourse-form">
-                <div class="Сourse-back userPopup__button">
+                <div class="Сourse-back userPopup__button courseBackBtn">
                     <button>Назад</button>
                 </div>
                 <div class="Сourse-question userPopup__button questionBtn">
@@ -602,7 +602,6 @@
             </div>
 
         </div>
-
 
         <div class="AllLessons  userPopup">
 
@@ -615,7 +614,7 @@
                     <div class="AllLessons  userPopup__body">
                         <div class=" AllLessons ">
                             <div class="AllLessons availableToYou__body">
-                                <div class="popup__allLessons-item ">
+                                <div class="popup__allLessons-item choice-video">
                                     <div class="popup__allLessons-item__header">
                                         <div class="popup-item">
                                             <div class="popup__allLessons-item-video__img">
@@ -640,7 +639,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="popup__allLessons-item ">
+                                <div class="popup__allLessons-item choice-video">
                                     <div class="popup__allLessons-item__header">
                                         <div class="popup-item">
                                             <div class="popup__allLessons-item-video__img">
@@ -665,7 +664,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="popup__allLessons-item ">
+                                <div class="popup__allLessons-item choice-video">
                                     <div class="popup__allLessons-item__header">
                                         <div class="popup-item">
                                             <div class="popup__allLessons-item-video__img">
@@ -690,7 +689,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="popup__allLessons-item ">
+                                <div class="popup__allLessons-item choice-video">
                                     <div class="popup__allLessons-item__header">
                                         <div class="popup-item">
                                             <div class="popup__allLessons-item-video__img">
@@ -715,7 +714,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="popup__allLessons-item ">
+                                <div class="popup__allLessons-item choice-video">
                                     <div class="popup__allLessons-item__header">
                                         <div class="popup-item">
                                             <div class="popup__allLessons-item-video__img">
@@ -740,7 +739,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="popup__allLessons-item ">
+                                <div class="popup__allLessons-item choice-video">
                                     <div class="popup__allLessons-item__header">
                                         <div class="popup-item">
                                             <div class="popup__allLessons-item-video__img">
@@ -772,12 +771,79 @@
                         <div class="userPopup__button">
                             <button>Купить весь курс за 2 000 руб.</button>
                         </div>
-                        <div class=" AllLessons userPopup__button">
+                        <div class=" AllLessons userPopup__button allLessonsBackBt">
                             <button>Пока не хочу покупать</button>
                         </div>
                     </div>
 
                 </div>
+
+        <div class="youChosen userPopup">
+            <div class="userPopup__title">
+                Вы выбрали:
+            </div>
+            <div class="userPopup__body">
+                    <div class="youChosen availableToYou__body">
+                        <div class="popup__allLessons-item ">
+                            <div class="popup__allLessons-item__header">
+                                <div class="popup-item">
+                                    <div class="popup__allLessons-item-video__img">
+                                        <img src="../img/smallPlayer/Group1426.png" alt="">
+                                        <div class="popup__allLessons-item-video-play">
+                                            <img src="../img/smallPlayer/play.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="popup__allLessons-item-info">
+                                        <div class="popup__allLessons-item-info-header">
+                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number ">
+                                                01
+                                            </div>
+                                            <div class="aboutTheAuthor-name">
+                                                22 минуты
+                                            </div>
+                                        </div>
+                                        <div class="popup__allLessons-item-info-title">
+                                            Управление гневом внутри себя
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="youChosen-info">
+                            Стоимость урока:
+                            <span>250 руб.</span>
+                        </div>
+                        <div class="popup__buy-register">
+                            <div class="popup__buy-body-form youChosen-input input">
+                                <div class="popup__bonus-form-input-account input-img">
+                                    <img src="../img/smallPlayer/account.svg" alt="">
+                                </div>
+                                <input type="text" placeholder="Ваше имя">
+                            </div>
+                            <div class="popup__buy-body-form youChosen-input input">
+                                <div class="popup__bonus-form-input-email input-img">
+                                    <img src="../img/smallPlayer/email.svg" alt="">
+                                </div>
+                                <input type="text" placeholder="Ваш email">
+                            </div>
+                            <div class="popup__buy-body-form youChosen-input input">
+                                <div class="popup__bonus-form-input-email input-img">
+                                    <img src="../img/smallPlayer/phone.svg" alt="">
+                                </div>
+                                <input type="tel" placeholder="Ваш телефон">
+                            </div>
+                            <div class="question-form">
+                                <div class="Сourse-back userPopup__button youChosenBackBtn">
+                                    <button>Назад</button>
+                                </div>
+                                <div class="Сourse-question userPopup__button">
+                                    <button>Перейти к оплате</button>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
 
         <div class="question userPopup">
             <div class="youPick userPopup__title">
@@ -806,7 +872,7 @@
                         </div>
                     </div>
                     <div class="question-form">
-                        <div class="Сourse-back userPopup__button">
+                        <div class="Сourse-back userPopup__button ">
                             <button>Назад</button>
                         </div>
                         <div class="Сourse-question userPopup__button">
