@@ -1,5 +1,6 @@
 <?php
-class UserLogin extends ACore
+
+class UserLogin extends ACoreAdmin
 {
     public function get_content() {
 
