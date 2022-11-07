@@ -160,7 +160,7 @@
         width: 65%;
     }
     /*AllLessons*/
-    .AllLessons{
+    .AllLessons.userPopup{
         display: none;
     }
     .AllLessons__subtitle{
