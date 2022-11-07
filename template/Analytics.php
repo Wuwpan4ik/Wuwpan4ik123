@@ -140,12 +140,30 @@
                                         </div>
                                     </div>
                                     <div class="Analytics-graphic__totalProfit">
-                                        <canvas id="totalProfit"></canvas>
+                                        <canvas width="264px" height="128px"  id="totalProfit"></canvas>
                                     </div>
-                                </div>
-                            </div>
 
-                        </div>
+                                    <div class="profit_footer">На  <span class="green_text">10,256 ₽ </span>больше</div>
+                                </div>
+                                <div class="rightSideFirst">
+
+                                    <div class="Analytics-graphic__profitabilityIndicators">
+                                        <canvas width="264px" height="70px" class="graphic__profitabilityIndicators" id="profitabilityIndicators"></canvas>
+                                    </div>
+                                    <div class="rightSideFirst_header">
+                                        <div class="rightSideFirstText1">
+                                            <h3>$16,355.49</h3>
+                                            <span>показатели доходности</span>
+                                        </div>
+                                        <div class="rightSideFirstText2">
+                                            <span class="green_profit">14.6%</span>
+                                        </div>
+                                    </div>
+                                    <div class="profit_footer">На  <span class="green_text">10,256 ₽ </span>больше</div>
+                                </div>
+
+                            </div>
+                            </div>
                         </div>
                     </div>
 
