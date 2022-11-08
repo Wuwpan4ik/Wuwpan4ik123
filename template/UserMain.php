@@ -66,7 +66,7 @@
                                     </div>
                                 </div>
                                 <div class=" aboutTheAuthor-button availableСoursesBtn">
-                                    <button ">Вам доступны 2 курса</button>
+                                    <button>Вам доступны 2 курса</button>
                                 </div>
                             </div>
                         </div>
