@@ -244,3 +244,10 @@
         opacity: 0.5;
     }
 }
+.popup__allLessons-item-video video{
+    width: 160px;
+    height: 100px;
+    vertical-align: top;
+    border-radius: 27px;
+}
+

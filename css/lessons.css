@@ -1,7 +1,6 @@
 .Lessons{
 }
 .media{
-
     display: flex;
     gap: 30px;
     flex-wrap: wrap;
@@ -549,4 +548,13 @@ input:checked + label {
     color: white;
     background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);
     border-radius: 15px;
+}
+
+#name_change {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    filter: invert(100%) sepia(100%) saturate(1352%) hue-rotate(87deg) brightness(60%) contrast(119%);
 }

@@ -30,16 +30,13 @@
         </div>
         <div class="userPopup__body">
             <div class="aboutTheAuthor-img">
-                <img src="../img/Author.jpg" alt="">
+                <img src="<?=$content[0]["avatar"]?>" alt="">
             </div>
             <div class="aboutTheAuthor__name">
-                Сергей Ратнер
+                <?echo $content[0]["first_name"], " ", $content[0]["second_name"]?>
             </div>
             <div class="aboutTheAuthor__text">
-                известный биоэнергетик, целитель, руководитель Международного центра
-                духовного развития «Секреты Силы», автор уникальных семинаров и курсов
-                по управлению энергией, которые проходят в Москве, Израиле и транслируются
-                в интернете на МетаРадио.
+                <?=$content[0]["about"]?>
             </div>
         </div>
         <div class="userPopup__button">

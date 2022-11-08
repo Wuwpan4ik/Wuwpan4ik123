@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function (){
                 },
                 options: {
 
-                    pointRadius: [0, 0, 0, 0, 0, 0, 5],
+                    pointRadius: [1, 1, 1, 1, 1, 1, 5],
                     scales: {
                         x: {
                             grid:{
@@ -90,24 +90,13 @@ document.addEventListener('DOMContentLoaded', function (){
                 },
                 options: {
 
-                    pointRadius: [0, 0, 0, 0, 0, 0, 5],
+                    pointRadius: [1, 1, 1, 1, 1, 1, 5],
                     scales: {
                         x: {
-                            ticks: {
-                                display: false
-                            },
-                            grid:{
-                                display: false
-                            },
+                            display: false,
                         },
                         y: {
-                            ticks: {
-                                display: false
-                            },
-                            grid: {
-                                display: false,
-                                border: false
-                            }
+                            display: false,
                         },
                     },
                     responsive: true,

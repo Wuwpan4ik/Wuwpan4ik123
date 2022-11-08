@@ -38,10 +38,10 @@
                             <div class="media-cart project__cart">
                                 <p>Создано <?php echo $content['count_funnel']; ?> из 3</p>
                                 <h3>Мои воронки</h3>
-                                <img src="../img/Course.png" alt="">
+                                <img src="../img/Funnel.png" alt="">
                                 <?php if ($content['count_funnel'] != 0) { ?>
                                     <button class="button-edit" onclick="window.location.href='Funnel'">
-                                        Редактировать
+                                        Открыть воронки
                                     </button>
                                 <?php } else { ?>
                                     <button class="button-edit button-create" onclick="window.location.href='/Funnel/create'">
@@ -49,13 +49,13 @@
                                     </button>
                                 <?php } ?>
                             </div>
-                            <div class="media-cart">
+                            <div class="media-cart project__cart">
                                 <p>Создано <?php echo $content['count_course']; ?> из 3</p>
                                 <h3>Мои курсы</h3>
                                 <img src="../img/Course.png" alt="">
                                 <?php if ($content['count_course'] !== 0) { ?>
                                     <button class="button-edit" onclick="window.location.href='Course'">
-                                        Редактировать
+                                        Открыть курсы
                                     </button>
                                 <?php } else { ?>
                                     <button class="button-edit button-create" onclick="window.location.href='/Course/create'">

@@ -299,8 +299,7 @@ h3{
     gap: 20px;
 }
 .profit__item{
-    max-width:311px;
-    width:100%;
+    width:320px;
     border: 1px solid #E1E3E6;
     border-radius: 8px;
     padding:24px;

@@ -2,7 +2,6 @@
 class UserPlayer extends ACore
 {
     public function get_content() {
-
     }
 
     function obr()

@@ -77,8 +77,9 @@
             $title = "Регистрация аккаунта";
             $body = "Ваш аккаунт на <a href='http://localhost/login'>Course Creator</a><br>Почта: $this->email<br>Пароль:$this->password";
             $this->SendEmail($title, $body);
+            $avatar = "uploads/ava/1.jpg";
 
-            $this->m->db->execute("INSERT INTO `user` (`email`, `password`, `is_creator`) VALUES ('$this->email', '$this->password', 0)");
+            $this->m->db->execute("INSERT INTO `user` (`email`, `password`, `is_creator`, `avatar`) VALUES ('$this->email', '$this->password', 0, '$avatar')");
 
             if (isset($this->name)) {
                 $this->m->db->execute("INSERT INTO `user` (`first_name`) VALUES ('$this->name') WHERE `email` = '$this->email'");
