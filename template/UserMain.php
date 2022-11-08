@@ -5,12 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Моя тестовая страница</title>
-    <link rel="stylesheet" href="css/nullCss.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/settingsAccountUser.css">
-    <link rel="stylesheet" href="css/UserMenu.css">
-    <link rel="stylesheet" href="css/UserMain.css">
-    <link rel="stylesheet" href="css/smallPlayer.css">
+    <link rel="stylesheet" href="/css/nullCss.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/settingsAccountUser.css">
+    <link rel="stylesheet" href="/css/UserMenu.css">
+    <link rel="stylesheet" href="/css/UserMain.css">
+    <link rel="stylesheet" href="/css/smallPlayer.css">
 
 
 
@@ -172,12 +172,19 @@
                </div>
                <div class="availableToYou userPopup__body">
                    <div class=" availableToYou ">
+                       <?php
+
+                       foreach($content[0] as $p){
+                       foreach($content[2] as $det){
+                       if($det["course_id"] == $p["id"]){?>
                        <div class="availableToYou availableToYou__body ">
                            <div class="popup__allLessons-item availableСourses">
                                <div class="popup__allLessons-item__header">
+                                   <?foreach($content[1] as $v){
+                                   if ($v['course_id'] == $p['id']) {?>
                                    <div class="popup-item">
                                        <div class="popup__allLessons-item-video__img">
-                                           <img src="../img/smallPlayer/Group1426.png" alt="">
+                                           <video src="<?=$v['video']?>" alt=""/>
                                            <div class="popup__allLessons-item-video-play">
                                                <img src="../img/smallPlayer/play.png" alt="">
                                            </div>
