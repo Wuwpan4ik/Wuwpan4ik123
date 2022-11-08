@@ -126,15 +126,14 @@
         background-color: #F4F4F4;
     }
     .otherСourses__body{
+        margin: 20px 0 0 0;
         overflow: auto;
-        height: 30%;
+        height: 33%;
     }
     .otherСourses .userPopup__title{
-        padding: 20px;
     }
     .otherСourses.userPopup__body{
         height: auto;
-        padding: 0 20px;
     }
     .otherСourses.popup__allLessons-body{
         margin: 0;
@@ -207,6 +206,47 @@
         justify-content: space-between;
         margin: 20px 0 0 0;
     }
+    /*youChosen*/
+    .youChosen.userPopup{
+        display: none;
+        height: 64%;
+    }
+    .youChosen.availableToYou__body{
+        height: auto;
+    }
+    .youChosen-info{
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        padding: 20px 0 0 0;
+        margin: 10px 0 0 0;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 22px;
+        color: rgba(0, 0, 0, 0.6);
+    }
+    .youChosen-info span{
+        color: #EA3A3A;
+    }
+    .youChosen-input.input input{
+        width: 100%;
+    }
+    /*youWatching*/
+    .youWatching.userPopup{
+        height: 32%;
+        position: absolute;
+        bottom: -70%;
+        z-index: 5;
+        opacity: 0;
+        transition: 0.6s;
+    }
+    .youWatching.userPopup.active{
+        bottom: 0;
+        opacity: 1;
+    }
+    .youWatching.Сourse-form{
+        margin: 25px 0 0 0;
+    }
     /*UserPlayer*/
     .UserPlayer{
         position: relative;
@@ -231,15 +271,23 @@
     .UserPlayer video{
         position: absolute;
         max-width: 414px;
-        height: 90%;
+        height: 100%;
         object-fit: cover;
-
-
     }
-
+    .UserPlayer video::-webkit-media-controls {
+        padding: 0 0 305px 0;!important;
+    }
+    .UserPlayer video::-webkit-media-controls-panel {
+        box-shadow: none;!important;
+        border: none;!important;
+        background: none;!important;
+    }
     .UserPlayer.Сourse-form{
+        width: 92%;
         position: absolute;
-        bottom: -90%;
+        right: 0;
+        left: 0;
+        bottom: -92%;
         z-index: 4;
         opacity: 0.5;
     }

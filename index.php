@@ -20,12 +20,12 @@
     $router->addRoute("/Analytics", "Analytics.php");
     $router->addRoute("/Cases", "Cases.php");
     $router->addRoute("/SmallPlayer/$item_id", "SmallPlayer.php");
-    $router->addRoute("/1", "UserMain.php");
-
     $router->addRoute("/Account", "Account.php");
     $router->addRoute("/Course-rename/MainSettings", "AccountController.php", "SaveSettings");
 
 
+    $router->addRoute("/UserMain", "UserMain.php");
+    $router->addRoute("/UserPlayer", "UserPlayer.php");
     $router->addRoute("/Project", "Project.php");
 
     $router->addRoute("/Course", "Course.php");
