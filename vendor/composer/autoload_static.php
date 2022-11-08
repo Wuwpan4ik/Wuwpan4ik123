@@ -33,6 +33,7 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'Cases' => __DIR__ . '/../..' . '/pages/Cases.php',
         'ClientsController' => __DIR__ . '/../..' . '/controller/ClientsController.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'ContactController' => __DIR__ . '/../..' . '/controller/ContactController.php',
         'Course' => __DIR__ . '/../..' . '/pages/Course.php',
         'CourseController' => __DIR__ . '/../..' . '/controller/CourseController.php',
         'CourseEdit' => __DIR__ . '/../..' . '/pages/CourseEdit.php',
@@ -52,11 +53,18 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'PHPMailer\\PHPMailer\\SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/SMTP.php',
         'PopupController' => __DIR__ . '/../..' . '/controller/PopupController.php',
         'Project' => __DIR__ . '/../..' . '/pages/Project.php',
+        'SettingsAccountUser' => __DIR__ . '/../..' . '/pages/settingsAccountUser.php',
         'SmallPlayer' => __DIR__ . '/../..' . '/pages/SmallPlayer.php',
         'SortController' => __DIR__ . '/../..' . '/controller/SortController.php',
         'StatisticsController' => __DIR__ . '/../..' . '/controller/StatisticsController.php',
         'UrlController' => __DIR__ . '/../..' . '/controller/UrlController.php',
-        'UserPlayer' => __DIR__ . '/../..',
+        'UserContacts' => __DIR__ . '/../..' . '/pages/userContacts.php',
+        'UserLogin' => __DIR__ . '/../..' . '/pages/userLogin.php',
+        'UserMain' => __DIR__ . '/../..' . '/pages/UserMain.php',
+        'UserMenu' => __DIR__ . '/../..' . '/pages/UserMenu.php',
+        'UserNotifications' => __DIR__ . '/../..' . '/pages/userNotifications.php',
+        'UserPasswordRecovery' => __DIR__ . '/../..' . '/pages/userPasswordRecovery.php',
+        'UserPlayer' => __DIR__ . '/../..' . '/pages/UserPlayer.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

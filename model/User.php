@@ -23,6 +23,13 @@
             return [$result, $videos];
         }
 
+        public function getContentForUserCoursePage()
+        {
+            $result = $this->db->query("SELECT * FROM funnel WHERE id = ".$_SESSION['item_id']);
+            $videos = $this->db->query("SELECT * FROM funnel_content WHERE funnel_id = ".$result[0]['id']);
+            return [$result, $videos];
+        }
+
         public function getContentForCourseEdit() {
             $result = $this->db->query("SELECT * FROM course WHERE id = ".$_SESSION['item_id']);
             $videos = $this->db->query("SELECT * FROM course_content WHERE course_id = ".$result[0]['id']);
