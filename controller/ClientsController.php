@@ -47,7 +47,7 @@
                     $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]' WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
                 }
             } else {
-                $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment]);
+                $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], 0);
             }
             return true;
         }

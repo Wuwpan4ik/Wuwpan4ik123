@@ -69,7 +69,7 @@
 
                     <p>Эта неделя<img class="index_ico" src="img/ArrowUp.svg"></p>
 
-                    <h3 id="this_week">74 996 Руб.</h3>
+                    <h3 id="this_week">0 Руб.</h3>
 
                 </div>
 
@@ -77,7 +77,7 @@
 
                     <p>В месяц<img class="index_ico" src="/img/ArrowDownActive.svg"></p>
 
-                    <h3 id="this_month">67 996 Руб.</h3>
+                    <h3 id="this_month">0 Руб.</h3>
 
                 </div>
 

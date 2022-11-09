@@ -1,9 +1,9 @@
 <?php
-class SmallPlayer extends ACore
+class SmallPlayer extends ACoreAdmin
 {
     public function get_content() {
 //        Проверка на покупку
-        $content = $this->m->getVideosForPlayer();
+        $content = $this->db->getVideosForPlayer();
         return $content;
     }
 

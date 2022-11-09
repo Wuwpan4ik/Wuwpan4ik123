@@ -100,7 +100,7 @@
             $current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 7, date('Y')));
             $last_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 14, date('Y')));
             $sum = 0;
-            $result = $this->db->query("SELECT give_money from clients WHERE `achivment_date` BETWEEN CAST('$last_date' AS DATE) AND CAST('$current_date' AS DATE) AND `creator_id` = " . $_SESSION['user']['id']);
+            $result = $this->db->query("SELECT give_money from clients WHERE `achivment_date` BETWEEN (CAST('$last_date' AS DATE) AND CAST('$current_date' AS DATE) AND) `creator_id` = " . $_SESSION['user']['id']);
             foreach ($result as $item) {
                 $sum += $item['give_money'];
             }

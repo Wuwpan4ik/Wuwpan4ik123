@@ -42,6 +42,7 @@
                         'site_url' => $res[0]['site_url']
                     ];
                     $response = "С возвращением, ".$_SESSION["user"]["name"];
+                    $this->get_content();
                 }
                 else {
                     $response = "Неверный логин или пароль";
@@ -82,6 +83,17 @@
             else {
                 $this->db->db->execute("INSERT INTO `user` (`gender`, `niche`, `avatar`, `first_name`, `email`, `password`, `is_creator`) VALUES ('$gender', '$niche', '$ava', '$first_name', '$email', '$password', 1)");
                 $_SESSION['error']['registration_message'] = "Регистрация прошла успешно";
+                $res = $this->db->db->query("SELECT * FROM user WHERE email = '$email' AND password = '$password'");
+                $_SESSION["user"] = [
+                    'id' => $res[0]['id'],
+                    'gender' => $res[0]['gender'],
+                    'niche' => $res[0]['niche'],
+                    'avatar' => $res[0]['avatar'],
+                    'first_name' => $res[0]['first_name'],
+                    'second_name' => $res[0]['second_name'],
+                    'email' => $res[0]['email'],
+                    'site_url' => $res[0]['site_url']
+                ];
             }
             return true;
         }
