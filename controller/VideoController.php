@@ -13,19 +13,44 @@ class VideoController extends ACore
 
         if ($folder == 'funnel') {
             $res = $this->m->db->query("SELECT * FROM funnel WHERE id = '$uid' ORDER BY `id` DESC LIMIT 1");
+            $count_video = count($this->m->db->query("SELECT * FROM funnel_content WHERE funnel_id = '$uid'")) + 1;
         } elseif ($folder == 'course') {
             $res = $this->m->db->query("SELECT * FROM course WHERE id = '$uid' ORDER BY `id` DESC LIMIT 1");
+            $count_video = count($this->m->db->query("SELECT * FROM course_content WHERE course_id = '$uid'")) + 1;
         }
 
-        move_uploaded_file($_FILES['video_uploader']['tmp_name'], "./uploads/$folder/".$uid."_".$res[0]['name']."/".$_FILES['video_uploader']['name']);
+        if (!$this->isUser($res[0]['author_id'])) return False;
 
-        $path = "./uploads/$folder/$uid"."_".$res[0]['name']."/".$_FILES['video_uploader']['name'];
+        move_uploaded_file($_FILES['video_uploader']['tmp_name'], "./uploads/$folder/".$uid."_".$res[0]['name']."/$count_video"."_".$_FILES['video_uploader']['name']);
+
+        $path = "./uploads/$folder/$uid"."_".$res[0]['name']."/$count_video"."_".$_FILES['video_uploader']['name'];
 
         if ($folder == 'funnel') {
-            $this->m->db->execute("INSERT INTO funnel_content (`funnel_id`, `name`, `description`, `video`) VALUES (".$res[0]['id'].",'Укажите заголовок','Укажите описание', '$path')");
+            $this->m->db->execute("INSERT INTO funnel_content (`funnel_id`, `name`, `description`, `video`, `query_id`) VALUES (".$res[0]['id'].",'Укажите заголовок','Укажите описание', '$path', '$count_video')");
         } elseif ($folder == 'course') {
-            $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`) VALUES (".$res[0]['id'].",'Укажите заголовок','Укажите описание', '$path')");
+            $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `query_id`) VALUES (".$res[0]['id'].",'Укажите заголовок','Укажите описание', '$path', '$count_video')");
         }
+
+        return true;
+    }
+
+    public function Delete()
+    {
+        $item_id = $_GET['item_id'];
+        $folder = $_GET['folder'];
+        if ($folder == 'funnel') {
+            $path_in_files = $this->m->db->query("SELECT `video` FROM `funnel_content` WHERE id = '$item_id'");
+            $author_id = $this->m->db->query("SELECT funnel.author_id FROM `funnel_content` AS content INNER JOIN `funnel` AS funnel ON funnel.id = content.course_id");
+//            if (!$this->isUser($author_id)) return False;
+            $this->m->db->execute("DELETE FROM `funnel_content` WHERE `id` = '$item_id'");
+        } else {
+            $path_in_files = $this->m->db->query("SELECT `video` FROM `course_content` WHERE id = '$item_id'");
+            $author_id = $this->m->db->query("SELECT course.author_id FROM `course_content` AS content INNER JOIN `course` AS course ON course.id = content.course_id");
+//            if (!$this->isUser($author_id)) return False;
+            $this->m->db->execute("DELETE FROM `course_content` WHERE `id` = '$item_id'");
+        }
+        unlink($path_in_files[0]['video']);
+        return True;
     }
 
     public function renameVideo() {
@@ -35,53 +60,105 @@ class VideoController extends ACore
 
         $name = $_POST['name'];
         $description = $_POST['description'];
-        $button_text = $_POST['button_text'];
-        $this->m->db->execute("UPDATE `funnel_content` SET `name` = '$name', `description` = '$description',
-                            `button_text` = '$button_text' WHERE `id` = " . $_GET['id_item']);
+        $this->m->db->execute("UPDATE `funnel_content` SET `name` = '$name', `description` = '$description' WHERE `id` = " . $_GET['id_item']);
         return True;
     }
 
     public function initVideoButton() {
         //Форма
         $id_video = $_POST['id_item'];
-        $this->m->db->query("SELECT * FROM funnel_content WHERE id = '$id_video'");
-//        if (!$this->isUser($id_video[0]['author_id'])) return False;
-        if (isset($_POST['first_do'])) {
-            $first_do = $_POST['first_do'];
-        } else {
-            return False;
-        }
+        $funnel = $this->m->db->query("SELECT * FROM funnel_content WHERE id = '$id_video'");
+//        if (!$this->isUser($funnel[0]['author_id'])) return False;
 
         $videoBtnHTML = [];
-
+        $first_do = $_POST['first_do'];
+        $second_do = $_POST['second_do'];
+        $button_text = $_POST['button_text'];
+//      Проверка ддлины
+        if (strlen($button_text) == 0) {
+            $button_text = null;
+        }
         switch ($_POST['first_do']) {
+            case "pay_form":
             case "form": {
                 if (isset($_POST['form_id-1'])) {
                     $form_input_1 = $_POST['form_id-1'];
-                    $videoBtnHTML['form'] = [$form_input_1];
+                    $videoBtnHTML['first_do'][$first_do] = [$form_input_1];
                 }
                 if (isset($_POST['form_id-2'])) {
                     $form_input_2 = $_POST['form_id-2'];
-                    $videoBtnHTML['form'] = array_merge(array_values($videoBtnHTML['form']), [$form_input_2]);
+                    $videoBtnHTML['first_do'][$first_do] = array_merge(array_values($videoBtnHTML['first_do'][$first_do]), [$form_input_2]);
                 }
                 if (isset($_POST['form_id-3'])) {
                     $form_input_3 = $_POST['form_id-3'];
-                    $videoBtnHTML['form'] = array_merge(array_values($videoBtnHTML['form']), [$form_input_3]);
+                    $videoBtnHTML['first_do'][$first_do] = array_merge(array_values($videoBtnHTML['first_do'][$first_do]), [$form_input_3]);
                 }
                 break;
             }
             case "list": {
-                $videoBtnHTML['list'] = true;
+                $videoBtnHTML['first_do']['list'] = true;
                 break;
             }
-            case "nextLesson": {
-                $videoBtnHTML['nextLessons'] = true;
+            case "link": {
+                if (isset($_POST['link-1'])) {
+                    $videoBtnHTML['first_do']['link'] = $_POST['link-1'];
+                }
+                break;
+            }
+            case "next_lesson": {
+                $videoBtnHTML['first_do']['next_lesson'] = true;
                 break;
             }
         }
+        if (isset($button_text)) {
+            switch ($_POST['second_do']) {
+                case "pay_form":
+                case "form": {
+                    if (isset($_POST['form_id-4'])) {
+                        $form_input_1 = $_POST['form_id-4'];
+                        $videoBtnHTML['second_do'][$second_do] = [$form_input_1];
+                    }
+                    if (isset($_POST['form_id-5'])) {
+                        $form_input_2 = $_POST['form_id-5'];
+                        $videoBtnHTML['second_do'][$second_do] = array_merge(array_values($videoBtnHTML['second_do'][$second_do]), [$form_input_2]);
+                    }
+                    if (isset($_POST['form_id-6'])) {
+                        $form_input_3 = $_POST['form_id-6'];
+                        $videoBtnHTML['second_do'][$second_do] = array_merge(array_values($videoBtnHTML['second_do'][$second_do]), [$form_input_3]);
+                    }
+                    break;
+                }
+                case "link": {
+                    if (isset($_POST['link-2'])) {
+                        $videoBtnHTML['second_do']['link'] = $_POST['link-2'];
+                    }
+                    break;
+                }
+                case 'list':
+                {
+                    $videoBtnHTML['second_do']['list'] = true;
+                    break;
+                }
+                case 'next_lesson': {
+                    $videoBtnHTML['second_do']['next_lesson'] = true;
+                    break;
+                }
+            }
+        }
         $videoBtnHTMLResult = json_encode($videoBtnHTML);
-        $this->m->db->execute("UPDATE `funnel_content` SET `popup` = '$videoBtnHTMLResult' WHERE id = '$id_video'");
-        $a = $this->m->db->query("SELECT * FROM funnel_content WHERE id = $id_video");
+        $this->m->db->execute("UPDATE `funnel_content` SET `popup` = '$videoBtnHTMLResult', `button_text` = '$button_text'  WHERE id = '$id_video'");
+        return True;
+    }
+
+    public function selectCourse()
+    {
+        $id = $_POST['id'];
+        $course_id = $_POST['course_id'];
+        $course = $this->m->db->query("SELECT * from course WHERE `id` = '$course_id'");
+        $funnel = $this->m->db->query("SELECT * from funnel WHERE `id` = '$id'");
+        if (!$this->isUser($course[0]['author_id'])) return False;
+        if (!$this->isUser($funnel[0]['author_id'])) return False;
+        $this->m->db->execute("UPDATE `funnel` SET `course_id` = '$course_id' WHERE `id` = '$id'");
         return True;
     }
 
@@ -98,34 +175,14 @@ class VideoController extends ACore
 			</head>
 			<body>
 				<script>
-				    let ur = document.URL;
-                    var url = new URL(ur);
-                    var option = url.searchParams.get("option");
-                    var method = url.searchParams.get("method");
-                    let id = url.searchParams.get("id");
-                    let optionName = "";
-                    let idNumber = "";
-                    
-                    if (method === "addVideo" || method === "renameVideo") {
-                        if (option === "FunnelController") {
-                            optionName = "FunnelEdit"
-                        } else {
-                            optionName = "CourseEdit"
-                        }
-                    } else {
-                        if (option === "FunnelController") {
-                            optionName = "Funnel"
-                        } else {
-                            optionName = "Course"
-                        }
-                    }
-                    if (id) {
-                        idNumber = \'&id=\' + id;
-                    }
-				    let a = location.protocol + \'//\' + location.host + location.pathname + \'?option=\' + optionName + idNumber;
-					window.location.replace(a);
+				    window.history.go(-1)
 				</script>
 			</body>
 			</html>';
+    }
+
+    function obr()
+    {
+        // TODO: Implement obr() method.
     }
 }

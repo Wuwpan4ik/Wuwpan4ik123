@@ -6,7 +6,9 @@
 
     <title>Моя тестовая страница</title>
     <link rel="stylesheet" href="css/sidebar.css">
+
     <link rel="stylesheet" href="css/nullCss.css">
+
     <link rel="stylesheet" href="css/project.css">
 
     <link rel="stylesheet" href="css/feed.css">
@@ -25,25 +27,15 @@
 
     <div class="feed">
 
-        <div class="feed-header">
-
-            <h2>Мои курсы</h2>
-
-            <div class="buttonsFeed">
-
-                <button class="ico_button"><img class="ico" src="img/Shield.svg"></button>
-
-                <button class="ico_button"><img class="ico" src="img/Bell.svg"></button>
-
-                <button id="apps" class="ico_button">Заявки</button>
-
-            </div>
-
-        </div>
+        <?php
+        $title = "Мои курсы";
+        $back = "Project";
+        include ('default/header.php');
+        ?>
 
         <div class="Lessons">
 
-            <div class="media">
+            <div class="media _container">
 
                 <?php
 
@@ -195,6 +187,14 @@
             entryDisplay.classList.remove('display-block');
         }
     }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('.smallPlayer__slick-slider').forEach((elem) => {
+            if (elem.querySelectorAll('.slider__item').length === 0) {
+                elem.removeChild(elem.querySelector('.slider__pagination'));
+            }
+        })
+    });
 </script>
 </body>
 

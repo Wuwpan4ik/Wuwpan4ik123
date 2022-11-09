@@ -20,4 +20,9 @@
         {
 
         }
+
+        function obr()
+        {
+            // TODO: Implement obr() method.
+        }
     }

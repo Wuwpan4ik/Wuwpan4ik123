@@ -1,5 +1,5 @@
 <?php
-    class SortController {
+    class SortController extends ACore {
 		protected $m;
 
         public function __construct()
@@ -22,7 +22,19 @@
 
                     <td><?php if(isset($item['email'])) echo htmlspecialchars($item['email'])?></td>
 
-                    <td><?php if(isset($item['status'])) echo htmlspecialchars($item['status'])?></td>
+                    <td><?php if(isset($item['status']))
+                            switch ($item['status']) {
+                                case '0':
+                                    echo '<div class="status status-Free">Free</div>';
+                                    break;
+                                case '1':
+                                    echo '<div class="status status-Busy">Busy</div>';
+                                    break;
+                                case '2':
+                                    echo '<div class="status status-Working">Working</div>';
+                                    break;
+                            }
+                        ?></td>
 
                     <td><?php if(isset($item['niche'])) echo htmlspecialchars($item['niche'])?></td>
 
@@ -42,7 +54,7 @@
 										
 					'<tr>
 
-						<td class="nick"> <input type="checkbox">' . $client["first_name"] . ' ' . $client["second_name"] . '</td>
+						<td class="nick"> <input type="checkbox" class="check_user">' . $client["first_name"] . ' ' . $client["second_name"] . '</td>
 											
 						<td>' . $client["give_money"] . ' ₽</td>
 
@@ -54,7 +66,7 @@
 											
 						<td>' . $client["achivment_date"] . '</td>
 
-						<td class="iconed">' . $client["source"] . '
+						<td class="iconed">
 
 							<span>
 
@@ -65,9 +77,13 @@
 							</span>
 
 						</td>
-
+						
 					</tr>';
 										
 				}
 		}
+        function obr()
+        {
+            // TODO: Implement obr() method.
+        }
     }

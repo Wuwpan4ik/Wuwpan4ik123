@@ -1,20 +1,25 @@
-<html>
-
-<head>
+<!DOCTYPE html>
+<html lang="en">
 
     <meta charset="utf-8">
 
     <title>Моя тестовая страница</title>
+
     <link rel="stylesheet" href="css/sidebar.css">
+
     <link rel="stylesheet" href="css/nullCss.css">
 
     <link rel="stylesheet" href="css/project.css">
 
     <link rel="stylesheet" href="css/feed.css">
 
+    <link rel="stylesheet" href="css/smallPlayer.css">
+
     <link rel="stylesheet" href="css/lessons.css">
 
     <link rel="stylesheet" href="css/main.css">
+
+    <link rel="stylesheet" href="css/funnelPopup.css">
 
 </head>
 
@@ -30,7 +35,9 @@
 
             <div class="feed-menu">
 
-                <a href="?option=Project"><button class="back_button"><img class="ico" src="img/StickLeft.svg"></button></a>
+                <a class="button__back" href="?option=Funnel">
+                    <img src="/img/ArrowLeft.svg" alt="">
+                </a>
 
                 <form action="?option=DirectoryController&method=setName&id=<?=$content[0][0]['id']?>&folder=funnel" method="POST" id="insert">
 
@@ -57,10 +64,7 @@
             </div>
 
             <div class="buttonsFeed">
-
-                <button class="ico_button"><img class="ico" src="img/Shield.svg"></button>
-
-                <button class="ico_button"><img class="ico" src="img/Bell.svg"></button>
+                <button class="ico_button button-bell"><img class="ico" src="img/Bell.svg">  <div id="msg">5</div></button>
 
                 <button id="apps" class="ico_button">Заявки</button>
 
@@ -77,9 +81,7 @@
 
                     <?php include 'default/media-cart.php'?>
 
-                <?}
-
-                ?>
+                <?}?>
 
                 <?php include 'default/add_new_video.php'?>
 
@@ -92,7 +94,7 @@
 </div>
 
 <?php include 'default/popupEditVideo.php';?>
-<script src="../js/button__settings.js"></script>
+<script type="text/javascript" src="../js/button__settings.js"></script>
 <script>
     function _(abc) {
         return document.getElementById(abc);
@@ -106,6 +108,8 @@
             elem.style.display = 'none';
         })
         _("progressBar").classList.add('active');
+        _("progressText").classList.add('active');
+        document.querySelector('.btn-upload').classList.add('active');
         var formdata = new FormData();
         formdata.append("video_uploader", file);
         var ajax = new XMLHttpRequest();
@@ -125,6 +129,39 @@
         document.getElementById('progressDiv').style.display = 'none';//Hide progress bar
         location.reload();
     }
+</script>
+
+<script>
+    document.querySelector('.button-end').addEventListener('click', function (){
+        let popup__block = document.querySelector('.test__block-video');
+        popup__block.classList.toggle('active');
+        if (popup__block.classList.contains('active')) {
+            popup__block.querySelector('.overlay').classList.toggle('active');
+            setTimeout(function () {
+                popup__block.querySelector('.popup').classList.toggle('active');
+            }, (20));
+        } else {
+            popup__block.querySelector('.popup').classList.toggle('active');
+            setTimeout(function () {
+                popup__block.querySelector('.overlay').classList.toggle('active');
+            }, (550));
+        }
+    })
+    document.querySelector('.button-click').addEventListener('click', function (){
+        let popup__block = document.querySelector('.test__block-button');
+        popup__block.classList.toggle('active');
+        if (popup__block.classList.contains('active')) {
+            popup__block.querySelector('.overlay').classList.toggle('active');
+            setTimeout(function () {
+                popup__block.querySelector('.popup').classList.toggle('active');
+            }, (20));
+        } else {
+            popup__block.querySelector('.popup').classList.toggle('active');
+            setTimeout(function () {
+                popup__block.querySelector('.overlay').classList.toggle('active');
+            }, (550));
+        }
+    })
 </script>
 </body>
 

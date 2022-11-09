@@ -31,4 +31,17 @@ td, th {
 #grey{
 	background-color: #F8F8F8;
 }
+.status{
+	font-weight: 500;
+	font-size: 17px;
+}
+.status-Free{
+	color: #4E73F8;
+}
+.status-Busy{
+	color: #F43C3C;
+}
+.status-Working{
+	color: #757D8A;
+}
 

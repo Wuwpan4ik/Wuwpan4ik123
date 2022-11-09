@@ -5,4 +5,9 @@ class Analytics extends ACore
 		$result = $this->m->getClientList();
         return $result;
 	}
+
+    function obr()
+    {
+        // TODO: Implement obr() method.
+    }
 }

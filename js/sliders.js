@@ -25,8 +25,22 @@ $(document).ready(function(){
                     if (videoLocal.paused) {
                         clearInterval(interval);
                     }
+                    // Проверка на конец
                     if (videoLocal.ended){
-                        slider.slick("slickNext");
+                        if (videoLocal.parentElement.parentElement.querySelector('.overlay-video')) {
+                            videoLocal.parentElement.parentElement.querySelector('.overlay-video').classList.toggle('active');
+                            setTimeout(function () {
+                                videoLocal.parentElement.parentElement.querySelector('.popup-video').classList.toggle('active');
+                            }, (20));
+                            videoLocal.parentElement.parentElement.querySelector('.next-lesson').addEventListener('click', function (){
+                                videoLocal.parentElement.parentElement.querySelector('.popup-video').classList.toggle('active');
+                                videoLocal.parentElement.parentElement.querySelector('.overlay-video').classList.toggle('active');
+                                slider.slick("slickNext");
+                            })
+                        } else {
+                            slider.slick("slickNext")
+                        }
+                        slider.slickGoTo(2);
                     }
                 }, 300);
                 if (this.paused) {

@@ -6,6 +6,7 @@
 
     <title>Моя тестовая страница</title>
     <link rel="stylesheet" href="css/sidebar.css">
+
     <link rel="stylesheet" href="css/nullCss.css">
 
     <link rel="stylesheet" href="css/project.css">
@@ -27,21 +28,11 @@
 
     <div class="feed">
 
-        <div class="feed-header">
-
-            <h2>Мои воронки</h2>
-
-            <div class="buttonsFeed">
-
-                <button class="ico_button"><img class="ico" src="img/Shield.svg"></button>
-
-                <button class="ico_button"><img class="ico" src="img/Bell.svg"></button>
-
-                <button id="apps" class="ico_button">Заявки</button>
-
-            </div>
-
-        </div>
+        <?php
+        $title = "Мои воронки";
+        $back = "Project";
+        include ('default/header.php');
+        ?>
 
         <div class="Lessons ">
 
@@ -51,7 +42,7 @@
 
                 $k = 1;
 
-                foreach($content[0] as $p){?>
+                foreach($content[0][0] as $p){?>
 
                     <div class="media-cart">
 
@@ -66,7 +57,7 @@
 
                             $i=1;
 
-                            foreach($content[1] as $v){
+                            foreach($content[0][1] as $v){
                                 if ($v['funnel_id'] == $p['id']) {?>
 
                                     <div class="slider__item ">
@@ -101,9 +92,6 @@
                                                 Курс включает в себя 24 урока
                                             </div>
                                         </div>
-                                        <div class="pause__video">
-                                            <img src="../img/smallPlayer/pause.svg" alt="">
-                                        </div>
                                     </div>
                                     <?$i++;}}?>
                                     </div>
@@ -120,9 +108,19 @@
 
                             <input id="half_input" value="<?=isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https://" : "http://" . $_SERVER['SERVER_NAME']?>?option=SmallPlayer&id=<?=$p['id']?>" disabled/>
 
-                            <button onclick="copy_link(this)" type="submit">Копировать</button>
+                            <button class="copy-button" onclick="copy_link(this)" type="submit">Копировать</button>
 
                         </div>
+                        <form action="?option=VideoController&method=selectCourse" method="POST">
+                            <input type="text" name="id" hidden="hidden" value="<?=$p['id']?>">
+                            <select name="course_id" class="select__course">
+                                <?php
+                                foreach ($content[1] as $course) { ?>
+                                    <option <?php if ($p['course_id'] == $course['id']) echo "selected";?> value="<?=$course['id']?>"><?=$course['name']?> <?=$course['id']?></option>
+                                <?php } ?>
+                            </select>
+                            <button class="copy-button" type="submit" style="width: 100%; padding: 10px 0; font-size: 20px;">Выбрать</button>
+                        </form>
 
                         <div class="btn-delete-edit">
 
@@ -219,6 +217,15 @@
             entryDisplay.classList.remove('display-block');
         }
     }
+
+    // Удаление лишних пагинаций в слайдерах
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('.smallPlayer__slick-slider').forEach((elem) => {
+            if (elem.querySelectorAll('.slider__item').length === 0) {
+                elem.removeChild(elem.querySelector('.slider__pagination'));
+            }
+        })
+    });
 </script>
 </body>
 

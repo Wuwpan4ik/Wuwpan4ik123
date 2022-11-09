@@ -80,7 +80,7 @@ class AccountController extends ACore {
             }
         }
 
-        $this->m->db->execute("UPDATE user SET `email` = '$email', `first_name` = '$first_name', `second_name` = 'second_name', `site_url` = '$site_url' WHERE id = " . $_SESSION['user']['id']);
+        $this->m->db->execute("UPDATE user SET `email` = '$email', `first_name` = '$first_name', `second_name` = '$second_name', `site_url` = '$site_url' WHERE id = " . $_SESSION['user']['id']);
         $_SESSION["user"]['first_name'] = $first_name;
         $_SESSION["user"]['second_name'] = $second_name;
         $_SESSION["user"]['email'] = $email;
@@ -104,5 +104,10 @@ class AccountController extends ACore {
                     </script>
                 </body>
                 </html>';
+    }
+
+    function obr()
+    {
+        // TODO: Implement obr() method.
     }
 }

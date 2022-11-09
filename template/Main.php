@@ -30,22 +30,13 @@
 
     <div class="feed">
 
-        <div class="feed-header">
+        <?php
+        $title = "Ключевые показатели";
+        include ('default/header.php');
+        ?>
 
-            <h2>Ключевые показатели</h2>
-
-            <div class="buttonsFeed">
-
-                <button class="ico_button"><img class="ico" src="img/Shield.svg"></button>
-
-                <button class="ico_button"><img class="ico" src="img/Bell.svg"></button>
-
-                <button id="apps" class="ico_button">Заявки</button>
-
-            </div>
-
-        </div>
         <div class="_container">
+
         <div class="index ">
 
             <div class="header">
@@ -80,9 +71,9 @@
 
                 </div>
 
-                <div class="box">
+                <div class="box box-active">
 
-                    <p>В месяц<img class="index_ico" src="img/ArrowUp.svg"></p>
+                    <p>В месяц<img class="index_ico" src="/img/ArrowDownActive.svg"></p>
 
                     <h3>67 996Р</h3>
 
@@ -98,7 +89,7 @@
 
                 <div class="box">
 
-                    <p>Прошлый месяц<img class="index_ico" src="img/ArrowUp.svg"></p>
+                    <p>Прошлый месяц<img class="index_ico" src="img/ArrowDown.svg"></p>
 
                     <h3>77 000Р</h3>
 
@@ -115,11 +106,11 @@
 
 					<tr>
 
-						<th>Имя<button cursor="pointer" class="order_button" value="first_name"><img class="table_ico" src="img/StickDown.svg"></button></th>
+						<th>Имя<button class="order_button" value="first_name"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
 						<th>Email<button class="order_button" value="email"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
-						<th>Статус<button class="order_button" value=""><img class="table_ico" src="img/StickDown.svg"></button></th>
+						<th>Статус<button class="order_button" value="status"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
 						<th>Продукт<button class="order_button" value="niche"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
@@ -129,25 +120,6 @@
 
                 <tbody id="viewTab">
 
-                <?php
-                $i = 1;
-
-                foreach($content as $item){
-                    ?>
-                        <tr id="<?php if ($i % 2 == 0){ echo "white";} else { echo "grey"; }?>">
-
-                            <td><img class="table_ava" src="<?php if(isset($item['avatar'])) echo htmlspecialchars($item['avatar'])?>"/><b><?php if(isset($item['first_name'])) echo htmlspecialchars($item['first_name'])?></b></td>
-
-                            <td><?php if(isset($item['email'])) echo htmlspecialchars($item['email'])?></td>
-
-                            <td><?php if(isset($item['status'])) echo htmlspecialchars($item['status'])?></td>
-
-                            <td><?php if(isset($item['niche'])) echo htmlspecialchars($item['niche'])?></td>
-
-                        </tr>
-                    <?php
-                    $i= $i+1;}
-                ?>
 
                 </tbody>
 
@@ -164,6 +136,21 @@
   <script>
             const order_button = document.querySelectorAll('.order_button');
             const tab = document.querySelector('#viewTab');
+
+            let request = new XMLHttpRequest();
+
+            let url = "?option=SortController&method=get_content&order=first_name";
+
+            request.open('GET', url);
+
+            request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+            request.addEventListener("readystatechange", () => {
+                if (request.readyState === 4 && request.status === 200) {
+                    tab.innerHTML = request.responseText;
+                }
+            });
+            request.send();
+
 			
 			for (var i = 0; i < order_button.length; ++i) {
 				order_button[i].addEventListener('click', function(e) {
@@ -174,9 +161,9 @@
 						this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
 						param = this.value;
 					}
-					const request = new XMLHttpRequest();
+                    let request = new XMLHttpRequest();
 
-					const url = "?option=SortController&method=get_content&order=" +param;
+                    let url = "?option=SortController&method=get_content&order=" +param;
 
 					request.open('GET', url);
 

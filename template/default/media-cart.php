@@ -1,6 +1,20 @@
 <div class="media-cart">
-
-    <video preload="metadata" controls="controls" class="media-cart-img" src="<?=$v['video']?>"></video>
+    <div class="media-cart__controller">
+        <div class="media-cart__controller-move">
+            <div class="media-cart__controller-move-right">
+                <button><img src="/img/Arrow-right.svg" alt=""></button>
+            </div>
+            <div class="media-cart__controller-move-left">
+                <button><img src="/img/Arrow-left.svg" alt=""></button>
+            </div>
+        </div>
+        <div class="media-cart__controller-delete">
+            <a href="?option=VideoController&method=Delete&item_id=<?=$v['id']?>&folder=<? if ($_GET['option'] == "CourseEdit") {echo 'course';} else {echo 'funnel';}?>"><img src="/img/Delete.svg" alt=""></a>
+        </div>
+    </div>
+    <video id="123" class="media-cart-img" style="object-fit: cover;">
+        <source class="video" src=".<?=$v['video']?>"/>
+    </video>
 
     <form method="POST" class="new_name" action="?option=VideoController&method=renameVideo&id_item=<?=$v['id']?>&id=<?=$content[0][0]['id']?>">
         <div>
@@ -9,13 +23,9 @@
         </div>
         <div>
             <label for="description">Укажите описание:</label>
-            <textarea style="resize: none; height: 60px;" name="description" class="videoname" placeholder="<?=$v['description']?>" required></textarea>
+            <input name="description" class="videoname video-desc" placeholder="<?=$v['description']?>" required></input>
         </div>
         <?php if (in_array($_GET['option'], ['Funnel', 'FunnelEdit'] )) {?>
-        <div>
-            <label for="button_text">Текст для кнопки:</label>
-            <input name="button_text" class="videoname" type="text" placeholder="<?=$v['button_text']?>" required>
-        </div>
         <input type="hidden" value="<?=$v['id']?>">
         <button type="button" class="button__edit" style="background: #757D8A;"><img style="width: 22px;" src="../img/printer.png">Действие для кнопки</button>
         <?php } ?>

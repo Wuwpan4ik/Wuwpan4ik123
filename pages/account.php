@@ -6,4 +6,9 @@ class Account extends ACore
         $content = $this->m->getTariffs();
         return [$result, $content];
     }
+
+    function obr()
+    {
+        // TODO: Implement obr() method.
+    }
 }

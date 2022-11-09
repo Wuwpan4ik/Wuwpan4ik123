@@ -16,6 +16,9 @@
 	border-bottom: 1px solid #f1ebe5;
     z-index: 100;
 }
+.feed-header__title{
+	display: flex;
+}
 .feed-header h2 {
 	vertical-align: middle;
 	height: 48px;
@@ -34,5 +37,15 @@
 .back_button{
 	border: none;
 	border-radius: 99px;
+	background: #F8F8F8;
+}
+.buttonsFeeda{
+
+}
+a.button__back {
+	border-radius: 30px;
+	padding: 17px 23px;
+	margin-right: 19px;
+	align-self: center;
 	background: #F8F8F8;
 }

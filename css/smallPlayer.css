@@ -1,9 +1,9 @@
-body{
+.body{
     background: rgba(0, 0, 0, 0.8);
     margin: 0;
 }
-._conatiner{
-    max-width: 500px;
+.smallPlayer{
+    width: 500px;
     height: 100%;
     overflow: hidden;
     margin: 0 auto;
@@ -75,9 +75,12 @@ body{
     background: linear-gradient(to right, lightgrey 100%, blue 0%);
     opacity: 1;
 }
-.slider__item {
-    position: relative;
+.smallPlayer.slider__item{
     height: 100vh;
+}
+.slider__item {
+    height: 100vh;
+    position: relative;
 }
 .slider__item img {
     max-width: 100%;
@@ -129,9 +132,12 @@ body{
 .slider__header{
     position: absolute;
     top: 9%;
-    left: 10%;
-    width: 100%;
+    left: 0;
+    right: 0;
     display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 20px;
     align-items: center;
     color: #fff;
     z-index: 11;
@@ -145,12 +151,11 @@ body{
     font-weight: 700;
     font-size: 20px;
 }
-.slider__header-views{
-    position: absolute;
-    right: 0;
+
+.slider__header-views {
     display: flex;
-    align-items: center;
 }
+
 .slider__header-views-count{
     margin: 0 0 0 5px;
     font-size: 12px;
@@ -193,25 +198,28 @@ body{
 .popup{
     position: absolute;
     bottom: -70%;
-    width: 89.7%;
+    width: 100%;
     border-radius: 30px 30px 0 0;
-    padding: 0 25px;
+    max-height: 80%;
     text-align: center;
     background-color: #fff;
     opacity: 0;
     transition: 0.6s;
+    overflow: hidden;
 }
 .popup.active{
     bottom: 0;
     opacity: 1;
 }
 .popup-title{
+    color: black;
     margin: 20px 0 0 0;
     font-weight: 900;
     font-size: 30px;
     line-height: 109.5%;
 }
 .popup-text{
+    color: rgba(0, 0, 0, 0.6);
     margin: 12px 0 0 0;
     padding: 0 50px;
     font-weight: 600;
@@ -243,7 +251,7 @@ body{
 }
 /*----------------------------------------*/
 .popup__allLessons{
-    max-height: 782px;
+    height: 80%;
 }
 .popup__allLessons-form{
     position: absolute;
@@ -265,11 +273,15 @@ body{
     background: #6A6A6A;
 }
 .popup__allLessons-body{
-    max-height: 760px;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    margin: 10px 0 30px 0;
+    margin: 10px 0 80px 0;
+}
+.popup__allLessons-body__items{
+    margin: 0 0 180px 0;
     overflow: auto;
+
 }
 .popup__allLessons-body::-webkit-scrollbar {
     width: 0;
@@ -278,14 +290,22 @@ body{
 .popup-item{
     display: flex;
     align-items: center;
+    justify-content: center;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
     padding: 10px 0 0 0;
     margin: 5px 0 0 0;
 }
+.popup__allLessons-item{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
 .popup__allLessons-item-video{
-    width: 50%;
-    position: relative;
+    width: 40%;
     border-radius: 20px;
+}
+.popup__allLessons-item-video__img{
+   position: relative;
 }
 .popup__allLessons-text{
     font-weight: 300;
@@ -294,8 +314,9 @@ body{
 }
 .popup__allLessons-item-video-play{
     position: absolute;
-    top: 30%;
-    left: 40%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 40px;
     height: 40px;
     display: flex;
@@ -307,7 +328,7 @@ body{
     backdrop-filter: blur(10px);
 }
 .popup__allLessons-item-info{
-    width: 50%;
+    width: 40%;
     text-align: left;
 }
 .popup__allLessons-item-info-header{
@@ -315,18 +336,19 @@ body{
     align-items: center;
 }
 .popup__allLessons-item-info-header-number{
-    width: 14px;
+    width: 20px;
     height: 20px;
     display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
-    padding: 0 0 0 6px;
     font-weight: 300;
     font-size: 10px;
-    align-items: center;
     text-align: center;
     color: rgba(255, 255, 255, 0.6);
     background: #444444;
 }
+
 .popup__allLessons-item-info-header-time{
     margin: 0 0 0 10px;
     font-weight: 300;
@@ -334,6 +356,7 @@ body{
     color: rgba(0, 0, 0, 0.6);
 }
 .popup__allLessons-item-info-title{
+    width: 90%;
     margin: 15px 0 0 0;
     font-weight: 500;
     font-size: 14px;
@@ -342,8 +365,9 @@ body{
 }
 /*----------------------------------------*/
 .popup__buy-title{
-    margin: 0 0 0 15px;
+    margin: 0  15px;
     text-align: left;
+
 }
 .popup__buy-body{
     margin: 20px 0 0 0;
@@ -356,7 +380,6 @@ body{
 .popup__buy-price{
     display: flex;
     justify-content: space-between;
-    margin: 20px 0 0 0;
 }
 .popup__buy-price-title{
     font-weight: 500;
@@ -368,6 +391,9 @@ body{
     font-weight: 500;
     font-size: 18px;
     color: #EA3A3A;
+}
+.popup__buy-footer{
+    padding: 0 20px;
 }
 .popup__buy-register{
     margin: 20px 0 0 0;

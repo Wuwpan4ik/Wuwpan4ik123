@@ -6,10 +6,14 @@
 
     <title>Моя тестовая страница</title>
     <link rel="stylesheet" href="css/sidebar.css">
+
     <link rel="stylesheet" href="css/nullCss.css">
+
     <link rel="stylesheet" href="css/project.css">
 
     <link rel="stylesheet" href="css/feed.css">
+
+    <link rel="stylesheet" href="css/smallPlayer.css">
 
     <link rel="stylesheet" href="css/lessons.css">
 
@@ -29,7 +33,9 @@
 
             <div class="feed-menu">
 
-                <a href="?option=Project"><button class="back_button"><img class="ico" src="img/StickLeft.svg"></button></a>
+                <a class="button__back" href="?option=Funnel">
+                    <img src="/img/ArrowLeft.svg" alt="">
+                </a>
 
                 <form action="?option=DirectoryController&method=setName&id=<?=$content[0][0]['id']?>&folder=course" method="POST" id="insert">
 
@@ -57,11 +63,9 @@
 
             <div class="buttonsFeed">
 
-                <button class="ico_button"><img class="ico" src="img/Shield.svg"></button>
+                <button class="ico_button button-bell"><img class="ico" src="img/Bell.svg">  <div id="msg">5</div></button>
 
-                <button class="ico_button"><img class="ico" src="img/Bell.svg"></button>
-
-                <button id="apps" class="ico_button">Заявки</button>
+                <button id="apps" class="ico_button" onclick="window.location.replace('?option=Analytics')">Заявки</button>
 
             </div>
 
@@ -69,7 +73,7 @@
 
         <div class="Lessons">
 
-            <div class="media">
+            <div class="media _container">
 
                 <?php
                 foreach($content[1] as $v){?>
@@ -101,12 +105,14 @@
             elem.style.display = 'none';
         })
         _("progressBar").classList.add('active');
+        _("progressText").classList.add('active');
+        document.querySelector('.btn-upload').classList.add('active');
         var formdata = new FormData();
         formdata.append("video_uploader", file);
         var ajax = new XMLHttpRequest();
         ajax.upload.addEventListener("progress", progressHandler, false);
         ajax.addEventListener("load", completeHandler, false)
-        ajax.open("POST", "?option=VideoController&method=addVideo&id=<?=$content[0][0]['id']?>&folder=course");
+        ajax.open("POST", "?option=VideoController&method=addVideo&id=<?=$content[0][0]['id']?>&folder=funnel");
         ajax.send(formdata);
     }
     function progressHandler(event) {
@@ -116,7 +122,7 @@
         _("progressBar").value = Math.round(percent);//Round value to solid
     }
     function completeHandler(event) {
-       _("progressBar").value = 0;//Set progress bar to 0
+        _("progressBar").value = 0;//Set progress bar to 0
         document.getElementById('progressDiv').style.display = 'none';//Hide progress bar
         location.reload();
     }

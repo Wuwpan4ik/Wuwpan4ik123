@@ -32,21 +32,10 @@
 
             <div class="feed">
 
-                <div class="feed-header">
-
-                    <h2>Настройки аккаунта</h2>
-
-                    <div class="buttonsFeed">
-
-                        <button class="ico_button"><img class="ico" src="img/Shield.svg"></button>
-
-                        <button class="ico_button"><img class="ico" src="img/Bell.svg"></button>
-
-                        <button id="apps" class="ico_button">Заявки</button>
-
-                    </div>
-
-                </div>
+                <?php
+                $title = "Настройки аккаунта";
+                include ('default/header.php');
+                ?>
 
                 <div class="Components">
 
@@ -92,20 +81,20 @@
 
                                         </div>
 
-                                        <div class="field">
-
-                                            <h2>Напишите имя вашего сайта</h2>
-
-                                            <input id="check_url" name="site_url" class="full" placeholder="<? if (isset($_SESSION["user"]['site_url'])) {echo $_SESSION["user"]['site_url'];} else { echo "Ваш сайт";} ?>"/>
-
-                                            <div id="message"><? if(isset($_SESSION['error']['url_message'])) echo $_SESSION['error']['url_message'] ?></div>
-                                        </div>
-
-                                        <div class="about-btn">
-
-                                            <button id="check_button" type="button">Проверить домен</button>
-
-                                        </div>
+<!--                                        <div class="field">-->
+<!---->
+<!--                                            <h2>Напишите имя вашего сайта</h2>-->
+<!---->
+<!--                                            <input id="check_url" name="site_url" class="full" placeholder="--><?// if (isset($_SESSION["user"]['site_url'])) {echo $_SESSION["user"]['site_url'];} else { echo "Ваш сайт";} ?><!--"/>-->
+<!---->
+<!--                                            <div id="message">--><?// if(isset($_SESSION['error']['url_message'])) echo $_SESSION['error']['url_message'] ?><!--</div>-->
+<!--                                        </div>-->
+<!---->
+<!--                                        <div class="about-btn">-->
+<!---->
+<!--                                            <button id="check_button" type="button">Проверить домен</button>-->
+<!---->
+<!--                                        </div>-->
                                         <div class="about-btn">
 
                                             <button id="profile_send" type="submit">Сохранить</button>
@@ -249,11 +238,11 @@
 
                                 <div class="choose">
 
-                                    <input <?if($content[0][0]['gender'] == "M"){?> checked <?}?> style="display:none;" style="display:none;" value="M" id="M" name="gender" type="radio"/>
+                                    <input <?if($content[0][0]['gender'] == "M"){?> checked <?}?> value="M" id="M" name="gender" type="radio"/>
 
 									<label for="M"><span class="dot"></span></label>Мужской
 
-                                    <input <?if($content[0][0]['gender'] == "W"){?> checked <?}?> style="display:none;" value="W" id="W" name="gender" type="radio"/>
+                                    <input <?if($content[0][0]['gender'] == "W"){?> checked <?}?> value="W" id="W" name="gender" type="radio"/>
 
 									<label for="W"><span class="dot"></span></label>Женский
 
@@ -274,7 +263,7 @@
             </div>
 
         </div>
-  <? unset($_SESSION['error']) ?>
+        <? unset($_SESSION['error']) ?>
 
         <script>
             const button_submit = document.querySelector('#profile_send');
@@ -290,7 +279,7 @@
             check_button.addEventListener('click', function () {
                 const request = new XMLHttpRequest();
 
-                const url = "?option=UrlController&method=get_content&site_url=" + check_url.value;
+                const url = "?option=UrlController&site_url=" + check_url.value;
 
                 /* Здесь мы указываем параметры соединения с сервером, т.е. мы указываем метод соединения GET,
                 а после запятой мы указываем путь к файлу на сервере который будет обрабатывать наш запрос. */

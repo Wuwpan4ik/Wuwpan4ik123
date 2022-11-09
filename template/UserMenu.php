@@ -47,6 +47,7 @@
                     </div>
                 </div>
                 <div class="UserMenu-list">
+
                     <a href="?option=UserMain">
 
                         <div class="UserMenu-list__option sidebarOption <? if ($_GET['option'] == 'Main') echo 'active'; ?>" >

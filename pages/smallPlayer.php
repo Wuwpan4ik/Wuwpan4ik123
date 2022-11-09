@@ -6,4 +6,9 @@ class SmallPlayer extends ACore
         $content = $this->m->getVideosForPlayer();
         return $content;
     }
+
+    function obr()
+    {
+        // TODO: Implement obr() method.
+    }
 }

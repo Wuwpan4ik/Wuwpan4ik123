@@ -21,11 +21,18 @@ code {
   padding: 12px;
   cursor: pointer;
 }
+.popup__edit {
+  width: 900px;
+}
+#popup__background.display-flex {
+  display: flex;
+}
 .buttonsFeed{
   display:flex;
   gap:24px;
 }
 .ico_button{
+  position: relative;
   height: 48px;
   border: 1px solid #E1E3E6;
   box-shadow: 0 4px 2px -2px rgba(27, 46, 94, 0.02);
@@ -49,6 +56,22 @@ code {
 #apps:hover{
   cursor:pointer;
 }
+.button-bell{
+  position: relative;
+}
+#msg{
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 99px;
+  line-height: 24px;
+  color: #FFFFFF;
+  background-color: #EF2C2C;
+}
+
 p{
   font-weight:400;
   font-size: 18px;
@@ -93,7 +116,7 @@ p{
   max-width: 330px;
   max-height: 200px;
   border-radius: 20px;
-  padding: 20px 50px 20px !important;
+  padding: 20px 30px 20px !important;
   margin: auto;
   text-align: center;
   background: #fff;
@@ -179,7 +202,10 @@ span.button__back{
 }
 
 .upload__label span {
+  font-size: 18px;
+  color: #757D8A;
   align-self: center;
+  margin: 0  0 0 16px;
 }
 
 .upload__form button:hover{
@@ -187,6 +213,9 @@ span.button__back{
   margin-top: 0;
 }
 
+.progress {
+  width: 100%;
+}
 
 #progressBar {
   display:none;
@@ -202,33 +231,57 @@ span.button__back{
   font-size:15px;
 }
 
+.btn-upload.active {
+  width: 80%;
+}
+
+#progressText {
+  display: none;
+}
+
+#progressText.active {
+  display: block;
+}
+
 #progressBar.active {
   display: block;
 }
 
 #progressBar::-webkit-progress-bar {
-  height: 40px;
-  width: 80%;
+  height: 10px;
+  width: 100%;
   margin: 0 auto;
-  background-color:#dadada;
+  background-color: rgba(255, 255, 255, 0.6);;
   border-radius:100px;
 }
 
 #progressBar::-webkit-progress-value {
   display: inline-block;
+  width: 80%;
   float: left;
-  height: 40px;
+  height: 10px;
   margin: 0 -10px 0 0;
   padding-left: 50px; /* Rounded corners requires a padding */
-  background:#ff9e2c;
+  background: #81A4FF;
   border-radius:100px;
 }
 
 #progressBar:after {
   padding: 0;
-  display: inline-block; /* Here is the magic to move with the progress */
+  width: 100%;
   float: left;
   content: attr(value) '%';
   color: #555;
   transform: translate(-25px, 7px);
+}
+
+.select__course {
+  width: 100%;
+  border: 1px solid #E1E3E6;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 20px 0 0 0;
+  appearance: none;
+  background: url(../img/arrow_custom.svg) no-repeat right;
+  background-position-x: calc(100% - 21px);
 }
