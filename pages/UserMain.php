@@ -2,8 +2,8 @@
 class UserMain extends ACore
 {
     public function get_content() {
-		$result = $this->m->getContentForUserCoursePage();
-        return $result;
+        $author_page = $this->m->getContentForUserAuthorPage();
+        return ['author_page' => $author_page];
     }
 
     function obr()

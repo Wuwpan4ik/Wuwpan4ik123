@@ -25,9 +25,38 @@
 
         public function getContentForUserCoursePage()
         {
-            $result = $this->db->query("SELECT * FROM funnel WHERE id = ".$_SESSION['item_id']);
-            $videos = $this->db->query("SELECT * FROM funnel_content WHERE funnel_id = ".$result[0]['id']);
-            return [$result, $videos];
+            $purchases = $this->db->query("SELECT `purchase` FROM `purchase` WHERE user_id = " . $_SESSION['user']['id'])[0]['purchase'];
+            $course_query = "SELECT course.name, course.description, user.first_name, user.second_name FROM course AS course INNER JOIN user ON user.id = course.author_id WHERE";
+            $purchases_array = json_decode($purchases, true)['course_id'];
+            foreach ($purchases_array as $course_id) {
+                $course_query .= " course.id = $course_id ";
+                if (count($purchases_array) != 1) {
+                    $course_query .= " OR ";
+                }
+                array_shift($purchases_array);
+            }
+            $courses = $this->db->query($course_query);
+            $_SESSION['dwdwd'] = $courses;
+            return $courses;
+        }
+
+        public function getContentForUserAuthorPage()
+        {
+            $purchases = $this->db->query("SELECT `purchase` FROM `purchase` WHERE user_id = " . $_SESSION['user']['id'])[0]['purchase'];
+            $course_query = "SELECT user.id, course.name, user.first_name, user.second_name, count(course.id) as 'count' FROM course AS course INNER JOIN user ON user.id = course.author_id WHERE";
+            $purchases_array = json_decode($purchases, true)['course_id'];
+            foreach ($purchases_array as $course_id) {
+                $course_query .= " course.id = $course_id ";
+                if (count($purchases_array) != 1) {
+                    $course_query .= " OR ";
+                } else {
+                    $course_query .= " GROUP BY user.id ";
+                    break;
+                }
+                array_shift($purchases_array);
+            }
+            $courses = $this->db->query($course_query);
+            return $courses;
         }
 
         public function getContentForCourseEdit() {

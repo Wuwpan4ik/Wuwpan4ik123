@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/css/smallPlayer.css">
 </head>
 <body class="body">
+<? print_r($_SESSION['dwdwd']);?>
 <div class="UserMain bcg">
     <div class="_container" style="height: 9%;">
         <div class="User-header">
@@ -35,6 +36,9 @@
             </div>
             <div class="aboutTheAuthor userPopup__body">
                 <div class="  popup__allLessons-body">
+                    <?php
+                        foreach ($content['author_page'] as $item) {
+                    ?>
                     <div class="popup__allLessons-item ">
                         <div class="popup__allLessons-item__header">
                             <div class="popup-item">
@@ -52,109 +56,22 @@
                                             Автор
                                         </div>
                                         <div class="aboutTheAuthor-name">
-                                            Сергей Ратнер
+                                            <?=$item['first_name']?> <?=$item['second_name']?>
                                         </div>
                                     </div>
                                     <div class="popup__allLessons-item-info-title">
-                                        Управление гневом внутри себя
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" aboutTheAuthor-button availableСoursesBtn">
-                                <button>Вам доступны 2 курса</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="popup__allLessons-item ">
-                        <div class="popup__allLessons-item__header">
-                            <div class="popup-item">
-                                <div class="popup__allLessons-item-video">
-                                    <div class="popup__allLessons-item-video__img">
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
-                                        <div class="popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="popup__allLessons-item-info">
-                                    <div class="popup__allLessons-item-info-header">
-                                        <div class=" aboutTheAuthor popup__allLessons-item-info-header-number available-number">
-                                            Автор
-                                        </div>
-                                        <div class="aboutTheAuthor-name">
-                                            Сергей Ратнер
-                                        </div>
-                                    </div>
-                                    <div class="popup__allLessons-item-info-title">
-                                        Управление гневом внутри себя
+                                        <?=$item['name']?>
                                     </div>
                                 </div>
                             </div>
                             <div class="aboutTheAuthor-button availableСoursesBtn">
-                                <button>Вам доступны 2 курса</button>
+                                <button class="buttonUserPopup">Вам доступны <?=$item['count']?> курса</button>
                             </div>
                         </div>
                     </div>
-                    <div class="popup__allLessons-item ">
-                        <div class="popup__allLessons-item__header">
-                            <div class="popup-item">
-                                <div class="popup__allLessons-item-video">
-                                    <div class="popup__allLessons-item-video__img">
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
-                                        <div class="popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="popup__allLessons-item-info">
-                                    <div class="popup__allLessons-item-info-header">
-                                        <div class=" aboutTheAuthor popup__allLessons-item-info-header-number available-number">
-                                            Автор
-                                        </div>
-                                        <div class="aboutTheAuthor-name">
-                                            Сергей Ратнер
-                                        </div>
-                                    </div>
-                                    <div class="popup__allLessons-item-info-title">
-                                        Управление гневом внутри себя
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="aboutTheAuthor-button availableСoursesBtn">
-                                <button class="buttonUserPopup">Вам доступны 2 курса</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="popup__allLessons-item ">
-                        <div class="popup__allLessons-item__header">
-                            <div class="popup-item">
-                                <div class="popup__allLessons-item-video">
-                                    <div class="popup__allLessons-item-video__img">
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
-                                        <div class="popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="popup__allLessons-item-info">
-                                    <div class="popup__allLessons-item-info-header">
-                                        <div class=" aboutTheAuthor popup__allLessons-item-info-header-number available-number">
-                                            Автор
-                                        </div>
-                                        <div class="aboutTheAuthor-name">
-                                            Сергей Ратнер
-                                        </div>
-                                    </div>
-                                    <div class="popup__allLessons-item-info-title">
-                                        Управление гневом внутри себя
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="aboutTheAuthor-button availableСoursesBtn">
-                                <button class="buttonUserPopup">Вам доступны 2 курса</button>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                        }
+                    ?>
                 </div>
             </div>
         </div>
@@ -165,6 +82,9 @@
             <div class="availableToYou userPopup__body">
                 <div class=" availableToYou ">
                     <div class="availableToYou availableToYou__body ">
+                        <?php
+                        foreach ($content['course_page'] as $item) {
+                            ?>
                         <div class="popup__allLessons-item availableСourses">
                             <div class="popup__allLessons-item__header">
                                 <div class="popup-item">
@@ -184,87 +104,15 @@
                                             </div>
                                         </div>
                                         <div class="popup__allLessons-item-info-title">
-                                            Управление гневом внутри себя
+                                            <?=$item['name']?>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="popup__allLessons-item availableСourses">
-                            <div class="popup__allLessons-item__header">
-                                <div class="popup-item">
-                                    <div class="popup__allLessons-item-video__img">
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
-                                        <div class="popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="popup__allLessons-item-info">
-                                        <div class="popup__allLessons-item-info-header">
-                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number available-number">
-                                                Курс
-                                            </div>
-                                            <div class="aboutTheAuthor-name">
-                                                22 урока
-                                            </div>
-                                        </div>
-                                        <div class="popup__allLessons-item-info-title">
-                                            Управление гневом внутри себя
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="popup__allLessons-item availableСourses">
-                            <div class="popup__allLessons-item__header">
-                                <div class="popup-item">
-                                    <div class="popup__allLessons-item-video__img">
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
-                                        <div class="popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="popup__allLessons-item-info">
-                                        <div class="popup__allLessons-item-info-header">
-                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number available-number">
-                                                Курс
-                                            </div>
-                                            <div class="aboutTheAuthor-name">
-                                                22 урока
-                                            </div>
-                                        </div>
-                                        <div class="popup__allLessons-item-info-title">
-                                            Управление гневом внутри себя
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="popup__allLessons-item availableСourses">
-                            <div class="popup__allLessons-item__header">
-                                <div class="popup-item">
-                                    <div class="popup__allLessons-item-video__img">
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
-                                        <div class="popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="popup__allLessons-item-info">
-                                        <div class="popup__allLessons-item-info-header">
-                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number available-number">
-                                                Курс
-                                            </div>
-                                            <div class="aboutTheAuthor-name">
-                                                22 урока
-                                            </div>
-                                        </div>
-                                        <div class="popup__allLessons-item-info-title">
-                                            Управление гневом внутри себя
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php
+                            }
+                        ?>
                     </div>
                 </div>
                 <div class="otherСourses">
