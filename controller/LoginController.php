@@ -27,7 +27,8 @@
                     'first_name' => $res[0]['first_name'], // поменял name - first_name
                     'second_name' => $res[0]['second_name'], // добавить в форму - first_name
                     'email' => $res[0]['email'],
-                    'site_url' => $res[0]['site_url']
+                    'site_url' => $res[0]['site_url'],
+					'is_creator' => $res[0]['is_creator']
                 ];
                 $response = "С возвращением, ".$_SESSION["user"]["name"];
             }
@@ -78,19 +79,36 @@
 
         function get_content()
         {
-            echo '<!DOCTYPE html>
-			<html lang="en">
-			<head>
-			<meta charset="UTF-8">
-			<meta http-equiv="X-UA-Compatible" content="IE=edge">
-			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<title>Document</title>
-			</head>
-			<body>
-				<script>
-					window.location.replace("?option=Main");
-				</script>
-			</body>
-			</html>';
+			if($_SESSION["user"]["is_creator"] == 1){
+				echo '<!DOCTYPE html>
+				<html lang="en">
+				<head>
+				<meta charset="UTF-8">
+				<meta http-equiv="X-UA-Compatible" content="IE=edge">
+				<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<title>Document</title>
+				</head>
+				<body>
+					<script>
+						window.location.replace("?option=Main");
+					</script>
+				</body>
+				</html>';
+			}else{
+				echo '<!DOCTYPE html>
+				<html lang="en">
+				<head>
+				<meta charset="UTF-8">
+				<meta http-equiv="X-UA-Compatible" content="IE=edge">
+				<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<title>Document</title>
+				</head>
+				<body>
+					<script>
+						window.location.replace("?option=UserMenu");
+					</script>
+				</body>
+				</html>';
+			}
         }
     }
