@@ -40,6 +40,7 @@ return array(
     'StatisticsController' => $baseDir . '/controller/StatisticsController.php',
     'UrlController' => $baseDir . '/controller/UrlController.php',
     'UserContacts' => $baseDir . '/pages/userContacts.php',
+    'UserController' => $baseDir . '/controller/UserController.php',
     'UserLogin' => $baseDir . '/pages/userLogin.php',
     'UserMain' => $baseDir . '/pages/UserMain.php',
     'UserMenu' => $baseDir . '/pages/UserMenu.php',

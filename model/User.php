@@ -23,27 +23,28 @@
             return [$result, $videos];
         }
 
-        public function getContentForUserCoursePage()
+        public function getContentForUserCoursePage($author_id)
         {
             $purchases = $this->db->query("SELECT `purchase` FROM `purchase` WHERE user_id = " . $_SESSION['user']['id'])[0]['purchase'];
-            $course_query = "SELECT course.name, course.description, user.first_name, user.second_name FROM course AS course INNER JOIN user ON user.id = course.author_id WHERE";
             $purchases_array = json_decode($purchases, true)['course_id'];
+            $course_query = "SELECT course.name, course.description, course.author_id FROM course WHERE ($author_id = course.author_id) AND(";
             foreach ($purchases_array as $course_id) {
                 $course_query .= " course.id = $course_id ";
                 if (count($purchases_array) != 1) {
                     $course_query .= " OR ";
+                } else {
+                    $course_query .= ")";
                 }
                 array_shift($purchases_array);
             }
             $courses = $this->db->query($course_query);
-            $_SESSION['dwdwd'] = $courses;
             return $courses;
         }
 
         public function getContentForUserAuthorPage()
         {
             $purchases = $this->db->query("SELECT `purchase` FROM `purchase` WHERE user_id = " . $_SESSION['user']['id'])[0]['purchase'];
-            $course_query = "SELECT user.id, course.name, user.first_name, user.second_name, count(course.id) as 'count' FROM course AS course INNER JOIN user ON user.id = course.author_id WHERE";
+            $course_query = "SELECT user.id, course.name, user.first_name, user.second_name, count(course.id) as 'count', course.author_id FROM course AS course INNER JOIN user ON user.id = course.author_id WHERE";
             $purchases_array = json_decode($purchases, true)['course_id'];
             foreach ($purchases_array as $course_id) {
                 $course_query .= " course.id = $course_id ";
