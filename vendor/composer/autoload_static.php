@@ -59,6 +59,7 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'StatisticsController' => __DIR__ . '/../..' . '/controller/StatisticsController.php',
         'UrlController' => __DIR__ . '/../..' . '/controller/UrlController.php',
         'UserContacts' => __DIR__ . '/../..' . '/pages/userContacts.php',
+        'UserController' => __DIR__ . '/../..' . '/controller/UserController.php',
         'UserLogin' => __DIR__ . '/../..' . '/pages/userLogin.php',
         'UserMain' => __DIR__ . '/../..' . '/pages/UserMain.php',
         'UserMenu' => __DIR__ . '/../..' . '/pages/UserMenu.php',

@@ -65,7 +65,7 @@
                                 </div>
                             </div>
                             <div class="aboutTheAuthor-button availableСoursesBtn">
-                                <button class="buttonUserPopup">Вам доступны <?=$item['count']?> курса</button>
+                                <button class="buttonUserPopup" onclick="getAuthorPage(<?=$item['id']?>)">Вам доступны <?=$item['count']?> курса</button>
                             </div>
                         </div>
                     </div>
@@ -75,16 +75,16 @@
                 </div>
             </div>
         </div>
-        <div class=" availableToYou  userPopup  ">
+        <div class=" availableToYou  userPopup">
             <div class="availableToYou userPopup__title">
                 Вам доступны:
             </div>
             <div class="availableToYou userPopup__body">
                 <div class=" availableToYou ">
                     <div class="availableToYou availableToYou__body ">
-                        <?php
-                        foreach ($content['course_page'] as $item) {
-                            ?>
+<!--                        --><?php
+//                        foreach ($content['course_page'] as $item) {
+//                            ?>
                         <div class="popup__allLessons-item availableСourses">
                             <div class="popup__allLessons-item__header">
                                 <div class="popup-item">
@@ -110,9 +110,9 @@
                                 </div>
                             </div>
                         </div>
-                        <?php
-                            }
-                        ?>
+<!--                        --><?php
+//                            }
+//                        ?>
                     </div>
                 </div>
                 <div class="otherСourses">
@@ -702,5 +702,30 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
 <script src="../js/script.js" ></script>
+<script>
+    function getAuthorPage (number) {
+        let request = new XMLHttpRequest();
+
+        let url = "/UserController/getAuthor?author_id=" + number;
+
+        request.open('GET', url);
+
+        request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+        request.addEventListener("readystatechange", () => {
+            if (request.readyState === 4 && request.status === 200) {
+                document.querySelector('.availableToYou__body').innerHTML = request.responseText;
+                const availableСourses = document.body.querySelectorAll('.availableСourses');
+                availableСourses.forEach(item => {
+                    item.onclick = function () {
+                        course.classList.add('active');
+                        availableToYou.classList.remove('active')
+                    }
+                })
+
+            }
+        });
+        request.send();
+    }
+</script>
 </body>
 </html>
