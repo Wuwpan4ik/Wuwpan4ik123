@@ -58,6 +58,32 @@
             $videos = $this->db->query("SELECT * FROM course_content");
             return [$result, $videos];
         }
+		
+		public function getContentForUserCoursePage() {
+			$detect = $this->db->query("SELECT * FROM purchase WHERE user_id = " . $_SESSION["user"]["id"] . " GROUP BY id");
+			$aid = $this->db->query("SELECT * FROM course WHERE id = ". $detect[0]["course_id"]);
+            $result = $this->db->query("SELECT * FROM course WHERE author_id = " . $aid[0]["author_id"] . " GROUP BY id");
+            $videos = $this->db->query("SELECT * FROM course_content ");		
+            return [$result, $videos, $detect];
+        }
+		
+		public function getCourseAuthor() {
+			$detect = $this->db->query("SELECT * FROM purchase WHERE user_id = " . $_SESSION["user"]["id"] . " GROUP BY id");
+			$aid = $this->db->query("SELECT * FROM course WHERE id = ". $detect[0]["course_id"]);
+            $result = $this->db->query("SELECT * FROM user WHERE id = " . $aid[0]["author_id"] . " GROUP BY id");
+			return $result;
+		}
+		
+		public function getUserNotifications() {
+			$result = $this->db->query("SELECT * FROM notifications WHERE user_id = " . $_SESSION["user"]["id"] . " GROUP BY id");
+			return $result;
+		}
+		
+		public function getCountUserNotifications() {
+			$result = $this->db->query("SELECT * FROM notifications WHERE user_id = " . $_SESSION["user"]["id"] . " AND is_checked = 0 GROUP BY id");
+			$result = count($result);
+			return $result;
+		}
 
         public function getUserMessengers() {
             $user_id = $_SESSION['user']['id'];
