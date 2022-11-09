@@ -66,7 +66,9 @@
     $router->addRoute("/StatisticsController/GetWeek", "StatisticsController.php", 'GetWeekGraph');
     $router->addRoute("/StatisticsController/GetWeek", "StatisticsController.php", 'GetWeekGraph');
 
-    $router->addRoute("/UserController/getAuthor", "UserController.php", 'getAuthorSite');
+    $router->addRoute("/UserController/getCourse", "UserController.php", 'getCourseSite');
+    $router->addRoute("/UserController/getDisableCourse", "UserController.php", 'getDisableCourseSite');
+    $router->addRoute("/UserController/getList", "UserController.php", 'getList');
 
     $router->route("/$url");
 

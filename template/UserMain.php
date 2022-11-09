@@ -65,7 +65,7 @@
                                 </div>
                             </div>
                             <div class="aboutTheAuthor-button availableСoursesBtn">
-                                <button class="buttonUserPopup" onclick="getAuthorPage(<?=$item['id']?>)">Вам доступны <?=$item['count']?> курса</button>
+                                <button class="buttonUserPopup" onclick="getCoursePage(<?=$item['id']?>)">Вам доступны <?=$item['count']?> курса</button>
                             </div>
                         </div>
                     </div>
@@ -81,38 +81,7 @@
             </div>
             <div class="availableToYou userPopup__body">
                 <div class=" availableToYou ">
-                    <div class="availableToYou availableToYou__body ">
-<!--                        --><?php
-//                        foreach ($content['course_page'] as $item) {
-//                            ?>
-                        <div class="popup__allLessons-item availableСourses">
-                            <div class="popup__allLessons-item__header">
-                                <div class="popup-item">
-                                    <div class="popup__allLessons-item-video__img">
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
-                                        <div class="popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="popup__allLessons-item-info">
-                                        <div class="popup__allLessons-item-info-header">
-                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number available-number">
-                                                Курс
-                                            </div>
-                                            <div class="aboutTheAuthor-name">
-                                                22 урока
-                                            </div>
-                                        </div>
-                                        <div class="popup__allLessons-item-info-title">
-                                            <?=$item['name']?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-<!--                        --><?php
-//                            }
-//                        ?>
+                    <div class="availableToYou availableToYou__body course__List">
                     </div>
                 </div>
                 <div class="otherСourses">
@@ -120,82 +89,7 @@
                         Другие курсы автора:
                     </div>
                     <div class="otherСourses userPopup__body">
-                        <div class="otherСourses__body">
-                            <div class="popup__allLessons-item otherCourses">
-                                <div class="popup__allLessons-item__header">
-                                    <div class="popup-item">
-                                        <div class="popup__allLessons-item-video__img">
-                                            <img src="../img/smallPlayer/Group1426.png" alt="">
-                                            <div class="popup__allLessons-item-video-play">
-                                                <img src="../img/smallPlayer/play.png" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="popup__allLessons-item-info">
-                                            <div class="popup__allLessons-item-info-header">
-                                                <div class=" aboutTheAuthor popup__allLessons-item-info-header-number notAvailable-number">
-                                                    Курс
-                                                </div>
-                                                <div class="aboutTheAuthor-name">
-                                                    22 урока
-                                                </div>
-                                            </div>
-                                            <div class="popup__allLessons-item-info-title">
-                                                Управление гневом внутри себя
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="popup__allLessons-item otherCourses">
-                                <div class="popup__allLessons-item__header">
-                                    <div class="popup-item">
-                                        <div class="popup__allLessons-item-video__img">
-                                            <img src="../img/smallPlayer/Group1426.png" alt="">
-                                            <div class="popup__allLessons-item-video-play">
-                                                <img src="../img/smallPlayer/play.png" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="popup__allLessons-item-info">
-                                            <div class="popup__allLessons-item-info-header">
-                                                <div class=" aboutTheAuthor popup__allLessons-item-info-header-number notAvailable-number">
-                                                    Курс
-                                                </div>
-                                                <div class="aboutTheAuthor-name">
-                                                    22 урока
-                                                </div>
-                                            </div>
-                                            <div class="popup__allLessons-item-info-title">
-                                                Управление гневом внутри себя
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="popup__allLessons-item otherCourses">
-                                <div class="popup__allLessons-item__header">
-                                    <div class="popup-item">
-                                        <div class="popup__allLessons-item-video__img">
-                                            <img src="../img/smallPlayer/Group1426.png" alt="">
-                                            <div class="popup__allLessons-item-video-play">
-                                                <img src="../img/smallPlayer/play.png" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="popup__allLessons-item-info">
-                                            <div class="popup__allLessons-item-info-header">
-                                                <div class=" aboutTheAuthor popup__allLessons-item-info-header-number notAvailable-number">
-                                                    Курс
-                                                </div>
-                                                <div class="aboutTheAuthor-name">
-                                                    22 урока
-                                                </div>
-                                            </div>
-                                            <div class="popup__allLessons-item-info-title">
-                                                Управление гневом внутри себя
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="otherСourses__body disabled__body">
                             <div class="popup__allLessons-item otherCourses">
                                 <div class="popup__allLessons-item__header">
                                     <div class="popup-item">
@@ -235,182 +129,7 @@
             </div>
             <div class="Course userPopup__body">
                 <div class=" Course ">
-                    <div class=" Course availableToYou__body">
-                        <div class="popup__allLessons-item ">
-                            <div class="popup__allLessons-item__header">
-                                <div class="popup-item">
-                                    <div class="popup__allLessons-item-video__img">
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
-                                        <div class="popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="popup__allLessons-item-info">
-                                        <div class="popup__allLessons-item-info-header">
-                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number available-number">
-                                                Урок 1
-                                            </div>
-                                            <div class="aboutTheAuthor-name">
-                                                10:44
-                                            </div>
-                                        </div>
-                                        <div class="popup__allLessons-item-info-title">
-                                            Управление гневом внутри себя
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="popup__allLessons-item ">
-                            <div class="popup__allLessons-item__header">
-                                <div class="popup-item">
-                                    <div class="popup__allLessons-item-video__img">
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
-                                        <div class="popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="popup__allLessons-item-info">
-                                        <div class="popup__allLessons-item-info-header">
-                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number available-number">
-                                                Урок 2
-                                            </div>
-                                            <div class="aboutTheAuthor-name">
-                                                10:44
-                                            </div>
-                                        </div>
-                                        <div class="popup__allLessons-item-info-title">
-                                            Управление гневом внутри себя
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="popup__allLessons-item ">
-                            <div class="popup__allLessons-item__header">
-                                <div class="popup-item">
-                                    <div class="popup__allLessons-item-video__img">
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
-                                        <div class="popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="popup__allLessons-item-info">
-                                        <div class="popup__allLessons-item-info-header">
-                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number available-number">
-                                                Урок 2
-                                            </div>
-                                            <div class="aboutTheAuthor-name">
-                                                10:44
-                                            </div>
-                                        </div>
-                                        <div class="popup__allLessons-item-info-title">
-                                            Управление гневом внутри себя
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="popup__allLessons-item ">
-                            <div class="popup__allLessons-item__header">
-                                <div class="popup-item">
-                                    <div class="popup__allLessons-item-video__img">
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
-                                        <div class="popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="popup__allLessons-item-info">
-                                        <div class="popup__allLessons-item-info-header">
-                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number notAvailable-number">
-                                                Урок 2
-                                            </div>
-                                            <div class="aboutTheAuthor-name">
-                                                10:44
-                                            </div>
-                                        </div>
-                                        <div class="popup__allLessons-item-info-title">
-                                            Управление гневом внутри себя
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="popup__allLessons-item ">
-                            <div class="popup__allLessons-item__header">
-                                <div class="popup-item">
-                                    <div class="popup__allLessons-item-video__img">
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
-                                        <div class="popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="popup__allLessons-item-info">
-                                        <div class="popup__allLessons-item-info-header">
-                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number notAvailable-number">
-                                                Урок 2
-                                            </div>
-                                            <div class="aboutTheAuthor-name">
-                                                10:44
-                                            </div>
-                                        </div>
-                                        <div class="popup__allLessons-item-info-title">
-                                            Управление гневом внутри себя
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="popup__allLessons-item ">
-                            <div class="popup__allLessons-item__header">
-                                <div class="popup-item">
-                                    <div class="popup__allLessons-item-video__img">
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
-                                        <div class="popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="popup__allLessons-item-info">
-                                        <div class="popup__allLessons-item-info-header">
-                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number notAvailable-number">
-                                                Урок 2
-                                            </div>
-                                            <div class="aboutTheAuthor-name">
-                                                10:44
-                                            </div>
-                                        </div>
-                                        <div class="popup__allLessons-item-info-title">
-                                            Управление гневом внутри себя
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="popup__allLessons-item ">
-                            <div class="popup__allLessons-item__header">
-                                <div class="popup-item">
-                                    <div class="popup__allLessons-item-video__img">
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
-                                        <div class="popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="popup__allLessons-item-info">
-                                        <div class="popup__allLessons-item-info-header">
-                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number notAvailable-number">
-                                                Урок 2
-                                            </div>
-                                            <div class="aboutTheAuthor-name">
-                                                10:44
-                                            </div>
-                                        </div>
-                                        <div class="popup__allLessons-item-info-title">
-                                            Управление гневом внутри себя
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class=" Course availableToYou__body lesson__list">
                     </div>
                 </div>
             </div>
@@ -432,156 +151,8 @@
             </div>
             <div class="AllLessons  userPopup__body">
                 <div class=" AllLessons ">
-                    <div class="AllLessons availableToYou__body">
+                    <div class="AllLessons availableToYou__body disable__videos">
                         <div class="popup__allLessons-item choice-video">
-                            <div class="popup__allLessons-item__header">
-                                <div class="popup-item">
-                                    <div class="popup__allLessons-item-video__img">
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
-                                        <div class="popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="popup__allLessons-item-info">
-                                        <div class="popup__allLessons-item-info-header">
-                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number ">
-                                                01
-                                            </div>
-                                            <div class="aboutTheAuthor-name">
-                                                22 минуты
-                                            </div>
-                                        </div>
-                                        <div class="popup__allLessons-item-info-title">
-                                            Управление гневом внутри себя
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="popup__allLessons-item choice-video">
-                            <div class="popup__allLessons-item__header">
-                                <div class="popup-item">
-                                    <div class="popup__allLessons-item-video__img">
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
-                                        <div class="popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="popup__allLessons-item-info">
-                                        <div class="popup__allLessons-item-info-header">
-                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number ">
-                                                01
-                                            </div>
-                                            <div class="aboutTheAuthor-name">
-                                                22 минуты
-                                            </div>
-                                        </div>
-                                        <div class="popup__allLessons-item-info-title">
-                                            Управление гневом внутри себя
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="popup__allLessons-item choice-video">
-                            <div class="popup__allLessons-item__header">
-                                <div class="popup-item">
-                                    <div class="popup__allLessons-item-video__img">
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
-                                        <div class="popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="popup__allLessons-item-info">
-                                        <div class="popup__allLessons-item-info-header">
-                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number ">
-                                                01
-                                            </div>
-                                            <div class="aboutTheAuthor-name">
-                                                22 минуты
-                                            </div>
-                                        </div>
-                                        <div class="popup__allLessons-item-info-title">
-                                            Управление гневом внутри себя
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="popup__allLessons-item choice-video">
-                            <div class="popup__allLessons-item__header">
-                                <div class="popup-item">
-                                    <div class="popup__allLessons-item-video__img">
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
-                                        <div class="popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="popup__allLessons-item-info">
-                                        <div class="popup__allLessons-item-info-header">
-                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number ">
-                                                01
-                                            </div>
-                                            <div class="aboutTheAuthor-name">
-                                                22 минуты
-                                            </div>
-                                        </div>
-                                        <div class="popup__allLessons-item-info-title">
-                                            Управление гневом внутри себя
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="popup__allLessons-item choice-video">
-                            <div class="popup__allLessons-item__header">
-                                <div class="popup-item">
-                                    <div class="popup__allLessons-item-video__img">
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
-                                        <div class="popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="popup__allLessons-item-info">
-                                        <div class="popup__allLessons-item-info-header">
-                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number ">
-                                                01
-                                            </div>
-                                            <div class="aboutTheAuthor-name">
-                                                22 минуты
-                                            </div>
-                                        </div>
-                                        <div class="popup__allLessons-item-info-title">
-                                            Управление гневом внутри себя
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="popup__allLessons-item choice-video">
-                            <div class="popup__allLessons-item__header">
-                                <div class="popup-item">
-                                    <div class="popup__allLessons-item-video__img">
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
-                                        <div class="popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="popup__allLessons-item-info">
-                                        <div class="popup__allLessons-item-info-header">
-                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number ">
-                                                01
-                                            </div>
-                                            <div class="aboutTheAuthor-name">
-                                                22 минуты
-                                            </div>
-                                        </div>
-                                        <div class="popup__allLessons-item-info-title">
-                                            Управление гневом внутри себя
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -703,20 +274,21 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
 <script src="../js/script.js" ></script>
 <script>
-    function getAuthorPage (number) {
+    function getCoursePage (number) {
         let request = new XMLHttpRequest();
 
-        let url = "/UserController/getAuthor?author_id=" + number;
+        let url = "/UserController/getCourse?author_id=" + number;
 
         request.open('GET', url);
 
         request.setRequestHeader('Content-Type', 'application/x-www-form-url');
         request.addEventListener("readystatechange", () => {
             if (request.readyState === 4 && request.status === 200) {
-                document.querySelector('.availableToYou__body').innerHTML = request.responseText;
-                const availableСourses = document.body.querySelectorAll('.availableСourses');
+                document.querySelector('.course__List').innerHTML = request.responseText;
+                let availableСourses = document.body.querySelectorAll('.availableСourses');
                 availableСourses.forEach(item => {
                     item.onclick = function () {
+                        getListPage(item.querySelector('#id').value);
                         course.classList.add('active');
                         availableToYou.classList.remove('active')
                     }
@@ -725,6 +297,65 @@
             }
         });
         request.send();
+        let requestDisable = new XMLHttpRequest();
+
+        let urlDisable = "/UserController/getDisableCourse?author_id=" + number;
+
+        requestDisable.open('GET', urlDisable);
+
+        requestDisable.setRequestHeader('Content-Type', 'application/x-www-form-url');
+        requestDisable.addEventListener("readystatechange", () => {
+            if (requestDisable.readyState === 4 && requestDisable.status === 200) {
+                document.querySelector('.disabled__body').innerHTML = requestDisable.responseText;
+                let otherCourses = document.body.querySelectorAll('.otherCourses');
+                otherCourses.forEach(item => {
+                    item.onclick = function () {
+                        getDisablePage(item.querySelector('#id').value);
+                        allLessons.classList.add('active');
+                        availableToYou.classList.remove('active')
+                    }
+                })
+            }
+        })
+        requestDisable.send();
+    }
+    function getListPage (number) {
+        let request1 = new XMLHttpRequest();
+
+        let url1 = "/UserController/getList?course_id=" + number;
+
+        request1.open('GET', url1);
+
+        request1.setRequestHeader('Content-Type', 'application/x-www-form-url');
+        request1.addEventListener("readystatechange", () => {
+            if (request1.readyState === 4 && request1.status === 200) {
+                document.querySelector('.lesson__list').innerHTML = request1.responseText;
+            }
+        });
+        request1.send();
+    }
+
+    function getDisablePage (number) {
+        let request1 = new XMLHttpRequest();
+
+        let url1 = "/UserController/getList?course_id=" + number + "&disable=true";
+
+        request1.open('GET', url1);
+
+        request1.setRequestHeader('Content-Type', 'application/x-www-form-url');
+        request1.addEventListener("readystatechange", () => {
+            if (request1.readyState === 4 && request1.status === 200) {
+                document.querySelector('.disable__videos').innerHTML = request1.responseText;
+                let choiceVideo = document.body.querySelectorAll('.choice-video');
+                choiceVideo.forEach(item => {
+                    item.onclick = function () {
+                        youChosen.classList.add('active');
+                        allLessons.classList.remove('active')
+                    }
+                })
+            }
+        });
+        request1.send();
     }
 </script>
 </body>

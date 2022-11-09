@@ -23,24 +23,6 @@
             return [$result, $videos];
         }
 
-        public function getContentForUserCoursePage($author_id)
-        {
-            $purchases = $this->db->query("SELECT `purchase` FROM `purchase` WHERE user_id = " . $_SESSION['user']['id'])[0]['purchase'];
-            $purchases_array = json_decode($purchases, true)['course_id'];
-            $course_query = "SELECT course.name, course.description, course.author_id FROM course WHERE ($author_id = course.author_id) AND(";
-            foreach ($purchases_array as $course_id) {
-                $course_query .= " course.id = $course_id ";
-                if (count($purchases_array) != 1) {
-                    $course_query .= " OR ";
-                } else {
-                    $course_query .= ")";
-                }
-                array_shift($purchases_array);
-            }
-            $courses = $this->db->query($course_query);
-            return $courses;
-        }
-
         public function getContentForUserAuthorPage()
         {
             $purchases = $this->db->query("SELECT `purchase` FROM `purchase` WHERE user_id = " . $_SESSION['user']['id'])[0]['purchase'];
@@ -56,6 +38,48 @@
                 }
                 array_shift($purchases_array);
             }
+            $courses = $this->db->query($course_query);
+            return $courses;
+        }
+
+        public function getContentForUserCoursePage($author_id)
+        {
+            $purchases = $this->db->query("SELECT `purchase` FROM `purchase` WHERE user_id = " . $_SESSION['user']['id'])[0]['purchase'];
+            $purchases_array = json_decode($purchases, true)['course_id'];
+            $course_query = "SELECT course.id, course.name, course.description, course.author_id FROM course WHERE ($author_id = course.author_id) AND(";
+            foreach ($purchases_array as $course_id) {
+                $course_query .= " course.id = $course_id ";
+                if (count($purchases_array) != 1) {
+                    $course_query .= " OR ";
+                } else {
+                    $course_query .= ")";
+                }
+                array_shift($purchases_array);
+            }
+            $courses = $this->db->query($course_query);
+            return $courses;
+        }
+
+        public function getDisableContentForUserCoursePage($author_id)
+        {
+            $purchases = $this->db->query("SELECT `purchase` FROM `purchase` WHERE user_id = " . $_SESSION['user']['id'])[0]['purchase'];
+            $purchases_array = json_decode($purchases, true)['course_id'];
+            $course_query = "SELECT course.id, course.name, course.description, course.author_id FROM course WHERE ($author_id = course.author_id) AND NOT (";
+            foreach ($purchases_array as $course_id) {
+                $course_query .= " course.id = $course_id ";
+                if (count($purchases_array) != 1) {
+                    $course_query .= " OR ";
+                } else {
+                    $course_query .= ")";
+                }
+                array_shift($purchases_array);
+            }
+            $courses = $this->db->query($course_query);
+            return $courses;
+        }
+
+        public function getContentForCourseListPage($course_id){
+            $course_query = "SELECT course_content.name, course_content.description, course_content.video FROM course_content WHERE ($course_id = course_content.course_id)";
             $courses = $this->db->query($course_query);
             return $courses;
         }
