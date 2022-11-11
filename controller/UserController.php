@@ -14,6 +14,12 @@ class UserController extends ACoreCreator
         return $this->m->db->query("SELECT * FROM `course_content` WHERE id = '$video_id'");
     }
 
+    private function check_purchase($purchase) {
+        foreach ($purchase as $item) {
+//            if ()
+        }
+    }
+
     public function InsertToTable($creator_id, $course_id, $buy_progress, $course_price) {
         $current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
         $this->m->db->execute("INSERT INTO `clients` (`first_name`, `email`, `tel`, `creator_id`, `course_id`, `give_money`, `buy_progress`, `achivment_date`) VALUES ('$this->name', '$this->email', '$this->phone', '$creator_id', '$course_id', '$course_price', '$buy_progress', '$current_date')");
@@ -119,20 +125,26 @@ class UserController extends ACoreCreator
     function getList() {
         $course_id = $_GET['course_id'];
         $course_page = $this->m->getContentForCourseListPage($course_id);
+        $purchase = $this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $_SESSION['user']['id']);
+        $purchase_info = json_decode($purchase[0]['purchase'], true);
         $div = '';
         $counter = 1;
         $disable = $_GET['disable'];
-        $class = '';
-        $grey_back = '';
         if ($disable) {
-            $class = 'choice-video';
             $price = $this->m->getContentPriceForCourseListPage($course_id);
-            $grey_back = 'style ="background: #444444;"';
         }
         foreach ($course_page as $item) {
+            $class = '';
+            $grey_back = '';
             $getID3 = new getID3;
             $file = $getID3->analyze($item['video']);
             $duration = $file['playtime_string'];
+            if ($disable) {
+                if (!in_array($item['id'], $purchase_info['video_id']) == 1) {
+                    $class = 'choice-video';
+                    $grey_back = 'style ="background: #444444;"';
+                }
+            }
             $div .= '<div data-id="'. $item['id'] .'" class="popup__allLessons-item '. $class .'">
                             <div class="popup__allLessons-item__header">
                                 <div class="popup-item">
@@ -160,8 +172,6 @@ class UserController extends ACoreCreator
                         </div>';
             $counter++;
         }
-        $_SESSION['course_id'] = $_GET['course_id'];
-        $_SESSION['course_price'] = $price;
         echo $div;
     }
 
@@ -243,7 +253,6 @@ class UserController extends ACoreCreator
             $this->m->db->execute("INSERT INTO `purchase` (`user_id`, `purchase`) VALUES ($user_id, '$purchase_text')");
         }
         $purchase = $this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $_SESSION['user']['id']);
-        $_SESSION['dwdwd'] = $purchase;
         return true;
     }
 
