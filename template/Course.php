@@ -85,10 +85,10 @@
                                                     </div>
                                                     <div class="slider__item-info _conatiner-player">
                                                         <div class="slider__item-title">
-                                                            <?=$v['description']?>
+                                                            <?=$v['name']?>
                                                         </div>
                                                         <div class="slider__item-text">
-                                                            Курс включает в себя 24 урока
+                                                            <?=$v['description']?>
                                                         </div>
                                                     </div>
                                                     <div class="pause__video">

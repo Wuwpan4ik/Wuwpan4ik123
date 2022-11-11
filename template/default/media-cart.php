@@ -9,14 +9,14 @@
             </div>
         </div>
         <div class="media-cart__controller-delete">
-            <a href="http://localhost/<?php if(strstr($_SERVER['REQUEST_URI'], 'Course')) {echo 'Course';} else {echo 'Funnel';} ?>/<?=$v['id']?>/delete"><img src="/img/Delete.svg" alt=""></a>
+            <a href="<?php if(strstr($_SERVER['REQUEST_URI'], 'Course')) {echo 'Course';} else {echo 'Funnel';} ?>/<?=$v['id']?>/delete"><img src="/img/Delete.svg" alt=""></a>
         </div>
     </div>
     <video id="123" class="media-cart-img" style="object-fit: cover;">
         <source class="video" src=".<?=$v['video']?>"/>
     </video>
 
-    <form method="POST" class="new_name" action="http://localhost/<?php if(strstr($_SERVER['REQUEST_URI'], 'Course')) {echo 'Course';} else {echo 'Funnel';} ?>/<?=$v['id']?>/rename">
+    <form method="POST" class="new_name" action="/<?php if(strstr($_SERVER['REQUEST_URI'], 'Course')) {echo 'Course';} else {echo 'Funnel';} ?>/<?=$v['id']?>/rename">
         <div>
             <label for="name">Укажите заголовок:</label>
             <input name="name" class="videoname" type="text" placeholder="<?=$v['name']?>" required>

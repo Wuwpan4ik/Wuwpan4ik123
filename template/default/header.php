@@ -40,11 +40,25 @@
 
 </div>
 <script>
-    const buttonBell =  document.body.querySelector('.button-bell');
-    const popupBell =  document.body.querySelector('.popupBell')
-    buttonBell.onclick  = function () {
-    popupBell.classList.toggle('active');
+    let buttonBell =  document.body.querySelector('.button-bell');
+    let popupBell =  document.body.querySelector('.popupBell')
+    function popupBellActive() {
+        popupBell.classList.add('active');
     }
+    function popupBellDisable() {
+        popupBell.classList.remove('active');
+    }
+    buttonBell.addEventListener('mouseover', popupBellActive)
+    buttonBell.addEventListener('mouseout', popupBellDisable)
+    buttonBell.addEventListener('click', function () {
+        document.querySelector('.button-bell .ico').src = "img/correct.png";
+        document.querySelector('.button-bell .ico').style = "width: 42px; height: 42px;"
+        document.querySelector('.button-bell #msg').remove();
+
+        buttonBell.removeEventListener('mouseover', popupBellActive)
+        popupBellDisable();
+        buttonBell.removeEventListener('mouseout', popupBellDisable)
+    })
 </script>
 </body>
 

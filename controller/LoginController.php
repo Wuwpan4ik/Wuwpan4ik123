@@ -18,6 +18,7 @@
 
             $res = $this->db->db->query("SELECT * FROM user WHERE email = '$email' AND password = '$password'");
             if(count($res) != 0) {
+                unset($_SESSION["user"]);
                 if ($res[0]['is_creator'] == 0) {
                     $_SESSION["user"] = [
                         'id' => $res[0]['id'],
@@ -122,7 +123,7 @@
 			</head>
 			<body>
 				<script>
-					window.location.replace("/UserMain");
+					window.location.replace("/Account");
 				</script>
 			</body>
 			</html>';

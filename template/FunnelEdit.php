@@ -119,7 +119,7 @@
         var ajax = new XMLHttpRequest();
         ajax.upload.addEventListener("progress", progressHandler, false);
         ajax.addEventListener("load", completeHandler, false)
-        ajax.open("POST", "http://localhost/Funnel/<?=$content[0][0]['id']?>/create");
+        ajax.open("POST", "Funnel/<?=$content[0][0]['id']?>/create");
         ajax.send(formdata);
     }
     function progressHandler(event) {

@@ -66,7 +66,8 @@
         public function ResetPassword() {
             if (!$this->RequestValidate()) return false;
             $title = "Смена пароля";
-            $body = "Ваш новый пароль на <a href='http://localhost/login'>Course Creator</a><br>Пароль:$this->password";
+            $url = require 'settings/site_url.php';
+            $body = "Ваш новый пароль на <a href=\"$url/login\">Course Creator</a><br>Пароль:$this->password";
             $this->SendEmail($title, $body);
             return true;
         }
@@ -75,7 +76,8 @@
         {
             if (!$this->RequestValidate()) return false;
             $title = "Регистрация аккаунта";
-            $body = "Ваш аккаунт на <a href='http://localhost/login'>Course Creator</a><br>Почта: $this->email<br>Пароль:$this->password";
+            $url = require 'settings/site_url.php';
+            $body = "Ваш аккаунт на <a href=\"$url/login\">Course Creator</a><br>Почта: $this->email<br>Пароль:$this->password";
             $this->SendEmail($title, $body);
             $avatar = "uploads/ava/1.jpg";
 
@@ -124,6 +126,7 @@
                 $result = "error";
                 $status = "Сообщение не было отправлено. Причина ошибки: {$mail->ErrorInfo}";
             }
+            echo $result;
         }
 
         function get_content()

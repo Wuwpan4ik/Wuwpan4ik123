@@ -58,7 +58,7 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'PHPMailer\\PHPMailer\\SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/SMTP.php',
         'PopupController' => __DIR__ . '/../..' . '/controller/PopupController.php',
         'Project' => __DIR__ . '/../..' . '/pages/Project.php',
-        'SettingsAccountUser' => __DIR__ . '/../..',
+        'SettingsAccountUser' => __DIR__ . '/../..' . '/pages/SettingsAccountUser.php',
         'SmallPlayer' => __DIR__ . '/../..' . '/pages/SmallPlayer.php',
         'SortController' => __DIR__ . '/../..' . '/controller/SortController.php',
         'StatisticsController' => __DIR__ . '/../..' . '/controller/StatisticsController.php',

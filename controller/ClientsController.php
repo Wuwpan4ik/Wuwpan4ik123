@@ -69,8 +69,8 @@
                 }
             } else {
                 $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], $give_money);
-
-                $sURL = (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] === 'on') ? "https" : "http") . "://$_SERVER[HTTP_HOST]/send-email"; // URL-адрес POST
+                $url = require 'settings/site_url.php';
+                $sURL = "$url/send-email"; // URL-адрес POST
                 $sPD = "email=".$this->email; // Данные POST
                 if (isset($this->name)) {
                     $sPD = $sPD . '&name=' . $this->name;
