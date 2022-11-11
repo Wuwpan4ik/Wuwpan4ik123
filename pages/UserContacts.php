@@ -1,13 +1,6 @@
 <?php
-class UserContacts extends ACore
+class UserContacts extends ACoreGuess
 {
     public function get_content() {
-		$result = $this->m->getCourseAuthor();
-        return $result;
-    }
-
-    function obr()
-    {
-        // TODO: Implement obr() method.
     }
 }

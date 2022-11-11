@@ -1,5 +1,5 @@
 <?php
-    class ClientsController extends ACore {
+    class ClientsController extends ACoreCreator {
 
         private $email;
         private $name;
@@ -162,7 +162,7 @@
                 </head>
                 <body>
                     <script>
-                        window.location.replace("/Analytics");
+                        window.location.replace("/");
                     </script>
                 </body>
                 </html>';

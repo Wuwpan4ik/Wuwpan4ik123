@@ -158,8 +158,8 @@
                 </div>
             </div>
             <div class="AllLessons-form">
-                <div class="userPopup__button">
-                    <button>Купить весь курс за 2 000 руб.</button>
+                <div class="userPopup__button buy__course-btn">
+                    <button type="button" class="button__buy-course">Купить весь курс за <span class="course__price"></span> руб.</button>
                 </div>
                 <div class=" AllLessons userPopup__button allLessonsBackBt">
                     <button>Пока не хочу покупать</button>
@@ -183,14 +183,14 @@
                                 </div>
                                 <div class="popup__allLessons-item-info">
                                     <div class="popup__allLessons-item-info-header">
-                                        <div class=" aboutTheAuthor popup__allLessons-item-info-header-number ">
-                                            01
+                                        <div class=" aboutTheAuthor popup__allLessons-item-info-header-number course__buy-flag notAvailable-number">
+                                            Курс
                                         </div>
                                         <div class="aboutTheAuthor-name">
-                                            22 минуты
+                                            <span class="course__buy-count"></span>
                                         </div>
                                     </div>
-                                    <div class="popup__allLessons-item-info-title">
+                                    <div class="popup__allLessons-item-info-title course__buy-title">
                                         Управление гневом внутри себя
                                     </div>
                                 </div>
@@ -198,37 +198,41 @@
                         </div>
                     </div>
                     <div class="youChosen-info">
-                        Стоимость урока:
-                        <span>250 руб.</span>
+                        Стоимость <span class="course__buy-text"></span>:
+                        <span><span class="course__price video__price-buy"></span> руб.</span>
                     </div>
-                    <div class="popup__buy-register">
-                        <div class="popup__buy-body-form youChosen-input input">
-                            <div class="popup__bonus-form-input-account input-img">
-                                <img src="../img/smallPlayer/account.svg" alt="">
+                    <form class="form__buy-course-video" method="POST" action="/UserController/buyCourse">
+                        <input hidden="hidden" type="text" name="creator_id" value="" id="creator_id">
+                        <input hidden="hidden" type="text" name="course_id" value="" id="course_id">
+                        <div class="popup__buy-register">
+                            <div class="popup__buy-body-form youChosen-input input">
+                                <div class="popup__bonus-form-input-account input-img">
+                                    <img src="../img/smallPlayer/account.svg" alt="">
+                                </div>
+                                <input type="text" name="name" placeholder="Ваше имя">
                             </div>
-                            <input type="text" placeholder="Ваше имя">
+                            <div class="popup__buy-body-form youChosen-input input">
+                                <div class="popup__bonus-form-input-email input-img">
+                                    <img src="../img/smallPlayer/email.svg" alt="">
+                                </div>
+                                <input type="text" value="<?=$_SESSION['user']['email']?>" name="email" placeholder="Ваш email" disabled>
+                            </div>
+                            <div class="popup__buy-body-form youChosen-input input">
+                                <div class="popup__bonus-form-input-email input-img">
+                                    <img src="../img/smallPlayer/phone.svg" alt="">
+                                </div>
+                                <input type="tel" name="phone" placeholder="Ваш телефон">
+                            </div>
+                            <div class="question-form">
+                                <div class="Сourse-back userPopup__button youChosenBackBtn">
+                                    <button type="button">Назад</button>
+                                </div>
+                                <div class="Сourse-question userPopup__button">
+                                    <button type="submit">Перейти к оплате</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="popup__buy-body-form youChosen-input input">
-                            <div class="popup__bonus-form-input-email input-img">
-                                <img src="../img/smallPlayer/email.svg" alt="">
-                            </div>
-                            <input type="text" placeholder="Ваш email">
-                        </div>
-                        <div class="popup__buy-body-form youChosen-input input">
-                            <div class="popup__bonus-form-input-email input-img">
-                                <img src="../img/smallPlayer/phone.svg" alt="">
-                            </div>
-                            <input type="tel" placeholder="Ваш телефон">
-                        </div>
-                        <div class="question-form">
-                            <div class="Сourse-back userPopup__button youChosenBackBtn">
-                                <button>Назад</button>
-                            </div>
-                            <div class="Сourse-question userPopup__button">
-                                <button>Перейти к оплате</button>
-                            </div>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -271,9 +275,46 @@
         </div>
     </div>
 </div>
+<?php
+unset($_SESSION['course_price']);
+unset($_SESSION['course_id']);
+?>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
 <script src="../js/script.js" ></script>
 <script>
+    let course_id;
+    const buyCourse = document.querySelector('.button__buy-course');
+    buyCourse.addEventListener('click', function () {
+        getBuyCourse(course_id);
+        youChosen.classList.add('active');
+        allLessons.classList.remove('active')
+    })
+
+    function getBuyCourse(number) {
+        let request = new XMLHttpRequest();
+
+        let url = "/UserController/getBuyCourse?course_id=" + number;
+
+        request.open('GET', url);
+
+        request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+        request.addEventListener("readystatechange", () => {
+            if (request.readyState === 4 && request.status === 200) {
+                let course = JSON.parse(request.responseText)[0];
+                document.querySelectorAll('.course__price').forEach((elem) => {
+                    elem.innerHTML = course.price;
+                })
+                document.querySelector('.form__buy-course-video').action = "/UserController/buyCourse";
+                document.querySelector('.course__buy-title').innerHTML = course['name'];
+                document.querySelector('.course__buy-count').innerHTML = course['count'] + ' урока';
+                document.querySelector('.course__buy-flag').innerHTML = 'Курс';
+                document.querySelector('#creator_id').value = course['author_id'];
+                document.querySelector('#course_id').value = course_id;
+            }
+        });
+        request.send();
+    }
+
     function getCoursePage (number) {
         let request = new XMLHttpRequest();
 
@@ -345,17 +386,42 @@
         request1.setRequestHeader('Content-Type', 'application/x-www-form-url');
         request1.addEventListener("readystatechange", () => {
             if (request1.readyState === 4 && request1.status === 200) {
+                getBuyCourse(number);
+                course_id = number;
                 document.querySelector('.disable__videos').innerHTML = request1.responseText;
                 let choiceVideo = document.body.querySelectorAll('.choice-video');
                 choiceVideo.forEach(item => {
                     item.onclick = function () {
                         youChosen.classList.add('active');
                         allLessons.classList.remove('active')
+                        getVideoInfo(item.dataset.id);
                     }
                 })
             }
         });
         request1.send();
+    }
+    function getVideoInfo(number) {
+        let request = new XMLHttpRequest();
+
+        let url = "/UserController/getVideoInfo?video_id=" + number;
+
+        request.open('GET', url);
+
+        request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+        request.addEventListener("readystatechange", () => {
+            if (request.readyState === 4 && request.status === 200) {
+                let content = JSON.parse(request.responseText);
+                document.querySelector('.form__buy-course-video').action = "/UserController/buyVideo";
+                document.querySelector('.video__price-buy').innerHTML = content.price;
+                document.querySelector('.course__buy-title').innerHTML = content.name;
+                document.querySelector('.course__buy-count').innerHTML = content[0] + ' минут';
+                document.querySelector('.course__buy-flag').innerHTML = 'Урок ' + content.query_id;
+                document.querySelector('#creator_id').value = content.author_id;
+                document.querySelector('#course_id').value = number;
+            }
+        });
+        request.send();
     }
 </script>
 </body>

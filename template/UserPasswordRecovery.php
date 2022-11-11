@@ -36,7 +36,7 @@
 
         </div>
         <div class="user-text">
-            <a href="?option=UserLogin">Войти</a>
+            <a href="/UserLogin">Войти</a>
         </div>
     </div>
 

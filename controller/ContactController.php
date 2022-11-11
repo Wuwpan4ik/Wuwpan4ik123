@@ -1,5 +1,5 @@
 <?php
-class ContactController extends ACore {
+class ContactController extends ACoreCreator {
 	
 	public function SendQuestion() {
 		    $uid = $_SESSION["user"]["id"];

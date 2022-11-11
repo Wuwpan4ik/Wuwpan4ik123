@@ -1,5 +1,5 @@
 <?php
-class AccountController extends ACore {
+class AccountController extends ACoreCreator {
 
     public function IsFreedomSiteName () {
         $site_url = $_GET['site_url'];

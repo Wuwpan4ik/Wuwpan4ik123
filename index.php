@@ -25,6 +25,11 @@
 
 
     $router->addRoute("/UserMain", "UserMain.php");
+    $router->addRoute("/UserLogin", "UserLogin.php");
+    $router->addRoute("/UserRecovery", "UserPasswordRecovery.php");
+    $router->addRoute("/UserNotifications", "UserNotifications.php");
+    $router->addRoute("/UserContacts", "UserContacts.php");
+    $router->addRoute("/UserMenu", "UserMenu.php");
     $router->addRoute("/UserPlayer", "UserPlayer.php");
     $router->addRoute("/Project", "Project.php");
 
@@ -69,6 +74,12 @@
     $router->addRoute("/UserController/getCourse", "UserController.php", 'getCourseSite');
     $router->addRoute("/UserController/getDisableCourse", "UserController.php", 'getDisableCourseSite');
     $router->addRoute("/UserController/getList", "UserController.php", 'getList');
+    $router->addRoute("/UserController/getBuyCourse", "UserController.php", 'getBuyCourse');
+    $router->addRoute("/UserController/getCoursePrice", "UserController.php", 'getCoursePrice');
+    $router->addRoute("/UserController/buyCourse", "UserController.php", 'BuyCourse');
+    $router->addRoute("/UserController/buyVideo", "UserController.php", 'BuyVideo');
+    $router->addRoute("/UserController/getVideoInfo", "UserController.php", 'getBuyVideo');
+
 
     $router->route("/$url");
 

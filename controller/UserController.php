@@ -1,7 +1,46 @@
 <?php
 
-class UserController extends ACore
+class UserController extends ACoreCreator
 {
+    private function GetClient($creator_id, $course_id) {
+        return $this->m->db->query("SELECT * FROM `clients` WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
+    }
+
+    private function GetPriceOfCourse($course_id) {
+        return $this->m->db->query("SELECT * FROM `course` WHERE id = '$course_id'");
+    }
+
+    private function GetPriceOfVideo($video_id) {
+        return $this->m->db->query("SELECT * FROM `course_content` WHERE id = '$video_id'");
+    }
+
+    public function InsertToTable($creator_id, $course_id, $buy_progress, $course_price) {
+        $current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
+        $this->m->db->execute("INSERT INTO `clients` (`first_name`, `email`, `tel`, `creator_id`, `course_id`, `give_money`, `buy_progress`, `achivment_date`) VALUES ('$this->name', '$this->email', '$this->phone', '$creator_id', '$course_id', '$course_price', '$buy_progress', '$current_date')");
+        return true;
+    }
+
+    public function RequestValidate()
+    {
+        $this->email = $_POST['email'];
+        if (isset($_POST['name'])) {
+            $this->name = $_POST['name'];
+//                if (!preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$this->name)) {
+//                    return false;
+//                }
+        }
+//        if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+//            return false;
+//        }
+
+        if (isset($_POST['phone'])) {
+            $this->phone = $_POST['phone'];
+        } else {
+            $this->phone = null;
+        }
+
+        return True;
+    }
 
     function getCourseSite() {
         $author_id = $_GET['author_id'];
@@ -87,13 +126,14 @@ class UserController extends ACore
         $grey_back = '';
         if ($disable) {
             $class = 'choice-video';
+            $price = $this->m->getContentPriceForCourseListPage($course_id);
             $grey_back = 'style ="background: #444444;"';
         }
         foreach ($course_page as $item) {
             $getID3 = new getID3;
             $file = $getID3->analyze($item['video']);
             $duration = $file['playtime_string'];
-            $div .= '<div class="popup__allLessons-item '. $class .'">
+            $div .= '<div data-id="'. $item['id'] .'" class="popup__allLessons-item '. $class .'">
                             <div class="popup__allLessons-item__header">
                                 <div class="popup-item">
                                     <div class="popup__allLessons-item-video__img">
@@ -120,7 +160,91 @@ class UserController extends ACore
                         </div>';
             $counter++;
         }
+        $_SESSION['course_id'] = $_GET['course_id'];
+        $_SESSION['course_price'] = $price;
         echo $div;
+    }
+
+    function getBuyCourse() {
+        $course_id = $_GET['course_id'];
+        $course = $this->m->db->query("SELECT course.name, course.description, course.author_id, course.price, count(course_content.id) as 'count' FROM course_content INNER JOIN course ON course_content.course_id = course.id WHERE course.id = $course_id");
+        echo json_encode($course);
+    }
+
+    function getBuyVideo() {
+        $video_id = $_GET['video_id'];
+        $content = $this->m->db->query("SELECT course_content.id, course_content.name, course_content.description, course_content.video, course_content.price, course_content.query_id, user.id AS 'author_id' FROM course_content INNER JOIN course ON course_content.course_id = course.id INNER JOIN user ON course.author_id = user.id WHERE course_content.id = '$video_id'")[0];
+        $getID3 = new getID3;
+        $file = $getID3->analyze($content['video']);
+        $duration = $file['playtime_string'];
+        array_push($content, $duration);
+        echo json_encode($content);
+    }
+
+    public function BuyCourse() {
+        if (!$this->RequestValidate()) return false;
+
+        $buy_progress = include './settings/buy_progress.php';
+        $creator_id = $_POST['creator_id'];
+        $course_id = $_POST['course_id'];
+        $comment = 'Купил курс';
+        $client = $this->GetClient($creator_id, $course_id);
+        $give_money = $client[0]['give_money'] + $this->GetPriceOfCourse($course_id)[0]['price'];
+
+        if (count($client) == 1){
+            if ($client[0]['buy_progress'] < $buy_progress[$comment]) {
+                $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]', `give_money` = '$give_money' WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
+            }
+        } else {
+            $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], $give_money);
+        }
+        $purchase = $this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $_SESSION['user']['id']);
+        if (count($purchase) == 1) {
+            $purchase_info = json_decode($purchase[0]['purchase'], true);
+            if (!in_array($course_id, $purchase_info['course_id'])) {
+                array_push($purchase_info['course_id'], $course_id);
+                $this->m->db->execute("UPDATE `purchase` SET purchase = '" . json_encode($purchase_info) . "' WHERE user_id = " . $_SESSION['user']['id']);
+            }
+        } else {
+            $user_id = $_SESSION['user']['id'];
+            $purchase_text = '{"course_id":["'.$course_id.'"]}';
+            $this->m->db->execute("INSERT INTO `purchase` (`user_id`, `purchase`) VALUES ($user_id, '$purchase_text')");
+        }
+        return true;
+    }
+
+    public function BuyVideo() {
+        if (!$this->RequestValidate()) return false;
+
+        $buy_progress = include './settings/buy_progress.php';
+        $creator_id = $_POST['creator_id'];
+        $course_id = $_POST['course_id'];
+        $comment = 'Купил видео';
+        $client = $this->GetClient($creator_id, $course_id);
+        $give_money = $client[0]['give_money'] + $this->GetPriceOfVideo($course_id)[0]['price'];
+
+        if (count($client) == 1){
+            if ($client[0]['buy_progress'] <= $buy_progress[$comment]) {
+                $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]', `give_money` = '$give_money' WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
+            }
+        } else {
+            $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], $give_money);
+        }
+        $purchase = $this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $_SESSION['user']['id']);
+        if (count($purchase) == 1) {
+            $purchase_info = json_decode($purchase[0]['purchase'], true);
+            if (!in_array($course_id, $purchase_info['video_id'])) {
+                array_push($purchase_info['video_id'], $course_id);
+                $this->m->db->execute("UPDATE `purchase` SET purchase = '" . json_encode($purchase_info) . "' WHERE user_id = " . $_SESSION['user']['id']);
+            }
+        } else {
+            $user_id = $_SESSION['user']['id'];
+            $purchase_text = '{"course_id":[""], "video_id":["'. $course_id .'"]}';
+            $this->m->db->execute("INSERT INTO `purchase` (`user_id`, `purchase`) VALUES ($user_id, '$purchase_text')");
+        }
+        $purchase = $this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $_SESSION['user']['id']);
+        $_SESSION['dwdwd'] = $purchase;
+        return true;
     }
 
     function get_content()

@@ -1,5 +1,5 @@
 <?php
-    class StatisticsController extends ACore {
+    class StatisticsController extends ACoreCreator {
 
         function GetMonthsStatistics(){
             return $this->m->GetMonthValue();

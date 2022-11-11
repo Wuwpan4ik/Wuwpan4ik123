@@ -1,5 +1,5 @@
 <?php
-class Course extends ACore {
+class Course extends ACoreCreator {
     public function get_content() {
         $result = $this->m->getContentForCoursePage();
         return $result;

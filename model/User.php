@@ -46,7 +46,7 @@
         {
             $purchases = $this->db->query("SELECT `purchase` FROM `purchase` WHERE user_id = " . $_SESSION['user']['id'])[0]['purchase'];
             $purchases_array = json_decode($purchases, true)['course_id'];
-            $course_query = "SELECT course.id, course.name, course.description, course.author_id FROM course WHERE ($author_id = course.author_id) AND(";
+            $course_query = "SELECT course.id, course.name, course.description, course.author_id, count(course_content.id) as 'count' FROM course INNER JOIN course_content on course_content.course_id = course.id WHERE ($author_id = course.author_id) AND(";
             foreach ($purchases_array as $course_id) {
                 $course_query .= " course.id = $course_id ";
                 if (count($purchases_array) != 1) {
@@ -64,7 +64,7 @@
         {
             $purchases = $this->db->query("SELECT `purchase` FROM `purchase` WHERE user_id = " . $_SESSION['user']['id'])[0]['purchase'];
             $purchases_array = json_decode($purchases, true)['course_id'];
-            $course_query = "SELECT course.id, course.name, course.description, course.author_id FROM course WHERE ($author_id = course.author_id) AND NOT (";
+            $course_query = "SELECT course.id, course.name, course.description, course.author_id, count(course_content.id) as 'count' FROM course INNER JOIN course_content on course_content.course_id = course.id WHERE ($author_id = course.author_id) AND NOT (";
             foreach ($purchases_array as $course_id) {
                 $course_query .= " course.id = $course_id ";
                 if (count($purchases_array) != 1) {
@@ -79,9 +79,15 @@
         }
 
         public function getContentForCourseListPage($course_id){
-            $course_query = "SELECT course_content.name, course_content.description, course_content.video FROM course_content WHERE ($course_id = course_content.course_id)";
+            $course_query = "SELECT course_content.id, course_content.name, course_content.description, course_content.video FROM course_content WHERE ($course_id = course_content.course_id)";
             $courses = $this->db->query($course_query);
             return $courses;
+        }
+
+        public function getContentPriceForCourseListPage($course_id) {
+            $course_query = "SELECT price FROM course WHERE ($course_id = course.id)";
+            $price = $this->db->query($course_query);
+            return $price;
         }
 
         public function getContentForCourseEdit() {

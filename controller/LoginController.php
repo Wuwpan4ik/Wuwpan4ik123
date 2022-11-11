@@ -17,20 +17,15 @@
             $password = $_POST['pass'];
 
             $res = $this->db->db->query("SELECT * FROM user WHERE email = '$email' AND password = '$password'");
-
-            if ($res[0]['is_creator'] == 0) {
-                if(count($res) != 0){
-                    $_SESSION["user_buyer"] = [
+            if(count($res) != 0) {
+                if ($res[0]['is_creator'] == 0) {
+                    $_SESSION["user"] = [
                         'id' => $res[0]['id'],
-                        'email' => $res[0]['email']
+                        'email' => $res[0]['email'],
+                        'is_creator' => 0
                     ];
-                    $response = "С возвращением, ".$_SESSION["user"]["name"];
-                }
-                else {
-                    $response = "Неверный логин или пароль";
-                }
-            } else {
-                if(count($res) != 0){
+                    $response = "С возвращением, " . $_SESSION["user"]["name"];
+                } else {
                     $_SESSION["user"] = [
                         'id' => $res[0]['id'],
                         'gender' => $res[0]['gender'],
@@ -39,15 +34,14 @@
                         'first_name' => $res[0]['first_name'],
                         'second_name' => $res[0]['second_name'],
                         'email' => $res[0]['email'],
-                        'site_url' => $res[0]['site_url']
+                        'site_url' => $res[0]['site_url'],
+                        'is_creator' => 1
                     ];
-                    $response = "С возвращением, ".$_SESSION["user"]["name"];
+                    $response = "С возвращением, " . $_SESSION["user"]["name"];
                     $this->get_content();
                 }
-                else {
-                    $response = "Неверный логин или пароль";
-                }
-                $_SESSION['message'] = $response;
+            } else {
+                $response = "Неверный логин или пароль";
             }
             return True;
         }
@@ -80,22 +74,36 @@
             $this->validate_data($email, $first_name);
             if (isset($_SESSION['email_message']) || isset($_SESSION['first_name_message'])) return False;
 
-            else {
-                $this->db->db->execute("INSERT INTO `user` (`gender`, `niche`, `avatar`, `first_name`, `email`, `password`, `is_creator`) VALUES ('$gender', '$niche', '$ava', '$first_name', '$email', '$password', 1)");
-                $_SESSION['error']['registration_message'] = "Регистрация прошла успешно";
-                $res = $this->db->db->query("SELECT * FROM user WHERE email = '$email' AND password = '$password'");
-                $_SESSION["user"] = [
-                    'id' => $res[0]['id'],
-                    'gender' => $res[0]['gender'],
-                    'niche' => $res[0]['niche'],
-                    'avatar' => $res[0]['avatar'],
-                    'first_name' => $res[0]['first_name'],
-                    'second_name' => $res[0]['second_name'],
-                    'email' => $res[0]['email'],
-                    'site_url' => $res[0]['site_url']
-                ];
+            $this->db->db->execute("INSERT INTO `user` (`gender`, `niche`, `avatar`, `first_name`, `email`, `password`, `is_creator`) VALUES ('$gender', '$niche', '$ava', '$first_name', '$email', '$password', 1)");
+            $_SESSION['error']['registration_message'] = "Регистрация прошла успешно";
+            $res = $this->db->db->query("SELECT * FROM user WHERE email = '$email' AND password = '$password'");
+            if(count($res) != 0) {
+                if ($res[0]['is_creator'] == 0) {
+                    $_SESSION["user"] = [
+                        'id' => $res[0]['id'],
+                        'email' => $res[0]['email'],
+                        'is_creator' => 0
+                    ];
+                    $response = "С возвращением, " . $_SESSION["user"]["name"];
+                } else {
+                    $_SESSION["user"] = [
+                        'id' => $res[0]['id'],
+                        'gender' => $res[0]['gender'],
+                        'niche' => $res[0]['niche'],
+                        'avatar' => $res[0]['avatar'],
+                        'first_name' => $res[0]['first_name'],
+                        'second_name' => $res[0]['second_name'],
+                        'email' => $res[0]['email'],
+                        'site_url' => $res[0]['site_url'],
+                        'is_creator' => 1
+                    ];
+                    $response = "С возвращением, " . $_SESSION["user"]["name"];
+                    $this->get_content();
+                }
+            } else {
+                $response = "Неверный логин или пароль";
             }
-            return true;
+            return True;
         }
 
         public function logout() {
@@ -114,7 +122,7 @@
 			</head>
 			<body>
 				<script>
-					window.location.replace("/");
+					window.location.replace("/UserMain");
 				</script>
 			</body>
 			</html>';

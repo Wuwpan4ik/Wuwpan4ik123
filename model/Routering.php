@@ -28,6 +28,9 @@ class Router
             $class = substr($path, 0, -4);
             if (class_exists($class)) {
                 $obj = new $class;
+                if (method_exists($obj, "obr")) {
+                    $obj->obr();
+                }
                 $content = $obj->get_content();
                 require $template_url;
             }

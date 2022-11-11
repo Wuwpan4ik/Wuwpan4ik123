@@ -8,6 +8,5 @@ class UserLogin extends ACoreAdmin
 
     function obr()
     {
-        // TODO: Implement obr() method.
     }
 }

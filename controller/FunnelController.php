@@ -1,5 +1,5 @@
 <?php
-    class FunnelController extends ACore {
+    class FunnelController extends ACoreCreator {
 
         private function isUser($checkId)
         {

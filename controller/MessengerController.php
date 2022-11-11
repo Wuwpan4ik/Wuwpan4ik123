@@ -1,5 +1,5 @@
 <?php
-    class MessengerController extends ACore {
+    class MessengerController extends ACoreCreator {
 
         protected $messenger;
         protected $uid;

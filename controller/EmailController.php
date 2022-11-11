@@ -6,7 +6,7 @@
         require './vendor/phpmailer/phpmailer/src/PHPMailer.php';
     }
 
-    class EmailController extends ACore {
+    class EmailController extends ACoreCreator {
 
 
         private $ourEmail = "dimalim110@gmail.com";

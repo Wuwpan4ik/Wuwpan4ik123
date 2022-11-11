@@ -1,5 +1,5 @@
 <?php
-    class UrlController extends ACore {
+    class UrlController extends ACoreCreator {
         function get_content()
         {
             $site_url = $_GET['site_url'];

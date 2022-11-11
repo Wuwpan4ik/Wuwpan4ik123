@@ -1,5 +1,5 @@
 <?php
-    class SortController extends ACore {
+    class SortController extends ACoreCreator {
 		protected $m;
 
         public function __construct()

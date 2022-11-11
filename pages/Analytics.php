@@ -1,5 +1,5 @@
 <?php
-class Analytics extends ACore
+class Analytics extends ACoreCreator
 {
     public function get_content() {
     }

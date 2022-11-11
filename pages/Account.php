@@ -1,5 +1,5 @@
 <?php
-class Account extends ACore
+class Account extends ACoreCreator
 {
     public function get_content() {
         $result = $this->m->getCurrentUser();
@@ -7,8 +7,4 @@ class Account extends ACore
         return [$result, $content];
     }
 
-    function obr()
-    {
-        // TODO: Implement obr() method.
-    }
 }

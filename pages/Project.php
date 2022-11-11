@@ -1,5 +1,5 @@
 <?php
-class Project extends ACore {
+class Project extends ACoreCreator {
     public function get_content() {
         $funnel = $this->m->getContentForFunnelPage()[0];
         $count_funnel = count($funnel);

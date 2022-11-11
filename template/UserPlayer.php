@@ -37,7 +37,7 @@
             <button>Есть вопросы?</button>
         </div>
     </div>
-    <video class="UserPlayerVideo" preload="none" autoplay="autoplay" controls="controls" controlsList="nodownload">
+    <video class="UserPlayerVideo" controls="controls" controlsList="nodownload">
         <source src="/videoTest/mafioznik-zubenko.mp4" type='video/ogg; codecs="theora, vorbis"'>
     </video>
 
@@ -88,15 +88,16 @@
     /*UserPlayer*/
     const userVideo = document.body.querySelector('.UserPlayerVideo');
     const youWatching = document.body.querySelector('.youWatching');
-
-    if (userVideo.paused) {
-        youWatching.classList.add('active');
-        userVideo.play();
-    }
-    else {
-        youWatching.classList.remove('active');
-        userVideo.pause();
-    }
+    userVideo.addEventListener("pause", function (){
+        if (userVideo.paused) {
+            youWatching.classList.add('active');
+            userVideo.play();
+        }
+        else {
+            youWatching.classList.remove('active');
+            userVideo.pause();
+        }
+    })
 
 
 

@@ -1,5 +1,5 @@
 <?php
-    class CourseController extends ACore {
+    class CourseController extends ACoreCreator {
 
         private function isUser($checkId)
         {

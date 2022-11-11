@@ -1,5 +1,5 @@
 <?php
-class PopupController extends ACore {
+class PopupController extends ACoreCreator {
 
     function get_content() {}
 

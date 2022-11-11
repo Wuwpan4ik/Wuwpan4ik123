@@ -26,7 +26,7 @@
                     Войдите в аккаунт
                 </div>
                 <div class="userLogin-form popup-form">
-					<form method="POST" action="?option=LoginController&method=login">
+					<form method="POST" action="/LoginController/login">
 						<div class="userLogin-email inputLog">
 							<input placeholder="Ваш Email" type="email" name="email">
 						</div>
@@ -41,7 +41,7 @@
 
             </div>
             <div class="user-text">
-                <a href="?option=UserPasswordRecovery">Восстановление пароля</a>
+                <a href="/UserRecovery">Восстановление пароля</a>
             </div>
         </div>
 

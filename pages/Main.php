@@ -1,11 +1,7 @@
 <?php
-    class Main extends ACore {
+    class Main extends ACoreCreator {
 
         function get_content()
-        {
-        }
-
-        function obr()
         {
         }
     }
