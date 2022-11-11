@@ -60,7 +60,7 @@
     .availableToYou__body{
         overflow: auto;
         margin: 20px 0 0 0;
-        height: 37%;
+        height: 240px;
 
     }
     /*Course*/
@@ -116,6 +116,7 @@
 
     /*otherСourses*/
     .otherСourses{
+       
         width: 100%;
         border-radius: 30px 30px 0px 0px;
         background-color: #F4F4F4;
@@ -123,11 +124,11 @@
     .otherСourses__body{
         margin: 20px 0 0 0;
         overflow: auto;
-        height: 33%;
+        height: 240px;
     }
-    .otherСourses .userPopup__title{
-    }
+
     .otherСourses.userPopup__body{
+        margin: 0;
         height: auto;
     }
     .otherСourses.popup__allLessons-body{

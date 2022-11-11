@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="/css/smallPlayer.css">
 </head>
 <body class="body">
-<? print_r($_SESSION['dwdwd']);?>
 <div class="UserMain bcg">
     <div class="_container" style="height: 9%;">
         <div class="User-header">
@@ -85,7 +84,7 @@
                     </div>
                 </div>
                 <div class="otherСourses">
-                    <div class=" otherСourses userPopup__title">
+                    <div class= "userPopup__title">
                         Другие курсы автора:
                     </div>
                     <div class="otherСourses userPopup__body">
