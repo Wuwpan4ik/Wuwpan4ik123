@@ -36,7 +36,6 @@
             <div class="aboutTheAuthor userPopup__body">
                 <div class="  popup__allLessons-body">
                     <?php
-                    print_r($_SESSION['dwdwd']);
                         foreach ($content['author_page'] as $item) {
                     ?>
                     <div class="popup__allLessons-item ">
@@ -90,31 +89,6 @@
                     </div>
                     <div class="otherСourses userPopup__body">
                         <div class="otherСourses__body disabled__body">
-                            <div class="popup__allLessons-item otherCourses">
-                                <div class="popup__allLessons-item__header">
-                                    <div class="popup-item">
-                                        <div class="popup__allLessons-item-video__img">
-                                            <img src="../img/smallPlayer/Group1426.png" alt="">
-                                            <div class="popup__allLessons-item-video-play">
-                                                <img src="../img/smallPlayer/play.png" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="popup__allLessons-item-info">
-                                            <div class="popup__allLessons-item-info-header">
-                                                <div class=" aboutTheAuthor popup__allLessons-item-info-header-number notAvailable-number">
-                                                    Курс
-                                                </div>
-                                                <div class="aboutTheAuthor-name">
-                                                    22 урока
-                                                </div>
-                                            </div>
-                                            <div class="popup__allLessons-item-info-title">
-                                                Управление гневом внутри себя
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="otherСourses userPopup__button questionBtn">
@@ -348,6 +322,11 @@ unset($_SESSION['course_id']);
         requestDisable.addEventListener("readystatechange", () => {
             if (requestDisable.readyState === 4 && requestDisable.status === 200) {
                 document.querySelector('.disabled__body').innerHTML = requestDisable.responseText;
+                console.log(requestDisable.responseText.length)
+                if (requestDisable.responseText.length === 0) {
+                    document.querySelector('.otherСourses').style = 'display:none;';
+                    return false;
+                }
                 let otherCourses = document.body.querySelectorAll('.otherCourses');
                 otherCourses.forEach(item => {
                     item.onclick = function () {
