@@ -252,7 +252,6 @@ class UserController extends ACoreCreator
             $purchase_text = '{"course_id":[""], "video_id":["'. $course_id .'"]}';
             $this->m->db->execute("INSERT INTO `purchase` (`user_id`, `purchase`) VALUES ($user_id, '$purchase_text')");
         }
-        $purchase = $this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $_SESSION['user']['id']);
         return true;
     }
 

@@ -91,8 +91,14 @@
                 $contents = file_get_contents($sURL, false, $context);
                 echo $contents;
             }
+            $res = $this->m->db->query("SELECT * FROM user WHERE `email` = '$this->email'");
+            $_SESSION["user"] = [
+                'id' => $res[0]['id'],
+                'email' => $res[0]['email'],
+                'is_creator' => 0
+            ];
             $purchase = $this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $_SESSION['user']['id']);
-            if (count($purchase) == 1) {
+            if (isset($purchase) && count($purchase) == 1) {
                 $purchase_info = json_decode($purchase[0]['purchase'], true);
                 if (!in_array($course_id, $purchase_info['course_id'])) {
                     array_push($purchase_info['course_id'], $course_id);
@@ -100,8 +106,8 @@
                 }
             } else {
                 $user_id = $_SESSION['user']['id'];
-                $purchase_text = '{"course_id":["'.$course_id.'"]}';
-                $this->m->db->execute("INSERT INTO `purchase` (`user_id`, `purchase`) VALUES ($user_id, '$purchase_text')");
+                $purchase_text = '{"course_id":["'.$course_id.'"], "video_id":[]}';
+                $this->m->db->execute("INSERT INTO `purchase` (`user_id`, `purchase`) VALUES ('$user_id', '$purchase_text')");
             }
             return true;
         }
