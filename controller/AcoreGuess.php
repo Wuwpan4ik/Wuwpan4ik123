@@ -10,7 +10,7 @@ abstract class ACoreGuess
     }
 
     public function obr() {
-        if ($_SESSION['user']['is_creator'] == 1) {
+        if (isset($_SESSION['user']['is_creator']) && $_SESSION['user']['is_creator'] == 1) {
             header("Location: /");
         } else if (!isset($_SESSION['user']['id'])) {
             header("Location: /UserLogin");
