@@ -6,9 +6,4 @@ class SmallPlayer extends ACoreAdmin
         $content = $this->db->getVideosForPlayer();
         return $content;
     }
-
-    function obr()
-    {
-        // TODO: Implement obr() method.
-    }
 }

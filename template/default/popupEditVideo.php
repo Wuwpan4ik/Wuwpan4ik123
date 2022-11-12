@@ -66,8 +66,6 @@
                     </div>
                 </div>
                 <div class="popup__body-item">
-                    <label for="button_text">Текст для кнопки:</label>
-                    <input name="button_text" maxlength="20" class="videoname" id="video_name" type="text" style="padding-left: 15px" placeholder="<?=$v['button_text']?>">
                     <label class="second_do" for="second_do">После нажатия на кнопку:</label>
                     <select class="second_do" name="second_do" id="second_do">
                         <option value="list" selected>Список уроков</option>

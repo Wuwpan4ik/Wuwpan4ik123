@@ -95,7 +95,9 @@
 <script>
     function onButtonEdit(elem) {
         elem.classList.add('display-none');
-        elem.parentElement.querySelector('.button__edit').classList.remove('display-none');
+        elem.parentElement.querySelectorAll('.button__do-block').forEach((elem) => {
+            elem.classList.remove('display-none');
+        })
     }
 </script>
 

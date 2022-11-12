@@ -23,12 +23,16 @@
         </div>
         <div>
             <label for="description">Укажите описание:</label>
-            <input name="description" class="videoname video-desc" placeholder="<?=$v['description']?>" required></input>
+            <input name="description" class="videoname video-desc" placeholder="<?=$v['description']?>" required>
         </div>
         <?php if (strstr($_SERVER['REQUEST_URI'], 'Funnel' )) {?>
         <input type="hidden" value="<?=$v['id']?>">
+        <div class="button__do-block display-none">
+            <label for="button_text">Текст для кнопки:</label>
+            <input name="button_text" class="videoname video-desc" placeholder="<?=$v['button_text']?>" required>
+        </div>
+        <button type="button" class="button__edit button__do-block display-none" style="background: #757D8A;"><img style="width: 22px;" src="/img/printer.png">Действие для кнопки</button>
         <button type="button" class="button-add-button-edit" onclick="onButtonEdit(this)">Добавить кнопку</button>
-        <button type="button" class="button__edit display-none" style="background: #757D8A;"><img style="width: 22px;" src="/img/printer.png">Действие для кнопки</button>
         <?php } ?>
         <button type="submit">Сохранить</button>
 

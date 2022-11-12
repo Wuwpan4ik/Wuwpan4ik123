@@ -5,7 +5,4 @@ class Funnel extends ACoreCreator {
         $course_list = $this->m->getCourseUser();
         return [$result, $course_list];
     }
-
-    public function obr() {
-    }
 }

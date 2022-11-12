@@ -4,6 +4,4 @@ class Course extends ACoreCreator {
         $result = $this->m->getContentForCoursePage();
         return $result;
     }
-
-    public function obr() {}
 }

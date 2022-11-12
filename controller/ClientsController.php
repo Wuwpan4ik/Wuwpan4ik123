@@ -91,6 +91,18 @@
                 $contents = file_get_contents($sURL, false, $context);
                 echo $contents;
             }
+            $purchase = $this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $_SESSION['user']['id']);
+            if (count($purchase) == 1) {
+                $purchase_info = json_decode($purchase[0]['purchase'], true);
+                if (!in_array($course_id, $purchase_info['course_id'])) {
+                    array_push($purchase_info['course_id'], $course_id);
+                    $this->m->db->execute("UPDATE `purchase` SET purchase = '" . json_encode($purchase_info) . "' WHERE user_id = " . $_SESSION['user']['id']);
+                }
+            } else {
+                $user_id = $_SESSION['user']['id'];
+                $purchase_text = '{"course_id":["'.$course_id.'"]}';
+                $this->m->db->execute("INSERT INTO `purchase` (`user_id`, `purchase`) VALUES ($user_id, '$purchase_text')");
+            }
             return true;
         }
 

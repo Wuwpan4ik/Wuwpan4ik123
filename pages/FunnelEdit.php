@@ -4,6 +4,4 @@ class FunnelEdit extends ACoreCreator {
         $result = $this->m->getContentForFunnelEdit();
         return $result;
     }
-
-    public function obr() {}
 }

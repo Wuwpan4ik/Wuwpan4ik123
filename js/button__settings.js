@@ -104,7 +104,6 @@ document.querySelectorAll('.form_id-1');
 function clearPopup () {
     defaultPopup(first_select);
     defaultPopup(second_select);
-    button_name.value = '';
     document.querySelectorAll('.second_do').forEach((elem) => {
         elem.classList.remove('display-block');
     })
@@ -251,27 +250,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Убрать После нажатия на кнопку
-    button_name.addEventListener('input', function () {
-        popup_button.innerHTML = this.value;
-        if (this.value.length === 0) {
-            popup_button.classList.add('display-none');
-        }
-        if (this.value.length > 0) {
-            popup_button.classList.remove('display-none');
-            document.querySelectorAll('.second_do').forEach((elem) => {
-                elem.classList.add('display-block');
-                if (['form', 'pay_form'].includes(second_select.value)) {
-                    document.querySelector('#popup__body-form-2').style.display = 'flex';
-                }
-            })
-        } else {
-            document.querySelectorAll('.second_do').forEach((elem) => {
-                defaultPopup(second_select)
-                document.querySelector('#popup__body-form-2').style.display = 'none';
-                elem.classList.remove('display-block');
-            })
-        }
-    })
 
     buttonChanges.forEach((item) => {
         item.addEventListener('click', function () {

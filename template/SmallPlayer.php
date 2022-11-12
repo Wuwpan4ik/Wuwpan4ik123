@@ -20,7 +20,7 @@
 
             <?php
                 foreach ($content['funnel_content'] as $item) {
-                $popup = json_decode($item['popup']);
+                    if (isset($item['popup'])) $popup = json_decode($item['popup']);
             ?>
             <div class="slider__item ">
                 <div class="slider__video">
