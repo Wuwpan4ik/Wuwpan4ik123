@@ -46,16 +46,17 @@
         {
             $purchases = $this->db->query("SELECT `purchase` FROM `purchase` WHERE user_id = " . $_SESSION['user']['id'])[0]['purchase'];
             $purchases_array = json_decode($purchases, true)['course_id'];
-            $course_query = "SELECT course.id, course.name, course.description, course.author_id, count(course_content.id) as 'count' FROM course INNER JOIN course_content on course_content.course_id = course.id WHERE ($author_id = course.author_id) AND(";
+            $course_query = "SELECT course.id, course.name, course.description, course.author_id, count(course_content.id) as 'count' FROM course INNER JOIN course_content on course_content.course_id = course.id WHERE (";
             foreach ($purchases_array as $course_id) {
                 $course_query .= " course.id = $course_id ";
                 if (count($purchases_array) != 1) {
                     $course_query .= " OR ";
                 } else {
-                    $course_query .= ")";
+                    $course_query .= ") GROUP BY course_id";
                 }
                 array_shift($purchases_array);
             }
+            $_SESSION['dwdwd'] = $course_query;
             $courses = $this->db->query($course_query);
             return $courses;
         }
@@ -70,7 +71,7 @@
                 if (count($purchases_array) != 1) {
                     $course_query .= " OR ";
                 } else {
-                    $course_query .= ")";
+                    $course_query .= ") GROUP BY course_id";
                 }
                 array_shift($purchases_array);
             }
