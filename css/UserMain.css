@@ -253,6 +253,7 @@
     .youWatching.userPopup.active{
         bottom: 0;
         opacity: 1;
+        transition: 600ms;
     }
     .youWatching.Сourse-form{
         margin: 20px 0 0 0;
@@ -289,19 +290,21 @@
         padding: 0 0 305px 0;!important;
     }
     .UserPlayer.active video::-webkit-media-controls-panel {
-        opacity: 1;
-    }
-    .UserPlayer.active video::-webkit-media-controls-panel {
-        opacity: 1;
+        bottom: 35%;
+        transition: 600ms;
     }
     .UserPlayer.active video::-webkit-media-controls-play-button {
         display: none;
     }
     .UserPlayer video::-webkit-media-controls-panel {
-        opacity: 0;
+        position: absolute;
+        width: 100%;
+        bottom: -45%;
+        left: 0;
         box-shadow: none;!important;
         border: none;!important;
         background: none;!important;
+        transition: 600ms;
     }
     .UserPlayer.Сourse-form{
         width: 92%;

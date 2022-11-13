@@ -12,6 +12,20 @@
             return $result;
         }
 
+        public function getCourseVideo($id) {
+            $result = $this->db->query("SELECT  
+                                                content.name AS 'content_name',
+                                                content.description AS 'content_description',
+                                                content.video,
+                                                content.query_id,
+                                                user_info.avatar,
+                                                user_info.first_name
+                                                FROM `course_content` AS content
+                                                INNER JOIN `course` AS course ON content.course_id = course.id
+                                                INNER JOIN `user` AS user_info ON course.author_id = user_info.id WHERE content.id = '$id'");
+            return $result;
+        }
+
         public function getTariffs () {
             $result = $this->db->query("SELECT * FROM tariffs");
             return $result;

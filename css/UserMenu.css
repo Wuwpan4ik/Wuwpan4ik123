@@ -3,7 +3,7 @@
     .body{
         display: flex;
         justify-content: center;
-
+        overflow: hidden;
     }
     ._container{
         max-width: 370px;

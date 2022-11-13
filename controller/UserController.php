@@ -14,12 +14,6 @@ class UserController extends ACoreCreator
         return $this->m->db->query("SELECT * FROM `course_content` WHERE id = '$video_id'");
     }
 
-    private function check_purchase($purchase) {
-        foreach ($purchase as $item) {
-//            if ()
-        }
-    }
-
     public function InsertToTable($creator_id, $course_id, $buy_progress, $course_price) {
         $current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
         $this->m->db->execute("INSERT INTO `clients` (`first_name`, `email`, `tel`, `creator_id`, `course_id`, `give_money`, `buy_progress`, `achivment_date`) VALUES ('$this->name', '$this->email', '$this->phone', '$creator_id', '$course_id', '$course_price', '$buy_progress', '$current_date')");
@@ -136,6 +130,8 @@ class UserController extends ACoreCreator
         foreach ($course_page as $item) {
             $class = '';
             $grey_back = '';
+            $url_start = "<a href='/UserPlayer/". $item['id'] . "'";
+            $url_end = "</a>";
             $getID3 = new getID3;
             $file = $getID3->analyze($item['video']);
             $duration = $file['playtime_string'];
@@ -143,9 +139,11 @@ class UserController extends ACoreCreator
                 if (!in_array($item['id'], $purchase_info['video_id']) == 1) {
                     $class = 'choice-video';
                     $grey_back = 'style ="background: #444444;"';
+                    $url_start = "";
+                    $url_end = "";
                 }
             }
-            $div .= '<div data-id="'. $item['id'] .'" class="popup__allLessons-item '. $class .'">
+            $div .= $url_start .'<div data-id="'. $item['id'] .'" class="popup__allLessons-item '. $class .'">
                             <div class="popup__allLessons-item__header">
                                 <div class="popup-item">
                                     <div class="popup__allLessons-item-video__img">
@@ -169,7 +167,7 @@ class UserController extends ACoreCreator
                                     </div>
                                 </div>
                             </div>
-                        </div>';
+                        </div>' . $url_end;
             $counter++;
         }
         echo $div;
@@ -220,6 +218,7 @@ class UserController extends ACoreCreator
             $purchase_text = '{"course_id":["'.$course_id.'"]}';
             $this->m->db->execute("INSERT INTO `purchase` (`user_id`, `purchase`) VALUES ($user_id, '$purchase_text')");
         }
+        $this->redirect();
         return true;
     }
 
@@ -252,6 +251,7 @@ class UserController extends ACoreCreator
             $purchase_text = '{"course_id":[""], "video_id":["'. $course_id .'"]}';
             $this->m->db->execute("INSERT INTO `purchase` (`user_id`, `purchase`) VALUES ($user_id, '$purchase_text')");
         }
+
 //      Проверка на покупку всех видео и добавление курса в купленные
         $purchase_video = json_decode($this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $_SESSION['user']['id'])[0]['purchase'], true);
         $id = $this->m->db->query("SELECT course_content.course_id FROM course_content WHERE id = '$course_id'")[0]['course_id'];
@@ -266,7 +266,12 @@ class UserController extends ACoreCreator
         }
         array_push($purchase_video['course_id'], $id);
         $this->m->db->execute("UPDATE `purchase` SET purchase = '" . json_encode($purchase_video) . "' WHERE user_id = " . $_SESSION['user']['id']);
+        $this->redirect();
         return true;
+    }
+
+    private function redirect() {
+        header("Location: /UserMain");
     }
 
     function get_content()
