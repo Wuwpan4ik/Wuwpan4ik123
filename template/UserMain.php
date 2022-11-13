@@ -1,6 +1,4 @@
-
 <html>
-
 <head>
 
     <meta charset="utf-8">
@@ -34,7 +32,7 @@
                 Выберите автора:
             </div>
             <div class="aboutTheAuthor userPopup__body">
-                <div class="  popup__allLessons-body">
+                <div class="popup__allLessons-body">
                     <?php
                     print_r($_SESSION['dwdwd']);
                         foreach ($content['author_page'] as $item) {
@@ -92,9 +90,9 @@
                         <div class="otherСourses__body disabled__body">
                         </div>
                     </div>
-                    <div class="otherСourses userPopup__button questionBtn">
-                        <button>Есть вопросы?</button>
-                    </div>
+                </div>
+                <div class="otherСourses userPopup__button questionBtn">
+                    <button>Есть вопросы?</button>
                 </div>
             </div>
         </div>
@@ -238,7 +236,7 @@
                         </div>
                     </div>
                     <div class="question-form">
-                        <div class="Сourse-back userPopup__button ">
+                        <div class="Сourse-back userPopup__button questionBack">
                             <button>Назад</button>
                         </div>
                         <div class="Сourse-question userPopup__button">
