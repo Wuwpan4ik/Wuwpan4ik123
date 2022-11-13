@@ -20,10 +20,7 @@ return array(
     'CourseEdit' => $baseDir . '/pages/courseEdit.php',
     'DirectoryController' => $baseDir . '/controller/DirectoryController.php',
     'Funnel' => $baseDir . '/pages/funnel.php',
-<<<<<<< Updated upstream
-=======
     'FunnelController' => $baseDir . '/controller/FunnelController.php',
->>>>>>> Stashed changes
     'FunnelEdit' => $baseDir . '/pages/funnelEdit.php',
     'Login' => $baseDir . '/pages/login.php',
     'LoginController' => $baseDir . '/controller/LoginController.php',

@@ -128,13 +128,17 @@ class AccountController extends ACore {
 				$_SESSION['error']['pass_message'] = 'Пароли не совпадают';
                 return False;
 			}else{
+				$class = "item-lite";
+				$user_id = $_SESSION["user"]["id"];
+				$message = "Ваш пароль изменен";
+								
+				$date = date("d.m.Y");
+                $time = date("H:i");
+                        
+                $this->m->db->execute("INSERT INTO `notifications`(`id`, `user_id`, `class`, `body`, `date`, `time`, `is_checked`) VALUES (NULL,'$user_id','$class','$message','$date','$time','0')");
+                        
 				$this->m->db->execute("UPDATE user SET `password` = '$npass' WHERE id = " . $_SESSION['user']['id']);
 				unset($_SESSION['error']['pass_message']);
-				
-				$date = date("d.m.Y");
-				$time = date("H:i");
-				
-				$this->m->db->execute("INSERT INTO notifications (`class`, `body`, `date`, `time`, `user_id`) VALUES ('item-lite','Ваш пароль изменен','$date','$time',". $_SESSION["user"]["id"] .")");
 			}
 	}
 	

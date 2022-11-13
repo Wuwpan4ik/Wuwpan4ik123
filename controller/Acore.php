@@ -25,7 +25,7 @@ abstract class ACore {
         $content = $this->get_content();
         include "template/index.php";
     }
-
+	
     abstract function get_content();
 
     abstract function obr();

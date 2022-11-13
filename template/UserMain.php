@@ -103,66 +103,6 @@
         <div class=" availableToYou main userPopup">
 
        <div class="availableToYou userPopup__title">
-<<<<<<< HEAD
-           Вам доступны:
-       </div>
-       <div class="availableToYou userPopup__body">
-           <div class=" availableToYou ">
-               <div class="availableToYou__body">
-                   <div class="popup__allLessons-item ">
-                       <div class="popup__allLessons-item__header">
-                           <div class="popup-item">
-                               <div class="popup__allLessons-item-video">
-                                   <div class="popup__allLessons-item-video-play">
-                                       <img src="../img/smallPlayer/play.png" alt="">
-                                   </div>
-                                   <img src="../img/smallPlayer/Group1426.png" alt="">
-                               </div>
-                               <div class="popup__allLessons-item-info">
-                                   <div class="popup__allLessons-item-info-header">
-                                       <div class=" aboutTheAuthor popup__allLessons-item-info-header-number">
-                                           Курс
-                                       </div>
-                                       <div class="aboutTheAuthor-name">
-                                           22 урока
-                                       </div>
-                                   </div>
-                                   <div class="popup__allLessons-item-info-title">
-                                       Управление гневом внутри себя
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               <div class="popup__allLessons-item ">
-                   <div class="popup__allLessons-item__header">
-                       <div class="popup-item">
-                           <div class="popup__allLessons-item-video">
-                               <div class="popup__allLessons-item-video-play">
-                                   <img src="../img/smallPlayer/play.png" alt="">
-                               </div>
-                               <img src="../img/smallPlayer/Group1426.png" alt="">
-                           </div>
-                           <div class="popup__allLessons-item-info">
-                               <div class="popup__allLessons-item-info-header">
-                                   <div class=" aboutTheAuthor popup__allLessons-item-info-header-number">
-                                       Курс
-                                   </div>
-                                   <div class="aboutTheAuthor-name">
-                                       22 урока
-                                   </div>
-                               </div>
-                               <div class="popup__allLessons-item-info-title">
-                                   Управление гневом внутри себя
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-
-               </div>
-               </div>
-               <div class="otherСourses">
-=======
            Вам доступны: 
        </div>
        <div class="availableToYou userPopup__body">
@@ -210,16 +150,11 @@
 							}}}?>
 				   								   
 					<div class="otherСourses">
->>>>>>> 3dae2fb27a54f18027618e41abb4c74640fe6936
                    <div class=" otherСourses userPopup__title">
                        Другие курсы автора:
                    </div>
                    <div class="otherСourses userPopup__body">
                        <div class="otherСourses ">
-<<<<<<< HEAD
-                           <div class="popup__allLessons-item ">
-                               <div class="popup__allLessons-item__header">
-=======
 					   <?php
 								foreach($content[0] as $op){?>
 							
@@ -229,17 +164,12 @@
 							   <?foreach($content[1] as $v){
                                             if ($v['course_id'] == $op['id']) {?>
 							   
->>>>>>> 3dae2fb27a54f18027618e41abb4c74640fe6936
                                    <div class="popup-item">
                                        <div class="popup__allLessons-item-video">
                                            <div class="popup__allLessons-item-video-play">
                                                <img src="../img/smallPlayer/play.png" alt="">
                                            </div>
-<<<<<<< HEAD
-                                           <img src="../img/smallPlayer/Group1426.png" alt="">
-=======
                                            <video src="<?=$v['video']?>" alt=""/>
->>>>>>> 3dae2fb27a54f18027618e41abb4c74640fe6936
                                        </div>
                                        <div class="popup__allLessons-item-info">
                                            <div class="popup__allLessons-item-info-header">
@@ -251,40 +181,6 @@
                                                </div>
                                            </div>
                                            <div class="popup__allLessons-item-info-title">
-<<<<<<< HEAD
-                                               Управление гневом внутри себя
-                                           </div>
-                                       </div>
-                                   </div>
-                               </div>
-                           </div>
-                           <div class="popup__allLessons-item ">
-                               <div class="popup__allLessons-item__header">
-                                   <div class="popup-item">
-                                       <div class="popup__allLessons-item-video">
-                                           <div class="popup__allLessons-item-video-play">
-                                               <img src="../img/smallPlayer/play.png" alt="">
-                                           </div>
-                                           <img src="../img/smallPlayer/Group1426.png" alt="">
-                                       </div>
-                                       <div class="popup__allLessons-item-info">
-                                           <div class="popup__allLessons-item-info-header">
-                                               <div class=" aboutTheAuthor popup__allLessons-item-info-header-number">
-                                                   Курс
-                                               </div>
-                                               <div class="aboutTheAuthor-name">
-                                                   22 урока
-                                               </div>
-                                           </div>
-                                           <div class="popup__allLessons-item-info-title">
-                                               Управление гневом внутри себя
-                                           </div>
-                                       </div>
-                                   </div>
-                               </div>
-
-                           </div>
-=======
                                                <?=$op["name"]?>
                                            </div>
                                        </div>
@@ -292,10 +188,7 @@
 							   <?}}?>
                                </div>
                            </div>
-						   
 							<?}?>
->>>>>>> 3dae2fb27a54f18027618e41abb4c74640fe6936
-
                        </div>
                    </div>
                    <div class="otherСourses userPopup__button">

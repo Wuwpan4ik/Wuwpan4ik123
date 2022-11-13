@@ -75,7 +75,6 @@
 				</div>
 			</form>
            </div>
->>>>>>> 3dae2fb27a54f18027618e41abb4c74640fe6936
     </div>
 
 </div>

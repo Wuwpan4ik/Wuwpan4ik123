@@ -25,10 +25,7 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'CourseEdit' => __DIR__ . '/../..' . '/pages/courseEdit.php',
         'DirectoryController' => __DIR__ . '/../..' . '/controller/DirectoryController.php',
         'Funnel' => __DIR__ . '/../..' . '/pages/funnel.php',
-<<<<<<< Updated upstream
-=======
         'FunnelController' => __DIR__ . '/../..' . '/controller/FunnelController.php',
->>>>>>> Stashed changes
         'FunnelEdit' => __DIR__ . '/../..' . '/pages/funnelEdit.php',
         'Login' => __DIR__ . '/../..' . '/pages/login.php',
         'LoginController' => __DIR__ . '/../..' . '/controller/LoginController.php',
@@ -42,10 +39,7 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'SmallPlayer' => __DIR__ . '/../..' . '/pages/smallPlayer.php',
         'SortController' => __DIR__ . '/../..' . '/controller/SortController.php',
         'UrlController' => __DIR__ . '/../..' . '/controller/UrlController.php',
-<<<<<<< Updated upstream
-=======
 		'ContactController' => __DIR__ . '/../..' . '/controller/ContactController.php',
->>>>>>> Stashed changes
         'UserContacts' => __DIR__ . '/../..' . '/pages/userContacts.php',
         'UserLogin' => __DIR__ . '/../..' . '/pages/userLogin.php',
         'UserMain' => __DIR__ . '/../..' . '/pages/UserMain.php',
