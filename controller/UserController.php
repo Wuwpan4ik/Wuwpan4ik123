@@ -252,6 +252,20 @@ class UserController extends ACoreCreator
             $purchase_text = '{"course_id":[""], "video_id":["'. $course_id .'"]}';
             $this->m->db->execute("INSERT INTO `purchase` (`user_id`, `purchase`) VALUES ($user_id, '$purchase_text')");
         }
+//      Проверка на покупку всех видео и добавление курса в купленные
+        $purchase_video = json_decode($this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $_SESSION['user']['id'])[0]['purchase'], true);
+        $id = $this->m->db->query("SELECT course_content.course_id FROM course_content WHERE id = '$course_id'")[0]['course_id'];
+        $course_list = explode(',', $this->m->db->query("SELECT GROUP_CONCAT(`id`) FROM `course_content` WHERE course_id = '$id'")[0]['GROUP_CONCAT(`id`)']);
+        foreach ($course_list as $item) {
+            if (!in_array($item, $purchase_video['video_id'])) {
+                return true;
+            }
+        }
+        foreach ($purchase_video['video_id'] as $key=>$item) {
+            if (in_array($item, $course_list)) unset($purchase_video['video_id'][$key]);
+        }
+        array_push($purchase_video['course_id'], $id);
+        $this->m->db->execute("UPDATE `purchase` SET purchase = '" . json_encode($purchase_video) . "' WHERE user_id = " . $_SESSION['user']['id']);
         return true;
     }
 
