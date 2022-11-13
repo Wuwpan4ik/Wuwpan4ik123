@@ -25,9 +25,8 @@ class AccountController extends ACoreCreator {
         }
 
         $niche = strlen($_POST['niche']) != 0 ? $_POST['niche'] : $_SESSION['user']['niche'];
-        $gender = strlen($_POST['gender']) != 0 ? $_POST['gender'] : $_SESSION['user']['gender'];
 
-        $this->m->db->execute("UPDATE `user` SET `gender`='$gender',`niche`='$niche' WHERE `id` = " . $_SESSION['user']['id']);
+        $this->m->db->execute("UPDATE `user` SET `niche`='$niche' WHERE `id` = " . $_SESSION['user']['id']);
     }
 
     public function SaveSettings() {
