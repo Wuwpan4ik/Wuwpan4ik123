@@ -90,12 +90,6 @@
             if (isset($this->phone)) {
                 $this->m->db->execute("INSERT INTO `user` (`telephone`) VALUES ('$this->phone') WHERE `email` = '$this->email'");
             }
-            $res = $this->m->db->query("SELECT * FROM user WHERE email = '$this->email' AND password = '$this->password'");
-            $_SESSION["user"] = [
-                'id' => $res[0]['id'],
-                'email' => $res[0]['email'],
-                'is_creator' => 0
-            ];
 
             return true;
         }

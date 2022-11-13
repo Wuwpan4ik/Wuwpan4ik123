@@ -36,6 +36,7 @@
             <div class="aboutTheAuthor userPopup__body">
                 <div class="popup__allLessons-body">
                     <?php
+                    print_r($_SESSION['dwdwd']);
                         foreach ($content['author_page'] as $item) {
                     ?>
                     <div class="popup__allLessons-item ">
