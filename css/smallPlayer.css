@@ -7,6 +7,8 @@
     height: 100%;
     overflow: hidden;
     margin: 0 auto;
+
+
 }
 ._conatiner-player{
     max-width: 390px;
@@ -14,6 +16,7 @@
 }
 .smallPlayer__slick-slider{
     position: relative;
+
 }
 
 /* Основные стили */
@@ -81,16 +84,34 @@
 .slider__item {
     height: 100vh;
     position: relative;
+
+
+
 }
 .slider__item img {
     max-width: 100%;
 }
 .slider__video-item{
-    position: absolute;
+    position:absolute;
     max-width: 500px;
     height: 100%;
     object-fit: cover;
+
 }
+/*Тень*/
+/*.slider__video-item::before{*/
+/*    box-shadow: inset   0em -2em  #000,*/
+/*    0px 5px 5px #ccc;*/
+/*    position: absolute;*/
+/*    left: 50%;*/
+/*    transform: translate(-50%, 0);*/
+/*    background: white;*/
+/*    border-radius: 50%;*/
+/*    content: '';*/
+/*    height: 60px;*/
+/*    width: 60px;*/
+/*    z-index: 54;*/
+/*}*/
 /*----------------------------------------*/
 .slider__item-info{
     position: absolute;
@@ -297,18 +318,14 @@
     padding: 10px 0 0 0;
     margin: 5px 0 0 0;
 }
-.popup__allLessons-item{
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-}
+
 .popup__allLessons-item-video{
     border-radius: 20px;
 }
 .popup__allLessons-item-video__img{
    position: relative;
     display: flex;
-    justify-content: space-between;
+
 }
 .popup__allLessons-text{
     font-weight: 300;
@@ -352,8 +369,8 @@
     background: #444444;
 }
 .popup__allLessons-item{
-    display: flex;
-    justify-content: space-between;
+    width: 100%;
+
 }
 .popup__allLessons-item-info-header-time{
     margin: 0 0 0 10px;

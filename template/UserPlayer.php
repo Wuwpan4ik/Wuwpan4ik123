@@ -73,10 +73,10 @@
                     </div>
                 </div>
                 <div class="youWatching Сourse-form">
-                    <div class="userPopup__button">
+                    <div class="Сourse-back userPopup__button youWatchingBack">
                         <button>Назад</button>
                     </div>
-                    <div class=" userPopup__button">
+                    <div class="Сourse-question userPopup__button ">
                         <button>Есть вопросы?</button>
                     </div>
                 </div>
@@ -86,18 +86,36 @@
 </div>
 <script>
     /*UserPlayer*/
+    const userPlayer = document.body.querySelector('.UserPlayer');
     const userVideo = document.body.querySelector('.UserPlayerVideo');
     const youWatching = document.body.querySelector('.youWatching');
-    userVideo.addEventListener("pause", function (){
-        if (userVideo.paused) {
+    const youWatchingBack = document.body.querySelector('.youWatchingBack');
+
+    youWatchingBack.onclick = function () {
+        userPlayer.classList.remove('active');
+        youWatching.classList.remove('active');
+        userVideo.play();
+    }
+    userVideo.onclick = function () {
+        function stopVideos() {
+            userVideo.each(function (){
+                this.pause();
+            })
+        }
+        if (userVideo.paused){
+       пеш
+        }
+        else {
+            setTimeout(function () {
+                userPlayer.classList.add('active');
+            }, (250));
             youWatching.classList.add('active');
             userVideo.play();
         }
-        else {
-            youWatching.classList.remove('active');
-            userVideo.pause();
         }
-    })
+
+
+
 
 
 
