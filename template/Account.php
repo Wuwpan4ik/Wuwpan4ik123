@@ -6,21 +6,13 @@
 
     <title>Моя тестовая страница</title>
 
-    <link rel="stylesheet" href="css/sidebar.css">
 
-    <link rel="stylesheet" href="css/nullCss.css">
+    <link rel="stylesheet" href="/css/nullCss.css">
 
-    <link rel="stylesheet" href="css/tableusers.css">
+    <link rel="stylesheet" href="/css/aboutuser.css">
 
-    <link rel="stylesheet" href="css/general.css">
 
-    <link rel="stylesheet" href="css/feed.css">
-
-    <link rel="stylesheet" href="css/aboutuser.css">
-
-    <link rel="stylesheet" href="css/profilesetting.css">
-
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
 
   </head>
 

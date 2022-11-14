@@ -8,9 +8,6 @@
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/UserMain.css">
-    <link rel="stylesheet" href="/css/UserLogin.css">
-    <link rel="stylesheet" href="/css/sidebar.css">
-
 
 </head>
 

@@ -5,11 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Моя тестовая страница</title>
-    <link rel="stylesheet" href="css/nullCss.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/nullCss.css">
+    <link rel="stylesheet" href="/css/main.css">
 
-    <link rel="stylesheet" href="css/settingsAccountUser.css">
-    <link rel="stylesheet" href="css/UserMenu.css">
 
 
 
