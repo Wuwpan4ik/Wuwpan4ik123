@@ -11,7 +11,7 @@
                 return False;
             }
             $uid = $_SESSION['item_id'];
-            $res = $this->m->db->query("SELECT * FROM `funnel` WHERE id = '$uid' ORDER BY `id` DESC LIMIT 1");
+            $res = $this->m->db->query("SELECT * FROM `funnel` WHERE id = '$uid'");
             $count_video = count($this->m->db->query("SELECT * FROM `funnel_content` WHERE funnel_id = ". $res[0]['id'])) + 1;
 
     //        if (!$this->isUser($res[0]['author_id'])) return False;
@@ -56,10 +56,10 @@
             $funnelContent = $this->m->db->query("SELECT * FROM `funnel_content` WHERE id = '$item_id'");
             $res = $this->m->db->query("SELECT * FROM `funnel` WHERE id = ".$funnelContent[0]['funnel_id']);
             if (!$this->isUser($res[0]['author_id'])) return False;
-
             $name = $_POST['name'];
             $description = $_POST['description'];
-            $this->m->db->execute("UPDATE `funnel_content` SET `name` = '$name', `description` = '$description' WHERE `id` = '$item_id'");
+            $button_text = $_POST['button_text'];
+            $this->m->db->execute("UPDATE `funnel_content` SET `name` = '$name', `description` = '$description', `button_text` = '$button_text' WHERE `id` = '$item_id'");
             return True;
         }
 
@@ -72,11 +72,6 @@
             $videoBtnHTML = [];
             $first_do = $_POST['first_do'];
             $second_do = $_POST['second_do'];
-            $button_text = $_POST['button_text'];
-            // Проверка ддлины
-            if (strlen($button_text) == 0) {
-                $button_text = null;
-            }
             switch ($_POST['first_do']) {
                 case "pay_form":
                 case "form": {
@@ -109,43 +104,41 @@
                     break;
                 }
             }
-            if (isset($button_text)) {
-                switch ($_POST['second_do']) {
-                    case "pay_form":
-                    case "form": {
-                        if (isset($_POST['form_id-4'])) {
-                            $form_input_1 = $_POST['form_id-4'];
-                            $videoBtnHTML['second_do'][$second_do] = [$form_input_1];
-                        }
-                        if (isset($_POST['form_id-5'])) {
-                            $form_input_2 = $_POST['form_id-5'];
-                            $videoBtnHTML['second_do'][$second_do] = array_merge(array_values($videoBtnHTML['second_do'][$second_do]), [$form_input_2]);
-                        }
-                        if (isset($_POST['form_id-6'])) {
-                            $form_input_3 = $_POST['form_id-6'];
-                            $videoBtnHTML['second_do'][$second_do] = array_merge(array_values($videoBtnHTML['second_do'][$second_do]), [$form_input_3]);
-                        }
-                        break;
+            switch ($_POST['second_do']) {
+                case "pay_form":
+                case "form": {
+                    if (isset($_POST['form_id-4'])) {
+                        $form_input_1 = $_POST['form_id-4'];
+                        $videoBtnHTML['second_do'][$second_do] = [$form_input_1];
                     }
-                    case "link": {
-                        if (isset($_POST['link-2'])) {
-                            $videoBtnHTML['second_do']['link'] = $_POST['link-2'];
-                        }
-                        break;
+                    if (isset($_POST['form_id-5'])) {
+                        $form_input_2 = $_POST['form_id-5'];
+                        $videoBtnHTML['second_do'][$second_do] = array_merge(array_values($videoBtnHTML['second_do'][$second_do]), [$form_input_2]);
                     }
-                    case 'list':
-                    {
-                        $videoBtnHTML['second_do']['list'] = true;
-                        break;
+                    if (isset($_POST['form_id-6'])) {
+                        $form_input_3 = $_POST['form_id-6'];
+                        $videoBtnHTML['second_do'][$second_do] = array_merge(array_values($videoBtnHTML['second_do'][$second_do]), [$form_input_3]);
                     }
-                    case 'next_lesson': {
-                        $videoBtnHTML['second_do']['next_lesson'] = true;
-                        break;
+                    break;
+                }
+                case "link": {
+                    if (isset($_POST['link-2'])) {
+                        $vid1oBtnHTML['second_do']['link'] = $_POST['link-2'];
                     }
+                    break;
+                }
+                case 'list':
+                {
+                    $videoBtnHTML['second_do']['list'] = true;
+                    break;
+                }
+                case 'next_lesson': {
+                    $videoBtnHTML['second_do']['next_lesson'] = true;
+                    break;
                 }
             }
             $videoBtnHTMLResult = json_encode($videoBtnHTML);
-            $this->m->db->execute("UPDATE `funnel_content` SET `popup` = '$videoBtnHTMLResult', `button_text` = '$button_text'  WHERE id = '$id_video'");
+            $this->m->db->execute("UPDATE `funnel_content` SET `popup` = '$videoBtnHTMLResult' WHERE id = '$id_video'");
             return True;
         }
 

@@ -16,6 +16,10 @@ $(document).ready(function(){
         let width = 0;
 
         $(this).find('.slider__video-item').each(function () {
+            // Закончил здесь
+            this.addEventListener('ended', function () {
+                slider.slick('slickNext');
+            })
             this.addEventListener('click', function (){
                 let videoLocal = this;
                 const interval = setInterval(function () {
@@ -26,22 +30,6 @@ $(document).ready(function(){
                         clearInterval(interval);
                     }
                     // Проверка на конец
-                    if (videoLocal.ended){
-                        if (videoLocal.parentElement.parentElement.querySelector('.overlay-video')) {
-                            videoLocal.parentElement.parentElement.querySelector('.overlay-video').classList.toggle('active');
-                            setTimeout(function () {
-                                videoLocal.parentElement.parentElement.querySelector('.popup-video').classList.toggle('active');
-                            }, (20));
-                            videoLocal.parentElement.parentElement.querySelector('.next-lesson').addEventListener('click', function (){
-                                videoLocal.parentElement.parentElement.querySelector('.popup-video').classList.toggle('active');
-                                videoLocal.parentElement.parentElement.querySelector('.overlay-video').classList.toggle('active');
-                                slider.slick("slickNext");
-                            })
-                        } else {
-                            slider.slick("slickNext")
-                        }
-                        slider.slickGoTo(2);
-                    }
                 }, 300);
                 if (this.paused) {
                     this.play();

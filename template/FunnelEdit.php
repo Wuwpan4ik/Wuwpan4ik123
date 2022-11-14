@@ -90,17 +90,8 @@
 </div>
 
 <?php include 'default/popupEditVideo.php';?>
+
 <script type="text/javascript" src="../js/button__settings.js"></script>
-
-<script>
-    function onButtonEdit(elem) {
-        elem.classList.add('display-none');
-        elem.parentElement.querySelectorAll('.button__do-block').forEach((elem) => {
-            elem.classList.remove('display-none');
-        })
-    }
-</script>
-
 <script>
     function _(abc) {
         return document.getElementById(abc);
@@ -121,7 +112,7 @@
         var ajax = new XMLHttpRequest();
         ajax.upload.addEventListener("progress", progressHandler, false);
         ajax.addEventListener("load", completeHandler, false)
-        ajax.open("POST", "Funnel/<?=$content[0][0]['id']?>/create");
+        ajax.open("POST", "/Funnel/<?=$content[0][0]['id']?>/create");
         ajax.send(formdata);
     }
     function progressHandler(event) {
@@ -138,24 +129,8 @@
 </script>
 
 <script>
-    document.querySelector('.button-end').addEventListener('click', function (){
-        let popup__block = document.querySelector('.test__block-video');
-        popup__block.classList.toggle('active');
-        if (popup__block.classList.contains('active')) {
-            popup__block.querySelector('.overlay').classList.toggle('active');
-            setTimeout(function () {
-                popup__block.querySelector('.popup').classList.toggle('active');
-            }, (20));
-        } else {
-            popup__block.querySelector('.popup').classList.toggle('active');
-            setTimeout(function () {
-                popup__block.querySelector('.overlay').classList.toggle('active');
-            }, (550));
-        }
-    })
-
     document.querySelector('.button-click').addEventListener('click', function (){
-        let popup__block = document.querySelector('.test__block-button');
+        let popup__block = document.querySelector('.test__block');
         popup__block.classList.toggle('active');
         if (popup__block.classList.contains('active')) {
             popup__block.querySelector('.overlay').classList.toggle('active');

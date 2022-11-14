@@ -188,7 +188,7 @@
       if (request1.readyState === 4 && request1.status === 200) {
           const array = JSON.parse(request1.responseText);
           if (array.prev_week == null) {
-              console.log('ud');
+              array.prev_week = 0;
           }
           if (array.week) {
               document.getElementById('this_week').innerHTML = array.week + "₽";

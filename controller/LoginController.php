@@ -29,7 +29,6 @@
                 } else {
                     $_SESSION["user"] = [
                         'id' => $res[0]['id'],
-                        'gender' => $res[0]['gender'],
                         'niche' => $res[0]['niche'],
                         'avatar' => $res[0]['avatar'],
                         'first_name' => $res[0]['first_name'],
@@ -49,8 +48,6 @@
 
         public function registration () {
             $first_name = $_POST['first_name'];
-
-            $gender = $_POST['gender'];
 
             $niche = $_POST['niche'];
 
@@ -75,7 +72,7 @@
             $this->validate_data($email, $first_name);
             if (isset($_SESSION['email_message']) || isset($_SESSION['first_name_message'])) return False;
 
-            $this->db->db->execute("INSERT INTO `user` (`gender`, `niche`, `avatar`, `first_name`, `email`, `password`, `is_creator`) VALUES ('$gender', '$niche', '$ava', '$first_name', '$email', '$password', 1)");
+            $this->db->db->execute("INSERT INTO `user` (`niche`, `avatar`, `first_name`, `email`, `password`, `is_creator`) VALUES ('$niche', '$ava', '$first_name', '$email', '$password', 1)");
             $_SESSION['error']['registration_message'] = "Регистрация прошла успешно";
             $res = $this->db->db->query("SELECT * FROM user WHERE email = '$email' AND password = '$password'");
             if(count($res) != 0) {
@@ -89,7 +86,6 @@
                 } else {
                     $_SESSION["user"] = [
                         'id' => $res[0]['id'],
-                        'gender' => $res[0]['gender'],
                         'niche' => $res[0]['niche'],
                         'avatar' => $res[0]['avatar'],
                         'first_name' => $res[0]['first_name'],
