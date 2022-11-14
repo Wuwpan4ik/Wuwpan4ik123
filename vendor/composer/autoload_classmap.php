@@ -12,6 +12,7 @@ return array(
     'AMFReader' => $vendorDir . '/james-heinrich/getid3/getid3/module.audio-video.flv.php',
     'AMFStream' => $vendorDir . '/james-heinrich/getid3/getid3/module.audio-video.flv.php',
     'AVCSequenceParameterSetReader' => $vendorDir . '/james-heinrich/getid3/getid3/module.audio-video.flv.php',
+    'AboutTheAuthor' => $baseDir . '/pages/AboutTheAuthor.php',
     'Account' => $baseDir . '/pages/Account.php',
     'AccountController' => $baseDir . '/controller/AccountController.php',
     'Analytics' => $baseDir . '/pages/Analytics.php',

@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Моя тестовая страница</title>
-    <link rel="stylesheet" href="css/nullCss.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/UserMenu.css">
-    <link rel="stylesheet" href="css/UserLogin.css">
-    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="/css/nullCss.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/UserMain.css">
+    <link rel="stylesheet" href="/css/UserLogin.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
 
 
 </head>
@@ -41,14 +41,14 @@
                     </div>
 
                     <div>
-                        <a href="?option=SettingsAccountUser">
+                        <a href="/SettingsAccountUser">
                             <button class="UserMenu-profile__settings"><img class="" src="img/UserSetting.svg"></button>
                         </a>
                     </div>
                 </div>
                 <div class="UserMenu-list">
 
-                    <a href="?option=UserMain">
+                    <a href="/UserMain">
 
                         <div class="UserMenu-list__option sidebarOption <? if ($_GET['option'] == 'Main') echo 'active'; ?>" >
 
@@ -64,7 +64,7 @@
 
                     </a>
 
-                    <a href="?option=AboutTheAuthor">
+                    <a href="/AboutTheAuthor">
 
                         <div class=" UserMenu-list__option sidebarOption <? if ($_GET['option'] == 'Project') echo 'active'; ?>">
 
@@ -80,7 +80,7 @@
 
                     </a>
 
-                    <a href="?option=UserNotifications">
+                    <a href="/UserNotifications">
 
                         <div class="UserMenu-list__option sidebarOption <? if ($_GET['option'] == 'Analytics') echo 'active'; ?>">
 
@@ -97,7 +97,7 @@
 
                     </a>
 
-                    <a href="?option=UserContacts">
+                    <a href="/UserContacts">
 
                         <div class=" UserMenu-list__option sidebarOption <? if ($_GET['option'] == 'Cases') echo 'active'; ?>">
 

@@ -31,6 +31,7 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'AMFReader' => __DIR__ . '/..' . '/james-heinrich/getid3/getid3/module.audio-video.flv.php',
         'AMFStream' => __DIR__ . '/..' . '/james-heinrich/getid3/getid3/module.audio-video.flv.php',
         'AVCSequenceParameterSetReader' => __DIR__ . '/..' . '/james-heinrich/getid3/getid3/module.audio-video.flv.php',
+        'AboutTheAuthor' => __DIR__ . '/../..' . '/pages/AboutTheAuthor.php',
         'Account' => __DIR__ . '/../..' . '/pages/Account.php',
         'AccountController' => __DIR__ . '/../..' . '/controller/AccountController.php',
         'Analytics' => __DIR__ . '/../..' . '/pages/Analytics.php',
