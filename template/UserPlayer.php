@@ -5,11 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo htmlspecialchars($content[0]['name'])?></title>
+    <title>Моя тестовая страница</title>
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/settingsAccountUser.css">
     <link rel="stylesheet" href="/css/UserMain.css">
-    <link rel="stylesheet" href="/css/UserMenu.css">
     <link rel="stylesheet" href="/css/smallPlayer.css">
 
 
@@ -89,9 +88,9 @@
     const userPlayer = document.body.querySelector('.UserPlayer');
     const userVideo = document.body.querySelector('.UserPlayerVideo');
     const youWatching = document.body.querySelector('.youWatching');
-
     userVideo.onclick = function () {
         if (userVideo.paused){
+
             youWatching.classList.remove('active');
             userPlayer.classList.remove('active');
             userVideo.pause();

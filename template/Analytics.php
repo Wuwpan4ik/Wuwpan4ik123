@@ -6,15 +6,12 @@
 
     <title>Моя тестовая страница</title>
 
-    <link rel="stylesheet" href="css/sidebar.css">
 
-    <link rel="stylesheet" href="css/nullCss.css">
+    <link rel="stylesheet" href="/css/nullCss.css">
 
-    <link rel="stylesheet" href="css/analytics.css">
+    <link rel="stylesheet" href="/css/analytics.css">
 
-    <link rel="stylesheet" href="css/feed.css">
-
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
 
   </head>
 
@@ -152,7 +149,7 @@
                                     </div>
                                     <div class="rightSideFirst_header">
                                         <div class="rightSideFirstText1">
-                                            <h3>$16,355.49</h3>
+                                            <h3 class=" profit-price " >$16,355.49</h3>
                                             <span>показатели доходности</span>
                                         </div>
                                         <div class="rightSideFirstText2">

@@ -3,7 +3,6 @@
 
         function get_content()
         {
-            $result = $this->m->getCountUserNotifications();
-            return $result;
+
         }
     }

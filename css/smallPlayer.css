@@ -23,6 +23,7 @@
 /* Слайдер */
 .slick-slider {
     min-width: 0;
+
 }
 /* Ограничивающая оболочка */
 .slick-list {
@@ -91,27 +92,25 @@
 .slider__item img {
     max-width: 100%;
 }
-.slider__video-item{
-    position:absolute;
-    max-width: 500px;
+.slider__darkness{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
-    object-fit: cover;
-
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 5%, rgba(0,0,0,0.7) 20%, rgba(0,0,0,0.5) 50%,  rgba(0,0,0,0.3) 100%);
+    pointer-events: none;
 }
-/*Тень*/
-/*.slider__video-item::before{*/
-/*    box-shadow: inset   0em -2em  #000,*/
-/*    0px 5px 5px #ccc;*/
-/*    position: absolute;*/
-/*    left: 50%;*/
-/*    transform: translate(-50%, 0);*/
-/*    background: white;*/
-/*    border-radius: 50%;*/
-/*    content: '';*/
-/*    height: 60px;*/
-/*    width: 60px;*/
-/*    z-index: 54;*/
-/*}*/
+.slider__video-item{
+     position:absolute;
+     max-width: 500px;
+     height: 100%;
+     object-fit: cover;
+ }
+
+
+
 /*----------------------------------------*/
 .slider__item-info{
     position: absolute;

@@ -23,10 +23,13 @@
                     if (isset($item['popup'])) $popup = json_decode($item['popup']);
             ?>
             <div class="slider__item ">
-                <div class="slider__video">
+                <div class="slider__video ">
                     <video id="123" class="slider__video-item">
-                         <source class="video" src=".<?=$item['video']?>" />
+                        <source class="video" src=".<?=$item['video']?>"  />
                     </video>
+                </div>
+                <div class="slider__darkness">
+
                 </div>
                 <div class="slider__header _conatiner-player ">
                     <div class="slider__header-logo">

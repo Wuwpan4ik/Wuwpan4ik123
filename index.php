@@ -31,6 +31,8 @@
     $router->addRoute("/UserContacts", "UserContacts.php");
     $router->addRoute("/UserMenu", "UserMenu.php");
     $router->addRoute("/UserPlayer/$item_id", "UserPlayer.php");
+    $router->addRoute("/AboutTheAuthor", "AboutTheAuthor.php");
+    $router->addRoute("/SettingsAccountUser", "SettingsAccountUser.php");
     $router->addRoute("/Project", "Project.php");
 
     $router->addRoute("/Course", "Course.php");

@@ -31,7 +31,7 @@
             <label>Текст для кнопки:</label>
             <input name="button_text" class="videoname video-desc" value="<?=$v['button_text']?>">
         </div>
-        <button type="button" class="button__edit button__do-block <?php if (!isset($v['button_text']) || is_null($v['button_text'])) { ?> display-none <?php } ?>" style="background: #757D8A;"><img style="width: 22px;" src="/img/printer.png">Действие для кнопки</button>
+        <button type="button" class="button__edit button__do-block <?php if (!isset($v['button_text']) || is_null($v['button_text'])) { ?> display-none <?php } ?>" style="background: #757D8A;"><img style="width: 22px;"><img style="width: 22px;" src="/img/actions.svg">Действия</button>
         <button type="button" class="button-add-button-edit <?php if (isset($v['button_text']) || !is_null($v['button_text'])) { ?> display-none <?php } ?>">Добавить кнопку</button>
         <?php } ?>
         <button type="submit">Сохранить</button>

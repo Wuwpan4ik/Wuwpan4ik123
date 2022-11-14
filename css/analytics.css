@@ -205,9 +205,12 @@ tbody input{
     display: flex;
     flex-direction: column;
     font-size: 17px;
+    overflow-x: auto;
+
 }
 .table{
     margin: 40px 0 0 0;
+
 }
 .checked{
 	display: flex;
@@ -277,9 +280,7 @@ th{
 	padding: 0px 11px;
 }
 
-h3{
-    font-size: 2em;
-}
+
 .country p{
     margin-bottom: 1em;
 }
@@ -333,7 +334,7 @@ span.freen_profit{
     font-size: 14px;
     line-height: 20px;
 }
-.profit__item h3{
+.profit_header h3{
     font-weight: 400;
     font-size: 18px;
     line-height: 24px;
@@ -351,10 +352,16 @@ span.green_text{
     font-weight: 700;
     line-height: 40px;
 }
+.profit-price{
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 32px;
+}
 .geo__profit{
     display:flex;
     margin-top: 24px;
     gap: 20px;
+    flex-wrap: wrap;
 }
 .profit_down{
     border: 1px solid #FCA549;
