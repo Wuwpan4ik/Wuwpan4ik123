@@ -228,6 +228,7 @@
         })
     });
 </script>
+<script src="/js/getNotifications.js"></script>
 </body>
 
 </html>

@@ -78,7 +78,7 @@ class AccountController extends ACoreCreator {
                 return False;
             }
         }
-
+        $this->addNotifications("Настройки были сменены", "Вы сменили настройки своего аккаунта", "img/Notification/warn.svg");
         $this->m->db->execute("UPDATE user SET `email` = '$email', `first_name` = '$first_name', `second_name` = '$second_name', `site_url` = '$site_url' WHERE id = " . $_SESSION['user']['id']);
         $_SESSION["user"]['first_name'] = $first_name;
         $_SESSION["user"]['second_name'] = $second_name;

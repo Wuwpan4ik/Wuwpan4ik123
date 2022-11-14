@@ -80,6 +80,9 @@
     $router->addRoute("/UserController/buyVideo", "UserController.php", 'BuyVideo');
     $router->addRoute("/UserController/getVideoInfo", "UserController.php", 'getBuyVideo');
 
+    $router->addRoute("/addQuestion", "ContactController.php", "SendQuestion");
+    $router->addRoute("/getNotifications", "NotificationsController.php", "getNotifications");
+
 
     $router->route("/$url");
 

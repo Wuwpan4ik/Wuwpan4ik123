@@ -99,5 +99,6 @@
                 </div>
             </div>
         </div>
+        <script src="/js/getNotifications.js"></script>
   </body>
 </html>

@@ -209,4 +209,5 @@
             });
         }
     </script>
+    <script src="/js/getNotifications.js"></script>
 </html>

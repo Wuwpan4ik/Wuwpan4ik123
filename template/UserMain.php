@@ -215,24 +215,27 @@
             <div class="question  userPopup__body">
                 <div class=" question ">
                     <div class="popup__buy-register">
-                        <div class="popup__buy-body-form question input">
-                            <div class="popup__bonus-form-input-account input-img">
-                                <img src="../img/smallPlayer/account.svg" alt="">
+                        <form method="POST" action="/addQuestions">
+                            <input type="text" name="author_id">
+                            <div class="popup__buy-body-form question input">
+                                <div class="popup__bonus-form-input-account input-img">
+                                    <img src="../img/smallPlayer/account.svg" alt="">
+                                </div>
+                                <input name="name" type="text" placeholder="Ваше имя">
                             </div>
-                            <input type="text" placeholder="Ваше имя">
-                        </div>
-                        <div class="popup__buy-body-form question input">
-                            <div class="popup__bonus-form-input-email input-img">
-                                <img src="../img/smallPlayer/email.svg" alt="">
+                            <div class="popup__buy-body-form question input">
+                                <div class="popup__bonus-form-input-email input-img">
+                                    <img src="../img/smallPlayer/email.svg" alt="">
+                                </div>
+                                <input name="email" type="email" placeholder="Ваш email">
                             </div>
-                            <input type="text" placeholder="Ваш email">
-                        </div>
-                        <div class="popup__buy-body-form question-textarea">
-                            <div class="popup__bonus-form-input-email input-img">
-                                <img src="../img/smallPlayer/email.svg" alt="">
+                            <div class="popup__buy-body-form question-textarea">
+                                <div class="popup__bonus-form-input-email input-img">
+                                    <img src="../img/smallPlayer/email.svg" alt="">
+                                </div>
+                                <textarea name="question" placeholder="Ваш вопрос"></textarea>
                             </div>
-                            <textarea placeholder="Ваш вопрос"></textarea>
-                        </div>
+                        </form>
                     </div>
                     <div class="question-form">
                         <div class="Сourse-back userPopup__button questionBack">
