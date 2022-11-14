@@ -194,7 +194,7 @@
 
                         </div>
 
-                        <div class="form-option">
+                        <div class="form-option" style="margin-bottom: 15px;">
 
                             <div class="OptionProf">
 
@@ -215,26 +215,6 @@
                             </div>
 
                         </div>
-
-                        <div class="form-option-gender">
-
-                            <div class="OptionGender">
-
-                                <h2>Ваш пол</h2>
-
-                                <div class="choose">
-
-                                    <input <?if($content[0][0]['gender'] == "M"){?> checked <?}?> value="M" id="M" name="gender" type="radio"/>
-
-									<label for="M"><span class="dot"></span></label>Мужской
-
-                                    <input <?if($content[0][0]['gender'] == "W"){?> checked <?}?> value="W" id="W" name="gender" type="radio"/>
-
-									<label for="W"><span class="dot"></span></label>Женский
-
-                                </div>
-
-                            </div>
 
                             <button class="ico_button" id="apps" type="submit">Сохранить</button>
 

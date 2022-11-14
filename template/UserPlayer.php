@@ -88,26 +88,24 @@
     const userVideo = document.body.querySelector('.UserPlayerVideo');
     const youWatching = document.body.querySelector('.youWatching');
     const youWatchingBack = document.body.querySelector('.youWatchingBack');
-
     youWatchingBack.onclick = function () {
         userPlayer.classList.remove('active');
         youWatching.classList.remove('active');
         userVideo.play();
     }
     userVideo.onclick = function () {
-        function stopVideos() {
-            userVideo.each(function (){
-                this.pause();
-            })
-        }
         if (userVideo.paused){
-            userPlayer.classList.remove('active');
+
             youWatching.classList.remove('active');
+            setTimeout(function () {
+                userPlayer.classList.remove('active');
+            }, (300));
+            userVideo.pause();
         }
         else {
             setTimeout(function () {
                 userPlayer.classList.add('active');
-            }, (250));
+            }, (200));
             youWatching.classList.add('active');
             userVideo.play();
         }
