@@ -86,7 +86,60 @@
 
                     </div>
 
-                    <input type="radio" id="Integrations" name="mytabs"/>
+                    <input type="radio" id="Orders" name="mytabs"/>
+
+                    <label id="ordlab" for="Orders"><p>Заказы</p></label>
+                    <div class="tab _container">
+
+                        <div class="Tableusers">
+
+                            <div class="header">
+                                <div class="header__title">
+                                    <h2>Список ваших клиентов</h2>
+                                </div>
+                                <div class="head_buttons">
+                                    <button class="ico_button "><img class="ico" src="img/Filter.svg">Фильтры</button>
+
+                                    <button class="ico_button "><img class="ico" src="img/Download.svg">Выгрузить</button>
+
+                                    <input style="display:block; padding-left:35px;" class="ico_button" placeholder="Поиск">
+                                </div>
+
+                            </div>
+
+                            <table class="table" cellSpacing="0">
+
+                                <thead class="fixedHeader">
+
+                                <tr>
+
+                                    <th id="thop"><input id="main_check" type="checkbox" style="display:inline-block;">Заказ</th>
+
+                                    <th><div class="th-title"><button class="order_button" value="give_money"><img class="table_ico" src="img/StickDown.svg"></button>Сумма</div></th>
+
+                                    <th><div class="th-title"><button class="order_button" value="email"><img class="table_ico" src="img/StickDown.svg"></button>Email</div></th>
+
+                                    <th><div class="th-title"><button class="order_button" value="tel"><img class="table_ico" src="img/StickDown.svg"></button>Телефон</div></th>
+
+                                    <th><div class="th-title"><button class="order_button" value="course_id"><img class="table_ico" src="img/StickDown.svg"></button>Курс</div></th>
+
+                                    <th><div class="th-title"><button class="order_button" value="comment"><img class="table_ico" src="img/StickDown.svg"></button>Задача</div></th>
+
+                                    <th><div class="th-title"><button class="order_button" value="achivment_date"><img class="table_ico" src="img/StickDown.svg"></button>Дата</div></th>
+
+                                </tr>
+
+                                </thead>
+
+                                <tbody id="conTab">
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
 
                     <input type="radio" id="Tarif" name="mytabs"/>
 

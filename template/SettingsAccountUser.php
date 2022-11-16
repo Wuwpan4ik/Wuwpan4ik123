@@ -29,7 +29,8 @@
     </div>
     <div class="popup__container">
         <div class="settingsAccountUser-body userPopup">
-			<form method="POST" action="/UserController/save"">
+            <div class="user-content">
+
 				<div class="settingsAccountUser-body__info userPopup__title">
 					Настройки аккаунта:
 				</div>
@@ -65,10 +66,12 @@
 						</div>
 					</div>
 				</div>
+                <form method="POST" action="/UserController/save"">
 				<div class="userPopup__button">
 					<button>Сохранить</button>
 				</div>
 			</form>
+            </div>
         </div>
     </div>
 

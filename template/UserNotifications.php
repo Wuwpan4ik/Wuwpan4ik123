@@ -30,6 +30,7 @@
     </div>
     <div class="popup__container">
     <div class="userPopup">
+        <div class="user-content">
         <div class="aboutTheAuthor userPopup__title">
             Уведомления:
         </div>
@@ -58,6 +59,7 @@
         <div class="userPopup__button">
             <button>Есть вопросы?</button>
         </div>
+    </div>
     </div>
     </div>
 

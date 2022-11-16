@@ -8,6 +8,7 @@
 </head>
 <body class="body">
 <div class="aboutTheAuthor bcg">
+
     <div class="_container">
         <div class="User-header">
             <div class="User-logo user__logo">
@@ -23,23 +24,26 @@
     </div>
     <div class="popup__container">
     <div class="userPopup">
-        <div class="aboutTheAuthor userPopup__title">
-            Об авторе:
-        </div>
-        <div class="userPopup__body">
-            <div class="aboutTheAuthor-img">
-                <img src="<?=$content[0]["avatar"]?>" alt="">
+        <div class="user-content">
+            <div class="aboutTheAuthor userPopup__title">
+                Об авторе:
             </div>
-            <div class="aboutTheAuthor__name">
-                <?echo $content[0]["first_name"], " ", $content[0]["second_name"]?>
+            <div class="userPopup__body">
+                <div class="aboutTheAuthor-img">
+                    <img src="<?=$content[0]["avatar"]?>" alt="">
+                </div>
+                <div class="aboutTheAuthor__name">
+                    <?echo $content[0]["first_name"], " ", $content[0]["second_name"]?>
+                </div>
+                <div class="aboutTheAuthor__text">
+                    <?=$content[0]["about"]?>
+                </div>
             </div>
-            <div class="aboutTheAuthor__text">
-                <?=$content[0]["about"]?>
+            <div class="userPopup__button">
+                <button>Есть вопросы?</button>
             </div>
         </div>
-        <div class="userPopup__button">
-            <button>Есть вопросы?</button>
-        </div>
+
     </div>
     </div>
 

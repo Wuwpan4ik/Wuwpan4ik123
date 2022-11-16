@@ -25,7 +25,7 @@
         </div>
     </div>
     <div class="popup__container">
-        <div class=" aboutTheAuthor userPopup active ">
+        <div class=" aboutTheAuthor userPopup  ">
             <div class="aboutTheAuthor userPopup__title">
                 Выберите автора:
             </div>
@@ -93,6 +93,109 @@
                 </div>
             </div>
         </div>
+        <div class="Course userPopup active">
+            <div class="Course userPopup__title">
+                Управление гневом внутри себя
+            </div>
+            <div class="Course userPopup__body">
+                <div class=" Course ">
+                    <div class=" Course availableToYou__body lesson__list">
+                        <div class="popup__allLessons-item__header">
+                            <div class="Course-item popup-item">
+                                <div class="popup__allLessons-item-video__img">
+                                    <a href="/UserPlayer/76" <div="data-id="76" class="popup__allLessons-item ">
+                                    <img src="../img/smallPlayer/Group1426.png" alt="">
+                                    <div class="popup__allLessons-item-video-play">
+                                        <img src="../img/smallPlayer/play.png" alt="">
+                                    </div>
+                                    </a>
+                                </div>
+                                <div class="popup__allLessons-item-info">
+                                    <div class="popup__allLessons-item-info-header">
+                                        <div class=" aboutTheAuthor available-number">
+                                            Урок 1
+                                        </div>
+                                        <div class="aboutTheAuthor-name">
+                                            1:00
+                                        </div>
+                                    </div>
+                                    <div class="popup__allLessons-item-info-title">
+                                        dw
+                                    </div>
+                                </div>
+                                <button class="accordion-button" id="accordion-button-1" aria-expanded="false">
+                                    <span class="icon" aria-hidden="true"></span></button>
+                                <div class="accordion">
+                                    <div class="accordion-item">
+                                        <div class="accordion-content">
+                                            <p>Задача организации, в особенности же убеждённость некоторых оппонентов требует определения и уточнения вывода текущих активов.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="Course-item popup-item">
+                                <div class="popup__allLessons-item-video__img">
+                                    <a href="/UserPlayer/76" <div="data-id="76" class="popup__allLessons-item ">
+                                    <img src="../img/smallPlayer/Group1426.png" alt="">
+                                    <div class="popup__allLessons-item-video-play">
+                                        <img src="../img/smallPlayer/play.png" alt="">
+                                    </div>
+                                    </a>
+                                </div>
+                                <div class="popup__allLessons-item-info">
+                                    <div class="popup__allLessons-item-info-header">
+                                        <div class=" aboutTheAuthor available-number">
+                                            Урок 1
+                                        </div>
+                                        <div class="aboutTheAuthor-name">
+                                            1:00
+                                        </div>
+                                    </div>
+                                    <div class="popup__allLessons-item-info-title">
+                                        dw
+                                    </div>
+                                </div>
+                                <button class="accordion-button" id="accordion-button-1" aria-expanded="false">
+                                    <span class="icon" aria-hidden="true"></span></button>
+                                <div class="accordion">
+                                    <div class="accordion-item">
+                                        <div class="accordion-content">
+                                            <p>Задача организации, в особенности же убеждённость некоторых оппонентов требует определения и уточнения вывода текущих активов.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="Сourse-form">
+                <div class="Сourse-back userPopup__button courseBackBtn">
+                    <button>Назад</button>
+                </div>
+                <div class="Сourse-question userPopup__button questionBtn">
+                    <button>Есть вопросы?</button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <div class=" Course  userPopup  ">
             <div class="Course userPopup__title">
                 Управление гневом внутри себя
@@ -100,6 +203,7 @@
             <div class="Course userPopup__body">
                 <div class=" Course ">
                     <div class=" Course availableToYou__body lesson__list">
+
                     </div>
                 </div>
             </div>
@@ -401,6 +505,26 @@ unset($_SESSION['course_id']);
         });
         request.send();
     }
+    const accordionButton = document.querySelectorAll(".accordion-button");
+
+
+
+
+    accordionButton.forEach( item => {
+            item.onclick = function () {
+                    this.forEach( item => {
+                        item.classList.remove('active');
+                        item.parentElement.querySelector(".accordion-content").classList.remove('active');
+                    })
+                item.classList.add('active')
+                item.parentElement.querySelector(".accordion-content").classList.add('active');
+            }
+
+
+    })
+
+
+
 </script>
 </body>
 </html>
