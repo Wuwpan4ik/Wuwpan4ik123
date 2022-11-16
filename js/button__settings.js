@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', function () {
         elem.addEventListener('click', function () {
             elem.classList.add('display-none');
             elem.parentElement.querySelectorAll('.button__do-block').forEach((elem) => {
-                elem.classList.remove('display-none');
+                elem.classList.toggle('display-none');
             })
             document.querySelector('.popup__edit-button').classList.remove('display-none');
             let button_name = elem.parentElement.querySelector('.button_text');

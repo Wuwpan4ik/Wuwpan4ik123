@@ -105,8 +105,9 @@
                         <h3><?=$p['name']?></h3>
 
                         <div style="display:flex;">
+                            <?php $url = include "settings/site_url.php"; ?>
 
-                            <input id="half_input" value="<?=isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https://" : "http://" . $_SERVER['SERVER_NAME']?>/SmallPlayer/<?=$p['id']?>" disabled/>
+                            <input id="half_input" value="<?=$url?>/SmallPlayer/<?=$p['id']?>" disabled/>
 
                             <button class="copy-button" onclick="copy_link(this)" type="submit">Копировать</button>
 
