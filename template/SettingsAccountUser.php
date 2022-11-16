@@ -5,13 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Моя тестовая страница</title>
-    <link rel="stylesheet" href="css/nullCss.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/nullCss.css">
+    <link rel="stylesheet" href="/css/main.css">
 
-    <link rel="stylesheet" href="css/settingsAccountUser.css">
-    <link rel="stylesheet" href="css/UserMenu.css">
-
-
+    <link rel="stylesheet" href="/css/UserMain.css">
 
 </head>
 
@@ -34,7 +31,7 @@
     </div>
     <div class="popup__container">
         <div class="settingsAccountUser-body userPopup">
-			<form method="POST" action="?option=AccountController&method=saveUserSettings">
+			<form method="POST" action="/UserController/save"">
 				<div class="settingsAccountUser-body__info userPopup__title">
 					Настройки аккаунта:
 				</div>

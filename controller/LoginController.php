@@ -103,6 +103,61 @@
             return True;
         }
 
+        public function saveUserSettings() {
+
+            $user = $this->db->db->query("SELECT * FROM user WHERE `id` = ". $_SESSION['user']['id']);
+
+            if (strlen($_POST['first_name']) == 0) {
+                $first_name = $_SESSION['user']['first_name'];
+            } else {
+                if (preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$_POST['first_name'])) {
+                    $_SESSION['error']['first_name_message'] = 'Имя содержит запрещенные знаки';
+                    return False;
+                }
+                $first_name = $_POST['first_name'];
+            }
+
+            if (strlen($_POST['second_name']) == 0) {
+                $second_name =  $_SESSION['user']['second_name'];
+            } else {
+                if (preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$_POST['second_name'])) {
+                    $_SESSION['error']['second_name_message'] = 'Фамилия содержит запрещенные знаки';
+                    return False;
+                }
+                $second_name = $_POST['second_name'];
+            }
+
+            $this->db->db->execute("UPDATE user SET `first_name` = '$first_name', `second_name` = '$second_name' WHERE id = " . $_SESSION['user']['id']);
+
+            $_SESSION["user"]['first_name'] = $first_name;
+            $_SESSION["user"]['second_name'] = $second_name;
+
+            $npass = $_POST['new_pass'];
+            $npassr = $_POST['new_pass_repeat'];
+
+            if ($user[0]["password"] != $_POST['old_pass']) {
+                $_SESSION['error']['pass_message'] = 'Неверный пароль';
+                return False;
+            }
+            if($npass != $npassr){
+                $_SESSION['error']['pass_message'] = 'Пароли не совпадают';
+                return False;
+            }else{
+                $class = "item-lite";
+                $user_id = $_SESSION["user"]["id"];
+                $message = "Ваш пароль изменен";
+
+                $date = date("d.m.Y");
+                $time = date("H:i");
+
+                $this->db->db->execute("INSERT INTO `notifications`(`id`, `user_id`, `class`, `body`, `date`, `time`, `is_checked`) VALUES (NULL,'$user_id','$class','$message','$date','$time','0')");
+
+                $this->db->db->execute("UPDATE user SET `password` = '$npass' WHERE id = " . $_SESSION['user']['id']);
+                unset($_SESSION['error']['pass_message']);
+            }
+            return true;
+        }
+
         public function logout() {
             unset($_SESSION['user']);
         }
