@@ -206,7 +206,7 @@
             $current_date_2 = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 2, date('Y')));
             $current_date_1 = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 1, date('Y')));
             $current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
-            $result = $this->db->query("select give_money, achivment_date from clients where `achivment_date` between date_sub(now(),INTERVAL 1 WEEK) and now() ORDER BY achivment_date");
+            $result = $this->db->query("select give_money, achivment_date from clients where `achivment_date` between *date_sub(now(),INTERVAL 1 WEEK) and now()) and `creator_id` = ". $_SESSION['user']['id'] ." ORDER BY achivment_date");
             $array = array_fill(0, 7, 0);
             foreach ($result as $item) {
                 if ($item['achivment_date'] == $current_date) {

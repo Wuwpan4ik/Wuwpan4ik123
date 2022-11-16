@@ -107,7 +107,7 @@
             </div>
             <div class="Сourse-form">
                 <div class="Сourse-back userPopup__button courseBackBtn">
-                    <button>Назад</button>
+                    <button class="backToCourse">Назад</button>
                 </div>
                 <div class="Сourse-question userPopup__button questionBtn">
                     <button>Есть вопросы?</button>
@@ -239,7 +239,7 @@
                     </div>
                     <div class="question-form">
                         <div class="Сourse-back userPopup__button questionBack">
-                            <button>Назад</button>
+                            <button class="courseBackBtn">Назад</button>
                         </div>
                         <div class="Сourse-question userPopup__button">
                             <button>Перейти к оплате</button>
