@@ -12,6 +12,25 @@
             return $result;
         }
 
+        public function getNotifications($user_id) {
+            $result = $this->db->query("SELECT * FROM notifications WHERE `user_id` = '$user_id' AND `is_checked` = 0");
+            return $result;
+        }
+
+        public function getCourseVideo($id) {
+            $result = $this->db->query("SELECT  
+                                                content.name AS 'content_name',
+                                                content.description AS 'content_description',
+                                                content.video,
+                                                content.query_id,
+                                                user_info.avatar,
+                                                user_info.first_name
+                                                FROM `course_content` AS content
+                                                INNER JOIN `course` AS course ON content.course_id = course.id
+                                                INNER JOIN `user` AS user_info ON course.author_id = user_info.id WHERE content.id = '$id'");
+            return $result;
+        }
+
         public function getTariffs () {
             $result = $this->db->query("SELECT * FROM tariffs");
             return $result;
@@ -46,16 +65,17 @@
         {
             $purchases = $this->db->query("SELECT `purchase` FROM `purchase` WHERE user_id = " . $_SESSION['user']['id'])[0]['purchase'];
             $purchases_array = json_decode($purchases, true)['course_id'];
-            $course_query = "SELECT course.id, course.name, course.description, course.author_id, count(course_content.id) as 'count' FROM course INNER JOIN course_content on course_content.course_id = course.id WHERE ($author_id = course.author_id) AND(";
+            $course_query = "SELECT course.id, course.name, course.description, course.author_id, count(course_content.id) as 'count' FROM course INNER JOIN course_content on course_content.course_id = course.id WHERE (";
             foreach ($purchases_array as $course_id) {
                 $course_query .= " course.id = $course_id ";
                 if (count($purchases_array) != 1) {
                     $course_query .= " OR ";
                 } else {
-                    $course_query .= ")";
+                    $course_query .= ") GROUP BY course_id";
                 }
                 array_shift($purchases_array);
             }
+            $_SESSION['dwdwd'] = $course_query;
             $courses = $this->db->query($course_query);
             return $courses;
         }
@@ -70,7 +90,7 @@
                 if (count($purchases_array) != 1) {
                     $course_query .= " OR ";
                 } else {
-                    $course_query .= ")";
+                    $course_query .= ") GROUP BY course_id";
                 }
                 array_shift($purchases_array);
             }
@@ -79,7 +99,7 @@
         }
 
         public function getContentForCourseListPage($course_id){
-            $course_query = "SELECT course_content.id, course_content.name, course_content.description, course_content.video FROM course_content WHERE ($course_id = course_content.course_id)";
+            $course_query = "SELECT course_content.id, course_content.description, course_content.name, course_content.description, course_content.video FROM course_content WHERE ($course_id = course_content.course_id)";
             $courses = $this->db->query($course_query);
             return $courses;
         }

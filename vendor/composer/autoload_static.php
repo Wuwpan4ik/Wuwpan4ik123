@@ -51,6 +51,7 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'LoginController' => __DIR__ . '/../..' . '/controller/LoginController.php',
         'Main' => __DIR__ . '/../..' . '/pages/Main.php',
         'MessengerController' => __DIR__ . '/../..' . '/controller/MessengerController.php',
+        'NotificationsController' => __DIR__ . '/../..' . '/controller/NotificationsController.php',
         'PHPMailer\\PHPMailer\\Exception' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/Exception.php',
         'PHPMailer\\PHPMailer\\OAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuth.php',
         'PHPMailer\\PHPMailer\\OAuthTokenProvider' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuthTokenProvider.php',

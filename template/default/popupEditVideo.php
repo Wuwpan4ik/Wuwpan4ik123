@@ -49,10 +49,7 @@
             </div>
             <div class="popup__body-block">
                 <div class="popup__body-item">
-                    <div class="popup__body-item__button">
-                        <button class="button-end" type="button">Конец видео</button>
-                    </div>
-                    <label for="first_do">Дейсвтие после просмотра:</label>
+                    <label for="first_do">Дейсвтие после нажатия:</label>
                     <select name="first_do" id="first_do">
                         <option value="list" selected>Список уроков</option>
                         <option value="form">Форма заявки</option>
@@ -64,12 +61,13 @@
                         <label for="form_id display-none">Составляющие формы:</label>
                         <button class="addFormInput" id="first_do-list" onclick="addFormItem(this)" type="button"><img src="../../img/add.png"> Добавить поле</button>
                     </div>
+                    <label>Текст для кнопки:</label>
+                    <input id="button_text" class="videoname video-desc button_text" disabled>
                 </div>
                 <div class="popup__body-item">
-                    <label class="second_do" for="second_do">После нажатия на кнопку:</label>
-                    <select class="second_do" name="second_do" id="second_do">
-                        <option value="list" selected>Список уроков</option>
-                        <option value="form">Форма заявки</option>
+                    <label for="second_do">После нажатия на кнопку:</label>
+                    <select name="second_do" id="second_do">
+                        <option value="form" selected>Отправить файл</option>
                         <option value="pay_form">Форма оплаты</option>
                         <option value="link">Переход по ссылке</option>
                         <option value="next_lesson">Открыть следующий урок</option>

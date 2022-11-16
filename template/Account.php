@@ -253,6 +253,7 @@
                 request.send();
             });
         </script>
+        <script src="/js/getNotifications.js"></script>
 
   </body>
 

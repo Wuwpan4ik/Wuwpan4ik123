@@ -1,5 +1,5 @@
 <?php
-class SettingsAccountUser extends ACore
+class SettingsAccountUser extends ACoreGuess
 {
     public function get_content() {
 

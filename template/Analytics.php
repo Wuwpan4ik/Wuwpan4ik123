@@ -185,7 +185,7 @@
       if (request1.readyState === 4 && request1.status === 200) {
           const array = JSON.parse(request1.responseText);
           if (array.prev_week == null) {
-              console.log('ud');
+              array.prev_week = 0;
           }
           if (array.week) {
               document.getElementById('this_week').innerHTML = array.week + "₽";
@@ -292,4 +292,5 @@
     </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
 <script src="../js/charts.js"></script>
+  <script src="/js/getNotifications.js"></script>
 </html>

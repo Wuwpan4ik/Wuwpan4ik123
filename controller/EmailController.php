@@ -118,6 +118,11 @@
                 $mail->isHTML(true);
                 $mail->Subject = $title;
                 $mail->Body = $body;
+//                $to      = $this->email;
+//                $subject = $title;
+//                $message = $body;
+//                $headers  = 'MIME-Version: 1.0' . "\r\n";
+//                $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
                 if ($mail->send()) {$result = "success";}
                 else {$result = "allGood";}
@@ -131,20 +136,20 @@
 
         function get_content()
         {
-            echo '<!DOCTYPE html>
-                <html lang="en">
-                <head>
-                <meta charset="UTF-8">
-                <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Document</title>
-                </head>
-                <body>
-                    <script>
-                        window.location.replace("/Analytics");
-                    </script>
-                </body>
-                </html>';
+//            echo '<!DOCTYPE html>
+//                <html lang="en">
+//                <head>
+//                <meta charset="UTF-8">
+//                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+//                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//                <title>Document</title>
+//                </head>
+//                <body>
+//                    <script>
+//                        window.location.replace("/Analytics");
+//                    </script>
+//                </body>
+//                </html>';
         }
 
         function obr()

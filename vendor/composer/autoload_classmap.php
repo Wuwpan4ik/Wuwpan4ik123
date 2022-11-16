@@ -32,6 +32,7 @@ return array(
     'LoginController' => $baseDir . '/controller/LoginController.php',
     'Main' => $baseDir . '/pages/Main.php',
     'MessengerController' => $baseDir . '/controller/MessengerController.php',
+    'NotificationsController' => $baseDir . '/controller/NotificationsController.php',
     'PHPMailer\\PHPMailer\\Exception' => $vendorDir . '/phpmailer/phpmailer/src/Exception.php',
     'PHPMailer\\PHPMailer\\OAuth' => $vendorDir . '/phpmailer/phpmailer/src/OAuth.php',
     'PHPMailer\\PHPMailer\\OAuthTokenProvider' => $vendorDir . '/phpmailer/phpmailer/src/OAuthTokenProvider.php',

@@ -1,6 +1,4 @@
-
 <html>
-
 <head>
 
     <meta charset="utf-8">
@@ -34,7 +32,6 @@
             <div class="aboutTheAuthor userPopup__body">
                 <div class="popup__allLessons-body">
                     <?php
-                    print_r($_SESSION['dwdwd']);
                         foreach ($content['author_page'] as $item) {
                     ?>
                     <div class="popup__allLessons-item ">
@@ -82,39 +79,12 @@
                     <div class="availableToYou availableToYou__body course__List">
                     </div>
                 </div>
-
-            </div>
-            <div class="otherСourses otherСourses-popup">
-                <div class= "otherСourses userPopup__title">
-                    Другие курсы автора:
-                </div>
-                <div class="otherСourses userPopup__body">
-
-                    <div class="otherСourses__body disabled__body">
-                        <div class="popup__allLessons-item otherCourses">
-                            <div class="popup__allLessons-item__header">
-                                <div class="popup-item">
-                                    <div class="popup__allLessons-item-video__img">
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
-                                        <div class="popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="popup__allLessons-item-info">
-                                        <div class="popup__allLessons-item-info-header">
-                                            <div class=" aboutTheAuthor popup__allLessons-item-info-header-number notAvailable-number">
-                                                Курс
-                                            </div>
-                                            <div class="aboutTheAuthor-name">
-                                                22 урока
-                                            </div>
-                                        </div>
-                                        <div class="popup__allLessons-item-info-title">
-                                            Управление гневом внутри себя
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="otherСourses">
+                    <div class= "userPopup__title">
+                        Другие курсы автора:
+                    </div>
+                    <div class="otherСourses userPopup__body">
+                        <div class="otherСourses__body disabled__body">
                         </div>
                     </div>
                 </div>
@@ -243,24 +213,27 @@
             <div class="question  userPopup__body">
                 <div class=" question ">
                     <div class="popup__buy-register">
-                        <div class="popup__buy-body-form question input">
-                            <div class="popup__bonus-form-input-account input-img">
-                                <img src="../img/smallPlayer/account.svg" alt="">
+                        <form method="POST" action="/addQuestions">
+                            <input type="text" name="author_id">
+                            <div class="popup__buy-body-form question input">
+                                <div class="popup__bonus-form-input-account input-img">
+                                    <img src="../img/smallPlayer/account.svg" alt="">
+                                </div>
+                                <input name="name" type="text" placeholder="Ваше имя">
                             </div>
-                            <input type="text" placeholder="Ваше имя">
-                        </div>
-                        <div class="popup__buy-body-form question input">
-                            <div class="popup__bonus-form-input-email input-img">
-                                <img src="../img/smallPlayer/email.svg" alt="">
+                            <div class="popup__buy-body-form question input">
+                                <div class="popup__bonus-form-input-email input-img">
+                                    <img src="../img/smallPlayer/email.svg" alt="">
+                                </div>
+                                <input name="email" type="email" placeholder="Ваш email">
                             </div>
-                            <input type="text" placeholder="Ваш email">
-                        </div>
-                        <div class="popup__buy-body-form question-textarea">
-                            <div class="popup__bonus-form-input-email input-img">
-                                <img src="../img/smallPlayer/email.svg" alt="">
+                            <div class="popup__buy-body-form question-textarea">
+                                <div class="popup__bonus-form-input-email input-img">
+                                    <img src="../img/smallPlayer/email.svg" alt="">
+                                </div>
+                                <textarea name="question" placeholder="Ваш вопрос"></textarea>
                             </div>
-                            <textarea placeholder="Ваш вопрос"></textarea>
-                        </div>
+                        </form>
                     </div>
                     <div class="question-form">
                         <div class="Сourse-back userPopup__button questionBack">
@@ -348,6 +321,11 @@ unset($_SESSION['course_id']);
         requestDisable.addEventListener("readystatechange", () => {
             if (requestDisable.readyState === 4 && requestDisable.status === 200) {
                 document.querySelector('.disabled__body').innerHTML = requestDisable.responseText;
+                console.log(requestDisable.responseText.length)
+                if (requestDisable.responseText.length === 0) {
+                    document.querySelector('.otherСourses').style = 'display:none;';
+                    return false;
+                }
                 let otherCourses = document.body.querySelectorAll('.otherCourses');
                 otherCourses.forEach(item => {
                     item.onclick = function () {

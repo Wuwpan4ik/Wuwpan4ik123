@@ -30,9 +30,9 @@
     $router->addRoute("/UserNotifications", "UserNotifications.php");
     $router->addRoute("/UserContacts", "UserContacts.php");
     $router->addRoute("/UserMenu", "UserMenu.php");
-    $router->addRoute("/UserPlayer", "UserPlayer.php");
+    $router->addRoute("/UserPlayer/$item_id", "UserPlayer.php");
     $router->addRoute("/AboutTheAuthor", "AboutTheAuthor.php");
-    $router->addRoute("/SettingsAccountUser", "SettingsAccountUser.php");
+    $router->addRoute("/UserAccount", "SettingsAccountUser.php");
     $router->addRoute("/Project", "Project.php");
 
     $router->addRoute("/Course", "Course.php");
@@ -81,6 +81,10 @@
     $router->addRoute("/UserController/buyCourse", "UserController.php", 'BuyCourse');
     $router->addRoute("/UserController/buyVideo", "UserController.php", 'BuyVideo');
     $router->addRoute("/UserController/getVideoInfo", "UserController.php", 'getBuyVideo');
+    $router->addRoute("/UserController/save", "LoginController.php", 'saveUserSettings');
+
+    $router->addRoute("/addQuestion", "ContactController.php", "SendQuestion");
+    $router->addRoute("/getNotifications", "NotificationsController.php", "getNotifications");
 
 
     $router->route("/$url");

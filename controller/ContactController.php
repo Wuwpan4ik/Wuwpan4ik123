@@ -4,7 +4,8 @@ class ContactController extends ACoreCreator {
 	public function SendQuestion() {
 		    $uid = $_SESSION["user"]["id"];
 			$question = $_POST["question"];
-			$this->m->db->execute("INSERT INTO `contact` (`user_id`, `author_id`, `body`) VALUES ('$uid', '34', '$question')");
+            $author_id = $_POST['author_id'];
+			$this->m->db->execute("INSERT INTO `contact` (`user_id`, `author_id`, `body`) VALUES ('$uid', `$author_id`, '$question')");
         }
 
     function get_content()

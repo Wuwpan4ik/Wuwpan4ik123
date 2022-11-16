@@ -1524,7 +1524,7 @@ td, th {
 }
 
 .display-none {
-  display: none;
+  display: none !important;
 }
 
 .button-edit {

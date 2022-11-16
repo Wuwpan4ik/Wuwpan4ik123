@@ -7,23 +7,15 @@ const form = document.querySelector('#popup__body-form');
 const id_item = document.querySelector('#id_item');
 const first_select = document.querySelector('#first_do');
 const second_select = document.querySelector('#second_do');
-const button_name = document.querySelector('#video_name');
-const popup_button = document.querySelector('.button-video');
-let count_first_select = 1;
-let count_second_select = 3;
 // Поля option в форме
 const names_option = {'email': "Email", 'name': "Имя", 'tel': "Телефон"};
 
-function addPopup(input, button = false) {
+function addPopup(input) {
     if (input === 'list') {
 
         let request = new XMLHttpRequest();
 
-        let class_name = 'video';
-        if (button) {
-            class_name = 'button';
-        }
-        if (document.querySelector('.test__block-' + class_name)) document.querySelector('.test__block-'+ class_name).remove()
+        if (document.querySelector('.test__block')) document.querySelector('.test__block').remove()
 
         let url = "/PopupController/get_popup?category=" + input + "&id=" + new URL(window.location.href).searchParams.get("id");
         let funnel_id = document.querySelector('#id_item').value;
@@ -35,23 +27,17 @@ function addPopup(input, button = false) {
             if (request.readyState === 4 && request.status === 200) {
                 var html = document.createElement('div');
                 html.classList.add('test__block');
-                html.classList.add('test__block-' + class_name);
                 html.innerHTML = request.responseText;
                 document.querySelector('.slider__video').after(html);
             }
         });
         request.send();
     } else if(['form', 'pay_form'].includes(input)) {
-        let class_name = 'video';
-        if (button) {
-            class_name = 'button';
-        }
-        if (document.querySelector('.test__block-' + class_name)) document.querySelector('.test__block-'+ class_name).remove()
+        if (document.querySelector('.test__block')) document.querySelector('.test__block').remove()
         var html = document.createElement('div');
         html.classList.add('test__block');
-        html.classList.add('test__block-' + class_name);
-        let div = `<div class="overlay-bonus overlay overlay-`+ class_name +`">
-                                <div class="popup__bonus  popup popup-`+ class_name +`">
+        let div = `<div class="overlay-bonus overlay">
+                                <div class="popup__bonus popup">
                                     <div class="popup__bonus-body">`;
 
         if (input === 'form') {
@@ -63,11 +49,7 @@ function addPopup(input, button = false) {
         }
         let form_inputs = '';
 
-        if (class_name === 'video') {
-            form_inputs = document.querySelector('#popup__body-form-1').querySelectorAll('.form_id');
-        } else {
-            form_inputs = document.querySelector('#popup__body-form-2').querySelectorAll('.form_id');
-        }
+        form_inputs = document.querySelector('#popup__body-form-1').querySelectorAll('.form_id');
 
         form_inputs.forEach((elem) => {
             div += `<div class="popup__bonus-form-input input">
@@ -225,7 +207,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     second_select.addEventListener('change', function () {
         if (['list'].includes(second_select.value)) {
-            console.log('list')
             addPopup('list', true);
         }
 
@@ -257,15 +238,21 @@ document.addEventListener('DOMContentLoaded', function () {
             let videos = item.parentElement.parentElement.querySelector('.media-cart-img').cloneNode(true);
             let title = item.parentElement.parentElement.querySelector('input[name="name"]').value;
             let desc = item.parentElement.parentElement.querySelector('input[name="description"]').value;
+            let button_text = item.parentElement.parentElement.querySelector('input[name="button_text"]').value;
             if (title.length === 0) {
                 title = 'Укажите заголовок';
             }
             if (desc.length === 0) {
                 desc = 'Укажите описание';
             }
+            if (button_text.length === 0) {
+                button_text = 'Клик';
+            }
             document.querySelector('.popup-video').appendChild(videos);
             document.querySelector('.slider__item-title').innerHTML = title;
             document.querySelector('.slider__item-text').innerHTML = desc;
+            document.querySelector('#button_text').value = button_text;
+            document.querySelector('.button-click').innerHTML = button_text;
 
             id_item.value = item.parentElement.querySelector('input[type="hidden"]').value;
             entryDisplay.classList.toggle('display-flex');
@@ -273,12 +260,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
         });
     });
-    document.querySelector('.slider__item').addEventListener('click', function (elem){
-        document.querySelector('.popup').classList.remove('active');
-        setTimeout(function () {
-            document.querySelector('.overlay').classList.remove('active');
-        }, (500));
-    });
+
+    document.querySelectorAll('.button-add-button-edit').forEach((elem) => {
+        elem.addEventListener('click', function () {
+            elem.classList.add('display-none');
+            elem.parentElement.querySelectorAll('.button__do-block').forEach((elem) => {
+                elem.classList.toggle('display-none');
+            })
+            document.querySelector('.popup__edit-button').classList.remove('display-none');
+            let button_name = elem.parentElement.querySelector('.button_text');
+            let popup_button = document.querySelector('.button-video');
+            button_name.addEventListener('input', function () {
+                popup_button.innerHTML = this.value;
+                popup_button.classList.remove('display-none');
+                document.querySelectorAll('.second_do').forEach((elem) => {
+                    elem.classList.add('display-block');
+                    if (['form', 'pay_form'].includes(second_select.value)) {
+                        document.querySelector('#popup__body-form-2').style.display = 'flex';
+                    }
+                })
+            })
+        })
+    })
 
     close.addEventListener('click', function () {
         toggleOverflow();
