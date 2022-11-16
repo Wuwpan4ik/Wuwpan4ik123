@@ -111,6 +111,19 @@
                                         <div class="profit_footer">На  <span id="month_diff"></span> <span id="month_diff-text"></span></div>
                                     </div>
                                 </div>
+                                <div class="profit__row">
+                                    <div class="profit__item">
+                                        <div class="profit_header"><h3>Доход на одного пользователя</h3></div>
+                                        <div class="profit_sum"><span id="one__user"></span>
+                                        </div>
+                                    </div>
+                                    <div class="profit__item profit_down">
+                                        <div class="profit_header"><h3>Доход за месяц</h3><span>Месяц</span></div>
+                                        <div class="profit_sum"><span id="this_month"></span> <span class="red_profit">4.16%</span>
+                                        </div>
+                                        <div class="profit_footer">На  <span id="month_diff"></span> <span id="month_diff-text"></span></div>
+                                    </div>
+                                </div>
                                 <div class="allprofit">
                                     <div class="profit_header"><h3>Общий доход</h3><div class="profit_header_dots"></div>
                                     </div>
@@ -201,10 +214,12 @@
           }
           if (array.full_value) {
               document.getElementById('full_week_value').innerText = array.week + "₽";
-          }
-          if (array.full_value) {
               document.getElementById('full_value').innerText = array.full_value + "₽";
           }
+          if (array.one_user) {
+              document.getElementById('one__user').innerText = array.one_user + "₽";
+          }
+
           let week_diff = array.week - array.prev_week;
           let month_diff = array.month - array.prev_month;
 

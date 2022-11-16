@@ -197,6 +197,16 @@
             return $sum;
         }
 
+        public function GetOneUserValue()
+        {
+            $sum = 0;
+            $result = $this->db->query("SELECT give_money from clients WHERE `creator_id` = " . $_SESSION['user']['id']);
+            foreach ($result as $item) {
+                $sum += $item['give_money'];
+            }
+            return $sum / count($result);
+        }
+
         public function GetWeekGraph()
         {
             $current_date_6 = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 6, date('Y')));

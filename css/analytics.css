@@ -451,6 +451,13 @@ th {
     gap: 20px;
 }
 
+.profit__leftSide {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
 .profit__item {
     width: 320px;
     border: 1px solid #E1E3E6;
@@ -578,7 +585,6 @@ span.red_text {
     border: 1px solid #E1E3E6;
     border-radius: 8px;
     padding: 24px;
-    margin-top: 24px;
     -webkit-box-shadow: 0px 0px 4px #E1E3E6;
     box-shadow: 0px 0px 4px #E1E3E6;
 }

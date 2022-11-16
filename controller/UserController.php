@@ -201,7 +201,7 @@ class UserController extends ACoreCreator
 
         if (count($client) == 1){
             if ($client[0]['buy_progress'] < $buy_progress[$comment]) {
-                $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]', `give_money` = '$give_money' WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
+                $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]', `give_money` = '$give_money', `first_buy` = 0 WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
             }
         } else {
             $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], $give_money);
@@ -234,7 +234,7 @@ class UserController extends ACoreCreator
 
         if (count($client) == 1){
             if ($client[0]['buy_progress'] <= $buy_progress[$comment]) {
-                $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]', `give_money` = '$give_money' WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
+                $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]', `give_money` = '$give_money', `first_buy` = 0 WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
             }
         } else {
             $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], $give_money);

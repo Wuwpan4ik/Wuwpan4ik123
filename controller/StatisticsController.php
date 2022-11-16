@@ -17,9 +17,15 @@
             return $this->m->GetPrevWeekValue();
         }
 
+        function GetOneUserValue(){
+            return $this->m->GetOneUserValue();
+        }
+
+
         public function GetAllStatistics() {
             $result = ["prev_week" => $this->GetPrevWeekStatistics(), "week" => $this->GetWeekStatistics(),
-                "prev_month" => $this->GetPrevMonthsStatistics(), "month" => $this->GetMonthsStatistics(), "full_value" => $this->m->GetFullValue()];
+                "prev_month" => $this->GetPrevMonthsStatistics(), "month" => $this->GetMonthsStatistics(), "full_value" => $this->m->GetFullValue(),
+                "one_user" => $this->GetOneUserValue()];
             echo json_encode($result);
         }
 
