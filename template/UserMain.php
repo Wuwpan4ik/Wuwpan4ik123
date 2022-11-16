@@ -18,9 +18,11 @@
                 <div class="user__logo-text">Центр Ратнера</div>
             </div>
             <div class="header-main__burger">
-                <div class="main__burger">
-                    <span></span>
-                </div>
+                <a href="/UserMenu">
+                    <div class="main__burger">
+                        <span></span>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
