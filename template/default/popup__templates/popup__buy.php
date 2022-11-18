@@ -32,7 +32,7 @@
                     <div class="popup__buy-price-title">
                         Стоимость урока:
                     </div><div class="popup__buy-price-cost">
-                        250 руб.
+                        250 ₽
                     </div>
                 </div>
                 <div class="popup__buy-register">

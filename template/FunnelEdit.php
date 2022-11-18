@@ -18,6 +18,100 @@
 
 <body>
 
+<style>
+    .input__wrapper {
+        text-align: center;
+    }
+
+    .input__file {
+        display: none;
+    }
+
+    .input__file-icon-wrapper {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        margin: 8px;
+        width: 100%;
+    }
+
+    .inputfile-box {
+        position: relative;
+    }
+
+    .file-box {
+        display: inline-block;
+        width: 100%;
+        padding: 5px 0px 5px 5px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        color: #000;
+        height: calc(2rem - 2px);
+    }
+
+    .input__file-button-text {
+        line-height: 1;
+        margin-top: 1px;
+    }
+
+    .input__file-button {
+        width: 132px;
+        height: 60px;
+        background: -webkit-gradient(linear, left top, left bottom, from(#08B395), to(#0C977F));
+        background: -o-linear-gradient(top, #08B395 0%, #0C977F 100%);
+        background: linear-gradient(180deg, #08B395 0%, #0C977F 100%);
+        font-size: 1.125rem;
+        font-weight: 700;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        justify-content: center;
+        border-radius: 3px;
+        cursor: pointer;
+        margin: 0 auto;
+    }
+
+    .avatar {
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        flex-direction: column;
+        margin: 32px 0 0 0;
+    }
+
+    .avatar-body {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        width: 100%;
+        overflow: hidden;
+        gap: 5px;
+    }
+
+    #file-name {
+        font-size: 20px;
+        font-weight: 600;
+    }
+</style>
+
 <div class="Project">
 
     <?php include 'default/sidebar.php';?>
@@ -85,6 +179,13 @@
 <?php include 'default/popupEditVideo.php';?>
 
 <script type="text/javascript" src="../js/button__settings.js"></script>
+<script>
+    function uploadFile(target) {
+
+        document.getElementById("file-name").innerHTML = (target.files[0].name);
+        document.getElementById("file-size").innerHTML = Math.round(target.files[0].size / 1024) + "кБ" ;
+    }
+</script>
 <script>
     function _(abc) {
         return document.getElementById(abc);

@@ -131,7 +131,7 @@
             </div>
             <div class="AllLessons-form">
                 <div class="userPopup__button buy__course-btn">
-                    <button type="button" class="button__buy-course">Купить весь курс за <span class="course__price"></span> руб.</button>
+                    <button type="button" class="button__buy-course">Купить весь курс за <span class="course__price"></span> ₽</button>
                 </div>
                 <div class=" AllLessons userPopup__button allLessonsBackBt">
                     <button>Пока не хочу покупать</button>
@@ -171,7 +171,7 @@
                     </div>
                     <div class="youChosen-info">
                         Стоимость <span class="course__buy-text"></span>:
-                        <span><span class="course__price video__price-buy"></span> руб.</span>
+                        <span><span class="course__price video__price-buy"></span> ₽</span>
                     </div>
                     <form class="form__buy-course-video" method="POST" action="/UserController/buyCourse">
                         <input hidden="hidden" type="text" name="creator_id" value="" id="creator_id">

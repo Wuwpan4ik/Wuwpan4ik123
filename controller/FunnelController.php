@@ -105,8 +105,7 @@
                 }
             }
             switch ($_POST['second_do']) {
-                case "pay_form":
-                case "form": {
+                case "pay_form": {
                     if (isset($_POST['form_id-4'])) {
                         $form_input_1 = $_POST['form_id-4'];
                         $videoBtnHTML['second_do'][$second_do] = [$form_input_1];
@@ -135,6 +134,9 @@
                 case 'next_lesson': {
                     $videoBtnHTML['second_do']['next_lesson'] = true;
                     break;
+                }
+                case '': {
+                    $videoBtnHTML['second_do']['file'] = $_POST['file'];
                 }
             }
             $videoBtnHTMLResult = json_encode($videoBtnHTML);

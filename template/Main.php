@@ -61,7 +61,7 @@
 
                     <p>Эта неделя<img class="index_ico" src="img/ArrowUp.svg"></p>
 
-                    <h3 id="this_week">0 Руб.</h3>
+                    <h3 id="this_week">0 ₽</h3>
 
                 </div>
 
@@ -77,7 +77,7 @@
 
                     <p>Прошлая неделя<img class="index_ico" src="img/ArrowUp.svg"></p>
 
-                    <h3 id="prev_week">0 Руб.</h3>
+                    <h3 id="prev_week">0 ₽</h3>
 
                 </div>
 
@@ -85,7 +85,7 @@
 
                     <p>Прошлый месяц<img class="index_ico" src="img/ArrowDown.svg"></p>
 
-                    <h3 id="prev_month">0 Руб.</h3>
+                    <h3 id="prev_month">0 ₽</h3>
 
                 </div>
 

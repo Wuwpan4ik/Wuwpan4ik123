@@ -71,10 +71,35 @@
                         <option value="pay_form">Форма оплаты</option>
                         <option value="link">Переход по ссылке</option>
                         <option value="next_lesson">Открыть следующий урок</option>
+                        <option value="file">Отправить файл</option>
                     </select>
                     <div class="popup__body-item display-none" id="popup__body-form-2">
                         <label for="form_id">Составляющие формы:</label>
-                        <button class="addFormInput" id="second_do-list" onclick="addFormItem(this)" type="button"><img src="../../img/add.png"> Добавить поле</button>
+                        <button class="addFormInput" id="second_do-list" onclick="addFormItem(this)" type="button"><img src="/img/add.png"> Добавить поле</button>
+                    </div>
+                    <div class="popup__body-item" id="popup__body-file">
+                        <label for="second_do-list">Файл:</label>
+                        <div class="avatar">
+                            <div class="avatar-body">
+                                <img src="/img/saveAvatar.svg" alt="">
+                                <div class="avatar-body__info">
+                                    <span id="file-name" class="file-box">Название файла</span>
+                                    <span id="file-size" class="file-box">0 кб из доступных 5мб</span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="input__wrapper">
+                                <input  accept="image/img, image/jpeg, image/png" name="file" type="file" id="input__file" class="input input__file" onchange='uploadFile(this)' multiple>
+                                <label for="input__file" class="input__file-button">
+
+                                    <span class="input__file-icon-wrapper"><img class="input__file-icon" src="/img/plus.svg"  width="25"></span>
+                                    <span class="input__file-button-text">Добавить</span>
+                                </label>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,9 +1,9 @@
 <?php
     if (!class_exists('PHPMailer\PHPMailer\Exception'))
     {
-        require './vendor/phpmailer/phpmailer/src/PHPMailer.php';
-        require './vendor/phpmailer/phpmailer/src/SMTP.php';
-        require './vendor/phpmailer/phpmailer/src/PHPMailer.php';
+        require '/vendor/phpmailer/phpmailer/src/PHPMailer.php';
+        require '/vendor/phpmailer/phpmailer/src/SMTP.php';
+        require '/vendor/phpmailer/phpmailer/src/PHPMailer.php';
     }
 
     class EmailController extends ACoreCreator {

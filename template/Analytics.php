@@ -118,11 +118,10 @@
                                         </div>
                                     </div>
                                     <div class="profit__item profit_down">
-                                        <div class="profit_header"><h3>Доход за месяц</h3><span>Месяц</span></div>
-                                        <div class="profit_sum"><span id="this_month"></span> <span class="red_profit">4.16%</span>
+                                        <div class="profit_header"><h3>Новые пользователи/мес</h3></div>
+                                        <div class="profit_sum"><span id="first__buy-count"></span>
                                         </div>
-                                        <div class="profit_footer">На  <span id="month_diff"></span> <span id="month_diff-text"></span></div>
-                                    </div>
+                                        </div>
                                 </div>
                                 <div class="allprofit">
                                     <div class="profit_header"><h3>Общий доход</h3><div class="profit_header_dots"></div>
@@ -197,18 +196,18 @@
   request1.addEventListener("readystatechange", () => {
       if (request1.readyState === 4 && request1.status === 200) {
           const array = JSON.parse(request1.responseText);
+
           if (array.prev_week == null) {
               array.prev_week = 0;
           }
-          if (array.week) {
-              document.getElementById('this_week').innerHTML = array.week + "₽";
+
+          if (array.prev_month == null) {
+              array.prev_month = 0;
           }
-          if (array.month) {
-              document.getElementById('this_month').innerHTML = array.month + "₽";
-          }
-          if (array.prev_week) {
-              document.getElementById('last_week').innerHTML = array.prev_week + "₽";
-          }
+
+          console.log(array)
+          document.getElementById('this_week').innerHTML = array.week + "₽";
+          document.getElementById('this_month').innerHTML = array.month + "₽";
           if (array.prev_month) {
               document.getElementById('last_month').innerHTML = array.prev_month + "₽";
           }
@@ -218,6 +217,9 @@
           }
           if (array.one_user) {
               document.getElementById('one__user').innerText = array.one_user + "₽";
+          }
+          if (array.count_first_buy) {
+              document.getElementById('first__buy-count').innerText = array.count_first_buy;
           }
 
           let week_diff = array.week - array.prev_week;

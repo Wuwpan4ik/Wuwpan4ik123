@@ -30,7 +30,7 @@
         </div>
         <div class="popup__allLessons-form">
             <div class="popup__allLessons-form-buy button-open">
-                <button class="button button-buy">Купить весь курс за <?php print_r($content['course_sum']) ?> руб.</button>
+                <button class="button button-buy">Купить весь курс за <?php print_r($content['course_sum']) ?> ₽</button>
             </div>
             <div class="popup__allLessons-form-notBuy">
                 <button class="button button-notBuy">Пока не хочу покупать</button>
