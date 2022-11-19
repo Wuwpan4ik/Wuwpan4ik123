@@ -25,7 +25,7 @@
         </div>
     </div>
     <div class="popup__container">
-        <div class=" aboutTheAuthor userPopup  ">
+        <div class=" aboutTheAuthor userPopup ">
             <div class="aboutTheAuthor userPopup__title">
                 Выберите автора:
             </div>
@@ -36,18 +36,18 @@
                     ?>
                     <div class="popup__allLessons-item ">
                         <div class="popup__allLessons-item__header">
-                            <div class="popup-item">
-                                <div class="popup__allLessons-item-video">
+                            <div class="aboutTheAuthor popup-item">
+                                <div class=" popup__allLessons-item-video">
                                     <div class="popup__allLessons-item-video__img">
-                                        <img src="../img/smallPlayer/Group1426.png" alt="">
-                                        <div class="popup__allLessons-item-video-play">
+                                        <img class="aboutTheAuthor video__img" src="../img/author.jpg" alt="">
+                                        <div  class=" popup__allLessons-item-video-play">
                                             <img src="../img/smallPlayer/play.png" alt="">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="popup__allLessons-item-info">
+                                <div class="aboutTheAuthor popup__allLessons-item-info">
                                     <div class="popup__allLessons-item-info-header">
-                                        <div class=" aboutTheAuthor popup__allLessons-item-info-header-number available-number">
+                                        <div class=" aboutTheAuthor available-number">
                                             Автор
                                         </div>
                                         <div class="aboutTheAuthor-name">
@@ -57,6 +57,11 @@
                                     <div class="popup__allLessons-item-info-title">
                                         <?=$item['name']?>
                                     </div>
+                                    <div class="aboutTheAuthor__info-text hide-content">
+                                        Задача организации, в особенности же убеждённость
+                                        некоторых оппонентов требует определения и уточнения вывода
+                                        некоторых оппонентов требует определения и уточнения вывода
+                                        некоторых оппонентов требует определения и уточнения вывода</div>
                                 </div>
                             </div>
                             <div class="aboutTheAuthor-button availableСoursesBtn">
@@ -93,12 +98,12 @@
                 </div>
             </div>
         </div>
-        <div class="Course userPopup active">
+        <div class="Course userPopup active ">
             <div class="Course userPopup__title">
                 Управление гневом внутри себя
             </div>
             <div class="Course userPopup__body">
-                <div class=" Course ">
+                <div class=" Course  ">
                     <div class=" Course availableToYou__body lesson__list">
                         <div class="popup__allLessons-item__header">
                             <div class="Course-item popup-item">
@@ -179,23 +184,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <div class=" Course  userPopup  ">
             <div class="Course userPopup__title">
                 Управление гневом внутри себя
@@ -505,23 +493,64 @@ unset($_SESSION['course_id']);
         });
         request.send();
     }
+
+
     const accordionButton = document.querySelectorAll(".accordion-button");
 
 
 
 
     accordionButton.forEach( item => {
+
+
             item.onclick = function () {
-                    this.forEach( item => {
-                        item.classList.remove('active');
-                        item.parentElement.querySelector(".accordion-content").classList.remove('active');
+
+                item.classList.toggle('active');
+                item.parentElement.querySelectorAll(".accordion-content").forEach( el => {
+                    el.classList.toggle('active');
+                })
+                if(item.classList.contains('active')){
+                    accordionButton.forEach(el => {
+                        el.classList.remove('active');
+                        el.parentElement.querySelectorAll(".accordion-content").forEach( el => {
+                            el.classList.remove('active');
+                        })
+                        item.classList.add('active');
+                        item.parentElement.querySelectorAll(".accordion-content").forEach( el => {
+                            el.classList.add('active');
+                        })
                     })
-                item.classList.add('active')
-                item.parentElement.querySelector(".accordion-content").classList.add('active');
+                }
+
+
             }
 
-
     })
+
+
+    more = function (){
+        let hideContent = document.querySelectorAll('.aboutTheAuthor__info-text');
+        hideContent.forEach(item =>{
+            let height = item.clientHeight
+            if(height >= 47){
+                item.innerHTML+= '<a class="button-more active">Узнать больше</a>'
+                const buttonMore = document.querySelectorAll('.button-more ')
+                buttonMore.forEach(item =>{
+                    item.onclick = function (){
+                        buttonMore.forEach(el =>{
+                            el.classList.add('active');
+                            el.parentElement.classList.add('hide-content');
+                            item.classList.remove('active');
+                            item.parentElement.classList.remove('hide-content');
+                        })
+
+                    }
+                })
+            }
+        })
+    }
+    more()
+
 
 
 

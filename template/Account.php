@@ -11,7 +11,6 @@
 
     <link rel="stylesheet" href="/css/aboutuser.css">
 
-
     <link rel="stylesheet" href="/css/main.css">
 
   </head>
@@ -30,7 +29,7 @@
                 ?>
 
                 <div class="Components">
-
+                    <div class="_container">
                     <div class="AboutUser">
 
                         <h2>Основная информация о вас</h2>
@@ -43,41 +42,92 @@
 
                             <input type="radio" id="About" name="mytabs" checked="checked"/>
 
-                            <label for="About" id="oplab"><p>О Вас</p></label>
+                            <label for="About" id="oplab"><p>Профиль</p></label>
 
                             <div class="tab">
 
                                 <div class="about">
 
                                     <form method="POST" action="/Course-rename/MainSettings">
-
+                                        <h2>Ваши данные</h2>
                                         <div class="field">
-
-                                            <h2>Ваш Email</h2>
-
-                                            <input name="email" class="full" type="email" placeholder="<? echo $_SESSION['user']['email'] ?>"/>
+                                            <input class="half" name="email" class="full" type="email" placeholder="<? echo $_SESSION['user']['email'] ?>"/>
                                             <?php if(isset($_SESSION['error']['email_message'])) echo $_SESSION['error']['email_message'] ?>
+                                            <input class="half" name="num" type="tel" value="+7">
                                         </div>
 
-                                        <h2>Кто вы?</h2>
+                                        <h2>Расскажите о себе</h2>
 
                                         <div class="field">
 
-                                            <input name="first_name" class="half" placeholder="<? echo $_SESSION['user']['first_name'] ?>"/>
+                                            <input name="first_name" class="inf" placeholder="<? echo $_SESSION['user']['first_name'] ?>"/>
 
-                                            <input name="second_name" class="half" placeholder="<? echo $_SESSION['user']['second_name'] ?>"/>
+                                            <input name="second_name" class="inf" placeholder="<? echo $_SESSION['user']['second_name'] ?>"/>
 
+                                            <input name="second_name" class="inf" placeholder="Дата рождения"/>
                                             <?php if(isset($_SESSION['error']['first_name_message'])) echo $_SESSION['error']['first_name_message'] ?>
 
                                             <?php if(isset($_SESSION['error']['second_name_message'])) echo $_SESSION['error']['second_name_message'] ?>
 
                                         </div>
+                                        <h2>Откуда вы?</h2>
+                                        <div class="field">
+                                            <input class="half" type="text" placeholder="Страна">
+                                            <input class="half" type="text" placeholder="Город">
+                                        </div>
 
-                                        <div class="about-btn">
 
-                                            <button id="profile_send" type="submit">Сохранить</button>
+                                    </form>
+
+                                </div>
+                                <div class="ProfileSetting">
+                                    <h2>Действие после нажатия:</h2>
+                                    <script>
+                                        function function_return() {
+                                            document.getElementById("hb").style["display"] = "block";
+                                        }
+                                    </script>
+
+                                    <form method="POST" enctype="multipart/form-data" action="?option=AccountController&method=saveAdditionalSettings">
+
+
+                                        <div class="ProfileSetting-body">
+                                            <div class="ProfileSetting-avatar">
+                                                <img src="<?=$content[0][0]['avatar']?>" id="ava_preload">
+                                                <div class="ProfileSetting-name">
+                                                    Имя
+                                                    Фамилия
+                                                </div>
+                                            </div>
+                                            <div class="avatar">
+                                                <div class="avatar-body">
+                                                    <img src="../img/saveAvatar.svg" alt="">
+                                                    <div class="avatar-body__info">
+                                                        <span id="file-name" class="file-box"></span>
+                                                        <span id="file-size" class="file-box"></span>
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div class="input__wrapper">
+                                                    <input  accept="image/img, image/jpeg, image/png" name="file" type="file" id="input__file" class="input input__file" onchange='uploadFile(this)' multiple>
+                                                    <label for="input__file" class="input__file-button">
+
+                                                        <span class="input__file-icon-wrapper"><img class="input__file-icon" src="./img/plus.svg"  width="25"></span>
+                                                        <span class="input__file-button-text">Добавить</span>
+                                                    </label>
+                                                </div>
+
+                                            </div>
+
+
+
 
                                         </div>
+
+
+
                                     </form>
 
                                 </div>
@@ -86,47 +136,77 @@
 
                             <input type="radio" id="Integrations" name="mytabs"/>
 
-                            <label for="Integrations"><p>Интеграции</p></label>
+                            <label for="Integrations"><p>Настройки</p></label>
 
                             <div class="tab">
 
                                 <div class="prodamus-input">
 
-									<h2>Подключить продамус</h2>
+									<h2>Основные данные о школе</h2>
 
 									<div class="field">
 
-										<input class="half" type="api" placeholder="Вставьте секретный ключ"/>
+										<input class="half" type="text" placeholder="Название"/>
 
-										<input class="half" type="FormPay" placeholder="Адрес платежной формы"/>
+                                        <select class="selector" name="niche" >
+
+                                            <?
+                                            $options = ["Изотерика", "Обучение", "Дизайн", "Политика", "Спорт", "Игры", "Животные"];
+                                            for($i = 0; $i<7; $i++){
+                                                if($options[$i] == $content[0][0]['niche']){?><option selected="selected"><?=$options[$i]?></option>
+                                                <?}else{?><option><?=$options[$i]?></option><?}
+                                            }
+                                            ?>
+
+                                        </select>
 
 									</div>
-
+                                    <h2>Данные вашего тарифа:</h2>
                                     <div class="field">
+                                        <div class="tariff-card">
+                                            <div class="tariff-plan">
+                                                <div class="tariff-price">2 600 ₽</div>
+                                            </div>
+                                            <div class="tariff-name">
+                                                Для новичков
+                                            </div>
+                                            <div class="tariff-img">
+                                                <img src="/img/tarif-Image.jpg" alt="">
+                                            </div>
+                                            <div class="tariff-btn">
+                                                <button>Сменить тариф</button>
+                                            </div>
+                                        </div>
+                                        <div class="tariff-card">
+                                            <div class="tariff-current">
+                                                <div class="tariff-header">
+                                                    <p>Тариф оплачен до:</p>
+                                                    <div class="tariff-price">22.10.2022</div>
+                                                </div>
 
-										<h2>Подключить Send Plus</h2>
-
-										<input class="full" type="api" placeholder="Вставьте секретный ключ"/>
-
-									</div>
-
-									<h2>Другие интеграции</h2>
-
-                                    <div class="field">
-
-										<input class="half" type="api" placeholder="Вставьте секретный ключ"/>
-
-										<input class="half" type="id" placeholder="Ваш id"/>
-
-									</div>
-
+                                            </div>
+                                            <div class="tariff__active-user">
+                                                <p class="text">Активных пользователей:</p>
+                                                <span>200 из 250</span>
+                                            </div>
+                                            <div class="storage-rate">
+                                                <p class="text">Файловое хранилище:</p>
+                                                <div class="storage-rate-body">
+                                                    <input type="text">
+                                                </div>
+                                            </div>
+                                            <div class="tariff-btn">
+                                                <button>Сменить тариф</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
 
                             <input type="radio" id="Tarif" name="mytabs"/>
 
-                            <label for="Tarif" id="cllab"><p>Тарифы</p></label>
+                            <label for="Tarif" id="cllab"><p>Дополнительно</p></label>
 
                             <div class="tab">
 
@@ -161,59 +241,13 @@
                             </div>
 
                         </div>
-
+                        <div class="about-btn">
+                            <button id="profile_send" type="submit">Сохранить</button>
+                        </div>
                     </div>
 
-                    <div class="ProfileSetting">
 
-                        <script>
-                            function function_return() {
-                                document.getElementById("hb").style["display"] = "block";
-                            }
-                        </script>
-
-                        <form method="POST" enctype="multipart/form-data" action="?option=AccountController&method=saveAdditionalSettings">
-
-						<h2>Ваше фото</h2>
-
-                        <div class="input-upload">
-
-							<img src="<?=$content[0][0]['avatar']?>" id="ava_preload">
-
-                            <input id="ava" type="file" name="file_upload" accept=".jpg, .png, .jpeg" onchange="function_return()"/>
-
-							<label class="ava_edit" for="ava"><img src="img/Pen.svg" class="ico"></label>
-
-                        </div>
-
-                        <div class="form-option" style="margin-bottom: 15px;">
-
-                            <div class="OptionProf">
-
-                                <h2>Выберите вашу нишу</h2>
-
-                                <select class="selector" name="niche">
-
-                                    <?
-                                    $options = ["Изотерика", "Обучение", "Дизайн", "Политика", "Спорт", "Игры", "Животные"];
-                                    for($i = 0; $i<7; $i++){
-                                        if($options[$i] == $content[0][0]['niche']){?><option selected="selected"><?=$options[$i]?></option>
-                                        <?}else{?><option><?=$options[$i]?></option><?}
-                                    }
-                                    ?>
-
-                                </select>
-
-                            </div>
-
-                        </div>
-
-                            <button class="ico_button" id="apps" type="submit">Сохранить</button>
-
-                        </form>
-
-                        </div>
-
+                    </div>
                     </div>
 
                 </div>
@@ -254,7 +288,7 @@
             });
         </script>
         <script src="/js/getNotifications.js"></script>
-
+        <script src="/js/printFailName.js" ></script>
   </body>
 
 </html>

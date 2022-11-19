@@ -345,20 +345,31 @@ input:checked + label {
 
 .videoname {
     width: 100%;
-    height: 48px;
+    height: 52px;
     border: 1px solid #E1E3E6;
     border-radius: 8px;
-    margin: 10px 0px;
-    padding: 10px;
-}
+    padding: 20px 10px 0 10px!important;
 
+}
+.video-desc{
+    padding: 25px 10px 0 10px!important;
+}
+.funnel-input{
+    display: flex;
+    gap: 10px;
+}
 .videoname:focus {
     outline: none;
     border: 1px solid #4E73F8;
     -webkit-box-shadow: 0 0 0 4px rgba(31, 45, 207, 0.2);
     box-shadow: 0 0 0 4px rgba(31, 45, 207, 0.2);
 }
-
+.new_name{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0 0 0;
+}
 .new_name button {
     width: 100%;
     height: 48px;
@@ -371,10 +382,9 @@ input:checked + label {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    gap: 12px;
+
     font-size: 18px;
     line-height: 48px;
-    margin-top: 10px;
     color: #FFFFFF;
     border-radius: 8px;
     background: -webkit-gradient(linear, left top, left bottom, from(#6989FE), to(#3C64F4));

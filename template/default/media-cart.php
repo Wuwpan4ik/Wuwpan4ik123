@@ -17,11 +17,11 @@
     </video>
 
     <form method="POST" class="new_name" action="/<?php if(strstr($_SERVER['REQUEST_URI'], 'Course')) {echo 'Course';} else {echo 'Funnel';} ?>/<?=$v['id']?>/rename">
-        <div>
+        <div class="funnel-input">
             <label for="name">Укажите заголовок:</label>
             <input name="name" class="videoname" type="text" value="<?=$v['name']?>">
         </div>
-        <div>
+        <div class="funnel-input">
             <label for="description">Укажите описание:</label>
             <textarea name="description" class="videoname video-desc" value="<?=$v['description']?>"></textarea>
         </div>

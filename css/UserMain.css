@@ -125,6 +125,7 @@
         background: #E1E3E6;
         border-radius: 22px;
 
+
     }
     .accordion-button .icon::before {
         display: block;
@@ -166,7 +167,7 @@
         opacity: 1;
         max-height: 0;
         overflow: hidden;
-        margin: 20px 0 0 0;
+        margin: 10px 0 0 0;
         -webkit-transition: opacity 200ms linear, max-height 200ms linear;
         -o-transition: opacity 200ms linear, max-height 200ms linear;
         transition: opacity 200ms linear, max-height 200ms linear;
@@ -1143,7 +1144,51 @@
     vertical-align: top;
     border-radius: 27px;
 }
+.aboutTheAuthor.video__img{
+    width: 75px;
+    height: 124px;
 
+}
+.aboutTheAuthor.popup__allLessons-item-info{
+    width: 100%;
+}
+.aboutTheAuthor.popup-item{
+    align-items: start;
+}
+.aboutTheAuthor__info-text{
+    margin: 10px 0 0 0;
+    font-size: 12px;
+    line-height: 16px;
+    color: rgba(0, 0, 0, 0.6);
+    transition: all 0.3s;
+}
+
+.hide-content{
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    max-height: 3.9em;
+}
+.button-more{
+    display: none;
+}
+.button-more.active{
+    display: block;
+    position: absolute;
+    bottom: -16px;
+    left: 0;
+    font-weight: 400;
+    text-decoration-line: underline!important;
+    color: #4E73F8;
+    z-index: 5;
+    cursor: pointer;
+}
+.button-more:hover{
+    transform: scale(1.03);
+}
 /*project*/
 .Project {
     height: 100%;

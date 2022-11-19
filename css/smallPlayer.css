@@ -421,8 +421,12 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-}
 
+}
+.video__img{
+    width: 160px;
+
+}
 .popup__allLessons-text {
     font-weight: 300;
     font-size: 14px;
