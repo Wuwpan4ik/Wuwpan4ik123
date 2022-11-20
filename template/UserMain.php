@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/smallPlayer.css">
 </head>
 <body class="body">
+<?=$_SESSION['error'] ?>
 <div class="UserMain bcg">
     <div class="_container" style="height: 9%;">
         <div class="User-header">
@@ -18,9 +19,11 @@
                 <div class="user__logo-text">Центр Ратнера</div>
             </div>
             <div class="header-main__burger">
-                <div class="main__burger">
-                    <span></span>
-                </div>
+                <a href="/UserMenu">
+                    <div class="main__burger">
+                        <span></span>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
@@ -197,7 +200,7 @@
             </div>
             <div class="Сourse-form">
                 <div class="Сourse-back userPopup__button courseBackBtn">
-                    <button>Назад</button>
+                    <button class="backToCourse">Назад</button>
                 </div>
                 <div class="Сourse-question userPopup__button questionBtn">
                     <button>Есть вопросы?</button>
@@ -221,7 +224,7 @@
             </div>
             <div class="AllLessons-form">
                 <div class="userPopup__button buy__course-btn">
-                    <button type="button" class="button__buy-course">Купить весь курс за <span class="course__price"></span> руб.</button>
+                    <button type="button" class="button__buy-course">Купить весь курс за <span class="course__price"></span> ₽</button>
                 </div>
                 <div class=" AllLessons userPopup__button allLessonsBackBt">
                     <button>Пока не хочу покупать</button>
@@ -261,9 +264,9 @@
                     </div>
                     <div class="youChosen-info">
                         Стоимость <span class="course__buy-text"></span>:
-                        <span><span class="course__price video__price-buy"></span> руб.</span>
+                        <span><span class="course__price video__price-buy"></span> ₽</span>
                     </div>
-                    <form class="form__buy-course-video" method="POST" action="/UserController/buyCourse">
+                    <form class="form__buy-course-video" method="POST" action="/ClientsController/CourseBuy">
                         <input hidden="hidden" type="text" name="creator_id" value="" id="creator_id">
                         <input hidden="hidden" type="text" name="course_id" value="" id="course_id">
                         <div class="popup__buy-register">
@@ -329,7 +332,7 @@
                     </div>
                     <div class="question-form">
                         <div class="Сourse-back userPopup__button questionBack">
-                            <button>Назад</button>
+                            <button class="courseBackBtn">Назад</button>
                         </div>
                         <div class="Сourse-question userPopup__button">
                             <button>Перейти к оплате</button>
@@ -369,12 +372,35 @@ unset($_SESSION['course_id']);
                 document.querySelectorAll('.course__price').forEach((elem) => {
                     elem.innerHTML = course.price;
                 })
-                document.querySelector('.form__buy-course-video').action = "/UserController/buyCourse";
+                document.querySelector('.form__buy-course-video').action = "/ClientsController/CourseBuy";
                 document.querySelector('.course__buy-title').innerHTML = course['name'];
                 document.querySelector('.course__buy-count').innerHTML = course['count'] + ' урока';
                 document.querySelector('.course__buy-flag').innerHTML = 'Курс';
                 document.querySelector('#creator_id').value = course['author_id'];
                 document.querySelector('#course_id').value = course_id;
+            }
+        });
+        request.send();
+    }
+
+    function getVideoInfo(number) {
+        let request = new XMLHttpRequest();
+
+        let url = "/UserController/getVideoInfo?video_id=" + number;
+
+        request.open('GET', url);
+
+        request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+        request.addEventListener("readystatechange", () => {
+            if (request.readyState === 4 && request.status === 200) {
+                let content = JSON.parse(request.responseText);
+                document.querySelector('.form__buy-course-video').action = "/ClientsController/CourseVideo";
+                document.querySelector('.video__price-buy').innerHTML = content.price;
+                document.querySelector('.course__buy-title').innerHTML = content.name;
+                document.querySelector('.course__buy-count').innerHTML = content[0] + ' минут';
+                document.querySelector('.course__buy-flag').innerHTML = 'Урок ' + content.query_id;
+                document.querySelector('#creator_id').value = content.author_id;
+                document.querySelector('#course_id').value = number;
             }
         });
         request.send();
@@ -471,6 +497,7 @@ unset($_SESSION['course_id']);
         });
         request1.send();
     }
+<<<<<<< HEAD
     function getVideoInfo(number) {
         let request = new XMLHttpRequest();
 
@@ -554,6 +581,8 @@ unset($_SESSION['course_id']);
 
 
 
+=======
+>>>>>>> redoToRouting
 </script>
 </body>
 </html>

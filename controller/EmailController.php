@@ -1,9 +1,9 @@
 <?php
     if (!class_exists('PHPMailer\PHPMailer\Exception'))
     {
-        require './vendor/phpmailer/phpmailer/src/PHPMailer.php';
-        require './vendor/phpmailer/phpmailer/src/SMTP.php';
-        require './vendor/phpmailer/phpmailer/src/PHPMailer.php';
+        require '/vendor/phpmailer/phpmailer/src/PHPMailer.php';
+        require '/vendor/phpmailer/phpmailer/src/SMTP.php';
+        require '/vendor/phpmailer/phpmailer/src/PHPMailer.php';
     }
 
     class EmailController extends ACoreCreator {
@@ -110,6 +110,15 @@
                 $mail->Password   = $this->ourPassword; // Пароль на почте
                 $mail->SMTPSecure = 'ssl';
                 $mail->Port       = 465;
+                $mail->smtpConnect(
+                    array(
+                        "ssl" => array(
+                            "verify_peer" => false,
+                            "verify_peer_name" => false,
+                            "allow_self_signed" => true
+                        )
+                    )
+                );
                 $mail->setFrom($this->ourEmail, $this->ourNickName); // Адрес самой почты и имя отправителя
 
                 // Получатель письма

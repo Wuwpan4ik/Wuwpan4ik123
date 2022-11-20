@@ -12,7 +12,7 @@
             if (isset($_SESSION['user']['is_creator']) && $_SESSION['user']['is_creator'] == 0) {
                 header("Location: /UserMain");
             } else if (!isset($_SESSION['user']['id'])) {
-                header("Location: reg");
+                header("Location: /reg");
             }
         }
     }

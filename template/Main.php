@@ -28,6 +28,7 @@
         $title = "Ключевые показатели";
         include ('default/header.php');
         ?>
+        <? print_r($_SESSION['error']) ?>
 
         <div class="_container">
 

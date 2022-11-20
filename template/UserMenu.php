@@ -28,7 +28,7 @@
             <div class="UserMenu-profile">
                 <div class="UserMenu-profile__header">
                     <div class="UserMenu-profile__header-user">
-                        <img id="avatar" src="<?=$_SESSION['user']['avatar']?>"/>
+                        <img id="avatar" src="/<?=$_SESSION['user']['avatar']?>"/>
                         <div class="UserMenu-profile__textInfo">
                             <p>Добро пожаловать,</p>
                             <div class="UserMenu-profile__textInfo-name">
@@ -38,7 +38,7 @@
                     </div>
 
                     <div>
-                        <a href="/SettingsAccountUser">
+                        <a href="/UserAccount">
                             <button class="UserMenu-profile__settings"><img class="" src="img/UserSetting.svg"></button>
                         </a>
                     </div>

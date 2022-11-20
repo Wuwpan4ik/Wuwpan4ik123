@@ -137,7 +137,7 @@ function addFormLink(elem) {
     div.name = 'link-' + count_id;
     div.style.paddingLeft = '15px';
     if (count === 0) {
-        elem.parentElement.appendChild(div);
+        elem.parentElement.children[1].after(div);
     }
 }
 
@@ -208,6 +208,12 @@ document.addEventListener('DOMContentLoaded', function () {
     second_select.addEventListener('change', function () {
         if (['list'].includes(second_select.value)) {
             addPopup('list', true);
+        }
+
+        if (['file'].includes(second_select.value)) {
+            document.querySelector('#popup__body-file').classList.remove('display-none');
+        } else {
+            document.querySelector('#popup__body-file').classList.add('display-none');
         }
 
         if (!['form', 'pay_form', 'link'].includes(second_select.value)) {

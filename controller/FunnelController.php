@@ -45,9 +45,10 @@
 
             $this->m->db->execute("INSERT INTO funnel (`author_id`, `name`, `description`, `price`) VALUES ('$uid', 'Новая воронка', 'Описание' , 0)");
 
-            $directory = $this->m->db->query("SELECT * FROM funnel WHERE author_id = '$uid'  ORDER BY ID DESC LIMIT 1");
+            $funnel = $this->m->db->query("SELECT * FROM funnel WHERE author_id = '$uid'  ORDER BY ID DESC LIMIT 1");
 
-            mkdir("./uploads/funnel/".$directory[0]['id']."$name");
+            mkdir("uploads/funnel/".$funnel[0]['id']."$name");
+            mkdir("uploads/files/".$funnel[0]['id']. '_' .$funnel[0]['name']);
             return True;
         }
 
@@ -66,7 +67,8 @@
         public function PopupSettings() {
             //Форма
             $id_video = $_POST['item_id'];
-            $funnel = $this->m->db->query("SELECT * FROM funnel_content WHERE id = '$id_video'");
+            $funnel_content = $this->m->db->query("SELECT * FROM funnel_content WHERE id = '$id_video'");
+            $funnel = $this->m->db->query("SELECT * FROM funnel WHERE id = ". $funnel_content[0]['funnel_id']);
 //            if (!$this->isUser($funnel[0]['author_id'])) return False;
 
             $videoBtnHTML = [];
@@ -105,8 +107,7 @@
                 }
             }
             switch ($_POST['second_do']) {
-                case "pay_form":
-                case "form": {
+                case "pay_form": {
                     if (isset($_POST['form_id-4'])) {
                         $form_input_1 = $_POST['form_id-4'];
                         $videoBtnHTML['second_do'][$second_do] = [$form_input_1];
@@ -127,6 +128,19 @@
                     }
                     break;
                 }
+                case "file": {
+                    $file = "uploads/files/" . $funnel[0]['id'] . '_' .$funnel[0]['name'] . "/" .$_FILES['file']['name'];
+
+                    move_uploaded_file($_FILES['file']['tmp_name'], $file);
+
+
+                    if(!$_FILES['file']['name']){
+                        $file = "uploads/files/" . $funnel[0]['id'] . '_' .$funnel[0]['name'] . "/" . uniqid('', true) .".jpg";
+                    }
+                    $_SESSION['error'] = $file;
+                    $videoBtnHTML['second_do']['file'] = $file;
+                    break;
+                }
                 case 'list':
                 {
                     $videoBtnHTML['second_do']['list'] = true;
@@ -136,8 +150,11 @@
                     $videoBtnHTML['second_do']['next_lesson'] = true;
                     break;
                 }
+                case '': {
+                    $videoBtnHTML['second_do']['file'] = $_POST['file'];
+                }
             }
-            $videoBtnHTMLResult = json_encode($videoBtnHTML);
+            $videoBtnHTMLResult = json_encode($videoBtnHTML, JSON_UNESCAPED_UNICODE);
             $this->m->db->execute("UPDATE `funnel_content` SET `popup` = '$videoBtnHTMLResult' WHERE id = '$id_video'");
             return True;
         }
@@ -162,7 +179,7 @@
 
             $this->m->db->execute("DELETE FROM funnel WHERE id = '$item_id'");
 
-            rmdir("./uploads/funnel/$item_id"."_" . $project[0]['name']);
+            rmdir("uploads/funnel/$item_id"."_" . $project[0]['name']);
 
             return True;
         }
