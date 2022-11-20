@@ -25,7 +25,7 @@
         </div>
     </div>
     <div class="popup__container">
-        <div class=" aboutTheAuthor userPopup ">
+        <div class=" aboutTheAuthor userPopup active ">
             <div class="aboutTheAuthor userPopup__title">
                 Выберите автора:
             </div>
@@ -75,7 +75,7 @@
                 </div>
             </div>
         </div>
-        <div class=" availableToYou  userPopup">
+        <div class=" availableToYou  userPopup ">
             <div class="availableToYou userPopup__title">
                 Вам доступны:
             </div>
@@ -98,7 +98,7 @@
                 </div>
             </div>
         </div>
-        <div class="Course userPopup active ">
+        <div class="Course userPopup  ">
             <div class="Course userPopup__title">
                 Управление гневом внутри себя
             </div>

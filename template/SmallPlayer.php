@@ -119,9 +119,6 @@
 <script src="../js/script.js" ></script>
 <script src="../js/slick.min.js"></script>
 <script src="../js/sliders.js"></script>
-<script>
-
-</script>
 </body>
 </html>
 

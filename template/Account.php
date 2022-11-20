@@ -192,7 +192,18 @@
                                             <div class="storage-rate">
                                                 <p class="text">Файловое хранилище:</p>
                                                 <div class="storage-rate-body">
-                                                    <input type="text">
+                                                    <div class="progress-storage">
+                                                        <progress  max="100" value="70">
+                                                        </progress>
+                                                        <div class="progress-storage__info">
+                                                            <div class="progress-storage__current-value">
+                                                                225 мб
+                                                            </div>
+                                                            <div class="progress-storage__max-value">
+                                                                1000 мб
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="tariff-btn">
@@ -210,34 +221,13 @@
 
                             <div class="tab">
 
-                                <h2>Подключить Send Plus</h2>
+                                <h2>Скрипты для HEAD:  </h2>
 
-                                <div class="image-carts">
-                                  
-                                  <?php if(isset($content[1])) { foreach ($content[1] as $tariff) {?>
+                                <textarea class="additionally" placeholder="Default"></textarea>
 
-                                    <div class="cart">
+                                <h2>Скрипты для Body:  </h2>
 
-                                        <div class="info-cart">
-
-                                            <span><?=$tariff["price"]?>Р</span>
-
-                                            <h3><?=$tariff["name"]?></h3>
-
-                                            <p><?=$tariff["description"]?></p>
-
-                                            <img src="<?=$tariff["image"]?>"/>
-
-                                            <button>Перейти на этот тариф</button>
-
-                                        </div>
-
-                                    </div>
-
-                                  <?} }?>
-
-                                </div>
-
+                                <textarea class="additionally" placeholder="Default"></textarea>
                             </div>
 
                         </div>
