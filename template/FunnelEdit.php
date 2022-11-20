@@ -27,20 +27,6 @@
         display: none;
     }
 
-    .input__file-icon-wrapper {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-        margin: 8px;
-        width: 100%;
-    }
-
     .inputfile-box {
         position: relative;
     }
@@ -54,12 +40,6 @@
         color: #000;
         height: calc(2rem - 2px);
     }
-
-    .input__file-button-text {
-        line-height: 1;
-        margin-top: 1px;
-    }
-
     .input__file-button {
         width: 132px;
         height: 60px;
@@ -175,18 +155,15 @@
     </div>
 
 </div>
-
 <?php include 'default/popupEditVideo.php';?>
 
 <script type="text/javascript" src="../js/button__settings.js"></script>
 <script>
     function uploadFile(target) {
-
+        console.log(1)
         document.getElementById("file-name").innerHTML = (target.files[0].name);
-        document.getElementById("file-size").innerHTML = Math.round(target.files[0].size / 1024) + "кБ" ;
+        document.getElementById("file-size").innerHTML = Math.round(target.files[0].size / 1024) + "кБ" + " из доступных 5Мб" ;
     }
-</script>
-<script>
     function _(abc) {
         return document.getElementById(abc);
     }

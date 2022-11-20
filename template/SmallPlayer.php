@@ -64,15 +64,15 @@
                 </div>
                 <?php
                 // popup при клике
-                if (isset($popup->second_do->form) || isset($popup->second_do->pay_form)) {
-                    if (isset($popup->second_do->form)) {
-                        $form = $popup->second_do->form;
+                if (isset($popup->first_do->form) || isset($popup->first_do->pay_form)) {
+                    if (isset($popup->first_do->form)) {
+                        $form = $popup->first_do->form;
                     } else {
-                        $form = $popup->second_do->pay_form;
+                        $form = $popup->first_do->pay_form;
                     }
                     // Первое или второе действие
                     $name = 'button';
-                    $popup__do = $popup->second_do;
+                    $popup__do = $popup->first_do;
                     $id = $item['id'];
                     $author_id = $item['author_id'];
                     include 'template/default/popup__templates/popup__form.php';

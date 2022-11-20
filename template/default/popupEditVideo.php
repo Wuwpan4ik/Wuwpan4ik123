@@ -9,7 +9,7 @@
                 <button type="button" onclick="save();" class="popup__edit-btn">Сохранить</button>
             </div>
         </div>
-        <form id="initButton" action="/Funnel/$item_id/settings" method="POST" class="popup__body-container">
+        <form id="initButton" action="/Funnel/$item_id/settings" method="POST" class="popup__body-container"  enctype="multipart/form-data">
             <input id="id_item" name="item_id" type="hidden" value="">
             <div class="popup__body-block" style="width: 320px;">
                 <!--Прелоудер-->
@@ -61,39 +61,36 @@
                         <label for="form_id display-none">Составляющие формы:</label>
                         <button class="addFormInput" id="first_do-list" onclick="addFormItem(this)" type="button"><img src="../../img/add.png"> Добавить поле</button>
                     </div>
-                    <label>Текст для кнопки:</label>
-                    <input id="button_text" class="videoname video-desc button_text" disabled>
+                    <div style="margin: 20px 0;" class="button__text-container">
+                        <label>Текст для кнопки:</label>
+                        <input id="button_text" class="videoname video-desc button_text" disabled>
+                    </div>
                 </div>
                 <div class="popup__body-item">
                     <label for="second_do">После нажатия на кнопку:</label>
                     <select name="second_do" id="second_do">
-                        <option value="form" selected>Отправить файл</option>
-                        <option value="pay_form">Форма оплаты</option>
+                        <option value="pay_form" selected>Форма оплаты</option>
                         <option value="link">Переход по ссылке</option>
                         <option value="next_lesson">Открыть следующий урок</option>
                         <option value="file">Отправить файл</option>
                     </select>
-                    <div class="popup__body-item display-none" id="popup__body-form-2">
+                    <div class="popup__body-item" id="popup__body-form-2">
                         <label for="form_id">Составляющие формы:</label>
                         <button class="addFormInput" id="second_do-list" onclick="addFormItem(this)" type="button"><img src="/img/add.png"> Добавить поле</button>
                     </div>
-                    <div class="popup__body-item" id="popup__body-file">
+                    <div class="popup__body-item display-none" id="popup__body-file">
                         <label for="second_do-list">Файл:</label>
                         <div class="avatar">
                             <div class="avatar-body">
                                 <img src="/img/saveAvatar.svg" alt="">
                                 <div class="avatar-body__info">
-                                    <span id="file-name" class="file-box">Название файла</span>
-                                    <span id="file-size" class="file-box">0 кб из доступных 5мб</span>
+                                    <span id="file-name" style="font-size: 16px;text-align: left;" class="file-box">Название файла</span>
+                                    <span id="file-size" style="text-align: left;" class="file-box">0 кб из доступных 5мб</span>
                                 </div>
-
                             </div>
-
-
-                            <div class="input__wrapper">
+                            <div class="input__wrapper" style="width: 100%;">
                                 <input  accept="image/img, image/jpeg, image/png" name="file" type="file" id="input__file" class="input input__file" onchange='uploadFile(this)' multiple>
-                                <label for="input__file" class="input__file-button">
-
+                                <label for="input__file" class="input__file-button" style="width: 100%;">
                                     <span class="input__file-icon-wrapper"><img class="input__file-icon" src="/img/plus.svg"  width="25"></span>
                                     <span class="input__file-button-text">Добавить</span>
                                 </label>

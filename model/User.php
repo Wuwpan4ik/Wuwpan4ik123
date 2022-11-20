@@ -13,6 +13,11 @@
             return $result;
         }
 
+        public function getUserByEmail($email) {
+            $result = $this->db->query("SELECT * FROM user WHERE email = '$email'");
+            return $result;
+        }
+
         public function getNotifications($user_id) {
             $result = $this->db->query("SELECT * FROM notifications WHERE `user_id` = '$user_id' AND `is_checked` = 0");
             return $result;
