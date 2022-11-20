@@ -174,8 +174,12 @@
             foreach ($course_page as $item) {
                 $class = '';
                 $number_color = 'available-number';
-                $url_start = "<a href='/UserPlayer/". $item['id'] . "'";
+                $url_start = "<a style='position:relative;' href='/UserPlayer/". $item['id'] . "'>";
                 $url_end = "</a>";
+                $image_available = '<img src="../img/smallPlayer/Group1426.png" alt=""> 
+                                    <div class="popup__allLessons-item-video-play">
+                                        <img src="../img/smallPlayer/play.png" alt="">
+                                    </div>';
                 $getID3 = new getID3;
                 $file = $getID3->analyze($item['video']);
                 $duration = $file['playtime_string'];
@@ -185,18 +189,15 @@
                         $number_color = 'Notavailable-number';
                         $url_start = "";
                         $url_end = "";
+                        $image_available = '<img src="../img/smallPlayer/Group1426.png" alt="">';
                     }
                 }
                 $div .= $url_start .'<div data-id="'. $item['id'] .'" class="popup__allLessons-item '. $class .'">
                                 <div class="popup__allLessons-item__header">
                             <div class="Course-item popup-item">
                                 <div class="popup__allLessons-item-video__img">
-                                    <a href="/UserPlayer/76" <div="data-id="76" class="popup__allLessons-item ">
-                                    <img src="../img/smallPlayer/Group1426.png" alt="">
-                                    <div class="popup__allLessons-item-video-play">
-                                        <img src="../img/smallPlayer/play.png" alt="">
-                                    </div>
-                                    </a>
+                                    <div data-id="76" class="popup__allLessons-item"></div>
+                                        '. $image_available .'
                                 </div>
                                 <div class="popup__allLessons-item-info">
                                     <div class="popup__allLessons-item-info-header">
@@ -216,7 +217,7 @@
                                 <div class="accordion">
                                     <div class="accordion-item">
                                         <div class="accordion-content">
-                                            <p>dwdwdwdwdx</p>
+                                            <p>'. $item['description'] .'</p>
                                         </div>
                                     </div>
                                 </div>
@@ -242,119 +243,6 @@
             $duration = $file['playtime_string'];
             array_push($content, $duration);
             echo json_encode($content);
-        }
-
-        public function BuyCourse() {
-            if (!$this->RequestValidate()) return false;
-
-            $buy_progress = include './settings/buy_progress.php';
-            $creator_id = $_POST['creator_id'];
-            $course_id = $_POST['course_id'];
-            $comment = 'Купил курс';
-            $client = $this->GetClient($creator_id, $course_id);
-            $give_money = $client[0]['give_money'] + $this->GetPriceOfCourse($course_id)[0]['price'];
-
-            if (count($client) == 1){
-                if ($client[0]['buy_progress'] < $buy_progress[$comment]) {
-                    $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]', `give_money` = '$give_money', `first_buy` = 0 WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
-                }
-            } else {
-                $title = "Регистрация аккаунта";
-                $this->password = $this->GenerateRandomPassword(12);
-                $body = "Ваш аккаунт на <a href=\"/login\">Course Creator</a><br>Почта: $this->email<br>Пароль:$this->password";
-                $this->SendEmail($title, $body);
-                $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], $give_money);
-                $this->m->db->execute("INSERT INTO `user` (`email`, `password`, `is_creator`, `avatar`) VALUES ('$this->email', '$this->password', 0)");
-
-                if (isset($this->name)) {
-                    $this->m->db->execute("INSERT INTO `user` (`first_name`) VALUES ('$this->name') WHERE `email` = '$this->email'");
-                }
-
-                if (isset($this->phone)) {
-                    $this->m->db->execute("INSERT INTO `user` (`telephone`) VALUES ('$this->phone') WHERE `email` = '$this->email'");
-                }
-
-                return true;
-            }
-            $res = $this->m->db->query("SELECT * FROM user WHERE `email` = '$this->email'");
-            $_SESSION["user"] = [
-                'id' => $res[0]['id'],
-                'email' => $res[0]['email'],
-                'is_creator' => 0
-            ];
-            $purchase = $this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $_SESSION['user']['id']);
-            if (isset($purchase) && count($purchase) == 1) {
-                $purchase_info = json_decode($purchase[0]['purchase'], true);
-                if (!in_array($course_id, $purchase_info['course_id'])) {
-                    array_push($purchase_info['course_id'], $course_id);
-                    $this->m->db->execute("UPDATE `purchase` SET purchase = '" . json_encode($purchase_info) . "' WHERE user_id = " . $_SESSION['user']['id']);
-                }
-            } else {
-                $user_id = $_SESSION['user']['id'];
-                $purchase_text = '{"course_id":["'.$course_id.'"]}';
-                $this->m->db->execute("INSERT INTO `purchase` (`user_id`, `purchase`) VALUES ($user_id, '$purchase_text')");
-            }
-            $this->redirect();
-            return true;
-        }
-
-        public function BuyVideo() {
-            if (!$this->RequestValidate()) return false;
-
-            $buy_progress = include './settings/buy_progress.php';
-            $creator_id = $_POST['creator_id'];
-            $course_id = $_POST['course_id'];
-            $comment = 'Купил видео';
-            $client = $this->GetClient($creator_id, $course_id);
-            $video_cost = $_POST['video_cost'];
-            $give_money = $client[0]['give_money'] + $this->GetPriceOfVideo($course_id)[0]['price'];
-
-            if (count($client) == 1){
-                if ($client[0]['buy_progress'] <= $buy_progress[$comment]) {
-                    $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]', `give_money` = '$give_money', `first_buy` = 0 WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
-                }
-            } else {
-                $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], $give_money);
-            }
-            $res = $this->m->db->query("SELECT * FROM user WHERE `email` = '$this->email'");
-            $_SESSION["user"] = [
-                'id' => $res[0]['id'],
-                'email' => $res[0]['email'],
-                'is_creator' => 0
-            ];
-            $purchase = $this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $_SESSION['user']['id']);
-            if (isset($purchase) && count($purchase) == 1) {
-                $purchase_info = json_decode($purchase[0]['purchase'], true);
-                if (!in_array($course_id, $purchase_info['video_id'])) {
-                    array_push($purchase_info['video_id'], $course_id);
-                    $this->m->db->execute("UPDATE `purchase` SET purchase = '" . json_encode($purchase_info) . "' WHERE user_id = " . $_SESSION['user']['id']);
-                }
-            } else {
-                $user_id = $_SESSION['user']['id'];
-                $purchase_text = '{"course_id":[], "video_id":['.$course_id.']}';
-                $this->m->db->execute("INSERT INTO `purchase` (`user_id`, `purchase`) VALUES ('$user_id', '$purchase_text')");
-            }
-
-    //      Проверка на покупку всех видео и добавление курса в купленные
-            $purchase_video = json_decode($this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $_SESSION['user']['id'])[0]['purchase'], true);
-            $id = $this->m->db->query("SELECT course_content.course_id FROM course_content WHERE id = '$course_id'")[0]['course_id'];
-            $course_list = explode(',', $this->m->db->query("SELECT GROUP_CONCAT(`id`) FROM `course_content` WHERE course_id = '$id'")[0]['GROUP_CONCAT(`id`)']);
-            foreach ($course_list as $item) {
-                if (!in_array($item, $purchase_video['video_id'])) {
-                    return true;
-                }
-            }
-            foreach ($purchase_video['video_id'] as $key=>$item) {
-                if (in_array($item, $course_list)) unset($purchase_video['video_id'][$key]);
-            }
-            array_push($purchase_video['course_id'], $id);
-            $this->m->db->execute("UPDATE `purchase` SET purchase = '" . json_encode($purchase_video) . "' WHERE user_id = " . $_SESSION['user']['id']);
-            $this->redirect();
-            return true;
-        }
-
-        private function redirect() {
-            header("Location: /UserMain");
         }
 
         function get_content()

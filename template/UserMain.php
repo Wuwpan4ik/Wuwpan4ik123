@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/css/smallPlayer.css">
 </head>
 <body class="body">
-<?=$_SESSION['error'] ?>
+<? print_r($_SESSION['error']) ?>
 <div class="UserMain bcg">
     <div class="_container" style="height: 9%;">
         <div class="User-header">
@@ -61,10 +61,7 @@
                                         <?=$item['name']?>
                                     </div>
                                     <div class="aboutTheAuthor__info-text hide-content">
-                                        Задача организации, в особенности же убеждённость
-                                        некоторых оппонентов требует определения и уточнения вывода
-                                        некоторых оппонентов требует определения и уточнения вывода
-                                        некоторых оппонентов требует определения и уточнения вывода</div>
+                                        <?=$item['description'] ?></div>
                                 </div>
                             </div>
                             <div class="aboutTheAuthor-button availableСoursesBtn">
@@ -256,7 +253,7 @@
                                 <input type="tel" name="phone" placeholder="Ваш телефон">
                             </div>
                             <div class="question-form">
-                                <div class="Сourse-back userPopup__button youChosenBackBtn">
+                                <div class="Сourse-back userPopup__button youChosenBackBtn courseBackBtn">
                                     <button type="button">Назад</button>
                                 </div>
                                 <div class="Сourse-question userPopup__button">

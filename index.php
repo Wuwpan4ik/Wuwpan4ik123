@@ -78,8 +78,6 @@
     $router->addRoute("/UserController/getList", "UserController.php", 'getList');
     $router->addRoute("/UserController/getBuyCourse", "UserController.php", 'getBuyCourse');
     $router->addRoute("/UserController/getCoursePrice", "UserController.php", 'getCoursePrice');
-    $router->addRoute("/UserController/buyCourse", "UserController.php", 'BuyCourse');
-    $router->addRoute("/UserController/buyVideo", "UserController.php", 'BuyVideo');
     $router->addRoute("/UserController/getVideoInfo", "UserController.php", 'getBuyVideo');
     $router->addRoute("/UserController/save", "LoginController.php", 'saveUserSettings');
 
