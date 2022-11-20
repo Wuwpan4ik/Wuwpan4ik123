@@ -187,7 +187,7 @@
         font-weight: 600;
         font-size: 12px;
         border-radius: 15px;
-        background: #4DAA21;
+        background: #4DAA21 !important;
         color: rgba(255, 255, 255, 0.6);
     }
     .notAvailable-number{

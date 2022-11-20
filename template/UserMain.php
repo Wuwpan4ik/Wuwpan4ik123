@@ -141,42 +141,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="Course-item popup-item">
-                                <div class="popup__allLessons-item-video__img">
-                                    <a href="/UserPlayer/76" <div="data-id="76" class="popup__allLessons-item ">
-                                    <img src="../img/smallPlayer/Group1426.png" alt="">
-                                    <div class="popup__allLessons-item-video-play">
-                                        <img src="../img/smallPlayer/play.png" alt="">
-                                    </div>
-                                    </a>
-                                </div>
-                                <div class="popup__allLessons-item-info">
-                                    <div class="popup__allLessons-item-info-header">
-                                        <div class=" aboutTheAuthor available-number">
-                                            Урок 1
-                                        </div>
-                                        <div class="aboutTheAuthor-name">
-                                            1:00
-                                        </div>
-                                    </div>
-                                    <div class="popup__allLessons-item-info-title">
-                                        dw
-                                    </div>
-                                </div>
-                                <button class="accordion-button" id="accordion-button-1" aria-expanded="false">
-                                    <span class="icon" aria-hidden="true"></span></button>
-                                <div class="accordion">
-                                    <div class="accordion-item">
-                                        <div class="accordion-content">
-                                            <p>Задача организации, в особенности же убеждённость некоторых оппонентов требует определения и уточнения вывода текущих активов.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
             <div class="Сourse-form">
                 <div class="Сourse-back userPopup__button courseBackBtn">
@@ -351,6 +318,7 @@ unset($_SESSION['course_id']);
 <script src="../js/script.js" ></script>
 <script>
     let course_id;
+    let accordionButton;
     const buyCourse = document.querySelector('.button__buy-course');
     buyCourse.addEventListener('click', function () {
         getBuyCourse(course_id);
@@ -425,7 +393,6 @@ unset($_SESSION['course_id']);
                         availableToYou.classList.remove('active')
                     }
                 })
-
             }
         });
         request.send();
@@ -467,6 +434,8 @@ unset($_SESSION['course_id']);
         request1.addEventListener("readystatechange", () => {
             if (request1.readyState === 4 && request1.status === 200) {
                 document.querySelector('.lesson__list').innerHTML = request1.responseText;
+                accordionButton = document.querySelectorAll(".accordion-button");
+                startAccordion();
             }
         });
         request1.send();
@@ -497,7 +466,6 @@ unset($_SESSION['course_id']);
         });
         request1.send();
     }
-<<<<<<< HEAD
     function getVideoInfo(number) {
         let request = new XMLHttpRequest();
 
@@ -509,7 +477,7 @@ unset($_SESSION['course_id']);
         request.addEventListener("readystatechange", () => {
             if (request.readyState === 4 && request.status === 200) {
                 let content = JSON.parse(request.responseText);
-                document.querySelector('.form__buy-course-video').action = "/UserController/buyVideo";
+                document.querySelector('.form__buy-course-video').action = "/ClientsController/CourseVideo";
                 document.querySelector('.video__price-buy').innerHTML = content.price;
                 document.querySelector('.course__buy-title').innerHTML = content.name;
                 document.querySelector('.course__buy-count').innerHTML = content[0] + ' минут';
@@ -520,14 +488,8 @@ unset($_SESSION['course_id']);
         });
         request.send();
     }
-
-
-    const accordionButton = document.querySelectorAll(".accordion-button");
-
-
-
-
-    accordionButton.forEach( item => {
+    function startAccordion() {
+        accordionButton.forEach( item => {
 
 
             item.onclick = function () {
@@ -552,7 +514,8 @@ unset($_SESSION['course_id']);
 
             }
 
-    })
+        })
+    }
 
 
     more = function (){
@@ -580,9 +543,6 @@ unset($_SESSION['course_id']);
 
 
 
-
-=======
->>>>>>> redoToRouting
 </script>
 </body>
 </html>

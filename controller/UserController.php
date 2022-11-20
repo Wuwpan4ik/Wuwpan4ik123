@@ -142,7 +142,7 @@
                             </div>
                             <div class="popup__allLessons-item-info">
                                 <div class="popup__allLessons-item-info-header">
-                                    <div class=" aboutTheAuthor popup__allLessons-item-info-header-number notAvailable-number">
+                                    <div class=" aboutTheAuthor popup__allLessons-item-info-header-number Notavailable-number">
                                         Курс
                                     </div>
                                     <div class="aboutTheAuthor-name">
@@ -173,7 +173,7 @@
             }
             foreach ($course_page as $item) {
                 $class = '';
-                $grey_back = '';
+                $number_color = 'available-number';
                 $url_start = "<a href='/UserPlayer/". $item['id'] . "'";
                 $url_end = "</a>";
                 $getID3 = new getID3;
@@ -182,35 +182,46 @@
                 if ($disable) {
                     if (!in_array($item['id'], $purchase_info['video_id']) == 1) {
                         $class = 'choice-video';
-                        $grey_back = 'style ="background: #444444;"';
+                        $number_color = 'Notavailable-number';
                         $url_start = "";
                         $url_end = "";
                     }
                 }
                 $div .= $url_start .'<div data-id="'. $item['id'] .'" class="popup__allLessons-item '. $class .'">
                                 <div class="popup__allLessons-item__header">
-                                    <div class="popup-item">
-                                        <div class="popup__allLessons-item-video__img">
-                                            <img src="../img/smallPlayer/Group1426.png" alt="">
-                                            <div class="popup__allLessons-item-video-play">
-                                                <img src="../img/smallPlayer/play.png" alt="">
-                                            </div>
+                            <div class="Course-item popup-item">
+                                <div class="popup__allLessons-item-video__img">
+                                    <a href="/UserPlayer/76" <div="data-id="76" class="popup__allLessons-item ">
+                                    <img src="../img/smallPlayer/Group1426.png" alt="">
+                                    <div class="popup__allLessons-item-video-play">
+                                        <img src="../img/smallPlayer/play.png" alt="">
+                                    </div>
+                                    </a>
+                                </div>
+                                <div class="popup__allLessons-item-info">
+                                    <div class="popup__allLessons-item-info-header">
+                                        <div class=" aboutTheAuthor '. $number_color .'">
+                                            Урок '. $counter .'
                                         </div>
-                                        <div class="popup__allLessons-item-info">
-                                            <div class="popup__allLessons-item-info-header">
-                                                <div class=" aboutTheAuthor popup__allLessons-item-info-header-number available-number"' . $grey_back . '>
-                                                    Урок '. $counter .'
-                                                </div>
-                                                <div class="aboutTheAuthor-name">
-                                                    '. $duration .'
-                                                </div>
-                                            </div>
-                                            <div class="popup__allLessons-item-info-title">
-                                                '. $item['name'] .'
-                                            </div>
+                                        <div class="aboutTheAuthor-name">
+                                            '. $duration .'
+                                        </div>
+                                    </div>
+                                    <div class="popup__allLessons-item-info-title">
+                                        '. $item['name'] .'
+                                    </div>
+                                </div>
+                                <button class="accordion-button" id="accordion-button-1" aria-expanded="false">
+                                    <span class="icon" aria-hidden="true"></span></button>
+                                <div class="accordion">
+                                    <div class="accordion-item">
+                                        <div class="accordion-content">
+                                            <p>dwdwdwdwdx</p>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
                             </div>' . $url_end;
                 $counter++;
             }

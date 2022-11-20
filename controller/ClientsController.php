@@ -200,7 +200,7 @@
             $course_id = $_POST['course_id'];
             $course__real_id = $this->m->db->query("SELECT course_id FROM course_content WHERE id = '$course_id'");
             $comment = 'Купил видео';
-            $client = $this->GetClient($course__real_id);
+            $client = $this->GetClient($course__real_id[0]['course_id ']);
             $give_money = $client[0]['give_money'] + $this->GetPriceOfVideo($course_id)[0]['price'];
 
 //          Добавление Clients
