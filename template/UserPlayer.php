@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="UserPlayer Сourse-form">
-        <div class="Сourse-back userPopup__button courseBackBtn">
+        <div class=" userPopup__button courseBackBtn backBtn">
             <button onclick="window.location.replace('/UserMain')">Назад</button>
         </div>
         <div class="Сourse-question userPopup__button questionBtn">
@@ -91,7 +91,7 @@
                     </div>
                 </div>
                 <div class="youWatching Сourse-form">
-                    <div class="Сourse-back userPopup__button youWatchingBack">
+                    <div class="userPopup__button youWatchingBack backBtn ">
                         <button onclick="window.location.replace('/UserMain')">Назад</button>
                     </div>
                     <div class="Сourse-question userPopup__button ">

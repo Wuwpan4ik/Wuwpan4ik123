@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
     $('.slider').each(function() {
         let slider = $(this).parent().find('.slider').slick({
             arrows:false,
@@ -7,7 +8,11 @@ $(document).ready(function(){
             appendDots: $(this).parent().find('.slick-dots'),
             slidesToShow:1
         });
+        function videoAutoplay() {
+            $(this).find('.slider__video-item').play();
 
+        }
+        videoAutoplay()
         function stopVideos() {
             $(this).find('.slider__video-item').each(function (){
                 this.pause();
