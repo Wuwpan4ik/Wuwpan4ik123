@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/css/smallPlayer.css">
 </head>
 <body class="body">
-<? print_r($_SESSION['error']) ?>
 <div class="UserMain bcg">
     <div class="_container" style="height: 9%;">
         <div class="User-header">
@@ -84,7 +83,7 @@
                     <div class="availableToYou availableToYou__body course__List">
                     </div>
                 </div>
-                <div class="otherСourses">
+                <div class="otherСourses otherСourses-popup ">
                     <div class= "userPopup__title">
                         Другие курсы автора:
                     </div>
@@ -93,7 +92,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="otherСourses userPopup__button questionBtn">
+                <div class="otherСoursesBtn userPopup__button questionBtn">
                     <button>Есть вопросы?</button>
                 </div>
             </div>
@@ -143,34 +142,12 @@
                 </div>
             </div>
             <div class="Сourse-form">
-                <div class="Сourse-back userPopup__button courseBackBtn">
+                <div class=" Сourse-back userPopup__button courseBackBtn">
                     <button>Назад</button>
                 </div>
-                <div class="Сourse-question userPopup__button questionBtn">
-                    <button>Есть вопросы?</button>
-                </div>
             </div>
         </div>
-        <div class=" Course  userPopup  ">
-            <div class="Course userPopup__title">
-                Управление гневом внутри себя
-            </div>
-            <div class="Course userPopup__body">
-                <div class=" Course ">
-                    <div class=" Course availableToYou__body lesson__list">
 
-                    </div>
-                </div>
-            </div>
-            <div class="Сourse-form">
-                <div class="Сourse-back userPopup__button courseBackBtn">
-                    <button class="backToCourse">Назад</button>
-                </div>
-                <div class="Сourse-question userPopup__button questionBtn">
-                    <button>Есть вопросы?</button>
-                </div>
-            </div>
-        </div>
         <div class="AllLessons  userPopup">
             <div class="AllLessons userPopup__title">
                 Все уроки курса:
@@ -178,9 +155,9 @@
             <div class="AllLessons__subtitle">
                 Курс состоить из 24 уроков по 20 минут
             </div>
-            <div class="AllLessons  userPopup__body">
+            <div class="AllLessons userPopup__body">
                 <div class=" AllLessons ">
-                    <div class="AllLessons availableToYou__body disable__videos">
+                    <div class="AllLessons__body disable__videos">
                         <div class="popup__allLessons-item choice-video">
                         </div>
                     </div>
@@ -233,7 +210,7 @@
                     <form class="form__buy-course-video" method="POST" action="/ClientsController/CourseBuy">
                         <input hidden="hidden" type="text" name="creator_id" value="" id="creator_id">
                         <input hidden="hidden" type="text" name="course_id" value="" id="course_id">
-                        <div class="popup__buy-register">
+                        <div class="youChosen popup__buy-register">
                             <div class="popup__buy-body-form youChosen-input input">
                                 <div class="popup__bonus-form-input-account input-img">
                                     <img src="../img/smallPlayer/account.svg" alt="">
@@ -244,7 +221,7 @@
                                 <div class="popup__bonus-form-input-email input-img">
                                     <img src="../img/smallPlayer/email.svg" alt="">
                                 </div>
-                                <input type="text" value="<?=$_SESSION['user']['email']?>" name="email" placeholder="Ваш email" disabled>
+                                <input type="text" value="<?=$_SESSION['user']['email']?>" name="email" placeholder="Ваш email" readonly>
                             </div>
                             <div class="popup__buy-body-form youChosen-input input">
                                 <div class="popup__bonus-form-input-email input-img">
@@ -252,13 +229,13 @@
                                 </div>
                                 <input type="tel" name="phone" placeholder="Ваш телефон">
                             </div>
-                            <div class="question-form">
-                                <div class="Сourse-back userPopup__button youChosenBackBtn courseBackBtn">
-                                    <button type="button">Назад</button>
-                                </div>
-                                <div class="Сourse-question userPopup__button">
-                                    <button type="submit">Перейти к оплате</button>
-                                </div>
+                        </div>
+                        <div class="question-form">
+                            <div class="backBtn userPopup__button youChosenBackBtn courseBackBtn">
+                                <button type="button">Назад</button>
+                            </div>
+                            <div class="Сourse-question userPopup__button">
+                                <button type="submit">Перейти к оплате</button>
                             </div>
                         </div>
                     </form>
@@ -272,8 +249,8 @@
             <div class="question  userPopup__body">
                 <div class=" question ">
                     <div class="popup__buy-register">
-                        <form method="POST" action="/addQuestions">
-                            <input type="text" name="author_id">
+                        <form id="formQuest" method="POST" action="/addQuestions">
+                            <input type="hidden" value="17" name="author_id" >
                             <div class="popup__buy-body-form question input">
                                 <div class="popup__bonus-form-input-account input-img">
                                     <img src="../img/smallPlayer/account.svg" alt="">
@@ -295,11 +272,11 @@
                         </form>
                     </div>
                     <div class="question-form">
-                        <div class="Сourse-back userPopup__button questionBack">
+                        <div class=" userPopup__button questionBack backBtn">
                             <button class="courseBackBtn">Назад</button>
                         </div>
                         <div class="Сourse-question userPopup__button">
-                            <button>Перейти к оплате</button>
+                            <button id="sendQuest" type="submit">Отправить</button>
                         </div>
                     </div>
                 </div>
@@ -311,6 +288,11 @@
 unset($_SESSION['course_price']);
 unset($_SESSION['course_id']);
 ?>
+<script>
+    document.querySelector('#sendQuest').addEventListener('click', function () {
+        document.querySelector('#formQuest').submit();
+    })
+</script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
 <script src="../js/script.js" ></script>
 <script>

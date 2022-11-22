@@ -711,7 +711,8 @@ a {
   font-size: 20px;
   line-height: 1em;
   text-align: left;
-  background-color: #f1f3f8;
+  background: #f1f3f8;
+  transition: all 0.3s;
 }
 
 .box p {
@@ -733,14 +734,14 @@ a {
   font-weight: 700;
 }
 
-.box-active {
+.box:hover.active{
+
   color: #fff;
-  background: -webkit-gradient(linear, left top, left bottom, from(#6989FE), to(#3C64F4));
-  background: -o-linear-gradient(top, #6989FE 0%, #3C64F4 100%);
   background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);
 }
 
-.box-active p {
+
+.box:hover.active p {
   color: #fff;
 }
 

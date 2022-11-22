@@ -69,23 +69,6 @@
             return True;
         }
 
-        public function AddApplication() {
-            if (!$this->RequestValidate()) return false;
-            $buy_progress = include './settings/buy_progress.php';
-            $creator_id = $_POST['creator_id'];
-            $course_id = $_POST['course_id'];
-            $comment = 'Заявка';
-            $client = $this->GetClient($creator_id, $course_id);
-            if (count($client) == 1){
-                if ($client[0]['buy_progress'] < $buy_progress[$comment]) {
-                    $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]' WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
-                }
-            } else {
-                $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], 0);
-            }
-            return true;
-        }
-
         function getCourseSite() {
             $author_id = $_GET['author_id'];
             $course_page = $this->m->getContentForUserCoursePage($author_id);
@@ -192,13 +175,15 @@
                         $image_available = '<img src="../img/smallPlayer/Group1426.png" alt="">';
                     }
                 }
-                $div .= $url_start .'<div data-id="'. $item['id'] .'" class="popup__allLessons-item '. $class .'">
+                $div .='<div data-id="'. $item['id'] .'" class="popup__allLessons-item">
                                 <div class="popup__allLessons-item__header">
                             <div class="Course-item popup-item">
+                            ' . $url_start . '
                                 <div class="popup__allLessons-item-video__img">
                                     <div data-id="76" class="popup__allLessons-item"></div>
                                         '. $image_available .'
                                 </div>
+                                ' . $url_end . '
                                 <div class="popup__allLessons-item-info">
                                     <div class="popup__allLessons-item-info-header">
                                         <div class=" aboutTheAuthor '. $number_color .'">
@@ -223,7 +208,7 @@
                                 </div>
                             </div>
                         </div>
-                            </div>' . $url_end;
+                            </div>';
                 $counter++;
             }
             echo $div;

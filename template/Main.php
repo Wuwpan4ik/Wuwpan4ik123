@@ -28,7 +28,6 @@
         $title = "Ключевые показатели";
         include ('default/header.php');
         ?>
-        <? print_r($_SESSION['error']) ?>
 
         <div class="_container">
 
@@ -58,7 +57,7 @@
 
             <div class="boxes">
 
-                <div class="box">
+                <div class="box active">
 
                     <p>Эта неделя<img class="index_ico" src="img/ArrowUp.svg"></p>
 
@@ -66,15 +65,15 @@
 
                 </div>
 
-                <div class="box box-active">
+                <div class="box active">
 
-                    <p>В месяц<img class="index_ico" src="/img/ArrowDownActive.svg"></p>
+                    <p>В месяц<img class="index_ico" src="img/ArrowUp.svg"></p>
 
                     <h3 id="this_month">0 ₽</h3>
 
                 </div>
 
-                <div class="box">
+                <div class="box active">
 
                     <p>Прошлая неделя<img class="index_ico" src="img/ArrowUp.svg"></p>
 
@@ -82,7 +81,8 @@
 
                 </div>
 
-                <div class="box">
+
+                <div class="box  active">
 
                     <p>Прошлый месяц<img class="index_ico" src="img/ArrowDown.svg"></p>
 

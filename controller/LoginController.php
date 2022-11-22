@@ -23,6 +23,7 @@
                     $_SESSION["user"] = [
                         'id' => $res[0]['id'],
                         'email' => $res[0]['email'],
+                        'avatar' => $res[0]['avatar'],
                         'is_creator' => 0
                     ];
                     $response = "С возвращением, " . $_SESSION["user"]["name"];

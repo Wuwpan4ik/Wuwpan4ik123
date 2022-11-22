@@ -23,6 +23,13 @@ class NotificationsController extends ACoreCreator
         }
         echo $div;
     }
+
+    public function checkNotifications() {
+        $notifications = $this->m->getNotifications($_SESSION['user']['id']);
+        foreach ($notifications as $notification) {
+            $this->m->db->execute("UPDATE `notifications` SET (`is_checked`) VALUES ('1') WHERE user_id = ". $_SESSION['user']['idZ']);
+        }
+    }
     public function obr()
     {
     }

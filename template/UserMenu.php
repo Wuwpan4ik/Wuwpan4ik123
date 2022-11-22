@@ -28,7 +28,7 @@
             <div class="UserMenu-profile">
                 <div class="UserMenu-profile__header">
                     <div class="UserMenu-profile__header-user">
-                        <img id="avatar" src="/<?=$_SESSION['user']['avatar']?>"/>
+                        <img id="avatar" src="<?=$_SESSION['user']['avatar']?>"/>
                         <div class="UserMenu-profile__textInfo">
                             <p>Добро пожаловать,</p>
                             <div class="UserMenu-profile__textInfo-name">
@@ -61,7 +61,7 @@
 
                     </a>
 
-                    <a href="/AboutTheAuthor">
+                    <a href="/">
 
                         <div class=" UserMenu-list__option sidebarOption <? if ($_GET['option'] == 'Project') echo 'active'; ?>">
 
@@ -77,7 +77,7 @@
 
                     </a>
 
-                    <a href="/UserNotifications">
+                    <a href="/">
 
                         <div class="UserMenu-list__option sidebarOption <? if ($_GET['option'] == 'Analytics') echo 'active'; ?>">
 
@@ -94,7 +94,7 @@
 
                     </a>
 
-                    <a href="/UserContacts">
+                    <a href="/">
 
                         <div class=" UserMenu-list__option sidebarOption <? if ($_GET['option'] == 'Cases') echo 'active'; ?>">
 
@@ -114,7 +114,7 @@
                 <div class="UserMenu-footer">
                     <div class="UserMenu-footer__form">
                         <div class="UserMenu-footer__form-back UserMenu-footer__button">
-                            <button>Назад</button>
+                            <button onclick="window.location.replace('/');">Назад</button>
                         </div>
                         <div class="UserMenu-footer__form-question UserMenu-footer__button">
                             <button>Есть вопросы?</button>

@@ -142,18 +142,16 @@
             $comment = 'Купил курс';
             $client = $this->GetClient($course_id);
             $give_money = $client[0]['give_money'] + $this->GetPriceOfCourse($course_id)[0]['price'];
-            $_SESSION['error'] = 1;
 
 //          Добавление Clients
             if (count($client) == 1){
                 if ($client[0]['buy_progress'] < $buy_progress[$comment]) {
-                    $_SESSION['error'] = $give_money;
-                    $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]', `give_money` = '$give_money', `first_buy` = 0 WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
-                }
+                    $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]', `give_money` = '$give_money', `first_buy` = 0 WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");                }
             } else {
                 $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], $give_money);
             }
 //          Добавление User
+            $_SESSION['error'] = $this->email;
             if (count($this->m->getUserByEmail($this->email)) != 1) {
 
                 $title = "Регистрация аккаунта";
@@ -195,6 +193,7 @@
         }
 
         public function BuyVideo() {
+            if (!$this->RequestValidate()) return false;
             $buy_progress = include './settings/buy_progress.php';
             $creator_id = $_POST['creator_id'];
             $course_id = $_POST['course_id'];
@@ -205,7 +204,7 @@
 //          Добавление Clients
             if (count($client) == 1){
                 if ($client[0]['buy_progress'] < $buy_progress[$comment]) {
-                    $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]', `give_money` = '$give_money', `first_buy` = 0 WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
+                    $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]', `give_money` = '$give_money', `first_buy` = 0 WHERE `creator_id` = '$creator_id' AND `course_id` = '$course__real_id' AND `email` = '$this->email'");
                 }
             } else {
                 $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], $give_money);

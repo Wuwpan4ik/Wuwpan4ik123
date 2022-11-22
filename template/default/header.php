@@ -12,32 +12,16 @@
 
     <div class="buttonsFeed">
 
-        <button class="ico_button button-bell"><img class="ico" src="img/Bell.svg">  <div id="msg">5</div></button>
+        <button class="ico_button button-bell"><img class="ico" src="img/Bell.svg"><div id="msg">1d</div></button>
 
         <button id="apps" class="ico_button" onclick="window.location.replace('Analytics')">Заявки</button>
 
         <div class="popupBell">
             <img class="arrow-bcg" src="img/Notification/arrowbcg.svg" alt="">
             <div class="popupBell-body">
-                <div class="popupBell-item">
-                    <img src="img/Notification/payment.svg" alt="">
-                    <div class="popupBell-item__info">
-                        <span>Тариф “Премиум” подключен</span>
-                        <p>Теперь ваш аккаунт получил все доступные функции до 20.09.2023</p>
-                    </div>
-                </div>
-                <div class="popupBell-item">
-                    <img src="img/Notification/warn.svg" alt="">
-                    <div class="popupBell-item__info">
-                        <span>Тариф “Премиум” подключен</span>
-                        <p>Теперь ваш аккаунт получил все доступные функции до 20.09.2023</p>
-                    </div>
-                </div>
             </div>
         </div>
-
     </div>
-
 </div>
 <script>
     let buttonBell =  document.body.querySelector('.button-bell');
@@ -54,10 +38,20 @@
         document.querySelector('.button-bell .ico').src = "img/correct.png";
         document.querySelector('.button-bell .ico').style = "width: 42px; height: 42px;"
         document.querySelector('.button-bell #msg').remove();
-
         buttonBell.removeEventListener('mouseover', popupBellActive)
         popupBellDisable();
         buttonBell.removeEventListener('mouseout', popupBellDisable)
+        let request = new XMLHttpRequest();
+        let url = "/NotificationsController/checkout";
+
+        request.open('POST', url);
+
+        request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+        request.addEventListener("readystatechange", () => {
+            if (request.readyState === 4 && request.status === 200) {
+            }
+        });
+        request.send();
     })
 </script>
 </body>

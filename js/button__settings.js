@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelector('.popup-video').removeChild(document.querySelector('.popup-video').firstChild);
             let videos = item.parentElement.parentElement.querySelector('.media-cart-img').cloneNode(true);
             let title = item.parentElement.parentElement.querySelector('input[name="name"]').value;
-            let desc = item.parentElement.parentElement.querySelector('input[name="description"]').value;
+            let desc = item.parentElement.parentElement.querySelector('textarea[name="description"]').value;
             let button_text = item.parentElement.parentElement.querySelector('input[name="button_text"]').value;
             if (title.length === 0) {
                 title = 'Укажите заголовок';
