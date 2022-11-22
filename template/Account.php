@@ -34,7 +34,7 @@
 
                         <h2>Основная информация о вас</h2>
 
-                        <p>Эта информация поможет вам востановить доступ к аккаунту в случае необходимости,
+                        <p class="info_account">Эта информация поможет вам востановить доступ к аккаунту в случае необходимости,
 
                             и позволит нам давать вам более персонализированный контент который вам поможет в запуске.</p>
 
@@ -81,7 +81,7 @@
 
                                 </div>
                                 <div class="ProfileSetting">
-                                    <h2>Действие после нажатия:</h2>
+                                    <h2 class="no_margin">Загрузите аватар автора:</h2>
                                     <script>
                                         function function_return() {
                                             document.getElementById("hb").style["display"] = "block";
@@ -160,7 +160,11 @@
 
                                         </select>
 
+
 									</div>
+                                    <div class="about_school">
+                                        <textarea name="about_school" placeholder="Описание для школы"></textarea>
+                                    </div>
                                     <h2>Данные вашего тарифа:</h2>
                                     <div class="field">
                                         <div class="tariff-card">
@@ -223,11 +227,11 @@
 
                                 <h2>Скрипты для HEAD:  </h2>
 
-                                <textarea class="additionally" placeholder="Default"></textarea>
+                                <textarea class="additionally" placeholder="Default" name="head_additional"></textarea>
 
                                 <h2>Скрипты для Body:  </h2>
 
-                                <textarea class="additionally" placeholder="Default"></textarea>
+                                <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>
                             </div>
 
                         </div>

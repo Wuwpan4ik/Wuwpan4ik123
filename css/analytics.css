@@ -106,7 +106,7 @@ button {
 }
 
 .mytabs label {
-    width: 25%;
+    width: 31.6%;
     border: 1px #E1E3E6 solid;
     border-width: 1px 0px 1px 0px;
     padding: 4px;
@@ -456,10 +456,11 @@ th {
     flex-direction: column;
     flex-wrap: wrap;
     gap: 30px;
+    width:100%;
 }
 
 .profit__item {
-    width: 320px;
+    width: 100%;
     border: 1px solid #E1E3E6;
     border-radius: 8px;
     padding: 24px;
@@ -553,13 +554,14 @@ span.green_text {
 }
 
 .profit_rightSide {
+    width:100%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
+    -ms-flex-direction: row;
+    flex-direction: row;
     gap: 20px;
 }
 
@@ -631,7 +633,7 @@ span.color3 {
 }
 
 .rightSideFirst {
-    width: 312px;
+    width: 100%;
     border: 1px solid #E1E3E6;
     border-radius: 8px;
     padding: 24px;
