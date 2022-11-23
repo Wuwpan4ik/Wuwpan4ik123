@@ -59,7 +59,7 @@
                                         </div>
                                     </div>
                                     <div class="popup__allLessons-item-info-title">
-                                        <?=$item['name']?>
+                                        <?php echo htmlspecialchars(isset($item['school_name']) ? $item['school_name'] : $item['name'] )?>
                                     </div>
                                     <div class="aboutTheAuthor__info-text hide-content">
                                         <?=$item['description'] ?></div>

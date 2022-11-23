@@ -142,6 +142,7 @@ class AccountController extends ACoreCreator {
                 if ($_POST['new_pass'] == $_POST['new_pass_repeat']) {
                     $password = $_POST['new_pass'];
                     $this->m->db->execute("UPDATE user SET `password` = '$password' WHERE id = " . $_SESSION['user']['id']);
+                    $this->addNotifications("item-like", 'Ваш пароль изменён', '/img/Notification/message.png', $_SESSION['user']['id']);
                 }
             } else {
                 $request = "Неверный пароль";
@@ -154,20 +155,20 @@ class AccountController extends ACoreCreator {
 
     function get_content()
     {
-        echo '<!DOCTYPE html>
-                <html lang="en">
-                <head>
-                <meta charset="UTF-8">
-                <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Document</title>
-                </head>
-                <body>
-                    <script>
-                        window.history.go(-1);
-                    </script>
-                </body>
-                </html>';
+//        echo '<!DOCTYPE html>
+//                <html lang="en">
+//                <head>
+//                <meta charset="UTF-8">
+//                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+//                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//                <title>Document</title>
+//                </head>
+//                <body>
+//                    <script>
+//                        window.history.go(-1);
+//                    </script>
+//                </body>
+//                </html>';
     }
 
     function obr()
