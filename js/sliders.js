@@ -10,9 +10,7 @@ $(document).ready(function(){
         });
         function videoAutoplay() {
             $(this).find('.slider__video-item').play();
-
         }
-        videoAutoplay()
         function stopVideos() {
             $(this).find('.slider__video-item').each(function (){
                 this.pause();
