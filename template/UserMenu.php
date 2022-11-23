@@ -111,16 +111,6 @@
                     </a>
 
                 </div>
-                <div class="UserMenu-footer">
-                    <div class="UserMenu-footer__form">
-                        <div class="UserMenu-footer__form-back UserMenu-footer__button">
-                            <button onclick="window.location.replace('/');">Назад</button>
-                        </div>
-                        <div class="UserMenu-footer__form-question UserMenu-footer__button">
-                            <button>Есть вопросы?</button>
-                        </div>
-                    </div>
-                </div>
             </div>
             </div>
         </div>
