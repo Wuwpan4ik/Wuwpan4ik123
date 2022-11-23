@@ -23,7 +23,7 @@
         </div>
         <div class="funnel-input">
             <label for="description">Укажите описание:</label>
-            <textarea name="description" class="videoname video-desc" value="<?=$v['description']?>"></textarea>
+            <textarea name="description" class="videoname video-desc" placeholder="<?=$v['description']?>"></textarea>
         </div>
         <?php if (strstr($_SERVER['REQUEST_URI'], 'Funnel' )) {?>
         <input type="hidden" value="<?=$v['id']?>">

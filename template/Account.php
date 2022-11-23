@@ -48,12 +48,12 @@
 
                                 <div class="about">
 
-                                    <form method="POST" action="/Course-rename/MainSettings">
+                                    <form method="POST" action="/Account/MainSettings" enctype="multipart/form-data">
                                         <h2>Ваши данные</h2>
                                         <div class="field">
-                                            <input class="half" name="email" class="full" type="email" placeholder="<? echo $_SESSION['user']['email'] ?>"/>
+                                            <input class="half" name="email" type="email" placeholder="<? echo $_SESSION['user']['email'] ?>"/>
                                             <?php if(isset($_SESSION['error']['email_message'])) echo $_SESSION['error']['email_message'] ?>
-                                            <input class="half" name="num" type="tel" value="+7">
+                                            <input class="half" name="phone" type="tel" value="<?php print(htmlspecialchars(isset($_SESSION['user']['phone']) ? $_SESSION['user']['phone'] : '+7')) ?>">
                                         </div>
 
                                         <h2>Расскажите о себе</h2>
@@ -64,7 +64,7 @@
 
                                             <input name="second_name" class="inf" placeholder="<? echo $_SESSION['user']['second_name'] ?>"/>
 
-                                            <input name="second_name" class="inf" placeholder="Дата рождения"/>
+                                            <input type="date" name="birthday" class="inf" placeholder="<? print(htmlspecialchars($_SESSION['user']['birthday'])); ?>"/>
                                             <?php if(isset($_SESSION['error']['first_name_message'])) echo $_SESSION['error']['first_name_message'] ?>
 
                                             <?php if(isset($_SESSION['error']['second_name_message'])) echo $_SESSION['error']['second_name_message'] ?>
@@ -72,66 +72,59 @@
                                         </div>
                                         <h2>Откуда вы?</h2>
                                         <div class="field">
-                                            <input class="half" type="text" placeholder="Страна">
-                                            <input class="half" type="text" placeholder="Город">
+                                            <input class="half" name="country" type="text" placeholder="<?php print(htmlspecialchars(isset($_SESSION['user']['country']) ? $_SESSION['user']['country'] : 'Страна')) ?>">
+                                            <input class="half" name="city" type="text" placeholder="<?php print(htmlspecialchars(isset($_SESSION['user']['city']) ? $_SESSION['user']['city'] : 'Город'))?>" >
                                         </div>
 
-
-                                    </form>
-
-                                </div>
-                                <div class="ProfileSetting">
-                                    <h2 class="no_margin">Загрузите аватар автора:</h2>
-                                    <script>
-                                        function function_return() {
-                                            document.getElementById("hb").style["display"] = "block";
-                                        }
-                                    </script>
-
-                                    <form method="POST" enctype="multipart/form-data" action="?option=AccountController&method=saveAdditionalSettings">
-
-
-                                        <div class="ProfileSetting-body">
-                                            <div class="ProfileSetting-avatar">
-                                                <img src="<?=$content[0][0]['avatar']?>" id="ava_preload">
-                                                <div class="ProfileSetting-name">
-                                                    Имя
-                                                    Фамилия
+                                        <div class="ProfileSetting">
+                                            <h2 class="no_margin">Загрузите аватар автора:</h2>
+                                            <script>
+                                                function function_return() {
+                                                    document.getElementById("hb").style["display"] = "block";
+                                                }
+                                            </script>
+                                            <div class="ProfileSetting-body">
+                                                <div class="ProfileSetting-avatar">
+                                                    <img src="<?=$content[0][0]['avatar']?>" id="ava_preload">
+                                                    <div class="ProfileSetting-name">
+                                                        Имя
+                                                        Фамилия
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="avatar">
-                                                <div class="avatar-body">
-                                                    <img src="../img/saveAvatar.svg" alt="">
-                                                    <div class="avatar-body__info">
-                                                        <span id="file-name" class="file-box"></span>
-                                                        <span id="file-size" class="file-box"></span>
+                                                <div class="avatar">
+                                                    <div class="avatar-body">
+                                                        <img src="../img/saveAvatar.svg" alt="">
+                                                        <div class="avatar-body__info">
+                                                            <span id="file-name" class="file-box"></span>
+                                                            <span id="file-size" class="file-box"></span>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    <div class="input__wrapper">
+                                                        <input accept="image/img, image/jpeg, image/png" name="avatar" type="file" id="input__file" class="input input__file" onchange='uploadFile(this)' multiple>
+                                                        <label for="input__file" class="input__file-button">
+
+                                                            <span class="input__file-icon-wrapper"><img class="input__file-icon" src="./img/plus.svg"  width="25"></span>
+                                                            <span class="input__file-button-text">Добавить</span>
+                                                        </label>
                                                     </div>
 
                                                 </div>
 
-
-                                                <div class="input__wrapper">
-                                                    <input  accept="image/img, image/jpeg, image/png" name="file" type="file" id="input__file" class="input input__file" onchange='uploadFile(this)' multiple>
-                                                    <label for="input__file" class="input__file-button">
-
-                                                        <span class="input__file-icon-wrapper"><img class="input__file-icon" src="./img/plus.svg"  width="25"></span>
-                                                        <span class="input__file-button-text">Добавить</span>
-                                                    </label>
-                                                </div>
-
                                             </div>
 
-
-
+                                            <div class="about-btn">
+                                                <button id="profile_send" type="submit">Сохранить</button>
+                                            </div>
 
                                         </div>
-
 
 
                                     </form>
 
                                 </div>
-
                             </div>
 
                             <input type="radio" id="Integrations" name="mytabs"/>
@@ -141,30 +134,35 @@
                             <div class="tab">
 
                                 <div class="prodamus-input">
+                                    <form action="/Account/SaveSchoolSettings" method="POST">
+                                        <h2>Основные данные о школе</h2>
 
-									<h2>Основные данные о школе</h2>
+                                        <div class="field">
 
-									<div class="field">
+                                            <input class="half" name="school_name" type="text" placeholder="<? print(htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : 'Название')) ?>"/>
 
-										<input class="half" type="text" placeholder="Название"/>
+                                            <select class="selector" name="niche">
 
-                                        <select class="selector" name="niche" >
+                                                <?
+                                                $options = ["Изотерика", "Обучение", "Дизайн", "Политика", "Спорт", "Игры", "Животные"];
+                                                for($i = 0; $i<7; $i++){
+                                                    if($options[$i] == $content[0][0]['niche']){?><option selected="selected"><?=$options[$i]?></option>
+                                                    <?}else{?><option><?=$options[$i]?></option><?}
+                                                }
+                                                ?>
 
-                                            <?
-                                            $options = ["Изотерика", "Обучение", "Дизайн", "Политика", "Спорт", "Игры", "Животные"];
-                                            for($i = 0; $i<7; $i++){
-                                                if($options[$i] == $content[0][0]['niche']){?><option selected="selected"><?=$options[$i]?></option>
-                                                <?}else{?><option><?=$options[$i]?></option><?}
-                                            }
-                                            ?>
-
-                                        </select>
+                                            </select>
 
 
-									</div>
-                                    <div class="about_school">
-                                        <textarea name="about_school" placeholder="Описание для школы"></textarea>
-                                    </div>
+                                        </div>
+                                        <div class="about_school">
+                                            <textarea name="school_desc" placeholder="<? print(htmlspecialchars(isset($_SESSION['user']['school_desc']) ? $_SESSION['user']['school_desc'] : 'Описание для школы')) ?>"></textarea>
+                                        </div>
+                                        <div class="about-btn">
+                                            <button id="profile_send" type="submit">Сохранить</button>
+                                        </div>
+                                    </form>
+
                                     <h2>Данные вашего тарифа:</h2>
                                     <div class="field">
                                         <div class="tariff-card">
@@ -234,9 +232,6 @@
                                 <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>
                             </div>
 
-                        </div>
-                        <div class="about-btn">
-                            <button id="profile_send" type="submit">Сохранить</button>
                         </div>
                     </div>
 

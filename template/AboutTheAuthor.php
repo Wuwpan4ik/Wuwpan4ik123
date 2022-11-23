@@ -11,14 +11,16 @@
 
     <div class="_container">
         <div class="User-header">
-            <div class="User-logo user__logo">
-                <div class="user__logo-img"><img src="../img/Logo.svg" alt=""></div>
-                <div class="user__logo-text">Центр Ратнера</div>
-            </div>
-            <div class="header-white__burger">
-                <div class="white__burger">
-                    <span></span>
+                <div class="User-logo user__logo">
+                    <div class="user__logo-img"><img src="../img/Logo.svg" alt=""></div>
+                    <div class="user__logo-text">Центр Ратнера</div>
                 </div>
+            <div class="header-white__burger">
+                <a href="/UserMenu">
+                    <div class="main__burger">
+                        <span></span>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
@@ -30,13 +32,13 @@
             </div>
             <div class="userPopup__body">
                 <div class="aboutTheAuthor-img">
-                    <img src="<?=$content[0]["avatar"]?>" alt="">
+                    <img src="/<?=$content[0]["avatar"]?>" alt="">
                 </div>
                 <div class="aboutTheAuthor__name">
-                    <?echo $content[0]["first_name"], " ", $content[0]["second_name"]?>
+                    <? echo htmlspecialchars($content[0]["first_name"]), " ", htmlspecialchars($content[0]["second_name"])?>
                 </div>
                 <div class="aboutTheAuthor__text">
-                    <?=$content[0]["about"]?>
+                    <?echo htmlspecialchars($content[0]["about"])?>
                 </div>
             </div>
             <div class="userPopup__button">

@@ -20,9 +20,11 @@
                     <div class="user__logo-text">Центр Ратнера</div>
                 </div>
                 <div class="UserMenu-header__burger">
+                    <a href="/UserMain">
                     <div class=" header__burger">
                         <span></span>
                     </div>
+                    </a>
                 </div>
             </div>
             <div class="UserMenu-profile">
@@ -61,23 +63,7 @@
 
                     </a>
 
-                    <a href="/">
-
-                        <div class=" UserMenu-list__option sidebarOption <? if ($_GET['option'] == 'Project') echo 'active'; ?>">
-
-                            <div class="option">
-
-                                <img class="ico" src="img/question.svg">
-
-                                <h2>Об авторе</h2>
-
-                            </div>
-
-                        </div>
-
-                    </a>
-
-                    <a href="/">
+                    <a href="/UserNotifications">
 
                         <div class="UserMenu-list__option sidebarOption <? if ($_GET['option'] == 'Analytics') echo 'active'; ?>">
 
@@ -94,7 +80,7 @@
 
                     </a>
 
-                    <a href="/">
+                    <a href="/UserContacts">
 
                         <div class=" UserMenu-list__option sidebarOption <? if ($_GET['option'] == 'Cases') echo 'active'; ?>">
 

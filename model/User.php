@@ -81,7 +81,6 @@
                 }
                 array_shift($purchases_array);
             }
-            $_SESSION['dwdwd'] = $course_query;
             $courses = $this->db->query($course_query);
             return $courses;
         }
@@ -142,6 +141,12 @@
         public function getUserMessengers() {
             $user_id = $_SESSION['user']['id'];
             $result = $this->db->query("SELECT * FROM chats WHERE `user_from` = '$user_id' OR `user_to` = '$user_id'");
+            return $result;
+        }
+
+        public function getAuthorInfo() {
+            $user_id = $_SESSION['item_id'];
+            $result = $this->db->query("SELECT * FROM user WHERE `id` = '$user_id'");
             return $result;
         }
 
