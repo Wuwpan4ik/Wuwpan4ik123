@@ -30,6 +30,12 @@
                 <div class="slider__darkness">
 
                 </div>
+                <div class="play__video active">
+                    <img src="../img/smallPlayer/play.svg" alt="">
+                </div>
+                <div class="pause__video">
+                    <img src="../img/smallPlayer/pause.svg" alt="">
+                </div>
                 <div class="slider__header _conatiner-player ">
                     <div class="slider__header-logo">
                         <div class="slider__header-logo-img">
