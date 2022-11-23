@@ -496,7 +496,7 @@
         height: 100%;
     }
     .User-header {
-        width: 370px;
+        width: 400px;
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
@@ -734,6 +734,8 @@
         background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);
         font-size: 12px;
         font-weight: 700;
+        position: relative;
+        right:20px;
     }
     .sidebarOption {
         padding: 0 !important;
@@ -773,7 +775,7 @@
     }
     /*UserLogin*/
     ._container {
-        max-width: 370px;
+        max-width: 400px;
         margin: 0 auto;
     }
     .userLogin, .UserPasswordRecovery {
@@ -962,6 +964,7 @@
     .userPopup__button button {
         width: 100%;
         padding: 19px 0;
+        margin-bottom: 10px;
         font-weight: 600;
         font-size: 16px;
         color: #fff;

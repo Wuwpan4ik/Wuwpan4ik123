@@ -2,12 +2,6 @@
 
 class NotificationsController extends ACoreCreator
 {
-    public function addNotifications($class, $message, $image, $user_id = null) {
-        if (is_null($user_id)) $user_id = $_SESSION['user']['id'];
-        $date = date("d.m.Y");
-        $time = date("H:i");
-        $this->m->db->execute("INSERT INTO `notifications` (`user_id`, `class`, `body`, `image`, `date`, `time`, `is_checked`) VALUES ('$user_id', '$class', '$message', '$image', '$date', '$time', 0)");
-    }
 
     public function getNotifications() {
         $notifications = $this->m->getNotifications($_SESSION['user']['id']);
@@ -25,10 +19,7 @@ class NotificationsController extends ACoreCreator
     }
 
     public function checkNotifications() {
-        $notifications = $this->m->getNotifications($_SESSION['user']['id']);
-        foreach ($notifications as $notification) {
-            $this->m->db->execute("UPDATE `notifications` SET (`is_checked`) VALUES ('1') WHERE user_id = ". $_SESSION['user']['idZ']);
-        }
+        $this->m->db->execute("UPDATE `notifications` SET (`is_checked`) VALUES ('1') WHERE user_id = ". $_SESSION['user']['id']);
     }
     public function obr()
     {

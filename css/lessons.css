@@ -481,7 +481,7 @@ input:checked + label {
 
 .slick-dots ul {
     position: absolute;
-    top: 20px;
+    top: 14px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

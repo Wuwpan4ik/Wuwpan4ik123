@@ -689,13 +689,9 @@ a {
   color: #5A6474;
 }
 
-.text-menu {
-  display: flex;
-  flex-wrap: wrap;
-
-}
-.text-info{
-
+.text-info {
+  padding: 8px;
+  margin-right:60px;
 }
 
 .text-info-name {

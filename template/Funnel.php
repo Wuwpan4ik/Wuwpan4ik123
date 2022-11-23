@@ -112,11 +112,13 @@
                         </div>
                         <form action="/Funnel-select/<?=$p['id']?>" method="POST">
                             <input type="text" name="id" hidden="hidden" value="<?=$p['id']?>">
-                            <select name="course_id" class="select__course">
-                                <?php
+                            <select onfocusout="course__send(this)" name="course_id" class="select__course">
+                                <?php if (!is_null($content[1][0]) && isset($content[1][0])) {
                                 foreach ($content[1] as $course) { ?>
                                     <option <?php if ($p['course_id'] == $course['id']) echo "selected";?> value="<?=$course['id']?>"><?=$course['name']?> <?=$course['id']?></option>
-                                <?php } ?>
+                                <?php } } else { ?>
+                                    <option>Нет курсов для выбора</option>
+                                <?php } print_r($content[1]) ?>
                             </select>
                         </form>
 
@@ -168,7 +170,7 @@
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="../js/script.js" ></script>
 <script src="../js/slick.min.js"></script>
 <script src="../js/sliders.js"></script>
@@ -180,12 +182,9 @@
     let entryDisplay = document.querySelector('#popup__background');
     let body = document.querySelector('body');
 
-    document.querySelectorAll('.select__course').forEach((item) => {
-        item.addEventListener('change', function () {
-            this.parentElement.submit();
-            console.log(this)
-        })
-    })
+    function course__send(item) {
+        item.parentElement.submit();
+    }
 
     function copy_link(elem) {
         var copyTextarea = document.createElement("textarea");

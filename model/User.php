@@ -51,7 +51,7 @@
         public function getContentForUserAuthorPage()
         {
             $purchases = $this->db->query("SELECT `purchase` FROM `purchase` WHERE user_id = " . $_SESSION['user']['id'])[0]['purchase'];
-            $course_query = "SELECT user.id, course.name, course.description, user.first_name, user.second_name, count(course.id) as 'count', course.author_id FROM course AS course INNER JOIN user ON user.id = course.author_id WHERE";
+            $course_query = "SELECT user.id, course.name, user.school_name, course.description, user.first_name, user.second_name, count(course.id) as 'count', course.author_id FROM course AS course INNER JOIN user ON user.id = course.author_id WHERE";
             $purchases_array = json_decode($purchases, true)['course_id'];
             foreach ($purchases_array as $course_id) {
                 $course_query .= " course.id = $course_id ";
@@ -81,7 +81,6 @@
                 }
                 array_shift($purchases_array);
             }
-            $_SESSION['dwdwd'] = $course_query;
             $courses = $this->db->query($course_query);
             return $courses;
         }
@@ -142,6 +141,12 @@
         public function getUserMessengers() {
             $user_id = $_SESSION['user']['id'];
             $result = $this->db->query("SELECT * FROM chats WHERE `user_from` = '$user_id' OR `user_to` = '$user_id'");
+            return $result;
+        }
+
+        public function getAuthorInfo() {
+            $user_id = $_SESSION['item_id'];
+            $result = $this->db->query("SELECT * FROM user WHERE `id` = '$user_id'");
             return $result;
         }
 
