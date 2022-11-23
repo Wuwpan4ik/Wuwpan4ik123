@@ -112,9 +112,7 @@
                                                     </div>
 
                                                 </div>
-
                                             </div>
-
 
                                         </div>
                                         <div class="about-btn">
