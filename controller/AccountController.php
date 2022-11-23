@@ -10,23 +10,32 @@ class AccountController extends ACoreCreator {
         return True;
     }
 
-    public function saveAdditionalSettings() {
+    public function SaveSchoolSettings()
+    {
+        $user = $this->m->db->query("SELECT * FROM user WHERE `id` = ". $_SESSION['user']['id']);
 
-        if($_FILES['file_upload']['name']){
-
-            if($_SESSION['user']['avatar'] != "uploads/ava/1.jpg"){
-                unlink("../".$_SESSION['user']['avatar']);
-            }
-            move_uploaded_file($_FILES['file_upload']['tmp_name'], "./uploads/ava/".$_SESSION['user']['email']."_".$_FILES['file_upload']['name']);
-            $path = "uploads/ava/".$_SESSION['user']['email']."_".$_FILES['file_upload']['name'];
-            $this->m->db->execute("UPDATE `user` SET `avatar` = '$path' WHERE `id` = " . $_SESSION['user']['id']);
-
-            $_SESSION['user']['avatar'] = $path;
+        if (strlen($_POST['school_name']) == 0) {
+            $school_name = $user[0]['school_name'];
+        } else {
+            $school_name = $_POST['school_name'];
         }
 
-        $niche = strlen($_POST['niche']) != 0 ? $_POST['niche'] : $_SESSION['user']['niche'];
+        if (strlen($_POST['niche']) == 0) {
+            $niche = $user[0]['niche'];
+        } else {
+            $niche = $_POST['niche'];
+        }
 
-        $this->m->db->execute("UPDATE `user` SET `niche`='$niche' WHERE `id` = " . $_SESSION['user']['id']);
+        if (strlen($_POST['school_desc']) == 0) {
+            $school_desc = $user[0]['school_desc'];
+        } else {
+            $school_desc = $_POST['school_desc'];
+        }
+        $this->m->db->execute("UPDATE user SET `school_name` = '$school_name', `school_desc` = '$school_desc', `niche` = '$niche' WHERE id = " . $_SESSION['user']['id']);
+        $_SESSION["user"]['school_name'] = $school_name;
+        $_SESSION["user"]['school_desc'] = $school_desc;
+        $_SESSION["user"]['niche'] = $niche;
+        return true;
     }
 
     public function SaveSettings() {
@@ -53,7 +62,6 @@ class AccountController extends ACoreCreator {
         } else {
             if (preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$_POST['first_name'])) {
                 $_SESSION['error']['first_name_message'] = 'Имя содержит запрещенные знаки';
-                return False;
             }
             $first_name = $_POST['first_name'];
         }
@@ -63,28 +71,86 @@ class AccountController extends ACoreCreator {
         } else {
             if (preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$_POST['second_name'])) {
                 $_SESSION['error']['second_name_message'] = 'Фамилия содержит запрещенные знаки';
-                return False;
             }
             $second_name = $_POST['second_name'];
         }
 
-        if (strlen($_POST['site_url']) == 0) {
-            $site_url = $user[0]['site_url'];
+        if (strlen($_POST['phone']) == 0) {
+            $phone = $user[0]['telephone'];
         } else {
-            $site_url = $_POST['site_url'];
-            $count = (int)($this->m->db->query("SELECT * FROM user WHERE `site_url` = '$site_url'"));
-            if ($count != 0) {
-                $_SESSION['error']['url_message'] = 'Данный Url уже занят';
-                return False;
-            }
+            $phone = $_POST['phone'];
         }
-        $this->addNotifications("Настройки были сменены", "Вы сменили настройки своего аккаунта", "img/Notification/warn.svg");
-        $this->m->db->execute("UPDATE user SET `email` = '$email', `first_name` = '$first_name', `second_name` = '$second_name', `site_url` = '$site_url' WHERE id = " . $_SESSION['user']['id']);
+
+        if (strlen($_POST['city']) == 0) {
+            $city = $user[0]['city'];
+        } else {
+            $city = $_POST['city'];
+        }
+
+        if (strlen($_POST['country']) == 0) {
+            $country = $user[0]['country'];
+        } else {
+            $country = $_POST['country'];
+        }
+
+        if($_FILES['file_upload']['name']){
+
+            if($_SESSION['user']['avatar'] != "uploads/ava/1.jpg"){
+                unlink("../".$_SESSION['user']['avatar']);
+            }
+            move_uploaded_file($_FILES['file_upload']['tmp_name'], "./uploads/ava/".$_SESSION['user']['email']."_".$_FILES['file_upload']['name']);
+            $avatar = "uploads/ava/".$_SESSION['user']['email']."_".$_FILES['file_upload']['name'];
+        } else {
+            $avatar = $user[0]['avatar'];
+        }
+
+//        $this->addNotifications("Настройки были сменены", "Вы сменили настройки своего аккаунта", "img/Notification/warn.svg");
+        $this->m->db->execute("UPDATE user SET `email` = '$email', `avatar` = '$avatar', `first_name` = '$first_name', `second_name` = '$second_name', `telephone` = '$phone' WHERE id = " . $_SESSION['user']['id']);
         $_SESSION["user"]['first_name'] = $first_name;
         $_SESSION["user"]['second_name'] = $second_name;
         $_SESSION["user"]['email'] = $email;
-        $_SESSION["user"]['site_url'] = $site_url;
+        $_SESSION["user"]['phone'] = $phone;
+        $_SESSION["user"]['city'] = $city;
+        $_SESSION["user"]['country'] = $country;
+        $_SESSION['user']['avatar'] = $avatar;
         return true;
+    }
+
+    function SaveUserSettings() {
+        $user = $this->m->db->query("SELECT * FROM user WHERE `id` = ". $_SESSION['user']['id']);
+
+        if (strlen($_POST['first_name']) == 0) {
+            $first_name = $user[0]['first_name'];
+        } else {
+            if (preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$_POST['first_name'])) {
+                $_SESSION['error']['first_name_message'] = 'Имя содержит запрещенные знаки';
+            }
+            $first_name = $_POST['first_name'];
+        }
+
+        if (strlen($_POST['second_name']) == 0) {
+            $second_name = $user[0]['second_name'];
+        } else {
+            if (preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$_POST['second_name'])) {
+                $_SESSION['error']['second_name_message'] = 'Фамилия содержит запрещенные знаки';
+            }
+            $second_name = $_POST['second_name'];
+        }
+
+        if (strlen($_POST['old_pass']) != 0) {
+            if ($user[0]['password'] == $_POST['old_pass']) {
+                if ($_POST['new_pass'] == $_POST['new_pass_repeat']) {
+                    $password = $_POST['new_pass'];
+                    $this->m->db->execute("UPDATE user SET `password` = '$password' WHERE id = " . $_SESSION['user']['id']);
+                    $this->addNotifications("item-like", 'Ваш пароль изменён', '/img/Notification/message.png', $_SESSION['user']['id']);
+                }
+            } else {
+                $request = "Неверный пароль";
+            }
+        }
+        $this->m->db->execute("UPDATE user SET `first_name` = '$first_name', `second_name` = '$second_name' WHERE id = " . $_SESSION['user']['id']);
+        $_SESSION["user"]['first_name'] = $first_name;
+        $_SESSION["user"]['second_name'] = $second_name;
     }
 
     function get_content()
@@ -99,7 +165,7 @@ class AccountController extends ACoreCreator {
                 </head>
                 <body>
                     <script>
-                        window.location.replace("?option=Account");
+                        window.history.go(-1);
                     </script>
                 </body>
                 </html>';

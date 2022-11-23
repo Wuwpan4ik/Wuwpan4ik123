@@ -12,7 +12,7 @@
 
     <div class="buttonsFeed">
 
-        <button class="ico_button button-bell"><img class="ico" src="img/Bell.svg"><div id="msg">1d</div></button>
+        <button class="ico_button button-bell"><img class="ico" src="img/Bell.svg"><div id="msg">1</div></button>
 
         <button id="apps" class="ico_button" onclick="window.location.replace('Analytics')">Заявки</button>
 

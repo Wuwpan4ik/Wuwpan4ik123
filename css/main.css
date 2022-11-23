@@ -642,10 +642,7 @@ a {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-
-
 }
-
 .UserProfile__header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -681,7 +678,6 @@ a {
 }
 
 .UserProfile h1 {
-  padding: 0 20px 0 0;
   font-size: 24px;
   font-weight: 700;
   line-height: 32px;
@@ -689,8 +685,7 @@ a {
 }
 
 
-.text-info{
-
+.text-info {
 }
 
 .text-info-name {

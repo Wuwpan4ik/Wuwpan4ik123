@@ -19,58 +19,57 @@
                 <div class="user__logo-text">Центр Ратнера</div>
             </div>
             <div class="header-white__burger">
-                <a href="?option=UserMenu">
-					<div class="white__burger">
-						<span></span>
-					</div>
-				</a>
+                <a href="/UserMenu">
+                    <div class="main__burger">
+                        <span></span>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
     <div class="popup__container">
         <div class="settingsAccountUser-body userPopup">
             <div class="user-content">
-
-				<div class="settingsAccountUser-body__info userPopup__title">
-					Настройки аккаунта:
-				</div>
-				<div class="userPopup__body">
-					<div class="settingsAccountUser-body__info ">
-						Информация о вас: 
-						<?php if(isset($_SESSION['error']['first_name_message'])) echo $_SESSION['error']['first_name_message'] ?>
-						<?php if(isset($_SESSION['error']['second_name_message'])) echo $_SESSION['error']['second_name_message'] ?>
-					</div>
-					<div class="settingsAccountUser-body__infAbU ">
-						<div class="settingsAccountUser-body__infAbU-name userPopup__input">
-							<input type="text" placeholder="<?=$_SESSION["user"]["first_name"]?>" name="first_name">
-							<span>Ваше имя</span>
-						</div>
-						<div class="settingsAccountUser-body__infAbU-surname userPopup__input">
-							<input type="text" placeholder="<?=$_SESSION["user"]["second_name"]?>" name="second_name">
-							<span>Ваша Фамилия</span>
-						</div>
-					</div>
-					<div class="settingsAccountUser-body__pssword ">
-						Ваш пароль:
-						<?php if(isset($_SESSION['error']['pass_message'])) echo $_SESSION['error']['pass_message'] ?>
-					</div>
-					<div class="settingsAccountUser-body__newPassword ">
-						<div class="settingsAccountUser-body__infAbU-name userPopup__input">
-							<input type="password" placeholder="Введите старый пароль" name="old_pass">
-						</div>
-						<div class="settingsAccountUser-body__infAbU-surname userPopup__input">
-							<input type="password" placeholder="Введите новый пароль" name="new_pass">
-						</div>
-						<div class="settingsAccountUser-body__infAbU-surname userPopup__input">
-							<input type="password" placeholder="Повторите новый пароль" name="new_pass_repeat">
-						</div>
-					</div>
-				</div>
-                <form method="POST" action="/UserController/save"">
-				<div class="userPopup__button">
-					<button>Сохранить</button>
-				</div>
-			</form>
+                <form method="POST" action="/Account/UserSettings">
+                    <div class="settingsAccountUser-body__info userPopup__title">
+                        Настройки аккаунта:
+                    </div>
+                    <div class="userPopup__body">
+                        <div class="settingsAccountUser-body__info ">
+                            Информация о вас:
+                            <?php if(isset($_SESSION['error']['first_name_message'])) echo $_SESSION['error']['first_name_message'] ?>
+                            <?php if(isset($_SESSION['error']['second_name_message'])) echo $_SESSION['error']['second_name_message'] ?>
+                        </div>
+                        <div class="settingsAccountUser-body__infAbU ">
+                            <div class="settingsAccountUser-body__infAbU-name userPopup__input">
+                                <input type="text" placeholder="<?=$_SESSION["user"]["first_name"]?>" name="first_name">
+                                <span>Ваше имя</span>
+                            </div>
+                            <div class="settingsAccountUser-body__infAbU-surname userPopup__input">
+                                <input type="text" placeholder="<?=$_SESSION["user"]["second_name"]?>" name="second_name">
+                                <span>Ваша Фамилия</span>
+                            </div>
+                        </div>
+                        <div class="settingsAccountUser-body__pssword ">
+                            Ваш пароль:
+                            <?php if(isset($_SESSION['error']['pass_message'])) echo $_SESSION['error']['pass_message'] ?>
+                        </div>
+                        <div class="settingsAccountUser-body__newPassword ">
+                            <div class="settingsAccountUser-body__infAbU-name userPopup__input">
+                                <input type="password" placeholder="Введите старый пароль" name="old_pass">
+                            </div>
+                            <div class="settingsAccountUser-body__infAbU-surname userPopup__input">
+                                <input type="password" placeholder="Введите новый пароль" name="new_pass">
+                            </div>
+                            <div class="settingsAccountUser-body__infAbU-surname userPopup__input">
+                                <input type="password" placeholder="Повторите новый пароль" name="new_pass_repeat">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="userPopup__button">
+                        <button>Сохранить</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
