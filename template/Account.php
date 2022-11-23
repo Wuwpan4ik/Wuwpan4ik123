@@ -62,7 +62,7 @@
 
                                             <input name="first_name" class="inf" placeholder="<? echo $_SESSION['user']['first_name'] ?>"/>
 
-                                            <input name="second_name" class="inf" placeholder="<? echo $_SESSION['user']['second_name'] ?>"/>
+                                            <input name="second_name" class="inf" placeholder="<? if(!isset($_SESSION['user']['second_name'])) { echo "Фамилия";} else { echo $_SESSION['user']['second_name']; }?>"/>
 
                                             <input type="date" name="birthday" class="inf" placeholder="<? print(htmlspecialchars($_SESSION['user']['birthday'])); ?>"/>
                                             <?php if(isset($_SESSION['error']['first_name_message'])) echo $_SESSION['error']['first_name_message'] ?>
@@ -85,18 +85,18 @@
                                             </script>
                                             <div class="ProfileSetting-body">
                                                 <div class="ProfileSetting-avatar">
-                                                    <img src="<?=$content[0][0]['avatar']?>" id="ava_preload">
+                                                    <img src="/uploads/ava/<? echo (isset($_SESSION['user']['avatar'])  ? $_SESSION['user']['avatar'] : "userAvatar.jpg") ?>" id="ava_preload">
                                                     <div class="ProfileSetting-name">
-                                                        Имя
-                                                        Фамилия
+                                                        <?=$_SESSION["user"]["first_name"]?>
+                                                        <? if (!isset($_SESSION["user"]["second_name"])) {echo "Фамилия";} ?>
                                                     </div>
                                                 </div>
                                                 <div class="avatar">
                                                     <div class="avatar-body">
                                                         <img src="../img/saveAvatar.svg" alt="">
                                                         <div class="avatar-body__info">
-                                                            <span id="file-name" class="file-box"></span>
-                                                            <span id="file-size" class="file-box"></span>
+                                                            <span id="file-name" class="file-box">Название файла</span>
+                                                            <span id="file-size" class="file-box">150 кб из доступных 5 мб</span>
                                                         </div>
 
                                                     </div>
@@ -115,12 +115,11 @@
 
                                             </div>
 
-                                            <div class="about-btn">
-                                                <button id="profile_send" type="submit">Сохранить</button>
-                                            </div>
 
                                         </div>
-
+                                        <div class="about-btn">
+                                            <button id="profile_send" type="submit">Сохранить</button>
+                                        </div>
 
                                     </form>
 
@@ -230,8 +229,11 @@
                                 <h2>Скрипты для Body:  </h2>
 
                                 <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>
-                            </div>
 
+                                <div class="about-btn">
+                                    <button id="profile_send" type="submit">Сохранить</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
