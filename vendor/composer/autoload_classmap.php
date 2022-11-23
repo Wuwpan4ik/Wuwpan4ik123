@@ -16,6 +16,7 @@ return array(
     'Account' => $baseDir . '/pages/Account.php',
     'AccountController' => $baseDir . '/controller/AccountController.php',
     'Analytics' => $baseDir . '/pages/Analytics.php',
+    'Article' => $baseDir . '/pages/Article.php',
     'Cases' => $baseDir . '/pages/Cases.php',
     'ClientsController' => $baseDir . '/controller/ClientsController.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',

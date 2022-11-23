@@ -35,6 +35,8 @@
     $router->addRoute("/SettingsAccountUser", "SettingsAccountUser.php");
     $router->addRoute("/Project", "Project.php");
 
+    $router->addRoute("/Article", "Article.php");
+
     $router->addRoute("/Course", "Course.php");
 
     $router->addRoute("/Course/$item_id", "CourseEdit.php");

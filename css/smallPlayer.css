@@ -594,7 +594,7 @@
         max-width: 500px;
     }
     .slider__video-item {
-        max-width: 500px;
+        max-width: 100%;
     }
     .slider__header {
         left: 3%;

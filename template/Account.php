@@ -103,14 +103,15 @@
                                                 <div class="avatar-body">
                                                     <img src="../img/saveAvatar.svg" alt="">
                                                     <div class="avatar-body__info">
-                                                        <span id="file-name" class="file-box"></span>
-                                                        <span id="file-size" class="file-box"></span>
+                                                        <span id="file-name" class="file-box">Название файла</span>
+                                                        <span id="file-size" class="file-box">0 кб из доступных 5мб</span>
                                                     </div>
 
                                                 </div>
 
 
                                                 <div class="input__wrapper">
+
                                                     <input  accept="image/img, image/jpeg, image/png" name="file" type="file" id="input__file" class="input input__file" onchange='uploadFile(this)' multiple>
                                                     <label for="input__file" class="input__file-button">
 
