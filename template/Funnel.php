@@ -98,7 +98,7 @@
 
                         </div>
 
-                        <p>Воронка №<?=$k?></p>
+                        <p class="funnel__title">Воронка №<?=$k?></p>
 
                         <h3><?=$p['name']?></h3>
 
@@ -118,7 +118,6 @@
                                     <option <?php if ($p['course_id'] == $course['id']) echo "selected";?> value="<?=$course['id']?>"><?=$course['name']?> <?=$course['id']?></option>
                                 <?php } ?>
                             </select>
-                            <button class="copy-button" type="submit" style="width: 100%; padding: 10px 0; font-size: 20px;">Выбрать</button>
                         </form>
 
                         <div class="btn-delete-edit">
@@ -180,6 +179,13 @@
     let deletes = document.querySelector('.popup__delete');
     let entryDisplay = document.querySelector('#popup__background');
     let body = document.querySelector('body');
+
+    document.querySelectorAll('.select__course').forEach((item) => {
+        item.addEventListener('change', function () {
+            this.parentElement.submit();
+            console.log(this)
+        })
+    })
 
     function copy_link(elem) {
         var copyTextarea = document.createElement("textarea");

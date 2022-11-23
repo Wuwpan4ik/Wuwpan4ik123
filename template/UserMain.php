@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/css/smallPlayer.css">
 </head>
 <body class="body">
-<?=$_SESSION['error'] ?>
 <div class="UserMain bcg">
     <div class="_container" style="height: 9%;">
         <div class="User-header">
@@ -61,10 +60,7 @@
                                         <?=$item['name']?>
                                     </div>
                                     <div class="aboutTheAuthor__info-text hide-content">
-                                        Задача организации, в особенности же убеждённость
-                                        некоторых оппонентов требует определения и уточнения вывода
-                                        некоторых оппонентов требует определения и уточнения вывода
-                                        некоторых оппонентов требует определения и уточнения вывода</div>
+                                        <?=$item['description'] ?></div>
                                 </div>
                             </div>
                             <div class="aboutTheAuthor-button availableСoursesBtn">
@@ -225,7 +221,7 @@
                                 <div class="popup__bonus-form-input-email input-img">
                                     <img src="../img/smallPlayer/email.svg" alt="">
                                 </div>
-                                <input type="text" value="<?=$_SESSION['user']['email']?>" name="email" placeholder="Ваш email" disabled>
+                                <input type="text" value="<?=$_SESSION['user']['email']?>" name="email" placeholder="Ваш email" readonly>
                             </div>
                             <div class="popup__buy-body-form youChosen-input input">
                                 <div class="popup__bonus-form-input-email input-img">
@@ -233,10 +229,9 @@
                                 </div>
                                 <input type="tel" name="phone" placeholder="Ваш телефон">
                             </div>
-
                         </div>
                         <div class="question-form">
-                            <div class="backBtn userPopup__button youChosenBackBtn ">
+                            <div class="backBtn userPopup__button youChosenBackBtn courseBackBtn">
                                 <button type="button">Назад</button>
                             </div>
                             <div class="Сourse-question userPopup__button">
@@ -254,8 +249,8 @@
             <div class="question  userPopup__body">
                 <div class=" question ">
                     <div class="popup__buy-register">
-                        <form method="POST" action="/addQuestions">
-                            <input type="text" name="author_id">
+                        <form id="formQuest" method="POST" action="/addQuestions">
+                            <input type="hidden" value="17" name="author_id" >
                             <div class="popup__buy-body-form question input">
                                 <div class="popup__bonus-form-input-account input-img">
                                     <img src="../img/smallPlayer/account.svg" alt="">
@@ -277,11 +272,11 @@
                         </form>
                     </div>
                     <div class="question-form">
-                        <div class=" userPopup__button questionBack  backBtn">
+                        <div class=" userPopup__button questionBack backBtn">
                             <button class="courseBackBtn">Назад</button>
                         </div>
                         <div class="Сourse-question userPopup__button">
-                            <button>Перейти к оплате</button>
+                            <button id="sendQuest" type="submit">Отправить</button>
                         </div>
                     </div>
                 </div>
@@ -293,6 +288,11 @@
 unset($_SESSION['course_price']);
 unset($_SESSION['course_id']);
 ?>
+<script>
+    document.querySelector('#sendQuest').addEventListener('click', function () {
+        document.querySelector('#formQuest').submit();
+    })
+</script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
 <script src="../js/script.js" ></script>
 <script>

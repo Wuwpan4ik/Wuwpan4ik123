@@ -32,7 +32,7 @@
     $router->addRoute("/UserMenu", "UserMenu.php");
     $router->addRoute("/UserPlayer/$item_id", "UserPlayer.php");
     $router->addRoute("/AboutTheAuthor", "AboutTheAuthor.php");
-    $router->addRoute("/SettingsAccountUser", "SettingsAccountUser.php");
+    $router->addRoute("/UserAccount", "SettingsAccountUser.php");
     $router->addRoute("/Project", "Project.php");
 
     $router->addRoute("/Article", "Article.php");
@@ -65,7 +65,7 @@
     $router->addRoute("/LoginController/logout", "LoginController.php", 'logout');
 
     $router->addRoute("/send-email", "EmailController.php", 'RegistrateUser');
-    $router->addRoute("/ClientsController/create-client", "ClientsController.php", 'AddApplication');
+    $router->addRoute("/ClientsController/application", "ClientsController.php", 'AddApplication');
     $router->addRoute("/ClientsController/CourseBuy", "ClientsController.php", 'BuyCourse');
     $router->addRoute("/ClientsController/CourseVideo", "ClientsController.php", 'BuyVideo');
     $router->addRoute("/ClientsController/$item_id/delete", "ClientsController.php", 'Delete');
@@ -80,13 +80,12 @@
     $router->addRoute("/UserController/getList", "UserController.php", 'getList');
     $router->addRoute("/UserController/getBuyCourse", "UserController.php", 'getBuyCourse');
     $router->addRoute("/UserController/getCoursePrice", "UserController.php", 'getCoursePrice');
-    $router->addRoute("/UserController/buyCourse", "UserController.php", 'BuyCourse');
-    $router->addRoute("/UserController/buyVideo", "UserController.php", 'BuyVideo');
     $router->addRoute("/UserController/getVideoInfo", "UserController.php", 'getBuyVideo');
     $router->addRoute("/UserController/save", "LoginController.php", 'saveUserSettings');
 
     $router->addRoute("/addQuestion", "ContactController.php", "SendQuestion");
     $router->addRoute("/getNotifications", "NotificationsController.php", "getNotifications");
+    $router->addRoute("/NotificationsController/checkout", "NotificationsController.php", "checkNotifications");
 
 
     $router->route("/$url");

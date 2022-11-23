@@ -5,6 +5,16 @@ body {
   height: 100%;
   margin: 0;
 }
+*.no_margin{
+  margin:0px !important;
+}
+* textarea{
+  width:100%;
+  max-width:100%;
+  min-width:100%;
+  min-height:48px;
+}
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
@@ -266,7 +276,7 @@ span.button__back {
   flex-direction: column;
   gap: 10px;
   background: white;
-  padding: 25px;
+  padding: 20px;
   border-radius: 30px;
 }
 
@@ -277,6 +287,7 @@ span.button__back {
   -ms-flex-pack: distribute;
   justify-content: space-around;
   cursor: pointer;
+  margin-top:10px;
 }
 
 .upload__label span {
@@ -744,6 +755,8 @@ a {
   -ms-flex-align: center;
   align-items: center;
   font-weight: 700;
+  margin-top:15px;
+  font-size:24px;
 }
 
 .box:hover.active{
@@ -829,7 +842,6 @@ a.button__back {
 .feed-header h2 {
   font-size: 24px;
   font-weight: 700;
-  line-height: 40px;
 }
 
 .service-price {
@@ -1279,13 +1291,13 @@ span.name {
 
 .selector {
   width: 50%;
-
   border: 1px solid #E1E3E6;
   border-radius: 8px;
   font-size: 16px;
   line-height: inherit;
   background-color: transparent;
   cursor: inherit;
+  padding: 0px 16px;
 }
 
 select:focus {
@@ -1402,6 +1414,7 @@ option {
 .table_ico {
   width: 15px;
   margin: 0vh 1vh 0vh 1vh;
+  padding-top:2px;
 }
 
 td {
@@ -1414,6 +1427,12 @@ td, th {
   line-height: 20px;
   text-align: left;
   color: #5A6474;
+}
+
+td:nth-child(1){
+  display:flex;
+  align-items:center;
+  width:100%;
 }
 
 #grey {
@@ -1709,3 +1728,23 @@ td, th {
   -o-transition: 0.4s ease;
   transition: 0.4s ease;
 }
+
+/* Brench: Styles */
+.about_school{
+  margin-top:16px;
+
+}
+.about_school textarea{
+  width:100%;
+  border: 1px solid #E1E3E6;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 15px;
+  color:gray;
+  max-height:100px;
+}
+
+.full_th {
+  text-transform: uppercase;
+}
+

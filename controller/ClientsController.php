@@ -58,9 +58,9 @@
 //                    return false;
 //                }
             }
-            if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-                return false;
-            }
+//            if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+//                return false;
+//            }
 
             if (isset($_POST['phone'])) {
                 $this->phone = $_POST['phone'];
@@ -146,14 +146,13 @@
 //          Добавление Clients
             if (count($client) == 1){
                 if ($client[0]['buy_progress'] < $buy_progress[$comment]) {
-                    $_SESSION['error'] = $give_money;
-                    $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]', `give_money` = '$give_money', `first_buy` = 0 WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
-                }
+                    $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]', `give_money` = '$give_money', `first_buy` = 0 WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");                }
             } else {
                 $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], $give_money);
             }
 //          Добавление User
-            if (count($this->m->getUserByEmail($this->email)) == 0) {
+            $_SESSION['error'] = $this->email;
+            if (count($this->m->getUserByEmail($this->email)) != 1) {
 
                 $title = "Регистрация аккаунта";
                 $this->password = $this->GenerateRandomPassword(12);
@@ -178,7 +177,6 @@
             }
 //          Добавление Purchase
             $purchase = $this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $_SESSION['user']['id']);
-
             if (isset($purchase) && count($purchase) == 1) {
                 $purchase_info = json_decode($purchase[0]['purchase'], true);
                 if (!in_array($course_id, $purchase_info['course_id'])) {
@@ -195,18 +193,18 @@
         }
 
         public function BuyVideo() {
-            $buy_progress = include '/settings/buy_progress.php';
+            if (!$this->RequestValidate()) return false;
+            $buy_progress = include './settings/buy_progress.php';
             $creator_id = $_POST['creator_id'];
             $course_id = $_POST['course_id'];
-            $course__real_id = $this->m->db->query("SELECT course_id FROM course_content WHERE id = '$course_id'");
+            $course__real_id = $this->m->db->query("SELECT course_id FROM course_content WHERE id = '$course_id'")[0]['course_id'];
             $comment = 'Купил видео';
-            $client = $this->GetClient($course__real_id[0]['course_id ']);
+            $client = $this->GetClient($course__real_id);
             $give_money = $client[0]['give_money'] + $this->GetPriceOfVideo($course_id)[0]['price'];
-
 //          Добавление Clients
             if (count($client) == 1){
                 if ($client[0]['buy_progress'] < $buy_progress[$comment]) {
-                    $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]', `give_money` = '$give_money', `first_buy` = 0 WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
+                    $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]', `give_money` = '$give_money', `first_buy` = 0 WHERE `creator_id` = '$creator_id' AND `course_id` = '$course__real_id' AND `email` = '$this->email'");
                 }
             } else {
                 $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], $give_money);
@@ -234,7 +232,7 @@
                     'is_creator' => 0
                 ];
             }
-//          Добавление Purchaseа
+//          Добавление Purchase
             $purchase = $this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $_SESSION['user']['id']);
             if (isset($purchase) && count($purchase) == 1) {
                 $purchase_info = json_decode($purchase[0]['purchase'], true);

@@ -23,8 +23,12 @@
     margin: 10px 0px 10px;
 }
 
+.funnel__title{
+    margin:20px 0px 10px;
+}
+
 .media-cart h3 {
-    margin: 5px 0px 10px;
+    margin: 5px 0px 20px;
     font-size: 24px;
 }
 

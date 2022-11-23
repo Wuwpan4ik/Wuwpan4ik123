@@ -3,8 +3,8 @@ class ContactController extends ACoreCreator {
 	
 	public function SendQuestion() {
 		    $uid = $_SESSION["user"]["id"];
-			$question = $_POST["question"];
             $author_id = $_POST['author_id'];
+			$question = $_POST["question"];
 			$this->m->db->execute("INSERT INTO `contact` (`user_id`, `author_id`, `body`) VALUES ('$uid', `$author_id`, '$question')");
         }
 
@@ -20,7 +20,7 @@ class ContactController extends ACoreCreator {
 					</head>
 					<body>
 						<script>
-							window.location.replace("/UserContacts");
+							window.location.replace("/");
 						</script>
 					</body>
 					</html>';
