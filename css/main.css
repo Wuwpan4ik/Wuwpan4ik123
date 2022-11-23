@@ -643,6 +643,7 @@ a {
   -ms-flex-align: center;
   align-items: center;
 
+
 }
 
 .UserProfile__header {
@@ -655,8 +656,6 @@ a {
   -ms-flex-align: center;
   align-items: center;
   gap: 12px;
-  flex-wrap: wrap;
-
 }
 
 .text-info-name{
@@ -689,18 +688,14 @@ a {
   color: #5A6474;
 }
 
-.text-menu {
-  display: flex;
-  flex-wrap: wrap;
 
-}
 .text-info{
 
 }
 
 .text-info-name {
   position: relative;
-  width: 142px;
+
 }
 
 .text-info-notify {
