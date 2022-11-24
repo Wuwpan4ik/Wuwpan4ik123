@@ -109,6 +109,7 @@
         ajax.addEventListener("load", completeHandler, false)
         ajax.open("POST", "/Course/<?=$content[0][0]['id']?>/create");
         ajax.send(formdata);
+        window.location.replace("/Course");
     }
     function progressHandler(event) {
         var loaded = new Number((event.loaded / 1048576));//Make loaded a "number" and divide bytes to get Megabytes
