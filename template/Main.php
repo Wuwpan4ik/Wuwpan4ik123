@@ -30,7 +30,7 @@
 
         <div class="_container">
 
-        <div class="index ">
+        <div class="index">
 
             <div class="header">
 
@@ -38,7 +38,7 @@
 
                     <h2>Самые важные показатели</h2>
 
-                    <p>последние 72 часа</p>
+                    <p style="margin-top: 8px;">последние 72 часа</p>
 
                 </div>
 

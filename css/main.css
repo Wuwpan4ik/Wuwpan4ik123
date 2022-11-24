@@ -79,6 +79,12 @@ code {
   background-color: #FFFFFF;
 }
 
+.userLogin #apps{
+  background:#3C64F4;
+  color:white;
+  border:none;
+}
+
 #apps {
   width: 149px;
   height: 48px;
@@ -90,11 +96,15 @@ code {
   color: #FFFFFF;
   transition:0.4s all ease;
   font-weight: 400;
+  border:1px solid #3C64F4;
+  color:#3C64F4;
   font-family: "Inter";
 }
 
 #apps:hover{
-
+  background:#3C64F4;
+  border:none;
+  color:white;
 }
 
 #apps:hover {
@@ -1763,3 +1773,6 @@ td:nth-child(1){
   text-transform: uppercase;
 }
 
+.popup__body-block.editVideo{
+  padding-left:20px;
+}

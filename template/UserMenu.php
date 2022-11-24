@@ -35,7 +35,13 @@
                         <div class="UserMenu-profile__textInfo">
                             <p>Добро пожаловать,</p>
                             <div class="UserMenu-profile__textInfo-name">
-                                <h1><?=$_SESSION["user"]["first_name"]?></h1>
+                                <h1>
+                                    <? if (!isset($_SESSION["user"]["first_name"])) { ?>
+                                        Гость
+                                    <? } else { ?>
+                                        <? echo $_SESSION["user"]["first_name"] ?>
+                                    <? } ?>
+                                </h1>
                             </div>
                         </div>
                     </div>

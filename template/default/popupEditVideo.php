@@ -47,9 +47,9 @@
                     </div>
                 </div>
             </div>
-            <div class="popup__body-block">
+            <div class="popup__body-block editVideo">
                 <div class="popup__body-item">
-                    <label for="first_do">Дейсвтие после нажатия:</label>
+                    <label for="first_do">Действие после нажатия:</label>
                     <select name="first_do" id="first_do">
                         <option value="list" selected>Список уроков</option>
                         <option value="form">Форма заявки</option>
@@ -61,8 +61,8 @@
                         <label for="form_id display-none">Составляющие формы:</label>
                         <button class="addFormInput" id="first_do-list" onclick="addFormItem(this)" type="button"><img src="../../img/add.png"> Добавить поле</button>
                     </div>
-                    <div style="margin: 20px 0;" class="button__text-container">
-                        <label>Текст для кнопки:</label>
+                    <!--Скрыл эту ебучую кнопку, если что возвращай обратно-->
+                    <div style="margin: 20px 0;display:none;" class="button__text-container">
                         <input id="button_text" class="videoname video-desc button_text" disabled>
                     </div>
                 </div>

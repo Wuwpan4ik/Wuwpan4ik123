@@ -19,10 +19,12 @@
                 <div class="user__logo-img"><img src="../img/Logo.svg" alt=""></div>
                 <div class="user__logo-text">Course Creator</div>
             </div>
-            <div class="header-white__burger">
-                <div class="white__burger">
-                    <span></span>
-                </div>
+            <div class="header-main__burger">
+                <a href="/UserMenu">
+                    <div class="main__burger">
+                        <span></span>
+                    </div>
+                </a>
             </div>
         </div>
     </div>

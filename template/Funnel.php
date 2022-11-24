@@ -187,11 +187,14 @@
         copyTextarea.style.position = "fixed";
         copyTextarea.style.opacity = "0";
         copyTextarea.textContent = elem.parentElement.querySelector("#half_input").value;
-
         document.body.appendChild(copyTextarea);
         copyTextarea.select();
         document.execCommand("copy");
         document.body.removeChild(copyTextarea);
+        elem.innerHTML = "Скопировано"
+        setTimeout(function (){
+            elem.innerHTML = "Копировать"
+        }, 10000)
     }
 
 
