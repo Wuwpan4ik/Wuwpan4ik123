@@ -27,7 +27,7 @@
         }
 
         protected function dir_size($path) {
-            $path = rtrim($path, '/');
+            $path = ($path . '/');
             $size = 0;
             $dir = opendir($path);
             if (!$dir) {
@@ -38,9 +38,9 @@
                 if ($file == '.' || $file == '..') {
                     continue;
                 } elseif (is_dir($path . $file)) {
-                    $size += dir_size($path . DIRECTORY_SEPARATOR . $file);
+                    $size += $this->dir_size($path . '//' . $file);
                 } else {
-                    $size += filesize($path . DIRECTORY_SEPARATOR . $file);
+                    $size += filesize($path . '//' . $file);
                 }
             }
             closedir($dir);

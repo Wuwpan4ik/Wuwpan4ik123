@@ -192,11 +192,11 @@
                                                 <p class="text">Файловое хранилище:</p>
                                                 <div class="storage-rate-body">
                                                     <div class="progress-storage">
-                                                        <progress  max="100" value="70">
+                                                        <progress max="1000" value="<?php print_r(round($content[2]))?>">
                                                         </progress>
                                                         <div class="progress-storage__info">
                                                             <div class="progress-storage__current-value">
-                                                                225 мб
+                                                                <?php print_r(round($content[2]))?> мб
                                                             </div>
                                                             <div class="progress-storage__max-value">
                                                                 1000 мб
