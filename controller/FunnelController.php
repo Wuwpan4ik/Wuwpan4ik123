@@ -16,9 +16,9 @@
 
     //        if (!$this->isUser($res[0]['author_id'])) return False;
 
-            move_uploaded_file($_FILES['video_uploader']['tmp_name'], "./uploads/funnel/".$uid."_".$res[0]['name']."/$count_video"."_".$_FILES['video_uploader']['name']);
+            $path = $this->url_dir . "/funnels/$uid"."_".$res[0]['name']."/$count_video"."_".$_FILES['video_uploader']['name'];
 
-            $path = "./uploads/funnel/$uid"."_".$res[0]['name']."/$count_video"."_".$_FILES['video_uploader']['name'];
+            move_uploaded_file($_FILES['video_uploader']['tmp_name'], $path);
 
             $this->m->db->execute("INSERT INTO funnel_content (`funnel_id`, `name`, `description`, `video`, `query_id`) VALUES ($uid,'Укажите заголовок','Укажите описание', '$path', $count_video)");
 
@@ -38,6 +38,34 @@
             return True;
         }
 
+        public function RenameVideo() {
+            $item_id = $_SESSION['item_id'];
+            $funnelContent = $this->m->db->query("SELECT * FROM `funnel_content` WHERE id = '$item_id'");
+            $res = $this->m->db->query("SELECT * FROM `funnel` WHERE id = ".$funnelContent[0]['funnel_id']);
+            if (!$this->isUser($res[0]['author_id'])) return False;
+
+            if (isset($_POST['description'])) {
+                $name = $_POST['name'];
+            } else {
+                $name = $res[0]['name'];
+            }
+
+            if (isset($_POST['description'])) {
+                $description = $_POST['description'];
+            } else {
+                $description = $res[0]['description'];
+            }
+
+            if (isset($_POST['button_text'])) {
+                $button_text = $_POST['button_text'];
+            } else {
+                $button_text = $res[0]['button_text'];
+            }
+
+            $this->m->db->execute("UPDATE `funnel_content` SET `name` = '$name', `description` = '$description', `button_text` = '$button_text' WHERE `id` = '$item_id'");
+            return True;
+        }
+
         public function CreateFunnel () {
             $uid = $_SESSION['user']['id'];
 
@@ -47,20 +75,57 @@
 
             $funnel = $this->m->db->query("SELECT * FROM funnel WHERE author_id = '$uid'  ORDER BY ID DESC LIMIT 1");
 
-            mkdir("uploads/funnel/".$funnel[0]['id']."$name");
-            mkdir("uploads/files/".$funnel[0]['id']. '_' .$funnel[0]['name']);
+            mkdir($this->url_dir ."/funnels/" . $funnel[0]['id']. '_' .$funnel[0]['name']);
+            header('Location: /Funnel');
             return True;
         }
 
-        public function RenameVideo() {
+        public function DeleteFunnel () {
             $item_id = $_SESSION['item_id'];
-            $funnelContent = $this->m->db->query("SELECT * FROM `funnel_content` WHERE id = '$item_id'");
-            $res = $this->m->db->query("SELECT * FROM `funnel` WHERE id = ".$funnelContent[0]['funnel_id']);
+            $project = $this->m->db->query("SELECT * FROM funnel WHERE id = '$item_id' LIMIT 1");
+
+            if (!$this->isUser($project[0]['author_id'])) return False;
+
+            $this->m->db->execute("DELETE FROM funnel WHERE id = '$item_id'");
+
+            rmdir($this->url_dir . "/funnels/$item_id" . "_" . $project[0]['name']);
+
+            return True;
+        }
+
+        public function RenameFunnel()
+        {
+            $item_id = $_SESSION['item_id'];
+
+            $res = $this->m->db->query("SELECT * FROM funnel WHERE id = '$item_id'");
+
             if (!$this->isUser($res[0]['author_id'])) return False;
-            $name = $_POST['name'];
-            $description = $_POST['description'];
-            $button_text = $_POST['button_text'];
-            $this->m->db->execute("UPDATE `funnel_content` SET `name` = '$name', `description` = '$description', `button_text` = '$button_text' WHERE `id` = '$item_id'");
+
+            if(isset($_POST['title'])) {
+
+                $last_name = $res[0]['name'];
+
+                $name = $_POST['title'];
+
+                rename("./uploads/funnel/$item_id". "_" ."$last_name", "./uploads/funnel/$item_id" . "_" . "$name");
+
+                $paths = $this->m->db->query("SELECT * FROM funnel_content WHERE funnel_id = '$item_id'");
+
+                $this->m->db->execute("UPDATE funnel SET `name` = '$name' WHERE id = '$item_id'");
+
+                foreach ($paths as $path) {
+                    $id = $path['id'];
+
+                    $pages = explode("/", $path['video']);
+
+                    $pages[3] = $item_id . "_" . $name;
+
+                    $changed = implode("/", $pages);
+
+                    $this->m->db->execute("UPDATE `funnel_content` SET `video` = '$changed' WHERE id = '$id'");
+
+                }
+            }
             return True;
         }
 
@@ -129,15 +194,16 @@
                     break;
                 }
                 case "file": {
-                    $file = "uploads/files/" . $funnel[0]['id'] . '_' .$funnel[0]['name'] . "/" .$_FILES['file']['name'];
+                    if(!$_FILES['file']['name']){
+                        $file_name = uniqid('', true) .".jpg";
+                    } else {
+                        $file_name = $_FILES['file']['name'];
+                    }
+
+                    $file = $this->url_dir . "/files/" . $funnel[0]['id'] . '_' .$funnel[0]['name'] . "/" . $file_name;
 
                     move_uploaded_file($_FILES['file']['tmp_name'], $file);
 
-
-                    if(!$_FILES['file']['name']){
-                        $file = "uploads/files/" . $funnel[0]['id'] . '_' .$funnel[0]['name'] . "/" . uniqid('', true) .".jpg";
-                    }
-                    $_SESSION['error'] = $file;
                     $videoBtnHTML['second_do']['file'] = $file;
                     break;
                 }
@@ -168,55 +234,6 @@
             if (!$this->isUser($course[0]['author_id'])) return False;
             if (!$this->isUser($funnel[0]['author_id'])) return False;
             $this->m->db->execute("UPDATE `funnel` SET `course_id` = '$course_id' WHERE `id` = '$id'");
-            return True;
-        }
-
-        public function DeleteFunnel () {
-            $item_id = $_SESSION['item_id'];
-            $project = $this->m->db->query("SELECT * FROM funnel WHERE id = '$item_id' LIMIT 1");
-
-            if (!$this->isUser($project[0]['author_id'])) return False;
-
-            $this->m->db->execute("DELETE FROM funnel WHERE id = '$item_id'");
-
-            rmdir("uploads/funnel/$item_id"."_" . $project[0]['name']);
-
-            return True;
-        }
-
-        public function RenameFunnel()
-        {
-            $item_id = $_SESSION['item_id'];
-
-            $res = $this->m->db->query("SELECT * FROM funnel WHERE id = '$item_id'");
-
-            if (!$this->isUser($res[0]['author_id'])) return False;
-
-            if(isset($_POST['title'])) {
-
-                $last_name = $res[0]['name'];
-
-                $name = $_POST['title'];
-
-                rename("./uploads/funnel/$item_id". "_" ."$last_name", "./uploads/funnel/$item_id" . "_" . "$name");
-
-                $paths = $this->m->db->query("SELECT * FROM funnel_content WHERE funnel_id = '$item_id'");
-
-                $this->m->db->execute("UPDATE funnel SET `name` = '$name' WHERE id = '$item_id'");
-
-                foreach ($paths as $path) {
-                    $id = $path['id'];
-
-                    $pages = explode("/", $path['video']);
-
-                    $pages[3] = $item_id . "_" . $name;
-
-                    $changed = implode("/", $pages);
-
-                    $this->m->db->execute("UPDATE `funnel_content` SET `video` = '$changed' WHERE id = '$id'");
-
-                }
-            }
             return True;
         }
 

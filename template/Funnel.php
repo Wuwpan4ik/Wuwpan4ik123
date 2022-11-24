@@ -53,7 +53,7 @@
 
                                     <div class="slider__item ">
                                         <div class="slider__video">
-                                            <video id="123" class="slider__video-item"
+                                            <video playsinline id="123" class="slider__video-item"
                                             <source  class="video" src="<?=$v['video']?>" />
                                             </video>
                                         </div>
@@ -172,6 +172,7 @@
 <script src="../js/sliders.js"></script>
 
 <script>
+
     let deleteButtons = document.querySelectorAll('.reboot');
     let notDelete = document.querySelector('.popup__not-delete');
     let deletes = document.querySelector('.popup__delete');

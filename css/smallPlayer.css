@@ -251,15 +251,15 @@
     z-index: 6;
 }
 
-.pause__video {
+.pause__video, .play__video {
     position: absolute;
     top: 25%;
-    left: 35%;
+    left: 40%;
     width: 137px;
     height: 137px;
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
+    display: none;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
@@ -275,14 +275,16 @@
     -webkit-transition: 0.6s;
     -o-transition: 0.6s;
     transition: 0.6s;
-    opacity: 0;
-    z-index: 7;
+    z-index: 1;
+    cursor: pointer;
 }
 
 .pause__video.active {
-    opacity: 1;
+    display: flex;
 }
-
+.play__video.active {
+    display: flex;
+}
 .overlay.active {
     display: block;
 }
@@ -606,7 +608,7 @@
         max-width: 500px;
     }
     .slider__video-item {
-        max-width: 500px;
+        max-width: 100%;
     }
     .slider__header {
         left: 3%;

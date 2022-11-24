@@ -50,6 +50,8 @@
         public function registration () {
             $first_name = $_POST['first_name'];
 
+            $second_name = $_POST['second_name'];
+
             $niche = $_POST['niche'];
 
             $email = $_POST['email'];
@@ -73,7 +75,7 @@
             $this->validate_data($email, $first_name);
             if (isset($_SESSION['email_message']) || isset($_SESSION['first_name_message'])) return False;
 
-            $this->db->db->execute("INSERT INTO `user` (`niche`, `avatar`, `first_name`, `email`, `password`, `is_creator`) VALUES ('$niche', '$ava', '$first_name', '$email', '$password', 1)");
+            $this->db->db->execute("INSERT INTO `user` (`niche`, `avatar`, `first_name`, `second_name`, `email`, `password`, `is_creator`) VALUES ('$niche', '$ava', '$first_name', '$second_name', '$email', '$password', 1)");
             $_SESSION['error']['registration_message'] = "Регистрация прошла успешно";
             $res = $this->db->db->query("SELECT * FROM user WHERE email = '$email' AND password = '$password'");
             if(count($res) != 0) {
@@ -97,11 +99,14 @@
                         'is_creator' => 1
                     ];
                     $response = "С возвращением, " . $_SESSION["user"]["name"];
-                    $this->get_content();
                 }
             } else {
                 $response = "Неверный логин или пароль";
             }
+            mkdir("./uploads/users/" . $_SESSION['user']['id']);
+            mkdir("./uploads/users/". $_SESSION['user']['id'] . "/funnels");
+            mkdir("./uploads/users/". $_SESSION['user']['id'] . "/courses");
+            mkdir("./uploads/users/". $_SESSION['user']['id'] . "/files");
             return True;
         }
 

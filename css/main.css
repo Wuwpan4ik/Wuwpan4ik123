@@ -413,7 +413,7 @@ span.button__back {
 }
 
 /*Feed*/
-.feed {
+.feed{
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -427,7 +427,7 @@ span.button__back {
   color: #404D61;
 }
 
-.feed-header {
+.feed-header{
   position: relative;
   top: 0;
   display: -webkit-box;
@@ -675,19 +675,26 @@ a {
   -ms-flex-align: center;
   align-items: center;
 }
-
 .UserProfile__header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
-  justify-content: space-between;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  gap: 12px;
 }
 
+.text-info-name{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  max-width: 18em;
+}
 #avatar {
   width: 64px;
   height: 64px;
@@ -703,20 +710,19 @@ a {
 }
 
 .UserProfile h1 {
-  padding: 0 20px 0 0;
   font-size: 24px;
   font-weight: 600;
   line-height: 32px;
   color: #5A6474;
 }
 
+
 .text-info {
-  padding: 8px;
-  margin-right:60px;
 }
 
 .text-info-name {
   position: relative;
+
 }
 
 .text-info-notify {

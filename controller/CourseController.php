@@ -18,9 +18,9 @@
 
             if (!$this->isUser($res[0]['author_id'])) return False;
 
-            move_uploaded_file($_FILES['video_uploader']['tmp_name'], "./uploads/course/".$uid."_".$res[0]['name']."/$count_video"."_".$_FILES['video_uploader']['name']);
+            $path = $this->url_dir . "/courses/$uid"."_".$res[0]['name']."/$count_video"."_".$_FILES['video_uploader']['name'];
 
-            $path = "./uploads/course/$uid"."_".$res[0]['name']."/$count_video"."_".$_FILES['video_uploader']['name'];
+            move_uploaded_file($_FILES['video_uploader']['tmp_name'], $path);
 
             $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `query_id`) VALUES ($uid,'Укажите заголовок','Укажите описание', '$path', $count_video)");
 
@@ -44,8 +44,17 @@
             $res = $this->m->db->query("SELECT * FROM `course` WHERE id = ".$courseContent[0]['course_id']);
             if (!$this->isUser($res[0]['author_id'])) return False;
 
-            $name = $_POST['name'];
-            $description = $_POST['description'];
+            if (isset($_POST['description'])) {
+                $name = $_POST['name'];
+            } else {
+                $name = $res[0]['name'];
+            }
+
+            if (isset($_POST['description'])) {
+                $description = $_POST['description'];
+            } else {
+                $description = $res[0]['description'];
+            }
 
             $this->m->db->execute("UPDATE `course_content` SET `name` = '$name', `description` = '$description' WHERE `id` = '$item_id'");
             return True;
@@ -62,7 +71,8 @@
 
             $directory = $this->m->db->query("SELECT * FROM course WHERE author_id = '$uid'  ORDER BY ID DESC LIMIT 1");
 
-            mkdir("./uploads/course/".$directory[0]['id']."$name");
+            mkdir($this->url_dir ."/courses/" . $directory[0]['id']."$name");
+
             return True;
         }
 
@@ -75,7 +85,7 @@
 
             $this->m->db->execute("DELETE FROM course WHERE id = '$item_id'");
 
-            rmdir("./uploads/course/$item_id" . "_" . $project[0]['name']);
+            rmdir($this->url_dir . "/courses/$item_id" . "_" . $project[0]['name']);
 
             return True;
         }
