@@ -1,5 +1,8 @@
 <?php
+
     class CourseController extends ACoreCreator {
+
+        private $sec = 2;
 
         private function isUser($checkId)
         {
@@ -7,7 +10,7 @@
         }
 
         public function AddVideo() {
-
+            include '/vendor/autoload.php';
             if (is_null($_FILES['video_uploader'])) {
                 return False;
             }
@@ -22,7 +25,13 @@
 
             move_uploaded_file($_FILES['video_uploader']['tmp_name'], $path);
 
-            $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `query_id`) VALUES ($uid,'Укажите заголовок','Укажите описание', '$path', $count_video)");
+//            $ffmpeg = FFMpeg\FFMpeg::create();
+//            $video = $ffmpeg->open($path);
+//            $frame = $video->frame(FFMpeg\Coordinate\TimeCode::fromSeconds($this->sec));
+//            $frame_path = $this->url_dir . "/thumbnails/" . $_FILES['video_uploader']['name'];
+//            $frame->save($frame_path);
+
+            $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `thubnails` , `query_id`) VALUES ($uid,'Укажите заголовок','Укажите описание', '$path', '$frame_path' ,$count_video)");
 
             return true;
         }

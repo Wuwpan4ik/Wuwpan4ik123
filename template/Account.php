@@ -84,7 +84,7 @@
                                             </script>
                                             <div class="ProfileSetting-body">
                                                 <div class="ProfileSetting-avatar">
-                                                    <img src="/uploads/ava/<? echo (!isset($_SESSION['user']['avatar'])  ? $_SESSION['user']['avatar'] : "userAvatar.jpg") ?>" id="ava_preload">
+                                                    <img src="<? echo (isset($_SESSION['user']['avatar'])  ? $_SESSION['user']['avatar'] : "userAvatar.jpg") ?>" id="ava_preload">
                                                     <div class="ProfileSetting-name">
                                                         <?=$_SESSION["user"]["first_name"]?>
                                                         <? if (!isset($_SESSION["user"]["second_name"])) {echo "Фамилия";} else {echo $_SESSION["user"]["second_name"];} ?>
