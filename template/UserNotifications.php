@@ -20,9 +20,11 @@
                 <div class="user__logo-text">Course Creator</div>
             </div>
             <div class="header-white__burger">
-                <div class="white__burger">
-                    <span></span>
-                </div>
+                <a href="/UserMenu">
+                    <div class="main__burger">
+                        <span></span>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
@@ -53,9 +55,6 @@
                 </div>
 				<?}?>
             </div>
-        </div>
-        <div class="userPopup__button">
-            <button>Есть вопросы?</button>
         </div>
     </div>
     </div>

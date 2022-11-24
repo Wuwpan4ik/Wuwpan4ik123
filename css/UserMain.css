@@ -671,9 +671,8 @@
         color: #fff;
     }
     .UserMenu-profile h1 {
-        padding: 0 20px 0 0;
         font-size: 24px;
-        font-weight: 700;
+        font-weight: 600;
         line-height: 32px;
         color: #fff;
     }
@@ -716,7 +715,7 @@
         color: #fff !important;
     }
     .UserMenu-list__option h2 {
-        font-weight: 600 !important;
+        font-weight: 400 !important;
     }
     .notification-score {
         display: -webkit-box;
@@ -1493,4 +1492,13 @@
     -webkit-transition: 0.4s ease;
     -o-transition: 0.4s ease;
     transition: 0.4s ease;
+}
+
+/* Brench: Styles */
+
+.user_settings{
+    display:flex;
+    justify-content: space-between;
+    height: 100%;
+    flex-direction: column;
 }
