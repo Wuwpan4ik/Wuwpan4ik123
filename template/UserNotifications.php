@@ -1,16 +1,14 @@
-<html>
+<html lang="ru">
 
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Моя тестовая страница</title>
+    <title>Course Creator - Уведомления</title>
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/UserMain.css">
-
-
-
+    <!--Favicon-->
+    <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 </head>
 
 <body class="body">
@@ -19,7 +17,7 @@
         <div class="User-header">
             <div class="User-logo user__logo">
                 <div class="user__logo-img"><img src="../img/Logo.svg" alt=""></div>
-                <div class="user__logo-text">Центр Ратнера</div>
+                <div class="user__logo-text">Course Creator</div>
             </div>
             <div class="header-white__burger">
                 <div class="white__burger">

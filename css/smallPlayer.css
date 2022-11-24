@@ -1,4 +1,6 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+
 .body {
     background: rgba(0, 0, 0, 0.8);
     margin: 0;
@@ -17,6 +19,7 @@
 }
 
 .smallPlayer__slick-slider {
+    font-family: "Inter";
     position: relative;
 }
 
@@ -131,6 +134,7 @@
 
 .slider__video-item {
     position: absolute;
+    width:100%;
     max-width: 500px;
     height: 100%;
     -o-object-fit: cover;
@@ -215,7 +219,7 @@
 }
 
 .slider__header-logo-text {
-    margin: 0 0 0 6px;
+    margin: 0 0 0 12px;
     font-weight: 700;
     font-size: 20px;
 }
@@ -224,6 +228,7 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    align-items:center;
 }
 
 .slider__header-views-count {
@@ -587,6 +592,14 @@
 .popup__buy-form-back {
     width: 65%;
 }
+
+/* Brench: Styles */
+
+.slider__header-logo-img img{
+    border-radius: 50%;
+}
+
+/* Adaptive */
 
 @media screen and (max-width: 992px) {
     ._conatiner {

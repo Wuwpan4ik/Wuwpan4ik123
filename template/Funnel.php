@@ -1,18 +1,14 @@
-<html>
+<!
+<html lang="ru">
 
 <head>
-
     <meta charset="utf-8">
-
-    <title>Моя тестовая страница</title>
-
+    <title>Course Creator - Воронки</title>
     <link rel="stylesheet" href="/css/nullCss.css">
-
     <link rel="stylesheet" href="/css/lessons.css">
-
     <link rel="stylesheet" href="/css/main.css">
-
-
+    <!--Favicon-->
+    <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 </head>
 
 <body>
@@ -67,7 +63,7 @@
                                         <div class="slider__header _conatiner-player ">
                                             <div class="slider__header-logo">
                                                 <div class="slider__header-logo-img">
-                                                    <img src="../img/smallPlayer/Logo.svg" alt="">
+                                                    <img src="/uploads/ava/<? echo (isset($_SESSION['user']['avatar'])  ? $_SESSION['user']['avatar'] : "userAvatar.jpg") ?>" alt="">
                                                 </div>
                                                 <div class="slider__header-logo-text">
                                                     <?=$_SESSION['user']['first_name']?>

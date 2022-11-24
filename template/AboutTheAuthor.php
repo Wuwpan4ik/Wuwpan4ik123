@@ -1,10 +1,13 @@
-<html>
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Моя тестовая страница</title>
+    <!--Сюда вставить имя автор / название школы-->
+    <title>Course Creator - О авторе</title>
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/UserMain.css">
+    <!--Favicon-->
+    <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 </head>
 <body class="body">
 <div class="aboutTheAuthor bcg">

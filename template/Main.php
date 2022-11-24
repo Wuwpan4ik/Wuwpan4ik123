@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="ru">
 
 <head>
 
     <meta charset="utf-8">
 
-    <title>ccio</title>
+    <title>Course Creator - Основные показатели</title>
 
     <link rel="stylesheet" href="/css/nullCss.css">
 
     <link rel="stylesheet" href="/css/main.css">
-
-
-
+    <!--Favicon-->
+    <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 </head>
 
 <body>
