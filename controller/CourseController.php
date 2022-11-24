@@ -18,7 +18,7 @@
 
             if (!$this->isUser($res[0]['author_id'])) return False;
 
-            $path = $this->url_dir . "/courses/$uid"."_".$res[0]['name']."/$count_video"."_".$_FILES['video_uploader']['name'];
+            $path = $this->url_dir . "/courses/$uid"."/$count_video"."_".$_FILES['video_uploader']['name'];
 
             move_uploaded_file($_FILES['video_uploader']['tmp_name'], $path);
 
@@ -71,7 +71,7 @@
 
             $directory = $this->m->db->query("SELECT * FROM course WHERE author_id = '$uid'  ORDER BY ID DESC LIMIT 1");
 
-            mkdir($this->url_dir ."/courses/" . $directory[0]['id']."$name");
+            mkdir($this->url_dir ."/courses/" . $directory[0]['id']);
 
             return True;
         }
@@ -85,7 +85,7 @@
 
             $this->m->db->execute("DELETE FROM course WHERE id = '$item_id'");
 
-            rmdir($this->url_dir . "/courses/$item_id" . "_" . $project[0]['name']);
+            rmdir($this->url_dir . "/courses/$item_id");
 
             return True;
         }
@@ -100,48 +100,15 @@
 
             if(isset($_POST['title'])) {
 
-                $last_name = $res[0]['name'];
-
                 $name = $_POST['title'];
 
-                rename("./uploads/course/$item_id". "_" ."$last_name", "./uploads/course/$item_id" . "_" . "$name");
-
-                $paths = $this->m->db->query("SELECT * FROM course_content WHERE course_id = '$item_id'");
-
                 $this->m->db->execute("UPDATE course SET `name` = '$name' WHERE id = '$item_id'");
-
-                foreach ($paths as $path) {
-                    $id = $path['id'];
-
-                    $pages = explode("/", $path['video']);
-
-                    $pages[3] = $item_id . "_" . $name;
-
-                    $changed = implode("/", $pages);
-
-                    $this->m->db->execute("UPDATE `course_content` SET `video` = '$changed' WHERE id = '$id'");
-
-                }
             }
             return True;
         }
 
         function get_content()
         {
-            echo '<!DOCTYPE html>
-			<html lang="en">
-			<head>
-			<meta charset="UTF-8">
-			<meta http-equiv="X-UA-Compatible" content="IE=edge">
-			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<title>Document</title>
-			</head>
-			<body>
-				<script>
-				    window.history.go(-1)
-				</script>
-			</body>
-			</html>';
         }
 
         function obr()

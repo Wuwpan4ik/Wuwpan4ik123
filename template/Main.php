@@ -30,7 +30,7 @@
 
         <div class="_container">
 
-        <div class="index">
+        <div class="index ">
 
             <div class="header">
 

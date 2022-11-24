@@ -63,9 +63,7 @@
 
 										<th><div class="th-title"><button class="order_button" value="tel"><img class="table_ico" src="img/StickDown.svg"></button>Телефон</div></th>
 
-                                        <th><div class="th-title"><button class="order_button" value="course_id"><img class="table_ico" src="img/StickDown.svg"></button>Курс</div></th>
-
-										<th><div class="th-title"><button class="order_button" value="comment"><img class="table_ico" src="img/StickDown.svg"></button>Задача</div></th>
+                                        <th><div class="th-title"><button class="order_button" value="course_id"><img class="table_ico" src="img/StickDown.svg"></button>Курс</div></th>а
 										
 										<th><div class="th-title"><button class="order_button" value="achivment_date"><img class="table_ico" src="img/StickDown.svg"></button>Дата</div></th>
 
@@ -119,8 +117,6 @@
                                     <th><div class="th-title"><button class="order_button" value="tel"><img class="table_ico" src="img/StickDown.svg"></button>Телефон</div></th>
 
                                     <th><div class="th-title"><button class="order_button" value="course_id"><img class="table_ico" src="img/StickDown.svg"></button>Курс</div></th>
-
-                                    <th><div class="th-title"><button class="order_button" value="comment"><img class="table_ico" src="img/StickDown.svg"></button>Задача</div></th>
 
                                     <th><div class="th-title"><button class="order_button" value="achivment_date"><img class="table_ico" src="img/StickDown.svg"></button>Дата</div></th>
 
