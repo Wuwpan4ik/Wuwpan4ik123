@@ -92,19 +92,16 @@ class AccountController extends ACoreCreator {
         } else {
             $country = $_POST['country'];
         }
+        if($_FILES['avatar']['name']){
 
-        if($_FILES['file_upload']['name']){
+            $avatar = "uploads/ava/" . $email. "_" .$_FILES['avatar']['name'];
 
-            if($_SESSION['user']['avatar'] != "uploads/ava/1.jpg"){
-                unlink("../".$_SESSION['user']['avatar']);
-            }
-            move_uploaded_file($_FILES['file_upload']['tmp_name'], "./uploads/ava/".$_SESSION['user']['email']."_".$_FILES['file_upload']['name']);
-            $avatar = "uploads/ava/".$_SESSION['user']['email']."_".$_FILES['file_upload']['name'];
+            move_uploaded_file($_FILES['avatar']['tmp_name'], "./".$avatar);
+
         } else {
             $avatar = $user[0]['avatar'];
         }
 
-//        $this->addNotifications("Настройки были сменены", "Вы сменили настройки своего аккаунта", "img/Notification/warn.svg");
         $this->m->db->execute("UPDATE user SET `email` = '$email', `avatar` = '$avatar', `first_name` = '$first_name', `second_name` = '$second_name', `telephone` = '$phone' WHERE id = " . $_SESSION['user']['id']);
         $_SESSION["user"]['first_name'] = $first_name;
         $_SESSION["user"]['second_name'] = $second_name;
@@ -155,20 +152,20 @@ class AccountController extends ACoreCreator {
 
     function get_content()
     {
-        echo '<!DOCTYPE html>
-                <html lang="en">
-                <head>
-                <meta charset="UTF-8">
-                <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Document</title>
-                </head>
-                <body>
-                    <script>
-                        window.history.go(-1);
-                    </script>
-                </body>
-                </html>';
+//        echo '<!DOCTYPE html>
+//                <html lang="en">
+//                <head>
+//                <meta charset="UTF-8">
+//                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+//                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//                <title>Document</title>
+//                </head>
+//                <body>
+//                    <script>
+//                        window.history.go(-1);
+//                    </script>
+//                </body>
+//                </html>';
     }
 
     function obr()
