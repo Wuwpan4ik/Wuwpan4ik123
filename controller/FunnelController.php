@@ -43,9 +43,25 @@
             $funnelContent = $this->m->db->query("SELECT * FROM `funnel_content` WHERE id = '$item_id'");
             $res = $this->m->db->query("SELECT * FROM `funnel` WHERE id = ".$funnelContent[0]['funnel_id']);
             if (!$this->isUser($res[0]['author_id'])) return False;
-            $name = $_POST['name'];
-            $description = $_POST['description'];
-            $button_text = $_POST['button_text'];
+
+            if (isset($_POST['description'])) {
+                $name = $_POST['name'];
+            } else {
+                $name = $res[0]['name'];
+            }
+
+            if (isset($_POST['description'])) {
+                $description = $_POST['description'];
+            } else {
+                $description = $res[0]['description'];
+            }
+
+            if (isset($_POST['button_text'])) {
+                $button_text = $_POST['button_text'];
+            } else {
+                $button_text = $res[0]['button_text'];
+            }
+
             $this->m->db->execute("UPDATE `funnel_content` SET `name` = '$name', `description` = '$description', `button_text` = '$button_text' WHERE `id` = '$item_id'");
             return True;
         }

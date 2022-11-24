@@ -44,8 +44,17 @@
             $res = $this->m->db->query("SELECT * FROM `course` WHERE id = ".$courseContent[0]['course_id']);
             if (!$this->isUser($res[0]['author_id'])) return False;
 
-            $name = $_POST['name'];
-            $description = $_POST['description'];
+            if (isset($_POST['description'])) {
+                $name = $_POST['name'];
+            } else {
+                $name = $res[0]['name'];
+            }
+
+            if (isset($_POST['description'])) {
+                $description = $_POST['description'];
+            } else {
+                $description = $res[0]['description'];
+            }
 
             $this->m->db->execute("UPDATE `course_content` SET `name` = '$name', `description` = '$description' WHERE `id` = '$item_id'");
             return True;
