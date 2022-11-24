@@ -119,7 +119,15 @@ a {
     align-items: center;
     gap: 12px;
     flex-wrap: wrap;
+}
+.text-menu {
+    display: flex;
+    flex-wrap: wrap;
 
+}
+.text-info-name {
+    position: relative;
+    width: 142px;
 }
 .UserProfile__header-logo{
     display: flex;

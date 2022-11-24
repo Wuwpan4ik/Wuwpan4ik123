@@ -664,9 +664,7 @@ a {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-
 }
-
 .UserProfile__header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -677,8 +675,6 @@ a {
   -ms-flex-align: center;
   align-items: center;
   gap: 12px;
-  flex-wrap: wrap;
-
 }
 
 .text-info-name{
@@ -704,21 +700,19 @@ a {
 }
 
 .UserProfile h1 {
-  padding: 0 20px 0 0;
   font-size: 24px;
   font-weight: 600;
   line-height: 32px;
   color: #5A6474;
 }
 
+
 .text-info {
-  padding: 8px;
-  margin-right:60px;
 }
 
 .text-info-name {
   position: relative;
-  width: 142px;
+
 }
 
 .text-info-notify {

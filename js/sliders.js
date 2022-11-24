@@ -8,9 +8,7 @@ $(document).ready(function(){
             appendDots: $(this).parent().find('.slick-dots'),
             slidesToShow:1
         });
-        function videoAutoplay() {
-            $(this).find('.slider__video-item').play();
-        }
+
         function stopVideos() {
             $(this).find('.slider__video-item').each(function (){
                 this.pause();
@@ -24,6 +22,7 @@ $(document).ready(function(){
                 slider.slick('slickNext');
             })
             this.addEventListener('click', function (){
+
                 let videoLocal = this;
                 const interval = setInterval(function () {
                     let progressBar = videoLocal.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector('.slick-dots li.slick-active button');
@@ -35,7 +34,11 @@ $(document).ready(function(){
                     // Проверка на конец
                 }, 300);
                 if (this.paused) {
+                    $('.slick-current').find('.play__video').removeClass('active')
+
                     this.play();
+
+
                 } else {
                     this.pause();
                 }

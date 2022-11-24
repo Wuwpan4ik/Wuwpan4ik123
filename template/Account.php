@@ -1,6 +1,6 @@
 <html lang="ru">
 
-    <head>
+<head>
 
     <meta charset="utf-8">
 
@@ -12,40 +12,42 @@
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
   </head>
 
-  <body>
+</head>
 
-        <div class="SettingAccount">
+<body>
 
-            <?php include 'default/sidebar.php';?>
+<div class="SettingAccount">
 
-            <div class="feed">
+    <?php include 'default/sidebar.php';?>
 
-                <?php
-                $title = "Настройки аккаунта";
-                include ('default/header.php');
-                ?>
+    <div class="feed">
 
-                <div class="Components">
-                    <div class="_container">
-                    <div class="AboutUser">
+        <?php
+        $title = "Настройки аккаунта";
+        include ('default/header.php');
+        ?>
 
-                        <h2>Основная информация о вас</h2>
+        <div class="Components">
+            <div class="_container">
+                <div class="AboutUser">
 
-                        <p class="info_account">Эта информация поможет вам востановить доступ к аккаунту в случае необходимости,
+                    <h2>Основная информация о вас</h2>
 
-                            и позволит нам давать вам более персонализированный контент который вам поможет в запуске.</p>
+                    <p class="info_account">Эта информация поможет вам востановить доступ к аккаунту в случае необходимости,
 
-                        <div class="mytabs">
+                        и позволит нам давать вам более персонализированный контент который вам поможет в запуске.</p>
 
-                            <input type="radio" id="About" name="mytabs" checked="checked"/>
+                    <div class="mytabs">
 
-                            <label for="About" id="oplab"><p>Профиль</p></label>
+                        <input type="radio" id="About" name="mytabs" checked="checked"/>
 
-                            <div class="tab">
+                        <label for="About" id="oplab"><p>Профиль</p></label>
 
-                                <div class="about">
+                        <div class="tab">
 
-                                    <form method="POST" action="/Account/MainSettings" enctype="multipart/form-data">
+                            <div class="about">
+
+                                <form method="POST" action="/Account/MainSettings" enctype="multipart/form-data">
                                         <h2>Ваши данные</h2>
                                         <div class="field">
                                             <input class="half" name="email" type="email" placeholder="<? echo $_SESSION['user']['email'] ?>"/>
@@ -112,6 +114,7 @@
                                             </div>
 
                                         </div>
+
                                         <div class="about-btn">
                                             <button id="profile_send" type="submit">Сохранить</button>
                                         </div>
@@ -152,129 +155,129 @@
                                         <div class="about_school">
                                             <textarea name="school_desc" placeholder="<? print(htmlspecialchars(isset($_SESSION['user']['school_desc']) ? $_SESSION['user']['school_desc'] : 'Описание для школы')) ?>"></textarea>
                                         </div>
+                                        <h2>Данные вашего тарифа:</h2>
+                                        <div class="field">
+                                            <div class="tariff-card">
+                                                <div class="tariff-plan">
+                                                    <div class="tariff-price">2 600 ₽</div>
+                                                </div>
+                                                <div class="tariff-name">
+                                                    Для новичков
+                                                </div>
+                                                <div class="tariff-img">
+                                                    <img src="/img/tarif-Image.jpg" alt="">
+                                                </div>
+                                                <div class="tariff-btn">
+                                                    <button>Сменить тариф</button>
+                                                </div>
+                                            </div>
+                                            <div class="tariff-card">
+                                                <div class="tariff-current">
+                                                    <div class="tariff-header">
+                                                        <p>Тариф оплачен до:</p>
+                                                        <div class="tariff-price">22.10.2022</div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="tariff__active-user">
+                                                    <p class="text">Активных пользователей:</p>
+                                                    <span>200 из 250</span>
+                                                </div>
+                                                <div class="storage-rate">
+                                                    <p class="text">Файловое хранилище:</p>
+                                                    <div class="storage-rate-body">
+                                                        <div class="progress-storage">
+                                                            <progress  max="1000" value="<?php print_r(round($content[2]))?>">
+                                                            </progress>
+                                                            <div class="progress-storage__info">
+                                                                <div class="progress-storage__current-value">
+                                                                    <?php print_r(round($content[2]))?> мб
+                                                                </div>
+                                                                <div class="progress-storage__max-value">
+                                                                    1000 мб
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tariff-btn">
+                                                    <button>Сменить тариф</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="about-btn">
                                             <button id="profile_send" type="submit">Сохранить</button>
                                         </div>
                                     </form>
 
-                                    <h2>Данные вашего тарифа:</h2>
-                                    <div class="field">
-                                        <div class="tariff-card">
-                                            <div class="tariff-plan">
-                                                <div class="tariff-price">2 600 ₽</div>
-                                            </div>
-                                            <div class="tariff-name">
-                                                Для новичков
-                                            </div>
-                                            <div class="tariff-img">
-                                                <img src="/img/tarif-Image.jpg" alt="">
-                                            </div>
-                                            <div class="tariff-btn">
-                                                <button>Сменить тариф</button>
-                                            </div>
-                                        </div>
-                                        <div class="tariff-card">
-                                            <div class="tariff-current">
-                                                <div class="tariff-header">
-                                                    <p>Тариф оплачен до:</p>
-                                                    <div class="tariff-price">22.10.2022</div>
-                                                </div>
-
-                                            </div>
-                                            <div class="tariff__active-user">
-                                                <p class="text">Активных пользователей:</p>
-                                                <span>200 из 250</span>
-                                            </div>
-                                            <div class="storage-rate">
-                                                <p class="text">Файловое хранилище:</p>
-                                                <div class="storage-rate-body">
-                                                    <div class="progress-storage">
-                                                        <progress max="1000" value="<?php print_r(round($content[2]))?>">
-                                                        </progress>
-                                                        <div class="progress-storage__info">
-                                                            <div class="progress-storage__current-value">
-                                                                <?php print_r(round($content[2]))?> мб
-                                                            </div>
-                                                            <div class="progress-storage__max-value">
-                                                                1000 мб
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tariff-btn">
-                                                <button>Сменить тариф</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
 
-                            <input type="radio" id="Tarif" name="mytabs"/>
+                        </div>
 
-                            <label for="Tarif" id="cllab"><p>Дополнительно</p></label>
+                        <input type="radio" id="Tarif" name="mytabs"/>
 
-                            <div class="tab">
+                        <label for="Tarif" id="cllab"><p>Дополнительно</p></label>
 
-                                <h2>Скрипты для HEAD:  </h2>
+                        <div class="tab">
 
-                                <textarea class="additionally" placeholder="Default" name="head_additional"></textarea>
+                            <h2>Скрипты для HEAD:  </h2>
 
-                                <h2>Скрипты для Body:  </h2>
+                            <textarea class="additionally" placeholder="Default" name="head_additional"></textarea>
 
-                                <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>
+                            <h2>Скрипты для Body:  </h2>
 
-                                <div class="about-btn">
-                                    <button id="profile_send" type="submit">Сохранить</button>
-                                </div>
+                            <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>
+
+                            <div class="about-btn">
+                                <button id="profile_send" type="submit">Сохранить</button>
                             </div>
                         </div>
                     </div>
-
-
-                    </div>
-                    </div>
-
                 </div>
 
+
             </div>
-
         </div>
-        <? unset($_SESSION['error']) ?>
 
-        <script>
-            const button_submit = document.querySelector('#profile_send');
-            const check_url = document.querySelector('#check_url');
-            const check_button = document.querySelector('#check_button');
-            const message = document.querySelector('#message');
+    </div>
 
-            button_submit.addEventListener('click', function () {
-               let second_button = document.querySelector('#apps');
-               console.log(second_button);
-               second_button.click();
-            });
-            check_button.addEventListener('click', function () {
-                const request = new XMLHttpRequest();
+</div>
 
-                const url = "?option=UrlController&site_url=" + check_url.value;
+</div>
+<? unset($_SESSION['error']) ?>
 
-                /* Здесь мы указываем параметры соединения с сервером, т.е. мы указываем метод соединения GET,
-                а после запятой мы указываем путь к файлу на сервере который будет обрабатывать наш запрос. */
-                request.open('GET', url);
+<script>
+    const button_submit = document.querySelector('#profile_send');
+    const check_url = document.querySelector('#check_url');
+    const check_button = document.querySelector('#check_button');
+    const message = document.querySelector('#message');
 
-                // Указываем заголовки для сервера, говорим что тип данных, - контент который мы хотим получить должен быть не закодирован.
-                request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-                request.addEventListener("readystatechange", () => {
-                    if (request.readyState === 4 && request.status === 200) {
-                        message.innerHTML = request.responseText;
-                    }
-                });
-                request.send();
-            });
-        </script>
-        <script src="/js/getNotifications.js"></script>
-        <script src="/js/printFailName.js" ></script>
-  </body>
+    button_submit.addEventListener('click', function () {
+        let second_button = document.querySelector('#apps');
+        console.log(second_button);
+        second_button.click();
+    });
+    check_button.addEventListener('click', function () {
+        const request = new XMLHttpRequest();
+
+        const url = "?option=UrlController&site_url=" + check_url.value;
+
+        /* Здесь мы указываем параметры соединения с сервером, т.е. мы указываем метод соединения GET,
+        а после запятой мы указываем путь к файлу на сервере который будет обрабатывать наш запрос. */
+        request.open('GET', url);
+
+        // Указываем заголовки для сервера, говорим что тип данных, - контент который мы хотим получить должен быть не закодирован.
+        request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+        request.addEventListener("readystatechange", () => {
+            if (request.readyState === 4 && request.status === 200) {
+                message.innerHTML = request.responseText;
+            }
+        });
+        request.send();
+    });
+</script>
+<script src="/js/getNotifications.js"></script>
+<script src="/js/printFailName.js" ></script>
+</body>
 
 </html>
