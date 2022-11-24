@@ -20,7 +20,7 @@
     font-size: 14px;
     line-height: 18px;
     color: #737480;
-    margin: 10px 0px 10px;
+    margin: 20px 0px 20px;
 }
 
 .funnel__title{
@@ -521,6 +521,7 @@ input:checked + label {
 
 .slider__video-item {
     position: absolute;
+    width:100%;
     max-width: 300px;
     height: 100%;
     border-radius: 16px;
@@ -601,6 +602,7 @@ input:checked + label {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    align-items: center;
 }
 
 .slider__header-views-count {
@@ -780,4 +782,12 @@ input:checked + label {
     user-select: none;
     -webkit-filter: invert(100%) sepia(100%) saturate(1352%) hue-rotate(87deg) brightness(60%) contrast(119%);
     filter: invert(100%) sepia(100%) saturate(1352%) hue-rotate(87deg) brightness(60%) contrast(119%);
+}
+
+/* Brench: Styles */
+
+.slider__header-logo-img img{
+    max-width: 27px;
+    border-radius: 50%;
+    height: 27px;
 }

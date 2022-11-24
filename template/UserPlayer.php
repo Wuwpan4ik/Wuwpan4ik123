@@ -1,4 +1,4 @@
-<html>
+<html lang="ru">
 
 <head>
 
@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="/css/UserMain.css">
     <link rel="stylesheet" href="/css/smallPlayer.css">
 
-
+    <!--Favicon-->
+    <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 
 </head>
 <body class="body">

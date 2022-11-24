@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ccio</title>
-
+    <!--Выдаем вместо этой хуйни нормальный тайтл названия воронки / курса-->
+    <title>Course Creator - Плеер</title>
     <link type="text/css" rel="stylesheet" href="/css/smallPlayer.css">
-
+    <!--Делаем так, чтобы страницы не индексировались в поиске-->
+    <meta name="robots" content="noindex" />
+    <!--Favicon-->
+    <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 </head>
 <body class="body">
 <div class="smallPlayer _conatiner">
@@ -33,7 +36,7 @@
                 <div class="slider__header _conatiner-player ">
                     <div class="slider__header-logo">
                         <div class="slider__header-logo-img">
-                            <img width="48px" src="/<?=$item['avatar']?>" alt="">
+                            <img width="48px" src="/uploads/ava/<? echo (isset($_SESSION['user']['avatar'])  ? $_SESSION['user']['avatar'] : "userAvatar.jpg") ?>" alt="">
                         </div>
                         <div class="slider__header-logo-text">
                             <?=$item['first_name']?>

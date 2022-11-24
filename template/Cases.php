@@ -1,9 +1,11 @@
-<html>
+<html lang="ru">
   <head>
     <meta charset="utf-8">
-    <title>Моя тестовая страница</title>
+    <title>Course Creator - Кейсы</title>
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/main.css">
+  <!--Favicon-->
+  <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
   </head>
   <body>
         <div class="Cases ">
@@ -32,20 +34,13 @@
                             </div>
                             <div class="price">
                                 <h2>109 100Р - 160 000Р в месяц</h2>
-                                <div class="timer">
-									<img src="img/Time.svg" class="ico">
-                                    <p> недавно</p>
-                                </div>
                             </div>
                         </div>
                         <div class="status-container">
                             <div class="Boosted status">Boosted</div>
-                            <div class="Boosted status">Boosted</div>
                         </div>
                         <div class="service-text-2">
-                            <p>Этот кейс – это история о том, как прокачать языковую онлайн школу для детей, запустив
-                                проект с нуля с начала пандемии, и увеличить количество преподавателей в 7 раз, получив
-                                3061 заявку из таргета Инстаграм. Об этом кейсе мы и рассказываем в этой статье.</p>
+                            <p>Этот кейс – это история о том, как прокачать языковую онлайн школу для детей, запустив проект с нуля с начала пандемии, и увеличить количество преподавателей в 7 раз, получив 3061 заявку из таргета Инстаграм. Об этом кейсе мы и рассказываем в этой статье.</p>
                         </div>
                         <div class="time-more-btn">
                             <p>29 января 2022</p>
@@ -70,10 +65,6 @@
                             </div>
                             <div class="price">
                                 <h2>109 100Р - 160 000Р в месяц</h2>
-                                <div class="timer">
-									<img src="img/Time.svg" class="ico">
-                                    <p>4 дня назад</p>
-                                </div>
                             </div>
                         </div>
                         <div class="status-container">

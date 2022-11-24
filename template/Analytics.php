@@ -1,18 +1,15 @@
-<html>
+<html lang="ru">
 
   <head>
 
     <meta charset="utf-8">
-
-    <title>Моя тестовая страница</title>
-
-
+    <title>Course Creator - Статистика</title>
     <link rel="stylesheet" href="/css/nullCss.css">
-
     <link rel="stylesheet" href="/css/analytics.css">
-
     <link rel="stylesheet" href="/css/main.css">
 
+    <!--Favicon-->
+    <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
   </head>
 
   <body>
