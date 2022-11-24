@@ -99,14 +99,14 @@
                         'is_creator' => 1
                     ];
                     $response = "С возвращением, " . $_SESSION["user"]["name"];
-                    $this->get_content();
                 }
             } else {
                 $response = "Неверный логин или пароль";
             }
-            mkdir("/uploads/users/funnel/". $_SESSION['user']['id']);
-            mkdir("/uploads/users/files/". $_SESSION['user']['id']);
-            mkdir("/uploads/users/course/". $_SESSION['user']['id']);
+            mkdir("./uploads/users/" . $_SESSION['user']['id']);
+            mkdir("./uploads/users/". $_SESSION['user']['id'] . "/funnels");
+            mkdir("./uploads/users/". $_SESSION['user']['id'] . "/courses");
+            mkdir("./uploads/users/". $_SESSION['user']['id'] . "/files");
             return True;
         }
 
