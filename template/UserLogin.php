@@ -27,6 +27,7 @@
                 </div>
                 <div class="userLogin-form popup-form">
 					<form method="POST" action="/LoginController/login">
+                        <input type="hidden" value="true" name="userLogin">
 						<div class="userLogin-email inputLog">
 							<input placeholder="Ваш Email" type="email" name="email">
 						</div>

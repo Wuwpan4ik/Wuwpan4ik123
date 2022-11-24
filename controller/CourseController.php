@@ -60,9 +60,7 @@
 
             $this->m->db->execute("INSERT INTO course (`author_id`, `name`, `description`, `price`, `uniqu_code`) VALUES ('$uid', 'Новый курс', 'Описание' , 0, '$code')");
 
-            $directory = $this->m->db->query("SELECT * FROM course WHERE author_id = '$uid'  ORDER BY ID DESC LIMIT 1");
-
-            mkdir("./uploads/course/".$directory[0]['id']."$name");
+            header('Location: /Course');
             return True;
         }
 

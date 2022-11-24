@@ -47,8 +47,7 @@
 
             $funnel = $this->m->db->query("SELECT * FROM funnel WHERE author_id = '$uid'  ORDER BY ID DESC LIMIT 1");
 
-            mkdir("uploads/funnel/".$funnel[0]['id']."$name");
-            mkdir("uploads/files/".$funnel[0]['id']. '_' .$funnel[0]['name']);
+            header('Location: /Funnel');
             return True;
         }
 

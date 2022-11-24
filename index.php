@@ -17,7 +17,7 @@
     $router->addRoute("/", "Main.php");
     $router->addRoute("/reg", "Registration.php");
     $router->addRoute("/login", "Login.php");
-    $router->addRoute("/Article", "Article.php");
+    $router->addRoute("/Analytics", "Analytics.php");
     $router->addRoute("/ConfirmEmail", "ConfirmEmail.php");
     $router->addRoute("/PasswordRecovery", "PasswordRecovery.php");
     $router->addRoute("/Cases", "Cases.php");
