@@ -116,7 +116,7 @@
 
         function get_content()
         {
-            header("Location: /Funnel");
+            header("Location: /Course");
         }
 
         function obr()
