@@ -221,6 +221,7 @@
 
         function get_content()
         {
+            return header("Location: /Funnel");
         }
 
         function obr()

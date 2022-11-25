@@ -72,9 +72,7 @@
         public function CreateCourse () {
             $uid = $_SESSION['user']['id'];
 
-            $code = uniqid($more_entropy = true);
-
-            $name = '_Новый курс';
+            $code = uniqid(true);
 
             $this->m->db->execute("INSERT INTO course (`author_id`, `name`, `description`, `price`, `uniqu_code`) VALUES ('$uid', 'Новый курс', 'Описание' , 0, '$code')");
 
@@ -118,6 +116,7 @@
 
         function get_content()
         {
+            header("Location: /Funnel");
         }
 
         function obr()
