@@ -57,7 +57,6 @@
             <div class="boxes">
 
                 <div class="box active">
-                    <?print_r($_SESSION['user']);?>
                     <p>Эта неделя<img class="index_ico" src="img/ArrowUp.svg"></p>
 
                     <h3 id="this_week">0 ₽</h3>
