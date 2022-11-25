@@ -8,11 +8,6 @@
 
     class UserController extends ACoreCreator
     {
-        private $ourEmail = "dimalim110@gmail.com";
-        private $ourPassword = "pumnwmlvfvxokkcp";
-        private $ourNickName = "Wuwpan4ik";
-
-        private $email;
         private $password;
         private $name;
         private $phone;

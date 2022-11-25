@@ -20,6 +20,34 @@
 
 <body>
 
+<style>
+    .popup__background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        display: none;
+        background: rgba(102, 102, 102, 0.5);
+        z-index: 10000;
+    }
+    .popup__background .popup {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 430px;
+        height: 220px;
+        border-radius: 20px;
+        padding: 20px 30px 20px !important;
+        margin: auto;
+        text-align: center;
+        background: #fff;
+        opacity: 1 !important;
+    }
+</style>
+
 <div class="Project">
 
     <?php include 'default/sidebar.php';?>
@@ -88,8 +116,39 @@
     </div>
 
 </div>
+<div class="popup__background" id="delete__back">
+    <div class="popup">
+        <div class="popup__container">
+            <div class="popup__title">Вы действительно хотите удалить проект?</div>
+            <div class="popup__form">
+                <button class="popup__btn popup__not-delete">Не удалять</button>
+                <button class="popup__btn popup__delete">Удалить</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="../js/button__settings.js"></script>
 <script>
+    let entryDisplayDelete = document.querySelector('#delete__back');
+    let deletes = document.querySelector('.popup__delete');
+
+    function toggleOverflow () {
+        body.classList.toggle("overflow-hidden");
+    }
+    function deleteDirectory(elem) {
+        toggleOverflow();
+        entryDisplayDelete.classList.add('display-block');
+        deletes.addEventListener('click',function () {
+            window.location.href = '/Course/' + elem.parentElement.parentElement.parentElement.querySelector('.new_name').children[0].value + "/delete";
+        });
+    }
+    let notDelete = document.querySelector('.popup__not-delete');
+    notDelete.onclick = function (event) {
+        if (event.target === notDelete) {
+            entryDisplay.classList.remove('display-block');
+            toggleOverflow();
+        }
+    }
     function _(abc) {
         return document.getElementById(abc);
     }

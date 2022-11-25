@@ -12,6 +12,18 @@
             }
         }
 
+        private function GenerateRandomPassword ($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') {
+            $str = '';
+            $max = strlen($keyspace) - 1;
+            if ($max < 1) {
+                throw new Exception('$keyspace must be at least two characters long');
+            }
+            for ($i = 0; $i < $length; ++$i) {
+                $str .= $keyspace[rand(0, $max)];
+            }
+            return $str;
+        }
+
         public function login () {
             $email = $_POST['email'];
             $password = $_POST['pass'];
@@ -165,6 +177,21 @@
             }
             return true;
         }
+
+        public function recovery()
+        {
+            $this->email = $_POST['email'];
+            if (count($this->db->getUserByEmail($this->email)) == 1) {
+                $title = "Восстановление пароля";
+                $this->password = $this->GenerateRandomPassword(12);
+                $this->db->db->execute("UPDATE `user` SET `password` = '$this->password' WHERE email = '$this->email'");
+                $body = "Вы сменили пароль на сайте <a href=\"/login\">Course Creator</a><br>Новый пароль: $this->password";
+                $this->SendEmail($title, $body);
+                return true;
+            }
+            return false;
+        }
+
 
         public function logout() {
             unset($_SESSION['user']);

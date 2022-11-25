@@ -17,6 +17,9 @@
     $router->addRoute("/", "Main.php");
     $router->addRoute("/reg", "Registration.php");
     $router->addRoute("/login", "Login.php");
+    $router->addRoute("/recovery", "PasswordRecovery.php");
+
+
     $router->addRoute("/Analytics", "Analytics.php");
     $router->addRoute("/ConfirmEmail", "ConfirmEmail.php");
     $router->addRoute("/PasswordRecovery", "PasswordRecovery.php");
@@ -66,6 +69,7 @@
     $router->addRoute("/SortController/AnalyticClients", "SortController.php", "getClientsForAnalytics");
     $router->addRoute("/LoginController/login", "LoginController.php", 'login');
     $router->addRoute("/LoginController/reg", "LoginController.php", 'registration');
+    $router->addRoute("/LoginController/recovery", "LoginController.php", 'recovery');
     $router->addRoute("/LoginController/logout", "LoginController.php", 'logout');
 
     $router->addRoute("/send-email", "EmailController.php", 'RegistrateUser');

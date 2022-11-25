@@ -19,7 +19,7 @@
 <body>
 <div class="login-account container-reg">
 
-    <form method="POST" action="/LoginController/login">
+    <form method="POST" action="/LoginController/recovery">
         <div class="reg-logo">
             <img src="../img/regLogo.jpg" alt="">
         </div>
@@ -32,7 +32,7 @@
         <button class="reg__button" type="submit" id="submit">Войти</button>
         <div class="entrance login-footer">
             <a href="/reg">Зарегистрироваться</a>
-            <a href="/login">Забыли пароль?</a>
+            <a href="/login">Авторизация</a>
         </div>
     </form>
 </div>

@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="media-cart__controller-delete">
-            <a href="/<?php if(strstr($_SERVER['REQUEST_URI'], 'Course')) {echo 'Course';} else {echo 'Funnel';} ?>/<?=$v['id']?>/delete"><img src="/img/Delete.svg" alt=""></a>
+            <button class="button" onclick="deleteDirectory(this)"><img src="/img/Delete.svg" alt=""></button>
         </div>
     </div>
     <video id="123" class="media-cart-img" style="object-fit: cover;">
@@ -17,13 +17,14 @@
     </video>
 
     <form method="POST" class="new_name" action="/<?php if(strstr($_SERVER['REQUEST_URI'], 'Course')) {echo 'Course';} else {echo 'Funnel';} ?>/<?=$v['id']?>/rename">
+        <input type="text" name="id" hidden="hidden" value="<?=$v['id']?>">
         <div class="funnel-input">
             <label for="name">Укажите заголовок:</label>
             <input name="name" class="videoname" type="text" value="<?=$v['name']?>">
         </div>
         <div class="funnel-input">
             <label for="description">Укажите описание:</label>
-            <textarea name="description" class="videoname video-desc" placeholder="<?=$v['description']?>"></textarea>
+            <textarea name="description" class="videoname video-desc"><?=$v['description']?></textarea>
         </div>
         <?php if (strstr($_SERVER['REQUEST_URI'], 'Funnel' )) {?>
         <input type="hidden" value="<?=$v['id']?>">
