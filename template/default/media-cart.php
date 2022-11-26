@@ -15,6 +15,7 @@
     <video id="123" class="media-cart-img" style="object-fit: cover;">
         <source class="video" src=".<?=$v['video']?>"/>
     </video>
+    <img src="<?=$v['thubnails'] ?>" alt="">
 
     <form method="POST" class="new_name" action="/<?php if(strstr($_SERVER['REQUEST_URI'], 'Course')) {echo 'Course';} else {echo 'Funnel';} ?>/<?=$v['id']?>/rename">
         <input type="text" name="id" hidden="hidden" value="<?=$v['id']?>">

@@ -51,7 +51,7 @@
             return $size;
         }
 
-        protected function SendEmail ($title, $body) {
+        public function SendEmail ($title, $body) {
 
             $mail = new PHPMailer\PHPMailer\PHPMailer(true);
 

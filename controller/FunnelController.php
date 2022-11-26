@@ -221,7 +221,7 @@
 
         function get_content()
         {
-            return header("Location: /Funnel");
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
 
         function obr()
