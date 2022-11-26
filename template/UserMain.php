@@ -44,9 +44,6 @@
                                 <div class=" popup__allLessons-item-video">
                                     <div class="popup__allLessons-item-video__img">
                                         <img class="aboutTheAuthor video__img" src="../img/author.jpg" alt="">
-                                        <div  class=" popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="aboutTheAuthor popup__allLessons-item-info">
@@ -113,9 +110,6 @@
                                 <div class="popup__allLessons-item-video__img">
                                     <a href="/UserPlayer/76" <div="data-id="76" class="popup__allLessons-item ">
                                     <img src="../img/smallPlayer/Group1426.png" alt="">
-                                    <div class="popup__allLessons-item-video-play">
-                                        <img src="../img/smallPlayer/play.png" alt="">
-                                    </div>
                                     </a>
                                 </div>
                                 <div class="popup__allLessons-item-info">
@@ -187,9 +181,6 @@
                             <div class="popup-item">
                                 <div class="popup__allLessons-item-video__img">
                                     <img src="../img/smallPlayer/Group1426.png" alt="">
-                                    <div class="popup__allLessons-item-video-play">
-                                        <img src="../img/smallPlayer/play.png" alt="">
-                                    </div>
                                 </div>
                                 <div class="popup__allLessons-item-info">
                                     <div class="popup__allLessons-item-info-header">

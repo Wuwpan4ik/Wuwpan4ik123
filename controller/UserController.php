@@ -77,9 +77,6 @@
                         <div class="popup-item">
                             <div class="popup__allLessons-item-video__img">
                                 <img src="../img/smallPlayer/Group1426.png" alt="">
-                                <div class="popup__allLessons-item-video-play">
-                                    <img src="../img/smallPlayer/play.png" alt="">
-                                </div>
                             </div>
                             <div class="popup__allLessons-item-info">
                                 <div class="popup__allLessons-item-info-header">
@@ -114,9 +111,6 @@
                         <div class="popup-item">
                             <div class="popup__allLessons-item-video__img">
                                 <img src="../img/smallPlayer/Group1426.png" alt="">
-                                <div class="popup__allLessons-item-video-play">
-                                    <img src="../img/smallPlayer/play.png" alt="">
-                                </div>
                             </div>
                             <div class="popup__allLessons-item-info">
                                 <div class="popup__allLessons-item-info-header">
