@@ -42,6 +42,13 @@
                         </div>
                         <input type="tel" placeholder="<?=$content[0]["telephone"]?>" maxlength="15" disabled>
                     </div>
+                    <div class="UserContacts-item UserContacts-body__telephone ">
+                        <div class="UserContacts-body__header">
+                            <img src="../img/UserContacts/email.svg" alt="">
+                            <span>Почта:</span>
+                        </div>
+                        <input type="tel" placeholder="<?=$content[0]["telephone"]?>" maxlength="15" disabled>
+                    </div>
                     <div class="UserContacts-item UserContacts-body__socialNetwork">
                         <div class="UserContacts-body__header">
                             <img src="../img/UserContacts/SocialNetworks.svg" alt="">

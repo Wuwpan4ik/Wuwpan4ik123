@@ -65,7 +65,7 @@
             return True;
         }
 
-        private function SendEmail ($title, $body) {
+        public function SendEmail ($title, $body) {
 
             $mail = new PHPMailer\PHPMailer\PHPMailer(true);
 
@@ -150,7 +150,7 @@
 
                 $title = "Регистрация аккаунта";
                 $this->password = $this->GenerateRandomPassword(12);
-                $body = "Ваш аккаунт на <a href=\"/login\">Course Creator</a><br>Почта: $this->email<br>Пароль:$this->password";
+                $body = "Ваш аккаунт на <a href=\"/UserLogin\">Course Creator</a><br>Почта: $this->email<br>Пароль:$this->password";
                 $this->SendEmail($title, $body);
 
                 $this->m->db->execute("INSERT INTO `user` (`email`, `password`, `is_creator`) VALUES ('$this->email', '$this->password', 0)");
@@ -182,7 +182,7 @@
                 $purchase_text = '{"course_id":["'.$course_id.'"], "video_id":[]}';
                 $this->m->db->execute("INSERT INTO `purchase` (`user_id`, `purchase`) VALUES ('$user_id', '$purchase_text')");
             }
-
+            $this->addNotifications("item-like", 'Вы купили курс', '/img/Notification/message.png', $_SESSION['user']['id']);
             return true;
         }
 

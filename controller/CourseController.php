@@ -116,7 +116,7 @@
 
         function get_content()
         {
-            header("Location: /Course");
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
 
         function obr()

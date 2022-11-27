@@ -57,6 +57,7 @@
             <div class="boxes">
 
                 <div class="box active">
+
                     <p>Эта неделя<img class="index_ico" src="img/ArrowUp.svg"></p>
 
                     <h3 id="this_week">0 ₽</h3>
