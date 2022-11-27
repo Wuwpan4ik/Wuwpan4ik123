@@ -104,11 +104,13 @@
 
 						<th class="full_th">Email<button class="order_button" value="email"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
-						<th class="full_th">Телефон<button class="order_button" value="telephone"><img class="table_ico" src="img/StickDown.svg"></button></th>
+						<th class="full_th">Телефон<button class="order_button" value="tel"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
-						<th class="full_th">Продукт<button class="order_button" value="niche"><img class="table_ico" src="img/StickDown.svg"></button></th>
+						<th class="full_th">Продукт<button class="order_button" value="course_id"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
-					</tr>
+                        <th class="full_th">Сумма<button class="order_button" value="give_money"><img class="table_ico" src="img/StickDown.svg"></button></th>
+
+                    </tr>
 
                 </thead>
 

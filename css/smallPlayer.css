@@ -166,12 +166,9 @@
 }
 
 .button {
-    -webkit-box-shadow: 0px 3px 0px #3168BB, 0px 10px 30px rgba(62, 138, 251, 0.6);
-    box-shadow: 0px 3px 0px #3168BB, 0px 10px 30px rgba(62, 138, 251, 0.6);
     border-radius: 6px;
     border: none;
     color: #fff;
-    background: #3E8AFB;
 }
 
 .slider__item-socialNetwork {
@@ -254,7 +251,7 @@
 .pause__video, .play__video {
     position: absolute;
     top: 25%;
-    left: 40%;
+    left: 36%;
     width: 137px;
     height: 137px;
     display: -webkit-box;
@@ -513,7 +510,7 @@
 
 .popup__allLessons-item-info-title {
     width: 90%;
-    margin: 15px 0 0 0;
+    margin: 10px 0 0 0;
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;

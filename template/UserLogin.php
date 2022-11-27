@@ -29,12 +29,21 @@
                 <div class="userLogin-form popup-form">
 					<form method="POST" action="/LoginController/login">
                         <input type="hidden" value="true" name="userLogin">
-						<div class="userLogin-email inputLog">
-							<input placeholder="Ваш Email" type="email" name="email">
-						</div>
-						<div class="userLogin-password inputLog">
-							<input placeholder="Введите пароль" type="password" name="pass">
-						</div>
+                        <div class="input_focus inputLog">
+                            <label for="email" class="label_focus">Ваша почта</label>
+                            <input type="email" name="email">
+                            <span class="clear_input_val">
+                                <img src="/img/clear_input.svg" alt="">
+                            </span>
+                        </div>
+
+                        <div class="input_focus inputLog">
+                            <label for="pass" class="label_focus">Введите пароль</label>
+                            <input type="password" name="pass">
+                            <span class="clear_input_val">
+                                <img src="/img/clear_input.svg" alt="">
+                            </span>
+                        </div>
 						<div class="button-send ">
 							<input type="submit" id="apps" value="Вход">
 						</div>
@@ -48,5 +57,34 @@
         </div>
 
     </div>
+    <!--For Input Holders-->
+    <script src="/js/jquery-3.6.1.min.js"></script>
+    <script>
+        window.onload = () =>{
+            let inputs = document.querySelectorAll('.input_focus input');
+            let inputsLabel = document.querySelectorAll('.input_focus label');
+            let inputClear = document.querySelectorAll('.input_focus span');
+
+
+            for(let i =0; i < inputs.length; i++){
+                inputs[i].addEventListener('input', function(){
+                    if(inputs[i].value != ""){
+                        inputsLabel[i].classList.add('activeLabel');
+                        inputClear[i].classList.add('has_content');
+                    }
+                    else {
+                        inputsLabel[i].classList.remove('activeLabel');
+                        inputClear[i].classList.remove('has_content');
+                    }
+                });
+
+                inputClear[i].onclick = () =>{
+                    inputsLabel[i].classList.remove('activeLabel')
+                    inputs[i].value = "";
+                    inputClear[i].classList.remove('has_content')
+                }
+            }
+        }
+    </script>
 </body>
 </html>

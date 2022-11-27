@@ -34,8 +34,8 @@
             $video = $ffmpeg->open($path);
 
             $frame = $video->frame(FFMpeg\Coordinate\TimeCode::fromSeconds(1));
-//
-            $frame_path = $this->url_dir . "thumbnails/" . $count_video ."_" . $_FILES['video_uploader']['name'] . ".jpg";
+
+            $frame_path = $this->url_dir . "thumbnails/$uid/" . $count_video ."_" . $_FILES['video_uploader']['name'] . ".jpg";
 
             $frame->save($frame_path);
 
@@ -44,7 +44,6 @@
             imagejpeg($image, $frame_path);
 
             $_SESSION['error'] = $frame_path;
-
 
             $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `thubnails`, `query_id`) VALUES ($uid,'Укажите заголовок','Укажите описание', '$path', '$frame_path' , $count_video)");
 
@@ -94,6 +93,7 @@
             $directory = $this->m->db->query("SELECT * FROM course WHERE author_id = '$uid'  ORDER BY ID DESC LIMIT 1");
 
             mkdir($this->url_dir ."courses/" . $directory[0]['id']);
+            mkdir($this->url_dir ."thumbnails/" . $directory[0]['id']);
 
             return True;
         }
@@ -107,7 +107,9 @@
 
             $this->m->db->execute("DELETE FROM course WHERE id = '$item_id'");
 
-            rmdir($this->url_dir . "/courses/$item_id");
+            rmdir($this->url_dir . "courses/$item_id");
+
+            rmdir($this->url_dir . "thumbnails/$item_id");
 
             return True;
         }
@@ -131,7 +133,7 @@
 
         function get_content()
         {
-//            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
 
         function obr()

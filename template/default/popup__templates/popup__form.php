@@ -21,12 +21,13 @@
                                 $value = 'email';
                             } elseif ($input == 'name') {
                                 $value = 'account';
+                                $input_name = 'first_name';
                             } elseif ($input == 'tel') {
                                 $value = 'phone';
                             }?>
                             <img src="../img/smallPlayer/<?=$value ?>.svg" alt="">
                         </div>
-                        <input name="<?=$input?>" type="text" placeholder="Ваш <?=$input?>">
+                        <input name="<?=$input_name?>" type="text" placeholder="Ваш <?=$input?>">
                     </div>
                 <?php } ?>
                 <?php if (isset($popup__do->form)) { ?>

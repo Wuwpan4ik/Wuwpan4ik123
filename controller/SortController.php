@@ -10,7 +10,7 @@ class SortController extends ACoreCreator {
     function getClientsForMain(){
         $get = $_GET["order"];
 
-        $content = $this->m->db->query("SELECT * FROM `user` WHERE `is_creator` <> 1 ORDER BY $get" );
+        $content = $this->m->db->query("SELECT clients.email, clients.first_name, clients.give_money, clients.tel, clients.tel, course.id as 'course_id', course.name FROM clients, course WHERE course.id = clients.course_id AND `creator_id` = ". $_SESSION['user']['id'] ." ORDER BY $get");
 
         $i = 1;
 
@@ -18,14 +18,15 @@ class SortController extends ACoreCreator {
             ?>
             <tr id="<?php if ($i % 2 == 0){ echo "white";} else { echo "grey"; }?>">
 
-                <td><img class="table_ava" src="<?php if(isset($item['avatar'])) echo htmlspecialchars($item['avatar'])?>"/><b><?php if(isset($item['first_name'])) echo htmlspecialchars($item['first_name'])?></b></td>
+                <td><img class="table_ava" src="<?php if(isset($item['avatar'])) {echo htmlspecialchars($item['avatar']);} else {echo "/uploads/ava/userAvatar.jpg";}?>"/><b><?php if(isset($item['first_name'])) echo htmlspecialchars($item['first_name'])?></b></td>
 
                 <td><?php if(isset($item['email'])) echo htmlspecialchars($item['email'])?></td>
 
-                <td><?php if(isset($item['telephone'])) echo htmlspecialchars($item['telephone'])?></td>
+                <td><?php echo (strlen($item['tel']) > 0) ? htmlspecialchars($item['tel']) : '--';?></td>
 
-                <td><?php if(isset($item['niche'])) echo htmlspecialchars($item['niche'])?></td>
+                <td><a href="/Course/<?php echo $item['course_id']?>"><?php if(isset($item['name'])) echo htmlspecialchars($item['name'])?></a></td>
 
+                <td><?php echo $item['give_money'];?></td>
             </tr>
             <?php
             $i= $i+1;}
@@ -38,6 +39,10 @@ class SortController extends ACoreCreator {
         foreach($result as $client){
 
             $tel = $client["tel"];
+
+            if (strlen($tel) == 0) {
+                $tel = '—';
+            }
 
             echo
 

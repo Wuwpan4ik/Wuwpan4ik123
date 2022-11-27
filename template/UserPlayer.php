@@ -16,7 +16,6 @@
 
 </head>
 <body class="body">
-<?// print_r($content)?>
 <div class=" userVideoContainer UserPlayer">
     <div class="UserPlayer User-header">
         <div class="User-logo user__logo">
@@ -24,9 +23,11 @@
             <div class="user__logo-text"><?=$content[0]['first_name']?></div>
         </div>
         <div class="header-main__burger">
-            <div class="main__burger">
-                <span></span>
-            </div>
+            <a href="/UserMenu">
+                <div class="main__burger">
+                    <span></span>
+                </div>
+            </a>
         </div>
     </div>
     <div class="UserPlayer Сourse-form">
@@ -70,7 +71,7 @@
                         <div class="popup-item">
 
                             <div class="popup__allLessons-item-video__img">
-                                <img src="../img/smallPlayer/Group1426.png" alt="">
+                                <img src=".<?php echo $content[0]['thubnails'] ?>" alt="">
                                 <div class="popup__allLessons-item-video-play">
                                     <img src="../img/smallPlayer/play.png" alt="">
                                 </div>
