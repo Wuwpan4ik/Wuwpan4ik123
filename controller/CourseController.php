@@ -10,7 +10,7 @@
         }
 
         public function AddVideo() {
-            include '/vendor/autoload.php';
+            require './vendor/autoload.php';
             if (is_null($_FILES['video_uploader'])) {
                 return False;
             }
@@ -21,19 +21,34 @@
 
             if (!$this->isUser($res[0]['author_id'])) return False;
 
-            $path = $this->url_dir . "/courses/$uid"."/$count_video"."_".$_FILES['video_uploader']['name'];
+            $path = $this->url_dir . "courses/$uid"."/$count_video"."_".$_FILES['video_uploader']['name'];
 
             move_uploaded_file($_FILES['video_uploader']['tmp_name'], $path);
 
-//            $ffmpeg = FFMpeg\FFMpeg::create();
-//            $video = $ffmpeg->open($path);
-//            $frame = $video->frame(FFMpeg\Coordinate\TimeCode::fromSeconds($this->sec));
-//            $frame_path = $this->url_dir . "/thumbnails/" . $_FILES['video_uploader']['name'];
-//            $frame->save($frame_path);
+            $ffmpeg = FFMpeg\FFMpeg::create([
+                'ffmpeg.binaries'  => './settings/ffmpeg.exe',
+                'ffprobe.binaries' => './settings/ffprobe.exe',
+                'ffplay.binaries' => './settings/ffplay.exe',
+            ]);
 
-            $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `thubnails` , `query_id`) VALUES ($uid,'Укажите заголовок','Укажите описание', '$path', '$frame_path' ,$count_video)");
+            $video = $ffmpeg->open($path);
 
-            return true;
+            $frame = $video->frame(FFMpeg\Coordinate\TimeCode::fromSeconds(1));
+//
+            $frame_path = $this->url_dir . "thumbnails/" . $count_video ."_" . $_FILES['video_uploader']['name'] . ".jpg";
+
+            $frame->save($frame_path);
+
+            $image = imagescale(imagecreatefromjpeg($frame_path), 512, 288);
+
+            imagejpeg($image, $frame_path);
+
+            $_SESSION['error'] = $frame_path;
+
+
+            $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `thubnails`, `query_id`) VALUES ($uid,'Укажите заголовок','Укажите описание', '$path', '$frame_path' , $count_video)");
+
+//            return true;
         }
 
         public function DeleteVideo()
@@ -78,7 +93,7 @@
 
             $directory = $this->m->db->query("SELECT * FROM course WHERE author_id = '$uid'  ORDER BY ID DESC LIMIT 1");
 
-            mkdir($this->url_dir ."/courses/" . $directory[0]['id']);
+            mkdir($this->url_dir ."courses/" . $directory[0]['id']);
 
             return True;
         }

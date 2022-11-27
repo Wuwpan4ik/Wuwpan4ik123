@@ -1,73 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f24a405b-adb0-4352-8ddc-fe9f8a40c7c3" name="Changes" comment="Добавил SmallPlayer.php">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/localhost.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/clear_input.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/envelope.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/ava/clear_input.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/107/funnels/256/1_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/107/funnels/256/2_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/107/funnels/256/3_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/107/funnels/256/4_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/107/funnels/256/5_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/107/funnels/257/1_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/107/funnels/257/2_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/107/funnels/257/3_Top 5 Hampter.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/107/funnels/259/1_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/107/funnels/260/1_Top 5 Hampter.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/107/funnels/260/2_Top 5 Hampter.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/107/funnels/260/3_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/107/funnels/260/4_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/courses/51/1_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/courses/54/1_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/courses/54/2_Top 5 Hampter.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/courses/54/3_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/courses/54/4_pexels-cottonbro-9329508.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/courses/54/5_Nyh08Gmy.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/courses/55/1_file_example_MP4_640_3MG.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/courses/55/2_pexels-cottonbro-9329508.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/courses/56/1_file_example_MP4_640_3MG.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/courses/56/2_Nyh08Gmy.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/courses/56/3_pexels-cottonbro-9329508.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/funnels/304/2_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/funnels/304/3_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/funnels/304/4_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/funnels/305/3_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/funnels/305/4_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/htdocs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/htdocs.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/ACoreCreator.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/ACoreCreator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/AccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/AccountController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/ClientsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/ClientsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/CourseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/CourseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/FunnelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/FunnelController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/UserMain.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/UserMain.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/auth.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/auth.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/lessons.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/lessons.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/smallPlayer.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/smallPlayer.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/CourseEdit.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/CourseEdit.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/FunnelEdit.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/FunnelEdit.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/Login.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/Login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/Main.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/Main.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/PasswordRecovery.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/PasswordRecovery.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/Registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/Registration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/SettingsAccountUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/SettingsAccountUser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/UserContacts.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/UserContacts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/UserLogin.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/UserLogin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/UserMain.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/UserMain.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/UserPasswordRecovery.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/UserPasswordRecovery.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/UserPlayer.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/UserPlayer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/ava/1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/ava/1.jpg" afterDir="false" />
-    </list>
+    <list default="true" id="f24a405b-adb0-4352-8ddc-fe9f8a40c7c3" name="Changes" comment="Добавил SmallPlayer.php" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

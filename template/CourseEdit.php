@@ -103,7 +103,8 @@
                 <?php
                 foreach($content[1] as $v){?>
 
-                    <?php include 'default/media-cart.php'?>
+                    <?php include 'default/media-cart.php';
+                    ?>
 
                 <?}
 

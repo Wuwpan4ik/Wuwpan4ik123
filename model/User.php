@@ -104,7 +104,7 @@
         }
 
         public function getContentForCourseListPage($course_id){
-            $course_query = "SELECT course_content.id, course_content.description, course_content.name, course_content.description, course_content.video FROM course_content WHERE ($course_id = course_content.course_id)";
+            $course_query = "SELECT course_content.id, course_content.description, course_content.thubnails, course_content.name, course_content.description, course_content.video FROM course_content WHERE ($course_id = course_content.course_id)";
             $courses = $this->db->query($course_query);
             return $courses;
         }

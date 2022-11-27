@@ -154,7 +154,7 @@
                 $number_color = 'available-number';
                 $url_start = "<a style='position:relative;' href='/UserPlayer/". $item['id'] . "'>";
                 $url_end = "</a>";
-                $image_available = '<img src="../img/smallPlayer/Group1426.png" alt=""> 
+                $image_available = '<img style="width: 100%; height: 100%;" src="'. $item['thubnails'] .'" alt=""> 
                                     <div class="popup__allLessons-item-video-play">
                                         <img src="../img/smallPlayer/play.png" alt="">
                                     </div>';
@@ -167,14 +167,14 @@
                         $number_color = 'Notavailable-number';
                         $url_start = "";
                         $url_end = "";
-                        $image_available = '<img src="../img/smallPlayer/Group1426.png" alt="">';
+                        $image_available = '<img style="width: 100%; height: 100%;" src="'. $item['thubnails'] .'" alt="">';
                     }
                 }
                 $div .='<div data-id="'. $item['id'] .'" class="popup__allLessons-item">
                                 <div class="popup__allLessons-item__header">
                             <div class="Course-item popup-item">
                             ' . $url_start . '
-                                <div class="popup__allLessons-item-video__img">
+                                <div class="popup__allLessons-item-video__img" style="width: 160px; height: 100px;">
                                     <div data-id="76" class="popup__allLessons-item"></div>
                                         '. $image_available .'
                                 </div>
