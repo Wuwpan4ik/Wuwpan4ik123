@@ -34,7 +34,7 @@
             $video = $ffmpeg->open($path);
 
             $frame = $video->frame(FFMpeg\Coordinate\TimeCode::fromSeconds(1));
-//
+
             $frame_path = $this->url_dir . "thumbnails/" . $uid . "/" . $count_video ."_" . $_FILES['video_uploader']['name'] . ".jpg";
 
             $frame->save($frame_path);

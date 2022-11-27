@@ -2,33 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f24a405b-adb0-4352-8ddc-fe9f8a40c7c3" name="Changes" comment="Добавил SmallPlayer.php">
-      <change afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/courses/55/1_Hamster.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/courses/55/1_b7_32202109_ccio (14).sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/courses/55/2_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/courses/55/3_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/courses/55/4_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/courses/55/5_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/courses/55/6_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/courses/55/7_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/courses/55/8_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/courses/55/9_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/funnels/307/1_Оу май - мем 3 секунды.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/thumbnails/8_Оу май - мем 3 секунды.mp4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/thumbnails/9_Оу май - мем 3 секунды.mp4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/users/111/thumbnails/Оу май - мем 3 секунды.mp4.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/ClientsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/ClientsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/CourseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/CourseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/CourseEdit.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/CourseEdit.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/default/media-cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/default/media-cart.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/james-heinrich/getid3/helperapps/head.exe" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/james-heinrich/getid3/helperapps/head.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/james-heinrich/getid3/helperapps/metaflac.exe" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/james-heinrich/getid3/helperapps/metaflac.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/james-heinrich/getid3/helperapps/shorten.exe" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/james-heinrich/getid3/helperapps/shorten.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/james-heinrich/getid3/helperapps/vorbiscomment.exe" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/james-heinrich/getid3/helperapps/vorbiscomment.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
