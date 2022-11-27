@@ -170,12 +170,12 @@
                         $image_available = '<img style="width: 100%; height: 100%;" src="'. $item['thubnails'] .'" alt="">';
                     }
                 }
-                $div .='<div data-id="'. $item['id'] .'" class="popup__allLessons-item">
+                $div .='<div class="popup__allLessons-item '. $class .'">
                                 <div class="popup__allLessons-item__header">
                             <div class="Course-item popup-item">
                             ' . $url_start . '
                                 <div class="popup__allLessons-item-video__img" style="width: 160px; height: 100px;">
-                                    <div data-id="76" class="popup__allLessons-item"></div>
+                                    <div data-id="'. $item['id'] .'" class="popup__allLessons-item item__list-id"></div>
                                         '. $image_available .'
                                 </div>
                                 ' . $url_end . '
@@ -217,7 +217,7 @@
 
         function getBuyVideo() {
             $video_id = $_GET['video_id'];
-            $content = $this->m->db->query("SELECT course_content.id, course_content.name, course_content.description, course_content.video, course_content.price, course_content.query_id, user.id AS 'author_id' FROM course_content INNER JOIN course ON course_content.course_id = course.id INNER JOIN user ON course.author_id = user.id WHERE course_content.id = '$video_id'")[0];
+            $content = $this->m->db->query("SELECT course_content.id, course_content.thubnails, course_content.name, course_content.description, course_content.video, course_content.price, course_content.query_id, user.id AS 'author_id' FROM course_content INNER JOIN course ON course_content.course_id = course.id INNER JOIN user ON course.author_id = user.id WHERE course_content.id = '$video_id'")[0];
             $getID3 = new getID3;
             $file = $getID3->analyze($content['video']);
             $duration = $file['playtime_string'];

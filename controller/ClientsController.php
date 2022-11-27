@@ -182,7 +182,8 @@
                 $purchase_text = '{"course_id":["'.$course_id.'"], "video_id":[]}';
                 $this->m->db->execute("INSERT INTO `purchase` (`user_id`, `purchase`) VALUES ('$user_id', '$purchase_text')");
             }
-            $this->addNotifications("item-like", 'Вы купили курс', '/img/Notification/message.png', $_SESSION['user']['id']);
+            $course_name = $this->m->db->query("SELECT name FROM course WHERE id = $course_id")[0]['name'];
+            $this->addNotifications("item-like", 'Вы купили курс ' . $course_name, '/img/Notification/message.png', $_SESSION['user']['id']);
             return true;
         }
 

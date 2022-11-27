@@ -183,7 +183,7 @@
                         <div class="popup__allLessons-item__header">
                             <div class="popup-item">
                                 <div class="popup__allLessons-item-video__img">
-                                    <img src="../img/smallPlayer/Group1426.png" alt="">
+                                    <img id="buy_product" src="../img/smallPlayer/Group1426.png" alt="">
                                 </div>
                                 <div class="popup__allLessons-item-info">
                                     <div class="popup__allLessons-item-info-header">
@@ -202,7 +202,7 @@
                         </div>
                     </div>
                     <div class="youChosen-info">
-                        Стоимость <span class="course__buy-text"></span>:
+                        Стоимость <span class="course__buy-text"></span>
                         <span><span class="course__price video__price-buy"></span> ₽</span>
                     </div>
                     <form class="form__buy-course-video" method="POST" action="/ClientsController/CourseBuy">
@@ -344,6 +344,7 @@ unset($_SESSION['course_id']);
                 document.querySelector('.course__buy-title').innerHTML = content.name;
                 document.querySelector('.course__buy-count').innerHTML = content[0] + ' минут';
                 document.querySelector('.course__buy-flag').innerHTML = 'Урок ' + content.query_id;
+                document.querySelector('#buy_product').src = content.thubnails;
                 document.querySelector('#creator_id').value = content.author_id;
                 document.querySelector('#course_id').value = number;
             }
@@ -436,35 +437,14 @@ unset($_SESSION['course_id']);
                     item.onclick = function () {
                         youChosen.classList.add('active');
                         allLessons.classList.remove('active')
-                        getVideoInfo(item.dataset.id);
+                        getVideoInfo(item.querySelector('.item__list-id').dataset.id);
                     }
                 })
             }
         });
         request1.send();
     }
-    function getVideoInfo(number) {
-        let request = new XMLHttpRequest();
 
-        let url = "/UserController/getVideoInfo?video_id=" + number;
-
-        request.open('GET', url);
-
-        request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-        request.addEventListener("readystatechange", () => {
-            if (request.readyState === 4 && request.status === 200) {
-                let content = JSON.parse(request.responseText);
-                document.querySelector('.form__buy-course-video').action = "/ClientsController/CourseVideo";
-                document.querySelector('.video__price-buy').innerHTML = content.price;
-                document.querySelector('.course__buy-title').innerHTML = content.name;
-                document.querySelector('.course__buy-count').innerHTML = content[0] + ' минут';
-                document.querySelector('.course__buy-flag').innerHTML = 'Урок ' + content.query_id;
-                document.querySelector('#creator_id').value = content.author_id;
-                document.querySelector('#course_id').value = number;
-            }
-        });
-        request.send();
-    }
     function startAccordion() {
         accordionButton.forEach( item => {
 

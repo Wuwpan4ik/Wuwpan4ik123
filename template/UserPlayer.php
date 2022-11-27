@@ -16,7 +16,6 @@
 
 </head>
 <body class="body">
-<?// print_r($content)?>
 <div class=" userVideoContainer UserPlayer">
     <div class="UserPlayer User-header">
         <div class="User-logo user__logo">
@@ -72,7 +71,7 @@
                         <div class="popup-item">
 
                             <div class="popup__allLessons-item-video__img">
-                                <img src="../img/smallPlayer/Group1426.png" alt="">
+                                <img src=".<?php echo $content[0]['thubnails'] ?>" alt="">
                                 <div class="popup__allLessons-item-video-play">
                                     <img src="../img/smallPlayer/play.png" alt="">
                                 </div>
