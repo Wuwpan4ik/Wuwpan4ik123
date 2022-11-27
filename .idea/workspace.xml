@@ -2,42 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f24a405b-adb0-4352-8ddc-fe9f8a40c7c3" name="Changes" comment="Добавил SmallPlayer.php">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/ClientsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/ClientsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/FunnelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/FunnelController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/SortController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/SortController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/Main.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/Main.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/template/UserMain.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/UserMain.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/UserPlayer.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/UserPlayer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/default/popup__templates/popup__form.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/default/popup__templates/popup__form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/CourseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/CourseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/51/1_Оу май - мем 3 секунды.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/54/1_Оу май - мем 3 секунды.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/54/2_Top 5 Hampter.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/54/3_Оу май - мем 3 секунды.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/54/4_pexels-cottonbro-9329508.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/54/5_Nyh08Gmy.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/55/1_Hamster.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/55/1_b7_32202109_ccio (14).sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/55/1_file_example_MP4_640_3MG.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/55/2_pexels-cottonbro-9329508.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/55/2_Оу май - мем 3 секунды.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/55/3_Оу май - мем 3 секунды.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/55/4_Оу май - мем 3 секунды.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/55/5_Оу май - мем 3 секунды.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/55/6_Оу май - мем 3 секунды.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/55/7_Оу май - мем 3 секунды.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/55/8_Оу май - мем 3 секунды.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/55/9_Оу май - мем 3 секунды.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/56/1_file_example_MP4_640_3MG.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/56/1_Оу май - мем 3 секунды.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/56/2_Nyh08Gmy.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/56/3_pexels-cottonbro-9329508.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/thumbnails/8_Оу май - мем 3 секунды.mp4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/thumbnails/9_Оу май - мем 3 секунды.mp4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/thumbnails/Оу май - мем 3 секунды.mp4.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
