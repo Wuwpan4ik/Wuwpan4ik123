@@ -107,7 +107,9 @@
 
             $this->m->db->execute("DELETE FROM course WHERE id = '$item_id'");
 
-            rmdir($this->url_dir . "/courses/$item_id");
+            rmdir($this->url_dir . "courses/$item_id");
+
+            rmdir($this->url_dir . "thumbnails/$item_id");
 
             return True;
         }

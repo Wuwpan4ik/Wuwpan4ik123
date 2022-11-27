@@ -39,6 +39,10 @@ class SortController extends ACoreCreator {
 
             $tel = $client["tel"];
 
+            if (strlen($tel) == 0) {
+                $tel = '—';
+            }
+
             echo
 
                 '<tr>
