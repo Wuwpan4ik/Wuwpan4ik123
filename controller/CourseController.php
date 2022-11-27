@@ -35,7 +35,7 @@
 
             $frame = $video->frame(FFMpeg\Coordinate\TimeCode::fromSeconds(1));
 
-            $frame_path = $this->url_dir . "thumbnails/" . $uid . "/" . $count_video ."_" . $_FILES['video_uploader']['name'] . ".jpg";
+            $frame_path = $this->url_dir . "thumbnails/$uid/" . $count_video ."_" . $_FILES['video_uploader']['name'] . ".jpg";
 
             $frame->save($frame_path);
 
@@ -93,7 +93,7 @@
             $directory = $this->m->db->query("SELECT * FROM course WHERE author_id = '$uid'  ORDER BY ID DESC LIMIT 1");
 
             mkdir($this->url_dir ."courses/" . $directory[0]['id']);
-            mkdir($this->url_dir ."thubnails/" . $directory[0]['id']);
+            mkdir($this->url_dir ."thumbnails/" . $directory[0]['id']);
 
             return True;
         }
