@@ -26,6 +26,10 @@
             <label for="description">Укажите описание:</label>
             <textarea name="description" class="videoname video-desc"><?=$v['description']?></textarea>
         </div>
+        <div class="funnel-input">
+            <label for="description">Укажите стоимость урока:</label>
+            <input name="" class="videoname" type="number" value="Укажите стоимость урока:">
+        </div>
         <?php if (strstr($_SERVER['REQUEST_URI'], 'Funnel' )) {?>
         <input type="hidden" value="<?=$v['id']?>">
         <div class="button__do-block <?php if (!isset($v['button_text']) || is_null($v['button_text'])) { ?> display-none <?php } ?>" >

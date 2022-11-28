@@ -73,10 +73,17 @@
                                         <div class="field">
                                             <input class="half" name="country" type="text" placeholder="<?php print(htmlspecialchars(isset($_SESSION['user']['country']) ? $_SESSION['user']['country'] : 'Страна')) ?>">
                                             <input class="half" name="city" type="text" placeholder="<?php print(htmlspecialchars(isset($_SESSION['user']['city']) ? $_SESSION['user']['city'] : 'Город'))?>" >
+                                            <select class="select-account currencies" name="" id="">
+                                                <option>Выберите валюту</option>
+                                                <option>$</option>
+                                                <option>€</option>
+                                                <option>₴</option>
+                                                <option>₽</option>
+                                            </select>
                                         </div>
                                         <h2>Укажите соц сети для клиентов</h2>
                                         <div class="field">
-                                            <div class="social-network">
+                                            <div class="select-account social-network">
                                                 <div id="myMultiselect" class="multiselect">
                                                     <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea()">
                                                         <select class="form-select">

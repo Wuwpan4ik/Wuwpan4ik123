@@ -34,13 +34,14 @@ $(document).ready(function(){
                     // Проверка на конец
                 }, 300);
                 if (this.paused) {
-                    $('.slick-current').find('.play__video').removeClass('active')
+                    $('.slick-current').find('.play__video').removeClass('active');
 
                     this.play();
 
 
                 } else {
                     this.pause();
+                    $('.slick-current').find('.pause__video').addClass('active');
                 }
             })
         })
