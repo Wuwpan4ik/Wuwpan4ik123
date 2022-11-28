@@ -175,6 +175,15 @@ function save() {
     document.getElementById('send__edit-video').click();
 }
 
+function addSecondOptions(options) {
+    let div = ``;
+    options.forEach((item)=> {
+        console.log(item)
+        div += `<option value="` + item[0] +`" selected>` + item[1] +`</option>`;
+    });
+    document.querySelector('#second_do').innerHTML = div;
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     if (!['form', 'pay_form'].includes(first_select.value)) {
         document.querySelector('#popup__body-form-1').style.display = 'none';
@@ -183,6 +192,7 @@ document.addEventListener('DOMContentLoaded', function () {
     first_select.addEventListener('change', function () {
         if (['list'].includes(first_select.value)) {
             addPopup('list');
+            addSecondOptions([['pay_form', "Форма оплаты"], ['form', 'Форма заявки']]);
         }
 
         if (!['form', 'pay_form', 'link'].includes(first_select.value)) {
@@ -198,6 +208,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 elem.classList.add('display-none');
             })
             defaultPopup(first_select);
+            addSecondOptions([['link', "Переход по ссылке"], ['next_lesson', 'Следующий урок'], ['file', 'Отправка файла']]);
             if (first_select.value === 'link') {
                 document.querySelector('#popup__body-form-1').style.display = 'none';
                 addFormLink(first_select);
