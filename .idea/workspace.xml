@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="f24a405b-adb0-4352-8ddc-fe9f8a40c7c3" name="Changes" comment="Добавил SmallPlayer.php">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/FunnelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/FunnelController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/UserContacts.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/UserContacts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/CourseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/CourseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/sliders.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sliders.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/SmallPlayer.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/SmallPlayer.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +66,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Files/Programs/OSPanel/domains/localhost",
+    "last_opened_file_path": "C:/Files/Programs/OSPanel/domains/dota_music",
     "nodejs_package_manager_path": "npm",
     "php.override.implement.member.chooser.php.doc": "NONE",
     "vue.rearranger.settings.migration": "true"
@@ -266,7 +268,7 @@
       <workItem from="1669535532443" duration="519000" />
       <workItem from="1669536057750" duration="297000" />
       <workItem from="1669644217317" duration="6438000" />
-      <workItem from="1669658432932" duration="1117000" />
+      <workItem from="1669658432932" duration="6422000" />
     </task>
     <task id="LOCAL-00001" summary="Правильная проверка email">
       <created>1665562781370</created>
