@@ -219,7 +219,7 @@
 .slider__header-logo-text {
     margin: 0 0 0 12px;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .slider__header-views {
@@ -353,9 +353,10 @@
     width: 100%;
     padding: 19px 0;
     margin: 16px 0 20px 0;
+    background: #3C64F4;
 }
 
-/*----------------------------------------*/
+    /*----------------------------------------*/
 .popup__allLessons {
     height: 80%;
 }
@@ -595,8 +596,15 @@
 
 /* Brench: Styles */
 
+.slider__header-logo-img{
+    width:30px;
+    height:30px;
+}
+
 .slider__header-logo-img img{
     border-radius: 50%;
+    width:30px;
+    height:30px;
 }
 
 /* Adaptive */

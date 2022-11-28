@@ -3,7 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="f24a405b-adb0-4352-8ddc-fe9f8a40c7c3" name="Changes" comment="Добавил SmallPlayer.php">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/auth.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/auth.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/lessons.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/lessons.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/smallPlayer.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/smallPlayer.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/sliders.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sliders.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/Analytics.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/Analytics.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/Course.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/Course.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/SmallPlayer.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/SmallPlayer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/default/media-cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/default/media-cart.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -266,7 +274,7 @@
       <workItem from="1669535532443" duration="519000" />
       <workItem from="1669536057750" duration="297000" />
       <workItem from="1669579619536" duration="1024000" />
-      <workItem from="1669658611835" duration="353000" />
+      <workItem from="1669658611835" duration="5622000" />
     </task>
     <task id="LOCAL-00001" summary="Правильная проверка email">
       <created>1665562781370</created>

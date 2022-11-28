@@ -28,7 +28,7 @@
 }
 
 .media-cart h3 {
-    margin: 15px 0 20px;
+    margin: 25px 0 20px;
     font-weight: 600;
     font-size: 24px;
 }
@@ -355,11 +355,11 @@ input:checked + label {
     height: 52px;
     border: 1px solid #E1E3E6;
     border-radius: 8px;
-    padding: 20px 10px 0 10px!important;
+    padding: 10px 10px 0 10px!important;
 
 }
 .video-desc{
-    padding: 25px 10px 0 10px!important;
+    padding: 20px 10px 0 10px!important;
 }
 .funnel-input{
     display: flex;
@@ -783,8 +783,6 @@ input:checked + label {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    -webkit-filter: invert(100%) sepia(100%) saturate(1352%) hue-rotate(87deg) brightness(60%) contrast(119%);
-    filter: invert(100%) sepia(100%) saturate(1352%) hue-rotate(87deg) brightness(60%) contrast(119%);
 }
 
 /* Brench: Styles */
@@ -793,4 +791,50 @@ input:checked + label {
     max-width: 27px;
     border-radius: 50%;
     height: 27px;
+}
+
+.input_focus{
+    position: relative;
+}
+
+.label_focus{
+    font-size: 14px;
+    position: absolute;
+    transition: 0.3s all ease;
+    pointer-events: none;
+    font-weight: 400;
+    top:14px;
+    left:16px;
+    line-height: 24px;
+    color: #757D8A;
+}
+
+.label_focus.activeLabel{
+    top:2px !important;
+    font-size:10px;
+    opacity: 1;
+    pointer-events: all;
+}
+
+.label_focus.no_content{
+    opacity: 0;
+    pointer-events: all;
+}
+
+.clear_input_val{
+    position: absolute;
+    pointer-events: none;
+    transition: 0.3s all ease;
+    right:20px;
+    opacity: 0;
+    cursor: pointer;
+    top:15px;
+}
+
+.clear_input_val.has_content{
+    opacity: 1;
+    pointer-events: all;
+}
+.new_name div label{
+    top:15px !important;
 }

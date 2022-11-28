@@ -4,6 +4,7 @@ $(document).ready(function(){
         let slider = $(this).parent().find('.slider').slick({
             arrows:false,
             dots:true,
+            swipe: false,
             lazyLoad: true,
             appendDots: $(this).parent().find('.slick-dots'),
             slidesToShow:1
@@ -15,6 +16,12 @@ $(document).ready(function(){
             })
         }
         let width = 0;
+
+
+        //Убираем нахуй эти кнопочки ссылки
+        $('.slick-dots li button').on('click', function(e){
+            e.stopPropagation(); // use this
+        });
 
         $(this).find('.slider__video-item').each(function () {
             // Закончил здесь
