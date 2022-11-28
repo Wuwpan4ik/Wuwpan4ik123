@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f24a405b-adb0-4352-8ddc-fe9f8a40c7c3" name="Changes" comment="Добавил SmallPlayer.php">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/FunnelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/FunnelController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/UserMain.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/UserMain.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/UserContacts.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/UserContacts.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,17 +59,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Files/Programs/OSPanel/domains/localhost&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Files/Programs/OSPanel/domains/localhost",
+    "nodejs_package_manager_path": "npm",
+    "php.override.implement.member.chooser.php.doc": "NONE",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Files\Programs\OSPanel\domains\localhost\img" />
@@ -266,6 +265,8 @@
       <workItem from="1669534377608" duration="1141000" />
       <workItem from="1669535532443" duration="519000" />
       <workItem from="1669536057750" duration="297000" />
+      <workItem from="1669644217317" duration="6438000" />
+      <workItem from="1669658432932" duration="1117000" />
     </task>
     <task id="LOCAL-00001" summary="Правильная проверка email">
       <created>1665562781370</created>

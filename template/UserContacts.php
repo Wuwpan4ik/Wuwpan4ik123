@@ -66,7 +66,7 @@
                     </div>
                 </div>
             </div>
-            <form method="POST" action="?option=ContactController&method=SendQuestion">
+            <form method="POST" action="/ContactController/sendQuestions">
                 <div class="UserContacts-footer">
                     <div class="UserContacts-footer__title">
                         Есть вопросы?

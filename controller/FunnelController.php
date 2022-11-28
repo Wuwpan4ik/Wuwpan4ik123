@@ -187,7 +187,7 @@
                         $file_name = $_FILES['file']['name'];
                     }
 
-                    $file = $this->url_dir . "/files/" . $funnel[0]['id'] . '_' .$funnel[0]['name'] . "/" . $file_name;
+                    $file = $this->url_dir . $_SESSION['user']['id'] . "/files/" . $funnel[0]['id'] . '_' . $file_name;
 
                     move_uploaded_file($_FILES['file']['tmp_name'], $file);
 
