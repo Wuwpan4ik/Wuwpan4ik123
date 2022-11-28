@@ -328,6 +328,10 @@ a.button__back {
     align-items: flex-end;
 
 }
+.Article-info{
+    display: flex;
+    justify-content: space-between;
+}
 .Article-post-quotation{
     display: flex;
     align-items: start;
@@ -350,9 +354,10 @@ a.button__back {
     hyphens: auto;
 }
 .Article-post-item{
-    position: fixed;
-    top: 300px;
+    position: sticky;
+    top: 100px;
     left: 24%;
+    height: 420px;
     background: #F8F8F9;
     border-radius: 8px;
     padding: 30px;
@@ -360,6 +365,7 @@ a.button__back {
     font-size: 18px;
     line-height: 24px;
 }
+
 .Article-post-item-img img{
     width: 56px;
 }

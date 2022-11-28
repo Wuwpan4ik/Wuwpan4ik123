@@ -42,7 +42,6 @@ $(document).ready(function(){
                 }
             })
         })
-
         $(this).on('afterChange', function (event, slick ) {
             stopVideos();
             $(this).find('.slider__video-item').each(function () {
