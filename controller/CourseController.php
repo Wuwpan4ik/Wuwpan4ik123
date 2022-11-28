@@ -79,7 +79,13 @@
                 $description = $res[0]['description'];
             }
 
-            $this->m->db->execute("UPDATE `course_content` SET `name` = '$name', `description` = '$description' WHERE `id` = '$item_id'");
+            if (isset($_POST['price'])) {
+                $price = $_POST['price'];
+            } else {
+                $price = $res[0]['price'];
+            }
+
+            $this->m->db->execute("UPDATE `course_content` SET `name` = '$name', `description` = '$description', `price` = '$price' WHERE `id` = '$item_id'");
             return True;
         }
 

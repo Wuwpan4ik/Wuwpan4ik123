@@ -202,7 +202,7 @@
                         </div>
                     </div>
                     <div class="youChosen-info">
-                        Стоимость <span class="course__buy-text"></span>
+                        Стоимость <span class="course__buy-text"></span>    
                         <span><span class="course__price video__price-buy"></span> ₽</span>
                     </div>
                     <form class="form__buy-course-video" method="POST" action="/ClientsController/CourseBuy">

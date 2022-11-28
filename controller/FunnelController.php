@@ -187,7 +187,7 @@
                         $file_name = $_FILES['file']['name'];
                     }
 
-                    $file = $this->url_dir . "/files/" . $funnel[0]['id'] . '_' .$funnel[0]['name'] . "/" . $file_name;
+                    $file = $this->url_dir . $_SESSION['user']['id'] . "/files/" . $funnel[0]['id'] . '_' . $file_name;
 
                     move_uploaded_file($_FILES['file']['tmp_name'], $file);
 
@@ -207,8 +207,14 @@
                     $videoBtnHTML['second_do']['file'] = $_POST['file'];
                 }
             }
+//          // Если нет значения, то добавляет к кнопке "Посмотреть"
+            $button__standart = '';
+            if (strlen($funnel_content[0]['button_text']) == 0) {
+                $button__standart = ', `button_text` = "Посмотреть"';
+            }
+
             $videoBtnHTMLResult = json_encode($videoBtnHTML, JSON_UNESCAPED_UNICODE);
-            $this->m->db->execute("UPDATE `funnel_content` SET `popup` = '$videoBtnHTMLResult' WHERE id = '$id_video'");
+            $this->m->db->execute("UPDATE `funnel_content` SET `popup` = '$videoBtnHTMLResult'$button__standart WHERE id = '$id_video'");
             return True;
         }
 

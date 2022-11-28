@@ -113,6 +113,18 @@
 <script src="../js/script.js" ></script>
 <script src="../js/slick.min.js"></script>
 <script src="../js/sliders.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.slider__video-item').forEach((item) => {
+            item.addEventListener('ended', function () {
+                $('.slick-next').click();
+            })
+        })
+        document.querySelectorAll('.slick-arrow').forEach((item) => {
+            item.style.display = 'none';
+        })
+    })
+</script>
 </body>
 </html>
 
