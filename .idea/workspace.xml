@@ -3,41 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f24a405b-adb0-4352-8ddc-fe9f8a40c7c3" name="Changes" comment="Добавил SmallPlayer.php">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/ClientsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/ClientsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/FunnelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/FunnelController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/SortController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/SortController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/Main.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/Main.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/UserMain.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/UserMain.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/UserPlayer.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/UserPlayer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template/default/popup__templates/popup__form.php" beforeDir="false" afterPath="$PROJECT_DIR$/template/default/popup__templates/popup__form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/CourseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/CourseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/51/1_Оу май - мем 3 секунды.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/54/1_Оу май - мем 3 секунды.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/54/2_Top 5 Hampter.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/54/3_Оу май - мем 3 секунды.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/54/4_pexels-cottonbro-9329508.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/54/5_Nyh08Gmy.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/55/1_Hamster.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/55/1_b7_32202109_ccio (14).sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/55/1_file_example_MP4_640_3MG.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/55/2_pexels-cottonbro-9329508.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/55/2_Оу май - мем 3 секунды.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/55/3_Оу май - мем 3 секунды.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/55/4_Оу май - мем 3 секунды.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/55/5_Оу май - мем 3 секунды.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/55/6_Оу май - мем 3 секунды.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/55/7_Оу май - мем 3 секунды.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/55/8_Оу май - мем 3 секунды.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/55/9_Оу май - мем 3 секунды.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/56/1_file_example_MP4_640_3MG.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/56/1_Оу май - мем 3 секунды.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/56/2_Nyh08Gmy.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/courses/56/3_pexels-cottonbro-9329508.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/thumbnails/8_Оу май - мем 3 секунды.mp4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/thumbnails/9_Оу май - мем 3 секунды.mp4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/users/111/thumbnails/Оу май - мем 3 секунды.mp4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/smallPlayer.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/smallPlayer.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,17 +58,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Files/Programs/OSPanel/domains/localhost&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Files/Programs/OSPanel/domains/localhost",
+    "nodejs_package_manager_path": "npm",
+    "php.override.implement.member.chooser.php.doc": "NONE",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Files\Programs\OSPanel\domains\localhost\img" />
@@ -298,6 +265,8 @@
       <workItem from="1669534377608" duration="1141000" />
       <workItem from="1669535532443" duration="519000" />
       <workItem from="1669536057750" duration="297000" />
+      <workItem from="1669579619536" duration="1024000" />
+      <workItem from="1669658611835" duration="353000" />
     </task>
     <task id="LOCAL-00001" summary="Правильная проверка email">
       <created>1665562781370</created>
