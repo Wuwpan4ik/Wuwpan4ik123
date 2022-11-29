@@ -685,8 +685,11 @@ a {
   -ms-flex-align: center;
   align-items: center;
   gap: 12px;
+  justify-content: space-between;
 }
-
+.UserProfile__header .text-info{
+  margin-right:50px;
+}
 .text-info-name{
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1508,7 +1511,7 @@ td:nth-child(1){
 .new_name div textarea {
   padding-top: 15px;
   padding-left: 15px;
-  font-size: 16px;
+  font-size: 14px;
   height: 60px;
 }
 
