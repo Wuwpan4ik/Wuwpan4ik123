@@ -51,7 +51,7 @@
             return $size;
         }
 
-        public function SendEmail ($title, $body) {
+        public function SendEmail ($title, $body, $email, $file = null, $file_name = null) {
 
             $mail = new PHPMailer\PHPMailer\PHPMailer(true);
 
@@ -79,11 +79,14 @@
                 $mail->setFrom($this->ourEmail, $this->ourNickName); // Адрес самой почты и имя отправителя
 
                 // Получатель письма
-                $mail->addAddress($this->email);
+                $mail->addAddress($email);
 
                 $mail->isHTML(true);
                 $mail->Subject = $title;
                 $mail->Body = $body;
+                if (!is_null($file)) {
+                    $mail->addAttachment($file, $file_name);
+                }
 
                 if ($mail->send()) {$result = "success";}
                 else {$result = "allGood";}

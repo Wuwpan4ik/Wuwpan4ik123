@@ -176,7 +176,7 @@
                 }
                 case "link": {
                     if (isset($_POST['link-2'])) {
-                        $vid1oBtnHTML['second_do']['link'] = $_POST['link-2'];
+                        $videoBtnHTML['second_do']['link'] = $_POST['link-2'];
                     }
                     break;
                 }
@@ -187,7 +187,7 @@
                         $file_name = $_FILES['file']['name'];
                     }
 
-                    $file = $this->url_dir . $_SESSION['user']['id'] . "/files/" . $funnel[0]['id'] . '_' . $file_name;
+                    $file = $this->url_dir . "/files/" . $funnel[0]['id'] . '_' . $file_name;
 
                     move_uploaded_file($_FILES['file']['tmp_name'], $file);
 

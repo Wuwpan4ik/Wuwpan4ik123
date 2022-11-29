@@ -213,7 +213,7 @@
     let notDelete = document.querySelector('.popup__not-delete');
     notDelete.onclick = function (event) {
         if (event.target === notDelete) {
-            entryDisplay.classList.remove('display-block');
+            entryDisplayDelete.classList.remove('display-block');
             toggleOverflow();
         }
     }

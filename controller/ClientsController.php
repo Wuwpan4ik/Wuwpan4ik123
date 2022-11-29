@@ -65,50 +65,6 @@
             return True;
         }
 
-        public function SendEmail ($title, $body) {
-
-            $mail = new PHPMailer\PHPMailer\PHPMailer(true);
-
-            try {
-                $mail->isSMTP();
-                $mail->CharSet = "UTF-8";
-                $mail->SMTPAuth   = true;
-                $mail->Debugoutput = function($str, $level) {$GLOBALS['status'][] = $str;};
-
-                // Настройки вашей почты
-                $mail->Host       = 'smtp.gmail.com'; // SMTP сервера вашей почты
-                $mail->Username   = $this->ourEmail; // Логин на почте
-                $mail->Password   = $this->ourPassword; // Пароль на почте
-                $mail->SMTPSecure = 'ssl';
-                $mail->Port       = 465;
-                $mail->smtpConnect(
-                    array(
-                        "ssl" => array(
-                            "verify_peer" => false,
-                            "verify_peer_name" => false,
-                            "allow_self_signed" => true
-                        )
-                    )
-                );
-                $mail->setFrom($this->ourEmail, $this->ourNickName); // Адрес самой почты и имя отправителя
-
-                // Получатель письма
-                $mail->addAddress($this->email);
-
-                $mail->isHTML(true);
-                $mail->Subject = $title;
-                $mail->Body = $body;
-
-                if ($mail->send()) {$result = "success";}
-                else {$result = "allGood";}
-
-            } catch (Exception $e) {
-                $result = $mail->ErrorInfo;
-                $status = "Сообщение не было отправлено. Причина ошибки: {$mail->ErrorInfo}";
-            }
-            echo $result;
-        }
-
         public function AddApplication() {
             if (!$this->RequestValidate()) return false;
             $buy_progress = include './settings/buy_progress.php';
@@ -121,6 +77,16 @@
                     $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]' WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
                 }
             } else {
+                $title = "Оставили заявку";
+                if (isset($_POST['file'])) {
+                    $file = $_POST['second_file'];
+                    $file_name = "Прикреплённый файл";
+                    $body = "Вы оставили заявку на сайте <a href=\"/https://course-creator.io/\">Course Creator</a><br>Ваша файл:";
+                    $this->SendEmail($title, $body, $_POST['email'], $file, $file_name);
+                } else {
+                    $body = "Вы оставили заявку на сайте <a href=\"/https://course-creator.io/\">Course Creator</a><br>";
+                    $this->SendEmail($title, $body, $_POST['email']);
+                }
                 $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], 0);
             }
             return true;
@@ -151,7 +117,7 @@
                 $title = "Регистрация аккаунта";
                 $this->password = $this->GenerateRandomPassword(12);
                 $body = "Ваш аккаунт на <a href=\"/UserLogin\">Course Creator</a><br>Почта: $this->email<br>Пароль:$this->password";
-                $this->SendEmail($title, $body);
+                $this->SendEmail($title, $body, $this->email);
 
                 $this->m->db->execute("INSERT INTO `user` (`email`, `password`, `is_creator`) VALUES ('$this->email', '$this->password', 0)");
 
@@ -209,7 +175,7 @@
                 $title = "Регистрация аккаунта";
                 $this->password = $this->GenerateRandomPassword(12);
                 $body = "Ваш аккаунт на <a href=\"/https://course-creator.io/UserLogin\">Course Creator</a><br>Почта: $this->email<br>Пароль:$this->password";
-                $this->SendEmail($title, $body);
+                $this->SendEmail($title, $body, $this->email);
 
                 $this->m->db->execute("INSERT INTO `user` (`email`, `password`, `is_creator`) VALUES ('$this->email', '$this->password', 0)");
 
