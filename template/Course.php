@@ -56,6 +56,9 @@
                                                         <source  class="video" src="<?=$v['video']?>" />
                                                         </video>
                                                     </div>
+                                                    <div class="slider__darkness">
+
+                                                    </div>
                                                     <div class="slider__header _conatiner-player ">
                                                         <div class="slider__header-logo">
                                                             <div class="slider__header-logo-img">
