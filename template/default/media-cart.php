@@ -1,16 +1,5 @@
 <div class="media-cart">
     <div class="media-cart__controller">
-<<<<<<< HEAD
-=======
-        <div class="media-cart__controller-move">
-            <div class="media-cart__controller-move-right">
-                <button><img src="/img/Arrow-right.svg" alt=""></button>
-            </div>
-            <div class="media-cart__controller-move-left">
-                <button><img src="/img/Arrow-left.svg" alt=""></button>
-            </div>
-        </div>
->>>>>>> noffakeStyle
         <div class="media-cart__controller-delete">
             <button class="button" onclick="deleteDirectory(this)"><img src="/img/Delete.svg" alt=""></button>
         </div>
@@ -82,7 +71,6 @@
 
     </form>
 
-<<<<<<< HEAD
     <!--For Input Holders-->
     <script src="/js/jquery-3.6.1.min.js"></script>
     <script>
@@ -112,6 +100,4 @@
             }
         }
     </script>
-=======
->>>>>>> noffakeStyle
 </div>

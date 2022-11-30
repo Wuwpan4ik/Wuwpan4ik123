@@ -73,12 +73,12 @@
                                         <div class="field">
                                             <input class="half" name="country" type="text" placeholder="<?php print(htmlspecialchars(isset($_SESSION['user']['country']) ? $_SESSION['user']['country'] : 'Страна')) ?>">
                                             <input class="half" name="city" type="text" placeholder="<?php print(htmlspecialchars(isset($_SESSION['user']['city']) ? $_SESSION['user']['city'] : 'Город'))?>" >
-                                            <select class="select-account currencies" name="" id="">
-                                                <option>Выберите валюту</option>
-                                                <option>$</option>
-                                                <option>€</option>
-                                                <option>₴</option>
-                                                <option>₽</option>
+                                            <select class="select-account currencies" name="currency" id="currency">
+                                                <option value="null">Выберите валюту</option>
+                                                <option value="dollar">$</option>
+                                                <option value="euro">€</option>
+                                                <option value="grivna">₴</option>
+                                                <option value="rub">₽</option>
                                             </select>
                                         </div>
                                         <h2>Укажите соц сети для клиентов</h2>
@@ -131,7 +131,7 @@
 
 
                                                     <div class="input__wrapper">
-                                                        <input accept="image/img, image/jpeg, image/png" name="avatar" type="file" id="input__file" class="input input__file" onchange='uploadFile(this)' multiple>
+                                                        <input name="avatar" type="file" id="input__file" class="input input__file" onchange='uploadFile(this)' multiple>
                                                         <label for="input__file" class="input__file-button">
 
                                                             <span class="input__file-icon-wrapper"><img class="input__file-icon" src="./img/plus.svg"  width="25"></span>

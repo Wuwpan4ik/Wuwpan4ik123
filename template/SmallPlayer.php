@@ -36,7 +36,7 @@
                 <div class="slider__header _conatiner-player ">
                     <div class="slider__header-logo">
                         <div class="slider__header-logo-img">
-                            <img width="48px" src="/<? echo (isset($_SESSION['user']['avatar'])  ? $_SESSION['user']['avatar'] : "uploads/ava/userAvatar.jpg") ?>" alt="">
+                            <img width="48px" src="/<? echo (isset($item['avatar'])  ? $item['avatar'] : "uploads/ava/userAvatar.jpg") ?>" alt="">
                         </div>
                         <div class="slider__header-logo-text">
                             <?=$item['first_name']?>
