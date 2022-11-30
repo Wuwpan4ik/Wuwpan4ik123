@@ -44,14 +44,14 @@
                             <div class="settingsAccountUser-body__infAbU">
                                 <div class="input_focus inputLog">
                                     <label for="first_name" class="label_focus">Ваше имя</label>
-                                    <input type="text" name="first_name">
+                                    <input type="text" placeholder="<?=$_SESSION["user"]["first_name"]?>" name="first_name">
                                     <span class="clear_input_val">
                                         <img src="/img/clear_input.svg" alt="">
                                     </span>
                                 </div>
                                 <div class="input_focus inputLog">
                                     <label for="second_name" class="label_focus">Ваша фамилия</label>
-                                    <input type="text" name="second_name">
+                                    <input type="text" placeholder="<?=$_SESSION["user"]["second_name"]?> name="second_name">
                                     <span class="clear_input_val">
                                         <img src="/img/clear_input.svg" alt="">
                                     </span>
@@ -99,7 +99,6 @@
 </div>
 
 </div>
-
 <!--For Input Holders-->
 <script src="/js/jquery-3.6.1.min.js"></script>
 <script>

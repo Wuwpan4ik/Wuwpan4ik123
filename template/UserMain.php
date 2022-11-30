@@ -111,7 +111,7 @@
                         <div class="popup__allLessons-item__header">
                             <div class="Course-item popup-item">
                                 <div class="popup__allLessons-item-video__img">
-                                    <a href="/UserPlayer/76" <div="data-id="76" class="popup__allLessons-item ">
+                                    <a href="/UserPlayer/76" <div data-id="76" class="popup__allLessons-item">
                                     <img src="../img/smallPlayer/Group1426.png" alt="">
                                     </a>
                                 </div>
@@ -202,7 +202,7 @@
                         </div>
                     </div>
                     <div class="youChosen-info">
-                        Стоимость <span class="course__buy-text"></span>    
+                        Стоимость <span class="course__buy-text"></span>
                         <span><span class="course__price video__price-buy"></span> ₽</span>
                     </div>
                     <form class="form__buy-course-video" method="POST" action="/ClientsController/CourseBuy">

@@ -175,6 +175,7 @@
                 $title = "Регистрация аккаунта";
                 $this->password = $this->GenerateRandomPassword(12);
                 $body = "Ваш аккаунт на <a href=\"/https://course-creator.io/UserLogin\">Course Creator</a><br>Почта: $this->email<br>Пароль:$this->password";
+
                 $this->SendEmail($title, $body, $this->email);
 
                 $this->m->db->execute("INSERT INTO `user` (`email`, `password`, `is_creator`) VALUES ('$this->email', '$this->password', 0)");

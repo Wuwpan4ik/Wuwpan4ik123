@@ -73,8 +73,37 @@
                                         <div class="field">
                                             <input class="half" name="country" type="text" placeholder="<?php print(htmlspecialchars(isset($_SESSION['user']['country']) ? $_SESSION['user']['country'] : 'Страна')) ?>">
                                             <input class="half" name="city" type="text" placeholder="<?php print(htmlspecialchars(isset($_SESSION['user']['city']) ? $_SESSION['user']['city'] : 'Город'))?>" >
+                                            <select class="select-account currencies" name="" id="">
+                                                <option>Выберите валюту</option>
+                                                <option>$</option>
+                                                <option>€</option>
+                                                <option>₴</option>
+                                                <option>₽</option>
+                                            </select>
                                         </div>
-
+                                        <h2>Укажите соц сети для клиентов</h2>
+                                        <div class="field">
+                                            <div class="select-account social-network">
+                                                <div id="myMultiselect" class="multiselect">
+                                                    <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea()">
+                                                        <select class="form-select">
+                                                            <option id="name">Выберите соц сеть</option>
+                                                        </select>
+                                                        <div class="overSelect"></div>
+                                                    </div>
+                                                    <div id="mySelectOptions">
+                                                        <label>Вконтакте<input type="checkbox" value="Вконтакте" /></label>
+                                                        <label>Твиттер<input type="checkbox" value="Твиттер" /></label>
+                                                        <label>Фейсбук<input type="checkbox" value="Фейсбук" /></label>
+                                                        <label>Инстаграм<input type="checkbox"  value="Инстаграм" /></label>
+                                                        <label>Ютуб<input type="checkbox"  value="Ютуб" /></label>
+                                                        <label>Телеграм<input type="checkbox"  value="Телеграм" /></label>
+                                                        <label>Сайт<input type="checkbox" value="Сайт" /></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <input class="half"  type="text" placeholder="Укажите ссылку" >
+                                    </div>
                                         <div class="ProfileSetting">
                                             <h2 class="no_margin">Загрузите аватар автора:</h2>
                                             <script>
@@ -95,7 +124,7 @@
                                                         <img src="../img/saveAvatar.svg" alt="">
                                                         <div class="avatar-body__info">
                                                             <span id="file-name" class="file-box">Название файла</span>
-                                                            <span id="file-size" class="file-box">150 кб из доступных 5 мб</span>
+                                                            <span id="file-size" class="file-box">0 кб из доступных 5 мб</span>
                                                         </div>
 
                                                     </div>
@@ -247,6 +276,46 @@
 <? unset($_SESSION['error']) ?>
 
 <script>
+<<<<<<< HEAD
+=======
+    /*Select*/
+
+    function checkboxStatusChange() {
+        let multiselectOption =  document.getElementById("name");
+        let values = [];
+        let checkboxes = document.getElementById("mySelectOptions");
+        let checkedCheckboxes = checkboxes.querySelectorAll('input');
+
+        checkedCheckboxes.forEach(item =>{
+            item.addEventListener('click', function(){
+                if(item.checked = true){
+                    checkedCheckboxes.forEach(el =>{
+                        el.checked = false
+                        el.parentElement.classList.remove('active')
+                    })
+                    item.checked = true
+                    item.parentElement.classList.add('active')
+                    values = ( item.getAttribute('value'));
+                }
+                multiselectOption.innerText = values;
+            })
+        })
+    }
+    checkboxStatusChange()
+    function toggleCheckboxArea(onlyHide = false) {
+        let checkboxes = document.getElementById("mySelectOptions");
+        const displayValue = checkboxes.style.display;
+
+        if (displayValue != "flex") {
+            if (onlyHide == false) {
+                checkboxes.style.display = "flex";
+            }
+        } else {
+            checkboxes.style.display = "none";
+        }
+    }
+
+>>>>>>> noffakeStyle
     const button_submit = document.querySelector('#profile_send');
     const check_url = document.querySelector('#check_url');
     const check_button = document.querySelector('#check_button');
@@ -275,6 +344,11 @@
         });
         request.send();
     });
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> noffakeStyle
 </script>
 <script src="/js/getNotifications.js"></script>
 <script src="/js/printFailName.js" ></script>

@@ -107,14 +107,13 @@
         public function DeleteCourse () {
             $item_id = $_SESSION['item_id'];
 
-            $project = $this->m->db->query("SELECT * FROM course WHERE id = '$item_id' LIMIT 1 ORDER");
+            $project = $this->m->db->query("SELECT * FROM course WHERE id = '$item_id' LIMIT 1");
 
             if (!$this->isUser($project[0]['author_id'])) return False;
 
             $this->m->db->execute("DELETE FROM course WHERE id = '$item_id'");
 
             rmdir($this->url_dir . "courses/$item_id");
-
             rmdir($this->url_dir . "thumbnails/$item_id");
 
             return True;

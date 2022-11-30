@@ -427,8 +427,8 @@ th {
 }
 
 .iconed img {
+    width: 20px;
     vertical-align: middle;
-    padding: 0px 11px;
 }
 
 .country p {
