@@ -7,7 +7,6 @@
     <video id="123" class="media-cart-img" style="object-fit: cover;">
         <source class="video" src=".<?=$v['video']?>"/>
     </video>
-<<<<<<< HEAD
     <img src="<?=$v['thubnails'] ?>" alt="">
 
     <form method="POST" class="new_name" action="/<?php if(strstr($_SERVER['REQUEST_URI'], 'Course')) {echo 'Course';} else {echo 'Funnel';} ?>/<?=$v['id']?>/rename">
@@ -41,22 +40,6 @@
                 <img src="/img/clear_input.svg" alt="">
             </span>
             <? } ?>
-=======
-
-    <form method="POST" class="new_name" action="/<?php if(strstr($_SERVER['REQUEST_URI'], 'Course')) {echo 'Course';} else {echo 'Funnel';} ?>/<?=$v['id']?>/rename">
-        <input type="text" name="id" hidden="hidden" value="<?=$v['id']?>">
-        <div class="funnel-input">
-            <label for="name">Укажите заголовок:</label>
-            <input name="name" class="videoname" type="text" value="<?=$v['name']?>">
-        </div>
-        <div class="funnel-input">
-            <label for="description">Укажите описание:</label>
-            <textarea name="description" class="videoname video-desc"><?=$v['description']?></textarea>
-        </div>
-        <div class="funnel-input">
-            <label for="description">Укажите стоимость урока:</label>
-            <input name="" class="videoname" type="number" value="Укажите стоимость урока:">
->>>>>>> noffakeStyle
         </div>
         <?php if (strstr($_SERVER['REQUEST_URI'], 'Funnel' )) {?>
         <input type="hidden" value="<?=$v['id']?>">
