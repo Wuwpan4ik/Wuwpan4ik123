@@ -12,7 +12,6 @@
 
     <link rel="stylesheet" href="/css/nullCss.css">
 
-
     <link rel="stylesheet" href="/css/Article.css">
 
     <title>Document</title>
