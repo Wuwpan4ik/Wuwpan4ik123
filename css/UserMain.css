@@ -76,6 +76,9 @@
     .active {
         display: block !important;
     }
+    .play__video.active {
+        display: flex !important;
+    }
     .availableToYou__body {
 
         overflow: auto;
@@ -1512,3 +1515,4 @@
     height: 100%;
     flex-direction: column;
 }
+

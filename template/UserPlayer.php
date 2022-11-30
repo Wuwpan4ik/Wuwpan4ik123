@@ -8,8 +8,9 @@
     <title>Моя тестовая страница</title>
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/UserMain.css">
     <link rel="stylesheet" href="/css/smallPlayer.css">
+    <link rel="stylesheet" href="/css/UserMain.css">
+
 
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
@@ -40,6 +41,9 @@
     <video playsinline class="UserPlayerVideo" controls="controls" controlsList="nodownload">
         <source src=".<?=$content[0]['video']?>" type='video/ogg; codecs="theora, vorbis"'>
     </video>
+    <div class="play__video active">
+        <img src="../img/smallPlayer/play.svg" alt="">
+    </div>
     <div class="slider__darkness">
 
     </div>
@@ -68,7 +72,6 @@
                 <div class="popup__allLessons-item ">
                     <div class="popup__allLessons-item__header">
                         <div class="popup-item">
-
                             <div class="popup__allLessons-item-video__img">
                                 <img src="../img/smallPlayer/Group1426.png" alt="">
                                 <div class="popup__allLessons-item-video-play">
@@ -108,9 +111,14 @@
     const userPlayer = document.body.querySelector('.UserPlayer');
     const userVideo = document.body.querySelector('.UserPlayerVideo');
     const youWatching = document.body.querySelector('.youWatching');
+    const playVideo = document.body.querySelector('.play__video');
+    playVideo.addEventListener('click', function (){
+        playVideo.classList.remove('active');
+        userVideo.play();
+    })
     userVideo.onclick = function () {
         if (userVideo.paused){
-
+            playVideo.classList.remove('active');
             youWatching.classList.remove('active');
             userPlayer.classList.remove('active');
             userVideo.pause();
