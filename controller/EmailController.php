@@ -8,11 +8,6 @@
 
     class EmailController extends ACoreCreator {
 
-
-        private $ourEmail = "dimalim110@gmail.com";
-        private $ourPassword = "pumnwmlvfvxokkcp";
-        private $ourNickName = "Wuwpan4ik";
-
 //        public function SendEmail ($title, $body) {
 //
 //            $mail = new PHPMailer\PHPMailer\PHPMailer(true);

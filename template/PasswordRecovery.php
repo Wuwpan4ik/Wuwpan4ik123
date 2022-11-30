@@ -32,9 +32,6 @@
                 <img src="/img/clear_input.svg" alt="">
             </span>
         </div>
-
-
-
         <button class="reg__button" type="submit" id="submit">Выслать пароль</button>
         <div class="entrance login-footer">
             <a href="/reg">Зарегистрироваться</a>
@@ -42,7 +39,6 @@
         </div>
     </form>
 </div>
-
 <!--For Input Holders-->
 <script src="/js/jquery-3.6.1.min.js"></script>
 <script>

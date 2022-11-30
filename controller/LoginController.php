@@ -72,11 +72,11 @@
 
             $ava = "uploads/ava/" . $email. "_" .$_FILES['avatar']['name'];
 
-            move_uploaded_file($_FILES['avatar']['tmp_name'], "./".$ava);
-
             if(!$_FILES['avatar']['name']){
                 $ava = "uploads/ava/1.jpg";
             }
+
+            move_uploaded_file($_FILES['avatar']['tmp_name'], "./".$ava);
 
             $res = $this->db->db->query("SELECT * FROM user WHERE email = '$email'");
             if(count($res) != 0){

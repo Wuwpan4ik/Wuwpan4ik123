@@ -36,7 +36,7 @@
                 <div class="slider__header _conatiner-player ">
                     <div class="slider__header-logo">
                         <div class="slider__header-logo-img">
-                            <img width="48px" src="/uploads/ava/<? echo (isset($_SESSION['user']['avatar'])  ? $_SESSION['user']['avatar'] : "userAvatar.jpg") ?>" alt="">
+                            <img width="48px" src="/<? echo (isset($item['avatar'])  ? $item['avatar'] : "uploads/ava/userAvatar.jpg") ?>" alt="">
                         </div>
                         <div class="slider__header-logo-text">
                             <?=$item['first_name']?>
@@ -67,7 +67,7 @@
                     <?php
                     if (isset($item['button_text'])) { ?>
                     <div class="slider__item-button button-open">
-                        <button  class="button"><?=$item['button_text']?></button>
+                        <button <?php echo (isset($popup->first_do->link)) ? "onClick=\"window.open('". $popup->first_do->link ."')\"": ''; ?> class="button"><?=$item['button_text']?></button>
                     </div>
                     <?php } ?>
                 </div>
@@ -79,9 +79,13 @@
                     } else {
                         $form = $popup->first_do->pay_form;
                     }
+                    if (isset($popup->second_do->file)) {
+                        $first_file = $popup->second_do->file;
+                    }
                     // Первое или второе действие
                     $name = 'button';
                     $popup__do = $popup->first_do;
+                    $second_link = $popup->second_do->link;
                     $id = $item['id'];
                     $author_id = $item['author_id'];
                     include 'template/default/popup__templates/popup__form.php';
@@ -124,6 +128,21 @@
             item.style.display = 'none';
         })
     })
+    $(function() {
+        $('.popup__form').each(function (){
+            $(this).submit(function(e) {
+                e.preventDefault();
+                $.post(e.target.action, $(this).serialize());
+                try {
+                    $(this)[0].querySelector('.next__lesson');
+                    $('.slick-next').click();
+                } catch {}
+                try {
+                    window.open($(this)[0].querySelector('.second_link').value);
+                } catch {}
+            });
+        })
+    });
 </script>
 </body>
 </html>

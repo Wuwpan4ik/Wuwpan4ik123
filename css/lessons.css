@@ -20,15 +20,11 @@
     font-size: 14px;
     line-height: 18px;
     color: #737480;
-    margin: 20px 0 20px;
-}
-
-.funnel__title{
-    margin:20px 0 10px;
+    margin: 20px 0px 20px;
 }
 
 .media-cart h3 {
-    margin: 25px 0 20px;
+    margin: 5px 0px 20px;
     font-weight: 600;
     font-size: 24px;
 }
@@ -236,8 +232,6 @@
 
 .popup__title {
     margin-bottom: 20px;
-    font-size:24px;
-    line-height: 30px;
 }
 
 .placeholder {
@@ -355,11 +349,11 @@ input:checked + label {
     height: 52px;
     border: 1px solid #E1E3E6;
     border-radius: 8px;
-    padding: 10px 10px 0 10px!important;
+    padding: 20px 10px 0 10px!important;
 
 }
 .video-desc{
-    padding: 20px 10px 0 10px!important;
+    padding: 25px 10px 0 10px!important;
 }
 .funnel-input{
     display: flex;
@@ -783,6 +777,8 @@ input:checked + label {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -webkit-filter: invert(100%) sepia(100%) saturate(1352%) hue-rotate(87deg) brightness(60%) contrast(119%);
+    filter: invert(100%) sepia(100%) saturate(1352%) hue-rotate(87deg) brightness(60%) contrast(119%);
 }
 
 /* Brench: Styles */

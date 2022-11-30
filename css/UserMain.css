@@ -137,7 +137,6 @@
         gap: 11px;
     }
 
-
     .accordion-button {
         position: relative;
         top: -36px;
@@ -396,7 +395,6 @@
     .question .popup__buy-register {
         margin: 0 0 20px 0;
     }
-
     .question.input input {
         width: 100%;
     }
@@ -560,10 +558,12 @@
         -ms-flex-pack: center;
         justify-content: center;
     }
+
     ._container {
         max-width: 370px;
         margin: 0 auto;
     }
+
     .popup__container {
         position: relative;
         width: 100%;
@@ -581,11 +581,13 @@
         -ms-flex-pack: end;
         justify-content: end;
     }
+
     .UserMenu {
         width: 410px;
         background: #757D8A;
         height: 100%;
     }
+
     .User-header {
         width: 370px;
         display: -webkit-box;
@@ -596,6 +598,7 @@
         justify-content: space-between;
         padding: 50px 0 0 0;
     }
+
     .User-logo {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -607,11 +610,25 @@
         -ms-flex-pack: start !important;
         justify-content: start !important;
     }
+
+    .user__logo-img{
+        width: 27px;
+        height: 27px;
+
+    }
+
+    .user__logo-img img{
+        width: 100%;
+        height: 100%;
+        border-radius: 9px;
+    }
+
     .user__logo-text {
         font-size: 16px;
         font-weight: 600;
         margin: 0 0 0 15px;
     }
+
     .UserMenu-header__burger {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -627,12 +644,14 @@
         background-color: #fff;
         border-radius: 50%;
     }
+
     .header__burger {
         position: relative;
         display: block;
         width: 16px;
         height: 10px;
     }
+
     .header__burger:before, .header__burger:after {
         content: "";
         background-color: #000;
@@ -645,12 +664,15 @@
         -o-transition: all 0.3s ease 0s;
         transition: all 0.3s ease 0s;
     }
+
     .header__burger:before {
         top: 0;
     }
+
     .header__burger:after {
         bottom: 0;
     }
+
     .header__burger span {
         position: absolute;
         background-color: #000;
@@ -663,6 +685,7 @@
         -o-transition: all 0.3s ease 0s;
         transition: all 0.3s ease 0s;
     }
+
     .UserMenu-header__burger {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -678,12 +701,14 @@
         background-color: #fff;
         border-radius: 50%;
     }
+
     .header__burger {
         position: relative;
         display: block;
         width: 16px;
         height: 10px;
     }
+
     .header__burger:before, .header__burger:after {
         content: "";
         background-color: #000;
@@ -696,12 +721,15 @@
         -o-transition: all 0.3s ease 0s;
         transition: all 0.3s ease 0s;
     }
+
     .header__burger:before {
         top: 0;
     }
+
     .header__burger:after {
         bottom: 0;
     }
+
     .header__burger span {
         position: absolute;
         background-color: #000;
@@ -714,6 +742,7 @@
         -o-transition: all 0.3s ease 0s;
         transition: all 0.3s ease 0s;
     }
+
     /*-------------------------------------*/
     .UserMenu-profile {
         display: -webkit-box;
@@ -726,6 +755,7 @@
         height: 83%;
         margin: 38px 0 0 0;
     }
+
     .UserMenu-profile__header {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -737,6 +767,7 @@
         -ms-flex-align: center;
         align-items: center;
     }
+
     .UserMenu-profile__header-user {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -745,14 +776,17 @@
         -ms-flex-align: center;
         align-items: center;
     }
+
     #avatar {
         width: 64px;
         height: 64px;
         border-radius: 99px;
     }
+
     .UserMenu-profile__textInfo {
         margin: 0 0 0 12px;
     }
+
     .UserMenu-profile p {
         font-family: "DM Sans", sans-serif;
         font-weight: inherit;
@@ -760,6 +794,7 @@
         font-size: 14px;
         color: #fff;
     }
+
     .UserMenu-profile h1 {
         font-size: 24px;
         font-weight: 600;
@@ -770,6 +805,7 @@
     .UserMenu-profile-name {
         position: relative;
     }
+
     .UserMenu-profile__settings {
         border: 1px solid #E1E3E6;
         -webkit-box-shadow: 0 4px 2px -2px rgba(27, 46, 94, 0.02);
@@ -783,9 +819,11 @@
         align-items: center;
         background: rgba(255, 255, 255, 0.3);
     }
+
     .UserMenu-active {
         background-color: #fff;
     }
+
     .UserMenu-list {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -800,13 +838,16 @@
         flex: 1 1 auto;
         margin: 30px 0 0 0;
     }
+
     .UserMenu-list__option {
         font-size: 18px;
         color: #fff !important;
     }
+
     .UserMenu-list__option h2 {
         font-weight: 400 !important;
     }
+
     .notification-score {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -828,15 +869,18 @@
         position: relative;
         right:20px;
     }
+
     .sidebarOption {
         padding: 0 !important;
     }
+
     .UserMenu-footer__form {
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
         gap: 20px;
     }
+
     .UserMenu-footer__button {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -846,29 +890,34 @@
         justify-content: center;
         border-radius: 6px;
     }
+
     .UserMenu-footer__button button {
         padding: 19px 0;
         font-weight: 600;
         font-size: 16px;
         color: #fff;
     }
+
     .UserMenu-footer__form-back {
         width: 30%;
         -webkit-box-shadow: 0px 3px 0px #494949, 0px 10px 30px rgba(105, 106, 108, 0.6);
         box-shadow: 0px 3px 0px #494949, 0px 10px 30px rgba(105, 106, 108, 0.6);
         background: #6A6A6A;
     }
+
     .UserMenu-footer__form-question {
         width: 70%;
         -webkit-box-shadow: 0px 3px 0px #3168BB, 0px 10px 30px rgba(62, 138, 251, 0.6);
         box-shadow: 0px 3px 0px #3168BB, 0px 10px 30px rgba(62, 138, 251, 0.6);
         background: #3E8AFB;
     }
+
     /*UserLogin*/
     ._container {
         max-width: 370px;
         margin: 0 auto;
     }
+
     .userLogin, .UserPasswordRecovery {
         height: 100vh;
         display: -webkit-box;
@@ -885,6 +934,7 @@
         background: -o-linear-gradient(285.58deg, #3E8AFB 2.4%, #7024C4 97.34%);
         background: linear-gradient(164.42deg, #3E8AFB 2.4%, #7024C4 97.34%);
     }
+
     .user__logo {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -896,11 +946,13 @@
         -ms-flex-align: center;
         align-items: center;
     }
+
     .user__logo-text {
         margin: 0 0 0 8px;
         font-weight: 600;
         font-size: 16px;
     }
+
     .popup {
         width: 100%;
         -webkit-box-align: center;
@@ -912,11 +964,13 @@
         color: #000;
         background-color: #fff;
     }
+
     .popup__subtitle {
         font-weight: 300;
         opacity: 0.6;
         line-height: 17px;
     }
+
     .popup__title {
         font-weight: 900;
         margin: 10px 0px 20px 0px;
@@ -926,6 +980,7 @@
         color:black;
 
     }
+
     .popup-form {
         margin: 20px 0 0 0;
     }
@@ -1038,7 +1093,7 @@
         font-weight: 900;
         line-height: 109.5%;
         font-size: 38px;
-        padding: 30px 0 0px 0;
+        padding: 30px 0 0 0;
     }
     .user-content{
         display: flex;
@@ -1048,6 +1103,7 @@
     .userPopup__body {
         width: 100%;
         flex: 1 1 auto;
+        overflow: auto;
     }
     .aboutTheAuthor.userPopup__body {
         height: 90%;
@@ -1067,14 +1123,15 @@
         box-shadow: 0px 3px 0px #3168bb, 0px 10px 30px rgba(62, 138, 251, 0.6);
         background: #3E8AFB;
     }
+
     .settingsAccountUser-body__info {
-        margin: 0px 0px 30px 0px;
+        margin: 30px 0 0 0;
         font-weight: 500;
         color: #404D61;
     }
 
     .settingsAccountUser-body__pssword {
-        margin: 15px 0 0 0;
+        margin: 30px 0 0 0;
         font-weight: 500;
         color: #404D61;
     }
@@ -1115,7 +1172,7 @@
         -webkit-box-direction: normal;
         -ms-flex-direction: column;
         flex-direction: column;
-        gap: 5px;
+        gap: 24px;
         margin: 16px 0 0 0;
     }
     .userPopup__input input:focus {
@@ -1290,13 +1347,11 @@
     margin: 10px 0 0 0;
     font-size: 12px;
     line-height: 16px;
-    font-weight: 400;
     color: rgba(0, 0, 0, 0.6);
     transition: all 0.3s;
 }
 
 .hide-content{
-
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;

@@ -77,6 +77,16 @@
                     $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]' WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
                 }
             } else {
+                $title = "Оставили заявку";
+                if (isset($_POST['file'])) {
+                    $file = $_POST['second_file'];
+                    $file_name = "Прикреплённый файл";
+                    $body = "Вы оставили заявку на сайте <a href=\"/https://course-creator.io/\">Course Creator</a><br>Ваша файл:";
+                    $this->SendEmail($title, $body, $_POST['email'], $file, $file_name);
+                } else {
+                    $body = "Вы оставили заявку на сайте <a href=\"/https://course-creator.io/\">Course Creator</a><br>";
+                    $this->SendEmail($title, $body, $_POST['email']);
+                }
                 $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], 0);
             }
             return true;
@@ -107,7 +117,7 @@
                 $title = "Регистрация аккаунта";
                 $this->password = $this->GenerateRandomPassword(12);
                 $body = "Ваш аккаунт на <a href=\"/UserLogin\">Course Creator</a><br>Почта: $this->email<br>Пароль:$this->password";
-                $this->SendEmail($title, $body);
+                $this->SendEmail($title, $body, $this->email);
 
                 $this->m->db->execute("INSERT INTO `user` (`email`, `password`, `is_creator`) VALUES ('$this->email', '$this->password', 0)");
 
@@ -164,8 +174,9 @@
             if (count($this->m->getUserByEmail($this->email)) != 1) {
                 $title = "Регистрация аккаунта";
                 $this->password = $this->GenerateRandomPassword(12);
-                $body = "Ваш аккаунт на <a href=\"/https://course-creator.io/UserLogin\">Course Creator</a><br>Почта: $this->email<br>Пароль: $this->password<br> Ссылка для входа: <a href='https://course-creator.io/UserLogin/'>Вход в личный кабинет</a>";
-                $this->SendEmail($title, $body);
+                $body = "Ваш аккаунт на <a href=\"/https://course-creator.io/UserLogin\">Course Creator</a><br>Почта: $this->email<br>Пароль:$this->password";
+
+                $this->SendEmail($title, $body, $this->email);
 
                 $this->m->db->execute("INSERT INTO `user` (`email`, `password`, `is_creator`) VALUES ('$this->email', '$this->password', 0)");
 

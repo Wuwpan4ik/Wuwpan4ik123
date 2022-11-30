@@ -1,7 +1,3 @@
-
-
-
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -15,7 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="/css/nullCss.css">
-
 
     <link rel="stylesheet" href="/css/Article.css">
 
@@ -38,6 +33,7 @@
                 <div class="Article-header-img">
                     <img src="../img/Article/header-img.jpg" alt="">
                 </div>
+
                 <div class="Article-post-item">
                     <div class="Article-post-item-img">
                         <img src="../img/Article/cart-img.jpg" alt="">
@@ -83,9 +79,6 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
 </div>
 

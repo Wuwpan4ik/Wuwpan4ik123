@@ -1,4 +1,3 @@
-<!
 <html lang="ru">
 
 <head>
@@ -172,6 +171,10 @@
 <script src="../js/sliders.js"></script>
 
 <script>
+//   Удалить все кнопки
+    document.querySelectorAll('.slick-arrow').forEach(item => {
+        item.remove();
+    })
 
     let deleteButtons = document.querySelectorAll('.reboot');
     let notDelete = document.querySelector('.popup__not-delete');
