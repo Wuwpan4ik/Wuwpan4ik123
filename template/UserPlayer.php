@@ -1,3 +1,4 @@
+<!DOCTYPE HTML>
 <html lang="ru">
 
 <head>
@@ -5,15 +6,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo htmlspecialchars($content[0]['name'])?></title>
-    <title>Моя тестовая страница</title>
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/UserMain.css">
     <link rel="stylesheet" href="/css/smallPlayer.css">
-
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
-
 </head>
 <body class="body">
 <div class=" userVideoContainer UserPlayer">
@@ -38,8 +36,8 @@
             <button>Есть вопросы?</button>
         </div>
     </div>
-    <video class="UserPlayerVideo" controls="controls" controlsList="nodownload">
-        <source src=".<?=$content[0]['video']?>" type='video/ogg; codecs="theora, vorbis"'>
+    <video class="UserPlayerVideo" id="UserPlayerVideo" controls="controls"  data-player="playing" playsinline>
+        <source src=".<?=$content[0]['video']?>">
     </video>
     <div class="slider__darkness">
 
@@ -60,7 +58,7 @@
         }
     </style>
 
-    <div class="youWatching userPopup">
+    <div class="youWatching">
         <div class="userPopup__title">
             Вы смотрите:
         </div>
@@ -105,13 +103,12 @@
     </div>
 </div>
 <script>
-    /*UserPlayer*/
     const userPlayer = document.body.querySelector('.UserPlayer');
     const userVideo = document.body.querySelector('.UserPlayerVideo');
     const youWatching = document.body.querySelector('.youWatching');
+    //Вскрытие попапа при нажатии на видео
     userVideo.onclick = function () {
         if (userVideo.paused){
-
             youWatching.classList.remove('active');
             userPlayer.classList.remove('active');
             userVideo.pause();
@@ -121,7 +118,7 @@
             youWatching.classList.add('active');
             userVideo.play();
         }
-        }
+    }
 </script>
 
 </body>

@@ -65,50 +65,6 @@
             return True;
         }
 
-        public function SendEmail ($title, $body) {
-
-            $mail = new PHPMailer\PHPMailer\PHPMailer(true);
-
-            try {
-                $mail->isSMTP();
-                $mail->CharSet = "UTF-8";
-                $mail->SMTPAuth   = true;
-                $mail->Debugoutput = function($str, $level) {$GLOBALS['status'][] = $str;};
-
-                // Настройки вашей почты
-                $mail->Host       = 'smtp.gmail.com'; // SMTP сервера вашей почты
-                $mail->Username   = $this->ourEmail; // Логин на почте
-                $mail->Password   = $this->ourPassword; // Пароль на почте
-                $mail->SMTPSecure = 'ssl';
-                $mail->Port       = 465;
-                $mail->smtpConnect(
-                    array(
-                        "ssl" => array(
-                            "verify_peer" => false,
-                            "verify_peer_name" => false,
-                            "allow_self_signed" => true
-                        )
-                    )
-                );
-                $mail->setFrom($this->ourEmail, $this->ourNickName); // Адрес самой почты и имя отправителя
-
-                // Получатель письма
-                $mail->addAddress($this->email);
-
-                $mail->isHTML(true);
-                $mail->Subject = $title;
-                $mail->Body = $body;
-
-                if ($mail->send()) {$result = "success";}
-                else {$result = "allGood";}
-
-            } catch (Exception $e) {
-                $result = $mail->ErrorInfo;
-                $status = "Сообщение не было отправлено. Причина ошибки: {$mail->ErrorInfo}";
-            }
-            echo $result;
-        }
-
         public function AddApplication() {
             if (!$this->RequestValidate()) return false;
             $buy_progress = include './settings/buy_progress.php';
@@ -208,7 +164,7 @@
             if (count($this->m->getUserByEmail($this->email)) != 1) {
                 $title = "Регистрация аккаунта";
                 $this->password = $this->GenerateRandomPassword(12);
-                $body = "Ваш аккаунт на <a href=\"/https://course-creator.io/UserLogin\">Course Creator</a><br>Почта: $this->email<br>Пароль:$this->password";
+                $body = "Ваш аккаунт на <a href=\"/https://course-creator.io/UserLogin\">Course Creator</a><br>Почта: $this->email<br>Пароль: $this->password<br> Ссылка для входа: <a href='https://course-creator.io/UserLogin/'>Вход в личный кабинет</a>";
                 $this->SendEmail($title, $body);
 
                 $this->m->db->execute("INSERT INTO `user` (`email`, `password`, `is_creator`) VALUES ('$this->email', '$this->password', 0)");

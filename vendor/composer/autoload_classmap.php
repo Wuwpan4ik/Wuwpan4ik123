@@ -307,6 +307,7 @@ return array(
     'Symfony\\Polyfill\\Php80\\PhpToken' => $vendorDir . '/symfony/polyfill-php80/PhpToken.php',
     'UnhandledMatchError' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
     'UrlController' => $baseDir . '/controller/UrlController.php',
+    'UserAllContacts' => $baseDir . '/pages/UserAllContacts.php',
     'UserContacts' => $baseDir . '/pages/UserContacts.php',
     'UserController' => $baseDir . '/controller/UserController.php',
     'UserLogin' => $baseDir . '/pages/UserLogin.php',

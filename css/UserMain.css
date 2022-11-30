@@ -460,7 +460,7 @@
     }
 
     /*youWatching*/
-    .youWatching.userPopup {
+    .youWatching {
         height: 36%;
         position: absolute;
         bottom: -70%;
@@ -471,7 +471,7 @@
         transition: 0.6s;
     }
 
-    .youWatching.userPopup.active {
+    .youWatching.active {
         bottom: 0;
         opacity: 1;
         transition: 600ms;
@@ -501,8 +501,8 @@
         -ms-flex-align: center;
         align-items: center;
         width: 90%;
-        height: 10%;
-        top: 0;
+        height: 100px;
+        top: -35px;
         left: 20px;
         z-index: 2;
     }
@@ -512,6 +512,7 @@
         max-width: 414px;
         height: 100%;
         -o-object-fit: cover;
+        width:100%;
         object-fit: cover;
     }
 
@@ -1656,4 +1657,18 @@
 #accordion-button-1{
     width:22px;
     height:22px;
+}
+
+/* Brench: Styles */
+/*
+.popup__allLessons-item-video__img img{
+    object-fit:cover;
+    position: absolute;
+}
+*/
+
+.Course-item.popup-item img{
+    position: absolute;
+    object-fit:cover;
+    border-radius: 20px;
 }

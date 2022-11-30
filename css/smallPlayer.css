@@ -73,6 +73,7 @@
     width: 100%;
     list-style: none;
     margin: 0 0 0 4px;
+    transition: 0.3s all ease;
 }
 
 .slick-dots ul {
@@ -255,6 +256,9 @@
     left: 35%;
     width: 137px;
     height: 137px;
+    z-index: 0;
+    pointer-events: none;
+    cursor: pointer;
     display: -webkit-box;
     display: -ms-flexbox;
     display: none;
@@ -268,19 +272,22 @@
     box-shadow: 0 50px 80px rgba(0, 0, 0, 0.6);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
+    transform:scale(0.7);
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.3);
-    -webkit-transition: 0.6s;
-    -o-transition: 0.6s;
-    transition: 0.6s;
+    -webkit-transition: 0.3s all ease;
+    -o-transition: 0.3s all ease;
     z-index: 1;
     cursor: pointer;
+    transition: 0.3s all ease;
 }
 
 .pause__video.active {
     display: flex;
+    transform:scale(1);
 }
 .play__video.active {
+    transform:scale(1);
     display: flex;
 }
 .overlay.active {

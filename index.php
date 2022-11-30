@@ -30,7 +30,6 @@
     $router->addRoute("/Account/UserSettings", "AccountController.php", "SaveUserSettings");
     $router->addRoute("/Account/SaveSchoolSettings", "AccountController.php", "SaveSchoolSettings");
 
-
     $router->addRoute("/UserMain", "UserMain.php");
     $router->addRoute("/UserLogin", "UserLogin.php");
     $router->addRoute("/UserRecovery", "UserPasswordRecovery.php");
@@ -40,7 +39,9 @@
     $router->addRoute("/UserPlayer/$item_id", "UserPlayer.php");
     $router->addRoute("/AboutTheAuthor/$item_id", "AboutTheAuthor.php");
     $router->addRoute("/UserAccount", "SettingsAccountUser.php");
+    $router->addRoute('/UserAllContacts', 'UserAllContacts.php');
     $router->addRoute("/Project", "Project.php");
+
 
     $router->addRoute("/Article", "Article.php");
 

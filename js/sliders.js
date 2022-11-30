@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 $('.slider').each(function() {
     let slider = $(this).slick({
-        arrows:true,
+        arrows:false,
         dots:true,
         infinite: false,
         slidesToShow:1,
@@ -27,7 +27,6 @@ $('.slider').each(function() {
         swipe: false,
         appendDots: $(this).parent().find('.slick-dots')
     });
-
     function stopVideos() {
         $(this).find('.slider__video-item').each(function (){
             this.pause();
@@ -38,9 +37,8 @@ $('.slider').each(function() {
     $(this).find('.slider__video-item').each(function () {
         // Закончил здесь
         this.addEventListener('click', function (){
-
             let videoLocal = this;
-            const interval = setInterval(function () {
+            let interval = setInterval(function () {
                 let progressBar = videoLocal.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector('.slick-dots li.slick-active button');
                 width = (videoLocal.currentTime * 100) / videoLocal.duration;
                 progressBar.style.background = `linear-gradient(to right,white 0%, white ${width}%,lightgrey ${width}% , lightgrey ${100 - width}%)`;
@@ -49,15 +47,18 @@ $('.slider').each(function() {
                 }
                 // Проверка на конец
             }, 300);
-            if (this.paused) {
-                $('.slick-current').find('.play__video').removeClass('active')
+
+            if(this.paused){
+                $('.slick-current').find('.play__video').removeClass('active');
+                $('.slick-current').find('.pause__video').removeClass('active');
                 this.play();
-            } else {
+            }
+            else{
+                $('.slick-current').find('.pause__video').addClass('active');
                 this.pause();
             }
         })
     })
-
     $(this).on('afterChange', function (event, slick) {
         stopVideos();
         $(this).find('.slider__video-item').each(function () {

@@ -430,6 +430,7 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'Symfony\\Polyfill\\Php80\\PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/PhpToken.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'UrlController' => __DIR__ . '/../..' . '/controller/UrlController.php',
+        'UserAllContacts' => __DIR__ . '/../..' . '/pages/UserAllContacts.php',
         'UserContacts' => __DIR__ . '/../..' . '/pages/UserContacts.php',
         'UserController' => __DIR__ . '/../..' . '/controller/UserController.php',
         'UserLogin' => __DIR__ . '/../..' . '/pages/UserLogin.php',
