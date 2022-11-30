@@ -362,6 +362,7 @@
 }
 
 /*----------------------------------------*/
+>>>>>>> noffakeStyle
 .popup__allLessons {
     height: 80%;
 }
@@ -601,10 +602,16 @@
 
 /* Brench: Styles */
 
-.slider__header-logo-img img{
-    border-radius: 50%;
+.slider__header-logo-img{
+    width:30px;
+    height:30px;
 }
 
+.slider__header-logo-img img {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
 /* Adaptive */
 
 @media screen and (max-width: 992px) {
@@ -626,13 +633,29 @@
         max-width: 414px;
     }
 }
-@media screen and (max-width: 414px) {
+
+@media screen and (max-width: 500px) {
     ._conatiner {
         max-width: 100%;
+    }
+    .slick-dots ul{
+        width:90%;
+    }
+    .slider__header{
+        left:0px;
+        padding:0px;
+    }
+    ._conatiner-player{
+        width:90%;
+    }
+    .popup__bonus-body .popup-title{
+        margin: 20px 0 40px 0;
+        font-size: 22px;
+    }
+    .popup__bonus-form-input-email.input-img .input input{
+        width:73%;
     }
     .slider__video-item {
         max-width: 100%;
     }
 }
-
-

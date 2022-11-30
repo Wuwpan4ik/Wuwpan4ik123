@@ -56,10 +56,13 @@
                                                         <source  class="video" src="<?=$v['video']?>" />
                                                         </video>
                                                     </div>
+                                                    <div class="slider__darkness">
+
+                                                    </div>
                                                     <div class="slider__header _conatiner-player ">
                                                         <div class="slider__header-logo">
                                                             <div class="slider__header-logo-img">
-                                                                <img src="/uploads/ava/<? echo (isset($_SESSION['user']['avatar'])  ? $_SESSION['user']['avatar'] : "userAvatar.jpg") ?>" alt="">
+                                                                <img src="/<? echo (isset($_SESSION['user']['avatar'])  ? $_SESSION['user']['avatar'] : "1.jpg") ?>" alt="">
                                                             </div>
                                                             <div class="slider__header-logo-text">
                                                                 <?=$_SESSION['user']['first_name']?>

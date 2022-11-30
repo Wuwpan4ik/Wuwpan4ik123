@@ -28,6 +28,8 @@
                                                 content.name AS 'content_name',
                                                 content.description AS 'content_description',
                                                 content.video,
+                                                course.name,
+                                                content.thubnails,
                                                 content.query_id,
                                                 user_info.avatar,
                                                 user_info.first_name
@@ -104,7 +106,7 @@
         }
 
         public function getContentForCourseListPage($course_id){
-            $course_query = "SELECT course_content.id, course_content.description, course_content.name, course_content.description, course_content.video FROM course_content WHERE ($course_id = course_content.course_id)";
+            $course_query = "SELECT course_content.id, course_content.description, course_content.thubnails, course_content.name, course_content.description, course_content.video FROM course_content WHERE ($course_id = course_content.course_id)";
             $courses = $this->db->query($course_query);
             return $courses;
         }

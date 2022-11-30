@@ -1,8 +1,8 @@
 <?php
     session_start();
     header("Content-Type:text/html;charset=UTF-8");
-    require_once 'vendor/autoload.php';
-    require_once 'model/Routering.php';
+    require_once './vendor/autoload.php';
+    require_once './model/Routering.php';
     $item_id = 0;
     $url = key($_GET);
     $url_array = explode('/', $url);

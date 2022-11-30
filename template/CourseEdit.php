@@ -103,7 +103,7 @@
                 <?php
                 foreach($content[1] as $v){?>
 
-                    <?php include 'default/media-cart.php'?>
+                    <?php include 'default/media-cart.php'; ?>
 
                 <?}
 
@@ -145,7 +145,7 @@
     let notDelete = document.querySelector('.popup__not-delete');
     notDelete.onclick = function (event) {
         if (event.target === notDelete) {
-            entryDisplay.classList.remove('display-block');
+            entryDisplayDelete.classList.remove('display-block');
             toggleOverflow();
         }
     }

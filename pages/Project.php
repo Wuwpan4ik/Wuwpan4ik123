@@ -7,6 +7,4 @@ class Project extends ACoreCreator {
         $count_course = count($course);
         return ['count_funnel' => $count_funnel, 'count_course' => $count_course];
     }
-
-    public function obr() {}
 }

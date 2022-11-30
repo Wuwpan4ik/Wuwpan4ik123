@@ -175,22 +175,49 @@ function save() {
     document.getElementById('send__edit-video').click();
 }
 
+function addSecondOptions(options) {
+    let div = ``;
+    options.forEach((item)=> {
+        div += `<option value="` + item[0] +`" selected>` + item[1] +`</option>`;
+    });
+    document.querySelector('#second_do').innerHTML = div;
+}
+
+function disableAfterClickBlock() {
+    document.querySelector('.popup__body-after').classList.add('display-none');
+}
+
+function enableAfterClickBlock() {
+    document.querySelector('.popup__body-after').classList.remove('display-none');
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     if (!['form', 'pay_form'].includes(first_select.value)) {
         document.querySelector('#popup__body-form-1').style.display = 'none';
+        enableAfterClickBlock();
     }
 
     first_select.addEventListener('change', function () {
         if (['list'].includes(first_select.value)) {
             addPopup('list');
+            defaultPopup(second_select);
+            addSecondOptions([['pay_form', "Форма оплаты"], ['form', 'Форма заявки']]);
+            enableAfterClickBlock();
         }
 
-        if (!['form', 'pay_form', 'link'].includes(first_select.value)) {
+        if (['list', 'next_lesson'].includes(first_select.value)) {
             document.querySelector('#popup__body-form-1').style.display = 'none';
             first_select.parentElement.querySelectorAll('.link_item').forEach((elem) => {
                 elem.classList.add('display-none');
             })
+            defaultPopup(second_select);
             defaultPopup(first_select);
+            disableAfterClickBlock();
+        } else if (['link'].includes(first_select.value)) {
+                document.querySelector('#popup__body-form-1').style.display = 'none';
+                addFormLink(first_select);
+                defaultPopup(second_select);
+                disableAfterClickBlock();
         } else {
             document.querySelector('#popup__body-form-1').style.display = 'flex';
             first_select.parentElement.querySelector('.addFormInput').classList.remove('display-none');
@@ -198,10 +225,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 elem.classList.add('display-none');
             })
             defaultPopup(first_select);
-            if (first_select.value === 'link') {
-                document.querySelector('#popup__body-form-1').style.display = 'none';
-                addFormLink(first_select);
-            }
+            addSecondOptions([['link', "Переход по ссылке"], ['next_lesson', 'Следующий урок'], ['file', 'Отправка файла']]);
+            enableAfterClickBlock();
         }
     });
 
@@ -293,6 +318,9 @@ document.addEventListener('DOMContentLoaded', function () {
         toggleOverflow();
         closePopup();
         clearPopup();
+        defaultPopup(first_select);
+        defaultPopup(second_select);
+        document.querySelector('.popup__bonus').classList.remove('active');
     });
 
     entryDisplay.onclick = function (event) {
@@ -300,6 +328,9 @@ document.addEventListener('DOMContentLoaded', function () {
             toggleOverflow();
             closePopup();
             clearPopup();
+            defaultPopup(first_select);
+            defaultPopup(second_select);
+            document.querySelector('.popup__bonus').classList.remove('active');
         }
     }
 });

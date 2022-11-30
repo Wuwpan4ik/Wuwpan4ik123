@@ -42,6 +42,13 @@
                         </div>
                         <input type="tel" placeholder="<?=$content[0]["telephone"]?>" maxlength="15" disabled>
                     </div>
+                    <div class="UserContacts-item UserContacts-body__telephone ">
+                        <div class="UserContacts-body__header">
+                            <img src="../img/UserContacts/email.svg" alt="">
+                            <span>Почта:</span>
+                        </div>
+                        <input type="tel" placeholder="<?=$content[0]["telephone"]?>" maxlength="15" disabled>
+                    </div>
                     <div class="UserContacts-item UserContacts-body__socialNetwork">
                         <div class="UserContacts-body__header">
                             <img src="../img/UserContacts/SocialNetworks.svg" alt="">
@@ -59,7 +66,7 @@
                     </div>
                 </div>
             </div>
-            <form method="POST" action="?option=ContactController&method=SendQuestion">
+            <form method="POST" action="/ContactController/sendQuestions">
                 <div class="UserContacts-footer">
                     <div class="UserContacts-footer__title">
                         Есть вопросы?

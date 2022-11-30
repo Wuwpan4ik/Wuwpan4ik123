@@ -328,6 +328,12 @@ a.button__back {
     align-items: flex-end;
 
 }
+
+.Article-info{
+    display: flex;
+    justify-content: space-between;
+}
+
 .Article-post-quotation{
     display: flex;
     align-items: start;
@@ -337,6 +343,7 @@ a.button__back {
     font-size: 24px!important;
     line-height: 36px!important;
 }
+
 .Article-post{
     width: 55%;
     display: flex;
@@ -344,11 +351,13 @@ a.button__back {
     gap: 25px;
     margin: 40px 0 0 0;
 }
+
 .Article-post p{
     font-size: 18px;
     line-height: 26px;
     hyphens: auto;
 }
+
 .Article-post-item{
     position: fixed;
     top: 300px;

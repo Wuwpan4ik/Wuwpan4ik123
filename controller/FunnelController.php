@@ -57,13 +57,18 @@
                 $description = $res[0]['description'];
             }
 
-            if (isset($_POST['button_text'])) {
+            if (isset($_POST['button_text']) && strlen($_POST['button_text']) > 0) {
                 $button_text = $_POST['button_text'];
+                $change__button = "`button_text` = '$button_text'";
             } else {
-                $button_text = $res[0]['button_text'];
+                if (strlen($_POST['button_text']) == 0) {
+                    $change__button = "`button_text` = NULL";
+                } else {
+                    $change__button = "`button_text` = " . $res[0]['button_text'];
+                }
             }
 
-            $this->m->db->execute("UPDATE `funnel_content` SET `name` = '$name', `description` = '$description', `button_text` = '$button_text' WHERE `id` = '$item_id'");
+            $this->m->db->execute("UPDATE `funnel_content` SET `name` = '$name', `description` = '$description', $change__button WHERE `id` = '$item_id'");
 
             return True;
         }
@@ -171,7 +176,7 @@
                 }
                 case "link": {
                     if (isset($_POST['link-2'])) {
-                        $vid1oBtnHTML['second_do']['link'] = $_POST['link-2'];
+                        $videoBtnHTML['second_do']['link'] = $_POST['link-2'];
                     }
                     break;
                 }
@@ -182,7 +187,7 @@
                         $file_name = $_FILES['file']['name'];
                     }
 
-                    $file = $this->url_dir . "/files/" . $funnel[0]['id'] . '_' .$funnel[0]['name'] . "/" . $file_name;
+                    $file = $this->url_dir . "/files/" . $funnel[0]['id'] . '_' . $file_name;
 
                     move_uploaded_file($_FILES['file']['tmp_name'], $file);
 
@@ -202,8 +207,14 @@
                     $videoBtnHTML['second_do']['file'] = $_POST['file'];
                 }
             }
+//          // Если нет значения, то добавляет к кнопке "Посмотреть"
+            $button__standart = '';
+            if (strlen($funnel_content[0]['button_text']) == 0) {
+                $button__standart = ', `button_text` = "Посмотреть"';
+            }
+
             $videoBtnHTMLResult = json_encode($videoBtnHTML, JSON_UNESCAPED_UNICODE);
-            $this->m->db->execute("UPDATE `funnel_content` SET `popup` = '$videoBtnHTMLResult' WHERE id = '$id_video'");
+            $this->m->db->execute("UPDATE `funnel_content` SET `popup` = '$videoBtnHTMLResult'$button__standart WHERE id = '$id_video'");
             return True;
         }
 

@@ -92,21 +92,27 @@ class AccountController extends ACoreCreator {
         } else {
             $country = $_POST['country'];
         }
-        if($_FILES['avatar']['name']){
 
-            $avatar = "uploads/ava/" . $email. "_" .$_FILES['avatar']['name'];
-
-            move_uploaded_file($_FILES['avatar']['tmp_name'], "./".$avatar);
-
+        if (strlen($_POST['currency']) == 0) {
+            $currency= $user[0]['currency'];
         } else {
-            $avatar = $user[0]['avatar'];
+            $currency = $_POST['currency'];
         }
 
-        $this->m->db->execute("UPDATE user SET `email` = '$email', `avatar` = '$avatar', `first_name` = '$first_name', `second_name` = '$second_name', `telephone` = '$phone' WHERE id = " . $_SESSION['user']['id']);
+        if($_FILES['avatar']['name']){
+
+            $avatar = "./uploads/ava/" . $email. "_" .$_FILES['avatar']['name'];
+
+            move_uploaded_file($_FILES['avatar']['tmp_name'], $avatar);
+
+        }
+
+        $this->m->db->execute("UPDATE user SET `email` = '$email', `avatar` = '$avatar', `first_name` = '$first_name', `second_name` = '$second_name', `telephone` = '$phone', `currency` = '$currency' WHERE id = " . $_SESSION['user']['id']);
         $_SESSION["user"]['first_name'] = $first_name;
         $_SESSION["user"]['second_name'] = $second_name;
         $_SESSION["user"]['email'] = $email;
         $_SESSION["user"]['phone'] = $phone;
+        $_SESSION["user"]['currency'] = $currency;
         $_SESSION["user"]['city'] = $city;
         $_SESSION["user"]['country'] = $country;
         $_SESSION['user']['avatar'] = $avatar;
@@ -152,20 +158,20 @@ class AccountController extends ACoreCreator {
 
     function get_content()
     {
-//        echo '<!DOCTYPE html>
-//                <html lang="en">
-//                <head>
-//                <meta charset="UTF-8">
-//                <meta http-equiv="X-UA-Compatible" content="IE=edge">
-//                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-//                <title>Document</title>
-//                </head>
-//                <body>
-//                    <script>
-//                        window.history.go(-1);
-//                    </script>
-//                </body>
-//                </html>';
+        echo '<!DOCTYPE html>
+                <html lang="en">
+                <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Document</title>
+                </head>
+                <body>
+                    <script>
+                        window.history.go(-1);
+                    </script>
+                </body>
+                </html>';
     }
 
     function obr()

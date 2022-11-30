@@ -17,6 +17,20 @@
 
 </head>
 <body class="body">
+<<<<<<< HEAD
+<div class=" userVideoContainer UserPlayer">
+    <div class="UserPlayer User-header">
+        <div class="User-logo user__logo">
+            <div class="user__logo-img"><img width="48px" src="../<?=$content[0]['avatar']?>" alt=""></div>
+            <div class="user__logo-text"><?=$content[0]['first_name']?></div>
+        </div>
+        <div class="header-main__burger">
+            <a href="/UserMenu">
+                <div class="main__burger">
+                    <span></span>
+                </div>
+            </a>
+=======
 <?// print_r($content)?>
 <div class=" userVideoContainer UserPlayer">
     <div class="UserPlayer User-header">
@@ -28,6 +42,7 @@
             <div class="main__burger">
                 <span></span>
             </div>
+>>>>>>> noffakeStyle
         </div>
     </div>
     <div class="UserPlayer Сourse-form">
@@ -38,7 +53,11 @@
             <button>Есть вопросы?</button>
         </div>
     </div>
+<<<<<<< HEAD
+    <video class="UserPlayerVideo" controls="controls" controlsList="nodownload">
+=======
     <video playsinline class="UserPlayerVideo" controls="controls" controlsList="nodownload">
+>>>>>>> noffakeStyle
         <source src=".<?=$content[0]['video']?>" type='video/ogg; codecs="theora, vorbis"'>
     </video>
     <div class="play__video active">
@@ -73,7 +92,11 @@
                     <div class="popup__allLessons-item__header">
                         <div class="popup-item">
                             <div class="popup__allLessons-item-video__img">
+<<<<<<< HEAD
+                                <img src=".<?php echo $content[0]['thubnails'] ?>" alt="">
+=======
                                 <img src="../img/smallPlayer/Group1426.png" alt="">
+>>>>>>> noffakeStyle
                                 <div class="popup__allLessons-item-video-play">
                                     <img src="../img/smallPlayer/play.png" alt="">
                                 </div>

@@ -10,7 +10,6 @@ class NotificationsController extends ACoreCreator
                 <div class="popupBell-item">
                     <img style="width: 32px;" src="'. $item['image'] .'">
                     <div class="popupBell-item__info">
-                        <span>'. $item['class'] .'</span>
                         <p>'. $item['body'] . ' ' . $item['date'] .'</p>
                     </div>
                 </div>';
