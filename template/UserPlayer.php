@@ -17,7 +17,7 @@
 <div class=" userVideoContainer UserPlayer">
     <div class="UserPlayer User-header">
         <div class="User-logo user__logo">
-            <div class="user__logo-img"><img width="48px" src="../<?=$content[0]['avatar']?>" alt=""></div>
+            <div class="user__logo-img"><img src="../<?=$content[0]['avatar']?>" alt=""></div>
             <div class="user__logo-text"><?=$content[0]['first_name']?></div>
         </div>
         <div class="header-main__burger">
