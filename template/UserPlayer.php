@@ -36,7 +36,7 @@
             <button>Есть вопросы?</button>
         </div>
     </div>
-    <video class="UserPlayerVideo" id="UserPlayerVideo" controls="controls"  data-player="playing" playsinline>
+    <video class="UserPlayerVideo" id="UserPlayerVideo" controls="controls" playsinline>
         <source src=".<?=$content[0]['video']?>">
     </video>
     <div class="slider__darkness">
@@ -111,15 +111,12 @@
         if (userVideo.paused){
             youWatching.classList.remove('active');
             userPlayer.classList.remove('active');
-            userVideo.pause();
         }
         else {
             userPlayer.classList.add('active');
             youWatching.classList.add('active');
-            userVideo.play();
         }
     }
 </script>
-
 </body>
 </html>
