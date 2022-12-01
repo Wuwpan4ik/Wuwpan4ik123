@@ -122,19 +122,55 @@
             <div class="popup__title">Вы действительно хотите удалить проект?</div>
             <div class="popup__form">
                 <button class="popup__btn popup__not-delete">Не удалять</button>
-                <button class="popup__btn popup__delete">Удалить</button>
+                <button class="popup__btn popup__delete" id="popup__delete">Удалить</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="popup__background" id="reload__back">
+    <div class="popup" style="height: 400px; width: 600px;">
+        <div class="popup__container">
+            <div class="popup__title">Вы действительно хотите изменить видео?</div>
+            <div class="popup__form" style="justify-content: center">
+                <form method="POST" action="" class="upload__form" id="change__video" enctype="multipart/form-data">
+
+                    <input class="upload_video" style="display:block;" id="video" name="video_change" type="file"/>
+
+                    <button type="submit" class="popup__btn popup__delete popup__change">Изменить</button>
+                    <button type="button" class="popup__btn popup__not-delete" id="popup__not-change">Отменить</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
 <script src="../js/button__settings.js"></script>
 <script>
+//  Замена видео
+    window.onload = () => {
+        let reload__video = document.querySelectorAll('.reload_video');
+        let reload__back = document.querySelector('#reload__back');
+        reload__video.forEach(item => {
+            item.addEventListener('click', function () {
+                reload__back.classList.toggle('display-block');
+                _('change__video').action = '/Course/'+ item.dataset.id +'/change';
+            })
+        })
+        let notChangeVideo = document.querySelector('#popup__not-change');
+        notChangeVideo.onclick = function (event) {
+            if (event.target === notChangeVideo) {
+                reload__back.classList.remove('display-block');
+                toggleOverflow();
+            }
+        }
+    }
+
     let entryDisplayDelete = document.querySelector('#delete__back');
-    let deletes = document.querySelector('.popup__delete');
+    let deletes = document.querySelector('#popup__delete');
 
     function toggleOverflow () {
         body.classList.toggle("overflow-hidden");
     }
+
     function deleteDirectory(elem) {
         toggleOverflow();
         entryDisplayDelete.classList.add('display-block');

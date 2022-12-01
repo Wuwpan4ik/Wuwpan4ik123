@@ -30,7 +30,6 @@
     $router->addRoute("/Account/UserSettings", "AccountController.php", "SaveUserSettings");
     $router->addRoute("/Account/SaveSchoolSettings", "AccountController.php", "SaveSchoolSettings");
 
-
     $router->addRoute("/UserMain", "UserMain.php");
     $router->addRoute("/UserLogin", "UserLogin.php");
     $router->addRoute("/UserRecovery", "UserPasswordRecovery.php");
@@ -40,7 +39,9 @@
     $router->addRoute("/UserPlayer/$item_id", "UserPlayer.php");
     $router->addRoute("/AboutTheAuthor/$item_id", "AboutTheAuthor.php");
     $router->addRoute("/UserAccount", "SettingsAccountUser.php");
+    $router->addRoute('/UserAllContacts', 'UserAllContacts.php');
     $router->addRoute("/Project", "Project.php");
+
 
     $router->addRoute("/Article", "Article.php");
 
@@ -53,6 +54,7 @@
     $router->addRoute("/Course/$item_id/create", "CourseController.php", "AddVideo");
     $router->addRoute("/Course/$item_id/delete", "CourseController.php", "DeleteVideo");
     $router->addRoute("/Course/$item_id/rename", "CourseController.php", "RenameVideo");
+    $router->addRoute("/Course/$item_id/change", "CourseController.php", "ChangeVideo");
 
     $router->addRoute("/Funnel", "Funnel.php");
     $router->addRoute("/Funnel/$item_id", "FunnelEdit.php");
@@ -63,10 +65,13 @@
     $router->addRoute("/Funnel/$item_id/create", "FunnelController.php", "AddVideo");
     $router->addRoute("/Funnel/$item_id/delete", "FunnelController.php", "DeleteVideo");
     $router->addRoute("/Funnel/$item_id/rename", "FunnelController.php", "RenameVideo");
+    $router->addRoute("/Funnel/$item_id/change", "FunnelController.php", "ChangeVideo");
     $router->addRoute("/Funnel/$item_id/settings", "FunnelController.php", "PopupSettings");
 
     $router->addRoute("/SortController/Clients", "SortController.php", "getClientsForMain");
     $router->addRoute("/SortController/AnalyticClients", "SortController.php", "getClientsForAnalytics");
+    $router->addRoute("/SortController/AnalyticOrders", "SortController.php", "getOrdersForAnalytics");
+
     $router->addRoute("/LoginController/login", "LoginController.php", 'login');
     $router->addRoute("/LoginController/reg", "LoginController.php", 'registration');
     $router->addRoute("/LoginController/recovery", "LoginController.php", 'recovery');
@@ -76,8 +81,10 @@
     $router->addRoute("/ClientsController/application", "ClientsController.php", 'AddApplication');
     $router->addRoute("/ClientsController/CourseBuy", "ClientsController.php", 'BuyCourse');
     $router->addRoute("/ClientsController/CourseVideo", "ClientsController.php", 'BuyVideo');
-    $router->addRoute("/ClientsController/$item_id/delete", "ClientsController.php", 'Delete');
     $router->addRoute("/PopupController/get_popup", "PopupController.php", 'get_popup');
+
+    $router->addRoute("/AnalyticController/$item_id/deleteOrder", "AnalyticController.php", 'DeleteOrder');
+    $router->addRoute("/AnalyticController/$item_id/deleteClient", "AnalyticController.php", 'DeleteClient');
 
     $router->addRoute("/StatisticsController/GetStatistics", "StatisticsController.php", 'GetAllStatistics');
     $router->addRoute("/StatisticsController/GetWeek", "StatisticsController.php", 'GetWeekGraph');

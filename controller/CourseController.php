@@ -11,7 +11,8 @@
 
         public function AddVideo() {
             require './vendor/autoload.php';
-            if (is_null($_FILES['video_uploader'])) {
+            if ($_FILES['video_uploader']['size'] == 0)
+            {
                 return False;
             }
 
@@ -67,26 +68,72 @@
             $res = $this->m->db->query("SELECT * FROM `course` WHERE id = ".$courseContent[0]['course_id']);
             if (!$this->isUser($res[0]['author_id'])) return False;
 
-            if (isset($_POST['description'])) {
+            if (isset($_POST['name']) && strlen($_POST['name']) > 0) {
                 $name = $_POST['name'];
             } else {
-                $name = $res[0]['name'];
+                $name = $courseContent[0]['name'];
             }
 
-            if (isset($_POST['description'])) {
+            if (isset($_POST['description']) && strlen($_POST['description']) > 0) {
                 $description = $_POST['description'];
             } else {
-                $description = $res[0]['description'];
+                $description = $courseContent[0]['description'];
             }
 
-            if (isset($_POST['price'])) {
+            if (isset($_POST['price']) && strlen($_POST['price']) > 0) {
                 $price = $_POST['price'];
             } else {
-                $price = $res[0]['price'];
+                $price = $courseContent[0]['price'];
             }
 
             $this->m->db->execute("UPDATE `course_content` SET `name` = '$name', `description` = '$description', `price` = '$price' WHERE `id` = '$item_id'");
             return True;
+        }
+
+        public function ChangeVideo()
+        {
+            require './vendor/autoload.php';
+
+            if ($_FILES['video_change']['size'] == 0)
+            {
+                return False;
+            }
+
+            $uid = $_SESSION['item_id'];
+            $res = $this->m->db->query("SELECT * FROM `course_content` WHERE id = '$uid'");
+            $course = $this->m->db->query("SELECT * FROM `course` WHERE id = " . $res[0]['course_id']);
+            $count_video = $this->m->db->query("SELECT `query_id` FROM `course_content` WHERE id = ". $uid)[0]['query_id'];
+
+            if (!$this->isUser($course[0]['author_id'])) return False;
+
+            unlink($res[0]['video']);
+            unlink($res[0]['thubnails']);
+
+            $path = $this->url_dir . 'courses/' . $res[0]['course_id']. "/$count_video" ."_" . $_FILES['video_change']['name'];
+
+            move_uploaded_file($_FILES['video_change']['tmp_name'], $path);
+
+            $ffmpeg = FFMpeg\FFMpeg::create([
+                'ffmpeg.binaries'  => './settings/ffmpeg.exe',
+                'ffprobe.binaries' => './settings/ffprobe.exe',
+                'ffplay.binaries' => './settings/ffplay.exe',
+            ]);
+
+            $video = $ffmpeg->open($path);
+
+            $frame = $video->frame(FFMpeg\Coordinate\TimeCode::fromSeconds(1));
+
+            $frame_path = $this->url_dir . "thumbnails/". $res[0]['course_id'] ."/" . $count_video ."_" . $_FILES['video_change']['name'] . ".jpg";
+
+            $frame->save($frame_path);
+
+            $image = imagescale(imagecreatefromjpeg($frame_path), 512, 288);
+
+            imagejpeg($image, $frame_path);
+
+            $this->m->db->execute("UPDATE course_content SET `video` = '$path', `thubnails` = '$frame_path' WHERE id = " . $uid);
+
+            return true;
         }
 
         public function CreateCourse () {

@@ -154,6 +154,9 @@
 <script src="../js/sliders.js"></script>
 
 <script>
+    document.querySelectorAll('.slick-arrow').forEach(item => {
+        item.remove();
+    })
     let deleteButtons = document.querySelectorAll('.reboot');
     let notDelete = document.querySelector('.popup__not-delete');
     let deletes = document.querySelector('.popup__delete');

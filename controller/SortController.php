@@ -54,7 +54,7 @@ class SortController extends ACoreCreator {
 
 						<td>' . $client["email"] . '</td>
 
-						<td>' . $client["telephone"]  . '</td>
+						<td>' . $tel  . '</td>
 						
 						<td><a href="/Course/' . $client["course_id"] . '">' . $client["course_name"] . '</td>
 
@@ -66,13 +66,55 @@ class SortController extends ACoreCreator {
 
 							<span>
 
-								<a href="/ClientsController/' . $client['id'] . '/delete"><img class="table_ico" src="img/Trash.svg"></a>
+								<a href="/AnalyticController/' . $client['id'] . '/deleteClient"><img class="table_ico" src="img/Trash.svg"></a>
 
 							</span>
 
 						</td>
 						
 					</tr>';
+
+        }
+    }
+
+    function getOrdersForAnalytics() {
+        $get = $_GET["sort"];
+        $result = $this->m->db->query("SELECT course.name as course_name, course.id as course_id, orders.achivment_date, orders.money, orders.first_name, orders.email, orders.tel, orders.id FROM orders JOIN course ON orders.course_id = course.id WHERE creator_id = " . $_SESSION['user']['id']." ORDER BY " . $get);
+        $count = 1;
+        foreach($result as $order){
+            $tel = $order["tel"];
+
+            if (strlen($tel) == 0) {
+                $tel = '—';
+            }
+
+            echo
+
+                '<tr>
+                        <td> <input type="checkbox" class="check_user">' . $count . '</td>
+				
+						<td>' . $order["money"] . ' ₽</td>
+
+						<td>' . $order["email"] . '</td>
+
+						<td>' . $tel  . '</td>
+						
+						<td><a href="/Course/' . $order["course_id"] . '">' . $order["course_name"] . '</td>
+											
+						<td>' . $order["achivment_date"] . '</td>
+
+						<td class="iconed">
+    
+							<span>
+
+								<a href="/AnalyticController/' . $order['id'] . '/deleteOrder"><img class="table_ico" src="img/Trash.svg"></a>
+
+							</span>
+
+						</td>
+						
+					</tr>';
+            $count += 1;
 
         }
     }

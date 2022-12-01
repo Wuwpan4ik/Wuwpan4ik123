@@ -74,6 +74,7 @@
     width: 100%;
     list-style: none;
     margin: 0 0 0 4px;
+    transition: 0.3s all ease;
 }
 
 .slick-dots ul {
@@ -166,7 +167,7 @@
     line-height: 17px;
 }
 
-.button {
+slider__item-button.button-open .button {
     -webkit-box-shadow: 0px 3px 0px #3168BB, 0px 10px 30px rgba(62, 138, 251, 0.6);
     box-shadow: 0px 3px 0px #3168BB, 0px 10px 30px rgba(62, 138, 251, 0.6);
     border-radius: 6px;
@@ -262,6 +263,9 @@
     text-align: center;
     width: 137px;
     height: 137px;
+    z-index: 0;
+    pointer-events: none;
+    cursor: pointer;
     display: -webkit-box;
     display: -ms-flexbox;
     display: none;
@@ -275,19 +279,22 @@
     box-shadow: 0 50px 80px rgba(0, 0, 0, 0.6);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
+    transform:scale(0.7);
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.3);
-    -webkit-transition: 0.6s;
-    -o-transition: 0.6s;
-    transition: 0.6s;
+    -webkit-transition: 0.3s all ease;
+    -o-transition: 0.3s all ease;
     z-index: 1;
     cursor: pointer;
+    transition: 0.3s all ease;
 }
 
 .pause__video.active {
     display: flex;
+    transform:scale(1);
 }
 .play__video.active {
+    transform:scale(1);
     display: flex;
 }
 .overlay.active {
@@ -421,7 +428,7 @@
     align-items: center;
     gap: 11px;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
-    padding: 10px 0 0 0;
+    padding: 10px 0 10px 0;
     margin: 5px 0 0 0;
 }
 

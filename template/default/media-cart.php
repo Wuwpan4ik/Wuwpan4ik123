@@ -1,5 +1,13 @@
 <div class="media-cart">
     <div class="media-cart__controller">
+        <div class="media-cart__controller-move reload_video" data-id="<?=$v['id']?>">
+            <div class="media-cart__controller-move-right">
+                <button><img src="/img/Arrow-right.svg" alt=""></button>
+            </div>
+            <div class="media-cart__controller-move-left">
+                <button><img src="/img/Arrow-left.svg" alt=""></button>
+            </div>
+        </div>
         <div class="media-cart__controller-delete">
             <button class="button" onclick="deleteDirectory(this)"><img src="/img/Delete.svg" alt=""></button>
         </div>
@@ -7,7 +15,6 @@
     <video id="123" class="media-cart-img" style="object-fit: cover;">
         <source class="video" src=".<?=$v['video']?>"/>
     </video>
-<<<<<<< HEAD
     <img src="<?=$v['thubnails'] ?>" alt="">
 
     <form method="POST" class="new_name" action="/<?php if(strstr($_SERVER['REQUEST_URI'], 'Course')) {echo 'Course';} else {echo 'Funnel';} ?>/<?=$v['id']?>/rename">
@@ -41,14 +48,12 @@
                 <img src="/img/clear_input.svg" alt="">
             </span>
             <? } ?>
-=======
 
     <form method="POST" class="new_name" action="/<?php if(strstr($_SERVER['REQUEST_URI'], 'Course')) {echo 'Course';} else {echo 'Funnel';} ?>/<?=$v['id']?>/rename">
 
         <div class="funnel-input">
             <label for="description">Укажите стоимость урока:</label>
             <input name="" class="videoname" type="number" value="Укажите стоимость урока:">
->>>>>>> noffakeStyle
         </div>
         <?php if (strstr($_SERVER['REQUEST_URI'], 'Funnel' )) {?>
         <input type="hidden" value="<?=$v['id']?>">

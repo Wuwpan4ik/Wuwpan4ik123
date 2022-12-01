@@ -26,7 +26,7 @@
             ?>
             <div class="slider__item ">
                 <div class="slider__video ">
-                    <video playsinline id="123" class="slider__video-item">
+                    <video playsinline id="123" class="slider__video-item" data-player="playing" autoplay="false">
                         <source class="video" src=".<?=$item['video']?>"  />
                     </video>
                 </div>
@@ -54,7 +54,7 @@
                 <div class="play__video active">
                     <img src="../img/smallPlayer/play.svg" alt="">
                 </div>
-                <div class="pause__video">
+                <div class="pause__video" id="pause_video">
                     <img src="../img/smallPlayer/pause.svg" alt="">
                 </div>
                 <div class="slider__item-info _conatiner-player">

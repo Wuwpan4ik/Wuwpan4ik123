@@ -43,8 +43,7 @@
                             <div class="aboutTheAuthor popup-item">
                                 <div class=" popup__allLessons-item-video">
                                     <div class="popup__allLessons-item-video__img">
-                                        <img class="aboutTheAuthor video__img" src="../img/author.jpg" alt="">
-
+                                        <img class="aboutTheAuthor video__img" src="/<?=$item['avatar']?>" alt="">
                                     </div>
                                 </div>
                                 <div class="aboutTheAuthor popup__allLessons-item-info">
@@ -66,7 +65,13 @@
                                 </div>
                             </div>
                             <div class="aboutTheAuthor-button availableСoursesBtn">
-                                <button class="buttonUserPopup" onclick="getCoursePage(<?=$item['id']?>)">Вам доступны <?=$item['count']?> курса</button>
+                                <button class="buttonUserPopup" onclick="getCoursePage(<?=$item['id']?>)">
+                                    <?php if($item['count']%1 === 1) { ?>
+                                        Вам доступен <?=$item['count']?> курс
+                                    <?php } else { ?>
+                                        Вам доступно <?=$item['count']?> курса
+                                    <?php } ?>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -94,55 +99,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="otherСoursesBtn userPopup__button questionBtn">
-                    <button>Есть вопросы?</button>
-                </div>
             </div>
         </div>
-        <div class="Course userPopup  ">
-            <div class="Course userPopup__title">
+        <div class="Course userPopup course__popup">
+            <div class="Course userPopup__title lesson__list_course-name">
                 Управление гневом внутри себя
             </div>
             <div class="Course userPopup__body">
                 <div class=" Course  ">
                     <div class=" Course availableToYou__body lesson__list">
-                        <div class="popup__allLessons-item__header">
-                            <div class="Course-item popup-item">
-                                <div class="popup__allLessons-item-video__img">
-                                    <a href="/UserPlayer/76" <div data-id="76" class="popup__allLessons-item">
-                                    <img src="../img/smallPlayer/Group1426.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="popup__allLessons-item-info">
-                                    <div class="popup__allLessons-item-info-header">
-                                        <div class=" aboutTheAuthor available-number">
-                                            Урок 1
-                                        </div>
-                                        <div class="aboutTheAuthor-name">
-                                            1:00
-                                        </div>
-                                    </div>
-                                    <div class="popup__allLessons-item-info-title">
-                                        dw
-                                    </div>
-                                </div>
-                                <button class="accordion-button" id="accordion-button-1" aria-expanded="false">
-                                    <span class="icon" aria-hidden="true"></span></button>
-                                <div class="accordion">
-                                    <div class="accordion-item">
-                                        <div class="accordion-content">
-                                            <p>Задача организации, в особенности же убеждённость некоторых оппонентов требует определения и уточнения вывода текущих активов.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
             <div class="Сourse-form">
-                <div class=" backBtn  userPopup__button courseBackBtn">
-                    <button>Назад</button>
+                <div class=" Сourse-back userPopup__button">
+                    <button type="button" id="course__back-btn">Назад</button>
                 </div>
                 <div class="Сourse-question userPopup__button questionBtn">
                     <button>Есть вопросы?</button>
@@ -296,14 +268,31 @@ unset($_SESSION['course_id']);
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
 <script src="../js/script.js" ></script>
 <script>
+    function hiddenAllPopups() {
+        document.querySelectorAll('.userPopup').forEach(item => {
+            item.classList.remove('active');
+        })
+    }
+
     let course_id;
     let accordionButton;
     const buyCourse = document.querySelector('.button__buy-course');
     buyCourse.addEventListener('click', function () {
         getBuyCourse(course_id);
+        hiddenAllPopups();
         youChosen.classList.add('active');
-        allLessons.classList.remove('active')
     })
+
+    // Переход с Player на UserMain
+    let course__get_url = new URL(window.location.href);
+    let course__get_id = course__get_url.searchParams.get('course_id');
+    if (course__get_id) {
+        hiddenAllPopups();
+        document.querySelector('.course__popup').classList.add('active');
+        getListPage(course__get_id);
+        course__get_url.searchParams.delete('course_id');
+        window.history.pushState({}, '', course__get_url.toString());
+    }
 
     function getBuyCourse(number) {
         let request = new XMLHttpRequest();
@@ -329,6 +318,8 @@ unset($_SESSION['course_id']);
         });
         request.send();
     }
+
+
 
     function getVideoInfo(number) {
         let request = new XMLHttpRequest();
@@ -369,8 +360,8 @@ unset($_SESSION['course_id']);
                 availableСourses.forEach(item => {
                     item.onclick = function () {
                         getListPage(item.querySelector('#id').value);
+                        hiddenAllPopups();
                         course.classList.add('active');
-                        availableToYou.classList.remove('active')
                     }
                 })
             }
@@ -386,7 +377,7 @@ unset($_SESSION['course_id']);
         requestDisable.addEventListener("readystatechange", () => {
             if (requestDisable.readyState === 4 && requestDisable.status === 200) {
                 document.querySelector('.disabled__body').innerHTML = requestDisable.responseText;
-                console.log(requestDisable.responseText.length)
+
                 if (requestDisable.responseText.length === 0) {
                     document.querySelector('.otherСourses').style = 'display:none;';
                     return false;
@@ -395,14 +386,32 @@ unset($_SESSION['course_id']);
                 otherCourses.forEach(item => {
                     item.onclick = function () {
                         getDisablePage(item.querySelector('#id').value);
+                        hiddenAllPopups();
                         allLessons.classList.add('active');
-                        availableToYou.classList.remove('active')
                     }
                 })
             }
         })
         requestDisable.send();
     }
+
+    function getCourseName(number) {
+        let request = new XMLHttpRequest();
+
+        let url = "/UserController/getBuyCourse?course_id=" + number;
+
+        request.open('GET', url);
+
+        request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+        request.addEventListener("readystatechange", () => {
+            if (request.readyState === 4 && request.status === 200) {
+                let course = JSON.parse(request.responseText)[0];
+                document.querySelector('.lesson__list_course-name').innerHTML = course['name'];
+            }
+        });
+        request.send();
+    }
+
     function getListPage (number) {
         let request1 = new XMLHttpRequest();
 
@@ -415,6 +424,12 @@ unset($_SESSION['course_id']);
             if (request1.readyState === 4 && request1.status === 200) {
                 document.querySelector('.lesson__list').innerHTML = request1.responseText;
                 accordionButton = document.querySelectorAll(".accordion-button");
+                getCourseName(number);
+                document.getElementById('course__back-btn').addEventListener('click', function () {
+                    getCoursePage(number);
+                    hiddenAllPopups();
+                    availableToYou.classList.add('active')
+                })
                 startAccordion();
             }
         });
@@ -437,8 +452,8 @@ unset($_SESSION['course_id']);
                 let choiceVideo = document.body.querySelectorAll('.choice-video');
                 choiceVideo.forEach(item => {
                     item.onclick = function () {
+                        hiddenAllPopups();
                         youChosen.classList.add('active');
-                        allLessons.classList.remove('active')
                         getVideoInfo(item.querySelector('.item__list-id').dataset.id);
                     }
                 })

@@ -28,6 +28,7 @@
                                                 content.name AS 'content_name',
                                                 content.description AS 'content_description',
                                                 content.video,
+                                                course.id,
                                                 course.name,
                                                 content.thubnails,
                                                 content.query_id,
@@ -53,7 +54,7 @@
         public function getContentForUserAuthorPage()
         {
             $purchases = $this->db->query("SELECT `purchase` FROM `purchase` WHERE user_id = " . $_SESSION['user']['id'])[0]['purchase'];
-            $course_query = "SELECT user.id, course.name, user.school_name, course.description, user.first_name, user.second_name, count(course.id) as 'count', course.author_id FROM course AS course INNER JOIN user ON user.id = course.author_id WHERE";
+            $course_query = "SELECT user.id, course.name, user.avatar, user.school_name, course.description, user.first_name, user.second_name, count(course.id) as 'count', course.author_id FROM course AS course INNER JOIN user ON user.id = course.author_id WHERE";
             $purchases_array = json_decode($purchases, true)['course_id'];
             foreach ($purchases_array as $course_id) {
                 $course_query .= " course.id = $course_id ";

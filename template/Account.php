@@ -273,13 +273,10 @@
 </div>
 
 </div>
-<? unset($_SESSION['error']) ?>
+<?php unset($_SESSION['error']) ?>
 
 <script>
-
-
-
-
+    /*Select*/
     function checkboxStatusChange() {
         let multiselectOption =  document.getElementById("name");
         let values = [];
@@ -301,6 +298,7 @@
             })
         })
     }
+
     checkboxStatusChange()
     function toggleCheckboxArea(onlyHide = false) {
         let checkboxes = document.getElementById("mySelectOptions");
@@ -314,7 +312,6 @@
             checkboxes.style.display = "none";
         }
     }
-
 
     const button_submit = document.querySelector('#profile_send');
     const check_url = document.querySelector('#check_url');
