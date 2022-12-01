@@ -467,8 +467,17 @@
         -webkit-transition: 0.6s;
         -o-transition: 0.6s;
         transition: 0.6s;
+        background: white;
+        width:100%;
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
     }
-
+    .youWatching .userPopup__title{
+        padding:20px 0 0 0;
+        color:black;
+        width:90%;
+        margin: 0 auto;
+    }
     .youWatching.active {
         bottom: 0;
         opacity: 1;
@@ -1726,4 +1735,15 @@
     position: absolute;
     object-fit:cover;
     border-radius: 20px;
+}
+
+.slider__darkness{
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%) !important;
+    height:20% !important;
+    transition: 0.3s all ease;
+}
+
+.slider__darkness.activePlayer{
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%) !important;
+    height:100% !important;
 }
