@@ -1,5 +1,8 @@
 <!DOCTYPE HTML>
 <html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <head>
 
@@ -80,22 +83,6 @@
     <div class="slider__darkness">
 
     </div>
-
-    <style>
-        .slider__darkness {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgb(0, 0, 0);
-            background: -webkit-gradient(linear, left bottom, left top, color-stop(5%, rgb(0, 0, 0)), color-stop(20%, rgba(0, 0, 0, 0.7)), color-stop(50%, rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.3)));
-            background: -o-linear-gradient(bottom, rgb(0, 0, 0) 5%, rgba(0, 0, 0, 0.7) 20%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.3) 100%);
-            background: linear-gradient(0deg, rgb(0, 0, 0) 5%, rgba(0, 0, 0, 0.7) 20%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.3) 100%);
-            pointer-events: none;
-        }
-    </style>
-
     <div class="youWatching">
         <div class="userPopup__title">
             Вы смотрите:
@@ -134,7 +121,7 @@
                                         <p>
                                             Название файла
                                         </p>
-                                        <span>
+                                        <span>d
                                             Размер файла - 150кб
                                         </span>
                                     </div>
@@ -150,18 +137,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="youWatching Сourse-form">
-                    <div class="userPopup__button youWatchingBack backBtn ">
-                        <button onclick="window.location.replace('/UserMain')">Назад</button>
-                    </div>
-                    <div class="Сourse-question userPopup__button ">
-                        <button>Есть вопросы?</button>
-                    </div>
-                </div>
             </div>
         </div>
-    </div>
-</div>
 
 <script src="/js/playerCourse.js"></script>
 </body>

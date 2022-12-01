@@ -225,16 +225,6 @@
             return true;
         }
 
-        public function Delete() {
-            $item_id = $_SESSION['item_id'];
-            $query = $this->m->db->query("SELECT * FROM `clients` WHERE `creator_id` = " . $_SESSION['user']['id'] . " AND `id` = '$item_id'");
-            if (count($query) != 1) {
-                return false;
-            }
-            $this->m->db->execute("DELETE FROM `clients` WHERE `id` = '$item_id'");
-            return true;
-        }
-
         function get_content()
         {
             echo '<!DOCTYPE html>

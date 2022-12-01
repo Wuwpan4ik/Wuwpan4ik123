@@ -157,6 +157,7 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'Alchemy\\BinaryDriver\\ProcessRunner' => __DIR__ . '/..' . '/alchemy/binary-driver/src/Alchemy/BinaryDriver/ProcessRunner.php',
         'Alchemy\\BinaryDriver\\ProcessRunnerAwareInterface' => __DIR__ . '/..' . '/alchemy/binary-driver/src/Alchemy/BinaryDriver/ProcessRunnerAwareInterface.php',
         'Alchemy\\BinaryDriver\\ProcessRunnerInterface' => __DIR__ . '/..' . '/alchemy/binary-driver/src/Alchemy/BinaryDriver/ProcessRunnerInterface.php',
+        'AnalyticController' => __DIR__ . '/../..' . '/controller/AnalyticController.php',
         'Analytics' => __DIR__ . '/../..' . '/pages/Analytics.php',
         'Article' => __DIR__ . '/../..' . '/pages/Article.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',

@@ -333,9 +333,9 @@ tbody input {
 }
 
 table input {
+    display: block !important;
     width: 24px;
     height: 24px;
-    display: block;
     border: 1px solid #C3C7CE;
     border-radius: 8px;
 }
