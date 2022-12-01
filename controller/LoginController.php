@@ -73,7 +73,7 @@
             $ava = "uploads/ava/" . $email. "_" .$_FILES['avatar']['name'];
 
             if(!$_FILES['avatar']['name']){
-                $ava = "uploads/ava/1.jpg";
+                $ava = "uploads/ava/userAvatar.jpg";
             }
 
             move_uploaded_file($_FILES['avatar']['tmp_name'], "./".$ava);

@@ -71,9 +71,9 @@
                                 <button class="buttonUserPopup" onclick="getCoursePage(<?=$item['id']?>)">
                                     <?php if($item['count']%1 === 1) { ?>
                                         Вам доступен <?=$item['count']?> курс
-                                    <? } else { ?>
+                                    <?php } else { ?>
                                         Вам доступно <?=$item['count']?> курса
-                                    <? } ?>
+                                    <?php } ?>
                                 </button>
                             </div>
                         </div>
@@ -108,43 +108,13 @@
             </div>
         </div>
         <div class="Course userPopup  ">
-            <div class="Course userPopup__title">
+            <div class="Course userPopup__title lesson__list_course-name">
                 Управление гневом внутри себя
             </div>
             <div class="Course userPopup__body">
                 <div class=" Course  ">
                     <div class=" Course availableToYou__body lesson__list">
-                        <div class="popup__allLessons-item__header">
-                            <div class="Course-item popup-item">
-                                <div class="popup__allLessons-item-video__img">
-                                    <a href="/UserPlayer/76" <div data-id="76" class="popup__allLessons-item">
-                                    <img src="../img/smallPlayer/Group1426.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="popup__allLessons-item-info">
-                                    <div class="popup__allLessons-item-info-header">
-                                        <div class=" aboutTheAuthor available-number">
-                                            Урок 1
-                                        </div>
-                                        <div class="aboutTheAuthor-name">
-                                            1:00
-                                        </div>
-                                    </div>
-                                    <div class="popup__allLessons-item-info-title">
-                                        dw
-                                    </div>
-                                </div>
-                                <button class="accordion-button" id="accordion-button-1" aria-expanded="false">
-                                    <span class="icon" aria-hidden="true"></span></button>
-                                <div class="accordion">
-                                    <div class="accordion-item">
-                                        <div class="accordion-content">
-                                            <p>Задача организации, в особенности же убеждённость некоторых оппонентов требует определения и уточнения вывода текущих активов.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -334,6 +304,8 @@ unset($_SESSION['course_id']);
         request.send();
     }
 
+
+
     function getVideoInfo(number) {
         let request = new XMLHttpRequest();
 
@@ -407,6 +379,24 @@ unset($_SESSION['course_id']);
         })
         requestDisable.send();
     }
+
+    function getCourseName(number) {
+        let request = new XMLHttpRequest();
+
+        let url = "/UserController/getBuyCourse?course_id=" + number;
+
+        request.open('GET', url);
+
+        request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+        request.addEventListener("readystatechange", () => {
+            if (request.readyState === 4 && request.status === 200) {
+                let course = JSON.parse(request.responseText)[0];
+                document.querySelector('.lesson__list_course-name').innerHTML = course['name'];
+            }
+        });
+        request.send();
+    }
+
     function getListPage (number) {
         let request1 = new XMLHttpRequest();
 
@@ -419,6 +409,7 @@ unset($_SESSION['course_id']);
             if (request1.readyState === 4 && request1.status === 200) {
                 document.querySelector('.lesson__list').innerHTML = request1.responseText;
                 accordionButton = document.querySelectorAll(".accordion-button");
+                getCourseName(number);
                 startAccordion();
             }
         });
