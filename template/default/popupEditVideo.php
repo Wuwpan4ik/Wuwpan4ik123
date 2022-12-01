@@ -66,11 +66,7 @@
                         <input id="button_text" class="videoname video-desc button_text" disabled>
                     </div>
                 </div>
-<<<<<<< HEAD
                 <div class="popup__body-item popup__body-after">
-=======
-                <div class="popup__body-item">
->>>>>>> noffakeStyle
                     <label for="second_do">После нажатия на кнопку:</label>
                     <select name="second_do" id="second_do">
                         <option value="pay_form" selected>Форма оплаты</option>

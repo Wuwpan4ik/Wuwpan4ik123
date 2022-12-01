@@ -36,7 +36,7 @@
     </div>
     <div class="UserPlayer Сourse-form">
         <div class="userPopup__button courseBackBtn backBtn">
-            <button onclick="window.location.replace('/UserMain')">Назад</button>
+            <button onclick="window.location.replace('/UserMain?course_id=' + <?=$content[0]['id'] ?>)">Назад</button>
         </div>
         <div class="Сourse-question userPopup__button questionBtn">
             <button>Есть вопросы?</button>

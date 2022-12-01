@@ -107,7 +107,7 @@
                 </div>
             </div>
         </div>
-        <div class="Course userPopup  ">
+        <div class="Course userPopup course__popup">
             <div class="Course userPopup__title lesson__list_course-name">
                 Управление гневом внутри себя
             </div>
@@ -119,8 +119,8 @@
                 </div>
             </div>
             <div class="Сourse-form">
-                <div class=" Сourse-back userPopup__button courseBackBtn">
-                    <button>Назад</button>
+                <div class=" Сourse-back userPopup__button">
+                    <button type="button" id="course__back-btn">Назад</button>
                 </div>
             </div>
         </div>
@@ -270,14 +270,31 @@ unset($_SESSION['course_id']);
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
 <script src="../js/script.js" ></script>
 <script>
+    function hiddenAllPopups() {
+        document.querySelectorAll('.userPopup').forEach(item => {
+            item.classList.remove('active');
+        })
+    }
+
     let course_id;
     let accordionButton;
     const buyCourse = document.querySelector('.button__buy-course');
     buyCourse.addEventListener('click', function () {
         getBuyCourse(course_id);
+        hiddenAllPopups();
         youChosen.classList.add('active');
-        allLessons.classList.remove('active')
     })
+
+    // Переход с Player на UserMain
+    let course__get_url = new URL(window.location.href);
+    let course__get_id = course__get_url.searchParams.get('course_id');
+    if (course__get_id) {
+        hiddenAllPopups();
+        document.querySelector('.course__popup').classList.add('active');
+        getListPage(course__get_id);
+        course__get_url.searchParams.delete('course_id');
+        window.history.pushState({}, '', course__get_url.toString());
+    }
 
     function getBuyCourse(number) {
         let request = new XMLHttpRequest();
@@ -345,8 +362,8 @@ unset($_SESSION['course_id']);
                 availableСourses.forEach(item => {
                     item.onclick = function () {
                         getListPage(item.querySelector('#id').value);
+                        hiddenAllPopups();
                         course.classList.add('active');
-                        availableToYou.classList.remove('active')
                     }
                 })
             }
@@ -362,7 +379,7 @@ unset($_SESSION['course_id']);
         requestDisable.addEventListener("readystatechange", () => {
             if (requestDisable.readyState === 4 && requestDisable.status === 200) {
                 document.querySelector('.disabled__body').innerHTML = requestDisable.responseText;
-                console.log(requestDisable.responseText.length)
+
                 if (requestDisable.responseText.length === 0) {
                     document.querySelector('.otherСourses').style = 'display:none;';
                     return false;
@@ -371,8 +388,8 @@ unset($_SESSION['course_id']);
                 otherCourses.forEach(item => {
                     item.onclick = function () {
                         getDisablePage(item.querySelector('#id').value);
+                        hiddenAllPopups();
                         allLessons.classList.add('active');
-                        availableToYou.classList.remove('active')
                     }
                 })
             }
@@ -410,6 +427,11 @@ unset($_SESSION['course_id']);
                 document.querySelector('.lesson__list').innerHTML = request1.responseText;
                 accordionButton = document.querySelectorAll(".accordion-button");
                 getCourseName(number);
+                document.getElementById('course__back-btn').addEventListener('click', function () {
+                    getCoursePage(number);
+                    hiddenAllPopups();
+                    availableToYou.classList.add('active')
+                })
                 startAccordion();
             }
         });
@@ -432,8 +454,8 @@ unset($_SESSION['course_id']);
                 let choiceVideo = document.body.querySelectorAll('.choice-video');
                 choiceVideo.forEach(item => {
                     item.onclick = function () {
+                        hiddenAllPopups();
                         youChosen.classList.add('active');
-                        allLessons.classList.remove('active')
                         getVideoInfo(item.querySelector('.item__list-id').dataset.id);
                     }
                 })
