@@ -33,8 +33,8 @@
             <div class="aboutTheAuthor userPopup__title">
                 Выберите автора:
             </div>
-            <div class="aboutTheAuthor userPopup__body">
-                <div class="popup__allLessons-body">
+            <div class="aboutTheAuthor__body userPopup__body">
+
                     <?php
                         foreach ($content['author_page'] as $item) {
                     ?>
@@ -44,9 +44,7 @@
                                 <div class=" popup__allLessons-item-video">
                                     <div class="popup__allLessons-item-video__img">
                                         <img class="aboutTheAuthor video__img" src="../img/author.jpg" alt="">
-                                        <div  class=" popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="aboutTheAuthor popup__allLessons-item-info">
@@ -75,7 +73,7 @@
                     <?php
                         }
                     ?>
-                </div>
+
             </div>
         </div>
         <div class=" availableToYou  userPopup ">
@@ -143,9 +141,13 @@
                 </div>
             </div>
             <div class="Сourse-form">
-                <div class=" Сourse-back userPopup__button courseBackBtn">
+                <div class=" backBtn  userPopup__button courseBackBtn">
                     <button>Назад</button>
                 </div>
+                <div class="Сourse-question userPopup__button questionBtn">
+                    <button>Есть вопросы?</button>
+                </div>
+
             </div>
         </div>
 

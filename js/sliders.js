@@ -48,7 +48,7 @@ $('.slider').each(function() {
                     clearInterval(interval);
                 }
                 // Проверка на конец
-            }, 300);
+            });
             if (this.paused) {
                 $('.slick-current').find('.play__video').removeClass('active')
                 this.play();

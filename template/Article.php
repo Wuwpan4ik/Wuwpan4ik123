@@ -83,7 +83,39 @@
 </div>
 
 
+<script>
+    window.addEventListener("scroll", (event) => {
+        let scroll = this.scrollY;
+        if(scroll >= 270){
+            document.querySelector('.Article-post-item').style.position = 'fixed'
+            document.querySelector('.Article-post-item').style.left = '24%';
+            document.querySelector('.Article-post-item').style.top = '380px';
+        }
+    });
+    // let scrollSize
+    //     function scroll() {
+    //
+    //         scrollSize = window.pageYOffset || document.documentElement.scrollTop;
+    //         console.log(scrollSize)
+    //         if(scrollSize >= 250){
+    //             document.querySelector('.Article-post-item').style.position = 'fixed'
+    //             document.querySelector('.Article-post-item').style.left = '24%';
+    //             document.querySelector('.Article-post-item').style.top = '380px';
+    //         }
+    //         setInterval(function(){
+    //             console.log(scrollSize);
+    //         }, 100)
+    //     }
+    //
+    //     window.addEventListener('resize', () => {
+    //         scroll()
+    //     });
+    //
+    //     window.addEventListener('load', () => {
+    //         scroll()
+    //     });
 
+</script>
 </body>
 
 </html>

@@ -44,15 +44,7 @@
 =======
 
     <form method="POST" class="new_name" action="/<?php if(strstr($_SERVER['REQUEST_URI'], 'Course')) {echo 'Course';} else {echo 'Funnel';} ?>/<?=$v['id']?>/rename">
-        <input type="text" name="id" hidden="hidden" value="<?=$v['id']?>">
-        <div class="funnel-input">
-            <label for="name">Укажите заголовок:</label>
-            <input name="name" class="videoname" type="text" value="<?=$v['name']?>">
-        </div>
-        <div class="funnel-input">
-            <label for="description">Укажите описание:</label>
-            <textarea name="description" class="videoname video-desc"><?=$v['description']?></textarea>
-        </div>
+
         <div class="funnel-input">
             <label for="description">Укажите стоимость урока:</label>
             <input name="" class="videoname" type="number" value="Укажите стоимость урока:">
