@@ -34,6 +34,7 @@ return array(
     'Alchemy\\BinaryDriver\\ProcessRunner' => $vendorDir . '/alchemy/binary-driver/src/Alchemy/BinaryDriver/ProcessRunner.php',
     'Alchemy\\BinaryDriver\\ProcessRunnerAwareInterface' => $vendorDir . '/alchemy/binary-driver/src/Alchemy/BinaryDriver/ProcessRunnerAwareInterface.php',
     'Alchemy\\BinaryDriver\\ProcessRunnerInterface' => $vendorDir . '/alchemy/binary-driver/src/Alchemy/BinaryDriver/ProcessRunnerInterface.php',
+    'AnalyticController' => $baseDir . '/controller/AnalyticController.php',
     'Analytics' => $baseDir . '/pages/Analytics.php',
     'Article' => $baseDir . '/pages/Article.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',

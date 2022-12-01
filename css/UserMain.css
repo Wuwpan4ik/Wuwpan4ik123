@@ -94,11 +94,10 @@
     }
 
     .availableToYou__body {
-
         overflow: auto;
         margin: 20px 0 0 0;
-        min-height: 78%;
         flex: 1 1 auto;
+        height:44%;
     }
 
     /*Course*/
@@ -284,6 +283,7 @@
         width: 100%;
         position: absolute;
         left: 0;
+        top:55%;
         bottom: 0;
         padding: 0 25px;
     }
@@ -292,7 +292,7 @@
         position: relative;
         margin: 20px 0 0 0;
         overflow: auto;
-        height: 240px;
+        height: 70%;
     }
 
     .otherСourses.userPopup__body {
@@ -1181,7 +1181,7 @@
         -webkit-box-direction: normal;
         -ms-flex-direction: column;
         flex-direction: column;
-        gap: 24px;
+        gap: 5px;
         margin: 16px 0 0 0;
     }
     .userPopup__input input:focus {
@@ -1746,4 +1746,9 @@
 .slider__darkness.activePlayer{
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%) !important;
     height:100% !important;
+}
+
+.popup__allLessons-item-video__img .popup__allLessons-item{
+    width:76px;
+    height:100px;
 }

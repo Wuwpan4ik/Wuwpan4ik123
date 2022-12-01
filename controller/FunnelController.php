@@ -7,7 +7,8 @@
         }
 
         public function AddVideo() {
-            if (is_null($_FILES['video_uploader'])) {
+            if ($_FILES['video_uploader']['size'] == 0)
+            {
                 return False;
             }
             $item_id = $_SESSION['item_id'];
@@ -45,16 +46,16 @@
             $res = $this->m->db->query("SELECT * FROM `funnel` WHERE id = ".$funnelContent[0]['funnel_id']);
             if (!$this->isUser($res[0]['author_id'])) return False;
 
-            if (isset($_POST['description'])) {
+            if (isset($_POST['name']) && strlen($_POST['name']) > 0) {
                 $name = $_POST['name'];
             } else {
-                $name = $res[0]['name'];
+                $name = $funnelContent[0]['name'];
             }
 
-            if (isset($_POST['description'])) {
+            if (isset($_POST['description']) && strlen($_POST['description']) > 0) {
                 $description = $_POST['description'];
             } else {
-                $description = $res[0]['description'];
+                $description = $funnelContent[0]['description'];
             }
 
             if (isset($_POST['button_text']) && strlen($_POST['button_text']) > 0) {
@@ -64,13 +65,38 @@
                 if (strlen($_POST['button_text']) == 0) {
                     $change__button = "`button_text` = NULL";
                 } else {
-                    $change__button = "`button_text` = " . $res[0]['button_text'];
+                    $change__button = "`button_text` = " . $funnelContent[0]['button_text'];
                 }
             }
 
             $this->m->db->execute("UPDATE `funnel_content` SET `name` = '$name', `description` = '$description', $change__button WHERE `id` = '$item_id'");
 
             return True;
+        }
+
+        public function ChangeVideo()
+        {
+            if ($_FILES['video_change']['size'] == 0)
+            {
+                return False;
+            }
+
+            $uid = $_SESSION['item_id'];
+            $res = $this->m->db->query("SELECT * FROM `funnel_content` WHERE id = '$uid'");
+            $funnel = $this->m->db->query("SELECT * FROM `funnel` WHERE id = " . $res[0]['funnel_id']);
+            $count_video = $this->m->db->query("SELECT `query_id` FROM `funnel_content` WHERE id = ". $uid)[0]['query_id'];
+
+            if (!$this->isUser($funnel[0]['author_id'])) return False;
+
+            unlink($res[0]['video']);
+
+            $path = $this->url_dir . 'funnels/' . $res[0]['funnel_id']. "/$count_video" ."_" . $_FILES['video_change']['name'];
+
+            move_uploaded_file($_FILES['video_change']['tmp_name'], $path);
+
+            $this->m->db->execute("UPDATE funnel_content SET `video` = '$path' WHERE id = " . $uid);
+
+            return true;
         }
 
         public function CreateFunnel () {

@@ -31,7 +31,7 @@
             <div class="UserMenu-profile">
                 <div class="UserMenu-profile__header">
                     <div class="UserMenu-profile__header-user">
-                        <img id="avatar" src="<?=$_SESSION['user']['avatar']?>"/>
+                        <img id="avatar" src="<?php echo (isset($_SESSION['user']['avatar'])) ?  $_SESSION['user']['avatar'] : "/uploads/ava/UserAvatar.jpg"; ?>"/>
                         <div class="UserMenu-profile__textInfo">
                             <p>Добро пожаловать,</p>
                             <div class="UserMenu-profile__textInfo-name">
