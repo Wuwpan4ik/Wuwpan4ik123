@@ -423,7 +423,7 @@ slider__item-button.button-open .button {
     align-items: center;
     gap: 11px;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
-    padding: 10px 0 0 0;
+    padding: 10px 0 10px 0;
     margin: 5px 0 0 0;
 }
 
