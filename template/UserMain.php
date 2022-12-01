@@ -43,10 +43,7 @@
                             <div class="aboutTheAuthor popup-item">
                                 <div class=" popup__allLessons-item-video">
                                     <div class="popup__allLessons-item-video__img">
-                                        <img class="aboutTheAuthor video__img" src="../img/author.jpg" alt="">
-                                        <div  class=" popup__allLessons-item-video-play">
-                                            <img src="../img/smallPlayer/play.png" alt="">
-                                        </div>
+                                        <img class="aboutTheAuthor video__img" src="/<?=$item['avatar']?>" alt="">
                                     </div>
                                 </div>
                                 <div class="aboutTheAuthor popup__allLessons-item-info">
@@ -101,9 +98,6 @@
                         <div class="otherСourses__body disabled__body">
                         </div>
                     </div>
-                </div>
-                <div class="otherСoursesBtn userPopup__button questionBtn">
-                    <button>Есть вопросы?</button>
                 </div>
             </div>
         </div>
