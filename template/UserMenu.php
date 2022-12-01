@@ -36,11 +36,11 @@
                             <p>Добро пожаловать,</p>
                             <div class="UserMenu-profile__textInfo-name">
                                 <h1>
-                                    <? if (!isset($_SESSION["user"]["first_name"])) { ?>
+                                    <?php if (!isset($_SESSION["user"]["first_name"])) { ?>
                                         Гость
-                                    <? } else { ?>
+                                    <?php } else { ?>
                                         <? echo $_SESSION["user"]["first_name"] ?>
-                                    <? } ?>
+                                    <?php } ?>
                                 </h1>
                             </div>
                         </div>

@@ -28,6 +28,7 @@
                                                 content.name AS 'content_name',
                                                 content.description AS 'content_description',
                                                 content.video,
+                                                course.id,
                                                 course.name,
                                                 content.thubnails,
                                                 content.query_id,
