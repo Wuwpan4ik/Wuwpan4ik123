@@ -57,19 +57,17 @@
 
 										<th id="thop"><input id="main_check" type="checkbox" style="display:inline-block;">ФИО</th>
 
-										<th><div class="th-title"><button class="order_button" value="give_money"><img class="table_ico" src="img/StickDown.svg"></button>Сумма</div></th>
+										<th><div class="th-title"><button class="order_button contact__button" value="give_money"><img class="table_ico" src="img/StickDown.svg"></button>Сумма</div></th>
 
-										<th><div class="th-title"><button class="order_button" value="email"><img class="table_ico" src="img/StickDown.svg"></button>Email</div></th>
+										<th><div class="th-title"><button class="order_button contact__button" value="email"><img class="table_ico" src="img/StickDown.svg"></button>Email</div></th>
 
-										<th><div class="th-title"><button class="order_button" value="tel"><img class="table_ico" src="img/StickDown.svg"></button>Телефон</div></th>
+										<th><div class="th-title"><button class="order_button contact__button" value="tel"><img class="table_ico" src="img/StickDown.svg"></button>Телефон</div></th>
 
-                                        <th><div class="th-title"><button class="order_button" value="course_id"><img class="table_ico" src="img/StickDown.svg"></button>Курс</div></th>
-										
-										<th><div class="th-title"><button class="order_button" value="achivment_date"><img class="table_ico" src="img/StickDown.svg"></button>Дата</div></th>
+                                        <th><div class="th-title"><button class="order_button contact__button" value="course_id"><img class="table_ico" src="img/StickDown.svg"></button>Курс</div></th>
 
-                                        <th class="iconed">
+                                        <th><div class="th-title"><button class="order_button contact__button" value="achivment_date"><img class="table_ico" src="img/StickDown.svg"></button>Дата</div></th>
 
-                                        </th>
+                                        <th><div class="th-title">Функции</div></th>
 									</tr>
 
                                 </thead>
@@ -113,21 +111,22 @@
 
                                     <th id="thop"><input id="main_check" type="checkbox" style="display:inline-block;">Заказ</th>
 
-                                    <th><div class="th-title"><button class="order_button" value="give_money"><img class="table_ico" src="img/StickDown.svg"></button>Сумма</div></th>
+                                    <th><div class="th-title"><button class="order_button order__button" value="give_money"><img class="table_ico" src="img/StickDown.svg"></button>Сумма</div></th>
 
-                                    <th><div class="th-title"><button class="order_button" value="email"><img class="table_ico" src="img/StickDown.svg"></button>Email</div></th>
+                                    <th><div class="th-title"><button class="order_button order__button" value="email"><img class="table_ico" src="img/StickDown.svg"></button>Email</div></th>
 
-                                    <th><div class="th-title"><button class="order_button" value="tel"><img class="table_ico" src="img/StickDown.svg"></button>Телефон</div></th>
+                                    <th><div class="th-title"><button class="order_button order__button" value="tel"><img class="table_ico" src="img/StickDown.svg"></button>Телефон</div></th>
 
-                                    <th><div class="th-title"><button class="order_button" value="course_id"><img class="table_ico" src="img/StickDown.svg"></button>Курс</div></th>
+                                    <th><div class="th-title"><button class="order_button order__button" value="course_id"><img class="table_ico" src="img/StickDown.svg"></button>Курс</div></th>
 
-                                    <th><div class="th-title"><button class="order_button" value="achivment_date"><img class="table_ico" src="img/StickDown.svg"></button>Дата</div></th>
+                                    <th><div class="th-title"><button class="order_button order__button" value="achivment_date"><img class="table_ico" src="img/StickDown.svg"></button>Дата</div></th>
 
+                                    <th><div class="th-title">Функции</div></th>
                                 </tr>
 
                                 </thead>
 
-                                <tbody id="conTab">
+                                <tbody id="orderTab">
 
                                 </tbody>
 
@@ -233,6 +232,49 @@
         <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
         <script src="../js/script.js" ></script>
   </body>
+<!--OrderList-->
+<script>
+    let order_button = document.querySelectorAll('.order__button');
+    let tab = document.querySelector('#orderTab');
+    let request = new XMLHttpRequest();
+
+    let url = "SortController/AnalyticOrders?sort=id";
+
+    request.open('GET', url);
+
+    request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+    request.addEventListener("readystatechange", () => {
+        if (request.readyState === 4 && request.status === 200) {
+            tab.innerHTML = request.responseText;
+        }
+    });
+    request.send();
+
+    order_button.forEach((elem) => {
+        elem.addEventListener('click', function(e) {
+            if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){
+                this.innerHTML = '<img class="table_ico" src="img/StickUp.svg">';
+                var param = this.value;
+            }else{
+                this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
+                param = this.value + " DESC";
+            }
+            let request = new XMLHttpRequest();
+
+            let url = "SortController/AnalyticOrders?sort=" + param;
+
+            request.open('GET', url);
+
+            request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+            request.addEventListener("readystatechange", () => {
+                if (request.readyState === 4 && request.status === 200) {
+                    tab.innerHTML = request.responseText;
+                }
+            });
+            request.send();
+        });
+    });
+</script>
 <script>
 
   let request1 = new XMLHttpRequest();
@@ -314,48 +356,49 @@
         });
 </script>
 
-  <script>
-            const order_button = document.querySelectorAll('.order_button');
-            const tab = document.querySelector('#conTab');
+<script>
+    let client_buttons = document.querySelectorAll('.contact__button');
+    let client_tab = document.querySelector('#conTab');
+    let client_request = new XMLHttpRequest();
+
+    let client_url = "SortController/AnalyticClients?sort=id";
+
+    client_request.open('GET', client_url);
+
+    client_request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+    client_request.addEventListener("readystatechange", () => {
+        if (client_request.readyState === 4 && client_request.status === 200) {
+            client_tab.innerHTML = client_request.responseText;
+        }
+    });
+    client_request.send();
+
+    client_buttons.forEach((elem) => {
+        elem.addEventListener('click', function(e) {
+            let param;
+            if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){
+                this.innerHTML = '<img class="table_ico" src="img/StickUp.svg">';
+                param = this.value;
+            }else{
+                this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
+                param = this.value + " DESC";
+            }
             let request = new XMLHttpRequest();
 
-            let url = "SortController/AnalyticClients?sort=id";
+            let url = "SortController/AnalyticClients?sort=" + param;
 
             request.open('GET', url);
 
             request.setRequestHeader('Content-Type', 'application/x-www-form-url');
             request.addEventListener("readystatechange", () => {
                 if (request.readyState === 4 && request.status === 200) {
-                    tab.innerHTML = request.responseText;
+                    client_tab.innerHTML = request.responseText;
                 }
             });
             request.send();
-
-            order_button.forEach((elem) => {
-                elem.addEventListener('click', function(e) {
-                    if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){
-                        this.innerHTML = '<img class="table_ico" src="img/StickUp.svg">';
-                        var param = this.value;
-                    }else{
-                        this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
-                        param = this.value + " DESC";
-                    }
-                    let request = new XMLHttpRequest();
-
-                    let url = "SortController/AnalyticClients?sort=" + param;
-
-                    request.open('GET', url);
-
-                    request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-                    request.addEventListener("readystatechange", () => {
-                        if (request.readyState === 4 && request.status === 200) {
-                            tab.innerHTML = request.responseText;
-                        }
-                    });
-                    request.send();
-                });
-            });
-    </script>
+        });
+    });
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
 <script src="../js/charts.js"></script>
   <script src="/js/getNotifications.js"></script>

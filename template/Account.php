@@ -273,11 +273,9 @@
 </div>
 
 </div>
-<? unset($_SESSION['error']) ?>
+<?php unset($_SESSION['error']) ?>
 
 <script>
-<<<<<<< HEAD
-=======
     /*Select*/
 
     function checkboxStatusChange() {
@@ -315,7 +313,6 @@
         }
     }
 
->>>>>>> noffakeStyle
     const button_submit = document.querySelector('#profile_send');
     const check_url = document.querySelector('#check_url');
     const check_button = document.querySelector('#check_button');
@@ -344,11 +341,6 @@
         });
         request.send();
     });
-<<<<<<< HEAD
-=======
-
-
->>>>>>> noffakeStyle
 </script>
 <script src="/js/getNotifications.js"></script>
 <script src="/js/printFailName.js" ></script>
