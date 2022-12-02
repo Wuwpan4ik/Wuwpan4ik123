@@ -38,7 +38,7 @@
 
         <div class="funnel-input">
             <label for="description">Укажите стоимость урока:</label>
-            <input name="" class="videoname" type="number" value="Укажите стоимость урока:">
+            <input name="price" class="videoname" type="number" value="<?=$v['price'] ?>">
         </div>
         <?php if (strstr($_SERVER['REQUEST_URI'], 'Funnel' )) {?>
         <input type="hidden" value="<?=$v['id']?>">

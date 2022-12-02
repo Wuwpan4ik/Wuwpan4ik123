@@ -58,6 +58,12 @@
                 $description = $funnelContent[0]['description'];
             }
 
+            if (isset($_POST['price']) && strlen($_POST['price']) > 0) {
+                $price = $_POST['price'];
+            } else {
+                $price = $funnelContent[0]['price'];
+            }
+
             if (isset($_POST['button_text']) && strlen($_POST['button_text']) > 0) {
                 $button_text = $_POST['button_text'];
                 $change__button = "`button_text` = '$button_text'";
@@ -69,7 +75,7 @@
                 }
             }
 
-            $this->m->db->execute("UPDATE `funnel_content` SET `name` = '$name', `description` = '$description', $change__button WHERE `id` = '$item_id'");
+            $this->m->db->execute("UPDATE `funnel_content` SET `name` = '$name', `price` = '$price', `description` = '$description', $change__button WHERE `id` = '$item_id'");
 
             return True;
         }
