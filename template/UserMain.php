@@ -33,8 +33,8 @@
             <div class="aboutTheAuthor userPopup__title">
                 Выберите автора:
             </div>
-            <div class="aboutTheAuthor userPopup__body">
-                <div class="popup__allLessons-body">
+            <div class="aboutTheAuthor__body userPopup__body">
+
                     <?php
                         foreach ($content['author_page'] as $item) {
                     ?>
@@ -78,7 +78,7 @@
                     <?php
                         }
                     ?>
-                </div>
+
             </div>
         </div>
         <div class=" availableToYou  userPopup ">
@@ -116,6 +116,10 @@
                 <div class=" Сourse-back userPopup__button">
                     <button type="button" id="course__back-btn">Назад</button>
                 </div>
+                <div class="Сourse-question userPopup__button questionBtn">
+                    <button>Есть вопросы?</button>
+                </div>
+
             </div>
         </div>
 

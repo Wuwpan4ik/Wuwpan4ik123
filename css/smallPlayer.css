@@ -67,6 +67,7 @@
     justify-content: center;
     margin: 0;
     padding: 0;
+    pointer-events: none;
 }
 
 .slick-dots li {
@@ -255,7 +256,11 @@ slider__item-button.button-open .button {
 .pause__video, .play__video {
     position: absolute;
     top: 25%;
-    left: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
     width: 137px;
     height: 137px;
     z-index: 0;

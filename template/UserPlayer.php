@@ -11,7 +11,6 @@
     <title><?php echo htmlspecialchars($content[0]['name'])?></title>
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/UserMain.css">
     <link rel="stylesheet" href="/css/smallPlayer.css">
     <link rel="stylesheet" href="/css/courseplayer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -20,6 +19,7 @@
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 </head>
 <body class="body">
+
 <div class=" userVideoContainer UserPlayer">
     <div class="UserPlayer User-header">
         <div class="User-logo user__logo">
@@ -78,7 +78,6 @@
         </div>
         <video class="UserPlayerVideo" id="UserPlayerVideo" playsinline src=".<?=$content[0]['video']?>">
         </video>
-
     </div>
     <div class="slider__darkness">
 
@@ -139,7 +138,8 @@
                 </div>
             </div>
         </div>
-
+    </div>
+</div>
 <script src="/js/playerCourse.js"></script>
 </body>
 </html>

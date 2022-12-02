@@ -359,10 +359,9 @@ a.button__back {
 }
 
 .Article-post-item{
-    position: sticky;
-    top: 100px;
-    left: 24%;
-    height: 420px;
+    position: absolute;
+    top: 250px;
+    left: 40px;
     background: #F8F8F9;
     border-radius: 8px;
     padding: 30px;
@@ -370,7 +369,6 @@ a.button__back {
     font-size: 18px;
     line-height: 24px;
 }
-
 .Article-post-item-img img{
     width: 56px;
 }
