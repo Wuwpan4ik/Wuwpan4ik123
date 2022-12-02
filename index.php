@@ -7,12 +7,21 @@
     $url = key($_GET);
     $url_array = explode('/', $url);
 
-    if (count($url_array) >= 2) {
-        $item_id = $url_array[1];
-        $_SESSION['item_id'] = $item_id;
-    }
 
     $router = new Router();
+
+
+    if (str_contains($url, 'SmallPlayer')) {
+        $item_id = $url_array[2];
+        $_SESSION['item_id'] = $item_id;
+        $router->addRoute("/".$_SESSION['user']['username'] . "/SmallPlayer/$item_id", "SmallPlayer.php");
+    } else {
+        if (count($url_array) >= 2) {
+            $item_id = $url_array[1];
+            $_SESSION['item_id'] = $item_id;
+        }
+    }
+
 
     $router->addRoute("/", "Main.php");
     $router->addRoute("/reg", "Registration.php");
@@ -24,7 +33,6 @@
     $router->addRoute("/ConfirmEmail", "ConfirmEmail.php");
     $router->addRoute("/PasswordRecovery", "PasswordRecovery.php");
     $router->addRoute("/Cases", "Cases.php");
-    $router->addRoute("/SmallPlayer/$item_id", "SmallPlayer.php");
     $router->addRoute("/Account", "Account.php");
     $router->addRoute("/Account/MainSettings", "AccountController.php", "SaveSettings");
     $router->addRoute("/Account/UserSettings", "AccountController.php", "SaveUserSettings");
