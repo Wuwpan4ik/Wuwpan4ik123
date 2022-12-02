@@ -47,7 +47,7 @@
                     </div>
                 <?php } else if (isset($popup__do->pay_form)) { ?>
                     <div class="popup__bonus-form-button button-form">
-                        <button type="submit" class="button next-lesson">Оплатить</button>
+                        <button type="submit" class="button next-lesson2">Оплатить</button>
                     </div>
                 <?php } ?>
             </div>

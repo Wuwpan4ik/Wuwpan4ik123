@@ -12,6 +12,7 @@
 </head>
 
 <body class="body">
+<? print_r($_SESSION['error']); ?>
 <div class="UserContacts bcg">
     <div class="_container">
         <div class="User-header">
@@ -40,33 +41,35 @@
                             <img src="../img/UserContacts/phone.svg" alt="">
                             <span>Телефон:</span>
                         </div>
-                        <input type="tel" placeholder="<?=$content[0]["telephone"]?>" maxlength="15" disabled>
+                        <input style="font-size: 16px;" type="tel" placeholder="<?=$content['contacts'][0]["telephone"]?>" maxlength="15" disabled>
                     </div>
                     <div class="UserContacts-item UserContacts-body__telephone ">
                         <div class="UserContacts-body__header">
                             <img src="../img/UserContacts/email.svg" alt="">
                             <span>Почта:</span>
                         </div>
-                        <input type="tel" placeholder="<?=$content[0]["telephone"]?>" maxlength="15" disabled>
+                        <input style="font-size: 16px;" type="tel" placeholder="<?=$content['contacts'][0]["email"]?>" maxlength="15" disabled>
                     </div>
+                    <?php
+                    if ($content['is_contacts']) { ?>
                     <div class="UserContacts-item UserContacts-body__socialNetwork">
                         <div class="UserContacts-body__header">
                             <img src="../img/UserContacts/SocialNetworks.svg" alt="">
                             <span>Социальные сети:</span>
                             <ul class="UserContacts-list">
-                                <li><a href=""><img src="../img/UserContacts/SocialNetworcs/instagram.svg" alt=""></a></li>
-                                <li><a href=""><img src="../img/UserContacts/SocialNetworcs/whatsapp.svg" alt=""></a></li>
-                                <li><a href=""><img src="../img/UserContacts/SocialNetworcs/telegram.svg" alt=""></a></li>
-                                <li><a href=""><img src="../img/UserContacts/SocialNetworcs/facebook.svg" alt=""></a></li>
-                                <li><a href=""><img src="../img/UserContacts/SocialNetworcs/youtube.svg" alt=""></a></li>
-                                <li><a href=""><img src="../img/UserContacts/SocialNetworcs/twitter.svg" alt=""></a></li>
-                                <li><a href=""><img src="../img/UserContacts/SocialNetworcs/skype.svg" alt=""></a></li>
+                                <?php foreach (['instagram', 'whatsapp', 'telegram', 'facebook', 'youtube', 'twitter', 'skype'] as $item) {
+                                    if (!is_null($content['contacts'][$item])) {
+                                ?>
+                                <li><a href="<?php echo htmlspecialchars($content['contacts'][0][$item]) ?>"><img src="../img/UserContacts/SocialNetworcs/<?=$item?>.svg" alt=""></a></li>
+                                <?php } } ?>
                             </ul>
                         </div>
                     </div>
+                    <?php } ?>
                 </div>
             </div>
             <form method="POST" action="/ContactController/sendQuestions">
+                <input type="hidden" name="author_id" value="<?=$_SESSION['item_id']; ?>">
                 <div class="UserContacts-footer">
                     <div class="UserContacts-footer__title">
                         Есть вопросы?
@@ -77,7 +80,7 @@
                     </div>
                 </div>
                 <div class="UserContacts userPopup__button">
-                    <button>Отправить вопрос</button>
+                    <button type="submit">Отправить вопрос</button>
                 </div>
             </form>
         </div>

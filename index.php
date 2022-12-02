@@ -34,7 +34,7 @@
     $router->addRoute("/UserLogin", "UserLogin.php");
     $router->addRoute("/UserRecovery", "UserPasswordRecovery.php");
     $router->addRoute("/UserNotifications", "UserNotifications.php");
-    $router->addRoute("/UserContacts", "UserContacts.php");
+    $router->addRoute("/UserContacts/$item_id", "UserContacts.php");
     $router->addRoute("/UserMenu", "UserMenu.php");
     $router->addRoute("/UserPlayer/$item_id", "UserPlayer.php");
     $router->addRoute("/AboutTheAuthor/$item_id", "AboutTheAuthor.php");
@@ -77,7 +77,6 @@
     $router->addRoute("/LoginController/recovery", "LoginController.php", 'recovery');
     $router->addRoute("/LoginController/logout", "LoginController.php", 'logout');
 
-    $router->addRoute("/send-email", "EmailController.php", 'RegistrateUser');
     $router->addRoute("/ClientsController/application", "ClientsController.php", 'AddApplication');
     $router->addRoute("/ClientsController/CourseBuy", "ClientsController.php", 'BuyCourse');
     $router->addRoute("/ClientsController/CourseVideo", "ClientsController.php", 'BuyVideo');
@@ -98,7 +97,7 @@
     $router->addRoute("/UserController/getVideoInfo", "UserController.php", 'getBuyVideo');
     $router->addRoute("/UserController/save", "LoginController.php", 'saveUserSettings');
 
-    $router->addRoute("/addQuestion", "ContactController.php", "SendQuestion");
+    $router->addRoute("/ContactController/sendQuestions", "ContactController.php", "SendQuestion");
     $router->addRoute("/getNotifications", "NotificationsController.php", "getNotifications");
     $router->addRoute("/NotificationsController/checkout", "NotificationsController.php", "checkNotifications");
 

@@ -1,12 +1,5 @@
 <?php
 
-    if (!class_exists('PHPMailer\PHPMailer\Exception'))
-    {
-    require '/vendor/phpmailer/phpmailer/src/PHPMailer.php';
-    require '/vendor/phpmailer/phpmailer/src/SMTP.php';
-    require '/vendor/phpmailer/phpmailer/src/PHPMailer.php';
-    }
-
     class ClientsController extends ACoreCreator {
         private $password;
         private $name;
@@ -46,8 +39,8 @@
         public function RequestValidate()
         {
             $this->email = $_POST['email'];
-            if (isset($_POST['name'])) {
-                $this->name = $_POST['name'];
+            if (isset($_POST['first_name'])) {
+                $this->name = $_POST['first_name'];
 //                if (!preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$this->name)) {
 //                    return false;
 //                }

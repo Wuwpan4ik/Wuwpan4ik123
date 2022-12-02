@@ -136,6 +136,7 @@
                 try {
                     $(this)[0].querySelector('.next__lesson');
                     $('.slick-next').click();
+                    alert("Форма успешно отправлена");
                 } catch {}
                 try {
                     window.open($(this)[0].querySelector('.second_link').value);
