@@ -40,6 +40,7 @@
 
     $router->addRoute("/UserMain", "UserMain.php");
     $router->addRoute("/UserLogin", "UserLogin.php");
+    $router->addRoute("/LoginController/UserLogin", "LoginController.php", "UserLogin");
     $router->addRoute("/UserRecovery", "UserPasswordRecovery.php");
     $router->addRoute("/UserNotifications", "UserNotifications.php");
     $router->addRoute("/UserContacts/$item_id", "UserContacts.php");
