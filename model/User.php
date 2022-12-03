@@ -42,6 +42,7 @@
                                                 course.name,
                                                 content.thubnails,
                                                 content.query_id,
+                                                user_info.id as 'user_id',
                                                 user_info.avatar,
                                                 user_info.first_name
                                                 FROM `course_content` AS content

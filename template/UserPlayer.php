@@ -3,23 +3,22 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo htmlspecialchars($content[0]['name'])?></title>
-    <link rel="stylesheet" href="./css/nullCss.css">
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="./css/smallPlayer.css">
-    <link rel="stylesheet" href="./css/courseplayer.css">
+    <link rel="stylesheet" href="/css/nullCss.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/UserMain.css">
+    <link rel="stylesheet" href="/css/smallPlayer.css">
+    <link rel="stylesheet" href="/css/courseplayer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 </head>
 <body class="body">
-
 <div class=" userVideoContainer UserPlayer">
     <div class="UserPlayer User-header">
         <div class="User-logo user__logo">
@@ -38,8 +37,8 @@
         <div class="userPopup__button courseBackBtn backBtn">
             <button onclick="window.location.replace('/UserMain?course_id=' + <?=$content[0]['id'] ?>)">Назад</button>
         </div>
-        <div class="Сourse-question userPopup__button questionBtn">
-            <button>Есть вопросы?</button>
+        <div class="Сourse-question userPopup__button">
+            <button onclick="window.location.replace('/UserContacts/' + <?=$content[0]['user_id'] ?>)">Есть вопросы?</button>
         </div>
     </div>
     <div class="firstPlayButton" id="playBtn">
@@ -78,6 +77,7 @@
         </div>
         <video class="UserPlayerVideo" id="UserPlayerVideo" playsinline src=".<?=$content[0]['video']?>">
         </video>
+
     </div>
     <div class="slider__darkness">
 
@@ -138,8 +138,7 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
+
 <script src="/js/playerCourse.js"></script>
 </body>
 </html>
