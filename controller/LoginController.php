@@ -38,6 +38,9 @@
                         'avatar' => $res[0]['avatar'],
                         'is_creator' => 0
                     ];
+                    if (!is_null($res[0]['first_name'])) {
+                        $_SESSION['user']['first_name'] = $res[0]['first_name'];
+                    }
                     $response = "С возвращением, " . $_SESSION["user"]["name"];
                 } else {
                     $response = "Вам не разрешён доступ";

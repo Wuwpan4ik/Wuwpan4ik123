@@ -215,25 +215,27 @@
             </div>
         </div>
         <div class="question userPopup">
-            <div class="youPick userPopup__title">
+            <div class="youPick userPopup__title button__questions">
                 Есть вопросы?
             </div>
             <div class="question  userPopup__body">
                 <div class=" question ">
                     <div class="popup__buy-register">
-                        <form id="formQuest" method="POST" action="/addQuestions">
-                            <input type="hidden" value="17" name="author_id" >
+                        <form id="formQuest" method="POST" action="/ContactController/sendQuestions">
+                            <input type="hidden" value="17" name="author_id" id="question_author-id">
+                            <?php if (!isset($_SESSION['user']['first_name'])) { ?>
                             <div class="popup__buy-body-form question input">
                                 <div class="popup__bonus-form-input-account input-img">
                                     <img src="../img/smallPlayer/account.svg" alt="">
                                 </div>
-                                <input name="name" type="text" placeholder="Ваше имя">
+                                <input name="name" type="text" placeholder="<?php echo isset($_SESSION['user']['first_name']) ? $_SESSION['user']['first_name'] : 'Введите имя '?>" <?php echo isset($_SESSION['user']['first_name']) ? "readonly" : ''?>>
                             </div>
+                            <?php } ?>
                             <div class="popup__buy-body-form question input">
                                 <div class="popup__bonus-form-input-email input-img">
                                     <img src="../img/smallPlayer/email.svg" alt="">
                                 </div>
-                                <input name="email" type="email" placeholder="Ваш email">
+                                <input name="email" type="email" placeholder="<?php echo isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : 'Введите имя '?>" readonly>
                             </div>
                             <div class="popup__buy-body-form question-textarea">
                                 <div class="popup__bonus-form-input-email input-img">
@@ -268,6 +270,7 @@ unset($_SESSION['course_id']);
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
 <script src="../js/script.js" ></script>
 <script>
+
     function hiddenAllPopups() {
         document.querySelectorAll('.userPopup').forEach(item => {
             item.classList.remove('active');
@@ -357,6 +360,7 @@ unset($_SESSION['course_id']);
             if (request.readyState === 4 && request.status === 200) {
                 document.querySelector('.course__List').innerHTML = request.responseText;
                 let availableСourses = document.body.querySelectorAll('.availableСourses');
+                document.getElementById('question_author-id').value = number;
                 availableСourses.forEach(item => {
                     item.onclick = function () {
                         getListPage(item.querySelector('#id').value);
