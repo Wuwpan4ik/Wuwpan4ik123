@@ -7,14 +7,16 @@
     $url = key($_GET);
     $url_array = explode('/', $url);
 
-
     $router = new Router();
 
-
     if (str_contains($url, 'SmallPlayer')) {
-        $item_id = $url_array[2];
-        $_SESSION['item_id'] = $item_id;
-        $router->addRoute("/".$_SESSION['user']['username'] . "/SmallPlayer/$item_id", "SmallPlayer.php");
+        $_SESSION['item_id'] = $url_array[2];
+//        $user = count((new User())->db->query("SELECT * FROM user WHERE username = '" . $url_array[0] . "' AND is_creator = '1'"));
+//        if ($user == 1) {
+//            echo 1;
+            $url_local = "/". $url_array[0] . "/SmallPlayer/" . $url_array[2];
+            $router->addRoute("$url_local", "SmallPlayer.php");
+//        }
     } else {
         if (count($url_array) >= 2) {
             $item_id = $url_array[1];
