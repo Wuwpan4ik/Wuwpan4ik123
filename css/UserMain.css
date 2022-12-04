@@ -1100,6 +1100,7 @@
         margin: 34px 0 0 0;
         background-color: #fff;
         color: #000;
+        overflow: hidden;
     }
     .userPopup__title {
         font-family: "TT Trailers", sans-serif;
@@ -1198,6 +1199,9 @@
         height: 240px;
         border-radius: 20px;
         background: #D9D9D9;
+    }
+    .aboutTheAuthor__body{
+        min-height: 700px;
     }
     .aboutTheAuthor-img img {
         width: 100%;

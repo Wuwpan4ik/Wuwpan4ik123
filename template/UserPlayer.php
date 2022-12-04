@@ -49,11 +49,17 @@
             <button onclick="window.location.replace('/UserContacts/' + <?=$content[0]['user_id'] ?>)">Есть вопросы?</button>
         </div>
     </div>
+    <div class="firstPauseButton" id="pauseBtn">
+        <div class="pauseBtn">
+            <img src="../img/smallPlayer/pause.svg" alt="">
+        </div>
+    </div>
     <div class="firstPlayButton" id="playBtn">
         <div class="playBtn">
             <img src="/img/smallPlayer/play.svg">
         </div>
     </div>
+
     <div class="container show-controls contaierPlayer">
         <div class="wrapper nonActivePlayer">
             <div class="video-timeline">
