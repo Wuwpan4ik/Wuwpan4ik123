@@ -113,7 +113,7 @@
                 </div>
             </div>
             <div class="Сourse-form">
-                <div class=" Сourse-back userPopup__button">
+                <div class="backBtn userPopup__button">
                     <button type="button" id="course__back-btn">Назад</button>
                 </div>
                 <div class="Сourse-question userPopup__button questionBtn">
@@ -123,7 +123,7 @@
             </div>
         </div>
 
-        <div class="AllLessons  userPopup">
+        <div class="AllLessons  userPopup ">
             <div class="AllLessons userPopup__title">
                 Все уроки курса:
             </div>
