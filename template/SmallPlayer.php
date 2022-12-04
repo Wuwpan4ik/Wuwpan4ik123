@@ -27,7 +27,7 @@
             <div class="slider__item ">
                 <div class="slider__video ">
                     <video playsinline id="123" class="slider__video-item" data-player="playing" autoplay="false">
-                        <source class="video" src=".<?=$item['video']?>"  />
+                        <source class="video" src="/<?=$item['video']?>"  />
                     </video>
                 </div>
                 <div class="slider__darkness">
