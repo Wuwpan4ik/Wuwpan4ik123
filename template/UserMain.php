@@ -116,7 +116,7 @@
                 <div class=" Сourse-back userPopup__button">
                     <button type="button" id="course__back-btn">Назад</button>
                 </div>
-                <div class="Сourse-question userPopup__button">
+                <div class="Сourse-question userPopup__button questionBtn">
                     <button>Есть вопросы?</button>
                 </div>
 

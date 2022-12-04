@@ -834,3 +834,12 @@ input:checked + label {
 .new_name div label{
     top:15px !important;
 }
+
+.popup__body__input {
+    width: 250px;
+    border: 1px solid #E1E3E6;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 20px 0 0 0;
+    text-align: left;
+}

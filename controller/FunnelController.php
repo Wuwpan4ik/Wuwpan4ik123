@@ -190,6 +190,7 @@
                     break;
                 }
             }
+            $videoBtnHTML['button_text'] = $_POST['button__send'];
             switch ($_POST['second_do']) {
                 case "pay_form": {
                     if (isset($_POST['form_id-4'])) {

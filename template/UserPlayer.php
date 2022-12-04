@@ -18,6 +18,14 @@
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 </head>
+<style>
+    .accordion-button {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+</style>
 <body class="body">
 <div class=" userVideoContainer UserPlayer">
     <div class="UserPlayer User-header">
@@ -94,7 +102,7 @@
                             <div class="popup__allLessons-item-video__img">
                                 <img src=".<?php echo $content[0]['thubnails'] ?>" alt="">
                             </div>
-                            <div class="popup__allLessons-item-info">
+                            <div class="popup__allLessons-item-info" style="position: relative;">
                                 <div class="popup__allLessons-item-info-header">
                                     <div class=" aboutTheAuthor popup__allLessons-item-info-header-number available-number">
                                         Урок <?php echo htmlspecialchars($content[0]['query_id'])?>
@@ -106,8 +114,14 @@
                                 <div class="popup__allLessons-item-info-title">
                                     <?php echo htmlspecialchars($content[0]['content_name'])?>
                                 </div>
-                                <div class="popup__allLessons-item-info-desc">
-                                    <?php echo htmlspecialchars($content[0]['description'])?>
+                                <button class="accordion-button" id="accordion-button-1" aria-expanded="false">
+                                    <span class="icon" aria-hidden="true"></span></button>
+                                <div class="accordion">
+                                    <div class="accordion-item">
+                                        <div class="accordion-content">
+                                            <p><?=$content[0]['content_description'] ?></p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -138,7 +152,40 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<script>
+    function startAccordion() {
+        let accordionButton = document.querySelectorAll(".accordion-button");
+        accordionButton.forEach( item => {
 
+
+            item.onclick = function () {
+
+                item.classList.toggle('active');
+                item.parentElement.querySelectorAll(".accordion-content").forEach( el => {
+                    el.classList.toggle('active');
+                })
+                if(item.classList.contains('active')){
+                    accordionButton.forEach(el => {
+                        el.classList.remove('active');
+                        el.parentElement.querySelectorAll(".accordion-content").forEach( el => {
+                            el.classList.remove('active');
+                        })
+                        item.classList.add('active');
+                        item.parentElement.querySelectorAll(".accordion-content").forEach( el => {
+                            el.classList.add('active');
+                        })
+                    })
+                }
+
+
+            }
+
+        })
+    }
+    startAccordion()
+</script>
 <script src="/js/playerCourse.js"></script>
 </body>
 </html>

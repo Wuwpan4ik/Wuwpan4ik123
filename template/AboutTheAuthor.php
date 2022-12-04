@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="userPopup__button">
-                <button>Есть вопросы?</button>
+                <button onclick="window.location.replace('/UserContacts/<?php echo htmlspecialchars($content[0]['id'])?>')">Есть вопросы?</button>
             </div>
         </div>
 
