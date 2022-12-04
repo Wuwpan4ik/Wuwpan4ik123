@@ -77,14 +77,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="slider__item-info _conatiner-player">
-                                                        <div class="slider__item-title">
-                                                            <?=$v['name']?>
-                                                        </div>
-                                                        <div class="slider__item-text">
-                                                            <?=$v['description']?>
-                                                        </div>
-                                                    </div>
                                                     <div class="pause__video">
                                                         <img src="../img/smallPlayer/pause.svg" alt="">
                                                     </div>
