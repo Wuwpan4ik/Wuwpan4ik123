@@ -173,7 +173,7 @@
                                 <div class="popup__allLessons-item-info">
                                     <div class="popup__allLessons-item-info-header">
                                         <div class=" aboutTheAuthor '. $number_color .'">
-                                            Урок '. $counter .'
+                                            Урок '. $counter .' 
                                         </div>
                                         <div class="aboutTheAuthor-name">
                                             '. $duration .'
@@ -184,7 +184,7 @@
                                     </div>
                                 </div>
                                 <button class="accordion-button" id="accordion-button-1" aria-expanded="false">
-                                    <span class="icon" aria-hidden="true"></span></button>
+                                <span class="icon" aria-hidden="true"></span></button>
                                 <div class="accordion">
                                     <div class="accordion-item">
                                         <div class="accordion-content">
