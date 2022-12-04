@@ -66,6 +66,10 @@
                         <input id="button_text" class="videoname video-desc button_text" disabled>
                     </div>
                 </div>
+                <div class="popup__body-item popup__button-after">
+                    <label for="button__send">Текст для кнопки формы:</label>
+                    <input type="text" name="button__send" value="Отправить" class="popup__body__input">
+                </div>
                 <div class="popup__body-item popup__body-after">
                     <label for="second_do">После нажатия на кнопку:</label>
                     <select name="second_do" id="second_do">

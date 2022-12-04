@@ -18,6 +18,16 @@
             return $result;
         }
 
+        public function getContactsByUser()
+        {
+            return $this->db->query("SELECT user.id, user.telephone, user.email, contact.instagram, contact.whatsapp, contact.telegram, contact.facebook, contact.youtube, contact.twitter, contact.skype FROM user LEFT JOIN user_contacts as contact ON contact.user_id = user.id WHERE user.id = " . $_SESSION['item_id']);
+        }
+
+        public function UserHaveAContacts()
+        {
+            return $this->db->query("SELECT id FROM  user_contacts WHERE id = " . $_SESSION['item_id']);
+        }
+
         public function getNotifications($user_id) {
             $result = $this->db->query("SELECT * FROM notifications WHERE `user_id` = '$user_id' AND `is_checked` = 0");
             return $result;
@@ -32,6 +42,7 @@
                                                 course.name,
                                                 content.thubnails,
                                                 content.query_id,
+                                                user_info.id as 'user_id',
                                                 user_info.avatar,
                                                 user_info.first_name
                                                 FROM `course_content` AS content

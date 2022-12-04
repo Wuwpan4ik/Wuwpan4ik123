@@ -100,7 +100,7 @@
                         <div style="display:flex;">
                             <?php $url = include "settings/site_url.php"; ?>
 
-                            <input id="half_input" value="<?=$url?>/SmallPlayer/<?=$p['id']?>" disabled/>
+                            <input id="half_input" value="<?=$url?>/<?=$_SESSION['user']['username']?>/SmallPlayer/<?=$p['id']?>" disabled/>
 
                             <button class="copy-button" onclick="copy_link(this)" type="submit">Копировать</button>
 

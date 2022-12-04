@@ -24,11 +24,37 @@
             return $str;
         }
 
-        public function login () {
+        public function UserLogin() {
             $email = $_POST['email'];
             $password = $_POST['pass'];
 
             $res = $this->db->db->query("SELECT * FROM user WHERE email = '$email' AND password = '$password'");
+            if(count($res) != 0) {
+                unset($_SESSION["user"]);
+                if ($res[0]['is_creator'] == 0) {
+                    $_SESSION["user"] = [
+                        'id' => $res[0]['id'],
+                        'email' => $res[0]['email'],
+                        'avatar' => $res[0]['avatar'],
+                        'is_creator' => 0
+                    ];
+                    if (!is_null($res[0]['first_name'])) {
+                        $_SESSION['user']['first_name'] = $res[0]['first_name'];
+                    }
+                    $response = "С возвращением, " . $_SESSION["user"]["name"];
+                } else {
+                    $response = "Вам не разрешён доступ";
+                }
+            } else {
+                $response = "Такого пользователя не существует";
+            }
+        }
+
+        public function login () {
+            $login = $_POST['login'];
+            $password = $_POST['pass'];
+
+            $res = $this->db->db->query("SELECT * FROM user WHERE username = '$login' AND password = '$password'");
             if(count($res) != 0) {
                 unset($_SESSION["user"]);
                 if ($res[0]['is_creator'] == 0) {
@@ -44,6 +70,7 @@
                         'id' => $res[0]['id'],
                         'niche' => $res[0]['niche'],
                         'avatar' => $res[0]['avatar'],
+                        'username' => $res[0]['username'],
                         'first_name' => $res[0]['first_name'],
                         'second_name' => $res[0]['second_name'],
                         'email' => $res[0]['email'],
@@ -60,6 +87,8 @@
         }
 
         public function registration () {
+            $username = $_POST['username'];
+
             $first_name = $_POST['first_name'];
 
             $second_name = $_POST['second_name'];
@@ -87,7 +116,7 @@
             $this->validate_data($email, $first_name);
             if (isset($_SESSION['email_message']) || isset($_SESSION['first_name_message'])) return False;
 
-            $this->db->db->execute("INSERT INTO `user` (`niche`, `avatar`, `first_name`, `second_name`, `email`, `password`, `is_creator`) VALUES ('$niche', '$ava', '$first_name', '$second_name', '$email', '$password', 1)");
+            $this->db->db->execute("INSERT INTO `user` (`niche`, `avatar`,`username`, `first_name`, `second_name`, `email`, `password`, `is_creator`) VALUES ('$niche', '$ava', '$username', '$first_name', '$second_name', '$email', '$password', 1)");
             $_SESSION['error']['registration_message'] = "Регистрация прошла успешно";
             $res = $this->db->db->query("SELECT * FROM user WHERE email = '$email' AND password = '$password'");
             if(count($res) != 0) {
@@ -104,6 +133,7 @@
                         'id' => $res[0]['id'],
                         'niche' => $res[0]['niche'],
                         'avatar' => $res[0]['avatar'],
+                        'username' => $res[0]['username'],
                         'first_name' => $res[0]['first_name'],
                         'second_name' => $res[0]['second_name'],
                         'email' => $res[0]['email'],

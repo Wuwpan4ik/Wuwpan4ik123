@@ -7,12 +7,21 @@
     $url = key($_GET);
     $url_array = explode('/', $url);
 
-    if (count($url_array) >= 2) {
-        $item_id = $url_array[1];
-        $_SESSION['item_id'] = $item_id;
-    }
 
     $router = new Router();
+
+
+    if (str_contains($url, 'SmallPlayer')) {
+        $item_id = $url_array[2];
+        $_SESSION['item_id'] = $item_id;
+        $router->addRoute("/".$_SESSION['user']['username'] . "/SmallPlayer/$item_id", "SmallPlayer.php");
+    } else {
+        if (count($url_array) >= 2) {
+            $item_id = $url_array[1];
+            $_SESSION['item_id'] = $item_id;
+        }
+    }
+
 
     $router->addRoute("/", "Main.php");
     $router->addRoute("/reg", "Registration.php");
@@ -24,7 +33,6 @@
     $router->addRoute("/ConfirmEmail", "ConfirmEmail.php");
     $router->addRoute("/PasswordRecovery", "PasswordRecovery.php");
     $router->addRoute("/Cases", "Cases.php");
-    $router->addRoute("/SmallPlayer/$item_id", "SmallPlayer.php");
     $router->addRoute("/Account", "Account.php");
     $router->addRoute("/Account/MainSettings", "AccountController.php", "SaveSettings");
     $router->addRoute("/Account/UserSettings", "AccountController.php", "SaveUserSettings");
@@ -32,9 +40,10 @@
 
     $router->addRoute("/UserMain", "UserMain.php");
     $router->addRoute("/UserLogin", "UserLogin.php");
+    $router->addRoute("/LoginController/UserLogin", "LoginController.php", "UserLogin");
     $router->addRoute("/UserRecovery", "UserPasswordRecovery.php");
     $router->addRoute("/UserNotifications", "UserNotifications.php");
-    $router->addRoute("/UserContacts", "UserContacts.php");
+    $router->addRoute("/UserContacts/$item_id", "UserContacts.php");
     $router->addRoute("/UserMenu", "UserMenu.php");
     $router->addRoute("/UserPlayer/$item_id", "UserPlayer.php");
     $router->addRoute("/AboutTheAuthor/$item_id", "AboutTheAuthor.php");
@@ -77,7 +86,6 @@
     $router->addRoute("/LoginController/recovery", "LoginController.php", 'recovery');
     $router->addRoute("/LoginController/logout", "LoginController.php", 'logout');
 
-    $router->addRoute("/send-email", "EmailController.php", 'RegistrateUser');
     $router->addRoute("/ClientsController/application", "ClientsController.php", 'AddApplication');
     $router->addRoute("/ClientsController/CourseBuy", "ClientsController.php", 'BuyCourse');
     $router->addRoute("/ClientsController/CourseVideo", "ClientsController.php", 'BuyVideo');
@@ -98,7 +106,7 @@
     $router->addRoute("/UserController/getVideoInfo", "UserController.php", 'getBuyVideo');
     $router->addRoute("/UserController/save", "LoginController.php", 'saveUserSettings');
 
-    $router->addRoute("/addQuestion", "ContactController.php", "SendQuestion");
+    $router->addRoute("/ContactController/sendQuestions", "ContactController.php", "SendQuestion");
     $router->addRoute("/getNotifications", "NotificationsController.php", "getNotifications");
     $router->addRoute("/NotificationsController/checkout", "NotificationsController.php", "checkNotifications");
 

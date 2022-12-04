@@ -84,6 +84,7 @@
                     }
                     // Первое или второе действие
                     $name = 'button';
+                    $submit__text = $popup->button_text;
                     $popup__do = $popup->first_do;
                     $second_link = $popup->second_do->link;
                     $id = $item['id'];
@@ -114,9 +115,9 @@
 <?php } ?>
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
-<script src="../js/script.js" ></script>
-<script src="../js/slick.min.js"></script>
-<script src="../js/sliders.js"></script>
+<script src="/js/script.js" ></script>
+<script src="/js/slick.min.js"></script>
+<script src="/js/sliders.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.slider__video-item').forEach((item) => {
@@ -136,6 +137,7 @@
                 try {
                     $(this)[0].querySelector('.next__lesson');
                     $('.slick-next').click();
+                    alert("Форма успешно отправлена");
                 } catch {}
                 try {
                     window.open($(this)[0].querySelector('.second_link').value);

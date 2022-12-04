@@ -185,10 +185,12 @@ function addSecondOptions(options) {
 
 function disableAfterClickBlock() {
     document.querySelector('.popup__body-after').classList.add('display-none');
+    document.querySelector('.popup__button-after').classList.add('display-none');
 }
 
 function enableAfterClickBlock() {
     document.querySelector('.popup__body-after').classList.remove('display-none');
+    document.querySelector('.popup__button-after').classList.remove('display-none');
 }
 
 document.addEventListener('DOMContentLoaded', function () {
