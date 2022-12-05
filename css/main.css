@@ -1637,6 +1637,7 @@ td:nth-child(1){
 
 .addFormInput {
   width: 250px;
+  background: #F8F8F8;
   border: 1px solid #E1E3E6;
   border-radius: 8px;
   padding: 12px 16px;
