@@ -123,10 +123,14 @@
 
                             <button type="submit" onclick="window.location.href = '/Funnel/<?=$p['id']?>';"">Изменить</button>
 
-                            <button class="reboot" type="submit" onclick="deleteDirectory(this)">Удалить</button>
+                            <button class="reboot" type="submit" onclick="deleteDirectory(this)" style="background: none;border: solid 1px #4E73F8;color: #4E73F8;">Удалить</button>
 
                         </div>
-
+                        <div class="btn-all-settings">
+                            <button class="settingsBtn" type="submit" onclick="return(false;)">
+                                Общие настройки
+                            </button>
+                        </div>
                     </div>
 
                     <?$k++;}?>
