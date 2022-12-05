@@ -300,7 +300,8 @@
             $course_content = $this->db->query("SELECT course_content.name,
                                                 course_content.description,
                                                 course_content.video,
-                                                course_content.price 
+                                                course_content.price,
+                                                course_content.thubnails
                                                 FROM `funnel` AS funnel
                                                 INNER JOIN `course_content` AS course_content ON course_content.course_id = funnel.course_id AND funnel.id = '$id'");
             $course_sum = $this->db->query("SELECT

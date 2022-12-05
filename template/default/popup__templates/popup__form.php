@@ -14,10 +14,8 @@
                 <input class="next__lesson" type="text" hidden="hidden" name="second_link" value="<?=$next__lesson?>">
             <?php } ?>
             <?php if (isset($popup__do->form)) { ?>
-                <div class="popup__bonus-title  popup-title">Введите ваш email что бы продолжить просмотр</div>
-                <div class="popup__bonus-text popup-text"><span> Бонус:</span> получите книгу - Тысяча способов научиться решать проблемы самостоятельно!</div>
-            <?php } else if (isset($popup__do->pay_form)) { ?>
-                <div class="popup__bonus-title  popup-title">Введите данные для покупки курса</div>
+                <div class="popup__bonus-title  popup-title"><?=$form__title?></div>
+                <div class="popup__bonus-text popup-text"><?=$form__desc?></div>
             <?php } ?>
             <div class="popup__bonus-form">
                 <?php foreach ($form as $input) {
@@ -36,7 +34,7 @@
                                 $value = 'phone';
                                 $input_name = 'phone';
                             }?>
-                            <img src="../img/smallPlayer/<?=$value ?>.svg" alt="">
+                            <img src="/img/smallPlayer/<?=$value?>.svg" alt="">
                         </div>
                         <input name="<?=$input_name?>" type="text" placeholder="Ваш <?=$input?>">
                     </div>

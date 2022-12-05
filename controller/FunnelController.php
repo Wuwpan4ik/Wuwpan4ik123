@@ -190,7 +190,21 @@
                     break;
                 }
             }
-            $videoBtnHTML['button_text'] = $_POST['button__send'];
+            if (strlen($_POST['button__send']) > 0) {
+                $videoBtnHTML['button_text'] = $_POST['button__send'];
+            } else {
+                $videoBtnHTML['button_text'] = "Отправить";
+            }
+            if (strlen($_POST['form__title']) > 0) {
+                $videoBtnHTML['form__title'] = $_POST['form__title'];
+            } else {
+                $videoBtnHTML['form__title'] = "Заголовок";
+            }
+            if (strlen($_POST['form__desc']) > 0) {
+                $videoBtnHTML['form__desc'] = $_POST['form__desc'];
+            } else {
+                $videoBtnHTML['form__desc'] = "Описание";
+            }
             switch ($_POST['second_do']) {
                 case "pay_form": {
                     if (isset($_POST['form_id-4'])) {

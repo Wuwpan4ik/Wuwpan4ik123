@@ -8,7 +8,7 @@
                     <div class="popup__allLessons-item popup-item">
                         <div class="popup__allLessons-item-video">
                             <div class="popup__allLessons-item-video__img">
-                                <img src="../img/smallPlayer/Group1426.png" alt="">
+                                <img src="/<?=$item['thubnails']?>" alt="">
                                 <div class="popup__allLessons-item-video-play">
                                     <img src="../img/smallPlayer/play.png" alt="">
                                 </div>
@@ -30,10 +30,10 @@
         </div>
         <div class="popup__allLessons-form">
             <div class="popup__allLessons-form-buy button-open">
-                <button class="button button-buy">Купить весь курс за <?php print_r($content['course_sum']) ?> ₽</button>
+                <button type="button" class="button button-buy">Купить весь курс за <?php print_r($content['course_sum']) ?> ₽</button>
             </div>
             <div class="popup__allLessons-form-notBuy">
-                <button class="button button-notBuy">Пока не хочу покупать</button>
+                <button type="button" class="button button-notBuy">Пока не хочу покупать</button>
             </div>
         </div>
     </div>

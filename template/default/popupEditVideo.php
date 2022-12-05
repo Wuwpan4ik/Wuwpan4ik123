@@ -57,34 +57,43 @@
                         <option value="link">Переход по ссылке</option>
                         <option value="next_lesson">Открыть следующий урок</option>
                     </select>
-                    <div class="popup__body-item" id="popup__body-form-1">
-                        <label for="form_id display-none">Составляющие формы:</label>
-                        <button class="addFormInput" id="first_do-list" onclick="addFormItem(this)" type="button"><img src="../../img/add.png"> Добавить поле</button>
+                    <div class="popup__body-item popup__margin" id="popup__body-form-1">
+                        <div class="popup__body-item">
+                            <label for="form_id">Данные для формы:</label>
+                            <input class="popup__body__input" type="text" name="form__title" placeholder="Укажите заголовок">
+                            <input class="popup__body__input" type="text" name="form__desc" placeholder="Укажите описание">
+                        </div>
+                        <div class="popup__body-item popup__margin">
+                            <label for="form_id display-none">Составляющие формы:</label>
+                            <button class="addFormInput" id="first_do-list" onclick="addFormItem(this)" type="button"><img src="../../img/add.png"> Добавить поле</button>
+                        </div>
                     </div>
                     <!--Скрыл эту ебучую кнопку, если что возвращай обратно-->
                     <div style="margin: 20px 0;display:none;" class="button__text-container">
                         <input id="button_text" class="videoname video-desc button_text" disabled>
                     </div>
                 </div>
-                <div class="popup__body-item popup__button-after">
+                <div class="popup__body-item popup__button-after popup__margin">
                     <label for="button__send">Текст для кнопки формы:</label>
                     <input type="text" name="button__send" value="Отправить" class="popup__body__input">
                 </div>
-                <div class="popup__body-item popup__body-after">
-                    <label for="second_do">После нажатия на кнопку:</label>
+                <div class="popup__body-item popup__body-after popup__margin">
+                    <label for="second_do">После нажатия на кнопку формы:</label>
                     <select name="second_do" id="second_do">
                         <option value="pay_form" selected>Форма оплаты</option>
                         <option value="link">Переход по ссылке</option>
                         <option value="next_lesson">Открыть следующий урок</option>
                         <option value="file">Отправить файл</option>
                     </select>
-                    <div class="popup__body-item" id="popup__body-form-2">
-                        <label for="form_id">Составляющие формы:</label>
-                        <button class="addFormInput" id="second_do-list" onclick="addFormItem(this)" type="button"><img src="/img/add.png"> Добавить поле</button>
+                    <div class="popup__body-item popup__margin" id="popup__body-form-2">
+                        <div>
+                            <label for="form_id">Составляющие формы:</label>
+                            <button class="addFormInput" id="second_do-list" onclick="addFormItem(this)" type="button"><img src="/img/add.png"> Добавить поле</button>
+                        </div>
                     </div>
-                    <div class="popup__body-item display-none" id="popup__body-file">
+                    <div class="popup__body-item display-none popup__margin" id="popup__body-file">
                         <label for="second_do-list">Файл:</label>
-                        <div class="avatar">
+                        <div class="avatar" style="margin: 0">
                             <div class="avatar-body">
                                 <img src="/img/saveAvatar.svg" alt="">
                                 <div class="avatar-body__info">

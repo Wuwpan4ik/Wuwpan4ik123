@@ -84,6 +84,8 @@
                     }
                     // Первое или второе действие
                     $name = 'button';
+                    $form__title = $popup->form__title;
+                    $form__desc = $popup->form__desc;
                     $submit__text = $popup->button_text;
                     $popup__do = $popup->first_do;
                     $second_link = $popup->second_do->link;
@@ -91,11 +93,6 @@
                     $author_id = $item['author_id'];
                     include 'template/default/popup__templates/popup__form.php';
                 } ?>
-
-                <?php if (isset($popup->second_do->list)) {
-                    $name = 'button';
-                    include 'template/default/popup__templates/popup__all-lessons.php'; }
-                ?>
                 <?php if (isset($popup->first_do->list)) {
                     $name = 'video';
                     include 'template/default/popup__templates/popup__all-lessons.php'; }
