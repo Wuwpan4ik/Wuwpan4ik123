@@ -11,6 +11,7 @@ const container = document.querySelector(".container"),
     videoContainerS = document.querySelector('.contaierPlayer .wrapper'),
     buttonsBack = document.querySelector('.UserPlayer.Сourse-form'),
     playBtnFirst = document.querySelector('#playBtn'),
+    pauseBtnFirst = document.querySelector('#pauseBtn'),
     videoContainer = document.getElementById('UserPlayerVideo');
 
 let timer;
@@ -115,6 +116,7 @@ videoContainer.onclick = function () {
         buttonsBack.classList.remove('active');
         videoContainerS.classList.add('nonActivePlayer');
         videoContainerS.classList.remove('activePlayer');
+        pauseBtnFirst.classList.remove('active');
         videoContainer.play();
     }
     else {
@@ -124,6 +126,7 @@ videoContainer.onclick = function () {
         buttonsBack.classList.add('active');
         videoContainerS.classList.remove('nonActivePlayer');
         videoContainerS.classList.add('activePlayer');
+        pauseBtnFirst.classList.add('active');
         videoContainer.pause();
     }
 }
