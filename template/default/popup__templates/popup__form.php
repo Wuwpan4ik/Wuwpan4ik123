@@ -13,10 +13,8 @@
             <?php if (isset($popup->second_do->next__lesson)) { ?>
                 <input class="next__lesson" type="text" hidden="hidden" name="second_link" value="<?=$next__lesson?>">
             <?php } ?>
-            <?php if (isset($popup__do->form)) { ?>
-                <div class="popup__bonus-title  popup-title"><?=$form__title?></div>
-                <div class="popup__bonus-text popup-text"><?=$form__desc?></div>
-            <?php } ?>
+            <div class="popup__bonus-title  popup-title"><?=$form__title?></div>
+            <div class="popup__bonus-text popup-text"><?=$form__desc?></div>
             <div class="popup__bonus-form">
                 <?php foreach ($form as $input) {
                     ?>
