@@ -171,7 +171,7 @@
 
                     <?php include 'default/media-cart.php'?>
 
-                <?}?>
+                <? } ?>
 
                 <?php include 'default/add_new_video.php'?>
 
@@ -337,6 +337,33 @@
             }, (550));
         }
     })
+</script>
+
+<!--Подсос курсов для воронки-->
+<script>
+    function getCourseList() {
+        let requestDisable = new XMLHttpRequest();
+
+        let urlDisable = "/Funnel/getCourseList";
+
+        requestDisable.open('GET', urlDisable);
+
+        requestDisable.setRequestHeader('Content-Type', 'application/x-www-form-url');
+        requestDisable.addEventListener("readystatechange", () => {
+            if (requestDisable.readyState === 4 && requestDisable.status === 200) {
+                let block = document.getElementById('course_list');
+                let course_list = JSON.parse(requestDisable.responseText);
+                for (let course_item of course_list) {
+                    console.log(course_item)
+                    let option = document.createElement('option');
+                    option.value = course_item['id'];
+                    option.innerHTML = course_item['name'];
+                    block.appendChild(option);
+                }
+            }
+        })
+        requestDisable.send();
+    }
 </script>
 <script src="/js/getNotifications.js"></script>
 </body>

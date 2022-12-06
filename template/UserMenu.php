@@ -91,7 +91,7 @@
 
                     </a>
 
-                    <a href="/UserContacts">
+                    <a href="/UserAllContacts">
 
                         <div class=" UserMenu-list__option sidebarOption <? if ($_GET['option'] == 'Cases') echo 'active'; ?>">
 
