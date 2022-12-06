@@ -1329,7 +1329,7 @@ span.name {
   line-height: inherit;
   background-color: transparent;
   cursor: inherit;
-  padding: 0px 16px;
+  padding: 12px 16px;
 }
 
 select:focus {
