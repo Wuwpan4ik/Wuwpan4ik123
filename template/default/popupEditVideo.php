@@ -57,6 +57,14 @@
                         <option value="link">Переход по ссылке</option>
                         <option value="next_lesson">Открыть следующий урок</option>
                     </select>
+                    <div class="popup__body-item popup__margin" id="popup__body-list-select">
+                        <div class="popup__body-item">
+                            <label for="course_list">Выбрать курс:</label>
+                            <select name="course_list" id="course_list">
+
+                            </select>
+                        </div>
+                    </div>
                     <div class="popup__body-item popup__margin" id="popup__body-form-1">
                         <div class="popup__body-item">
                             <label for="form_id">Данные для формы:</label>

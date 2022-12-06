@@ -204,6 +204,11 @@ function checkFirstSelect() {
         disableAfterClickBlock();
         checkSecondSelect();
     } else {
+        if ('form' === first_select.value) {
+            addPopup('form');
+        } else if ('pay_form' === first_select.value) {
+            addPopup('pay_form');
+        }
         document.querySelector('#popup__body-form-1').style.display = 'flex';
         first_select.parentElement.querySelector('.addFormInput').classList.remove('display-none');
         first_select.parentElement.querySelectorAll('.link_item').forEach((elem) => {

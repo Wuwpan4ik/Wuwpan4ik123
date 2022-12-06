@@ -24,8 +24,8 @@
                 foreach ($content['funnel_content'] as $item) {
                     if (isset($item['popup'])) $popup = json_decode($item['popup']);
             ?>
-            <div class="slider__item ">
-                <div class="slider__video ">
+            <div class="slider__item">
+                <div class="slider__video">
                     <video playsinline id="123" class="slider__video-item" data-player="playing" autoplay="false">
                         <source class="video" src="/<?=$item['video']?>"  />
                     </video>
@@ -95,8 +95,13 @@
                 } ?>
                 <?php if (isset($popup->first_do->list)) {
                     $name = 'video';
-                    include 'template/default/popup__templates/popup__all-lessons.php'; }
+                    $course_id = $popup->first_do->course_id;
+                    include 'template/default/popup__templates/popup__all-lessons.php';
                 ?>
+                    <script>
+
+                    </script>
+                <?php } ?>
             </div>
             <?php } ?>
         </div>

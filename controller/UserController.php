@@ -200,6 +200,41 @@
             echo $div;
         }
 
+        function GetListForSmallPlayer() {
+            $course_content = $this->m->db->query("SELECT course_content.name,
+                                                course_content.description,
+                                                course_content.video,
+                                                course_content.price,
+                                                course_content.thubnails
+                                                FROM `funnel` AS funnel
+                                                INNER JOIN `course_content` AS course_content ON course_content.course_id = funnel.course_id AND funnel.id = '$id'");
+            $count = 1;
+            foreach ($course_content as $item) {
+                $div = '<div class="popup__allLessons-item popup-item">
+                    <div class="popup__allLessons-item-video">
+                        <div class="popup__allLessons-item-video__img">
+                            <img src="/' . $item['thubnails'] . '" alt="">
+                            <div class="popup__allLessons-item-video-play">
+                                <img src="../img/smallPlayer/play.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popup__allLessons-item-info">
+                        <div class="popup__allLessons-item-info-header">
+                            <div class="popup__allLessons-item-info-header-number">
+                                ' .$count . '
+                            </div>
+                        </div>
+                        <div class="popup__allLessons-item-info-title">
+                            ' .$item['name'] . '
+                        </div>
+                    </div>
+                </div>';
+                $count += 1;
+                }
+            echo $div;
+        }
+
         function getBuyCourse() {
             $course_id = $_GET['course_id'];
             $course = $this->m->db->query("SELECT course.name, course.description, course.author_id, course.price, count(course_content.id) as 'count' FROM course_content INNER JOIN course ON course_content.course_id = course.id WHERE course.id = $course_id");
@@ -214,6 +249,10 @@
             $duration = $file['playtime_string'];
             array_push($content, $duration);
             echo json_encode($content);
+        }
+
+        public function GetCourseList() {
+            echo json_encode($this->m->db->query("SELECT * from course WHERE `author_id` = " . $_SESSION['user']['id']));
         }
 
         function get_content()

@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 $('.slider').each(function() {
     let slider = $(this).slick({
-        arrows:false,
+        arrows:true,
         dots:true,
         infinite: false,
         slidesToShow:1,

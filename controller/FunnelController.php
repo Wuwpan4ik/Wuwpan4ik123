@@ -177,6 +177,7 @@
                 }
                 case "list": {
                     $videoBtnHTML['first_do']['list'] = true;
+                    $videoBtnHTML['first_do']['course_id'] = $_POST['course_list'];
                     break;
                 }
                 case "link": {
