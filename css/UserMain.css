@@ -81,6 +81,14 @@
         object-position: left center;
     }
 
+    .youChosen .popup__allLessons-item-video__img img{
+        width:160px !important;
+        height:100px;
+        border-radius: 20px;
+        object-fit: cover;
+        object-position: left center;
+    }
+
     .availableToYou .popup-item{
         align-items: flex-start;
     }

@@ -169,7 +169,7 @@
                                         </div>
                                     </div>
                                     <div class="popup__allLessons-item-info-title course__buy-title">
-                                        Управление гневом внутри себя
+
                                     </div>
                                 </div>
                             </div>
@@ -339,7 +339,7 @@ unset($_SESSION['course_id']);
                 document.querySelector('.video__price-buy').innerHTML = content.price;
                 document.querySelector('.course__buy-title').innerHTML = content.name;
                 document.querySelector('.course__buy-count').innerHTML = content[0] + ' минут';
-                document.querySelector('.course__buy-flag').innerHTML = 'Урок ' + content.query_id;
+                document.querySelector('.course__buy-flag').innerHTML =   content.query_id < 10 ? '0' + content.query_id : content.query_id;
                 document.querySelector('#buy_product').src = content.thubnails;
                 document.querySelector('#creator_id').value = content.author_id;
                 document.querySelector('#course_id').value = number;
@@ -427,7 +427,6 @@ unset($_SESSION['course_id']);
         request1.addEventListener("readystatechange", () => {
             if (request1.readyState === 4 && request1.status === 200) {
                 document.querySelector('.lesson__list').innerHTML = request1.responseText;
-                accordionButton = document.querySelectorAll(".accordion-button");
                 getCourseName(number);
                 document.getElementById('course__back-btn').addEventListener('click', function () {
                     getCoursePage(number);
@@ -461,12 +460,14 @@ unset($_SESSION['course_id']);
                         getVideoInfo(item.querySelector('.item__list-id').dataset.id);
                     }
                 })
+                startAccordion();
             }
         });
         request1.send();
     }
 
     function startAccordion() {
+        let accordionButton = document.querySelectorAll(".accordion-button");
         accordionButton.forEach( item => {
 
 

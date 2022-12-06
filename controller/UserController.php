@@ -161,11 +161,11 @@
                         $image_available = '<img style="width: 100%; height: 100%;" src="'. $item['thubnails'] .'" alt="">';
                     }
                 }
-                $div .='<div class="popup__allLessons-item '. $class .'">
+                $div .='<div class="popup__allLessons-item">
                                 <div class="popup__allLessons-item__header">
-                            <div class="Course-item popup-item">
+                            <div class="Course-item popup-item ">
                             ' . $url_start . '
-                                <div class="popup__allLessons-item-video__img" style="width: 160px; height: 100px;">
+                                <div class="popup__allLessons-item-video__img '. $class .' " style="width: 160px; height: 100px;">
                                     <div data-id="'. $item['id'] .'" class="popup__allLessons-item item__list-id"></div>
                                         '. $image_available .'
                                 </div>
