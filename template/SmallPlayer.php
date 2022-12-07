@@ -121,14 +121,11 @@
 <script src="/js/script.js" ></script>
 <script src="/js/slick.min.js"></script>
 <script src="/js/sliders.js"></script>
+
 <script>
     let mirrorVideo = document.getElementById('mirrorVideo');
     let sourceVideo = document.querySelectorAll('#sourceVideo');
 
-    mirrorVideo.src = sourceVideo[0].src;
-</script>
-
-<script>
     document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.slider__video-item').forEach((item) => {
             item.addEventListener('ended', function () {

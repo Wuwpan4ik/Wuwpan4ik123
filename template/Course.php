@@ -77,9 +77,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="pause__video">
-                                                        <img src="../img/smallPlayer/pause.svg" alt="">
-                                                    </div>
                                                 </div>
                                                 <?$i++;}}?>
                                     </div>
@@ -91,6 +88,13 @@
                         <p>Курс №<?=$k?></p>
 
                         <h3><?=$p['name']?></h3>
+
+                        <div class="course-price">
+                            <input type="number" name="course_price" min="100" placeholder="Укажите стоимость курса">
+                            <button class="save_price" type="submit">
+                                Сохранить
+                            </button>
+                        </div>
 
                         <div class="btn-delete-edit">
 
@@ -112,7 +116,7 @@
 
                         <a  href="/Course/create" class="create-new">
 
-                            <img src="img/Create.svg" class="create-ico">
+                            <img src="/img/Create.svg" class="create-ico">
 
                             <p>Создать<br> новый курс</p>
 
@@ -187,6 +191,20 @@
     });
 </script>
 <script src="/js/getNotifications.js"></script>
+
+<script>
+    let buttonSavePrice = document.querySelectorAll('.save_price');
+    let inputPrice = document.querySelectorAll("input[name='course_price']");
+    for(let i = 0; i < inputPrice.length; i++){
+        inputPrice[i].addEventListener('input', function(){
+            if(inputPrice[i].value != ""){
+                buttonSavePrice[i].classList.add('activeButton');
+            }else{
+                buttonSavePrice[i].classList.remove('activeButton');
+            }
+        });
+    }
+</script>
 </body>
 
 </html>
