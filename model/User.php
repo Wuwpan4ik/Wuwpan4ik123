@@ -327,7 +327,8 @@
                                                 INNER JOIN `course_content` ON course_content.course_id = funnel.course_id AND funnel.id = '$id'
                                                 INNER JOIN `course` ON course.id = course_content.course_id");
             $course_id = $this->db->query("SELECT course.id,
-                                                course.author_id
+                                                course.author_id,
+                                                course.price
                                                 FROM `funnel` AS funnel
                                                 INNER JOIN `course_content` ON course_content.course_id = funnel.course_id AND funnel.id = '$id'
                                                 INNER JOIN `course` ON course.id = course_content.course_id LIMIT 1");

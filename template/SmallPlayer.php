@@ -121,6 +121,7 @@
 <script src="/js/script.js" ></script>
 <script src="/js/slick.min.js"></script>
 <script src="/js/sliders.js"></script>
+
 <!--Закрытие AllLessons-->
 <script>
     document.querySelector('.button-notBuy').addEventListener('click', function (){
@@ -128,6 +129,7 @@
         document.querySelector('.popup-allLessons').classList.remove('active');
     })
 </script>
+
 <script>
     let mirrorVideo = document.getElementById('mirrorVideo');
     let sourceVideo = document.querySelectorAll('#sourceVideo');
