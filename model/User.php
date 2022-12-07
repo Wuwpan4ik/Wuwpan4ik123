@@ -137,7 +137,7 @@
         }
 
         public function getContentForCourseListPage($course_id){
-            $course_query = "SELECT course_content.id, course_content.description, course_content.thubnails, course_content.name, course_content.description, course_content.video FROM course_content WHERE ($course_id = course_content.course_id)";
+            $course_query = "SELECT course_content.id, course_content.description, course_content.thubnails, course_content.name, course_content.description, course_content.video, course_content.course_id FROM course_content WHERE ($course_id = course_content.course_id)";
             $courses = $this->db->query($course_query);
             return $courses;
         }
@@ -317,17 +317,21 @@
                                                 INNER JOIN `user` AS user_info ON funnel.author_id = user_info.id
                                                 INNER JOIN `funnel_content` AS content ON content.funnel_id = funnel.id GROUP BY content.id");
             $course_content = $this->db->query("SELECT course_content.name,
+                                                course_content.id,
                                                 course_content.description,
                                                 course_content.video,
                                                 course_content.price,
-                                                course_content.thubnails
+                                                course_content.thubnails,
+                                                course.author_id
                                                 FROM `funnel` AS funnel
-                                                INNER JOIN `course_content` AS course_content ON course_content.course_id = funnel.course_id AND funnel.id = '$id'");
-            $course_sum = $this->db->query("SELECT
-                                                course.price
-                                                FROM `course` AS course
-                                                INNER JOIN `funnel` AS funnel ON funnel.course_id = course.id AND funnel.id = '$id'");
-            return ['funnel_content' => $funnel_content, 'course_content' => $course_content, 'course_sum' => $course_sum[0]['price']];
+                                                INNER JOIN `course_content` ON course_content.course_id = funnel.course_id AND funnel.id = '$id'
+                                                INNER JOIN `course` ON course.id = course_content.course_id");
+            $course_id = $this->db->query("SELECT course.id,
+                                                course.author_id
+                                                FROM `funnel` AS funnel
+                                                INNER JOIN `course_content` ON course_content.course_id = funnel.course_id AND funnel.id = '$id'
+                                                INNER JOIN `course` ON course.id = course_content.course_id LIMIT 1");
+            return ['funnel_content' => $funnel_content, 'course_content' => $course_content, 'course_id' => $course_id];
 
         }
 

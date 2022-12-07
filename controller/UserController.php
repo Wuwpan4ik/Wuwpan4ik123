@@ -148,7 +148,7 @@
                 $getID3 = new getID3;
                 $file = $getID3->analyze($item['video']);
                 $duration = $file['playtime_string'];
-                if (!in_array($item['id'], $purchase_info['video_id']) == 1) {
+                if (!in_array($item['id'], $purchase_info['video_id']) == 1 && !in_array($item['course_id'], $purchase_info['course_id'])) {
                     $class = 'choice-video';
                     $number_color = 'Notavailable-number';
                     $url_start = "";

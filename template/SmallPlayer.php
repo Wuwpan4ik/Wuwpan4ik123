@@ -102,9 +102,6 @@
                     $course_id = $popup->first_do->course_id;
                     include 'template/default/popup__templates/popup__all-lessons.php';
                 ?>
-                    <script>
-
-                    </script>
                 <?php } ?>
             </div>
             <?php } ?>
