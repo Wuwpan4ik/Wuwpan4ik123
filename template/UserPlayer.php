@@ -52,7 +52,7 @@
             <button onclick="window.location.replace('/UserMain?course_id=' + <?=$content[0]['id'] ?>)">Назад</button>
         </div>
         <div class="Сourse-question userPopup__button">
-            <button onclick="window.location.replace('/UserContacts/' + <?=$content[0]['user_id'] ?>)">Есть вопросы?</button>
+            <button id="send__questions">Есть вопросы?</button>
         </div>
     </div>
     <div class="firstPauseButton" id="pauseBtn">
@@ -166,11 +166,69 @@
         </div>
     </div>
 </div>
+    <div class="question userPopup ">
+        <div class="youPick userPopup__title button__questions">
+            Есть вопросы?
+        </div>
+        <div class="question  userPopup__body">
+            <div class=" question ">
+                <div class="popup__buy-register">
+                    <form id="formQuest" method="POST" action="/ContactController/sendQuestions">
+                        <input type="hidden" value="<?=$content[0]['user_id'] ?>" name="author_id" id="question_author-id">
+                        <?php if (!isset($_SESSION['user']['first_name'])) { ?>
+                            <div class="popup__buy-body-form question input">
+                                <div class="popup__bonus-form-input-account input-img">
+                                    <img src="../img/smallPlayer/account.svg" alt="">
+                                </div>
+                                <input name="name" type="text" <?php echo isset($_SESSION['user']['first_name']) ? "value='" . $_SESSION['user']['first_name'] . "'" : 'placeholder="Введите имя" '?> <?php echo isset($_SESSION['user']['first_name']) ? "readonly" : ''?>>
+                            </div>
+                        <?php } ?>
+                        <div class="popup__buy-body-form question input">
+                            <div class="popup__bonus-form-input-email input-img">
+                                <img src="../img/smallPlayer/email.svg" alt="">
+                            </div>
+                            <input name="email" type="email" value="<?php echo isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : 'Введите имя '?>" readonly>
+                        </div>
+                        <div class="popup__buy-body-form question-textarea">
+                            <div class="popup__bonus-form-input-email input-img">
+                                <img src="../img/smallPlayer/email.svg" alt="">
+                            </div>
+                            <textarea name="question" placeholder="Ваш вопрос"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="question-form">
+                    <div class="userPopup__button questionBack backBtn">
+                        <button id="close__question" class="courseBackBtn">Назад</button>
+                    </div>
+                    <div class="Сourse-question userPopup__button">
+                        <button id="sendQuest" type="submit">Отправить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         let mirrorVideo = document.getElementById('mirrorVideo');
         let sourceVideo = document.querySelectorAll('#UserPlayerVideo');
 
         mirrorVideo.src = sourceVideo[0].src;
+    </script>
+
+<!--Открытие попапа Вопроса-->
+    <script>
+        function toggleQuestions() {
+            document.querySelector('.mirror_smallPlayer').classList.toggle('display-none');
+            document.querySelector('.userVideoContainer').classList.toggle('display-none');
+            document.querySelector('.userVideoContainer').classList.toggle('active');
+            document.querySelector('.question').classList.toggle('active');
+        }
+        document.getElementById('send__questions').addEventListener('click', function (){
+            toggleQuestions();
+        })
+        document.querySelector('#close__question').addEventListener('click', function (){
+            toggleQuestions();
+        })
     </script>
 
     <script>

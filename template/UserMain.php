@@ -142,7 +142,7 @@
                 <div class="userPopup__button buy__course-btn">
                     <button type="button" class="button__buy-course">Купить весь курс за <span class="course__price"></span> ₽</button>
                 </div>
-                <div class=" AllLessons userPopup__button allLessonsBackBt">
+                <div class=" AllLessons userPopup__button allLessonsBackBtn">
                     <button>Пока не хочу покупать</button>
                 </div>
             </div>
@@ -177,7 +177,7 @@
                     </div>
                     <div class="youChosen-info">
                         Стоимость <span class="course__buy-text"></span>
-                        <span><span class="course__price video__price-buy"></span> ₽</span>
+                        <span><span class="course__price video__price-buy"></span> <?php echo isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></span>
                     </div>
                     <form class="form__buy-course-video" method="POST" action="/ClientsController/CourseBuy">
                         <input hidden="hidden" type="text" name="creator_id" value="" id="creator_id">
@@ -239,7 +239,7 @@
                             </div>
                             <div class="popup__buy-body-form question-textarea">
                                 <div class="popup__bonus-form-input-email input-img">
-                                    <img src="../img/smalвlPlayer/email.svg" alt="">
+                                    <img src="../img/smallPlayer/email.svg" alt="">
                                 </div>
                                 <textarea name="question" placeholder="Ваш вопрос"></textarea>
                             </div>

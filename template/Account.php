@@ -188,7 +188,7 @@
                                         <div class="field">
                                             <div class="tariff-card">
                                                 <div class="tariff-plan">
-                                                    <div class="tariff-price">2 600 ₽</div>
+                                                    <div class="tariff-price">2 600 <?=isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></div>
                                                 </div>
                                                 <div class="tariff-name">
                                                     Для новичков
