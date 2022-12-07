@@ -139,10 +139,6 @@
             $purchase_info = json_decode($purchase[0]['purchase'], true);
             $div = '';
             $counter = 1;
-            $disable = $_GET['disable'];
-            if ($disable) {
-                $price = $this->m->getContentPriceForCourseListPage($course_id);
-            }
             foreach ($course_page as $item) {
                 $class = '';
                 $number_color = 'available-number';
@@ -152,20 +148,18 @@
                 $getID3 = new getID3;
                 $file = $getID3->analyze($item['video']);
                 $duration = $file['playtime_string'];
-                if ($disable) {
-                    if (!in_array($item['id'], $purchase_info['video_id']) == 1) {
-                        $class = 'choice-video';
-                        $number_color = 'Notavailable-number';
-                        $url_start = "";
-                        $url_end = "";
-                        $image_available = '<img style="width: 100%; height: 100%;" src="'. $item['thubnails'] .'" alt="">';
-                    }
+                if (!in_array($item['id'], $purchase_info['video_id']) == 1) {
+                    $class = 'choice-video';
+                    $number_color = 'Notavailable-number';
+                    $url_start = "";
+                    $url_end = "";
+                    $image_available = '<img style="width: 100%; height: 100%;" src="'. $item['thubnails'] .'" alt="">';
                 }
-                $div .='<div class="popup__allLessons-item '. $class .'">
+                $div .='<div class="popup__allLessons-item">
                                 <div class="popup__allLessons-item__header">
                             <div class="Course-item popup-item">
                             ' . $url_start . '
-                                <div class="popup__allLessons-item-video__img" style="width: 160px; height: 100px;">
+                                <div class="popup__allLessons-item-video__img '. $class .'" style="width: 160px; height: 100px;">
                                     <div data-id="'. $item['id'] .'" class="popup__allLessons-item item__list-id"></div>
                                         '. $image_available .'
                                 </div>

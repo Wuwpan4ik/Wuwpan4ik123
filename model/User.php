@@ -67,6 +67,12 @@
             $purchases = $this->db->query("SELECT `purchase` FROM `purchase` WHERE user_id = " . $_SESSION['user']['id'])[0]['purchase'];
             $course_query = "SELECT user.id, course.name, user.avatar, user.school_name, course.description, user.first_name, user.second_name, count(course.id) as 'count', course.author_id FROM course AS course INNER JOIN user ON user.id = course.author_id WHERE";
             $purchases_array = json_decode($purchases, true)['course_id'];
+            foreach (json_decode($purchases, true)['video_id'] as $item) {
+                $video_course_id = $this->db->query("SELECT `course_id` FROM `course_content` WHERE id = $item")[0]['course_id'];
+                if (!in_array($video_course_id, $purchases_array)) {
+                    array_push($purchases_array, $video_course_id);
+                }
+            }
             foreach ($purchases_array as $course_id) {
                 $course_query .= " course.id = $course_id ";
                 if (count($purchases_array) != 1) {
@@ -77,6 +83,7 @@
                 }
                 array_shift($purchases_array);
             }
+            $_SESSION['error'] = $course_query;
             $courses = $this->db->query($course_query);
             return $courses;
         }
@@ -85,6 +92,12 @@
         {
             $purchases = $this->db->query("SELECT `purchase` FROM `purchase` WHERE user_id = " . $_SESSION['user']['id'])[0]['purchase'];
             $purchases_array = json_decode($purchases, true)['course_id'];
+            foreach (json_decode($purchases, true)['video_id'] as $item) {
+                $video_course_id = $this->db->query("SELECT `course_id` FROM `course_content` WHERE id = $item")[0]['course_id'];
+                if (!in_array($video_course_id, $purchases_array)) {
+                    array_push($purchases_array, $video_course_id);
+                }
+            }
             $course_query = "SELECT course.id, course.name, course.description, course.author_id, count(course_content.id) as 'count' FROM course INNER JOIN course_content on course_content.course_id = course.id WHERE (";
             foreach ($purchases_array as $course_id) {
                 $course_query .= " course.id = $course_id ";
@@ -103,6 +116,12 @@
         {
             $purchases = $this->db->query("SELECT `purchase` FROM `purchase` WHERE user_id = " . $_SESSION['user']['id'])[0]['purchase'];
             $purchases_array = json_decode($purchases, true)['course_id'];
+            foreach (json_decode($purchases, true)['video_id'] as $item) {
+                $video_course_id = $this->db->query("SELECT `course_id` FROM `course_content` WHERE id = $item")[0]['course_id'];
+                if (!in_array($video_course_id, $purchases_array)) {
+                    array_push($purchases_array, $video_course_id);
+                }
+            }
             $course_query = "SELECT course.id, course.name, course.description, course.author_id, count(course_content.id) as 'count' FROM course INNER JOIN course_content on course_content.course_id = course.id WHERE ($author_id = course.author_id) AND NOT (";
             foreach ($purchases_array as $course_id) {
                 $course_query .= " course.id = $course_id ";
