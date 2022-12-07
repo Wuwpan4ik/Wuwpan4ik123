@@ -49,6 +49,35 @@
                 <label for="description">Укажите стоимость урока:</label>
                 <input name="price" class="videoname" type="number" value="<?=$v['price'] ?>">
             </div>
+            <div class="file_input">
+                <span>
+                    Прикрепите файл к уроку:
+                </span>
+                <div class="avatar inCourse">
+                    <div class="avatar-body">
+                        <img src="../img/saveAvatar.svg" alt="">
+                        <div class="avatar-body__info">
+                            <span id="file-name" class="file-box">
+                                Название файла
+                            </span>
+                            <span id="file-size" class="file-box">
+                                0кб из 5мб
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="input__wrapper">
+                        <input accept="image/img, image/jpeg, image/png" name="avatar" type="file" id="input__file" class="input input__file" onchange="uploadFile(this)" multiple="">
+                        <label for="input__file" class="input__file-button" style="">
+                            <span class="input__file-icon-wrapper"><img class="input__file-icon" src="/img/plus.svg" width="25"></span>
+                            <span class="input__file-button-text">Добавить</span>
+                        </label>
+                    </div>
+
+                </div>
+            </div>
         <?php } ?>
         <button type="submit">Сохранить</button>
 

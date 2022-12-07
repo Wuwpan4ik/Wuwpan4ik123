@@ -38,7 +38,7 @@ $('.slider').each(function() {
         // Закончил здесь
         this.addEventListener('click', function (){
             let videoLocal = this;
-            let videoMirror = document.getElementById('mirrorVideo')
+            //let videoMirror = document.getElementById('mirrorVideo')
             let interval = setInterval(function () {
                 let progressBar = videoLocal.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector('.slick-dots li.slick-active button');
                 width = (videoLocal.currentTime * 100) / videoLocal.duration;
@@ -52,12 +52,12 @@ $('.slider').each(function() {
             if(this.paused){
                 $('.slick-current').find('.play__video').removeClass('active');
                 $('.slick-current').find('.pause__video').removeClass('active');
-                videoMirror.play();
+                //videoMirror.play();
                 this.play();
             }
             else{
                 $('.slick-current').find('.pause__video').addClass('active');
-                videoMirror.pause();
+                //videoMirror.pause();
                 this.pause();
             }
         })
