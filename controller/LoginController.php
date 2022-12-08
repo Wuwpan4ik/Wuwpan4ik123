@@ -101,7 +101,7 @@
 
             $ava = "uploads/ava/" . $email. "_" .$_FILES['avatar']['name'];
 
-            if(!$_FILES['avatar']['name']){
+            if($_FILES['avatar']['size'] == 0){
                 $ava = "uploads/ava/userAvatar.jpg";
             }
 
