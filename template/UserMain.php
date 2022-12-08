@@ -12,7 +12,6 @@
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 </head>
 <body class="body">
-<?php print_r($_SESSION['error'])?>
 <div class="UserMain bcg">
     <div class="_container" style="height: 9%;">
         <div class="User-header">
@@ -115,7 +114,7 @@
             </div>
             <div class="Сourse-form">
                 <div class="backBtn userPopup__button">
-                    <button type="button" id="course__back-btn">Назад</button>
+                    <button type="button" class="course__back-btn">Назад</button>
                 </div>
                 <div class="Сourse-question userPopup__button questionBtn">
                     <button>Есть вопросы?</button>
@@ -144,7 +143,7 @@
                     <button type="button" class="button__buy-course">Купить весь курс за <span class="course__price"></span> ₽</button>
                 </div>
                 <div class=" AllLessons userPopup__button allLessonsBackBtn">
-                    <button>Пока не хочу покупать</button>
+                    <button type="button" class="course__back-btn">Пока не хочу покупать</button>
                 </div>
             </div>
         </div>
@@ -272,6 +271,15 @@ unset($_SESSION['course_id']);
 <script src="../js/script.js" ></script>
 <script>
 
+    function getBackToCourseList(number) {
+        document.querySelectorAll('.course__back-btn').forEach(item => {
+            item.addEventListener('click', function () {
+                getCoursePage(number);
+                getDisablePage(number);
+            })
+        })
+    }
+
     function hiddenAllPopups() {
         document.querySelectorAll('.userPopup').forEach(item => {
             item.classList.remove('active');
@@ -290,9 +298,11 @@ unset($_SESSION['course_id']);
     // Переход с Player на UserMain
     let course__get_url = new URL(window.location.href);
     let course__get_id = course__get_url.searchParams.get('course_id');
+    let author__get_id = course__get_url.searchParams.get('author_id');
     if (course__get_id) {
         hiddenAllPopups();
         document.querySelector('.course__popup').classList.add('active');
+        getBackToCourseList(author__get_id)
         getListPage(course__get_id);
         course__get_url.searchParams.delete('course_id');
         window.history.pushState({}, '', course__get_url.toString());
@@ -318,6 +328,7 @@ unset($_SESSION['course_id']);
                 document.querySelector('.course__buy-flag').innerHTML = 'Курс';
                 document.querySelector('#creator_id').value = course['author_id'];
                 document.querySelector('#course_id').value = course_id;
+                getBackToCourseList(number);
             }
         });
         request.send();
@@ -350,6 +361,7 @@ unset($_SESSION['course_id']);
     }
 
     function getCoursePage (number) {
+        console.log(number)
         let request = new XMLHttpRequest();
 
         let url = "/UserController/getCourse?author_id=" + number;
@@ -430,11 +442,6 @@ unset($_SESSION['course_id']);
                 document.querySelector('.lesson__list').innerHTML = request1.responseText;
                 accordionButton = document.querySelectorAll(".accordion-button");
                 getCourseName(number);
-                document.getElementById('course__back-btn').addEventListener('click', function () {
-                    getCoursePage(number);
-                    hiddenAllPopups();
-                    availableToYou.classList.add('active')
-                })
                 let choiceVideo = document.body.querySelectorAll('.choice-video');
                 choiceVideo.forEach(item => {
                     item.onclick = function () {
@@ -442,6 +449,15 @@ unset($_SESSION['course_id']);
                         youChosen.classList.add('active');
                         getVideoInfo(item.querySelector('.item__list-id').dataset.id);
                     }
+                })
+                document.querySelectorAll('.course__back-btn').forEach(item => {
+                    item.addEventListener('click', function () {
+                        hiddenAllPopups();
+                        availableToYou.classList.add('active')
+                        otherCourses.style.display = 'block';
+                        getCoursePage(number);
+                        getDisablePage(number);
+                    })
                 })
                 startAccordion();
             }

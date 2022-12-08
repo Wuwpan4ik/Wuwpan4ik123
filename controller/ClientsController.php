@@ -132,7 +132,7 @@
             $current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
             $this->m->db->execute("INSERT INTO `orders` (`user_id`, `course_id`, `creator_id`, `money`, `achivment_date`) VALUES ('". $_SESSION['user']['id'] ."', '$course_id', '$creator_id', '$give_money', '$current_date')");
 
-            if ($client[0]['buy_progress'] <= $buy_progress[$comment]) {
+            if ($client[0]['buy_progress'] < $buy_progress[$comment]) {
 
 //              Добавление Purchase
                 $purchase = $this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $_SESSION['user']['id']);

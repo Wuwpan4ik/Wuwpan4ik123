@@ -49,7 +49,7 @@
     </div>
     <div class="UserPlayer Сourse-form">
         <div class="userPopup__button courseBackBtn backBtn">
-            <button onclick="window.location.replace('/UserMain?course_id=' + <?=$content[0]['id'] ?>)">Назад</button>
+            <button onclick="window.location.replace('/UserMain?course_id=' + <?=$content[0]['id'] ?> + '&author_id=' + <?=$content[0]['user_id'] ?>)">Назад</button>
         </div>
         <div class="Сourse-question userPopup__button">
             <button id="send__questions">Есть вопросы?</button>
