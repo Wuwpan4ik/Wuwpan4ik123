@@ -86,7 +86,24 @@
                 $price = $courseContent[0]['price'];
             }
 
-            $this->m->db->execute("UPDATE `course_content` SET `name` = '$name', `description` = '$description', `price` = '$price' WHERE `id` = '$item_id'");
+//          Проверить наличие course_files
+            if (!is_dir($this->url_dir . "course_files")) {
+                mkdir($this->url_dir . "course_files");
+                mkdir($this->url_dir . "course_files/" . $res[0]['id']);
+            }
+
+//
+//            if ($_FILES['file']['size'] != 0) {
+//                unlink($courseContent[0]['file_url']);
+
+                $_SESSION['error'] = $this->url_dir . "course_files/" . $res[0]['id'] . "/" . $_FILES['file']['name'];
+
+                move_uploaded_file($_FILES['file']['tmp_name'], $this->url_dir . "course_files/" . $res[0]['id'] . "/" . $_FILES['file']['name']);
+
+                $file_url = $this->url_dir . "course_files/" . $res[0]['id'] . "/" . $_FILES['file']['name'];
+//            }
+
+            $this->m->db->execute("UPDATE `course_content` SET `name` = '$name', `description` = '$description', `price` = '$price', `file_url` = '$file_url' WHERE `id` = '$item_id'");
             return True;
         }
 

@@ -149,6 +149,7 @@
             mkdir("./uploads/users/". $_SESSION['user']['id'] . "/funnels");
             mkdir("./uploads/users/". $_SESSION['user']['id'] . "/courses");
             mkdir("./uploads/users/". $_SESSION['user']['id'] . "/files");
+            mkdir("./uploads/users/". $_SESSION['user']['id'] . "/course_files");
             mkdir("./uploads/users/". $_SESSION['user']['id'] . "/thumbnails");
             return True;
         }

@@ -44,7 +44,8 @@
                                                 content.query_id,
                                                 user_info.id as 'user_id',
                                                 user_info.avatar,
-                                                user_info.first_name
+                                                user_info.first_name,
+                                                content.file_url
                                                 FROM `course_content` AS content
                                                 INNER JOIN `course` AS course ON content.course_id = course.id
                                                 INNER JOIN `user` AS user_info ON course.author_id = user_info.id WHERE content.id = '$id'");

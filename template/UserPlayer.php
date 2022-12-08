@@ -137,29 +137,29 @@
                                 </div>
                             </div>
                         </div>
+                        <?php if(isset($content[0]['file_url'])) { ?>
                         <div class="fileDownload_item">
                             <div class="upload__file">
                                 <div class="firstRow">
                                     <img src="../img/saveAvatar.svg" alt="Файлик">
                                     <div class="file_name">
                                         <!--Сюда выводим название файла и его размер-->
-                                        <p>
-                                            Название файла
-                                        </p>
-                                        <span>
-                                            Размер файла - 150кб
+                                        <span id="file-name" class="file-box">
+                                            <?php if (isset($content[0]['file_url'])) {print_r(substr(basename($content[0]['file_url']), 0, 10));} else {echo 'Название файла';}?>
+                                        </span>
+                                                    <span id="file-size" class="file-box">
+                                            <?php if (isset($content[0]['file_url'])) {print_r(round(filesize($content[0]['file_url']) / 1024));} else {echo '0';} ?>кб из 5мб
                                         </span>
                                     </div>
                                 </div>
                                 <div class="secondRow">
-                                    <a href="<!--Ссылка на файл-->" download>
-                                        <button class="download_file">
-                                            Скачать файл
-                                        </button>
-                                    </a>
+                                    <button type="button" onclick="get_file_url('<?=$content[0]['file_url'] ?>')" class="download_file">
+                                        Скачать файл
+                                    </button>
                                 </div>
                             </div>
                         </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -208,6 +208,20 @@
             </div>
         </div>
     </div>
+    <script>
+        function get_file_url(url) {
+
+            var link_url = document.createElement("a");
+
+            link_url.download = url.substring((url.lastIndexOf("/") + 1), url.length);
+            link_url.href = url;
+            document.body.appendChild(link_url);
+            link_url.click();
+            document.body.removeChild(link_url);
+            delete link_url;
+
+        }
+    </script>
     <script>
         let mirrorVideo = document.getElementById('mirrorVideo');
         let sourceVideo = document.querySelectorAll('#UserPlayerVideo');
