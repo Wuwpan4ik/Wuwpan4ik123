@@ -148,7 +148,7 @@
                                             <?php if (isset($content[0]['file_url'])) {print_r(substr(basename($content[0]['file_url']), 0, 10));} else {echo 'Название файла';}?>
                                         </span>
                                                     <span id="file-size" class="file-box">
-                                            <?php if (isset($content[0]['file_url'])) {print_r(round(filesize($content[0]['file_url']) / 1024));} else {echo '0';} ?>кб из 5мб
+                                            <?php if (isset($content[0]['file_url'])) {print_r(round(filesize($content[0]['file_url']) / 1024 / 1024));} else {echo '0';} ?>мб из 5мб
                                         </span>
                                     </div>
                                 </div>
