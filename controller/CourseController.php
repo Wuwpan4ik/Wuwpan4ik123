@@ -196,13 +196,22 @@
             } else {
                 $name = $res[0]['title'];
             }
-            if (isset($_POST['price']) && strlen($_POST['price']) > 0) {
-                $price = $_POST['price'];
+            $this->m->db->execute("UPDATE course SET `name` = '$name' WHERE id = '$item_id'");
+            return True;
+        }
+
+        public function SetPrice()
+        {
+            $item_id = $_SESSION['item_id'];
+
+            $res = $this->m->db->query("SELECT * FROM course WHERE id = '$item_id'");
+
+            if (isset($_POST['course_price']) && strlen($_POST['course_price']) > 0) {
+                $price = $_POST['course_price'];
             } else {
                 $price = $res[0]['price'];
             }
-            $this->m->db->execute("UPDATE course SET `name` = '$name', `price` = '$price' WHERE id = '$item_id'");
-            return True;
+            $this->m->db->execute("UPDATE course SET `price` = '$price' WHERE id = '$item_id'");
         }
 
         function get_content()
