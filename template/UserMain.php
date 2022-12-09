@@ -112,7 +112,7 @@
                     </div>
                 </div>
             </div>
-            <div class="Сourse-form">
+            <div class="User-form-g">
                 <div class="backBtn userPopup__button">
                     <button type="button" id="course__back-btn">Назад</button>
                 </div>
@@ -138,7 +138,7 @@
                     </div>
                 </div>
             </div>
-            <div class="AllLessons-form">
+            <div class="User-form-v">
                 <div class="userPopup__button buy__course-btn">
                     <button type="button" class="button__buy-course">Купить весь курс за <span class="course__price"></span> ₽</button>
                 </div>
@@ -169,7 +169,7 @@
                                         </div>
                                     </div>
                                     <div class="popup__allLessons-item-info-title course__buy-title">
-                                        Управление гневом внутри себя
+
                                     </div>
                                 </div>
                             </div>
@@ -202,7 +202,7 @@
                                 <input type="tel" name="phone" placeholder="Ваш телефон">
                             </div>
                         </div>
-                        <div class="question-form">
+                        <div class="User-form-g">
                             <div class="backBtn userPopup__button youChosenBackBtn courseBackBtn">
                                 <button type="button">Назад</button>
                             </div>
@@ -222,30 +222,30 @@
                 <div class=" question ">
                     <div class="popup__buy-register">
                         <form id="formQuest" method="POST" action="/ContactController/sendQuestions">
-                            <input type="hidden" value="17" name="author_id" id="question_author-id">
+                            <input type="hidden" value="" name="author_id" id="question_author-id">
                             <?php if (!isset($_SESSION['user']['first_name'])) { ?>
                             <div class="popup__buy-body-form question input">
                                 <div class="popup__bonus-form-input-account input-img">
                                     <img src="../img/smallPlayer/account.svg" alt="">
                                 </div>
-                                <input name="name" type="text" placeholder="<?php echo isset($_SESSION['user']['first_name']) ? $_SESSION['user']['first_name'] : 'Введите имя '?>" <?php echo isset($_SESSION['user']['first_name']) ? "readonly" : ''?>>
+                                <input name="name" type="text" value="<?php echo isset($_SESSION['user']['first_name']) ? $_SESSION['user']['first_name'] : 'Введите имя '?>" <?php echo isset($_SESSION['user']['first_name']) ? "readonly" : ''?>>
                             </div>
                             <?php } ?>
                             <div class="popup__buy-body-form question input">
                                 <div class="popup__bonus-form-input-email input-img">
                                     <img src="../img/smallPlayer/email.svg" alt="">
                                 </div>
-                                <input name="email" type="email" placeholder="<?php echo isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : 'Введите имя '?>" readonly>
+                                <input name="email" type="email" value="<?php echo isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : 'Введите имя '?>" readonly>
                             </div>
                             <div class="popup__buy-body-form question-textarea">
                                 <div class="popup__bonus-form-input-email input-img">
-                                    <img src="../img/smallPlayer/email.svg" alt="">
+                                    <img src="../img/smalвlPlayer/email.svg" alt="">
                                 </div>
                                 <textarea name="question" placeholder="Ваш вопрос"></textarea>
                             </div>
                         </form>
                     </div>
-                    <div class="question-form">
+                    <div class="User-form-g">
                         <div class=" userPopup__button questionBack backBtn">
                             <button class="courseBackBtn">Назад</button>
                         </div>
@@ -339,7 +339,7 @@ unset($_SESSION['course_id']);
                 document.querySelector('.video__price-buy').innerHTML = content.price;
                 document.querySelector('.course__buy-title').innerHTML = content.name;
                 document.querySelector('.course__buy-count').innerHTML = content[0] + ' минут';
-                document.querySelector('.course__buy-flag').innerHTML = 'Урок ' + content.query_id;
+                document.querySelector('.course__buy-flag').innerHTML =   content.query_id < 10 ? '0' + content.query_id : content.query_id;
                 document.querySelector('#buy_product').src = content.thubnails;
                 document.querySelector('#creator_id').value = content.author_id;
                 document.querySelector('#course_id').value = number;
@@ -427,12 +427,19 @@ unset($_SESSION['course_id']);
         request1.addEventListener("readystatechange", () => {
             if (request1.readyState === 4 && request1.status === 200) {
                 document.querySelector('.lesson__list').innerHTML = request1.responseText;
-                accordionButton = document.querySelectorAll(".accordion-button");
                 getCourseName(number);
                 document.getElementById('course__back-btn').addEventListener('click', function () {
                     getCoursePage(number);
                     hiddenAllPopups();
                     availableToYou.classList.add('active')
+                })
+                let choiceVideo = document.body.querySelectorAll('.choice-video');
+                choiceVideo.forEach(item => {
+                    item.onclick = function () {
+                        hiddenAllPopups();
+                        youChosen.classList.add('active');
+                        getVideoInfo(item.querySelector('.item__list-id').dataset.id);
+                    }
                 })
                 startAccordion();
             }
@@ -461,12 +468,14 @@ unset($_SESSION['course_id']);
                         getVideoInfo(item.querySelector('.item__list-id').dataset.id);
                     }
                 })
+                startAccordion();
             }
         });
         request1.send();
     }
 
     function startAccordion() {
+        let accordionButton = document.querySelectorAll(".accordion-button");
         accordionButton.forEach( item => {
 
 

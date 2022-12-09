@@ -57,7 +57,7 @@
     </div>
     <div class="firstPauseButton" id="pauseBtn">
         <div class="pauseBtn">
-            <img src="../img/smallPlayer/pause.svg" alt="">
+            <img src="../img/pausePlayer.svg" alt="">
         </div>
     </div>
     <div class="firstPlayButton" id="playBtn">

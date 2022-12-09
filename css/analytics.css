@@ -710,3 +710,12 @@ span.color3 {
 .Analytics-graphic__totalProfit {
     margin: 34px 0 0 0;
 }
+.no-data{
+    width: 100%;
+    height: 45vh;
+}
+.no-data p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
