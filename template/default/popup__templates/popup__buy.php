@@ -32,7 +32,7 @@
                     <div class="popup__buy-price-title">
                         Стоимость урока:
                     </div><div class="popup__buy-price-cost">
-                        250 ₽
+                        <span id="price"></span> ₽
                     </div>
                 </div>
                 <div class="popup__buy-register">
@@ -40,7 +40,7 @@
                         <div class="popup__bonus-form-input-account input-img">
                             <img src="/img/smallPlayer/account.svg" alt="">
                         </div>
-                        <input name="name" type="text" placeholder="Ваше имя" required>
+                        <input name="first_name" type="text" placeholder="Ваше имя" required>
                     </div>
                     <div class="popup__buy-body-form  input">
                         <div class="popup__bonus-form-input-email input-img">

@@ -50,7 +50,7 @@ class SortController extends ACoreCreator {
 
 						<td class="nick"> <input type="checkbox" class="check_user">' . mb_strimwidth($client["first_name"], 0, 8, '') . '</td>
 											
-						<td>' . $client["give_money"] . ' ₽</td>
+						<td>' . $client["give_money"] . isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : "₽" . '</td>
 
 						<td>' . $client["email"] . '</td>
 
@@ -93,7 +93,7 @@ class SortController extends ACoreCreator {
                 '<tr>
                         <td> <input type="checkbox" class="check_user">' . $count . '</td>
 				
-						<td>' . $order["money"] . ' ₽</td>
+						<td>' . $order["money"] . isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : "₽" . '</td>
 
 						<td>' . $order["email"] . '</td>
 

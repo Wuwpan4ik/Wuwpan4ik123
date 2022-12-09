@@ -101,7 +101,7 @@
 
             $ava = "uploads/ava/" . $email. "_" .$_FILES['avatar']['name'];
 
-            if(!$_FILES['avatar']['name']){
+            if($_FILES['avatar']['size'] == 0){
                 $ava = "uploads/ava/userAvatar.jpg";
             }
 
@@ -149,6 +149,7 @@
             mkdir("./uploads/users/". $_SESSION['user']['id'] . "/funnels");
             mkdir("./uploads/users/". $_SESSION['user']['id'] . "/courses");
             mkdir("./uploads/users/". $_SESSION['user']['id'] . "/files");
+            mkdir("./uploads/users/". $_SESSION['user']['id'] . "/course_files");
             mkdir("./uploads/users/". $_SESSION['user']['id'] . "/thumbnails");
             return True;
         }

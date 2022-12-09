@@ -44,7 +44,8 @@
                                                 content.query_id,
                                                 user_info.id as 'user_id',
                                                 user_info.avatar,
-                                                user_info.first_name
+                                                user_info.first_name,
+                                                content.file_url
                                                 FROM `course_content` AS content
                                                 INNER JOIN `course` AS course ON content.course_id = course.id
                                                 INNER JOIN `user` AS user_info ON course.author_id = user_info.id WHERE content.id = '$id'");
@@ -83,7 +84,6 @@
                 }
                 array_shift($purchases_array);
             }
-            $_SESSION['error'] = $course_query;
             $courses = $this->db->query($course_query);
             return $courses;
         }
@@ -327,7 +327,8 @@
                                                 INNER JOIN `course_content` ON course_content.course_id = funnel.course_id AND funnel.id = '$id'
                                                 INNER JOIN `course` ON course.id = course_content.course_id");
             $course_id = $this->db->query("SELECT course.id,
-                                                course.author_id
+                                                course.author_id,
+                                                course.price
                                                 FROM `funnel` AS funnel
                                                 INNER JOIN `course_content` ON course_content.course_id = funnel.course_id AND funnel.id = '$id'
                                                 INNER JOIN `course` ON course.id = course_content.course_id LIMIT 1");
