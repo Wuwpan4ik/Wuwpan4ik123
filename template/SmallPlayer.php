@@ -129,6 +129,34 @@
             item.style.display = 'none';
         })
     })
+    //отключает таб
+    $(document).ready(function() {
+
+        //gather all inputs of selected types
+        var inputs = $('input, textarea, select, button');
+
+        //bind on keydown
+        inputs.on('keydown', function(e) {
+
+            //if we pressed the tab
+            if (e.keyCode == 9 || e.which == 9) {
+
+                //prevent default tab action
+                e.preventDefault();
+
+                //get next input based on the current input we left off
+                var nextInput = inputs.get(inputs.index(this) + 1);
+
+                //if we have a next input, go to it. or go back
+                if (nextInput) {
+                    nextInput.focus();
+                }
+                else{
+                    inputs[0].focus();
+                }
+            }
+        });
+    });
     $(function() {
         $('.popup__form').each(function (){
             $(this).submit(function(e) {

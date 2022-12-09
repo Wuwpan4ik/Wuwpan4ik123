@@ -112,7 +112,7 @@
                     </div>
                 </div>
             </div>
-            <div class="Сourse-form">
+            <div class="User-form-g">
                 <div class="backBtn userPopup__button">
                     <button type="button" id="course__back-btn">Назад</button>
                 </div>
@@ -138,7 +138,7 @@
                     </div>
                 </div>
             </div>
-            <div class="AllLessons-form">
+            <div class="User-form-v">
                 <div class="userPopup__button buy__course-btn">
                     <button type="button" class="button__buy-course">Купить весь курс за <span class="course__price"></span> ₽</button>
                 </div>
@@ -202,7 +202,7 @@
                                 <input type="tel" name="phone" placeholder="Ваш телефон">
                             </div>
                         </div>
-                        <div class="question-form">
+                        <div class="User-form-g">
                             <div class="backBtn userPopup__button youChosenBackBtn courseBackBtn">
                                 <button type="button">Назад</button>
                             </div>
@@ -245,7 +245,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="question-form">
+                    <div class="User-form-g">
                         <div class=" userPopup__button questionBack backBtn">
                             <button class="courseBackBtn">Назад</button>
                         </div>

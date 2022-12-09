@@ -80,7 +80,7 @@
                             </div>
                             <div class="popup__allLessons-item-info">
                                 <div class="popup__allLessons-item-info-header">
-                                    <div class=" aboutTheAuthor popup__allLessons-item-info-header-number available-number">
+                                    <div class=" aboutTheAuthor available-number">
                                         Курс
                                     </div>
                                     <div class="aboutTheAuthor-name">
@@ -114,7 +114,7 @@
                             </div>
                             <div class="popup__allLessons-item-info">
                                 <div class="popup__allLessons-item-info-header">
-                                    <div class=" aboutTheAuthor popup__allLessons-item-info-header-number Notavailable-number">
+                                    <div class=" aboutTheAuthor  notavailable-number">
                                         Курс
                                     </div>
                                     <div class="aboutTheAuthor-name">
@@ -155,7 +155,7 @@
                 if ($disable) {
                     if (!in_array($item['id'], $purchase_info['video_id']) == 1) {
                         $class = 'choice-video';
-                        $number_color = 'Notavailable-number';
+                        $number_color = 'notavailable-number';
                         $url_start = "";
                         $url_end = "";
                         $image_available = '<img style="width: 100%; height: 100%;" src="'. $item['thubnails'] .'" alt="">';
