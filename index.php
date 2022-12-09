@@ -66,6 +66,7 @@
     $router->addRoute("/Course/$item_id/delete", "CourseController.php", "DeleteVideo");
     $router->addRoute("/Course/$item_id/rename", "CourseController.php", "RenameVideo");
     $router->addRoute("/Course/$item_id/change", "CourseController.php", "ChangeVideo");
+    $router->addRoute("/Course/$item_id/setPrice", "CourseController.php", "SetPrice");
 
     $router->addRoute("/Funnel", "Funnel.php");
     $router->addRoute("/Funnel/$item_id", "FunnelEdit.php");
@@ -111,6 +112,7 @@
 
     $router->addRoute("/ContactController/sendQuestions", "ContactController.php", "SendQuestion");
     $router->addRoute("/getNotifications", "NotificationsController.php", "getNotifications");
+    $router->addRoute("/getCountNotifications", "NotificationsController.php", "getCountNotifications");
     $router->addRoute("/NotificationsController/checkout", "NotificationsController.php", "checkNotifications");
 
 

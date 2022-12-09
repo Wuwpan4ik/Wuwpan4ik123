@@ -14,27 +14,24 @@
     </video>
     <img src="<?=$v['thubnails'] ?>" alt="">
 
-    <form method="POST" class="new_name" action="/<?php if(strstr($_SERVER['REQUEST_URI'], 'Course')) {echo 'Course';} else {echo 'Funnel';} ?>/<?=$v['id']?>/rename">
-        <input type="text" name="id" hidden="hidden" value="<?=$v['id']?>">
+    <form method="POST" class="new_name" enctype="multipart/form-data" action="/<?php if(strstr($_SERVER['REQUEST_URI'], 'Course')) {echo 'Course';} else {echo 'Funnel';} ?>/<?=$v['id']?>/rename">
+
+        <?php if (strstr($_SERVER['REQUEST_URI'], 'Funnel' )) {?>
+        <input type="hidden" value="<?=$v['id']?>">
         <div class="funnel-input input_focus">
             <label for="name" class="label_focus activeLabel">Укажите заголовок:</label>
             <input name="name" class="videoname" type="text" value="<?=$v['name']?>">
             <span class="clear_input_val">
-            <img src="/img/clear_input.svg" alt="">
-            </span>
+        <img src="/img/clear_input.svg" alt="">
+        </span>
         </div>
         <div class="funnel-input input_focus">
             <label for="description" class="label_focus activeLabel">Укажите описание:</label>
             <textarea name="description" class="videoname video-desc"><?=$v['description']?></textarea>
             <span class="clear_input_val">
-                <img src="/img/clear_input.svg" alt="">
-            </span>
+            <img src="/img/clear_input.svg" alt="">
+        </span>
         </div>
-
-    <form method="POST" class="new_name" action="/<?php if(strstr($_SERVER['REQUEST_URI'], 'Course')) {echo 'Course';} else {echo 'Funnel';} ?>/<?=$v['id']?>/rename">
-
-        <?php if (strstr($_SERVER['REQUEST_URI'], 'Funnel' )) {?>
-        <input type="hidden" value="<?=$v['id']?>">
         <div class="button__do-block <?php if (!isset($v['button_text']) || is_null($v['button_text'])) { ?> display-none <?php } ?>" >
             <label>Текст для кнопки:</label>
             <input name="button_text" class="videoname video-desc" value="<?=$v['button_text']?>">
@@ -42,6 +39,20 @@
          <button onclick="getCourseList()" type="button" class="button__edit button__do-block <?php if (!isset($v['button_text'])) { ?> display-none <?php } ?>" style="background: #757D8A;text-align: center"><img style="width: 25px; transform: translate(0, 0)" src="/img/actions.svg">Действия</button>
             <?php if (!isset($v['button_text'])) { ?> <button type="button" class="button-add-button-edit">Добавить кнопку</button><?php } ?>
         <?php } else { ?>
+            <div class="funnel-input input_focus">
+                <label for="name" class="label_focus activeLabel">Укажите заголовок:</label>
+                <input name="name" class="videoname" type="text" value="<?=$v['name']?>">
+                <span class="clear_input_val">
+            <img src="/img/clear_input.svg" alt="">
+            </span>
+            </div>
+            <div class="funnel-input input_focus">
+                <label for="description" class="label_focus activeLabel">Укажите описание:</label>
+                <textarea name="description" class="videoname video-desc"><?=$v['description']?></textarea>
+                <span class="clear_input_val">
+                <img src="/img/clear_input.svg" alt="">
+            </span>
+            </div>
             <div class="funnel-input">
                 <label for="description">Укажите стоимость урока:</label>
                 <input name="price" class="videoname" type="number" value="<?=$v['price'] ?>">
@@ -55,10 +66,10 @@
                         <img src="../img/saveAvatar.svg" alt="">
                         <div class="avatar-body__info">
                             <span id="file-name" class="file-box">
-                                Название файла
+                                <?php if (isset($v['file_url'])) {print_r(substr(basename($v['file_url']), 0, 10));} else {echo 'Название файла';}?>
                             </span>
                             <span id="file-size" class="file-box">
-                                0кб из 5мб
+                                <?php if (isset($v['file_url'])) {print_r(round(filesize($v['file_url']) / 1024));} else {echo '0';} ?>кб из 5мб
                             </span>
                         </div>
 
@@ -66,7 +77,7 @@
 
 
                     <div class="input__wrapper">
-                        <input accept="image/img, image/jpeg, image/png" name="avatar" type="file" id="input__file" class="input input__file" onchange="uploadFile(this)" multiple="">
+                        <input name="file" type="file" id="input__file" class="input input__file" onchange="uploadFile(this)" multiple="">
                         <label for="input__file" class="input__file-button" style="">
                             <span class="input__file-icon-wrapper"><img class="input__file-icon" src="/img/plus.svg" width="25"></span>
                             <span class="input__file-button-text">Добавить</span>

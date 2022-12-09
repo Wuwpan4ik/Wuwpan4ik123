@@ -12,7 +12,7 @@
 
     <div class="buttonsFeed">
 
-        <button class="ico_button button-bell"><img class="ico" src="img/Bell.svg"><div id="msg">1</div></button>
+        <button class="ico_button button-bell"><img class="ico" src="img/Bell.svg"><div id="msg">0</div></button>
 
         <button id="apps" class="ico_button" onclick="window.location.replace('Analytics')">Заявки</button>
 
@@ -35,9 +35,6 @@
     buttonBell.addEventListener('mouseover', popupBellActive)
     buttonBell.addEventListener('mouseout', popupBellDisable)
     buttonBell.addEventListener('click', function () {
-        document.querySelector('.button-bell .ico').src = "img/correct.png";
-        document.querySelector('.button-bell .ico').style = "width: 42px; height: 42px;"
-        document.querySelector('.button-bell #msg').remove();
         buttonBell.removeEventListener('mouseover', popupBellActive)
         popupBellDisable();
         buttonBell.removeEventListener('mouseout', popupBellDisable)
@@ -48,8 +45,6 @@
 
         request.setRequestHeader('Content-Type', 'application/x-www-form-url');
         request.addEventListener("readystatechange", () => {
-            if (request.readyState === 4 && request.status === 200) {
-            }
         });
         request.send();
     })

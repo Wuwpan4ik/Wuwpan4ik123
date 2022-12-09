@@ -99,12 +99,14 @@ class AccountController extends ACoreCreator {
             $currency = $_POST['currency'];
         }
 
-        if($_FILES['avatar']['name']){
+        if($_FILES['avatar']['size'] != 0){
 
             $avatar = "./uploads/ava/" . $email. "_" .$_FILES['avatar']['name'];
 
             move_uploaded_file($_FILES['avatar']['tmp_name'], $avatar);
 
+        } else {
+            $avatar = $user[0]['avatar'];
         }
 
         $this->m->db->execute("UPDATE user SET `email` = '$email', `avatar` = '$avatar', `first_name` = '$first_name', `second_name` = '$second_name', `telephone` = '$phone', `currency` = '$currency' WHERE id = " . $_SESSION['user']['id']);

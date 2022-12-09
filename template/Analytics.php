@@ -68,6 +68,8 @@
                                         <th><div class="th-title"><button class="order_button contact__button" value="achivment_date"><img class="table_ico" src="img/StickDown.svg"></button>Дата</div></th>
 
                                         <th><div class="th-title">Функции</div></th>
+
+                                        <th><div class="th-title"> </div></th>
 									</tr>
 
                                 </thead>
@@ -78,6 +80,9 @@
 
                             </table>
 
+                            <div class="no-data">
+                                <p>Данных пока нет</p>
+                            </div>
                         </div>
 
                     </div>
@@ -122,6 +127,8 @@
                                     <th><div class="th-title"><button class="order_button order__button" value="achivment_date"><img class="table_ico" src="img/StickDown.svg"></button>Дата</div></th>
 
                                     <th><div class="th-title">Функции</div></th>
+
+
                                 </tr>
 
                                 </thead>
@@ -231,6 +238,7 @@
         </div>
         <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
         <script src="../js/script.js" ></script>
+        <div class="display-none" id="currency"><?php echo isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></div>
   </body>
 <!--OrderList-->
 <script>
@@ -275,7 +283,7 @@
         });
     });
 </script>
-<script>
+<script type="text/javascript">
 
   let request1 = new XMLHttpRequest();
 
@@ -295,19 +303,18 @@
           if (array.prev_month == null) {
               array.prev_month = 0;
           }
-
-          console.log(array)
-          document.getElementById('this_week').innerHTML = array.week + "₽";
-          document.getElementById('this_month').innerHTML = array.month + "₽";
+          let currency = document.getElementById('currency').innerHTML;
+          document.getElementById('this_week').innerHTML = array.week + currency;
+          document.getElementById('this_month').innerHTML = array.month + currency;
           if (array.prev_month) {
-              document.getElementById('last_month').innerHTML = array.prev_month + "₽";
+              document.getElementById('last_month').innerHTML = array.prev_month + currency;
           }
           if (array.full_value) {
-              document.getElementById('full_week_value').innerText = array.week + "₽";
-              document.getElementById('full_value').innerText = array.full_value + "₽";
+              document.getElementById('full_week_value').innerText = array.week + currency;
+              document.getElementById('full_value').innerText = array.full_value + currency;
           }
           if (array.one_user) {
-              document.getElementById('one__user').innerText = array.one_user + "₽";
+              document.getElementById('one__user').innerText = array.one_user + currency;
           }
           if (array.count_first_buy) {
               document.getElementById('first__buy-count').innerText = array.count_first_buy;
@@ -330,8 +337,8 @@
               document.getElementById('month_diff-text').innerText = 'меньше';
               document.getElementById('month_diff').classList.add('red_text');
           }
-          document.getElementById('week_diff').innerText = week_diff + "₽";
-          document.getElementById('month_diff').innerText = month_diff + "₽";
+          document.getElementById('week_diff').innerText = week_diff + currency;
+          document.getElementById('month_diff').innerText = month_diff + currency;
 
           document.querySelectorAll(".week_procent").forEach((elem) => {
               if (array.prev_week !== 0) {

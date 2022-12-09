@@ -19,6 +19,7 @@
 </head>
 
 <body>
+<?=$_SESSION['error']?>
 
 <style>
     .popup__background {
@@ -143,7 +144,8 @@
         </div>
     </div>
 </div>
-<script src="../js/button__settings.js"></script>
+<script src="/js/button__settings.js"></script>
+<script src="/js/printFailName.js"></script>
 <script>
 //  Замена видео
     window.onload = () => {

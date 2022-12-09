@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Creator - Настройки аккаунта</title>
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/aboutuser.css">
@@ -74,11 +74,11 @@
                                             <input class="half" name="country" type="text" placeholder="<?php print(htmlspecialchars(isset($_SESSION['user']['country']) ? $_SESSION['user']['country'] : 'Страна')) ?>">
                                             <input class="half" name="city" type="text" placeholder="<?php print(htmlspecialchars(isset($_SESSION['user']['city']) ? $_SESSION['user']['city'] : 'Город'))?>" >
                                             <select class="select-account currencies" name="currency" id="currency">
-                                                <option value="null">Выберите валюту</option>
-                                                <option value="dollar">$</option>
-                                                <option value="euro">€</option>
-                                                <option value="grivna">₴</option>
-                                                <option value="rub">₽</option>
+                                                <option value="null" <?php if (isset($_SESSION['user']['currency'])) echo "selected"?>>Выберите валюту</option>
+                                                <option value="$" <?php if (isset($_SESSION['user']['currency']) && $_SESSION['user']['currency'] == '$') echo "selected"?>>$</option>
+                                                <option value="€" <?php if (isset($_SESSION['user']['currency']) && $_SESSION['user']['currency'] == '€') echo "selected"?>>€</option>
+                                                <option value="₴" <?php if (isset($_SESSION['user']['currency']) && $_SESSION['user']['currency'] == '₴') echo "selected"?>>₴</option>
+                                                <option value="₽" <?php if (isset($_SESSION['user']['currency']) && $_SESSION['user']['currency'] == '₽') echo "selected"?>>₽</option>
                                             </select>
                                         </div>
                                         <h2>Укажите соц сети для клиентов</h2>
@@ -188,7 +188,7 @@
                                         <div class="field">
                                             <div class="tariff-card">
                                                 <div class="tariff-plan">
-                                                    <div class="tariff-price">2 600 ₽</div>
+                                                    <div class="tariff-price">2 600 <?=isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></div>
                                                 </div>
                                                 <div class="tariff-name">
                                                     Для новичков

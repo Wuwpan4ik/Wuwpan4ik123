@@ -90,10 +90,12 @@
                         <h3><?=$p['name']?></h3>
 
                         <div class="course-price">
-                            <input type="number" name="course_price" min="100" placeholder="Укажите стоимость курса">
-                            <button class="save_price" type="submit">
-                                Сохранить
-                            </button>
+                            <form action="/Course/<?=$p['id']?>/setPrice" method="POST">
+                                <input type="number" name="course_price" min="100" placeholder="<? echo isset($p['price']) ? $p['price'] : "Укажите стоимость курса" ?>">
+                                <button class="save_price" type="submit">
+                                    Сохранить
+                                </button>
+                            </form>
                         </div>
 
                         <div class="btn-delete-edit">

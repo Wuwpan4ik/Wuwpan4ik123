@@ -167,7 +167,7 @@
     line-height: 17px;
 }
 
-slider__item-button.button-open .button {
+.slider__item-button.button-open button {
     -webkit-box-shadow: 0px 3px 0px #3168BB, 0px 10px 30px rgba(62, 138, 251, 0.6);
     box-shadow: 0px 3px 0px #3168BB, 0px 10px 30px rgba(62, 138, 251, 0.6);
     border-radius: 6px;
@@ -175,7 +175,14 @@ slider__item-button.button-open .button {
     color: #fff;
     background: #3E8AFB;
 }
-
+.button{
+    -webkit-box-shadow: 0px 3px 0px #3168BB, 0px 10px 30px rgba(62, 138, 251, 0.6);
+    box-shadow: 0px 3px 0px #3168BB, 0px 10px 30px rgba(62, 138, 251, 0.6);
+    border-radius: 6px;
+    border: none;
+    color: #fff;
+    background: #3E8AFB;
+}
 .slider__item-socialNetwork {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -348,10 +355,12 @@ slider__item-button.button-open .button {
 .popup__bonus-text span {
     color: #EA2323;
 }
-
+.popup__bonus-form{
+    margin: 20px 0 0 0;
+}
 .popup__bonus-form-input {
     position: relative;
-    margin: 28px 0 0 0;
+    margin: 15px 0 0 0;
 }
 
 .input-img {
@@ -371,7 +380,7 @@ slider__item-button.button-open .button {
 .button-form button {
     width: 100%;
     padding: 19px 0;
-    margin: 16px 0 20px 0;
+    margin: 16px 0 0 0;
     background: #3E8AFB;
     box-shadow: 0px 3px 0px #3168BB, 0px 10px 30px rgba(62, 138, 251, 0.6);
     border-radius: 6px;
@@ -606,7 +615,7 @@ slider__item-button.button-open .button {
     width: 30%;
 }
 
-.popup__buy-form-buy button {
+.popup__buy-form-buy button{
     background: #6A6A6A;
     -webkit-box-shadow: 0px 3px 0px #494949, 0px 10px 30px rgba(105, 106, 108, 0.6);
     box-shadow: 0px 3px 0px #494949, 0px 10px 30px rgba(105, 106, 108, 0.6);

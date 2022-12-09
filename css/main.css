@@ -436,6 +436,7 @@ span.button__back {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  align-items: center;
   padding: 28px 40px;
   margin: 0 0 30px 0;
   border-bottom: 1px solid #f1ebe5;
@@ -446,15 +447,15 @@ span.button__back {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  align-items: center;
 }
 
 .feed-header h2 {
   vertical-align: middle;
-  height: 48px;
   margin: 0px;
   font-weight: 700;
   font-size: 24px;
-  line-height: 48px;
+
 }
 
 .feed-menu {
@@ -700,6 +701,7 @@ a {
   width: 64px;
   height: 64px;
   border-radius: 99px;
+
 }
 
 .UserProfile p {
@@ -1175,6 +1177,7 @@ span.name {
   display: flex;
   margin: 25px 0 0 0;
   gap: 12px;
+
 }
 .ProfileSetting-avatar{
   width: 40%;
@@ -1205,6 +1208,7 @@ span.name {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  flex-wrap: wrap;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
