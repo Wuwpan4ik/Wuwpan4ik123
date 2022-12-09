@@ -174,12 +174,17 @@
 
             if (!$this->isUser($res[0]['author_id'])) return False;
 
-            if(isset($_POST['title'])) {
-
+            if(isset($_POST['title']) && strlen($_POST['title']) > 0) {
                 $name = $_POST['title'];
-
-                $this->m->db->execute("UPDATE course SET `name` = '$name' WHERE id = '$item_id'");
+            } else {
+                $name = $res[0]['title'];
             }
+            if (isset($_POST['price']) && strlen($_POST['price']) > 0) {
+                $price = $_POST['price'];
+            } else {
+                $price = $res[0]['price'];
+            }
+            $this->m->db->execute("UPDATE course SET `name` = '$name', `price` = '$price' WHERE id = '$item_id'");
             return True;
         }
 

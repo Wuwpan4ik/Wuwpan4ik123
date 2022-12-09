@@ -12,6 +12,10 @@
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 </head>
 <body class="body">
+<div class="mirror_smallPlayer">
+    <div class="mirrorWrap"></div>
+    <video id="mirrorVideo" src="" playsinline muted></video>
+</div>
 <div class="smallPlayer _conatiner">
     <div class="smallPlayer__slick-slider">
         <div class="slider__pagination _conatiner-player">
@@ -24,10 +28,10 @@
                 foreach ($content['funnel_content'] as $item) {
                     if (isset($item['popup'])) $popup = json_decode($item['popup']);
             ?>
-            <div class="slider__item ">
-                <div class="slider__video ">
+            <div class="slider__item">
+                <div class="slider__video">
                     <video playsinline id="123" class="slider__video-item" data-player="playing" autoplay="false">
-                        <source class="video" src="/<?=$item['video']?>"  />
+                        <source class="video" src="/<?=$item['video']?>" id="sourceVideo"  />
                     </video>
                 </div>
                 <div class="slider__darkness">
@@ -44,7 +48,7 @@
                     </div>
                     <div class="slider__header-views">
                         <div class="slider__header-views-img">
-                            <img src="../img/smallPlayer/views.svg" alt="">
+                            <img src="/img/smallPlayer/views.svg" alt="">
                         </div>
                         <div class="slider__header-views-count">
                             126
@@ -52,10 +56,10 @@
                     </div>
                 </div>
                 <div class="play__video active">
-                    <img src="../img/smallPlayer/play.svg" alt="">
+                    <img src="/img/smallPlayer/play.svg" alt="">
                 </div>
                 <div class="pause__video" id="pause_video">
-                    <img src="../img/smallPlayer/pause.svg" alt="">
+                    <img src="/img/smallPlayer/pause.svg" alt="">
                 </div>
                 <div class="slider__item-info _conatiner-player">
                     <div class="slider__item-title">
@@ -84,6 +88,8 @@
                     }
                     // Первое или второе действие
                     $name = 'button';
+                    $form__title = $popup->form__title;
+                    $form__desc = $popup->form__desc;
                     $submit__text = $popup->button_text;
                     $popup__do = $popup->first_do;
                     $second_link = $popup->second_do->link;
@@ -91,15 +97,12 @@
                     $author_id = $item['author_id'];
                     include 'template/default/popup__templates/popup__form.php';
                 } ?>
-
-                <?php if (isset($popup->second_do->list)) {
-                    $name = 'button';
-                    include 'template/default/popup__templates/popup__all-lessons.php'; }
-                ?>
                 <?php if (isset($popup->first_do->list)) {
                     $name = 'video';
-                    include 'template/default/popup__templates/popup__all-lessons.php'; }
+                    $course_id = $popup->first_do->course_id;
+                    include 'template/default/popup__templates/popup__all-lessons.php';
                 ?>
+                <?php } ?>
             </div>
             <?php } ?>
         </div>
@@ -118,6 +121,13 @@
 <script src="/js/script.js" ></script>
 <script src="/js/slick.min.js"></script>
 <script src="/js/sliders.js"></script>
+<script>
+    let mirrorVideo = document.getElementById('mirrorVideo');
+    let sourceVideo = document.querySelectorAll('#sourceVideo');
+
+    mirrorVideo.src = sourceVideo[0].src;
+</script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.slider__video-item').forEach((item) => {

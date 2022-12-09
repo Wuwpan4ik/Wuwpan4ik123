@@ -36,18 +36,19 @@
 
     <form method="POST" class="new_name" action="/<?php if(strstr($_SERVER['REQUEST_URI'], 'Course')) {echo 'Course';} else {echo 'Funnel';} ?>/<?=$v['id']?>/rename">
 
-        <div class="funnel-input">
-            <label for="description">Укажите стоимость урока:</label>
-            <input name="price" class="videoname" type="number" value="<?=$v['price'] ?>">
-        </div>
         <?php if (strstr($_SERVER['REQUEST_URI'], 'Funnel' )) {?>
         <input type="hidden" value="<?=$v['id']?>">
         <div class="button__do-block <?php if (!isset($v['button_text']) || is_null($v['button_text'])) { ?> display-none <?php } ?>" >
             <label>Текст для кнопки:</label>
             <input name="button_text" class="videoname video-desc" value="<?=$v['button_text']?>">
         </div>
-         <button type="button" class="button__edit button__do-block <?php if (!isset($v['button_text'])) { ?> display-none <?php } ?>" style="background: #757D8A;text-align: center"><img style="width: 25px; transform: translate(0, 0)" src="/img/actions.svg">Действия</button>
+         <button onclick="getCourseList()" type="button" class="button__edit button__do-block <?php if (!isset($v['button_text'])) { ?> display-none <?php } ?>" style="background: #757D8A;text-align: center"><img style="width: 25px; transform: translate(0, 0)" src="/img/actions.svg">Действия</button>
             <?php if (!isset($v['button_text'])) { ?> <button type="button" class="button-add-button-edit">Добавить кнопку</button><?php } ?>
+        <?php } else { ?>
+            <div class="funnel-input">
+                <label for="description">Укажите стоимость урока:</label>
+                <input name="price" class="videoname" type="number" value="<?=$v['price'] ?>">
+            </div>
         <?php } ?>
         <button type="submit">Сохранить</button>
 

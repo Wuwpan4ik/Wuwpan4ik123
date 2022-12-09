@@ -12,7 +12,6 @@
 </head>
 
 <body class="body">
-<? print_r($_SESSION['error']); ?>
 <div class="UserContacts bcg">
     <div class="_container">
         <div class="User-header">

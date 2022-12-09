@@ -27,6 +27,12 @@
     }
 </style>
 <body class="body">
+
+    <div class="mirror_smallPlayer">
+        <div class="mirrorWrap"></div>
+        <img src=".<?php echo $content[0]['thubnails'] ?>" alt="">
+    </div>
+
 <div class=" userVideoContainer UserPlayer">
     <div class="UserPlayer User-header">
         <div class="User-logo user__logo">
@@ -160,7 +166,14 @@
         </div>
     </div>
 </div>
-<script>
+    <script>
+        let mirrorVideo = document.getElementById('mirrorVideo');
+        let sourceVideo = document.querySelectorAll('#UserPlayerVideo');
+
+        mirrorVideo.src = sourceVideo[0].src;
+    </script>
+
+    <script>
     function startAccordion() {
         let accordionButton = document.querySelectorAll(".accordion-button");
         accordionButton.forEach( item => {

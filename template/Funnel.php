@@ -110,7 +110,7 @@
                             <select onfocusout="course__send(this)" name="course_id" class="select__course">
                                 <?php if (!is_null($content[1][0]) && isset($content[1][0])) {
                                 foreach ($content[1] as $course) { ?>
-                                    <option <?php if ($p['course_id'] == $course['id']) echo "selected";?> value="<?=$course['id']?>"><?=$course['name']?> <?=$course['id']?></option>
+                                    <option <?php if ($p['course_id'] == $course['id']) echo "selected";?> value="<?=$course['id']?>"><?=$course['name']?> </option>
                                 <?php } } else { ?>
                                     <option>Нет курсов для выбора</option>
                                 <?php } print_r($content[1]) ?>
@@ -123,10 +123,14 @@
 
                             <button type="submit" onclick="window.location.href = '/Funnel/<?=$p['id']?>';"">Изменить</button>
 
-                            <button class="reboot" type="submit" onclick="deleteDirectory(this)">Удалить</button>
+                            <button class="reboot" type="submit" onclick="deleteDirectory(this)" style="background: none;border: solid 1px #4E73F8;color: #4E73F8;">Удалить</button>
 
                         </div>
-
+                        <div class="btn-all-settings">
+                            <button class="settingsBtn" type="submit" onclick="return(false;)">
+                                Общие настройки
+                            </button>
+                        </div>
                     </div>
 
                     <?$k++;}?>
