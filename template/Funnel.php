@@ -151,20 +151,35 @@
 
                 </div>
 
-            </div>
+
+
 
         </div>
 
     </div>
 
 </div>
+    <div id="popup__background">
+        <div id="popup">
+            <div class="popup__container">
+                <div class="popup__title">Хотите изменить видео?</div>
+                <div class="popup__form">
+                    <button class="popup__btn popup__delete">Отменить</button>
+                    <button class="popup__btn popup__not-delete">Заменить</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="popup__background">
     <div id="popup">
         <div class="popup__container">
             <div class="popup__title">Вы действительно хотите удалить проект?</div>
             <div class="popup__form">
-                <button class="popup__btn popup__not-delete">Не удалять</button>
                 <button class="popup__btn popup__delete">Удалить</button>
+                <button class="popup__btn popup__not-delete">Не удалять</button>
+
             </div>
         </div>
     </div>
