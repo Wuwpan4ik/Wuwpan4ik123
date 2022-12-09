@@ -7,7 +7,6 @@ const container = document.querySelector(".container"),
     videoDuration = container.querySelector(".video-duration"),
     playPauseBtn = container.querySelector(".play-pause i"),
     sliderDarkness = document.querySelector('.slider__darkness'),
-    fullScreenBtn = container.querySelector(".fullscreen i"),
     videoContainerS = document.querySelector('.contaierPlayer .wrapper'),
     buttonsBack = document.querySelector('.UserPlayer.Сourse-form'),
     playBtnFirst = document.querySelector('#playBtn'),
@@ -91,21 +90,6 @@ volumeBtn.addEventListener("click", () => {
         mainVideo.volume = 0.0;
         volumeBtn.classList.replace("fa-volume-high", "fa-volume-xmark");
     }
-});
-
-
-fullScreenBtn.addEventListener("click", () => {
-    container.classList.toggle("fullscreen");
-    if(document.fullscreenElement) {
-        fullScreenBtn.classList.replace("fa-compress", "fa-expand");
-        return document.exitFullscreen();
-        videoContainerS.classList.remove('activePlayer');
-        videoContainerS.classList.add('activeFullscreen');
-    }
-    fullScreenBtn.classList.replace("fa-expand", "fa-compress");
-    videoContainerS.classList.remove('activePlayer');
-    videoContainerS.classList.add('activeFullscreen');
-    container.requestFullscreen();
 });
 
 videoContainer.onclick = function () {

@@ -685,6 +685,7 @@ a {
   -ms-flex-align: center;
   align-items: center;
   gap: 12px;
+  justify-content:space-between;
 }
 
 .text-info-name{
@@ -718,6 +719,7 @@ a {
 
 
 .text-info {
+  margin-right: 30px;
 }
 
 .text-info-name {

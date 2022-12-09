@@ -91,7 +91,6 @@
                 -->
                 <li class="options right">
                     <button class="volume"><i class="fa-solid fa-volume-high"></i></button>
-                    <button class="fullscreen"><i class="fa-solid fa-expand"></i></button>
                 </li>
             </ul>
         </div>
@@ -112,7 +111,7 @@
                     <div class="popup__allLessons-item__header">
                         <div class="popup-item">
                             <div class="popup__allLessons-item-video__img">
-                                <img src=".<?php echo $content[0]['thubnails'] ?>" alt="">
+                                <img src=".<?php echo isset($content[0]['thubnails']) ? $content[0]['thubnails'] : "/img/preview.jpg" ?>" alt="">
                             </div>
                             <div class="popup__allLessons-item-info" style="position: relative;">
                                 <div class="popup__allLessons-item-info-header">

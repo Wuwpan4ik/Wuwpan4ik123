@@ -102,7 +102,7 @@
 
                             <button type="submit" onclick="window.location.href = '/Course/<?=$p['id']?>';"">Изменить</button>
 
-                            <button class="reboot" type="submit" onclick="deleteDirectory(this)">Удалить</button>
+                            <button class="reboot" type="submit" onclick="deleteDirectory(this)" style="background: none;border: solid 1px #4E73F8;color: #4E73F8;">Удалить</button>
 
                         </div>
 

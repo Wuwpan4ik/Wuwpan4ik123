@@ -1,11 +1,8 @@
 <div class="media-cart">
     <div class="media-cart__controller">
         <div class="media-cart__controller-move reload_video" data-id="<?=$v['id']?>">
-            <div class="media-cart__controller-move-right">
-                <button><img src="/img/Arrow-right.svg" alt=""></button>
-            </div>
             <div class="media-cart__controller-move-left">
-                <button><img src="/img/Arrow-left.svg" alt=""></button>
+                <button><img src="/img/changeVideo.svg" alt=""></button>
             </div>
         </div>
         <div class="media-cart__controller-delete">
