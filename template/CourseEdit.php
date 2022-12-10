@@ -154,7 +154,7 @@
         reload__video.forEach(item => {
             item.addEventListener('click', function () {
                 reload__back.classList.toggle('display-block');
-                _('change__video').action = '/Course/'+ item.dataset.id +'/change';
+                _('change__video').action = '/FCourse/'+ item.dataset.id +'/change';
             })
         })
         let notChangeVideo = document.querySelector('#popup__not-change');
