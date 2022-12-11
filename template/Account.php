@@ -323,24 +323,21 @@
         console.log(second_button);
         second_button.click();
     });
-    check_button.addEventListener('click', function () {
-        const request = new XMLHttpRequest();
-
-        const url = "?option=UrlController&site_url=" + check_url.value;
-
-        /* Здесь мы указываем параметры соединения с сервером, т.е. мы указываем метод соединения GET,
-        а после запятой мы указываем путь к файлу на сервере который будет обрабатывать наш запрос. */
-        request.open('GET', url);
-
-        // Указываем заголовки для сервера, говорим что тип данных, - контент который мы хотим получить должен быть не закодирован.
-        request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-        request.addEventListener("readystatechange", () => {
-            if (request.readyState === 4 && request.status === 200) {
-                message.innerHTML = request.responseText;
-            }
-        });
-        request.send();
-    });
+    // check_button.addEventListener('click', function () {
+    //     const request = new XMLHttpRequest();
+    //
+    //     const url = "?option=UrlController&site_url=" + check_url.value;
+    //
+    //     request.open('GET', url);
+    //
+    //     request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+    //     request.addEventListener("readystatechange", () => {
+    //         if (request.readyState === 4 && request.status === 200) {
+    //             message.innerHTML = request.responseText;
+    //         }
+    //     });
+    //     request.send();
+    // });
 
 </script>
 <script src="/js/getNotifications.js"></script>

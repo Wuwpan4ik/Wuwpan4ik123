@@ -172,7 +172,7 @@
             if (count($this->m->getUserByEmail($this->email)) != 1) {
                 $title = "Регистрация аккаунта";
                 $this->password = $this->GenerateRandomPassword(12);
-                $body = "Ваш аккаунт на <a href=\"/https://course-creator.io/UserLogin\">Course Creator</a><br>Почта: $this->email<br>Пароль:$this->password";
+                $body = "Ваш аккаунт на <a href=\"https://course-creator.io/UserLogin\">Course Creator</a><br>Почта: $this->email<br>Пароль:$this->password";
 
                 $this->SendEmail($title, $body, $this->email);
 
@@ -202,7 +202,7 @@
 
 //          Добавление Order
             $current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
-            $this->m->db->execute("INSERT INTO `orders` (`user_id`, `course_content_id`, `creator_id`, `money`, `achivment_date`) VALUES ('". $_SESSION['user']['id'] ."', '$video_id', '$creator_id', '$price_video', '$current_date')");
+            $this->m->db->execute("INSERT INTO `orders` (`user_id`,`course_id`, `course_content_id`, `creator_id`, `money`, `achivment_date`) VALUES ('". $_SESSION['user']['id'] ."', '$course__real_id', '$video_id', '$creator_id', '$price_video', '$current_date')");
 
             if ($client[0]['buy_progress'] <= $buy_progress[$comment]) {
 
@@ -247,20 +247,20 @@
 
         function get_content()
         {
-//            echo '<!DOCTYPE html>
-//                <html lang="en">
-//                <head>
-//                <meta charset="UTF-8">
-//                <meta http-equiv="X-UA-Compatible" content="IE=edge">
-//                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-//                <title>Document</title>
-//                </head>
-//                <body>
-//                    <script>
-//                        window.location.replace("/");
-//                    </script>
-//                </body>
-//                </html>';
+            echo '<!DOCTYPE html>
+                <html lang="en">
+                <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Document</title>
+                </head>
+                <body>
+                    <script>
+                        window.location.replace("/");
+                    </script>
+                </body>
+                </html>';
         }
 
         function obr()

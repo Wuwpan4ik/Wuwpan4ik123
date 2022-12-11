@@ -27,17 +27,12 @@
                 Восстановление пароля
             </div>
             <div class="UserPasswordRecovery-form popup-form">
-<<<<<<< HEAD
                 <div class="input_focus inputLog">
                     <label for="email" class="label_focus">Ваша почта</label>
                     <input type="email" name="email">
                     <span class="clear_input_val">
                         <img src="/img/clear_input.svg" alt="">
                     </span>
-=======
-                <div class="UserPasswordRecovery-email inputLog">
-                    <input placeholder="Ваш Email" type="email">
->>>>>>> noffakeStyle
                 </div>
                 <div class="button-send ">
                     <input type="submit" value="Отправить новый пароль" id="apps">
@@ -51,7 +46,6 @@
     </div>
 
 </div>
-<<<<<<< HEAD
 
 <!--For Input Holders-->
 <script src="/js/jquery-3.6.1.min.js"></script>
@@ -82,7 +76,5 @@
         }
     }
 </script>
-=======
->>>>>>> noffakeStyle
 </body>
 </html>

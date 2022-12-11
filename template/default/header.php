@@ -40,6 +40,7 @@
         buttonBell.removeEventListener('mouseout', popupBellDisable)
         let request = new XMLHttpRequest();
         let url = "/NotificationsController/checkout";
+        document.querySelector('#msg').innerHTML = '0';
 
         request.open('POST', url);
 
