@@ -48,11 +48,11 @@ function addPopup(input) {
 
         form_inputs.forEach((elem) => {
             div += `<div class="popup__bonus-form-input input">
-                                    <div class="popup__bonus-form-input-email input-img">
-                                        <img src="../img/smallPlayer/`+ elem.value +`.svg" alt="">
-                                    </div>
-                                    <input name="`+ elem.value +`" type="text" placeholder="Ваш `+ elem.value +`">
-                                </div>`;
+                    <div class="popup__bonus-form-input-email input-img">
+                        <img src="../img/smallPlayer/`+ elem.value +`.svg" alt="">
+                    </div>
+                    <input name="`+ elem.value +`" type="text" placeholder="Ваш `+ elem.value +`">
+                </div>`;
         });
 
         div += `<div class="popup__bonus-form-button button-form">

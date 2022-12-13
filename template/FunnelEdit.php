@@ -493,6 +493,14 @@
                             document.querySelector('.link_item').value = popup['first_do']['link']
                             break;
                     }
+                    setTimeout(function (){
+                        let form__title = document.querySelector('.popup-title');
+                        form__title.innerHTML = popup['form__title'];
+                        console.log(form__title)
+
+                        let form__desc = document.querySelector('.popup-text');
+                        form__desc.innerHTML = popup['form__desc'];
+                    }, 400)
                 }
             }
         })
