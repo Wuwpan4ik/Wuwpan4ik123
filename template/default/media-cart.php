@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="media-cart__controller-delete">
-            <button class="button" onclick="deleteDirectory(this)"><img src="/img/Delete.svg" alt=""></button>
+            <button onclick="deleteDirectory(this)"><img src="/img/Delete.svg" alt=""></button>
         </div>
     </div>
     <video id="123" class="media-cart-img" style="object-fit: cover;">

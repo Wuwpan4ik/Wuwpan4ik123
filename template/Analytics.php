@@ -14,7 +14,7 @@
 
   <body>
 
-        <div class="Analytics">
+        <div class="Analytics app">
 
             <?php include 'default/sidebar.php';?>
 

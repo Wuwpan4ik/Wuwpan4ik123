@@ -12,7 +12,7 @@
 
 <body>
 
-<div class="Project">
+<div class="Project app">
 
     <?php include 'default/sidebar.php'; ?>
 
@@ -24,139 +24,139 @@
         include ('default/header.php');
         ?>
 
-        <div class="Lessons ">
+            <div class="Lessons ">
 
-            <div class="media _container">
+                <div class="media _container">
 
-                <?php
+                    <?php
 
-                $k = 1;
+                    $k = 1;
 
-                foreach($content[0][0] as $p){?>
+                    foreach($content[0][0] as $p){?>
 
-                    <div class="media-cart">
+                        <div class="media-cart">
 
-                        <div class="media-cart-img">
-                            <div class="smallPlayer _conatiner">
-                                <div class="smallPlayer__slick-slider">
-                                    <div class="slider__pagination _conatiner-player">
-                                        <div class="slick-dots"></div>
-                                    </div>
-                                    <div class="slider">
-                            <?
-
-                            $i=1;
-
-                            foreach($content[0][1] as $v){
-                                if ($v['funnel_id'] == $p['id']) {?>
-
-                                    <div class="slider__item ">
-                                        <div class="slider__video">
-                                            <video playsinline id="123" class="slider__video-item"
-                                            <source  class="video" src="<?=$v['video']?>" />
-                                            </video>
+                            <div class="media-cart-img">
+                                <div class="smallPlayer _conatiner">
+                                    <div class="smallPlayer__slick-slider">
+                                        <div class="slider__pagination _conatiner-player">
+                                            <div class="slick-dots"></div>
                                         </div>
-                                        <div class="slider__darkness">
+                                        <div class="slider">
+                                            <?
 
+                                            $i=1;
+
+                                            foreach($content[0][1] as $v){
+                                                if ($v['funnel_id'] == $p['id']) {?>
+
+                                                    <div class="slider__item ">
+                                                        <div class="slider__video">
+                                                            <video playsinline id="123" class="slider__video-item"
+                                                            <source  class="video" src="<?=$v['video']?>" />
+                                                            </video>
+                                                        </div>
+                                                        <div class="slider__darkness">
+
+                                                        </div>
+                                                        <div class="slider__header _conatiner-player ">
+                                                            <div class="slider__header-logo">
+                                                                <div class="slider__header-logo-img">
+                                                                    <img src="<? echo (isset($_SESSION['user']['avatar'])  ? $_SESSION['user']['avatar'] : "/uploads/ava/userAvatar.jpg") ?>" alt="">
+                                                                </div>
+                                                                <div class="slider__header-logo-text">
+                                                                    <?=$_SESSION['user']['first_name']?>
+                                                                </div>
+                                                            </div>
+                                                            <div class="slider__header-views">
+                                                                <div class="slider__header-views-img">
+                                                                    <img src="../img/smallPlayer/views.svg" alt="">
+                                                                </div>
+                                                                <div class="slider__header-views-count">
+                                                                    126
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slider__item-info _conatiner-player">
+                                                            <div class="slider__item-title">
+                                                                <?=$v['name']?>
+                                                            </div>
+                                                            <div class="slider__item-text">
+                                                                <?=$v['description']?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <?$i++;}}?>
                                         </div>
-                                        <div class="slider__header _conatiner-player ">
-                                            <div class="slider__header-logo">
-                                                <div class="slider__header-logo-img">
-                                                    <img src="<? echo (isset($_SESSION['user']['avatar'])  ? $_SESSION['user']['avatar'] : "/uploads/ava/userAvatar.jpg") ?>" alt="">
-                                                </div>
-                                                <div class="slider__header-logo-text">
-                                                    <?=$_SESSION['user']['first_name']?>
-                                                </div>
-                                            </div>
-                                            <div class="slider__header-views">
-                                                <div class="slider__header-views-img">
-                                                    <img src="../img/smallPlayer/views.svg" alt="">
-                                                </div>
-                                                <div class="slider__header-views-count">
-                                                    126
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="slider__item-info _conatiner-player">
-                                            <div class="slider__item-title">
-                                                <?=$v['name']?>
-                                            </div>
-                                            <div class="slider__item-text">
-                                                <?=$v['description']?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?$i++;}}?>
                                     </div>
                                 </div>
+
                             </div>
 
+                            <p class="funnel__title">Воронка №<?=$k?></p>
+
+                            <h3><?=$p['name']?></h3>
+
+                            <div style="display:flex;">
+                                <?php $url = include "settings/site_url.php"; ?>
+
+                                <input id="half_input" value="<?=$url?>/<?=$_SESSION['user']['username']?>/SmallPlayer/<?=$p['id']?>" disabled/>
+
+                                <button class="copy-button" onclick="copy_link(this)" type="submit">Копировать</button>
+
+                            </div>
+                            <form action="/Funnel-select/<?=$p['id']?>" method="POST">
+                                <input type="text" name="id" hidden="hidden" value="<?=$p['id']?>">
+                                <select onfocusout="course__send(this)" name="course_id" class="select__course">
+                                    <?php if (!is_null($content[1][0]) && isset($content[1][0])) {
+                                        foreach ($content[1] as $course) { ?>
+                                            <option <?php if ($p['course_id'] == $course['id']) echo "selected";?> value="<?=$course['id']?>"><?=$course['name']?> </option>
+                                        <?php } } else { ?>
+                                        <option>Нет курсов для выбора</option>
+                                    <?php } print_r($content[1]) ?>
+                                </select>
+                            </form>
+
+                            <div class="btn-delete-edit">
+
+                                <input type="hidden" value="<?=$p['id']?>" >
+
+                                <button type="submit" onclick="window.location.href = '/Funnel/<?=$p['id']?>';"">Изменить</button>
+
+                                <button class="reboot" type="submit" onclick="deleteDirectory(this)" style="background: none;border: solid 1px #4E73F8;color: #4E73F8;">Удалить</button>
+
+                            </div>
+                            <div class="btn-all-settings">
+                                <button class="settingsBtn" type="submit" onclick="return(false;)">
+                                    Общие настройки
+                                </button>
+                            </div>
                         </div>
 
-                        <p class="funnel__title">Воронка №<?=$k?></p>
+                        <?$k++;}?>
 
-                        <h3><?=$p['name']?></h3>
+                    <div class="media-cart placeholder">
 
-                        <div style="display:flex;">
-                            <?php $url = include "settings/site_url.php"; ?>
+                        <div class="btn-upload" style="width: auto;">
 
-                            <input id="half_input" value="<?=$url?>/<?=$_SESSION['user']['username']?>/SmallPlayer/<?=$p['id']?>" disabled/>
+                            <a href="/Funnel/create" class="create-new">
 
-                            <button class="copy-button" onclick="copy_link(this)" type="submit">Копировать</button>
+                                <img src="../img/Create.svg" class="create-ico">
 
-                        </div>
-                        <form action="/Funnel-select/<?=$p['id']?>" method="POST">
-                            <input type="text" name="id" hidden="hidden" value="<?=$p['id']?>">
-                            <select onfocusout="course__send(this)" name="course_id" class="select__course">
-                                <?php if (!is_null($content[1][0]) && isset($content[1][0])) {
-                                foreach ($content[1] as $course) { ?>
-                                    <option <?php if ($p['course_id'] == $course['id']) echo "selected";?> value="<?=$course['id']?>"><?=$course['name']?> </option>
-                                <?php } } else { ?>
-                                    <option>Нет курсов для выбора</option>
-                                <?php } print_r($content[1]) ?>
-                            </select>
-                        </form>
+                                <p>Создать<br> новую воронку</p>
 
-                        <div class="btn-delete-edit">
-
-                            <input type="hidden" value="<?=$p['id']?>" >
-
-                            <button type="submit" onclick="window.location.href = '/Funnel/<?=$p['id']?>';"">Изменить</button>
-
-                            <button class="reboot" type="submit" onclick="deleteDirectory(this)" style="background: none;border: solid 1px #4E73F8;color: #4E73F8;">Удалить</button>
+                            </a>
 
                         </div>
-                        <div class="btn-all-settings">
-                            <button class="settingsBtn" type="submit" onclick="return(false;)">
-                                Общие настройки
-                            </button>
-                        </div>
+
                     </div>
 
-                    <?$k++;}?>
 
-                <div class="media-cart placeholder">
 
-                    <div class="btn-upload" style="width: auto;">
-
-                        <a href="/Funnel/create" class="create-new">
-
-                            <img src="../img/Create.svg" class="create-ico">
-
-                            <p>Создать<br> новую воронку</p>
-
-                        </a>
-
-                    </div>
 
                 </div>
 
-
-
-
-        </div>
-
-    </div>
+            </div>
 
 </div>
 
