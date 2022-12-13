@@ -470,23 +470,29 @@
                     switch (option_1) {
                         case 'list':
                             let a = document.getElementById('course_list');
-                            let option_1 = a.querySelector('option[value="'+ popup['first_do']['course_id'] +'"]');
-                            option_1.selected = true;
+                            let option_list_1 = a.querySelector('option[value="'+ popup['first_do']['course_id'] +'"]');
+                            option_list_1.selected = true;
                             break;
                         case 'pay_form':
                         case 'form':
                             if (popup['form__title']) {
                                 document.querySelector('input[name="form__title"]').value = popup['form__title'];
                             }
-                            if (popup['form__desc']) {
+                            if (popup['form__desc']) {в
                                 document.querySelector('input[name="form__desc"]').value = popup['form__desc'];
                             }
                             if (popup['button_text']) {
                                 document.querySelector('input[name="button__send"]').value = popup['button_text'];
                             }
                             let div = document.querySelector('.addFormInput');
-                            for (let item of popup['first_do']['form']) {
-                                addFormItem(div, item);
+                            if (option_1 === 'form') {
+                                for (let item of popup['first_do']['form']) {
+                                    addFormItem(div, item);
+                                }
+                            } else if(option_1 === 'pay_form') {
+                                for (let item of popup['first_do']['pay_form']) {
+                                    addFormItem(div, item);
+                                }
                             }
                             break;
                         case 'link':
