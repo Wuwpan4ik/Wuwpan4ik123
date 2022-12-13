@@ -80,6 +80,7 @@
     $router->addRoute("/Funnel/$item_id/change", "FunnelController.php", "ChangeVideo");
     $router->addRoute("/Funnel/$item_id/settings", "FunnelController.php", "PopupSettings");
     $router->addRoute("/Funnel/getCourseList", "UserController.php", "GetCourseList");
+    $router->addRoute("/Funnel/$item_id/getFunnelPopup", "UserController.php", "GetFunnelPopup");
 
     $router->addRoute("/LoginController/login", "LoginController.php", 'login');
     $router->addRoute("/LoginController/reg", "LoginController.php", 'registration');

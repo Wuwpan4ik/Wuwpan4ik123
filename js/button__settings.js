@@ -97,7 +97,7 @@ function defaultPopup(parent_elem){
     })
 }
 
-async function addFormSelect(elem) {
+async function addFormSelect(elem, name) {
     let count_block = elem.parentElement.querySelectorAll('.form_id').length;
     let count_id = elem.parentElement.querySelectorAll('.form_id').length + 1;
     if (elem.id === 'second_do-list') {
@@ -109,7 +109,11 @@ async function addFormSelect(elem) {
     div.classList.add('input_selector');
     div.name = 'form_id-' + count_id;
     for (const [key, value] of Object.entries(names_option)) {
-        inner += `<option value="${key}">${value}</option>\n`;
+        let selected;
+        if (name === key) {
+            selected = "selected";
+        }
+        inner += `<option ` + selected +` value="${key}">${value}</option>\n`;
     }
     div.innerHTML = inner;
     elem.parentElement.children[count_block].after(div);
@@ -129,10 +133,10 @@ function addFormLink(elem) {
     }
 }
 
-//Задаются id блоков формы
-async function addFormItem (elem) {
+//Добавление option
+async function addFormItem (elem, name = null) {
     let count = elem.parentElement.querySelectorAll('.form_id').length + 1;
-    await addFormSelect(elem, count);
+    await addFormSelect(elem, name);
     if (elem.id === 'first_do-list') {
         if (['form'].includes(first_select.value)) {
             addPopup('form');
@@ -166,7 +170,7 @@ function save() {
 function addSecondOptions(options) {
     let div = ``;
     options.forEach((item)=> {
-        div += `<option value="` + item[0] +`" selected>` + item[1] +`</option>`;
+        div += `<option value="` + item[0] +`">` + item[1] +`</option>`;
     });
     document.querySelector('#second_do').innerHTML = div;
 }
@@ -190,6 +194,10 @@ function checkFirstSelect() {
         enableAfterClickBlock();
     }
 
+    if (first_select.value === 'next_lesson') {
+        document.querySelector('#popup__body-list-select').classList.add('display-none');
+    }
+
     switch (first_select.value) {
         case 'list':
         case 'next_lesson': {
@@ -202,7 +210,9 @@ function checkFirstSelect() {
             disableAfterClickBlock();
             break;
         }
+
         case 'link': {
+            document.querySelector('#popup__body-list-select').classList.add('display-none');
             document.querySelector('#popup__body-form-1').style.display = 'none';
             addFormLink(first_select);
             defaultPopup(second_select);
@@ -210,6 +220,7 @@ function checkFirstSelect() {
             checkSecondSelect();
             break;
         }
+
         case 'form':
         case 'pay_form': {
             if ('form' === first_select.value) {

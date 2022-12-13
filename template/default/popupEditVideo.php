@@ -51,11 +51,11 @@
                 <div class="popup__body-item">
                     <label for="first_do">Действие после нажатия:</label>
                     <select name="first_do" id="first_do">
-                        <option value="list" selected>Список уроков</option>
-                        <option value="form">Форма заявки</option>
-                        <option value="pay_form">Форма оплаты</option>
-                        <option value="link">Переход по ссылке</option>
-                        <option value="next_lesson">Открыть следующий урок</option>
+                        <option value="list">Список уроков</option>
+                        <option value="form" id="first_do_form" selected>Форма заявки</option>
+                        <option value="pay_form" id="first_do_pay_form">Форма оплаты</option>
+                        <option value="link" id="first_do_link">Переход по ссылке</option>
+                        <option value="next_lesson" id="first_do_next_lesson">Открыть следующий урок</option>
                     </select>
                     <div class="popup__body-item popup__margin" id="popup__body-list-select">
                         <div class="popup__body-item">
@@ -88,10 +88,9 @@
                 <div class="popup__body-item popup__body-after popup__margin">
                     <label for="second_do">После нажатия на кнопку формы:</label>
                     <select name="second_do" id="second_do">
-                        <option value="pay_form" selected>Форма оплаты</option>
-                        <option value="link">Переход по ссылке</option>
-                        <option value="next_lesson">Открыть следующий урок</option>
-                        <option value="file">Отправить файл</option>
+                        <option value="link" id="second_do_link">Переход по ссылке</option>
+                        <option value="next_lesson" id="second_do_next_lesson">Открыть следующий урок</option>
+                        <option value="file" id="second_do_file">Отправка файла</option>
                     </select>
                     <div class="popup__body-item popup__margin" id="popup__body-form-2">
                         <div>
@@ -104,9 +103,9 @@
                         <div class="avatar" style="margin: 0">
                             <div class="avatar-body">
                                 <img src="/img/saveAvatar.svg" alt="">
-                                <div class="avatar-body__info">
+                                <div class="avatar-body__info" style="margin-bottom: 15px;">
                                     <span id="file-name" style="font-size: 16px;text-align: left;" class="file-box">Название файла</span>
-                                    <span id="file-size" style="text-align: left;" class="file-box">0 кб из доступных 5мб</span>
+                                    <span id="file-size" style="text-align: left;" class="file-box display-none">0 кб из доступных 5мб</span>
                                 </div>
                             </div>
                             <div class="input__wrapper" style="width: 100%;">

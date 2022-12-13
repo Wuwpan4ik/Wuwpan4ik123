@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+
 <html lang="ru">
+
 <head>
     <meta charset="utf-8">
 
@@ -171,7 +173,7 @@
 
                     <?php include 'default/media-cart.php'?>
 
-                <? } ?>
+                <?php } ?>
 
                 <?php include 'default/add_new_video.php'?>
 
@@ -211,6 +213,11 @@
 </div>
 <?php include 'default/popupEditVideo.php';?>
 <script src="/js/jquery-3.6.1.min.js"></script>
+<script>
+    function click_settings(elem) {
+        getCourseList(elem);
+    }
+</script>
 <script>
     window.onload = () =>{
         let inputs = document.querySelectorAll('.input_focus input, textarea');
@@ -341,7 +348,7 @@
 
 <!--Подсос курсов для воронки-->
 <script>
-    function getCourseList() {
+    function getCourseList(elem) {
         let requestDisable = new XMLHttpRequest();
 
         let urlDisable = "/Funnel/getCourseList";
@@ -352,9 +359,9 @@
         requestDisable.addEventListener("readystatechange", () => {
             if (requestDisable.readyState === 4 && requestDisable.status === 200) {
                 let block = document.getElementById('course_list');
+                block.replaceChildren();
                 let course_list = JSON.parse(requestDisable.responseText);
                 for (let course_item of course_list) {
-                    console.log(course_item)
                     let option = document.createElement('option');
                     option.value = course_item['id'];
                     option.innerHTML = course_item['name'];
@@ -363,7 +370,89 @@
             }
         })
         requestDisable.send();
+        getFunnelPopup(elem.parentElement.querySelector('.funnel__content-id').value);
     }
+</script>
+
+<!-- Получить popup funnel_content -->
+<script>
+    function getFunnelPopup(funnel_content_id) {
+        let request = new XMLHttpRequest();
+
+        let url = "/Funnel/"+ funnel_content_id +"/getFunnelPopup?";
+
+        request.open('GET', url);
+
+        request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+        request.addEventListener("readystatechange", () => {
+            if (request.readyState === 4 && request.status === 200) {
+                let popup = JSON.parse(JSON.parse(request.responseText))
+                if (popup) {
+                    let first_do = document.getElementById('first_do');
+
+                    // first_do
+                    let option_1 = Object.keys(popup['first_do'])[0];
+                    let option_item_1 = first_do.querySelector('option[value="'+ option_1 +'"]')
+                    option_item_1.selected = true;
+                    option_item_1.setAttribute('selected', 'selected')
+
+                    // /first_do
+
+                    checkBothSelect();
+
+                    // second_do
+
+                    let second_do = document.getElementById('second_do');
+                    let option_2 = Object.keys(popup['second_do'])[0];
+                    let option_item_2 = second_do.querySelector('option[value="'+ option_2 +'"]')
+                    option_item_2.selected = true;
+                    option_item_2.setAttribute('selected', 'selected')
+
+                    // /second_do
+
+                    checkSecondSelect();
+
+                    switch (option_2) {
+                        case 'link':
+                            document.querySelector('input[name="link-2"]').value = popup['second_do']['link'];
+                            break;
+                        case 'file':
+                            document.querySelector('#file-name').innerHTML = popup['second_do']['file'].toString().match(/.*\/(.+?)\./)[1];
+                            break;
+                    }
+
+                    switch (option_1) {
+                        case 'list':
+                            let a = document.getElementById('course_list');
+                            let option_1 = a.querySelector('option[value="'+ popup['first_do']['course_id'] +'"]');
+                            option_1.selected = true;
+                            break;
+                        case 'pay_form':
+                        case 'form':
+                            if (popup['form__title']) {
+                                document.querySelector('input[name="form__title"]').value = popup['form__title'];
+                            }
+                            if (popup['form__desc']) {
+                                document.querySelector('input[name="form__desc"]').value = popup['form__desc'];
+                            }
+                            if (popup['button_text']) {
+                                document.querySelector('input[name="button__send"]').value = popup['button_text'];
+                            }
+                            let div = document.querySelector('.addFormInput');
+                            for (let item of popup['first_do']['form']) {
+                                addFormItem(div, item);
+                            }
+                            break;
+                        case 'link':
+                            document.querySelector('.link_item').value = popup['first_do']['link']
+                            break;
+                    }
+                }
+            }
+        })
+        request.send();
+    }
+
 </script>
 <script src="/js/getNotifications.js"></script>
 </body>
