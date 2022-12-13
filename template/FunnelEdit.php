@@ -196,21 +196,56 @@
     </div>
 </div>
 <div class="popup__background" id="reload__back">
-    <div class="popup" style="height: 400px; width: 600px;">
-        <div class="popup__container">
-            <div class="popup__title">Вы действительно хотите изменить видео?</div>
-            <div class="popup__form" style="justify-content: center">
-                <form method="POST" action="" class="upload__form" id="change__video" enctype="multipart/form-data">
+    <div id="popup">
+        <div class="popup__container " >
+            <div class="popup-body">
+                <div class="popup__title">Хотите изменить видео?</div>
+                <div class="avatar inCourse">
+                    <div class="avatar-body">
+                        <img src="../img/saveAvatar.svg" alt="">
+                        <div class="avatar-body__info">
+                            <span id="file-name" class="file-box">
+                                Название файла
+                            </span>
+                            <span id="file-size" class="file-box">
+                                0кб из 5мб
+                            </span>
+                        </div>
 
-                    <input class="upload_video" style="display:block;" id="video" name="video_change" type="file"/>
+                    </div>
 
-                    <button type="submit" class="popup__btn popup__delete popup__change">Изменить</button>
-                    <button type="button" class="popup__btn popup__not-delete" id="popup__not-change">Отменить</button>
-                </form>
+                    <div class="input__wrapper">
+                        <input name="file" type="file" id="input__file" class="input input__file" onchange="uploadFile(this)" multiple="">
+                        <label for="input__file" class="input__file-button" style="">
+                            <span class="input__file-icon-wrapper"><img class="input__file-icon" src="/img/plus.svg" width="25"></span>
+                            <span class="input__file-button-text">Добавить</span>
+                        </label>
+                    </div>
+
+                </div>
+                <div class="popup__form">
+                    <button class="popup__btn popup__white" id="popup__not-change" >Отменить</button>
+                    <button class="popup__btn popup__blue ">Заменить</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<!--<div class="popup__background" id="reload__back">-->
+<!--    <div class="popup" style="height: 400px; width: 600px;">-->
+<!--        <div class="popup__container">-->
+<!--            <div class="popup__title">Вы действительно хотите изменить видео?</div>-->
+<!--            <div class="popup__form" style="justify-content: center">-->
+<!--                <form method="POST" action="" class="upload__form" id="change__video" enctype="multipart/form-data">-->
+<!---->
+<!---->
+<!--                    <button type="submit" class="popup__btn popup__delete popup__change">Изменить</button>-->
+<!--                    <button type="button" class="popup__btn popup__not-delete" id="popup__not-change">Отменить</button>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 <?php include 'default/popupEditVideo.php';?>
 <script src="/js/jquery-3.6.1.min.js"></script>
 <script>
@@ -250,20 +285,31 @@
     //  Замена видео
     window.onload = () => {
         let reload__video = document.querySelectorAll('.reload_video');
-        let reload__back = document.querySelector('#reload__back');
+        let reload = document.querySelector('#reload__back');
+        let reload__back = document.querySelectorAll('.popup__container');
+
+
         reload__video.forEach(item => {
             item.addEventListener('click', function () {
-                reload__back.classList.toggle('display-block');
+                reload.classList.toggle('display-block');
                 _('change__video').action = '/Funnel/'+ item.dataset.id +'/change';
             })
         })
         let notChangeVideo = document.querySelector('#popup__not-change');
         notChangeVideo.onclick = function (event) {
             if (event.target === notChangeVideo) {
-                reload__back.classList.remove('display-block');
+                reload.classList.remove('display-block');
                 toggleOverflow();
             }
         }
+        reload__back.forEach(item => {
+            item.onclick = function (event) {
+                if (event.target === item) {
+                    reload.classList.remove('display-block');
+                    toggleOverflow();
+                }
+            }
+        })
     }
 
     let entryDisplayDelete = document.querySelector('#delete__back');

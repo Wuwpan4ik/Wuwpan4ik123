@@ -49,6 +49,7 @@ code {
 
 .popup__edit {
   width: 900px;
+  overflow: auto;
 }
 
 #popup__background.display-flex {
@@ -164,11 +165,11 @@ p {
   height: 100vh;
   display: none;
   background: rgba(102, 102, 102, 0.5);
-  z-index: 10000;
+  z-index: 500;
 }
 
 .popup__container {
-  height: 100%;
+  height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -182,6 +183,7 @@ p {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  z-index: 100;
 }
 
 #popup__background #popup {
@@ -190,15 +192,16 @@ p {
   right: 0;
   bottom: 0;
   left: 0;
-  width: 430px;
-  height: 220px;
-  border-radius: 20px;
-  padding: 20px 30px 20px !important;
   margin: auto;
   text-align: center;
+
+}
+.popup-body{
+  width: 430px !important;
+  border-radius: 20px;
+  padding: 20px 30px 20px !important;
   background: #fff;
 }
-
 #popup__background:target {
   display: block;
 }
@@ -225,6 +228,7 @@ p {
   color:black;
   line-height: 40px;
   color: black;
+  text-align: center;
 }
 
 .popup__form {
@@ -264,7 +268,7 @@ p {
   cursor: pointer;
 }
 
-.popup__not-delete {
+.popup__blue {
   border: none;
   color: white;
   background: -webkit-gradient(linear, left top, left bottom, from(#6989FE), to(#3C64F4));
@@ -272,7 +276,7 @@ p {
   background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);
 }
 
-.popup__delete {
+.popup__white {
   background: #fff;
   color: #4E73F8;
   border: 1px solid #4E73F8;
@@ -1225,11 +1229,19 @@ span.name {
   line-height: 18px;
   color: #404D61;
 }
+#file-name p{
+  margin: 0; /* Убираем внешний отступ */
+  -webkit-line-clamp: 1; /* Число отображаемых строк */
+  display: -webkit-box; /* Включаем флексбоксы */
+  -webkit-box-orient: vertical; /* Вертикальная ориентация */
+  overflow: hidden; /* Обрезаем всё за пределами блока */
+}
 .file-box {
-  display: inline-block;
+  display: flex;
   width: 100%;
   padding: 5px 0px 5px 5px;
   -webkit-box-sizing: border-box;
+  align-items: start;
   box-sizing: border-box;
   color: #000;
   height: calc(2rem - 2px);
@@ -1263,7 +1275,7 @@ span.name {
 }
 
 .input__file-icon-wrapper {
-  margin: 8px;
+  margin: 0 8px 0  0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1282,6 +1294,7 @@ span.name {
   overflow: hidden;
   gap: 5px;
 }
+
 .input-upload {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1813,14 +1826,12 @@ td:nth-child(1){
   -ms-flex-pack: justify;
   justify-content: space-between;
   margin: 20px 0 0 0;
-  padding:0px !important;
 }
 
 .avatar-body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 100%;
   overflow: hidden;
   gap: 5px;
 }
@@ -1836,8 +1847,22 @@ td:nth-child(1){
   left: 0px;
   background: linear-gradient(180deg, #08B395 0%, #0C977F 100%) !important;
 }
-.avatar.inCourse .input__wrapper {
-  width: 100%;
+.inCourse{
   display: flex;
-  justify-content: flex-end;
+  flex-direction: row !important;
+
+
+}
+.inCourse .avatar-body{
+  width: 40%!important;
+}
+.inCourse .avatar-body__info{
+}
+.inCourse #file-name{
+  margin: 0; /* Убираем внешний отступ */
+  -webkit-line-clamp: 1; /* Число отображаемых строк */
+  display: -webkit-box; /* Включаем флексбоксы */
+  -webkit-box-orient: vertical; /* Вертикальная ориентация */
+  overflow: hidden; /* Обрезаем всё за пределами блока */
+  line-height: 20px;
 }

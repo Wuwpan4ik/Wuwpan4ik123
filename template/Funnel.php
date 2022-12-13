@@ -151,22 +151,29 @@
 
                 </div>
 
-            </div>
+
+
 
         </div>
 
     </div>
 
 </div>
+
+</div>
 <div id="popup__background">
     <div id="popup">
-        <div class="popup__container">
-            <div class="popup__title">Вы действительно хотите удалить проект?</div>
-            <div class="popup__form">
-                <button class="popup__btn popup__not-delete">Не удалять</button>
-                <button class="popup__btn popup__delete">Удалить</button>
+
+            <div class="popup__container">
+                <div class="popup-body">
+                    <div class="popup__title">Вы действительно хотите удалить проект?</div>
+                    <div class="popup__form">
+                        <button class="popup__btn popup__delete popup__white">Удалить</button>
+                        <button class="popup__btn popup__not-delete popup__blue">Не удалять</button>
+                    </div>
             </div>
         </div>
+
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
@@ -184,6 +191,7 @@
     let notDelete = document.querySelector('.popup__not-delete');
     let deletes = document.querySelector('.popup__delete');
     let entryDisplay = document.querySelector('#popup__background');
+    let entryContainer = document.querySelector('.popup__container');
     let body = document.querySelector('body');
 
     function course__send(item) {
@@ -222,10 +230,11 @@
             toggleOverflow();
         }
     }
-    entryDisplay.onclick = function (event) {
-        if (event.target === entryDisplay) {
-            toggleOverflow();
+    entryContainer.onclick = function (event) {
+        if (event.target === entryContainer) {
             entryDisplay.classList.remove('display-block');
+            toggleOverflow();
+
         }
     }
 
