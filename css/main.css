@@ -228,10 +228,9 @@ p {
 
 .popup__title {
   font-weight: 700;
-  font-size: 38px;
-  color:black;
+  font-size: 30px;
+  color: #404D61;
   line-height: 40px;
-  color: black;
   text-align: center;
 }
 
@@ -1380,7 +1379,12 @@ select:focus {
   -webkit-box-shadow: 0 0 0 4px rgba(31, 45, 207, 0.2);
   box-shadow: 0 0 0 4px rgba(31, 45, 207, 0.2);
 }
-
+textarea:focus {
+  outline: none;
+  border: 1px solid #4E73F8 !important;
+  -webkit-box-shadow: 0 0 0 4px rgba(31, 45, 207, 0.2);
+  box-shadow: 0 0 0 4px rgba(31, 45, 207, 0.2);
+}
 option {
   font-size: 16px;
 }

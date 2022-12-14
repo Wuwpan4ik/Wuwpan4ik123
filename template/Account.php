@@ -50,7 +50,7 @@
                                     <form method="POST" action="/Account/MainSettings" enctype="multipart/form-data">
                                         <h2>Ваши данные</h2>
                                         <div class="field">
-                                            <div class="input_focus inf">
+                                            <div class="input_focus ">
                                                 <label for="username" class="label_focus ">Электронная почта</label>
                                                 <input class="half" type="email" name="email" value="<? echo $_SESSION['user']['email'] ?>">
                                                 <span class="clear_input_val">
@@ -59,7 +59,7 @@
                                             </div>
 
                                             <?php if(isset($_SESSION['error']['email_message'])) echo $_SESSION['error']['email_message'] ?>
-                                            <div class="input_focus inf">
+                                            <div class="input_focus ">
                                                 <label for="username" class="label_focus ">Телефон</label>
                                                 <input class="half"  name="phone" value="<?php print(htmlspecialchars(isset($_SESSION['user']['phone']) ? $_SESSION['user']['phone'] : '+7')) ?>">
                                                 <span class="clear_input_val">
@@ -73,7 +73,7 @@
                                         <h2>Расскажите о себе</h2>
 
                                         <div class="field">
-                                            <div class="input_focus inf">
+                                            <div class="input_focus ">
                                                 <label for="username" class="label_focus ">Имя</label>
                                                 <input id="username" type="text" name="first_name" value="<? echo $_SESSION['user']['first_name'] ?>">
                                                 <span class="clear_input_val">
@@ -81,7 +81,7 @@
                                                 </span>
                                             </div>
 
-                                            <div class="input_focus inf">
+                                            <div class="input_focus ">
                                                 <label for="username" class="label_focus ">Фимилия</label>
                                                 <input id="username" type="text" name="second_name" >
                                                 <span class="clear_input_val">
@@ -89,7 +89,7 @@
                                                 </span>
                                             </div>
 
-                                            <div class="input_focus inf">
+                                            <div class="input_focus ">
                                                 <label for="username" class="label_focus "></label>
                                                 <input id="username" type="date" name="birthday"  value="<? print(htmlspecialchars($_SESSION['user']['birthday'])); ?>">
                                                 <span class="clear_input_val">
@@ -104,14 +104,14 @@
                                         </div>
                                         <h2>Откуда вы?</h2>
                                         <div class="field">
-                                            <div class="input_focus inf">
+                                            <div class="input_focus ">
                                                 <label for="username" class="label_focus">Страна</label>
                                                 <input type="text"  name="country" value="<?php print(htmlspecialchars(isset($_SESSION['user']['country']) ? $_SESSION['user']['country'] : '')) ?>">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
                                             </div>
-                                            <div class="input_focus inf">
+                                            <div class="input_focus ">
                                                 <label for="username" class="label_focus">Город</label>
                                                 <input type="text"   name="city" value="<?php print(htmlspecialchars(isset($_SESSION['user']['city']) ? $_SESSION['user']['city'] : ''))?>">
                                                 <span class="clear_input_val">
@@ -147,7 +147,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="input_focus inf">
+                                            <div class="input_focus ">
                                                 <label for="username" class="label_focus">Укажите ссылку</label>
                                                 <input type="text" >
                                                 <span class="clear_input_val">
@@ -217,9 +217,17 @@
 
                                         <div class="field">
 
-                                            <input class="half" name="school_name" type="text" placeholder="<? print(htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : 'Название')) ?>"/>
+                                            <div class="input_focus ">
+                                                <label for="username" class="label_focus">Страна</label>
+                                                <input class="inf" type="text"  name="school_name" value="<? print(htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : '')) ?>">
+                                                <span class="clear_input_val">
+                                                     <img src="/img/clear_input.svg" alt="">
+                                                </span>
+                                            </div>
 
-                                            <select class="selector" name="niche">
+
+
+                                            <select class="selector inf" name="niche">
 
                                                 <?
                                                 $options = ["Изотерика", "Обучение", "Дизайн", "Политика", "Спорт", "Игры", "Животные"];
@@ -233,6 +241,7 @@
 
 
                                         </div>
+
                                         <div class="about_school">
                                             <textarea name="school_desc" placeholder="<? print(htmlspecialchars(isset($_SESSION['user']['school_desc']) ? $_SESSION['user']['school_desc'] : 'Описание для школы')) ?>"></textarea>
                                         </div>
@@ -248,8 +257,8 @@
                                                 <div class="tariff-img">
                                                     <img src="/img/tarif-Image.jpg" alt="">
                                                 </div>
-                                                <div class="tariff-btn">
-                                                    <button>Сменить тариф</button>
+                                                <div  class="tariff-btn">
+                                                    <a id="change-tariff">Сменить тариф</a>
                                                 </div>
                                             </div>
                                             <div class="tariff-card">
@@ -282,7 +291,178 @@
                                                     </div>
                                                 </div>
                                                 <div class="tariff-btn">
-                                                    <button>Сменить тариф</button>
+                                                    <a id="improvement-tariff">Увеличить хранилище</a>
+                                                </div>
+                                            </div>
+
+                                            <div class="change-tariff-popup popup-tariff">
+                                                <div class="popup-tariff-body">
+                                                    <div class="popup__title">
+                                                        Выберите лучшее соотношение цены <br> и возможностей Сourse-creator.io
+                                                    </div>
+
+                                                    <div class="popup-tariff__cards">
+                                                        <div class="popup-tariff__card">
+                                                            <div class="popup-tariff__card-body">
+                                                                <div class="popup-tariff__subtitle">
+                                                                    Starter
+                                                                </div>
+                                                                <p>Идеально подходит для тех, кто начинает свой первый курс</p>
+                                                                <div class="popup-tariff__img">
+                                                                    <img src="../img/Tarifs/starter-tariff.jpg" alt="">
+                                                                </div>
+
+                                                                <div class="popup-tariff__info">
+                                                                    <ul>
+                                                                        <li>1 воронка (сайт)</li>
+                                                                        <li>1 курс </li>
+                                                                        <li>1  гб места на хостинге</li>
+                                                                        <li>до 1 000 учеников</li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="popup-tariff__price">
+                                                                    Стоимость
+                                                                    <div class="tariff-price">2 990 ₽/ мес </div>
+                                                                </div>
+                                                                <div class="popup-tariff-button ">
+                                                                    <button class="selected">
+                                                                        Выбран сейчас
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="popup-tariff__card">
+                                                            <div class="popup-tariff__card-body">
+                                                                <div class="popup-tariff__subtitle">
+                                                                    Starter
+                                                                </div>
+                                                                <p>Идеально подходит для тех, кто начинает свой первый курс</p>
+                                                                <div class="popup-tariff__img">
+                                                                    <img src="../img/Tarifs/starter-tariff.jpg" alt="">
+                                                                </div>
+
+                                                                <div class="popup-tariff__info">
+                                                                    <ul>
+                                                                        <li>1 воронка (сайт)</li>
+                                                                        <li>1 курс </li>
+                                                                        <li>1  гб места на хостинге</li>
+                                                                        <li>до 1 000 учеников</li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="popup-tariff__price">
+                                                                    Стоимость
+                                                                    <div class="tariff-price">2 990 ₽/ мес </div>
+                                                                </div>
+                                                                <div class="popup-tariff-button ">
+                                                                    <button >
+                                                                        Выбран сейчас
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="popup-tariff__card">
+                                                            <div class="popup-tariff__card-body">
+                                                                <div class="popup-tariff__subtitle">
+                                                                    Starter
+                                                                </div>
+                                                                <p>Идеально подходит для тех, кто начинает свой первый курс</p>
+                                                                <div class="popup-tariff__img">
+                                                                    <img src="../img/Tarifs/starter-tariff.jpg" alt="">
+                                                                </div>
+
+                                                                <div class="popup-tariff__info">
+                                                                    <ul>
+                                                                        <li>1 воронка (сайт)</li>
+                                                                        <li>1 курс </li>
+                                                                        <li>1  гб места на хостинге</li>
+                                                                        <li>до 1 000 учеников</li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="popup-tariff__price">
+                                                                    Стоимость
+                                                                    <div class="tariff-price">2 990 ₽/ мес </div>
+                                                                </div>
+                                                                <div class="popup-tariff-button ">
+                                                                    <button ">
+                                                                        Выбран сейчас
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="improvement-tariff-popup popup-tariff">
+                                                <div class="popup-tariff-body">
+                                                    <div class="popup__title">
+                                                        Хотите больше <br>
+                                                        возможностей?
+                                                    </div>
+
+                                                    <div class="popup-tariff__cards">
+                                                        <div class="popup-tariff__card">
+                                                            <div class="popup-tariff__card-body">
+                                                                <div class="popup-tariff__subtitle">
+                                                                    Вам доступно:
+                                                                </div>
+
+                                                                <div class="popup-tariff__info">
+                                                                    <div class="popup-tariff__info-users popup-tariff-info-body">
+                                                                            <p class="text">Пользователей:</p>
+                                                                            <div class="popup-tariff__info-users-body">
+                                                                                <div class="progress-users progress">
+                                                                                    <progress max="300" value="200">
+                                                                                    </progress>
+                                                                                    <div class="progress__info">
+                                                                                        <div class="progress__current-value">
+                                                                                            200
+                                                                                        </div>
+                                                                                        <div class="progress__max-value">
+                                                                                            300
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        <div class="button-add">
+                                                                            <button><img src="../img/addSocialNetwork.svg" alt="">Добавить 100</button>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="popup-tariff__info-place-memory popup-tariff-info-body">
+                                                                            <p class="text">Места на хостинге:</p>
+                                                                            <div class="popup-tariff__info-users-body">
+                                                                                <div class="progress-memory progress">
+                                                                                    <progress max="1000" value="225">
+                                                                                    </progress>
+                                                                                    <div class="progress__info">
+                                                                                        <div class="progress__current-value">
+                                                                                            225 мб
+                                                                                        </div>
+                                                                                        <div class="progress__max-value">
+                                                                                            1 000 мб
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="button-add">
+                                                                                <button><img src="../img/addSocialNetwork.svg" alt="">Добавить 100</button>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="popup-tariff__price">
+                                                                    К оплате
+                                                                    <div class="tariff-price">2 990 ₽/ мес </div>
+                                                                </div>
+                                                                <div class="popup-tariff-button ">
+                                                                    <button>
+                                                                        Перейти к оплате
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -329,13 +509,32 @@
 
 
 <script>
+    /*Popups*/
+    let changeTariff = document.querySelector('.change-tariff-popup');
+    let improvementTariff = document.querySelector('.improvement-tariff-popup');
+    let changeTariffOpen = document.querySelector('#change-tariff');
+    let improvementTariffOpen = document.querySelector('#improvement-tariff');
+
+    changeTariffOpen.addEventListener('click', function(){
+        changeTariff.classList.add('active');
+    })
+    improvementTariffOpen.addEventListener('click', function(){
+        improvementTariff.classList.add('active');
+    })
+
+    document.querySelectorAll('.popup-tariff').forEach(item => {
+        item.addEventListener('click', function(){
+            improvementTariff.classList.remove('active');
+            changeTariff.classList.remove('active');
+        })
+    })
+
     /*Select*/
     function checkboxStatusChange() {
         let multiselectOption =  document.getElementById("name");
         let values = [];
         let checkboxes = document.getElementById("mySelectOptions");
         let checkedCheckboxes = checkboxes.querySelectorAll('input');
-
 
         checkedCheckboxes.forEach(item =>{
 
