@@ -27,7 +27,7 @@
                     Войдите в аккаунт
                 </div>
                 <div class="userLogin-form popup-form">
-					<form method="POST" action="/LoginController/login">
+					<form method="POST" action="/LoginController/UserLogin">
                         <input type="hidden" value="true" name="userLogin">
                         <div class="input_focus inputLog">
                             <label for="email" class="label_focus">Ваша почта</label>

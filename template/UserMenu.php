@@ -12,7 +12,7 @@
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 </head>
 
-<body class="body">
+<body class="body" style="background: linear-gradient(164.42deg, #3E8AFB 2.4%, #7024C4 97.34%)">
     <div class="UserMenu">
         <div class="_container">
             <div class="User-header">
@@ -91,7 +91,7 @@
 
                     </a>
 
-                    <a href="/UserContacts">
+                    <a href="/UserAllContacts">
 
                         <div class=" UserMenu-list__option sidebarOption <? if ($_GET['option'] == 'Cases') echo 'active'; ?>">
 

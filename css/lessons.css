@@ -24,7 +24,7 @@
 }
 
 .media-cart h3 {
-    margin: 5px 0px 20px;
+    margin: 25px 0px 20px;
     font-weight: 600;
     font-size: 24px;
 }
@@ -105,8 +105,8 @@
 }
 
 .media-cart__controller-move-right, .media-cart__controller-move-left {
-    width: 18px;
-    height: 8px;
+    width: 19px;
+    height: 20px;
     cursor: pointer;
 }
 
@@ -177,17 +177,22 @@
 }
 
 .btn-delete-edit button:hover {
-    border: 1px solid #74a3f5;
-    border-radius: 10px;
     margin-top: 1em;
-    color: #74a3f5;
-    background-color: white;
-    cursor: pointer;
-    -webkit-transition: 0.2s ease-in;
-    -o-transition: 0.2s ease-in;
-    transition: 0.2s ease-in;
 }
 
+.btn-all-settings{
+    max-width:301px;
+    margin-top:20px;
+}
+.btn-all-settings button{
+    width: 100%;
+    height: 48px;
+    background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);
+    border-radius: 10px;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+}
 .btn-upload {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -833,4 +838,61 @@ input:checked + label {
 }
 .new_name div label{
     top:15px !important;
+}
+
+.popup__body__input {
+    width: 250px;
+    border: 1px solid #E1E3E6;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 20px 0 0 0;
+    text-align: left;
+}
+
+/* Course Price */
+.course-price{
+    position: relative;
+}
+
+.course-price input{
+    background: #FFFFFF;
+    border: 1px solid #E1E3E6;
+    border-radius: 8px;
+    width: 100%;
+    padding: 12px 16px;
+    color: #757D8A;
+    height: 48px;
+}
+
+.course-price button{
+    margin-top: 20px;
+    width: 100%;
+    height: 48px;
+    background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);
+    border-radius: 10px;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    opacity: 0;
+    transition: 0.6s all ease;
+}
+
+.course-price button.activeButton{
+    position: relative;
+    z-index: 0;
+    opacity: 1;
+}
+
+.course-price input::-webkit-outer-spin-button,
+.course-price input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.course-price input {
+    -moz-appearance: textfield;
 }

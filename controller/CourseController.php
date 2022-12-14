@@ -86,7 +86,24 @@
                 $price = $courseContent[0]['price'];
             }
 
-            $this->m->db->execute("UPDATE `course_content` SET `name` = '$name', `description` = '$description', `price` = '$price' WHERE `id` = '$item_id'");
+//          Проверить наличие course_files
+            if (!is_dir($this->url_dir . "course_files")) {
+                mkdir($this->url_dir . "course_files");
+                mkdir($this->url_dir . "course_files/" . $res[0]['id']);
+            }
+
+//
+//            if ($_FILES['file']['size'] != 0) {
+//                unlink($courseContent[0]['file_url']);
+
+                $_SESSION['error'] = $this->url_dir . "course_files/" . $res[0]['id'] . "/" . $_FILES['file']['name'];
+
+                move_uploaded_file($_FILES['file']['tmp_name'], $this->url_dir . "course_files/" . $res[0]['id'] . "/" . $_FILES['file']['name']);
+
+                $file_url = $this->url_dir . "course_files/" . $res[0]['id'] . "/" . $_FILES['file']['name'];
+//            }
+
+            $this->m->db->execute("UPDATE `course_content` SET `name` = '$name', `description` = '$description', `price` = '$price', `file_url` = '$file_url' WHERE `id` = '$item_id'");
             return True;
         }
 
@@ -127,7 +144,7 @@
 
             $frame->save($frame_path);
 
-            $image = imagescale(imagecreatefromjpeg($frame_path), 512, 288);
+            $image = imagescale(imagecreatefromjpeg($frame_path), 288, 512);
 
             imagejpeg($image, $frame_path);
 
@@ -174,13 +191,27 @@
 
             if (!$this->isUser($res[0]['author_id'])) return False;
 
-            if(isset($_POST['title'])) {
-
+            if(isset($_POST['title']) && strlen($_POST['title']) > 0) {
                 $name = $_POST['title'];
-
-                $this->m->db->execute("UPDATE course SET `name` = '$name' WHERE id = '$item_id'");
+            } else {
+                $name = $res[0]['title'];
             }
+            $this->m->db->execute("UPDATE course SET `name` = '$name' WHERE id = '$item_id'");
             return True;
+        }
+
+        public function SetPrice()
+        {
+            $item_id = $_SESSION['item_id'];
+
+            $res = $this->m->db->query("SELECT * FROM course WHERE id = '$item_id'");
+
+            if (isset($_POST['course_price']) && strlen($_POST['course_price']) > 0) {
+                $price = $_POST['course_price'];
+            } else {
+                $price = $res[0]['price'];
+            }
+            $this->m->db->execute("UPDATE course SET `price` = '$price' WHERE id = '$item_id'");
         }
 
         function get_content()

@@ -12,6 +12,10 @@
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 </head>
 <body class="body">
+<div class="mirror_smallPlayer">
+    <div class="mirrorWrap"></div>
+    <video id="mirrorVideo" src="" playsinline muted></video>
+</div>
 <div class="smallPlayer _conatiner">
     <div class="smallPlayer__slick-slider">
         <div class="slider__pagination _conatiner-player">
@@ -24,10 +28,10 @@
                 foreach ($content['funnel_content'] as $item) {
                     if (isset($item['popup'])) $popup = json_decode($item['popup']);
             ?>
-            <div class="slider__item ">
-                <div class="slider__video ">
+            <div class="slider__item">
+                <div class="slider__video">
                     <video playsinline id="123" class="slider__video-item" data-player="playing" autoplay="false">
-                        <source class="video" src=".<?=$item['video']?>"  />
+                        <source class="video" src="/<?=$item['video']?>" id="sourceVideo"  />
                     </video>
                 </div>
                 <div class="slider__darkness">
@@ -44,7 +48,7 @@
                     </div>
                     <div class="slider__header-views">
                         <div class="slider__header-views-img">
-                            <img src="../img/smallPlayer/views.svg" alt="">
+                            <img src="/img/smallPlayer/views.svg" alt="">
                         </div>
                         <div class="slider__header-views-count">
                             126
@@ -52,10 +56,10 @@
                     </div>
                 </div>
                 <div class="play__video active">
-                    <img src="../img/smallPlayer/play.svg" alt="">
+                    <img src="/img/smallPlayer/play.svg" alt="">
                 </div>
                 <div class="pause__video" id="pause_video">
-                    <img src="../img/smallPlayer/pause.svg" alt="">
+                    <img src="/img/smallPlayer/pause.svg" alt="">
                 </div>
                 <div class="slider__item-info _conatiner-player">
                     <div class="slider__item-title">
@@ -84,21 +88,21 @@
                     }
                     // Первое или второе действие
                     $name = 'button';
+                    $form__title = $popup->form__title;
+                    $form__desc = $popup->form__desc;
+                    $submit__text = $popup->button_text;
                     $popup__do = $popup->first_do;
                     $second_link = $popup->second_do->link;
                     $id = $item['id'];
                     $author_id = $item['author_id'];
                     include 'template/default/popup__templates/popup__form.php';
                 } ?>
-
-                <?php if (isset($popup->second_do->list)) {
-                    $name = 'button';
-                    include 'template/default/popup__templates/popup__all-lessons.php'; }
-                ?>
                 <?php if (isset($popup->first_do->list)) {
                     $name = 'video';
-                    include 'template/default/popup__templates/popup__all-lessons.php'; }
+                    $course_id = $popup->first_do->course_id;
+                    include 'template/default/popup__templates/popup__all-lessons.php';
                 ?>
+                <?php } ?>
             </div>
             <?php } ?>
         </div>
@@ -114,10 +118,22 @@
 <?php } ?>
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
-<script src="../js/script.js" ></script>
-<script src="../js/slick.min.js"></script>
-<script src="../js/sliders.js"></script>
+<script src="/js/script.js" ></script>
+<script src="/js/slick.min.js"></script>
+<script src="/js/sliders.js"></script>
+
+<!--Закрытие AllLessons-->
 <script>
+    document.querySelector('.button-notBuy').addEventListener('click', function (){
+        document.querySelector('.overlay-allLessons').classList.remove('active');
+        document.querySelector('.popup-allLessons').classList.remove('active');
+    })
+</script>
+
+<script>
+    let mirrorVideo = document.getElementById('mirrorVideo');
+    let sourceVideo = document.querySelectorAll('#sourceVideo');
+
     document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.slider__video-item').forEach((item) => {
             item.addEventListener('ended', function () {
@@ -128,6 +144,34 @@
             item.style.display = 'none';
         })
     })
+    //отключает таб
+    $(document).ready(function() {
+
+        //gather all inputs of selected types
+        var inputs = $('input, textarea, select, button');
+
+        //bind on keydown
+        inputs.on('keydown', function(e) {
+
+            //if we pressed the tab
+            if (e.keyCode == 9 || e.which == 9) {
+
+                //prevent default tab action
+                e.preventDefault();
+
+                //get next input based on the current input we left off
+                var nextInput = inputs.get(inputs.index(this) + 1);
+
+                //if we have a next input, go to it. or go back
+                if (nextInput) {
+                    nextInput.focus();
+                }
+                else{
+                    inputs[0].focus();
+                }
+            }
+        });
+    });
     $(function() {
         $('.popup__form').each(function (){
             $(this).submit(function(e) {
@@ -136,6 +180,7 @@
                 try {
                     $(this)[0].querySelector('.next__lesson');
                     $('.slick-next').click();
+                    alert("Форма успешно отправлена");
                 } catch {}
                 try {
                     window.open($(this)[0].querySelector('.second_link').value);

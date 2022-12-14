@@ -44,9 +44,9 @@
                         </div>
                         <div class="time-more-btn">
                             <p>29 января 2022</p>
-                            <button>
+                            <a href="/Article">
                                 Узнать больше
-                            </button>
+                            </a>
                         </div>
                     </div>
                     <div class="cart">
@@ -78,14 +78,17 @@
                         </div>
                         <div class="time-more-btn">
                             <p>29 января 2022</p>
-                            <button>
-                                Узнать больше
-                            </button>
+
+                                <a href="/Article">
+                                    Узнать больше
+                                </a>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <script src="/js/getNotifications.js"></script>
   </body>
 </html>

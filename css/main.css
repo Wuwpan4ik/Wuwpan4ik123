@@ -5,6 +5,7 @@ body {
   height: 100%;
   margin: 0;
 }
+
 *.no_margin{
   margin:0px !important;
 }
@@ -47,8 +48,12 @@ code {
   cursor: pointer;
 }
 
+.app{
+  display: flex;
+}
 .popup__edit {
   width: 900px;
+  overflow: auto;
 }
 
 #popup__background.display-flex {
@@ -164,11 +169,11 @@ p {
   height: 100vh;
   display: none;
   background: rgba(102, 102, 102, 0.5);
-  z-index: 10000;
+  z-index: 500;
 }
 
 .popup__container {
-  height: 100%;
+  height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -182,6 +187,7 @@ p {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  z-index: 100;
 }
 
 #popup__background #popup {
@@ -190,15 +196,16 @@ p {
   right: 0;
   bottom: 0;
   left: 0;
-  width: 430px;
-  height: 220px;
-  border-radius: 20px;
-  padding: 20px 30px 20px !important;
   margin: auto;
   text-align: center;
+
+}
+.popup-body{
+  width: 420px !important;
+  border-radius: 20px;
+  padding: 20px 30px 20px !important;
   background: #fff;
 }
-
 #popup__background:target {
   display: block;
 }
@@ -225,6 +232,7 @@ p {
   color:black;
   line-height: 40px;
   color: black;
+  text-align: center;
 }
 
 .popup__form {
@@ -232,6 +240,7 @@ p {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  gap: 10px;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
@@ -245,7 +254,6 @@ p {
 
 .popup__btn {
   width: 169px;
-  height: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -257,6 +265,7 @@ p {
   -ms-flex-pack: center;
   justify-content: center;
   gap: 8px;
+  padding: 15px 0;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -264,7 +273,7 @@ p {
   cursor: pointer;
 }
 
-.popup__not-delete {
+.popup__blue {
   border: none;
   color: white;
   background: -webkit-gradient(linear, left top, left bottom, from(#6989FE), to(#3C64F4));
@@ -272,7 +281,7 @@ p {
   background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);
 }
 
-.popup__delete {
+.popup__white {
   background: #fff;
   color: #4E73F8;
   border: 1px solid #4E73F8;
@@ -425,6 +434,7 @@ span.button__back {
   margin-left: auto;
   margin-right: 0;
   color: #404D61;
+  overflow: auto;
 }
 
 .feed-header{
@@ -436,6 +446,7 @@ span.button__back {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  align-items: center;
   padding: 28px 40px;
   margin: 0 0 30px 0;
   border-bottom: 1px solid #f1ebe5;
@@ -446,15 +457,15 @@ span.button__back {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  align-items: center;
 }
 
 .feed-header h2 {
   vertical-align: middle;
-  height: 48px;
   margin: 0px;
   font-weight: 700;
   font-size: 24px;
-  line-height: 48px;
+
 }
 
 .feed-menu {
@@ -567,9 +578,7 @@ a.button__back {
 
 /*sidebar*/
 .nav {
-  position: fixed;
-  width: 20%;
-  height: 100%;
+  height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -685,6 +694,7 @@ a {
   -ms-flex-align: center;
   align-items: center;
   gap: 12px;
+  justify-content:space-between;
 }
 
 .text-info-name{
@@ -699,6 +709,7 @@ a {
   width: 64px;
   height: 64px;
   border-radius: 99px;
+
 }
 
 .UserProfile p {
@@ -718,6 +729,7 @@ a {
 
 
 .text-info {
+  margin-right: 30px;
 }
 
 .text-info-name {
@@ -1029,9 +1041,10 @@ span.name {
   margin: 16px 0 0 0;
 }
 
-.time-more-btn button {
-  width: 220px;
-  height: 40px;
+.time-more-btn a {
+
+  padding: 8px 43px;
+  text-align: center;
   border-radius: 8px;
   border: none;
   cursor: pointer;
@@ -1172,6 +1185,7 @@ span.name {
   display: flex;
   margin: 25px 0 0 0;
   gap: 12px;
+
 }
 .ProfileSetting-avatar{
   width: 40%;
@@ -1202,6 +1216,7 @@ span.name {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  flex-wrap: wrap;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -1218,11 +1233,19 @@ span.name {
   line-height: 18px;
   color: #404D61;
 }
+#file-name p{
+  margin: 0; /* Убираем внешний отступ */
+  -webkit-line-clamp: 1; /* Число отображаемых строк */
+  display: -webkit-box; /* Включаем флексбоксы */
+  -webkit-box-orient: vertical; /* Вертикальная ориентация */
+  overflow: hidden; /* Обрезаем всё за пределами блока */
+}
 .file-box {
-  display: inline-block;
+  display: flex;
   width: 100%;
   padding: 5px 0px 5px 5px;
   -webkit-box-sizing: border-box;
+  align-items: start;
   box-sizing: border-box;
   color: #000;
   height: calc(2rem - 2px);
@@ -1230,10 +1253,16 @@ span.name {
 .input__file {
   display: none;
 }
-.input__file-button {
-  width: 320px!important;
-  height: 60px;
-  background: linear-gradient(180deg, #B675FF 0%, #7024C4 100%) !important;
+.avatar.inCourse .input__wrapper .input__file-button {
+  position: relative;
+  padding: 0px;
+  margin: 0px;
+  top: 0px !important;
+  right: 0px;
+  left: 0px;
+  width: 132px !important;
+  height:48px ;
+  border: 1px solid #757D8A ;
   font-size: 1.125rem;
   font-weight: 700;
   display: -webkit-box;
@@ -1249,6 +1278,21 @@ span.name {
   cursor: pointer;
   margin: 0 auto;
 }
+.input__file-button span{
+  color: #757D8A ;
+  filter: invert(54%) sepia(6%) saturate(767%) hue-rotate(178deg) brightness(88%) contrast(84%) ;
+}
+.Lessons .input__file-button:hover  {
+  background: linear-gradient(180deg, #08B395 0%, #0C977F 100%) !important;
+  border: none!important;
+}
+.input__file-button:hover span{
+  color: #fff !important;
+  filter: invert(0%) sepia(4%) saturate(15%) hue-rotate(108deg) brightness(94%) contrast(106%); !important;
+
+}
+
+
 .input__file-button-text {
   line-height: 1;
   margin-top: 1px;
@@ -1256,7 +1300,7 @@ span.name {
 }
 
 .input__file-icon-wrapper {
-  margin: 8px;
+  margin: 0 8px 0  0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1275,6 +1319,7 @@ span.name {
   overflow: hidden;
   gap: 5px;
 }
+
 .input-upload {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1328,7 +1373,7 @@ span.name {
   line-height: inherit;
   background-color: transparent;
   cursor: inherit;
-  padding: 0px 16px;
+  padding: 12px 16px;
 }
 
 select:focus {
@@ -1636,6 +1681,7 @@ td:nth-child(1){
 
 .addFormInput {
   width: 250px;
+  background: #F8F8F8;
   border: 1px solid #E1E3E6;
   border-radius: 8px;
   padding: 12px 16px;
@@ -1669,6 +1715,9 @@ td:nth-child(1){
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
+}
+
+.popup__margin {
   margin: 24px 0 0 0;
 }
 
@@ -1788,4 +1837,84 @@ td:nth-child(1){
 #delete__back .popup__title{
   font-size:24px;
   line-height: 30px;
+}
+
+.avatar{
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin: 20px 0 0 0;
+}
+
+.avatar-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  gap: 5px;
+}
+
+
+.inCourse{
+  display: flex;
+  flex-direction: row !important;
+
+
+}
+.inCourse .avatar-body{
+  width: 40%!important;
+}
+.inCourse .avatar-body__info{
+}
+.inCourse #file-name{
+  margin: 0; /* Убираем внешний отступ */
+  -webkit-line-clamp: 1; /* Число отображаемых строк */
+  display: -webkit-box; /* Включаем флексбоксы */
+  -webkit-box-orient: vertical; /* Вертикальная ориентация */
+  overflow: hidden; /* Обрезаем всё за пределами блока */
+  line-height: 20px;
+}
+
+/* Input Holders */
+.input_focus{
+  width: 100%;
+  position: relative;
+}
+
+.label_focus{
+  font-size: 14px;
+  position: absolute;
+  transition: 0.3s all ease;
+  pointer-events: none;
+  font-weight: 400;
+  top:14px;
+  left:16px;
+  line-height: 24px;
+  color: #757D8A;
+}
+
+.label_focus.activeLabel{
+  top:-3px;
+  font-size:10px;
+}
+
+.clear_input_val.has_content {
+  opacity: 1;
+  pointer-events: all;
+}
+.clear_input_val {
+  position: absolute;
+  pointer-events: none;
+  transition: 0.3s all ease;
+  right: 20px;
+  opacity: 0;
+  cursor: pointer;
+  top: 13px;
 }

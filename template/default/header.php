@@ -2,7 +2,7 @@
 <div class="feed-header">
 
     <div class="feed-header__title">
-        <?php if($_SERVER['REQUEST_URI'] != '/') { ?>
+        <?php if($_SERVER['REQUEST_URI'] != '/' && $_SERVER['REQUEST_URI'] != '/Account') { ?>
             <a class="button__back" href="/<?=isset($back) ? $back : "" ?>">
                 <img src="/img/ArrowLeft.svg" alt="">
             </a>
@@ -10,9 +10,10 @@
         <h2><?=$title ?></h2>
     </div>
 
+
     <div class="buttonsFeed">
 
-        <button class="ico_button button-bell"><img class="ico" src="img/Bell.svg"><div id="msg">1</div></button>
+        <button class="ico_button button-bell"><img class="ico" src="img/Bell.svg"><div id="msg">0</div></button>
 
         <button id="apps" class="ico_button" onclick="window.location.replace('Analytics')">Заявки</button>
 
@@ -35,21 +36,17 @@
     buttonBell.addEventListener('mouseover', popupBellActive)
     buttonBell.addEventListener('mouseout', popupBellDisable)
     buttonBell.addEventListener('click', function () {
-        document.querySelector('.button-bell .ico').src = "img/correct.png";
-        document.querySelector('.button-bell .ico').style = "width: 42px; height: 42px;"
-        document.querySelector('.button-bell #msg').remove();
         buttonBell.removeEventListener('mouseover', popupBellActive)
         popupBellDisable();
         buttonBell.removeEventListener('mouseout', popupBellDisable)
         let request = new XMLHttpRequest();
         let url = "/NotificationsController/checkout";
+        document.querySelector('#msg').innerHTML = '0';
 
         request.open('POST', url);
 
         request.setRequestHeader('Content-Type', 'application/x-www-form-url');
         request.addEventListener("readystatechange", () => {
-            if (request.readyState === 4 && request.status === 200) {
-            }
         });
         request.send();
     })

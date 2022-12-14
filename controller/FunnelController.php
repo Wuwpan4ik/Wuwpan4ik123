@@ -58,6 +58,12 @@
                 $description = $funnelContent[0]['description'];
             }
 
+            if (isset($_POST['price']) && strlen($_POST['price']) > 0) {
+                $price = $_POST['price'];
+            } else {
+                $price = $funnelContent[0]['price'];
+            }
+
             if (isset($_POST['button_text']) && strlen($_POST['button_text']) > 0) {
                 $button_text = $_POST['button_text'];
                 $change__button = "`button_text` = '$button_text'";
@@ -69,7 +75,7 @@
                 }
             }
 
-            $this->m->db->execute("UPDATE `funnel_content` SET `name` = '$name', `description` = '$description', $change__button WHERE `id` = '$item_id'");
+            $this->m->db->execute("UPDATE `funnel_content` SET `name` = '$name', `price` = '$price', `description` = '$description', $change__button WHERE `id` = '$item_id'");
 
             return True;
         }
@@ -171,6 +177,7 @@
                 }
                 case "list": {
                     $videoBtnHTML['first_do']['list'] = true;
+                    $videoBtnHTML['first_do']['course_id'] = $_POST['course_list'];
                     break;
                 }
                 case "link": {
@@ -183,6 +190,21 @@
                     $videoBtnHTML['first_do']['next_lesson'] = true;
                     break;
                 }
+            }
+            if (strlen($_POST['button__send']) > 0) {
+                $videoBtnHTML['button_text'] = $_POST['button__send'];
+            } else {
+                $videoBtnHTML['button_text'] = "Отправить";
+            }
+            if (strlen($_POST['form__title']) > 0) {
+                $videoBtnHTML['form__title'] = $_POST['form__title'];
+            } else {
+                $videoBtnHTML['form__title'] = "Заголовок";
+            }
+            if (strlen($_POST['form__desc']) > 0) {
+                $videoBtnHTML['form__desc'] = $_POST['form__desc'];
+            } else {
+                $videoBtnHTML['form__desc'] = "Описание";
             }
             switch ($_POST['second_do']) {
                 case "pay_form": {

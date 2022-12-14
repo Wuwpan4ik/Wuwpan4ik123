@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Creator - Настройки аккаунта</title>
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/aboutuser.css">
@@ -27,43 +27,76 @@
         include ('default/header.php');
         ?>
 
-        <div class="Components">
-            <div class="_container">
-                <div class="AboutUser">
+            <div class="Components">
+                <div class="_container">
+                    <div class="AboutUser">
 
-                    <h2>Основная информация о вас</h2>
+                        <h2>Основная информация о вас</h2>
 
-                    <p class="info_account">Эта информация поможет вам востановить доступ к аккаунту в случае необходимости,
+                        <p class="info_account">Эта информация поможет вам востановить доступ к аккаунту в случае необходимости,
 
-                        и позволит нам давать вам более персонализированный контент который вам поможет в запуске.</p>
+                            и позволит нам давать вам более персонализированный контент который вам поможет в запуске.</p>
 
-                    <div class="mytabs">
+                        <div class="mytabs">
 
-                        <input type="radio" id="About" name="mytabs" checked="checked"/>
+                            <input type="radio" id="About" name="mytabs" checked="checked"/>
 
-                        <label for="About" id="oplab"><p>Профиль</p></label>
+                            <label class="menu-label" for="About" id="oplab"><p>Профиль</p></label>
 
-                        <div class="tab">
+                            <div class="tab">
 
-                            <div class="about">
+                                <div class="about">
 
-                                <form method="POST" action="/Account/MainSettings" enctype="multipart/form-data">
+                                    <form method="POST" action="/Account/MainSettings" enctype="multipart/form-data">
                                         <h2>Ваши данные</h2>
                                         <div class="field">
-                                            <input class="half" name="email" type="email" placeholder="<? echo $_SESSION['user']['email'] ?>"/>
+                                            <div class="input_focus inf">
+                                                <label for="username" class="label_focus ">Электронная почта</label>
+                                                <input class="half" type="email" name="email" value="<? echo $_SESSION['user']['email'] ?>">
+                                                <span class="clear_input_val">
+                                                     <img src="/img/clear_input.svg" alt="">
+                                                </span>
+                                            </div>
+
                                             <?php if(isset($_SESSION['error']['email_message'])) echo $_SESSION['error']['email_message'] ?>
-                                            <input class="half" name="phone" type="tel" value="<?php print(htmlspecialchars(isset($_SESSION['user']['phone']) ? $_SESSION['user']['phone'] : '+7')) ?>">
+                                            <div class="input_focus inf">
+                                                <label for="username" class="label_focus ">Телефон</label>
+                                                <input class="half"  name="phone" value="<?php print(htmlspecialchars(isset($_SESSION['user']['phone']) ? $_SESSION['user']['phone'] : '+7')) ?>">
+                                                <span class="clear_input_val">
+                                                     <img src="/img/clear_input.svg" alt="">
+                                                </span>
+                                            </div>
+
+
                                         </div>
 
                                         <h2>Расскажите о себе</h2>
 
                                         <div class="field">
+                                            <div class="input_focus inf">
+                                                <label for="username" class="label_focus ">Имя</label>
+                                                <input id="username" type="text" name="first_name" value="<? echo $_SESSION['user']['first_name'] ?>">
+                                                <span class="clear_input_val">
+                                                     <img src="/img/clear_input.svg" alt="">
+                                                </span>
+                                            </div>
 
-                                            <input name="first_name" class="inf" placeholder="<? echo $_SESSION['user']['first_name'] ?>"/>
+                                            <div class="input_focus inf">
+                                                <label for="username" class="label_focus ">Фимилия</label>
+                                                <input id="username" type="text" name="second_name" >
+                                                <span class="clear_input_val">
+                                                     <img src="/img/clear_input.svg" alt="">
+                                                </span>
+                                            </div>
 
-                                            <input name="second_name" class="inf" placeholder="<? if(!isset($_SESSION['user']['second_name'])) { echo "Фамилия";} else { echo $_SESSION['user']['second_name']; }?>"/>
+                                            <div class="input_focus inf">
+                                                <label for="username" class="label_focus "></label>
+                                                <input id="username" type="date" name="birthday"  value="<? print(htmlspecialchars($_SESSION['user']['birthday'])); ?>">
+                                                <span class="clear_input_val">
+                                                     <img src="/img/clear_input.svg" alt="">
+                                                </span>
+                                            </div>
 
-                                            <input type="date" name="birthday" class="inf" placeholder="<? print(htmlspecialchars($_SESSION['user']['birthday'])); ?>"/>
                                             <?php if(isset($_SESSION['error']['first_name_message'])) echo $_SESSION['error']['first_name_message'] ?>
 
                                             <?php if(isset($_SESSION['error']['second_name_message'])) echo $_SESSION['error']['second_name_message'] ?>
@@ -71,14 +104,26 @@
                                         </div>
                                         <h2>Откуда вы?</h2>
                                         <div class="field">
-                                            <input class="half" name="country" type="text" placeholder="<?php print(htmlspecialchars(isset($_SESSION['user']['country']) ? $_SESSION['user']['country'] : 'Страна')) ?>">
-                                            <input class="half" name="city" type="text" placeholder="<?php print(htmlspecialchars(isset($_SESSION['user']['city']) ? $_SESSION['user']['city'] : 'Город'))?>" >
+                                            <div class="input_focus inf">
+                                                <label for="username" class="label_focus">Страна</label>
+                                                <input type="text"  name="country" value="<?php print(htmlspecialchars(isset($_SESSION['user']['country']) ? $_SESSION['user']['country'] : '')) ?>">
+                                                <span class="clear_input_val">
+                                                     <img src="/img/clear_input.svg" alt="">
+                                                </span>
+                                            </div>
+                                            <div class="input_focus inf">
+                                                <label for="username" class="label_focus">Город</label>
+                                                <input type="text"   name="city" value="<?php print(htmlspecialchars(isset($_SESSION['user']['city']) ? $_SESSION['user']['city'] : ''))?>">
+                                                <span class="clear_input_val">
+                                                     <img src="/img/clear_input.svg" alt="">
+                                                </span>
+                                            </div>
                                             <select class="select-account currencies" name="currency" id="currency">
-                                                <option value="null">Выберите валюту</option>
-                                                <option value="dollar">$</option>
-                                                <option value="euro">€</option>
-                                                <option value="grivna">₴</option>
-                                                <option value="rub">₽</option>
+                                                <option value="null" <?php if (isset($_SESSION['user']['currency'])) echo "selected"?>>Выберите валюту</option>
+                                                <option value="$" <?php if (isset($_SESSION['user']['currency']) && $_SESSION['user']['currency'] == '$') echo "selected"?>>$</option>
+                                                <option value="€" <?php if (isset($_SESSION['user']['currency']) && $_SESSION['user']['currency'] == '€') echo "selected"?>>€</option>
+                                                <option value="₴" <?php if (isset($_SESSION['user']['currency']) && $_SESSION['user']['currency'] == '₴') echo "selected"?>>₴</option>
+                                                <option value="₽" <?php if (isset($_SESSION['user']['currency']) && $_SESSION['user']['currency'] == '₽') echo "selected"?>>₽</option>
                                             </select>
                                         </div>
                                         <h2>Укажите соц сети для клиентов</h2>
@@ -92,18 +137,25 @@
                                                         <div class="overSelect"></div>
                                                     </div>
                                                     <div id="mySelectOptions">
-                                                        <label>Вконтакте<input type="checkbox" value="Вконтакте" /></label>
-                                                        <label>Твиттер<input type="checkbox" value="Твиттер" /></label>
-                                                        <label>Фейсбук<input type="checkbox" value="Фейсбук" /></label>
-                                                        <label>Инстаграм<input type="checkbox"  value="Инстаграм" /></label>
-                                                        <label>Ютуб<input type="checkbox"  value="Ютуб" /></label>
-                                                        <label>Телеграм<input type="checkbox"  value="Телеграм" /></label>
-                                                        <label>Сайт<input type="checkbox" value="Сайт" /></label>
+                                                        <label class="item">Вконтакте<input class="custom-checkbox" type="radio" value="Вконтакте" /><label for="happy"></label></label>
+                                                        <label class="item">Твиттер<input class="custom-checkbox" type="radio" value="Твиттер" /><label for="happy"></label></label>
+                                                        <label class="item">Фейсбук<input class="custom-checkbox" type="radio" value="Фейсбук" /><label for="happy"></label></label>
+                                                        <label class="item">Инстаграм<input class="custom-checkbox" type="radio"  value="Инстаграм" /><label for="happy"></label></label>
+                                                        <label class="item">Ютуб<input class="custom-checkbox" type="radio"  value="Ютуб" /><label for="happy"></label></label>
+                                                        <label class="item">Телеграм<input class="custom-checkbox" type="radio"  value="Телеграм" /><label for="happy"></label></label>
+                                                        <label class="item">Сайт<input class="custom-checkbox" type="radio" value="Сайт" /><label for="happy"></label></label>
                                                     </div>
                                                 </div>
                                             </div>
-                                        <input class="half"  type="text" placeholder="Укажите ссылку" >
-                                    </div>
+                                            <div class="input_focus inf">
+                                                <label for="username" class="label_focus">Укажите ссылку</label>
+                                                <input type="text" >
+                                                <span class="clear_input_val">
+                                                     <img src="/img/clear_input.svg" alt="">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <button class="add-social-network"><img src="../img/addSocialNetwork.svg" alt=""> Добавить соц сеть</button>
                                         <div class="ProfileSetting">
                                             <h2 class="no_margin">Загрузите аватар автора:</h2>
                                             <script>
@@ -155,7 +207,7 @@
 
                             <input type="radio" id="Integrations" name="mytabs"/>
 
-                            <label for="Integrations"><p>Настройки</p></label>
+                            <label class="menu-label" for="Integrations"><p>Настройки</p></label>
 
                             <div class="tab">
 
@@ -188,7 +240,7 @@
                                         <div class="field">
                                             <div class="tariff-card">
                                                 <div class="tariff-plan">
-                                                    <div class="tariff-price">2 600 ₽</div>
+                                                    <div class="tariff-price">2 600 <?=isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></div>
                                                 </div>
                                                 <div class="tariff-name">
                                                     Для новичков
@@ -239,34 +291,34 @@
                                         </div>
                                     </form>
 
+                                </div>
+
                             </div>
 
-                        </div>
+                            <input type="radio" id="Tarif" name="mytabs"/>
 
-                        <input type="radio" id="Tarif" name="mytabs"/>
+                            <label class="menu-label" for="Tarif" id="cllab"><p>Дополнительно</p></label>
 
-                        <label for="Tarif" id="cllab"><p>Дополнительно</p></label>
+                            <div class="tab">
 
-                        <div class="tab">
+                                <h2>Скрипты для HEAD:  </h2>
 
-                            <h2>Скрипты для HEAD:  </h2>
+                                <textarea class="additionally" placeholder="Default" name="head_additional"></textarea>
 
-                            <textarea class="additionally" placeholder="Default" name="head_additional"></textarea>
+                                <h2>Скрипты для Body:  </h2>
 
-                            <h2>Скрипты для Body:  </h2>
+                                <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>
 
-                            <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>
-
-                            <div class="about-btn">
-                                <button id="profile_send" type="submit">Сохранить</button>
+                                <div class="about-btn">
+                                    <button id="profile_send" type="submit">Сохранить</button>
+                                </div>
                             </div>
                         </div>
                     </div>
+
+
                 </div>
-
-
             </div>
-        </div>
 
     </div>
 
@@ -274,6 +326,7 @@
 
 </div>
 <?php unset($_SESSION['error']) ?>
+
 
 <script>
     /*Select*/
@@ -283,12 +336,15 @@
         let checkboxes = document.getElementById("mySelectOptions");
         let checkedCheckboxes = checkboxes.querySelectorAll('input');
 
+
         checkedCheckboxes.forEach(item =>{
+
             item.addEventListener('click', function(){
                 if(item.checked = true){
                     checkedCheckboxes.forEach(el =>{
                         el.checked = false
                         el.parentElement.classList.remove('active')
+                        checkboxes.style.display = "none";
                     })
                     item.checked = true
                     item.parentElement.classList.add('active')
@@ -298,6 +354,7 @@
             })
         })
     }
+
     checkboxStatusChange()
     function toggleCheckboxArea(onlyHide = false) {
         let checkboxes = document.getElementById("mySelectOptions");
@@ -306,11 +363,13 @@
         if (displayValue != "flex") {
             if (onlyHide == false) {
                 checkboxes.style.display = "flex";
+                checkboxes.style.flexDirection = "column";
             }
         } else {
             checkboxes.style.display = "none";
         }
     }
+
     const button_submit = document.querySelector('#profile_send');
     const check_url = document.querySelector('#check_url');
     const check_button = document.querySelector('#check_button');
@@ -321,26 +380,25 @@
         console.log(second_button);
         second_button.click();
     });
-    check_button.addEventListener('click', function () {
-        const request = new XMLHttpRequest();
+    // check_button.addEventListener('click', function () {
+    //     const request = new XMLHttpRequest();
+    //
+    //     const url = "?option=UrlController&site_url=" + check_url.value;
+    //
+    //     request.open('GET', url);
+    //
+    //     request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+    //     request.addEventListener("readystatechange", () => {
+    //         if (request.readyState === 4 && request.status === 200) {
+    //             message.innerHTML = request.responseText;
+    //         }
+    //     });
+    //     request.send();
+    // });
 
-        const url = "?option=UrlController&site_url=" + check_url.value;
-
-        /* Здесь мы указываем параметры соединения с сервером, т.е. мы указываем метод соединения GET,
-        а после запятой мы указываем путь к файлу на сервере который будет обрабатывать наш запрос. */
-        request.open('GET', url);
-
-        // Указываем заголовки для сервера, говорим что тип данных, - контент который мы хотим получить должен быть не закодирован.
-        request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-        request.addEventListener("readystatechange", () => {
-            if (request.readyState === 4 && request.status === 200) {
-                message.innerHTML = request.responseText;
-            }
-        });
-        request.send();
-    });
 </script>
 <script src="/js/getNotifications.js"></script>
+<script src="/js/customInputs.js"></script>
 <script src="/js/printFailName.js" ></script>
 </body>
 

@@ -324,6 +324,20 @@ wrapper.activeFullscreen{
     justify-content: center;
     align-items: center;
 }
+.firstPauseButton{
+    position: absolute;
+    width:100%;
+    height:100%;
+    display:none;
+    justify-content: center;
+    align-items: center;
+
+
+}
+.firstPauseButton.active{
+    display: flex !important;
+
+}
 
 .firstPlayButton.nonActive{
     opacity: 0;
@@ -333,17 +347,34 @@ wrapper.activeFullscreen{
 
 .firstPlayButton .playBtn{
     position: absolute;
-    top:35%;
-    background: rgba(255, 255, 255, 0.5);
-    width: 163px;
-    height: 163px;
+    top:25%;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 50px 80px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
     display:flex;
     justify-content: center;
     align-items: center;
 }
+.firstPauseButton .pauseBtn{
+    position: absolute;
+    top:25%;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 50px 80px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    z-index: 5;
+}
+
 @media screen and (max-width: 540px) {
     .wrapper .video-controls{
         padding: 3px 10px 7px;

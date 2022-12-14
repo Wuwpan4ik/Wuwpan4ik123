@@ -357,12 +357,20 @@ a.button__back {
     line-height: 26px;
     hyphens: auto;
 }
-
+.Article-post-container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    top: 250px;
+    left: 40px;
+}
+.Article-post-item.active{
+    bottom: 0;
+}
 .Article-post-item{
-    position: sticky;
-    top: 100px;
-    left: 24%;
-    height: 420px;
+    position: absolute;
+    word-wrap: break-word;
+    left: 40px;
     background: #F8F8F9;
     border-radius: 8px;
     padding: 30px;
@@ -370,7 +378,6 @@ a.button__back {
     font-size: 18px;
     line-height: 24px;
 }
-
 .Article-post-item-img img{
     width: 56px;
 }

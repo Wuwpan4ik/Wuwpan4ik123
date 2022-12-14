@@ -10,7 +10,7 @@ class SortController extends ACoreCreator {
     function getClientsForMain(){
         $get = $_GET["order"];
 
-        $content = $this->m->db->query("SELECT clients.email, clients.first_name, clients.give_money, clients.tel, clients.tel, course.id as 'course_id', course.name FROM clients, course WHERE course.id = clients.course_id AND `creator_id` = ". $_SESSION['user']['id'] ." ORDER BY $get");
+        $content = $this->m->db->query("SELECT clients.email, clients.first_name, clients.give_money, clients.tel, clients.tel, course.id as 'course_id', course.name FROM clients, course WHERE course.id = clients.course_id AND `creator_id` = ". $_SESSION['user']['id'] ." ORDER BY '$get'");
 
         $i = 1;
 
@@ -35,7 +35,6 @@ class SortController extends ACoreCreator {
     function getClientsForAnalytics() {
         $get = $_GET["sort"];
         $result = $this->m->db->query("SELECT clients.id, course.name as course_name, course.id as course_id, clients.comment, clients.achivment_date, clients.give_money, first_name, email, tel FROM clients JOIN course ON clients.course_id = course.id WHERE creator_id = " . $_SESSION['user']['id']." ORDER BY " . $get);
-
         foreach($result as $client){
 
             $tel = $client["tel"];
@@ -50,15 +49,13 @@ class SortController extends ACoreCreator {
 
 						<td class="nick"> <input type="checkbox" class="check_user">' . mb_strimwidth($client["first_name"], 0, 8, '') . '</td>
 											
-						<td>' . $client["give_money"] . ' ₽</td>
+						<td>' . $client["give_money"] . (isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : "₽") . '</td>
 
 						<td>' . $client["email"] . '</td>
 
 						<td>' . $tel  . '</td>
 						
 						<td><a href="/Course/' . $client["course_id"] . '">' . $client["course_name"] . '</td>
-
-						<td>' . $client["comment"] . '</td>
 											
 						<td>' . $client["achivment_date"] . '</td>
 
@@ -79,9 +76,9 @@ class SortController extends ACoreCreator {
 
     function getOrdersForAnalytics() {
         $get = $_GET["sort"];
-        $result = $this->m->db->query("SELECT course.name as course_name, course.id as course_id, orders.achivment_date, orders.money, orders.first_name, orders.email, orders.tel, orders.id FROM orders JOIN course ON orders.course_id = course.id WHERE creator_id = " . $_SESSION['user']['id']." ORDER BY " . $get);
-        $count = 1;
-        foreach($result as $order){
+        $result_course = $this->m->db->query("SELECT course.name as course_name, course.id as course_id, orders.achivment_date, orders.money, user.first_name, user.email, user.telephone, orders.id FROM orders JOIN course ON orders.course_id = course.id JOIN user ON orders.user_id = user.id WHERE creator_id = " . $_SESSION['user']['id']." ORDER BY " . $get);
+       $count = 1;
+        foreach($result_course as $order){
             $tel = $order["tel"];
 
             if (strlen($tel) == 0) {
@@ -91,9 +88,9 @@ class SortController extends ACoreCreator {
             echo
 
                 '<tr>
-                        <td> <input type="checkbox" class="check_user">' . $count . '</td>
+                        <td> <input type="checkbox" class="check_order">' . $count . '</td>
 				
-						<td>' . $order["money"] . ' ₽</td>
+						<td>' . $order["money"] . (isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : "₽") . '</td>
 
 						<td>' . $order["email"] . '</td>
 

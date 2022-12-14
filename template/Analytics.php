@@ -13,8 +13,9 @@
   </head>
 
   <body>
+  <?php print_r($_SESSION['error'])?>
 
-        <div class="Analytics">
+        <div class="Analytics app">
 
             <?php include 'default/sidebar.php';?>
 
@@ -68,6 +69,8 @@
                                         <th><div class="th-title"><button class="order_button contact__button" value="achivment_date"><img class="table_ico" src="img/StickDown.svg"></button>Дата</div></th>
 
                                         <th><div class="th-title">Функции</div></th>
+
+                                        <th><div class="th-title"> </div></th>
 									</tr>
 
                                 </thead>
@@ -78,6 +81,9 @@
 
                             </table>
 
+                            <div class="no-data">
+                                <p>Данных пока нет</p>
+                            </div>
                         </div>
 
                     </div>
@@ -109,9 +115,9 @@
 
                                 <tr>
 
-                                    <th id="thop"><input id="main_check" type="checkbox" style="display:inline-block;">Заказ</th>
+                                    <th id="thop"><input id="order_check" type="checkbox" style="display:inline-block;">Заказ</th>
 
-                                    <th><div class="th-title"><button class="order_button order__button" value="give_money"><img class="table_ico" src="img/StickDown.svg"></button>Сумма</div></th>
+                                    <th><div class="th-title"><button class="order_button order__button" value="money"><img class="table_ico" src="img/StickDown.svg"></button>Сумма</div></th>
 
                                     <th><div class="th-title"><button class="order_button order__button" value="email"><img class="table_ico" src="img/StickDown.svg"></button>Email</div></th>
 
@@ -122,6 +128,8 @@
                                     <th><div class="th-title"><button class="order_button order__button" value="achivment_date"><img class="table_ico" src="img/StickDown.svg"></button>Дата</div></th>
 
                                     <th><div class="th-title">Функции</div></th>
+
+
                                 </tr>
 
                                 </thead>
@@ -231,7 +239,76 @@
         </div>
         <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
         <script src="../js/script.js" ></script>
+        <div class="display-none" id="currency"><?php echo isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></div>
   </body>
+
+  <!--Проверка Clients-->
+  <script>
+      const main_check = document.querySelector('#main_check');
+      main_check.addEventListener('click', function (e) {
+          let check_user = document.querySelectorAll('.check_user');
+          Array.prototype.forEach.call(check_user, function(cb){
+              cb.checked = e.target.checked;
+          });
+      });
+  </script>
+
+  <!--Проверка Orders-->
+  <script>
+      const order_check = document.querySelector('#order_check');
+      order_check.addEventListener('click', function (e) {
+          let check_user = document.querySelectorAll('.check_order');
+          Array.prototype.forEach.call(check_user, function(cb){
+              cb.checked = e.target.checked;
+          });
+      });
+  </script>
+<script>
+  let client_buttons = document.querySelectorAll('.contact__button');
+  let client_tab = document.querySelector('#conTab');
+  let client_request = new XMLHttpRequest();
+
+  let client_url = "SortController/AnalyticClients?sort=id";
+
+  client_request.open('GET', client_url);
+
+  client_request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+  client_request.addEventListener("readystatechange", () => {
+      if (client_request.readyState === 4 && client_request.status === 200) {
+          if (client_request.responseText.length !== 0) {
+              document.querySelector('.no-data').classList.add('display-none');
+          }
+          client_tab.innerHTML = client_request.responseText;
+      }
+  });
+  client_request.send();
+
+  client_buttons.forEach((elem) => {
+      elem.addEventListener('click', function(e) {
+          let param;
+          if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){
+              this.innerHTML = '<img class="table_ico" src="img/StickUp.svg">';
+              param = this.value;
+          }else{
+              this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
+              param = this.value + " DESC";
+          }
+          let request = new XMLHttpRequest();
+
+          let url = "SortController/AnalyticClients?sort=" + param;
+
+          request.open('GET', url);
+
+          request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+          request.addEventListener("readystatechange", () => {
+              if (request.readyState === 4 && request.status === 200) {
+                  client_tab.innerHTML = request.responseText;
+              }
+          });
+          request.send();
+      });
+  });
+</script>
 <!--OrderList-->
 <script>
     let order_button = document.querySelectorAll('.order__button');
@@ -275,7 +352,7 @@
         });
     });
 </script>
-<script>
+<script type="text/javascript">
 
   let request1 = new XMLHttpRequest();
 
@@ -295,19 +372,18 @@
           if (array.prev_month == null) {
               array.prev_month = 0;
           }
-
-          console.log(array)
-          document.getElementById('this_week').innerHTML = array.week + "₽";
-          document.getElementById('this_month').innerHTML = array.month + "₽";
+          let currency = document.getElementById('currency').innerHTML;
+          document.getElementById('this_week').innerHTML = array.week + currency;
+          document.getElementById('this_month').innerHTML = array.month + currency;
           if (array.prev_month) {
-              document.getElementById('last_month').innerHTML = array.prev_month + "₽";
+              document.getElementById('last_month').innerHTML = array.prev_month + currency;
           }
           if (array.full_value) {
-              document.getElementById('full_week_value').innerText = array.week + "₽";
-              document.getElementById('full_value').innerText = array.full_value + "₽";
+              document.getElementById('full_week_value').innerText = array.week + currency;
+              document.getElementById('full_value').innerText = array.full_value + currency;
           }
           if (array.one_user) {
-              document.getElementById('one__user').innerText = array.one_user + "₽";
+              document.getElementById('one__user').innerText = array.one_user + currency;
           }
           if (array.count_first_buy) {
               document.getElementById('first__buy-count').innerText = array.count_first_buy;
@@ -330,8 +406,8 @@
               document.getElementById('month_diff-text').innerText = 'меньше';
               document.getElementById('month_diff').classList.add('red_text');
           }
-          document.getElementById('week_diff').innerText = week_diff + "₽";
-          document.getElementById('month_diff').innerText = month_diff + "₽";
+          document.getElementById('week_diff').innerText = week_diff + currency;
+          document.getElementById('month_diff').innerText = month_diff + currency;
 
           document.querySelectorAll(".week_procent").forEach((elem) => {
               if (array.prev_week !== 0) {
@@ -345,60 +421,7 @@
   request1.send();
 </script>
 
-<script>
-    let check_user = document.querySelectorAll('.check_user');
-    const main_check = document.querySelector('#main_check');
-    main_check.addEventListener('click', function (e) {
-        let check_user = document.querySelectorAll('.check_user');
-            Array.prototype.forEach.call(check_user, function(cb){
-                cb.checked = e.target.checked;
-            });
-        });
-</script>
 
-<script>
-    let client_buttons = document.querySelectorAll('.contact__button');
-    let client_tab = document.querySelector('#conTab');
-    let client_request = new XMLHttpRequest();
-
-    let client_url = "SortController/AnalyticClients?sort=id";
-
-    client_request.open('GET', client_url);
-
-    client_request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-    client_request.addEventListener("readystatechange", () => {
-        if (client_request.readyState === 4 && client_request.status === 200) {
-            client_tab.innerHTML = client_request.responseText;
-        }
-    });
-    client_request.send();
-
-    client_buttons.forEach((elem) => {
-        elem.addEventListener('click', function(e) {
-            let param;
-            if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){
-                this.innerHTML = '<img class="table_ico" src="img/StickUp.svg">';
-                param = this.value;
-            }else{
-                this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
-                param = this.value + " DESC";
-            }
-            let request = new XMLHttpRequest();
-
-            let url = "SortController/AnalyticClients?sort=" + param;
-
-            request.open('GET', url);
-
-            request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-            request.addEventListener("readystatechange", () => {
-                if (request.readyState === 4 && request.status === 200) {
-                    client_tab.innerHTML = request.responseText;
-                }
-            });
-            request.send();
-        });
-    });
-</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
 <script src="../js/charts.js"></script>
   <script src="/js/getNotifications.js"></script>
