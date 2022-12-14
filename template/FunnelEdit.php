@@ -443,7 +443,7 @@
 
                     // first_do
                     let option_1 = Object.keys(popup['first_do'])[0];
-                    let option_item_1 = first_do.querySelector('option[value="'+ option_1 +'"]')
+                    let option_item_1 = first_do.querySelector('option[value="' + option_1 + '"]')
                     option_item_1.selected = true;
                     option_item_1.setAttribute('selected', 'selected')
 
@@ -453,37 +453,35 @@
 
                     // second_do
 
-                    let second_do = document.getElementById('second_do');
-                    let option_2 = Object.keys(popup['second_do'])[0];
-                    let option_item_2 = second_do.querySelector('option[value="'+ option_2 +'"]')
-                    option_item_2.selected = true;
-                    option_item_2.setAttribute('selected', 'selected')
+                    let option_2;
+                    let second_do;
+                    let option_item_2;
+
+                    if (popup['second_do']) {
+                        second_do = document.getElementById('second_do');
+                        option_2 = Object.keys(popup['second_do'])[0];
+                        option_item_2 = second_do.querySelector('option[value="' + option_2 + '"]')
+                        option_item_2.selected = true;
+                        option_item_2.setAttribute('selected', 'selected')
+                    }
 
                     // /second_do
 
                     checkSecondSelect();
-
-                    switch (option_2) {
-                        case 'link':
-                            document.querySelector('input[name="link-2"]').value = popup['second_do']['link'];
-                            break;
-                        case 'file':
-                            document.querySelector('#file-name').innerHTML = popup['second_do']['file'].toString().match(/.*\/(.+?)\./)[1];
-                            break;
-                    }
 
                     switch (option_1) {
                         case 'list':
                             let a = document.getElementById('course_list');
                             let option_list_1 = a.querySelector('option[value="'+ popup['first_do']['course_id'] +'"]');
                             option_list_1.selected = true;
+                            option_list_1.setAttribute('selected', 'selected')
                             break;
                         case 'pay_form':
                         case 'form':
                             if (popup['form__title']) {
                                 document.querySelector('input[name="form__title"]').value = popup['form__title'];
                             }
-                            if (popup['form__desc']) {в
+                            if (popup['form__desc']) {
                                 document.querySelector('input[name="form__desc"]').value = popup['form__desc'];
                             }
                             if (popup['button_text']) {
@@ -505,13 +503,25 @@
                             break;
                     }
                     setTimeout(function (){
-                        let form__title = document.querySelector('.popup-title');
-                        form__title.innerHTML = popup['form__title'];
-                        console.log(form__title)
-
-                        let form__desc = document.querySelector('.popup-text');
-                        form__desc.innerHTML = popup['form__desc'];
+                        if (popup['form__title']) {
+                            let form__title = document.querySelector('.popup-title');
+                            form__title.innerHTML = popup['form__title'];
+                        }
+                        if (popup['form__desc']) {
+                            let form__desc = document.querySelector('.popup-text');
+                            form__desc.innerHTML = popup['form__desc'];
+                        }
                     }, 400)
+
+
+                    switch (option_2) {
+                        case 'link':
+                            document.querySelector('input[name="link-2"]').value = popup['second_do']['link'];
+                            break;
+                        case 'file':
+                            document.querySelector('#file-name').innerHTML = popup['second_do']['file'].toString().match(/.*\/(.+?)\./)[1];
+                            break;
+                    }
                 }
             }
         })

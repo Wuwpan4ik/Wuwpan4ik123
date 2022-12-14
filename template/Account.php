@@ -137,13 +137,13 @@
                                                         <div class="overSelect"></div>
                                                     </div>
                                                     <div id="mySelectOptions">
-                                                        <label class="item">Вконтакте<input class="custom-checkbox" type="radio" value="Вконтакте" /><label for="happy"></label></label>
-                                                        <label class="item">Твиттер<input class="custom-checkbox" type="radio" value="Твиттер" /><label for="happy"></label></label>
-                                                        <label class="item">Фейсбук<input class="custom-checkbox" type="radio" value="Фейсбук" /><label for="happy"></label></label>
-                                                        <label class="item">Инстаграм<input class="custom-checkbox" type="radio"  value="Инстаграм" /><label for="happy"></label></label>
-                                                        <label class="item">Ютуб<input class="custom-checkbox" type="radio"  value="Ютуб" /><label for="happy"></label></label>
-                                                        <label class="item">Телеграм<input class="custom-checkbox" type="radio"  value="Телеграм" /><label for="happy"></label></label>
-                                                        <label class="item">Сайт<input class="custom-checkbox" type="radio" value="Сайт" /><label for="happy"></label></label>
+                                                        <label class="item">Вконтакте<input class="custom-checkbox" type="radio" value="Vk" /><label for="happy"></label></label>
+                                                        <label class="item">Твиттер<input class="custom-checkbox" type="radio" value="Twitter" /><label for="happy"></label></label>
+                                                        <label class="item">Фейсбук<input class="custom-checkbox" type="radio" value="Facebook" /><label for="happy"></label></label>
+                                                        <label class="item">Инстаграм<input class="custom-checkbox" type="radio"  value="Instagram" /><label for="happy"></label></label>
+                                                        <label class="item">Ютуб<input class="custom-checkbox" type="radio"  value="Youtube" /><label for="happy"></label></label>
+                                                        <label class="item">Телеграм<input class="custom-checkbox" type="radio"  value="Telegram" /><label for="happy"></label></label>
+                                                        <label class="item">Сайт<input class="custom-checkbox" type="radio" value="Site" /><label for="happy"></label></label>
                                                     </div>
                                                 </div>
                                             </div>

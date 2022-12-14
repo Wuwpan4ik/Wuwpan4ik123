@@ -78,6 +78,8 @@ function clearPopup () {
         elem.classList.remove('display-block');
     })
     document.querySelector('#popup__body-form-2').style.display = 'none';
+    document.querySelector('input[name="form__title"]').value = '';
+    document.querySelector('input[name="form__desc"]').value = '';
 }
 
 function toggleOverflow () {
@@ -235,7 +237,7 @@ function checkFirstSelect() {
                 elem.classList.add('display-none');
             })
             defaultPopup(first_select);
-            addSecondOptions([['link', "Переход по ссылке"], ['next_lesson', 'Следующий урок'], ['file', 'Отправка файла']]);
+            addSecondOptions([['link', "Переход по ссылке"], ['next_lesson', 'Открыть следующее видео'], ['file', 'Отправка файла']]);
             enableAfterClickBlock();
             checkSecondSelect();
             let form__title = document.querySelector('input[name="form__title"]');
