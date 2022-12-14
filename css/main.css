@@ -411,7 +411,10 @@ span.button__back {
   background: url(../img/arrow_custom.svg) no-repeat right;
   background-position-x: calc(100% - 21px);
 }
-
+.select__course option{
+  padding:8px 16px;
+  color:#5A6474;
+}
 /*Feed*/
 .feed{
   display: -webkit-box;
@@ -613,10 +616,15 @@ a {
   text-decoration: none;
   color: #757D8A;
 }
-
+.sidebar a{
+  height:48px;
+  margin-bottom: 16px;
+}
 .sidebarOption {
   display: -webkit-box;
   display: -ms-flexbox;
+  padding:12px 16px;
+  height:48px;
   display: flex;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
@@ -624,7 +632,6 @@ a {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  margin-bottom: 0.5em;
   color: #737480;
   cursor: pointer;
 }
@@ -717,11 +724,6 @@ a {
   font-weight: 600;
   line-height: 32px;
   color: #5A6474;
-}
-
-
-.text-info {
-  margin-right: 30px;
 }
 
 .text-info-name {
@@ -858,16 +860,18 @@ a {
 
 a.button__back {
   border-radius: 30px;
-  padding: 17px 23px;
   margin-right: 19px;
-  -ms-flex-item-align: center;
-  align-self: center;
   background: #F8F8F8;
+  width: 62px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .button__back img {
-  width: 10px;
-  height: 10px;
+  width: 18px;
+  height: 18px;
 }
 
 .feed-header h2 {
