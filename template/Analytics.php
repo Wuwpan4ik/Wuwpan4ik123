@@ -15,7 +15,7 @@
   <body>
   <?php print_r($_SESSION['error'])?>
 
-        <div class="Analytics">
+        <div class="Analytics app">
 
             <?php include 'default/sidebar.php';?>
 
