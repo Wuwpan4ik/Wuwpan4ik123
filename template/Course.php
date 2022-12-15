@@ -89,12 +89,12 @@
 
                         <h3><?=$p['name']?></h3>
 
-                        <div class="course-price">
-                            <form action="/Course/<?=$p['id']?>/setPrice" method="POST">
-                                <div class="course__prices">
+                        <div class="course-price" style="position:relative;">
+                            <form method="POST" action="/Course/<?=$p['id']?>/setPrice">
+                                <div class="course__prices" style="position:relative;">
                                     <input type="number" name="course_price" min="100" placeholder="<? echo isset($p['price']) ? $p['price'] : "Укажите стоимость курса" ?>">
                                     <span class="course_currency">
-                                        $
+                                        <?php echo isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?>
                                     </span>
                                 </div>
                                 <button class="save_price" type="submit">
@@ -201,6 +201,7 @@
 
 <script>
     let buttonSavePrice = document.querySelectorAll('.save_price');
+    let priceForSave = document.querySelectorAll('input[name="price_save"]');
     let inputPrice = document.querySelectorAll("input[name='course_price']");
     for(let i = 0; i < inputPrice.length; i++){
         inputPrice[i].addEventListener('input', function(){
@@ -211,6 +212,7 @@
             }
         });
     }
+
 </script>
 </body>
 
