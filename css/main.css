@@ -209,7 +209,11 @@ p {
 #popup__background:target {
   display: block;
 }
+.button-add-button-edit{
 
+  border: 1px solid #E1E3E6;
+  border-radius: 8px;
+}
 .close {
   display: inline-block;
   border: 1px solid #0000cc;
@@ -419,10 +423,7 @@ span.button__back {
   background: url(../img/arrow_custom.svg) no-repeat right;
   background-position-x: calc(100% - 21px);
 }
-.select__course option{
-  padding:8px 16px;
-  color:#5A6474;
-}
+
 /*Feed*/
 .feed{
   display: -webkit-box;
@@ -623,15 +624,10 @@ a {
   text-decoration: none;
   color: #757D8A;
 }
-.sidebar a{
-  height:48px;
-  margin-bottom: 16px;
-}
+
 .sidebarOption {
   display: -webkit-box;
   display: -ms-flexbox;
-  padding:12px 16px;
-  height:48px;
   display: flex;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
@@ -639,6 +635,7 @@ a {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  margin-bottom: 0.5em;
   color: #737480;
   cursor: pointer;
 }
@@ -700,7 +697,6 @@ a {
   -ms-flex-align: center;
   align-items: center;
   gap: 12px;
-  justify-content:space-between;
 }
 
 .text-info-name{
@@ -731,6 +727,10 @@ a {
   font-weight: 600;
   line-height: 32px;
   color: #5A6474;
+}
+
+
+.text-info {
 }
 
 .text-info-name {
@@ -867,18 +867,16 @@ a {
 
 a.button__back {
   border-radius: 30px;
+  padding: 17px 23px;
   margin-right: 19px;
+  -ms-flex-item-align: center;
+  align-self: center;
   background: #F8F8F8;
-  width: 62px;
-  height: 48px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .button__back img {
-  width: 18px;
-  height: 18px;
+  width: 10px;
+  height: 10px;
 }
 
 .feed-header h2 {
