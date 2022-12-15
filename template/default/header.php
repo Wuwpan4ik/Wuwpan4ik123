@@ -2,13 +2,14 @@
 <div class="feed-header">
 
     <div class="feed-header__title">
-        <?php if($_SERVER['REQUEST_URI'] != '/') { ?>
+        <?php if($_SERVER['REQUEST_URI'] != '/' && $_SERVER['REQUEST_URI'] != '/Account') { ?>
             <a class="button__back" href="/<?=isset($back) ? $back : "" ?>">
                 <img src="/img/ArrowLeft.svg" alt="">
             </a>
         <?php } ?>
         <h2><?=$title ?></h2>
     </div>
+
 
     <div class="buttonsFeed">
 
@@ -43,6 +44,7 @@
         buttonBell.removeEventListener('mouseout', popupBellDisable)
         let request = new XMLHttpRequest();
         let url = "/NotificationsController/checkout";
+        document.querySelector('#msg').innerHTML = '0';
 
         request.open('POST', url);
 

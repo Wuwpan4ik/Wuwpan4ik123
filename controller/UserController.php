@@ -139,56 +139,42 @@
                 echo $div;
             }
 
-            function getList()
-            {
-                $course_id = $_GET['course_id'];
-                $course_page = $this->m->getContentForCourseListPage($course_id);
-                $purchase = $this->m->db->query("SELECT purchase FROM purchase WHERE user_id = " . $_SESSION['user']['id']);
-                $purchase_info = json_decode($purchase[0]['purchase'], true);
-                $div = '';
-                $counter = 1;
-                foreach ($course_page as $item) {
-                    $class = '';
-                    $number_color = 'available-number';
-                    $url_start = "<a style='position:relative;' href='/UserPlayer/" . $item['id'] . "'>";
-                    $url_end = "</a>";
-                    $image_available = '<img style="width: 100%; height: 100%;" src="' . $item['thubnails'] . '" alt="">';
-                    $getID3 = new getID3;
-                    $file = $getID3->analyze($item['video']);
-                    $duration = $file['playtime_string'];
-                    if ($disable) {
-                        if (!in_array($item['id'], $purchase_info['video_id']) == 1) {
-                            $class = 'choice-video';
-                            $number_color = 'notavailable-number';
-                            $url_start = "";
-                            $url_end = "";
-                            $image_available = '<img style="width: 100%; height: 100%;" src="' . $item['thubnails'] . '" alt="">';
-                        }
-                        if (!in_array($item['id'], $purchase_info['video_id']) == 1 && !in_array($item['course_id'], $purchase_info['course_id'])) {
-                            $class = 'choice-video';
-                            $number_color = 'Notavailable-number';
-                            $url_start = "";
-                            $url_end = "";
-                            $image_available = '<img style="width: 100%; height: 100%;" src="' . $item['thubnails'] . '" alt="">';
-                        }
-                        $div .= '<div class="popup__allLessons-item">
-                                    <div class="popup__allLessons-item__header">
-                                <div class="Course-item popup-item ">
-                                ' . $url_start . '
-                                    <div class="popup__allLessons-item-video__img ' . $class . ' " style="width: 160px; height: 100px;">
-                                    <div class="popup__allLessons-item-video__img ' . $class . '" style="width: 160px; height: 100px;">
-                                        <div data-id="' . $item['id'] . '" class="popup__allLessons-item item__list-id"></div>
-                                            ' . $image_available . '
-                                    </div>
-                                    ' . $url_end . '
-                                    <div class="popup__allLessons-item-info">
-                                        <div class="popup__allLessons-item-info-header">
-                                            <div class=" aboutTheAuthor ' . $number_color . '">
-                                                Урок ' . $counter . '
-                                            </div>
-                                            <div class="aboutTheAuthor-name">
-                                                ' . $duration . '
-                                            </div>
+        function getList() {
+            $course_id = $_GET['course_id'];
+            $course_page = $this->m->getContentForCourseListPage($course_id);
+            $purchase = $this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $_SESSION['user']['id']);
+            $purchase_info = json_decode($purchase[0]['purchase'], true);
+            $div = '';
+            $counter = 1;
+            foreach ($course_page as $item) {
+                $class = '';
+                $number_color = 'available-number';
+                $url_start = "<a style='position:relative;' href='/UserPlayer/". $item['id'] . "'>";
+                $url_end = "</a>";
+                $image_available = '<img style="width: 100%; height: 100%;" src="'. $item['thubnails'] .'" alt="">';
+                $getID3 = new getID3;
+                $file = $getID3->analyze($item['video']);
+                $duration = $file['playtime_string'];
+                if (!in_array($item['id'], $purchase_info['video_id']) == 1 && !in_array($item['course_id'], $purchase_info['course_id'])) {
+                    $class = 'choice-video';
+                    $number_color = 'Notavailable-number';
+                    $url_start = "";
+                    $url_end = "";
+                    $image_available = '<img style="width: 100%; height: 100%;" src="'. $item['thubnails'] .'" alt="">';
+                }
+                $div .='<div class="popup__allLessons-item">
+                                <div class="popup__allLessons-item__header">
+                            <div class="Course-item popup-item ">
+                            ' . $url_start . '
+                                <div class="popup__allLessons-item-video__img '. $class .'" style="width: 160px; height: 100px;">
+                                    <div data-id="'. $item['id'] .'" class="popup__allLessons-item item__list-id"></div>
+                                        '. $image_available .'
+                                </div>
+                                ' . $url_end . '
+                                <div class="popup__allLessons-item-info">
+                                    <div class="popup__allLessons-item-info-header">
+                                        <div class=" aboutTheAuthor '. $number_color .'">
+                                            Урок '. $counter .' 
                                         </div>
                                         <div class="popup__allLessons-item-info-title">
                                             ' . $item['name'] . '
@@ -270,15 +256,20 @@
                 {
                     echo json_encode($this->m->db->query("SELECT * from course WHERE `author_id` = " . $_SESSION['user']['id']));
                 }
+        public function GetFunnelPopup()
+        {
+            $funnel_id = $_SESSION['item_id'];
+            $_SESSION['error'] = $funnel_id;
+            echo json_encode($this->m->db->query("SELECT popup from funnel_content WHERE `id` = " . $funnel_id)[0]['popup']);
+        }
 
-                function get_content()
-                {
-                    // TODO: Implement get_content() method.
-                }
+        function get_content()
+        {
+            // TODO: Implement get_content() method.
+        }
 
                 function obr()
                 {
                     // TODO: Implement obr() method.
                 }
             }
-        }

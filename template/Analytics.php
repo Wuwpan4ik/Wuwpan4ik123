@@ -13,8 +13,9 @@
   </head>
 
   <body>
+  <?php print_r($_SESSION['error'])?>
 
-        <div class="Analytics">
+        <div class="Analytics app">
 
             <?php include 'default/sidebar.php';?>
 
@@ -154,9 +155,9 @@
 
                                 <tr>
 
-                                    <th id="thop"><input id="main_check" type="checkbox" style="display:inline-block;">Заказ</th>
+                                    <th id="thop"><input id="order_check" type="checkbox" style="display:inline-block;">Заказ</th>
 
-                                    <th><div class="th-title"><button class="order_button order__button" value="give_money"><img class="table_ico" src="img/StickDown.svg"></button>Сумма</div></th>
+                                    <th><div class="th-title"><button class="order_button order__button" value="money"><img class="table_ico" src="img/StickDown.svg"></button>Сумма</div></th>
 
                                     <th><div class="th-title"><button class="order_button order__button" value="email"><img class="table_ico" src="img/StickDown.svg"></button>Email</div></th>
 
@@ -282,6 +283,74 @@
         <script src="../js/script.js" ></script>
         <div class="display-none" id="currency"><?php echo isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></div>
   </body>
+
+  <!--Проверка Clients-->
+  <script>
+      const main_check = document.querySelector('#main_check');
+      main_check.addEventListener('click', function (e) {
+          let check_user = document.querySelectorAll('.check_user');
+          Array.prototype.forEach.call(check_user, function(cb){
+              cb.checked = e.target.checked;
+          });
+      });
+  </script>
+
+  <!--Проверка Orders-->
+  <script>
+      const order_check = document.querySelector('#order_check');
+      order_check.addEventListener('click', function (e) {
+          let check_user = document.querySelectorAll('.check_order');
+          Array.prototype.forEach.call(check_user, function(cb){
+              cb.checked = e.target.checked;
+          });
+      });
+  </script>
+<script>
+  let client_buttons = document.querySelectorAll('.contact__button');
+  let client_tab = document.querySelector('#conTab');
+  let client_request = new XMLHttpRequest();
+
+  let client_url = "SortController/AnalyticClients?sort=id";
+
+  client_request.open('GET', client_url);
+
+  client_request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+  client_request.addEventListener("readystatechange", () => {
+      if (client_request.readyState === 4 && client_request.status === 200) {
+          if (client_request.responseText.length !== 0) {
+              document.querySelector('.no-data').classList.add('display-none');
+          }
+          client_tab.innerHTML = client_request.responseText;
+      }
+  });
+  client_request.send();
+
+  client_buttons.forEach((elem) => {
+      elem.addEventListener('click', function(e) {
+          let param;
+          if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){
+              this.innerHTML = '<img class="table_ico" src="img/StickUp.svg">';
+              param = this.value;
+          }else{
+              this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
+              param = this.value + " DESC";
+          }
+          let request = new XMLHttpRequest();
+
+          let url = "SortController/AnalyticClients?sort=" + param;
+
+          request.open('GET', url);
+
+          request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+          request.addEventListener("readystatechange", () => {
+              if (request.readyState === 4 && request.status === 200) {
+                  client_tab.innerHTML = request.responseText;
+              }
+          });
+          request.send();
+      });
+  });
+</script>
 <!--OrderList-->
 <script>
     let order_button = document.querySelectorAll('.order__button');
@@ -393,18 +462,6 @@
   });
   request1.send();
 </script>
-
-<script>
-    let check_user = document.querySelectorAll('.check_user');
-    const main_check = document.querySelector('#main_check');
-    main_check.addEventListener('click', function (e) {
-        let check_user = document.querySelectorAll('.check_user');
-            Array.prototype.forEach.call(check_user, function(cb){
-                cb.checked = e.target.checked;
-            });
-        });
-</script>
-
   <script>
       let filtersBtns = document.querySelectorAll('button.filter_button');
       let filters = document.querySelectorAll('.filters_sort');

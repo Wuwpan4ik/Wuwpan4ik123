@@ -25,7 +25,7 @@
 <!--            </div>-->
 <!--        </div>-->
         <div class="popup__buy-footer">
-            <form id="BuyPopup" method="POST" action="/ClientsController/CourseVideo">
+            <form class="popup__form" id="BuyPopup" method="POST" action="/ClientsController/CourseVideo">
                 <input id="creator_id" value="" name="creator_id" type="hidden">
                 <input id="course_id" value="" name="course_id" type="hidden">
                 <div class="popup__buy-price">

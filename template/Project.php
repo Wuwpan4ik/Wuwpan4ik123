@@ -12,53 +12,54 @@
 
   <body>
 
-        <div class="Project">
+  <div class="Project app">
 
-            <?php include 'default/sidebar.php'; ?>
+      <?php include 'default/sidebar.php'; ?>
 
-            <div class="feed">
+      <div class="feed">
 
-                <?php
-                $title = "Мои проекты";
-                include ('default/header.php');
-                ?>
+          <?php
+          $title = "Мои проекты";
+          include ('default/header.php');
+          ?>
 
-                <div class="Lessons">
-                    <div class="_container">
-                        <div class="media">
-                            <div class="media-cart project__cart">
-                                <p>Создано <?php echo $content['count_funnel']; ?> из 3</p>
-                                <h3>Мои воронки</h3>
-                                <img src="../img/Funnel.png" alt="">
-                                <?php if ($content['count_funnel'] != 0) { ?>
-                                    <button class="button-edit" onclick="window.location.href='Funnel'">
-                                        Открыть воронки
-                                    </button>
-                                <?php } else { ?>
-                                    <button class="button-edit button-create" onclick="window.location.href='/Funnel/create'">
-                                        Создать воронку
-                                    </button>
-                                <?php } ?>
-                            </div>
-                            <div class="media-cart project__cart">
-                                <p>Создано <?php echo $content['count_course']; ?> из 3</p>
-                                <h3>Мои курсы</h3>
-                                <img src="../img/Course.png" alt="">
-                                <?php if ($content['count_course'] !== 0) { ?>
-                                    <button class="button-edit" onclick="window.location.href='Course'">
-                                        Открыть курсы
-                                    </button>
-                                <?php } else { ?>
-                                    <button class="button-edit button-create" onclick="window.location.href='/Course/create'">
-                                        Создать курс
-                                    </button>
-                                <?php } ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+              <div class="Lessons">
+                  <div class="_container">
+                      <div class="media">
+                          <div class="media-cart project__cart">
+                              <p>Создано <?php echo $content['count_funnel']; ?> из 3</p>
+                              <h3>Мои воронки</h3>
+                              <img src="../img/Funnel.png" alt="">
+                              <?php if ($content['count_funnel'] != 0) { ?>
+                                  <button class="button-edit" onclick="window.location.href='Funnel'">
+                                      Открыть воронки
+                                  </button>
+                              <?php } else { ?>
+                                  <button class="button-edit button-create" onclick="window.location.href='/Funnel/create'">
+                                      Создать воронку
+                                  </button>
+                              <?php } ?>
+                          </div>
+                          <div class="media-cart project__cart">
+                              <p>Создано <?php echo $content['count_course']; ?> из 3</p>
+                              <h3>Мои курсы</h3>
+                              <img src="../img/Course.png" alt="">
+                              <?php if ($content['count_course'] !== 0) { ?>
+                                  <button class="button-edit" onclick="window.location.href='Course'">
+                                      Открыть курсы
+                                  </button>
+                              <?php } else { ?>
+                                  <button class="button-edit button-create" onclick="window.location.href='/Course/create'">
+                                      Создать курс
+                                  </button>
+                              <?php } ?>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+      </div>
+  </div>
         <div id="popup__background">
             <div id="popup">
                 <div class="popup__container">
