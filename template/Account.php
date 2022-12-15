@@ -248,14 +248,17 @@
                                         <h2>Данные вашего тарифа:</h2>
                                         <div class="field">
                                             <div class="tariff-card">
-                                                <div class="tariff-plan">
-                                                    <div class="tariff-price">2 600 <?=isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></div>
-                                                </div>
+
                                                 <div class="tariff-name">
-                                                    Для новичков
+                                                    У вас выбран тариф:
+                                                    <p>Starter</p>
+                                                </div>
+                                                <div class="tariff-plan">
+                                                    Стоимость тарифа:
+                                                    <div class="tariff-price">2 990 ₽/ мес  <?=isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></div>
                                                 </div>
                                                 <div class="tariff-img">
-                                                    <img src="/img/tarif-Image.jpg" alt="">
+                                                    <img src="/img/Starter.jpg" alt="">
                                                 </div>
                                                 <div  class="tariff-btn">
                                                     <a id="change-tariff">Сменить тариф</a>

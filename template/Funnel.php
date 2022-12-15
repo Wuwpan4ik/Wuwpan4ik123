@@ -121,7 +121,7 @@
 
                                 <input type="hidden" value="<?=$p['id']?>" >
 
-                                <button type="submit" onclick="window.location.href = '/Funnel/<?=$p['id']?>';"">Изменить</button>
+                                <button  type="submit" onclick="window.location.href = '/Funnel/<?=$p['id']?>';"">Изменить</button>
 
                                 <button class="reboot" type="submit" onclick="deleteDirectory(this)" style="background: none;border: solid 1px #4E73F8;color: #4E73F8;">Удалить</button>
 

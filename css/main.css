@@ -209,7 +209,11 @@ p {
 #popup__background:target {
   display: block;
 }
+.button-add-button-edit{
 
+  border: 1px solid #E1E3E6;
+  border-radius: 8px;
+}
 .close {
   display: inline-block;
   border: 1px solid #0000cc;

@@ -90,8 +90,15 @@
                         <h3><?=$p['name']?></h3>
 
                         <div class="course-price">
+
                             <form action="/Course/<?=$p['id']?>/setPrice" method="POST">
-                                <input type="number" name="course_price" min="100" placeholder="<? echo isset($p['price']) ? $p['price'] : "Укажите стоимость курса" ?>">
+                                <div class="input_focus ">
+                                    <label for="username" class="label_focus">Укажите стоимость курса</label>
+                                    <input type="number" name="course_price" min="100" value="<? echo isset($p['price']) ? $p['price'] : "100" ?>">
+                                    <span class="clear_input_val">
+                                                     <img src="/img/clear_input.svg" alt="">
+                                                </span>
+                                </div>
                                 <button class="save_price" type="submit">
                                     Сохранить
                                 </button>
@@ -150,7 +157,7 @@
 <script src="../js/script.js" ></script>
 <script src="../js/slick.min.js"></script>
 <script src="../js/sliders.js"></script>
-
+<script src="/js/customInputs.js"></script>
 <script>
     document.querySelectorAll('.slick-arrow').forEach(item => {
         item.remove();
