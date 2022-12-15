@@ -6,7 +6,7 @@
             </div>
         </div>
         <div class="media-cart__controller-delete">
-            <button class="button" onclick="deleteDirectory(this)"><img src="/img/Delete.svg" alt=""></button>
+            <button onclick="deleteDirectory(this)"><img src="/img/Delete.svg" alt=""></button>
         </div>
     </div>
     <video id="123" class="media-cart-img" style="object-fit: cover;">
@@ -72,10 +72,7 @@
                                 <?php if (isset($v['file_url'])) {print_r(round(filesize($v['file_url']) / 1024));} else {echo '0';} ?>кб из 5мб
                             </span>
                         </div>
-
                     </div>
-
-
                     <div class="input__wrapper">
                         <input name="file" type="file" id="input__file" class="input input__file" onchange="uploadFile(this)" multiple="">
                         <label for="input__file" class="input__file-button" style="">

@@ -121,7 +121,7 @@
     }
 </style>
 
-<div class="Project">
+<div class="Project app">
 
     <?php include 'default/sidebar.php';?>
 
@@ -184,20 +184,24 @@
     </div>
 
 </div>
+
 <div class="popup__background" id="delete__back">
-    <div class="popup">
+    <div id="popup">
         <div class="popup__container">
-            <div class="popup__title">Вы действительно хотите удалить проект?</div>
-            <div class="popup__form">
-                <button class="popup__btn popup__not-delete">Не удалять</button>
-                <button class="popup__btn popup__delete">Удалить</button>
+            <div class="popup-body">
+                <div class="popup__title">Вы действительно хотите удалить проект?</div>
+                <div class="popup__form">
+                    <button class="popup__btn popup__white popup__not-delete" id="popup__not-change">Не удалять</button>
+                    <button class="popup__btn popup__blue popup__delete">Удалить</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 <div class="popup__background" id="reload__back">
     <div id="popup">
-        <div class="popup__container " >
+        <div class="popup__container">
             <div class="popup-body">
                 <div class="popup__title">Хотите изменить видео?</div>
                 <div class="avatar inCourse">
@@ -231,21 +235,8 @@
         </div>
     </div>
 </div>
-<!--<div class="popup__background" id="reload__back">-->
-<!--    <div class="popup" style="height: 400px; width: 600px;">-->
-<!--        <div class="popup__container">-->
-<!--            <div class="popup__title">Вы действительно хотите изменить видео?</div>-->
-<!--            <div class="popup__form" style="justify-content: center">-->
-<!--                <form method="POST" action="" class="upload__form" id="change__video" enctype="multipart/form-data">-->
-<!---->
-<!---->
-<!--                    <button type="submit" class="popup__btn popup__delete popup__change">Изменить</button>-->
-<!--                    <button type="button" class="popup__btn popup__not-delete" id="popup__not-change">Отменить</button>-->
-<!--                </form>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+
+
 <?php include 'default/popupEditVideo.php';?>
 <script src="/js/jquery-3.6.1.min.js"></script>
 <script>
@@ -282,12 +273,14 @@
 </script>
 <script type="text/javascript" src="../js/button__settings.js"></script>
 <script>
+    let entryDisplayDelete = document.querySelector('#delete__back');
     //  Замена видео
     window.onload = () => {
         let reload__video = document.querySelectorAll('.reload_video');
         let reload = document.querySelector('#reload__back');
-        let reload__back = document.querySelectorAll('.popup__container');
 
+        let popup__back = document.querySelectorAll('.popup__container');
+        let notDelete = document.querySelector('.popup__not-delete');
 
         reload__video.forEach(item => {
             item.addEventListener('click', function () {
@@ -295,14 +288,15 @@
                 _('change__video').action = '/Funnel/'+ item.dataset.id +'/change';
             })
         })
-        let notChangeVideo = document.querySelector('#popup__not-change');
-        notChangeVideo.onclick = function (event) {
-            if (event.target === notChangeVideo) {
-                reload.classList.remove('display-block');
-                toggleOverflow();
-            }
-        }
-        reload__back.forEach(item => {
+        let notChangeVideo = document.querySelectorAll('#popup__not-change');
+
+        // notChangeVideo.onclick = function (event) {
+        //     if (event.target === notChangeVideo) {
+        //         reload.classList.remove('display-block');
+        //         toggleOverflow();
+        //     }
+        // }
+        notChangeVideo.forEach(item => {
             item.onclick = function (event) {
                 if (event.target === item) {
                     reload.classList.remove('display-block');
@@ -310,9 +304,25 @@
                 }
             }
         })
+        popup__back.forEach(item => {
+            item.onclick = function (event) {
+                if (event.target === item) {
+                    reload.classList.remove('display-block');
+                    entryDisplayDelete.classList.remove('display-block');
+                    toggleOverflow();
+                }
+            }
+        })
+
+        notDelete.onclick = function (event) {
+            if (event.target === notDelete) {
+                entryDisplayDelete.classList.remove('display-block');
+                toggleOverflow();
+            }
+        }
     }
 
-    let entryDisplayDelete = document.querySelector('#delete__back');
+
     let deletes = document.querySelector('.popup__delete');
 
     function toggleOverflow () {
@@ -325,13 +335,8 @@
             window.location.href = '/Funnel/' + elem.parentElement.parentElement.parentElement.querySelector('.new_name').children[0].value + "/delete";
         });
     }
-    let notDelete = document.querySelector('.popup__not-delete');
-    notDelete.onclick = function (event) {
-        if (event.target === notDelete) {
-            entryDisplayDelete.classList.remove('display-block');
-            toggleOverflow();
-        }
-    }
+
+
 
 
     function uploadFile(target) {
@@ -438,7 +443,7 @@
 
                     // first_do
                     let option_1 = Object.keys(popup['first_do'])[0];
-                    let option_item_1 = first_do.querySelector('option[value="'+ option_1 +'"]')
+                    let option_item_1 = first_do.querySelector('option[value="' + option_1 + '"]')
                     option_item_1.selected = true;
                     option_item_1.setAttribute('selected', 'selected')
 
@@ -448,37 +453,35 @@
 
                     // second_do
 
-                    let second_do = document.getElementById('second_do');
-                    let option_2 = Object.keys(popup['second_do'])[0];
-                    let option_item_2 = second_do.querySelector('option[value="'+ option_2 +'"]')
-                    option_item_2.selected = true;
-                    option_item_2.setAttribute('selected', 'selected')
+                    let option_2;
+                    let second_do;
+                    let option_item_2;
+
+                    if (popup['second_do']) {
+                        second_do = document.getElementById('second_do');
+                        option_2 = Object.keys(popup['second_do'])[0];
+                        option_item_2 = second_do.querySelector('option[value="' + option_2 + '"]')
+                        option_item_2.selected = true;
+                        option_item_2.setAttribute('selected', 'selected')
+                    }
 
                     // /second_do
 
                     checkSecondSelect();
-
-                    switch (option_2) {
-                        case 'link':
-                            document.querySelector('input[name="link-2"]').value = popup['second_do']['link'];
-                            break;
-                        case 'file':
-                            document.querySelector('#file-name').innerHTML = popup['second_do']['file'].toString().match(/.*\/(.+?)\./)[1];
-                            break;
-                    }
 
                     switch (option_1) {
                         case 'list':
                             let a = document.getElementById('course_list');
                             let option_list_1 = a.querySelector('option[value="'+ popup['first_do']['course_id'] +'"]');
                             option_list_1.selected = true;
+                            option_list_1.setAttribute('selected', 'selected')
                             break;
                         case 'pay_form':
                         case 'form':
                             if (popup['form__title']) {
                                 document.querySelector('input[name="form__title"]').value = popup['form__title'];
                             }
-                            if (popup['form__desc']) {в
+                            if (popup['form__desc']) {
                                 document.querySelector('input[name="form__desc"]').value = popup['form__desc'];
                             }
                             if (popup['button_text']) {
@@ -500,13 +503,25 @@
                             break;
                     }
                     setTimeout(function (){
-                        let form__title = document.querySelector('.popup-title');
-                        form__title.innerHTML = popup['form__title'];
-                        console.log(form__title)
-
-                        let form__desc = document.querySelector('.popup-text');
-                        form__desc.innerHTML = popup['form__desc'];
+                        if (popup['form__title']) {
+                            let form__title = document.querySelector('.popup-title');
+                            form__title.innerHTML = popup['form__title'];
+                        }
+                        if (popup['form__desc']) {
+                            let form__desc = document.querySelector('.popup-text');
+                            form__desc.innerHTML = popup['form__desc'];
+                        }
                     }, 400)
+
+
+                    switch (option_2) {
+                        case 'link':
+                            document.querySelector('input[name="link-2"]').value = popup['second_do']['link'];
+                            break;
+                        case 'file':
+                            document.querySelector('#file-name').innerHTML = popup['second_do']['file'].toString().match(/.*\/(.+?)\./)[1];
+                            break;
+                    }
                 }
             }
         })
