@@ -478,20 +478,33 @@
                             <input type="radio" id="Tarif" name="mytabs"/>
 
                             <label class="menu-label" for="Tarif" id="cllab"><p>Дополнительно</p></label>
-
                             <div class="tab">
-
-                                <h2>Скрипты для HEAD:  </h2>
-
-                                <textarea class="additionally" placeholder="Default" name="head_additional"></textarea>
-
-                                <h2>Скрипты для Body:  </h2>
-
-                                <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>
-
-                                <div class="about-btn">
-                                    <button id="profile_send" type="submit">Сохранить</button>
+                        <div class="tab col">
+                            <div class="inner_row">
+                                <div class="row">
+                                    <h2>Подключение Prodamus:  </h2>
+                                    <input type="text" name="prodamus_api" placeholder="API Ключ">
                                 </div>
+                            </div>
+                            <div class="inner_row">
+                                <div class="row">
+                                    <h2>Подключение Albato:  </h2>
+                                    <input type="text" name="albato_api" placeholder="API Ключ">
+                                </div>
+                            </div>
+                            <div class="inner_row">
+                                <div class="row">
+                                    <h2>Скрипты для HEAD:  </h2>
+                                    <textarea class="additionally" placeholder="Default" name="head_additional"></textarea>
+                                </div>
+                                <div class="row">
+                                    <h2>Скрипты для Body:  </h2>
+                                    <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="about-btn">
+                                <button id="profile_send" type="submit">Сохранить</button>
                             </div>
                         </div>
                     </div>

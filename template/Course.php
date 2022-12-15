@@ -85,13 +85,18 @@
 
                         </div>
 
-                        <p>Курс №<?=$k?></p>
+                        <p style="margin: 20px 0px 10px;">Курс №<?=$k?></p>
 
                         <h3><?=$p['name']?></h3>
 
                         <div class="course-price">
                             <form action="/Course/<?=$p['id']?>/setPrice" method="POST">
-                                <input type="number" name="course_price" min="100" placeholder="<? echo isset($p['price']) ? $p['price'] : "Укажите стоимость курса" ?>">
+                                <div class="course__prices">
+                                    <input type="number" name="course_price" min="100" placeholder="<? echo isset($p['price']) ? $p['price'] : "Укажите стоимость курса" ?>">
+                                    <span class="course_currency">
+                                        $
+                                    </span>
+                                </div>
                                 <button class="save_price" type="submit">
                                     Сохранить
                                 </button>
@@ -102,9 +107,9 @@
 
                             <input type="hidden" value="<?=$p['id']?>" >
 
-                            <button type="submit" onclick="window.location.href = '/Course/<?=$p['id']?>';"">Изменить</button>
+                            <button class="change_btn" type="submit" onclick="window.location.href = '/Course/<?=$p['id']?>';"">Изменить</button>
 
-                            <button class="reboot" type="submit" onclick="deleteDirectory(this)" style="background: none;border: solid 1px #4E73F8;color: #4E73F8;">Удалить</button>
+                            <button class="delete_btn" type="submit" onclick="deleteDirectory(this)" style="background: none;border: solid 1px #4E73F8;color: #4E73F8;">Удалить</button>
 
                         </div>
 
