@@ -114,7 +114,7 @@
             </div>
             <div class="User-form-g">
                 <div class="backBtn userPopup__button">
-                    <button type="button" class="course__back-btn">Назад</button>
+                    <button type="button" class="course__back-btn" onclick="backToAuthor(this)">Назад</button>
                 </div>
                 <div class="Сourse-question userPopup__button questionBtn">
                     <button>Есть вопросы?</button>
@@ -142,8 +142,8 @@
                 <div class="userPopup__button buy__course-btn">
                     <button type="button" class="button__buy-course">Купить весь курс за <span class="course__price"></span> ₽</button>
                 </div>
-                <div class=" AllLessons userPopup__button allLessonsBackBtn">
-                    <button type="button" class="course__back-btn">Пока не хочу покупать</button>
+                <div class=" AllLessons userPopup__button">
+                    <button type="button" class="course__back-btn" onclick="backToAuthor(this)">Пока не хочу покупать</button>
                 </div>
             </div>
         </div>
@@ -203,8 +203,8 @@
                             </div>
                         </div>
                         <div class="User-form-g">
-                            <div class="backBtn userPopup__button youChosenBackBtn courseBackBtn">
-                                <button type="button">Назад</button>
+                            <div class="backBtn userPopup__button youChosenBackBtn">
+                                <button type="button" class="back__to__course" onclick="backToCourseList(this)">Назад</button>
                             </div>
                             <div class="Сourse-question userPopup__button">
                                 <button type="submit">Перейти к оплате</button>
@@ -271,13 +271,16 @@ unset($_SESSION['course_id']);
 <script src="../js/script.js" ></script>
 <script>
 
-    function getBackToCourseList(number) {
-        document.querySelectorAll('.course__back-btn').forEach(item => {
-            item.addEventListener('click', function () {
-                getCoursePage(number);
-                getDisablePage(number);
-            })
-        })
+    function backToAuthor(elem) {
+        hiddenAllPopups();
+        availableToYou.classList.add('active')
+        getCoursePage(elem.dataset.author_id);
+    }
+
+    function backToCourseList(elem) {
+        hiddenAllPopups();
+        document.querySelector('.AllLessons').classList.add('active');
+        getListPage(elem.dataset.course_id);
     }
 
     function hiddenAllPopups() {
@@ -302,7 +305,7 @@ unset($_SESSION['course_id']);
     if (course__get_id) {
         hiddenAllPopups();
         document.querySelector('.course__popup').classList.add('active');
-        getBackToCourseList(author__get_id)
+        document.querySelector('.back__to__course').dataset.course_id = course__get_id;
         getListPage(course__get_id);
         course__get_url.searchParams.delete('course_id');
         window.history.pushState({}, '', course__get_url.toString());
@@ -328,7 +331,6 @@ unset($_SESSION['course_id']);
                 document.querySelector('.course__buy-flag').innerHTML = 'Курс';
                 document.querySelector('#creator_id').value = course['author_id'];
                 document.querySelector('#course_id').value = course_id;
-                getBackToCourseList(number);
             }
         });
         request.send();
@@ -355,13 +357,13 @@ unset($_SESSION['course_id']);
                 document.querySelector('#buy_product').src = content.thubnails;
                 document.querySelector('#creator_id').value = content.author_id;
                 document.querySelector('#course_id').value = number;
+                document.querySelector('.back__to__course').dataset.course_id = number;
             }
         });
         request.send();
     }
 
     function getCoursePage (number) {
-        console.log(number)
         let request = new XMLHttpRequest();
 
         let url = "/UserController/getCourse?author_id=" + number;
@@ -375,15 +377,16 @@ unset($_SESSION['course_id']);
                 let availableСourses = document.body.querySelectorAll('.availableСourses');
                 document.getElementById('question_author-id').value = number;
                 availableСourses.forEach(item => {
-                    item.onclick = function () {
+                    item.addEventListener("click", function (){
                         getListPage(item.querySelector('#id').value);
                         hiddenAllPopups();
                         course.classList.add('active');
-                    }
+                    }, false);
                 })
             }
-        });
+        })
         request.send();
+
         let requestDisable = new XMLHttpRequest();
 
         let urlDisable = "/UserController/getDisableCourse?author_id=" + number;
@@ -406,7 +409,7 @@ unset($_SESSION['course_id']);
                         hiddenAllPopups();
                         allLessons.classList.add('active');
                     }
-                })
+                }, false)
             }
         })
         requestDisable.send();
@@ -450,13 +453,7 @@ unset($_SESSION['course_id']);
                     }
                 })
                 document.querySelectorAll('.course__back-btn').forEach(item => {
-                    item.addEventListener('click', function () {
-                        hiddenAllPopups();
-                        availableToYou.classList.add('active')
-                        otherCourses.style.display = 'block';
-                        getCoursePage(number);
-                        getDisablePage(number);
-                    })
+                    item.dataset.author_id = number;
                 })
                 startAccordion();
             }
@@ -484,6 +481,9 @@ unset($_SESSION['course_id']);
                         youChosen.classList.add('active');
                         getVideoInfo(item.querySelector('.item__list-id').dataset.id);
                     }
+                })
+                document.querySelectorAll('.course__back-btn').forEach(item => {
+                    item.dataset.author_id = number;
                 })
                 startAccordion();
             }
@@ -544,7 +544,6 @@ unset($_SESSION['course_id']);
         })
     }
     more()
-
 
 
 </script>

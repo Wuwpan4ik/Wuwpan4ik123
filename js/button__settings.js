@@ -56,7 +56,7 @@ function addPopup(input) {
         });
 
         div += `<div class="popup__bonus-form-button button-form">
-            <button type="button" class="button next-lesson button__send">Оплатить</button>
+            <button type="button" class="button next-lesson button__send">Отправить</button>
         </div>`
 
         div += `</div>
@@ -119,7 +119,14 @@ async function addFormSelect(elem, name) {
     }
     div.innerHTML = inner;
     elem.parentElement.children[count_block].after(div);
+    document.querySelectorAll('.input_selector').forEach(function (){
+        this.addEventListener('change', function (){
+            addPopup('form');
+            checkFormInputs();
+        })
+    })
 }
+
 
 function addFormLink(elem) {
     let count = elem.parentElement.querySelectorAll('.link_item').length;
@@ -245,6 +252,7 @@ function checkFirstSelect() {
             let button__send = document.querySelector('input[name="button__send"]');
             form__title.addEventListener('input', function () {
                 document.querySelector('.popup-title').innerHTML = this.value;
+                console.log(this.value)
             });
             form__desc.addEventListener('input', function () {
                 document.querySelector('.popup-text').innerHTML = this.value;
@@ -255,6 +263,12 @@ function checkFirstSelect() {
             break;
         }
     }
+}
+
+function checkFormInputs() {
+    document.querySelector('.popup-title').innerHTML = document.querySelector('input[name="form__title"]').value;
+    document.querySelector('.popup-text').innerHTML = document.querySelector('input[name="form__desc"]').value;
+    document.querySelector('.button__send').innerHTML = document.querySelector('input[name="button__send"]').value;
 }
 
 function checkSecondSelect() {
