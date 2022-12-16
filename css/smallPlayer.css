@@ -533,6 +533,7 @@
 }
 
 .popup__allLessons-item {
+    position: relative;
     width: 100%;
 }
 .popup__allLessons-item-info-header-time {

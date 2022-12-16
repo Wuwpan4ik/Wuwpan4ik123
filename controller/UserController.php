@@ -166,31 +166,38 @@
                                 <div class="popup__allLessons-item__header">
                             <div class="Course-item popup-item ">
                             ' . $url_start . '
-                                <div class="popup__allLessons-item-video__img '. $class .'" style="width: 160px; height: 100px;">
+                                <div class="popup__allLessons-item-video__img '. $class .'" style="width: 76px; height: 100px;">
                                     <div data-id="'. $item['id'] .'" class="popup__allLessons-item item__list-id"></div>
                                         '. $image_available .'
                                 </div>
                                 ' . $url_end . '
                                 <div class="popup__allLessons-item-info">
                                     <div class="popup__allLessons-item-info-header">
+                                    <div class="first_row_video" style="display:flex;align-items: center;width:100%;">
                                         <div class=" aboutTheAuthor '. $number_color .'">
                                             Урок '. $counter .' 
                                         </div>
+                                        <div class="duration_time">
+                                            '. $duration .'
+                                        </div>
+                                    </div>
+                                    <div class="second_row_video" style="width:100%;">
                                         <div class="popup__allLessons-item-info-title">
                                             ' . $item['name'] . '
                                         </div>
                                     </div>
+                                    </div>
                                     <button class="accordion-button" id="accordion-button-1" aria-expanded="false">
                                     <span class="icon" aria-hidden="true"></span></button>
-                                    <div class="accordion">
+                                </div>
+                            </div>
+                                                                <div class="accordion">
                                         <div class="accordion-item">
                                             <div class="accordion-content">
                                                 <p>' . $item['description'] . '</p>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
                                 </div>';
                         $counter++;
                     }

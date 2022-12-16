@@ -717,6 +717,7 @@ span.color3 {
     display: flex;
     justify-content: center;
     align-items: center;
+    height:65vh;
 }
 
 /* Filters Buttons */
