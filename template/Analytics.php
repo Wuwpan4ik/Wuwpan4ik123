@@ -156,15 +156,15 @@
                                 <div class="profit__row">
                                     <div class="profit__item">
                                         <div class="profit_header"><h3>Доход за неделю</h3><span>Неделя</span></div>
-                                        <div class="profit_sum"><span id="this_week"></span> <span class="green_profit week_procent">14.6%</span>
+                                        <div class="profit_sum"><span class="full_week_value profit_sum"></span> <span class="week_procent">14.6%</span>
                                         </div>
-<!--                                        <div class="profit_footer">На  <span id="week_diff"></span> <span id="week_diff-text"></span></div>-->
+                                        <div class="profit_footer">На  <span class="week_diff"></span> <span class="week_diff-text"></span></div>
                                     </div>
                                     <div class="profit__item profit_down">
                                         <div class="profit_header"><h3>Доход за месяц</h3><span>Месяц</span></div>
-                                        <div class="profit_sum"><span id="this_month"></span> <span class="red_profit">4.16%</span>
+                                        <div class="profit_sum"><span id="this_month"></span> <span class="month_procent"></span>
                                         </div>
-<!--                                        <div class="profit_footer">На  <span id="month_diff"></span> <span id="month_diff-text"></span></div>-->
+                                        <div class="profit_footer">На  <span class="month_diff"></span> <span class="month_diff-text"></span></div>
                                     </div>
                                 </div>
                                 <div class="profit__row">
@@ -188,7 +188,20 @@
                                         <div class="numbers_item">>50 000<span class="color2"></span></div>
                                         <div class="numbers_item">>100000<span class="color3"></span></div>
                                     </div>
-                                    <div class="device"></div>
+                                    <div class="allprofit__devices">
+                                        <div class="allprofit__devices__names">
+                                            <div class="allprofit__devices__name"></div>
+                                        </div>
+                                        <div class="allprofit__devices__table">
+                                            <div class="allprofit__devices__slot"></div>
+                                            <div class="allprofit__devices__slot"></div>
+                                            <div class="allprofit__devices__slot"></div>
+                                            <div class="allprofit__devices__slot"></div>
+                                            <div class="allprofit__devices__slot"></div>
+                                            <div class="allprofit__devices__slot"></div>
+                                            <div class="allprofit__devices__slot"></div>
+                                        </div>
+                                    </div>
                                 </div>  
                             </div>
                             <div class="profit_rightSide">
@@ -196,19 +209,18 @@
                                     <div class="rightSideFirst_header">
                                         <img src="/img/credit-card.svg" alt="">
                                         <div class="rightSideFirstText1">
-                                            <h3 id="full_week_value"></h3>
+                                            <h3 class="full_week_value profit_sum"></h3>
                                             <span>Общая прибыль</span>
                                         </div>
                                         <div class="rightSideFirstText2">
                                             <span>Неделя</span>
-                                            <span class="green_profit week_procent">14.6%</span>
+                                            <span class="week_procent"></span>
                                         </div>
                                     </div>
                                     <div class="Analytics-graphic__totalProfit">
                                         <canvas width="264px" height="128px"  id="totalProfit"></canvas>
                                     </div>
-
-<!--                                 <div class="profit_footer">На  <span class="green_text"> 10,256 ₽ </span>больше</div>-->-->
+                                    <div class="profit_footer">На  <span class="week_diff"></span> <span class="week_diff-text"></span></div>
                                 </div>
                                 <div class="rightSideFirst">
 
@@ -217,14 +229,14 @@
                                     </div>
                                     <div class="rightSideFirst_header">
                                         <div class="rightSideFirstText1">
-                                            <h3 class=" profit-price " >$16,355.49</h3>
+                                            <h3 class="full_week_value profit_sum"></h3>
                                             <span>показатели доходности</span>
                                         </div>
                                         <div class="rightSideFirstText2">
-                                            <span class="green_profit week_procent">14.6%</span>
+                                            <span class="week_procent"></span>
                                         </div>
                                     </div>
-<!--                                    <div class="profit_footer">На  <span class="green_text">10,256 ₽ </span>больше</div>-->
+                                    <div class="profit_footer">На  <span class="week_diff"></span> <span class="week_diff-text"></span></div>
                                 </div>
 
                             </div>
@@ -242,19 +254,19 @@
         <div class="display-none" id="currency"><?php echo isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></div>
   </body>
 
-  <!--Проверка Clients-->
-  <script>
-      const main_check = document.querySelector('#main_check');
-      main_check.addEventListener('click', function (e) {
-          let check_user = document.querySelectorAll('.check_user');
-          Array.prototype.forEach.call(check_user, function(cb){
-              cb.checked = e.target.checked;
-          });
+<!--Проверка Clients-->
+<script>
+  const main_check = document.querySelector('#main_check');
+  main_check.addEventListener('click', function (e) {
+      let check_user = document.querySelectorAll('.check_user');
+      Array.prototype.forEach.call(check_user, function(cb){
+          cb.checked = e.target.checked;
       });
-  </script>
+  });
+</script>
 
-  <!--Проверка Orders-->
-  <script>
+<!--Проверка Orders-->
+<script>
       const order_check = document.querySelector('#order_check');
       order_check.addEventListener('click', function (e) {
           let check_user = document.querySelectorAll('.check_order');
@@ -352,7 +364,8 @@
         });
     });
 </script>
-<script type="text/javascript">
+
+<script>
 
   let request1 = new XMLHttpRequest();
 
@@ -373,14 +386,17 @@
               array.prev_month = 0;
           }
           let currency = document.getElementById('currency').innerHTML;
-          document.getElementById('this_week').innerHTML = array.week + currency;
-          document.getElementById('this_month').innerHTML = array.month + currency;
-          if (array.prev_month) {
-              document.getElementById('last_month').innerHTML = array.prev_month + currency;
-          }
           if (array.full_value) {
-              document.getElementById('full_week_value').innerText = array.week + currency;
               document.getElementById('full_value').innerText = array.full_value + currency;
+          }
+          if (array.week) {
+              document.querySelectorAll('.full_week_value').forEach(item => {
+                  console.log()
+                  item.innerHTML = array.week + currency;
+              })
+          }
+          if (array.month) {
+              document.getElementById('this_month').innerHTML = array.month + currency;
           }
           if (array.one_user) {
               document.getElementById('one__user').innerText = array.one_user + currency;
@@ -392,32 +408,74 @@
           let week_diff = array.week - array.prev_week;
           let month_diff = array.month - array.prev_month;
 
-          if (week_diff > 0) {
-              document.getElementById('week_diff-text').innerText = 'больше';
-              document.getElementById('week_diff').classList.add('green_text');
-          } else {
-              document.getElementById('week_diff-text').innerText = 'меньше';
-              document.getElementById('week_diff').classList.add('red_text');
+          if (document.querySelectorAll('.profit_footer')) {
+              if (week_diff > 0) {
+                  document.querySelectorAll('.week_diff').forEach(item => {
+                      item.classList.add('green_text');
+                      item.innerHTML = week_diff + currency;
+                  })
+                  document.querySelectorAll('.week_diff-text').forEach(item => {
+                      item.innerText = 'больше';
+                  })
+              } else {
+                  document.querySelectorAll('.week_diff').forEach(item => {
+                      item.classList.add('red_text');
+                      item.innerHTML = week_diff + currency;
+                  })
+                  document.querySelectorAll('.week_diff-text').forEach(item => {
+                      item.innerText = 'меньше';
+                  })
+              }
+
+              if (month_diff > 0) {
+                  document.querySelectorAll('.month_diff').forEach(item => {
+                      item.classList.add('green_text');
+                      item.innerHTML = month_diff + currency;
+                  })
+                  document.querySelectorAll('.month_diff-text').forEach(item => {
+                      item.innerText = 'больше';
+                  })
+              } else {
+                  document.querySelectorAll('.month_diff').forEach(item => {
+                      item.classList.add('red_text');
+                      item.innerHTML = month_diff + currency;
+                  })
+                  document.querySelectorAll('.month_diff-text').forEach(item => {
+                      item.innerText = 'меньше';
+                  })
+              }
           }
-          if (month_diff > 0) {
-              document.getElementById('month_diff-text').innerText = 'больше';
-              document.getElementById('month_diff').classList.add('green_text');
-          } else {
-              document.getElementById('month_diff-text').innerText = 'меньше';
-              document.getElementById('month_diff').classList.add('red_text');
-          }
-          document.getElementById('week_diff').innerText = week_diff + currency;
-          document.getElementById('month_diff').innerText = month_diff + currency;
+
+          let week_procent = array.week / array.prev_week;
+          let month_procent = array.month / array.prev_month;
 
           document.querySelectorAll(".week_procent").forEach((elem) => {
               if (array.prev_week !== 0) {
-                  elem.innerHTML = array.week / array.prev_week * 100 + "%";
+                  elem.innerHTML = week_procent * 100 + "%";
               } else {
                   elem.style.display = 'none';
               }
+              if (week_diff > 0) {
+                  elem.classList.add('green_profit')
+              } else {
+                  elem.classList.add('red_profit');
+              }
           });
+
+          document.querySelectorAll(".month_procent").forEach((elem) => {
+              if (array.prev_month !== 0) {
+                  elem.innerHTML = month_procent * 100 + "%";
+              } else {
+                  elem.style.display = 'none';
+              }
+              if (month_diff > 0) {
+                  elem.classList.add('green_profit')
+              } else {
+                  elem.classList.add('red_profit');
+              }
+          })
       }
-  });
+      })
   request1.send();
 </script>
 

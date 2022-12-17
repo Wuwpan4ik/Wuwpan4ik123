@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function (){
     request2.addEventListener("readystatechange", () => {
         if (request2.readyState === 4 && request2.status === 200) {
             const arrays = JSON.parse(request2.responseText).prev;
+            console.log(arrays)
             const ctx1 = document.getElementById('totalProfit').getContext('2d');
             const ChartTotalProfit = new Chart(ctx1, {
 
