@@ -108,6 +108,7 @@ function defaultPopup(parent_elem){
     parent_elem.parentElement.querySelectorAll('.link_item').forEach((elem) => {
         elem.remove();
     })
+    document.querySelector('#first_do-list').classList.remove('display-none');
 }
 
 async function addFormSelect(elem, name) {
@@ -151,6 +152,25 @@ function addFormLink(elem) {
     if (count === 0) {
         elem.parentElement.children[1].after(div);
     }
+}
+function addCheckbox(elem) {
+    let checkbox = document.createElement('div');
+    checkbox.classList.add("checkbox__wrapper")
+    let switch_box = document.createElement('div');
+    switch_box.classList.add("switch_box")
+    switch_box.classList.add("box_1")
+    switch_box.style.color = '#5A6474'
+    let input = document.createElement('input');
+    input.name = 'open_new_window';
+    input.type = 'checkbox';
+    input.classList.add("switch_1")
+    input.value = 'open_new_window';
+    switch_box.appendChild(input)
+    checkbox.appendChild(switch_box)
+    let text = document.createElement('div');
+    text.innerHTML = 'Открывать в новом окне';
+    switch_box.appendChild(text)
+    elem.parentElement.children[2].after(checkbox);
 }
 
 //Добавление option
@@ -305,6 +325,9 @@ function checkSecondSelect() {
         if (second_select.value === 'link') {
             document.querySelector('#popup__body-form-2').style.display = 'none';
             addFormLink(second_select);
+            if (document.querySelector('.checkbox__wrapper')) {
+                document.querySelector('.checkbox__wrapper').classList.remove('display-none');
+            }
         }
     }
 

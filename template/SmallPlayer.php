@@ -94,6 +94,7 @@
                     $popup__do = $popup->first_do;
                     $second_link = $popup->second_do->link;
                     $id = $item['id'];
+                    $new_window = !is_null($popup->second_do->open_in_new);
                     $author_id = $item['author_id'];
                     include 'template/default/popup__templates/popup__form.php';
                 } ?>
@@ -183,7 +184,11 @@
                     alert("Форма успешно отправлена");
                 } catch {}
                 try {
-                    window.open($(this)[0].querySelector('.second_link').value);
+                    if ($(this)[0].querySelector('.new_window')) {
+                        window.open($(this)[0].querySelector('.second_link').value);
+                    } else {
+                        window.location = $(this)[0].querySelector('.second_link').value;
+                    }
                 } catch {}
             });
         })

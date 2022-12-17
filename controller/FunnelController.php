@@ -226,6 +226,9 @@
                     if (isset($_POST['link-2'])) {
                         $videoBtnHTML['second_do']['link'] = $_POST['link-2'];
                     }
+                    if (isset($_POST['link-2'])) {
+                        $videoBtnHTML['second_do']['open_in_new'] = $_POST['open_new_window'];
+                    }
                     break;
                 }
                 case "file": {
