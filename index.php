@@ -101,6 +101,7 @@
 
     $router->addRoute("/StatisticsController/GetStatistics", "StatisticsController.php", 'GetAllStatistics');
     $router->addRoute("/StatisticsController/GetWeek", "StatisticsController.php", 'GetWeekGraph');
+    $router->addRoute("/StatisticsController/GetWeekDays", "StatisticsController.php", 'GetWeekDays');
 
     $router->addRoute("/UserController/getCourse", "UserController.php", 'getCourseSite');
     $router->addRoute("/UserController/getDisableCourse", "UserController.php", 'getDisableCourseSite');

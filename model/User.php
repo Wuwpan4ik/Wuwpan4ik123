@@ -250,8 +250,7 @@
         public function GetCountFirstBuy()
         {
             $current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
-            $last_date = date("Y-m-d", mktime(0, 0, 0, date('m') - 1, date('d'), date('Y')));
-            $result = count($this->db->query("SELECT * from clients WHERE `first_buy` = 1 AND `creator_id` = " . $_SESSION['user']['id'] . " AND `achivment_date` BETWEEN '$last_date' -  interval 1 MONTH AND '$current_date'"));
+            $result = count($this->db->query("SELECT * from clients WHERE `first_buy` = 1 AND `creator_id` = " . $_SESSION['user']['id'] . " AND `achivment_date` BETWEEN '$current_date' -  interval 1 MONTH AND '$current_date'"));
             return $result;
         }
 
@@ -290,6 +289,14 @@
                 }
             }
             return array_reverse($array);
+        }
+
+        public function GetWeekDays()
+        {
+            $result = $this->db->query("select sum(give_money) as money, to_char(achivment_date, 'DAY') as day
+                                    from clients WHERE YEAR(`achivment_date`) = YEAR(NOW()) AND WEEK(`achivment_date`, 1) = WEEK(NOW(), 1) and `creator_id` = 121
+                                    group by day order by mod(to_char(achivment_date, 'DAY') + 5, 7)");
+            return $result;
         }
 
         public function getVideosForPlayer()

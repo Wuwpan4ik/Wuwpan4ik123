@@ -589,6 +589,7 @@ span.red_text {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
+    gap: 15px;
     border: 1px solid #E1E3E6;
     border-radius: 8px;
     padding: 24px;
@@ -788,4 +789,41 @@ span.color3 {
     background: linear-gradient(180deg, #08B395 0%, #0C977F 100%);
     border-color:#08B395;
     height: 100%;
+}
+
+.allprofit__devices {
+    display: flex;
+    justify-content: space-between;
+}
+
+.allprofit__devices__table {
+    display: flex;
+    gap: 4px;
+}
+
+.allprofit__devices__names {
+    display: flex;
+    margin-top: 20px;
+}
+
+.allprofit__devices__name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #757D8A;
+}
+
+.allprofit__devices__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.allprofit__devices__slot {
+    width: 80px;
+    height: 70px;
+    background: rgba(78, 115, 248, 0.24);
+    border-radius: 5px;
 }

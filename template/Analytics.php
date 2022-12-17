@@ -226,22 +226,47 @@
                                     </div>
                                     <div class="profit_sum"><span id="full_value"></span></div>
                                     <div class="numbers">
-                                        <div class="numbers_item">0-5000 <span class="color1"></span></div>
-                                        <div class="numbers_item">>50 000<span class="color2"></span></div>
-                                        <div class="numbers_item">>100000<span class="color3"></span></div>
+                                        <div class="numbers_item">0-30000<span class="color1"></span></div>
+                                        <div class="numbers_item">>30000<span class="color2"></span></div>
+                                        <div class="numbers_item">>50000<span class="color3"></span></div>
                                     </div>
                                     <div class="allprofit__devices">
-                                        <div class="allprofit__devices__names">
-                                            <div class="allprofit__devices__name"></div>
+                                        <div class="allprofit__devices__name__item">
+                                            <div class="allprofit__devices__names">
+                                                <div class="allprofit__devices__name">Устройства</div>
+                                            </div>
                                         </div>
-                                        <div class="allprofit__devices__table">
-                                            <div class="allprofit__devices__slot"></div>
-                                            <div class="allprofit__devices__slot"></div>
-                                            <div class="allprofit__devices__slot"></div>
-                                            <div class="allprofit__devices__slot"></div>
-                                            <div class="allprofit__devices__slot"></div>
-                                            <div class="allprofit__devices__slot"></div>
-                                            <div class="allprofit__devices__slot"></div>
+                                        <div class="allprofit__devices__item">
+                                            <div class="allprofit__devices__table">
+                                                <div class="allprofit__devices__item">
+                                                    <div class="allprofit__devices__slot"></div>
+                                                    <div class="allprofit__devices__name">ПН</div>
+                                                </div>
+                                                <div class="allprofit__devices__item">
+                                                    <div class="allprofit__devices__slot"></div>
+                                                    <div class="allprofit__devices__name">ВТ</div>
+                                                </div>
+                                                <div class="allprofit__devices__item">
+                                                    <div class="allprofit__devices__slot"></div>
+                                                    <div class="allprofit__devices__name">СР</div>
+                                                </div>
+                                                <div class="allprofit__devices__item">
+                                                    <div class="allprofit__devices__slot"></div>
+                                                    <div class="allprofit__devices__name">ЧТ</div>
+                                                </div>
+                                                <div class="allprofit__devices__item">
+                                                    <div class="allprofit__devices__slot"></div>
+                                                    <div class="allprofit__devices__name">ПТ</div>
+                                                </div>
+                                                <div class="allprofit__devices__item">
+                                                    <div class="allprofit__devices__slot"></div>
+                                                    <div class="allprofit__devices__name">СБ</div>
+                                                </div>
+                                                <div class="allprofit__devices__item">
+                                                    <div class="allprofit__devices__slot"></div>
+                                                    <div class="allprofit__devices__name">ВС</div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -317,52 +342,6 @@
           });
       });
   </script>
-<script>
-  let client_buttons = document.querySelectorAll('.contact__button');
-  let client_tab = document.querySelector('#conTab');
-  let client_request = new XMLHttpRequest();
-
-  let client_url = "SortController/AnalyticClients?sort=id";
-
-  client_request.open('GET', client_url);
-
-  client_request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-  client_request.addEventListener("readystatechange", () => {
-      if (client_request.readyState === 4 && client_request.status === 200) {
-          if (client_request.responseText.length !== 0) {
-              document.querySelector('.no-data').classList.add('display-none');
-          }
-          client_tab.innerHTML = client_request.responseText;
-      }
-  });
-  client_request.send();
-
-  client_buttons.forEach((elem) => {
-      elem.addEventListener('click', function(e) {
-          let param;
-          if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){
-              this.innerHTML = '<img class="table_ico" src="img/StickUp.svg">';
-              param = this.value;
-          }else{
-              this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
-              param = this.value + " DESC";
-          }
-          let request = new XMLHttpRequest();
-
-          let url = "SortController/AnalyticClients?sort=" + param;
-
-          request.open('GET', url);
-
-          request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-          request.addEventListener("readystatechange", () => {
-              if (request.readyState === 4 && request.status === 200) {
-                  client_tab.innerHTML = request.responseText;
-              }
-          });
-          request.send();
-      });
-  });
-</script>
 <!--OrderList-->
 <script>
     let order_button = document.querySelectorAll('.order__button');
@@ -608,6 +587,36 @@
             });
             request.send();
         });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let request2 = new XMLHttpRequest();
+        let url2 = "/StatisticsController/GetWeekDays";
+        request2.open('GET', url2);
+
+        request2.setRequestHeader('Content-Type', 'application/x-www-form-url');
+        request2.addEventListener("readystatechange", () => {
+            if (request2.readyState === 4 && request2.status === 200) {
+                let arrays = JSON.parse(request2.responseText);
+                let array_money = [0, 0, 0, 0, 0, 0, 0];
+                let week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+                arrays.forEach(item => {
+                    array_money[week.indexOf((item.day).trim())] = parseInt(item.money);
+                })
+                let count = 0;
+                document.querySelectorAll('.allprofit__devices__slot').forEach(item => {
+                    if (array_money[count] >= 30000) {
+                        item.style = "background: rgba(78, 115, 248, 0.5)";
+                    }
+                    if (array_money[count] >= 50000) {
+                        item.style = "background: #4E73F8";
+                    }
+                    count++;
+                })
+            }
+        });
+        request2.send();
     });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>

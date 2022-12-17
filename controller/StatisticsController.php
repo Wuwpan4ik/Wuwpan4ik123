@@ -39,6 +39,12 @@
             echo json_encode($result);
         }
 
+        public function GetWeekDays()
+        {
+            $result = $this->m->GetWeekDays();
+            echo json_encode($result);
+        }
+
         function get_content()
         {
             // TODO: Implement get_content() method.
