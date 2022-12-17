@@ -606,11 +606,12 @@
                 })
                 let count = 0;
                 document.querySelectorAll('.allprofit__devices__slot').forEach(item => {
-                    if (array_money[count] >= 30000) {
-                        item.style = "background: rgba(78, 115, 248, 0.5)";
+                    if (array_money[count] >= 30000 && array_money[count] < 50000) {
+                        console.log(array_money[count])
+                        item.classList.add('color2');
                     }
                     if (array_money[count] >= 50000) {
-                        item.style = "background: #4E73F8";
+                        item.classList.add('color3');
                     }
                     count++;
                 })

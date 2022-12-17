@@ -617,25 +617,25 @@ span.red_text {
     flex-direction: column;
 }
 
-span.color1 {
+.color1 {
     width: 70px;
     height: 12px;
     border-radius: 2px;
-    background: rgba(78, 115, 248, 0.24);
+    background: rgba(78, 115, 248, 0.25) !important;
 }
 
-span.color2 {
+.color2 {
     width: 70px;
     height: 12px;
     border-radius: 2px;
-    background: rgba(78, 115, 248, 0.4);
+    background: rgba(78, 115, 248, 0.5) !important;
 }
 
-span.color3 {
+.color3 {
     width: 70px;
     height: 12px;
     border-radius: 2px;
-    background: #4E73F8;
+    background: #4E73F8 !important;
 }
 
 .rightSideFirst {
