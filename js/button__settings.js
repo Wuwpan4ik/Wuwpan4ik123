@@ -8,7 +8,7 @@ const id_item = document.querySelector('#id_item');
 const first_select = document.querySelector('#first_do');
 const second_select = document.querySelector('#second_do');
 // Поля option в форме
-const names_option = {'email': "Email", 'name': "Имя", 'tel': "Телефон"};
+const names_option = {'email': "Ваша почта", 'name': "Ваше имя", 'tel': "Ваш номер телефон"};
 
 function addPopup(input) {
     if (input === 'list') {
@@ -47,11 +47,22 @@ function addPopup(input) {
         form_inputs = document.querySelector('#popup__body-form-1').querySelectorAll('.form_id');
 
         form_inputs.forEach((elem) => {
+            switch (elem.value) {
+                case 'email':
+                    var val = 'Ваша почта'
+                    break;
+                case 'name':
+                    var val = 'Ваше имя'
+                    break;
+                case 'tel':
+                    var val = 'Ваш номер телефона'
+                    break;
+            }
             div += `<div class="popup__bonus-form-input input">
                     <div class="popup__bonus-form-input-email input-img">
                         <img src="../img/smallPlayer/`+ elem.value +`.svg" alt="">
                     </div>
-                    <input name="`+ elem.value +`" type="text" placeholder="Ваш `+ elem.value +`">
+                    <input name="`+ elem.value +`" type="text" placeholder="`+ val +`">
                 </div>`;
         });
 

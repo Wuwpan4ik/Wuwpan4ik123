@@ -372,5 +372,10 @@
             $json = $this->db->query("SELECT * FROM `funnel_content` WHERE `id` = '$id'");
             return $json;
         }
+
+        public function isUserSocials()
+        {
+            return count($this->db->query("SELECT * FROM `user_contacts` WHERE `user_id` = " . $_SESSION['user']['id'])) == 1;
+        }
     }
 ?>

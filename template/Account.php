@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/css/main.css">
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
-  </head>
 
 </head>
 
@@ -60,8 +59,8 @@
 
                                             <?php if(isset($_SESSION['error']['email_message'])) echo $_SESSION['error']['email_message'] ?>
                                             <div class="input_focus ">
-                                                <label for="username" class="label_focus ">Телефон</label>
-                                                <input class="half"  name="phone" value="<?php print(htmlspecialchars(isset($_SESSION['user']['phone']) ? $_SESSION['user']['phone'] : '+7')) ?>">
+                                                <label for="username" class="label_focus">Телефон</label>
+                                                <input class="half" id="phone" name="phone" value="<?php print(htmlspecialchars(isset($_SESSION['user']['phone']) ? $_SESSION['user']['phone'] : '')) ?>">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
@@ -91,7 +90,7 @@
 
                                             <div class="input_focus ">
                                                 <label for="username" class="label_focus "></label>
-                                                <input id="username" type="date" name="birthday"  value="<? print(htmlspecialchars($_SESSION['user']['birthday'])); ?>">
+                                                <input id="username" type="date" name="birthday" value="<? print(htmlspecialchars($_SESSION['user']['birthday'])); ?>">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
@@ -137,25 +136,26 @@
                                                         <div class="overSelect"></div>
                                                     </div>
                                                     <div id="mySelectOptions">
-                                                        <label class="item">Вконтакте<input class="custom-checkbox" type="radio" value="Vk" /><label for="happy"></label></label>
-                                                        <label class="item">Твиттер<input class="custom-checkbox" type="radio" value="Twitter" /><label for="happy"></label></label>
-                                                        <label class="item">Фейсбук<input class="custom-checkbox" type="radio" value="Facebook" /><label for="happy"></label></label>
-                                                        <label class="item">Инстаграм<input class="custom-checkbox" type="radio"  value="Instagram" /><label for="happy"></label></label>
-                                                        <label class="item">Ютуб<input class="custom-checkbox" type="radio"  value="Youtube" /><label for="happy"></label></label>
-                                                        <label class="item">Телеграм<input class="custom-checkbox" type="radio"  value="Telegram" /><label for="happy"></label></label>
-                                                        <label class="item">Сайт<input class="custom-checkbox" type="radio" value="Site" /><label for="happy"></label></label>
+                                                        <label class="item">Вконтакте<input class="custom-checkbox social__input" type="radio" value="vk" /><label for="happy"></label></label>
+                                                        <label class="item">WhatsApp<input class="custom-checkbox social__input" type="radio" value="whatsapp" /><label for="happy"></label></label>
+                                                        <label class="item">Твиттер<input class="custom-checkbox social__input" type="radio" value="twitter" /><label for="happy"></label></label>
+                                                        <label class="item">Фейсбук<input class="custom-checkbox social__input" type="radio" value="facebook" /><label for="happy"></label></label>
+                                                        <label class="item">Инстаграм<input class="custom-checkbox social__input" type="radio" value="instagram" /><label for="happy"></label></label>
+                                                        <label class="item">Ютуб<input class="custom-checkbox social__input" type="radio" value="youtube" /><label for="happy"></label></label>
+                                                        <label class="item">Телеграм<input class="custom-checkbox social__input" type="radio" value="telegram" /><label for="happy"></label></label>
+                                                        <label class="item">Сайт<input class="custom-checkbox social__input" type="radio" value="site" /><label for="happy"></label></label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="input_focus ">
                                                 <label for="username" class="label_focus">Укажите ссылку</label>
-                                                <input type="text" >
+                                                <input type="text" id="social__inpu">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
                                             </div>
                                         </div>
-                                        <button class="add-social-network"><img src="../img/addSocialNetwork.svg" alt=""> Добавить соц сеть</button>
+                                        <button type="button" id="social__submit" class="add-social-network"><img src="../img/addSocialNetwork.svg" alt=""> Добавить соц сеть</button>
                                         <div class="ProfileSetting">
                                             <h2 class="no_margin">Загрузите аватар автора:</h2>
                                             <script>
@@ -519,8 +519,8 @@
 
 </div>
 <?php unset($_SESSION['error']) ?>
-
-
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.maskedinput@1.4.1/src/jquery.maskedinput.min.js" type="text/javascript"></script>
 <script>
     /*Popups*/
     let changeTariff = document.querySelector('.change-tariff-popup');
@@ -563,6 +563,9 @@
                     values = ( item.getAttribute('value'));
                 }
                 multiselectOption.innerText = values;
+                multiselectOption.value = values;
+                document.getElementById('social__input').value = document.querySelector('#mySelectLabel .form-select').value;
+
             })
         })
     }
@@ -582,6 +585,14 @@
         }
     }
 
+    document.getElementById('social__inpu').addEventListener('input', function (){
+        document.getElementById('social__link').value = this.value;
+    })
+
+    document.getElementById('social__submit').addEventListener('click', function (){
+        document.getElementById('social__button').click();
+    })
+    console.log()
     const button_submit = document.querySelector('#profile_send');
     const check_url = document.querySelector('#check_url');
     const check_button = document.querySelector('#check_button');
@@ -589,29 +600,33 @@
 
     button_submit.addEventListener('click', function () {
         let second_button = document.querySelector('#apps');
-        console.log(second_button);
         second_button.click();
     });
-    // check_button.addEventListener('click', function () {
-    //     const request = new XMLHttpRequest();
-    //
-    //     const url = "?option=UrlController&site_url=" + check_url.value;
-    //
-    //     request.open('GET', url);
-    //
-    //     request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-    //     request.addEventListener("readystatechange", () => {
-    //         if (request.readyState === 4 && request.status === 200) {
-    //             message.innerHTML = request.responseText;
-    //         }
-    //     });
-    //     request.send();
-    // });
 
 </script>
+
 <script src="/js/getNotifications.js"></script>
 <script src="/js/customInputs.js"></script>
 <script src="/js/printFailName.js" ></script>
+<script>
+    let form__submit = $(function() {
+        $('#social__form').each(function (){
+            $(this).submit(function(e) {
+                e.preventDefault();
+                $.post(e.target.action, $(this).serialize());
+                try {
+                    // Alert
+                    alert("Ваши данные сохранены");
+                } catch {}
+            });
+        })
+    });
+</script>
+<form id="social__form" class="social__form display-none" action="/Account/SaveSocialSettings" method="POST">
+    <input id="social__input" type="text" name="social" value="">
+    <input id="social__link" type="text" name="link" value="">
+    <button id="social__button" type="submit"></button>
+</form>
 </body>
 
 </html>

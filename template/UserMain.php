@@ -262,13 +262,13 @@
 unset($_SESSION['course_price']);
 unset($_SESSION['course_id']);
 ?>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
+<script src="../js/script.js" ></script>
 <script>
     document.querySelector('#sendQuest').addEventListener('click', function () {
         document.querySelector('#formQuest').submit();
     })
 </script>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
-<script src="../js/script.js" ></script>
 <script>
 
     function backToAuthor(elem) {
