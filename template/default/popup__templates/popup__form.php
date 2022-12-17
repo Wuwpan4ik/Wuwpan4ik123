@@ -37,7 +37,7 @@
                             }?>
                             <img src="/img/smallPlayer/<?=$value?>.svg" alt="">
                         </div>
-                        <input name="<?=$input_name?>" type="text" placeholder="Ваш <?=$input?>">
+                        <input name="<?=$input_name?>" type="text" placeholder="Ваш <?=$input?>" required>
                     </div>
                 <?php } ?>
                 <?php if (isset($popup__do->form)) { ?>

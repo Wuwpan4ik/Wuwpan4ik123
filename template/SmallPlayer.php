@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!--Выдаем вместо этой хуйни нормальный тайтл названия воронки / курса-->
     <title>Course Creator - Плеер</title>
     <link type="text/css" rel="stylesheet" href="/css/smallPlayer.css">
@@ -23,7 +23,6 @@
         </div>
         <?php if (!empty($content['course_content'])) { ?>
         <div class="slider">
-
             <?php
                 foreach ($content['funnel_content'] as $item) {
                     if (isset($item['popup'])) $popup = json_decode($item['popup']);

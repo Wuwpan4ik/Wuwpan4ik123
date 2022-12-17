@@ -170,9 +170,9 @@
     background: -webkit-gradient(linear, left top, left bottom, from(#08B395), to(#0C977F));
     background: -o-linear-gradient(top, #08B395 0%, #0C977F 100%);
     background: linear-gradient(180deg, #08B395 0%, #0C977F 100%);
-    -webkit-transition: 0.3s ease-in;
-    -o-transition: 0.3s ease-in;
-    transition: 0.3s ease-in;
+    -webkit-transition: 0.3s all ease-in;
+    -o-transition: 0.3s all ease-in;
+    transition: 0.3s all ease-in;
     cursor: pointer;
 }
 

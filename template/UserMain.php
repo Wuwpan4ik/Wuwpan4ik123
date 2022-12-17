@@ -103,10 +103,10 @@
         </div>
         <div class="Course userPopup course__popup">
             <div class="Course userPopup__title lesson__list_course-name">
-                Управление гневом внутри себя
+
             </div>
             <div class="Course userPopup__body">
-                <div class=" Course  ">
+                <div class=" Course  " style="position:relative;">
                     <div class=" Course availableToYou__body lesson__list">
 
                     </div>
@@ -493,32 +493,19 @@ unset($_SESSION['course_id']);
 
     function startAccordion() {
         let accordionButton = document.querySelectorAll(".accordion-button");
-        accordionButton.forEach( item => {
+        let accordionInner = document.querySelectorAll(".accordion .accordion-item .accordion-content");
 
-
-            item.onclick = function () {
-
-                item.classList.toggle('active');
-                item.parentElement.querySelectorAll(".accordion-content").forEach( el => {
-                    el.classList.toggle('active');
-                })
-                if(item.classList.contains('active')){
-                    accordionButton.forEach(el => {
-                        el.classList.remove('active');
-                        el.parentElement.querySelectorAll(".accordion-content").forEach( el => {
-                            el.classList.remove('active');
-                        })
-                        item.classList.add('active');
-                        item.parentElement.querySelectorAll(".accordion-content").forEach( el => {
-                            el.classList.add('active');
-                        })
-                    })
+        for(let i = 0; i < accordionButton.length; i++){
+            accordionButton[i].onclick = () =>{
+                if(accordionInner[i].classList.contains('active')){
+                    accordionInner[i].classList.remove('active')
+                    accordionButton[i].classList.remove('active')
+                }else{
+                    accordionInner[i].classList.add('active')
+                    accordionButton[i].classList.add('active')
                 }
-
-
             }
-
-        })
+        }
     }
 
 
