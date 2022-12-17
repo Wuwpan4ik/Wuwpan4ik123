@@ -240,6 +240,16 @@
 <?php include 'default/popupEditVideo.php';?>
 <script src="/js/jquery-3.6.1.min.js"></script>
 <script>
+    let form__submit = $(function() {
+        $('.media__form').each(function (){
+            $(this).submit(function(e) {
+                e.preventDefault();
+                $.post(e.target.action, $(this).serialize());
+            });
+        })
+    });
+</script>
+<script>
     function click_settings(elem) {
         getCourseList(elem);
     }
@@ -272,6 +282,7 @@
     }
 </script>
 <script type="text/javascript" src="../js/button__settings.js"></script>
+<script src="../js/jquery-3.6.1.min.js"></script>
 <script>
     let entryDisplayDelete = document.querySelector('#delete__back');
     //  Замена видео
@@ -529,7 +540,6 @@
 
 </script>
 <script src="/js/getNotifications.js"></script>
-
 </body>
 
 </html>

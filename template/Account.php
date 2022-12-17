@@ -105,7 +105,7 @@
                                         <div class="field">
                                             <div class="input_focus ">
                                                 <label for="username" class="label_focus">Страна</label>
-                                                <input type="text"  name="country" value="<?php print(htmlspecialchars(isset($_SESSION['user']['country']) ? $_SESSION['user']['country'] : '')) ?>">
+                                                <input type="text" name="country" value="<?php print(htmlspecialchars(isset($_SESSION['user']['country']) ? $_SESSION['user']['country'] : '')) ?>">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
@@ -149,7 +149,7 @@
                                             </div>
                                             <div class="input_focus ">
                                                 <label for="username" class="label_focus">Укажите ссылку</label>
-                                                <input type="text" id="social__inpu">
+                                                <input type="text" id="social__inpu" minlength="10">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
@@ -519,8 +519,8 @@
 
 </div>
 <?php unset($_SESSION['error']) ?>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" type="text/javascript"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery.maskedinput@1.4.1/src/jquery.maskedinput.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.maskedinput@1.4.1/src/jquery.maskedinput.min.js" type="text/javascript"></script>
 <script>
     /*Popups*/
     let changeTariff = document.querySelector('.change-tariff-popup');
@@ -565,7 +565,6 @@
                 multiselectOption.innerText = values;
                 multiselectOption.value = values;
                 document.getElementById('social__input').value = document.querySelector('#mySelectLabel .form-select').value;
-
             })
         })
     }
@@ -613,6 +612,11 @@
         $('#social__form').each(function (){
             $(this).submit(function(e) {
                 e.preventDefault();
+                if (($(this).find('#social__link')[0].value.length) <= 10) {
+                    // Событие при нехватки длины
+                    alert("Впишите ссылку своей соцсети");
+                    return;
+                }
                 $.post(e.target.action, $(this).serialize());
                 try {
                     // Alert

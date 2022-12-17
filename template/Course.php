@@ -90,7 +90,7 @@
                         <h3><?=$p['name']?></h3>
 
                         <div class="course-price">
-                            <form action="/Course/<?=$p['id']?>/setPrice" method="POST">
+                            <form action="/Course/<?=$p['id']?>/setPrice" class="media__form" method="POST">
                                 <div class="course__prices">
                                     <input type="number" name="course_price" min="100" placeholder="<? echo isset($p['price']) ? $p['price'] : "Укажите стоимость курса" ?>">
                                     <span class="course_currency">
@@ -155,7 +155,20 @@
 <script src="../js/script.js" ></script>
 <script src="../js/slick.min.js"></script>
 <script src="../js/sliders.js"></script>
-
+<script>
+    let form__submit = $(function() {
+        $('.media__form').each(function (){
+            $(this).submit(function(e) {
+                e.preventDefault();
+                $.post(e.target.action, $(this).serialize());
+                let input = $(this).find("input[name='course_price']")[0];
+                input.placeholder = input.value;
+                input.value = '';
+                $(this).find('.save_price')[0].classList.remove("activeButton");
+            });
+        })
+    });
+</script>
 <script>
     document.querySelectorAll('.slick-arrow').forEach(item => {
         item.remove();
