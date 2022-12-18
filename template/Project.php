@@ -71,38 +71,39 @@
                 </div>
             </div>
         </div>
-        <script src="../js/script.js"></script>
+  <script src="../js/jquery-3.6.1.min.js"></script>
+<script src="../js/script.js"></script>
 
-        <script>
-            let deleteButtons = document.querySelectorAll('.reboot');
-            let notDelete = document.querySelector('.popup__not-delete');
-            let deletes = document.querySelector('.popup__delete');
-            let entryDisplay = document.querySelector('#popup__background');
-            let body = document.querySelector('body');
-            function toggleOverflow () {
-                body.classList.toggle("overflow-hidden");
-            }
-            function deleteDirectory(elem) {
-                entryDisplay.classList.add('display-block');
-                toggleOverflow();
-                deletes.addEventListener('click',function () {
-                    window.location.href = '?option=DirectoryController&method=Delete&id='+ elem.parentElement.children[0].value;
-                });
-            }
-            notDelete.onclick = function (event) {
-                if (event.target === notDelete) {
-                    entryDisplay.classList.remove('display-block');
-                    toggleOverflow();
-                }
-            }
-            entryDisplay.onclick = function (event) {
-                if (event.target === entryDisplay) {
-                    toggleOverflow();
-                    entryDisplay.classList.remove('display-block');
-                }
-            }
-        </script>
-        <script src="/js/getNotifications.js"></script>
+<script>
+    let deleteButtons = document.querySelectorAll('.reboot');
+    let notDelete = document.querySelector('.popup__not-delete');
+    let deletes = document.querySelector('.popup__delete');
+    let entryDisplay = document.querySelector('#popup__background');
+    let body = document.querySelector('body');
+    function toggleOverflow () {
+        body.classList.toggle("overflow-hidden");
+    }
+    function deleteDirectory(elem) {
+        entryDisplay.classList.add('display-block');
+        toggleOverflow();
+        deletes.addEventListener('click',function () {
+            window.location.href = '?option=DirectoryController&method=Delete&id='+ elem.parentElement.children[0].value;
+        });
+    }
+    notDelete.onclick = function (event) {
+        if (event.target === notDelete) {
+            entryDisplay.classList.remove('display-block');
+            toggleOverflow();
+        }
+    }
+    entryDisplay.onclick = function (event) {
+        if (event.target === entryDisplay) {
+            toggleOverflow();
+            entryDisplay.classList.remove('display-block');
+        }
+    }
+</script>
+<script src="/js/getNotifications.js"></script>
   </body>
 
 </html>

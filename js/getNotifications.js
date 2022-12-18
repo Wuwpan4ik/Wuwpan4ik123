@@ -10,7 +10,9 @@ requestCount.addEventListener("readystatechange", () => {
     if (requestCount.readyState === 4 && requestCount.status === 200) {
         document.getElementById('msg').innerHTML = JSON.parse(requestCount.responseText).length;
         if (JSON.parse(requestCount.responseText).length === 0) {
-            document.querySelector('.popupBell').classList.add('display-none');
+            if (document.querySelector('.popupBell')) {
+                document.querySelector('.popupBell').classList.add('display-none');
+            }
         }
     }
 })
@@ -27,7 +29,9 @@ requestNot.open('GET', urlNot);
 requestNot.setRequestHeader('Content-Type', 'application/x-www-form-url');
 requestNot.addEventListener("readystatechange", () => {
     if (requestNot.readyState === 4 && requestNot.status === 200) {
-        document.querySelector('.popupBell-body').innerHTML = requestNot.responseText;
+        if (document.querySelector('.popupBell-body')) {
+            document.querySelector('.popupBell-body').innerHTML = requestNot.responseText;
+        }
     }
 })
 requestNot.send();
