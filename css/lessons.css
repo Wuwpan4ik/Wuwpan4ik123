@@ -24,7 +24,7 @@
 }
 
 .media-cart h3 {
-    margin: 5px 0px 20px;
+    margin: 10px 0px 20px;
     font-weight: 600;
     font-size: 24px;
 }
@@ -113,8 +113,8 @@
 }
 
 .media-cart__controller-move-right, .media-cart__controller-move-left {
-    width: 18px;
-    height: 8px;
+    width: 19px;
+    height: 20px;
     cursor: pointer;
 }
 .media-cart__controller-delete{
@@ -183,23 +183,29 @@
     height: 48px;
     margin-top: 1.25em;
     font-size: 15px;
-    color: #9EA2A9;
-    border: 1px solid #E1E3E6;
-    border-radius: 8px;
-    background: #F8F8F8;
-    -webkit-transition: 0.2s ease-in;
-    -o-transition: 0.2s ease-in;
-    transition: 0.2s ease-in;
-    cursor: pointer;
-}
-
-.btn-delete-edit button:hover {
     color: white;
     background: -webkit-gradient(linear, left top, left bottom, from(#08B395), to(#0C977F));
     background: -o-linear-gradient(top, #08B395 0%, #0C977F 100%);
     background: linear-gradient(180deg, #08B395 0%, #0C977F 100%);
+    -webkit-transition: 0.3s all ease-in;
+    -o-transition: 0.3s all ease-in;
+    transition: 0.3s all ease-in;
+    cursor: pointer;
 }
 
+.delete_btn:hover {
+    background: linear-gradient(180deg, #079E84 0%, #097B67 100%) !important;
+    color:white !important;
+    border:none !important;
+}
+.change_btn{
+    transition: 0.3s all ease;
+}
+.change_btn:hover{
+    background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%) !important;
+    border:none !important;
+    color:white !important;
+}
 .btn-all-settings{
     max-width:301px;
     margin-top:20px;
@@ -207,11 +213,30 @@
 .btn-all-settings button{
     width: 100%;
     height: 48px;
-    background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);
+    background: transparent;
+    transition: 0.3s all ease;
     border-radius: 10px;
-    color: white;
+    color: #757D8A;
     font-size: 14px;
     font-weight: 500;
+    border:solid 1px #757D8A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-all-settings button svg path{
+    transition: 0.3s all ease;
+}
+.btn-all-settings button svg{
+    margin-right: 10px;
+}
+.btn-all-settings button:hover svg path{
+    fill:white;
+}
+.btn-all-settings button:hover{
+    color:white;
+    border:none;
+    background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);
 }
 .btn-upload {
     display: -webkit-box;
@@ -331,6 +356,7 @@
     display: -ms-flexbox;
     display: flex;
     margin: 0px;
+    align-items: center;
 }
 
 .none {
@@ -961,4 +987,19 @@ input:checked + label {
 
 .course-price input {
     -moz-appearance: textfield;
+}
+
+.course_currency{
+    position: absolute;
+    background: white;
+    border: 1px solid #E1E3E6;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0px;
+    right: 0px;
+    width: 15%;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
