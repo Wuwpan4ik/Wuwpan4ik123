@@ -35,6 +35,7 @@
             <img src="/img/clear_input.svg" alt="">
         </span>
         </div>
+
         <div class="button__do-block <?php if (!isset($v['button_text']) || is_null($v['button_text'])) { ?> display-none <?php } ?>" >
             <label>Текст для кнопки:</label>
             <input name="button_text" class="videoname video-desc" value="<?=$v['button_text']?>">
