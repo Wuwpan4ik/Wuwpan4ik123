@@ -28,7 +28,6 @@ requestNot.setRequestHeader('Content-Type', 'application/x-www-form-url');
 requestNot.addEventListener("readystatechange", () => {
     if (requestNot.readyState === 4 && requestNot.status === 200) {
         document.querySelector('.popupBell-body').innerHTML = requestNot.responseText;
-        console.log(requestNot.responseText)
     }
 })
 requestNot.send();

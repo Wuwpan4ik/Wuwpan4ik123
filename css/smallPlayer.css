@@ -328,7 +328,7 @@
     overflow: hidden;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    padding: 40px;
+    padding: 0px 26px 30px 26px;
 }
 
 .popup.active {
@@ -338,7 +338,7 @@
 
 .popup-title {
     color: black;
-    margin: 20px 0 0 0;
+    margin: 30px 0 0 0;
     font-weight: 900;
     font-size: 30px;
     line-height: 109.5%;
@@ -347,9 +347,10 @@
 .popup-text {
     color: rgba(0, 0, 0, 0.6);
     margin: 12px 0 0 0;
-    padding: 0 50px;
+    padding: 12px 0 30px 0px;
     font-weight: 600;
     line-height: 17px;
+    font-size:14px;
 }
 
 .popup__bonus-text span {
@@ -532,6 +533,7 @@
 }
 
 .popup__allLessons-item {
+    position: relative;
     width: 100%;
 }
 .popup__allLessons-item-info-header-time {

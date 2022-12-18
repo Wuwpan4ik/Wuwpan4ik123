@@ -85,19 +85,17 @@
 
                         </div>
 
-                        <p>Курс №<?=$k?></p>
+                        <p style="margin: 20px 0px 10px;">Курс №<?=$k?></p>
 
                         <h3><?=$p['name']?></h3>
 
-                        <div class="course-price">
-
-                            <form action="/Course/<?=$p['id']?>/setPrice" method="POST">
-                                <div class="input_focus ">
-                                    <label for="username" class="label_focus">Укажите стоимость курса</label>
-                                    <input type="number" name="course_price" min="100" value="<? echo isset($p['price']) ? $p['price'] : "100" ?>">
-                                    <span class="clear_input_val">
-                                                     <img src="/img/clear_input.svg" alt="">
-                                                </span>
+                        <div class="course-price" style="position:relative;">
+                            <form method="POST" action="/Course/<?=$p['id']?>/setPrice">
+                                <div class="course__prices" style="position:relative;">
+                                    <input type="number" name="course_price" min="100" placeholder="<? echo isset($p['price']) ? $p['price'] : "Укажите стоимость курса" ?>">
+                                    <span class="course_currency">
+                                        <?php echo isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?>
+                                    </span>
                                 </div>
                                 <button class="save_price" type="submit">
                                     Сохранить
@@ -109,9 +107,9 @@
 
                             <input type="hidden" value="<?=$p['id']?>" >
 
-                            <button type="submit" onclick="window.location.href = '/Course/<?=$p['id']?>';"">Изменить</button>
+                            <button class="change_btn" type="submit" onclick="window.location.href = '/Course/<?=$p['id']?>';"">Изменить</button>
 
-                            <button class="reboot" type="submit" onclick="deleteDirectory(this)">Удалить</button>
+                            <button class="delete_btn" type="submit" onclick="deleteDirectory(this)" style="background: none;border: solid 1px #4E73F8;color: #4E73F8;">Удалить</button>
 
                         </div>
 
@@ -203,6 +201,7 @@
 
 <script>
     let buttonSavePrice = document.querySelectorAll('.save_price');
+    let priceForSave = document.querySelectorAll('input[name="price_save"]');
     let inputPrice = document.querySelectorAll("input[name='course_price']");
     for(let i = 0; i < inputPrice.length; i++){
         inputPrice[i].addEventListener('input', function(){
@@ -213,6 +212,7 @@
             }
         });
     }
+
 </script>
 </body>
 

@@ -433,7 +433,7 @@ span.button__back {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  width: 80%;
+  width: 100%;
   margin-left: auto;
   margin-right: 0;
   color: #404D61;
@@ -582,6 +582,7 @@ a.button__back {
 /*sidebar*/
 .nav {
   height: 100vh;
+  width:24%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -611,7 +612,10 @@ a.button__back {
   font-family: "Inter", sans-serif;
   font-weight: inherit;
 }
-
+.sidebar a{
+  margin-bottom: 16px !important;
+  height:48px !important;
+}
 .sib_sidebar {
   padding-left: 40px !important;
 }
@@ -637,6 +641,8 @@ a {
   align-items: center;
   margin-bottom: 0.5em;
   color: #737480;
+  height:48px;
+  padding:12px 16px;
   cursor: pointer;
 }
 
@@ -691,6 +697,7 @@ a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  justify-content: space-between;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   -webkit-box-align: center;
@@ -867,7 +874,11 @@ a {
 
 a.button__back {
   border-radius: 30px;
-  padding: 17px 23px;
+  width: 62px;
+  height:48px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
   margin-right: 19px;
   -ms-flex-item-align: center;
   align-self: center;
@@ -875,8 +886,8 @@ a.button__back {
 }
 
 .button__back img {
-  width: 10px;
-  height: 10px;
+  width: 14px;
+  height: 14px;
 }
 
 .feed-header h2 {

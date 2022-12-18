@@ -137,13 +137,13 @@
                                                         <div class="overSelect"></div>
                                                     </div>
                                                     <div id="mySelectOptions">
-                                                        <label class="item">Вконтакте<input class="custom-checkbox" type="radio" value="Вконтакте" /><label for="happy"></label></label>
-                                                        <label class="item">Твиттер<input class="custom-checkbox" type="radio" value="Твиттер" /><label for="happy"></label></label>
-                                                        <label class="item">Фейсбук<input class="custom-checkbox" type="radio" value="Фейсбук" /><label for="happy"></label></label>
-                                                        <label class="item">Инстаграм<input class="custom-checkbox" type="radio"  value="Инстаграм" /><label for="happy"></label></label>
-                                                        <label class="item">Ютуб<input class="custom-checkbox" type="radio"  value="Ютуб" /><label for="happy"></label></label>
-                                                        <label class="item">Телеграм<input class="custom-checkbox" type="radio"  value="Телеграм" /><label for="happy"></label></label>
-                                                        <label class="item">Сайт<input class="custom-checkbox" type="radio" value="Сайт" /><label for="happy"></label></label>
+                                                        <label class="item">Вконтакте<input class="custom-checkbox" type="radio" value="Vk" /><label for="happy"></label></label>
+                                                        <label class="item">Твиттер<input class="custom-checkbox" type="radio" value="Twitter" /><label for="happy"></label></label>
+                                                        <label class="item">Фейсбук<input class="custom-checkbox" type="radio" value="Facebook" /><label for="happy"></label></label>
+                                                        <label class="item">Инстаграм<input class="custom-checkbox" type="radio"  value="Instagram" /><label for="happy"></label></label>
+                                                        <label class="item">Ютуб<input class="custom-checkbox" type="radio"  value="Youtube" /><label for="happy"></label></label>
+                                                        <label class="item">Телеграм<input class="custom-checkbox" type="radio"  value="Telegram" /><label for="happy"></label></label>
+                                                        <label class="item">Сайт<input class="custom-checkbox" type="radio" value="Site" /><label for="happy"></label></label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -481,20 +481,33 @@
                             <input type="radio" id="Tarif" name="mytabs"/>
 
                             <label class="menu-label" for="Tarif" id="cllab"><p>Дополнительно</p></label>
-
                             <div class="tab">
-
-                                <h2>Скрипты для HEAD:  </h2>
-
-                                <textarea class="additionally" placeholder="Default" name="head_additional"></textarea>
-
-                                <h2>Скрипты для Body:  </h2>
-
-                                <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>
-
-                                <div class="about-btn">
-                                    <button id="profile_send" type="submit">Сохранить</button>
+                        <div class="tab col">
+                            <div class="inner_row">
+                                <div class="row">
+                                    <h2>Подключение Prodamus:  </h2>
+                                    <input type="text" name="prodamus_api" placeholder="API Ключ">
                                 </div>
+                            </div>
+                            <div class="inner_row">
+                                <div class="row">
+                                    <h2>Подключение Albato:  </h2>
+                                    <input type="text" name="albato_api" placeholder="API Ключ">
+                                </div>
+                            </div>
+                            <div class="inner_row">
+                                <div class="row">
+                                    <h2>Скрипты для HEAD:  </h2>
+                                    <textarea class="additionally" placeholder="Default" name="head_additional"></textarea>
+                                </div>
+                                <div class="row">
+                                    <h2>Скрипты для Body:  </h2>
+                                    <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="about-btn">
+                                <button id="profile_send" type="submit">Сохранить</button>
                             </div>
                         </div>
                     </div>
@@ -582,24 +595,21 @@
         console.log(second_button);
         second_button.click();
     });
-    check_button.addEventListener('click', function () {
-        const request = new XMLHttpRequest();
-
-        const url = "?option=UrlController&site_url=" + check_url.value;
-
-        /* Здесь мы указываем параметры соединения с сервером, т.е. мы указываем метод соединения GET,
-        а после запятой мы указываем путь к файлу на сервере который будет обрабатывать наш запрос. */
-        request.open('GET', url);
-
-        // Указываем заголовки для сервера, говорим что тип данных, - контент который мы хотим получить должен быть не закодирован.
-        request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-        request.addEventListener("readystatechange", () => {
-            if (request.readyState === 4 && request.status === 200) {
-                message.innerHTML = request.responseText;
-            }
-        });
-        request.send();
-    });
+    // check_button.addEventListener('click', function () {
+    //     const request = new XMLHttpRequest();
+    //
+    //     const url = "?option=UrlController&site_url=" + check_url.value;
+    //
+    //     request.open('GET', url);
+    //
+    //     request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+    //     request.addEventListener("readystatechange", () => {
+    //         if (request.readyState === 4 && request.status === 200) {
+    //             message.innerHTML = request.responseText;
+    //         }
+    //     });
+    //     request.send();
+    // });
 
 </script>
 <script src="/js/getNotifications.js"></script>

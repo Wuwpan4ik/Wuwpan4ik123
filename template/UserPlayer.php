@@ -91,7 +91,6 @@
                 -->
                 <li class="options right">
                     <button class="volume"><i class="fa-solid fa-volume-high"></i></button>
-                    <button class="fullscreen"><i class="fa-solid fa-expand"></i></button>
                 </li>
             </ul>
         </div>
@@ -102,7 +101,10 @@
     <div class="slider__darkness">
 
     </div>
-    <div class="youWatching">
+    <?php if(isset($content[0]['file_url'])) { ?>
+    <div class="youWatching has__file"><?}  else {?>
+    <div class="youWatching non__file">
+    <? } ?>
         <div class="userPopup__title">
             Вы смотрите:
         </div>
@@ -112,9 +114,9 @@
                     <div class="popup__allLessons-item__header">
                         <div class="popup-item">
                             <div class="popup__allLessons-item-video__img">
-                                <img src=".<?php echo $content[0]['thubnails'] ?>" alt="">
+                                <img src=".<?php echo isset($content[0]['thubnails']) ? $content[0]['thubnails'] : "/img/preview.jpg" ?>" alt="">
                             </div>
-                            <div class="popup__allLessons-item-info" style="position: relative;">
+                            <div class="popup__allLessons-item-info" style="position: relative;margin:0px !important;">
                                 <div class="popup__allLessons-item-info-header">
                                     <div class=" aboutTheAuthor popup__allLessons-item-info-header-number available-number">
                                         Урок <?php echo htmlspecialchars($content[0]['query_id'])?>
@@ -123,17 +125,11 @@
                                         <?=$content[1]?>
                                     </div>
                                 </div>
-                                <div class="popup__allLessons-item-info-title">
+                                <div class="popup__allLessons-item-info-title" style="font-size: 14px;margin-top:10px;">
                                     <?php echo htmlspecialchars($content[0]['content_name'])?>
                                 </div>
-                                <button class="accordion-button" id="accordion-button-1" aria-expanded="false">
-                                    <span class="icon" aria-hidden="true"></span></button>
-                                <div class="accordion">
-                                    <div class="accordion-item">
-                                        <div class="accordion-content">
-                                            <p><?=$content[0]['content_description'] ?></p>
-                                        </div>
-                                    </div>
+                                <div class="infoLesson">
+                                    <p><?=$content[0]['content_description'] ?></p>
                                 </div>
                             </div>
                         </div>

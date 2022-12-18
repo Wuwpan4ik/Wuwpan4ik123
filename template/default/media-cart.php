@@ -1,11 +1,8 @@
 <div class="media-cart">
     <div class="media-cart__controller">
         <div class="media-cart__controller-move reload_video" data-id="<?=$v['id']?>">
-            <div class="media-cart__controller-move-right">
-                <button><img src="/img/Arrow-left.svg" alt=""></button>
-            </div>
             <div class="media-cart__controller-move-left">
-                <button><img src="/img/Arrow-right.svg" alt=""></button>
+                <button><img src="/img/changeVideo.svg" alt=""></button>
             </div>
         </div>
         <div class="media-cart__controller-delete">
@@ -20,7 +17,7 @@
     <form method="POST" class="new_name" enctype="multipart/form-data" action="/<?php if(strstr($_SERVER['REQUEST_URI'], 'Course')) {echo 'Course';} else {echo 'Funnel';} ?>/<?=$v['id']?>/rename">
 
         <?php if (strstr($_SERVER['REQUEST_URI'], 'Funnel' )) {?>
-        <input type="hidden" value="<?=$v['id']?>">
+        <input class="funnel__content-id" type="hidden" value="<?=$v['id']?>">
         <div class="funnel-input input_focus">
             <label for="name" class="label_focus activeLabel">Укажите заголовок:</label>
             <input name="name" class="videoname" type="text" value="<?=$v['name']?>">
@@ -39,10 +36,8 @@
             <label>Текст для кнопки:</label>
             <input name="button_text" class="videoname video-desc" value="<?=$v['button_text']?>">
         </div>
-         <button onclick="getCourseList()" type="button" class="button__edit button__do-block <?php if (!isset($v['button_text'])) { ?> display-none <?php } ?>" style="background: #757D8A;text-align: center"><img style="width: 25px; transform: translate(0, 0)" src="/img/actions.svg">Действия</button>
-            <?php if (!isset($v['button_text'])) { ?>
-
-                <button type="button" class="button-add button-add-button-edit"><img class="input__file-icon" src="/img/plus.svg" width="25">Добавить кнопку</button><?php } ?>
+         <button onclick="click_settings(this)" type="button" class="button__edit button__do-block <?php if (!isset($v['button_text'])) { ?> display-none <?php } ?>" style="background: #757D8A;text-align: center"><img style="width: 25px; transform: translate(0, 0)" src="/img/actions.svg">Действия</button>
+            <?php if (!isset($v['button_text'])) { ?> <button type="button" class="button-add-button-edit">Добавить кнопку</button><?php } ?>
         <?php } else { ?>
             <div class="funnel-input input_focus">
                 <label for="name" class="label_focus
@@ -78,10 +73,7 @@
                                 <?php if (isset($v['file_url'])) {print_r(round(filesize($v['file_url']) / 1024));} else {echo '0';} ?>кб из 5мб
                             </span>
                         </div>
-
                     </div>
-
-
                     <div class="input__wrapper">
                         <input name="file" type="file" id="input__file" class="input input__file" onchange="uploadFile(this)" multiple="">
                         <label for="input__file" class="input__file-button" style="">

@@ -5,9 +5,9 @@ const container = document.querySelector(".container"),
     volumeBtn = container.querySelector(".volume i"),
     currentVidTime = container.querySelector(".current-time"),
     videoDuration = container.querySelector(".video-duration"),
+    videoDursecond = document.querySelector('.popup__allLessons-item-info-header .aboutTheAuthor-name'),
     playPauseBtn = container.querySelector(".play-pause i"),
     sliderDarkness = document.querySelector('.slider__darkness'),
-    fullScreenBtn = container.querySelector(".fullscreen i"),
     videoContainerS = document.querySelector('.contaierPlayer .wrapper'),
     buttonsBack = document.querySelector('.UserPlayer.Сourse-form'),
     playBtnFirst = document.querySelector('#playBtn'),
@@ -16,6 +16,8 @@ const container = document.querySelector(".container"),
 
 let timer;
 
+const userPlayer = document.body.querySelector('.UserPlayer');
+const youWatching = document.body.querySelector('.youWatching');
 const hideControls = () => {
     if(mainVideo.paused) return;
     timer = setTimeout(() => {
@@ -73,7 +75,7 @@ mainVideo.addEventListener("timeupdate", e => {
 });
 
 mainVideo.addEventListener("loadeddata", () => {
-    videoDuration.innerText = formatTime(mainVideo.duration);
+    videoDuration.innerText = videoDursecond.innerText;
 });
 
 const draggableProgressBar = e => {
@@ -93,39 +95,34 @@ volumeBtn.addEventListener("click", () => {
     }
 });
 
-
-fullScreenBtn.addEventListener("click", () => {
-    container.classList.toggle("fullscreen");
-    if(document.fullscreenElement) {
-        fullScreenBtn.classList.replace("fa-compress", "fa-expand");
-        return document.exitFullscreen();
-        videoContainerS.classList.remove('activePlayer');
-        videoContainerS.classList.add('activeFullscreen');
-    }
-    fullScreenBtn.classList.replace("fa-expand", "fa-compress");
-    videoContainerS.classList.remove('activePlayer');
-    videoContainerS.classList.add('activeFullscreen');
-    container.requestFullscreen();
-});
-
 videoContainer.onclick = function () {
     if (videoContainer.paused){
         youWatching.classList.remove('active');
         userPlayer.classList.remove('active');
         sliderDarkness.classList.remove("activePlayer");
         buttonsBack.classList.remove('active');
-        videoContainerS.classList.add('nonActivePlayer');
-        videoContainerS.classList.remove('activePlayer');
         pauseBtnFirst.classList.remove('active');
         videoContainer.play();
+        if(youWatching.classList.contains('non__file')){
+            videoContainerS.classList.add('nonActivePlayer');
+            videoContainerS.classList.remove('non__file');
+        }else{
+            videoContainerS.classList.add('nonActivePlayer');
+            videoContainerS.classList.remove('has__file');
+        }
     }
     else {
+        if(youWatching.classList.contains('non__file')){
+            videoContainerS.classList.remove('nonActivePlayer');
+            videoContainerS.classList.add('non__file');
+        }else{
+            videoContainerS.classList.remove('nonActivePlayer');
+            videoContainerS.classList.add('has__file');
+        }
         userPlayer.classList.add('active');
         sliderDarkness.classList.add("activePlayer");
         youWatching.classList.add('active');
         buttonsBack.classList.add('active');
-        videoContainerS.classList.remove('nonActivePlayer');
-        videoContainerS.classList.add('activePlayer');
         pauseBtnFirst.classList.add('active');
         videoContainer.pause();
     }
@@ -139,7 +136,4 @@ document.addEventListener("mouseup", () => videoTimeline.removeEventListener("mo
 
 
 //Плашка "Вы смотрите"
-
-const userPlayer = document.body.querySelector('.UserPlayer');
-const youWatching = document.body.querySelector('.youWatching');
 //Вскрытие попапа при нажатии на видео
