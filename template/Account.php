@@ -1,4 +1,4 @@
-<html lang="ru">
+<html lang="ru" xmlns="http://www.w3.org/1999/html">
 
 <head>
 
@@ -513,7 +513,17 @@
                     </div>
 
 
-                </div>
+                </div><div class="exit-settings popup-tariff active">
+                            <div class="popup-tariff-body">
+                                <div class="popup__title">
+                                    Если вы покинете страницу </br>введенные  вами данные </br> не сохраняться
+                                </div>
+                                <div class="popup__buttons">
+                                    <button id="close-settings" class="popup__btn popup__white">Покинуть</button>
+                                    <button class="popup__btn popup__blue">Сохранить</button>
+                                </div>
+                            </div>
+                        </div>
             </div>
 
     </div>
@@ -528,8 +538,10 @@
     /*Popups*/
     let changeTariff = document.querySelector('.change-tariff-popup');
     let improvementTariff = document.querySelector('.improvement-tariff-popup');
+    let exitSettings = document.querySelector('.exit-settings');
     let changeTariffOpen = document.querySelector('#change-tariff');
     let improvementTariffOpen = document.querySelector('#improvement-tariff');
+
 
     changeTariffOpen.addEventListener('click', function(){
         changeTariff.classList.add('active');
@@ -542,6 +554,7 @@
         item.addEventListener('click', function(){
             improvementTariff.classList.remove('active');
             changeTariff.classList.remove('active');
+            exitSettings.classList.remove('active');
         })
     })
 

@@ -34,4 +34,6 @@ window.onload = () =>{
             inputClear[i].classList.remove('has_content')
         }
     }
+
+
 }
