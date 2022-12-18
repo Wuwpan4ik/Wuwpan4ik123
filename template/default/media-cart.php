@@ -26,7 +26,7 @@
         </span>
         </div>
         <div class="funnel-input input_focus">
-            <label for="description" class="label_focus activeLabel">Укажите описание:</label>
+            <label for="description" class="label_focus ">Укажите описание:</label>
             <textarea name="description" class="videoname video-desc"><?=$v['description']?></textarea>
             <span class="clear_input_val">
             <img src="/img/clear_input.svg" alt="">
@@ -40,7 +40,8 @@
             <?php if (!isset($v['button_text'])) { ?> <button type="button" class="button-add-button-edit">Добавить кнопку</button><?php } ?>
         <?php } else { ?>
             <div class="funnel-input input_focus">
-                <label for="name" class="label_focus activeLabel">Укажите заголовок:</label>
+                <label for="name" class="label_focus
+">Укажите заголовок:</label>
                 <input name="name" class="videoname" type="text" value="<?=$v['name']?>">
                 <span class="clear_input_val">
             <img src="/img/clear_input.svg" alt="">
@@ -77,14 +78,14 @@
                         <input name="file" type="file" id="input__file" class="input input__file" onchange="uploadFile(this)" multiple="">
                         <label for="input__file" class="input__file-button" style="">
                             <span class="input__file-icon-wrapper"><img class="input__file-icon" src="/img/plus.svg" width="25"></span>
-                            <span class="input__file-button-text">Добавить</span>
+                            <span class="input__file-button-text ">Добавить</span>
                         </label>
                     </div>
 
                 </div>
             </div>
         <?php } ?>
-        <button type="submit">Сохранить</button>
+        <button class="blue-button" type="submit">Сохранить</button>
 
     </form>
 </div>

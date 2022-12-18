@@ -286,6 +286,7 @@
         })
     });
 </script>
+<script src="/js/customInputs.js"></script>
 </body>
 
 </html>
