@@ -15,6 +15,7 @@
 
     <link rel="stylesheet" href="/css/main.css">
 
+    <link rel="stylesheet" href="/css/aboutuser.css">
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 </head>
@@ -184,7 +185,17 @@
     </div>
 
 </div>
-
+<div class="exit-funnel-edit popup-tariff active">
+    <div class="popup-tariff-body">
+        <div class="popup__title">
+            У вас остались  не <br> сохраненные данные
+        </div>
+        <div class="popup__buttons">
+            <button id="close-popup" class="popup__btn popup__white">Выйти</button>
+            <button class="popup__btn popup__blue">Сохранить</button>
+        </div>
+    </div>
+</div>
 <div class="popup__background" id="delete__back">
     <div id="popup">
         <div class="popup__container">
@@ -234,6 +245,7 @@
             </div>
         </div>
     </div>
+
 </div>
 
 
@@ -245,6 +257,13 @@
     }
 </script>
 <script>
+    let exitFunnelEdit = document.querySelector('.exit-funnel-edit');
+    let exitFunnelEditClose = document.querySelector('#close-popup');
+
+    exitFunnelEditClose.addEventListener('click', function(){
+        exitFunnelEdit.classList.remove('active');
+    })
+
     window.onload = () =>{
         let inputs = document.querySelectorAll('.input_focus input, textarea');
         let inputsLabel = document.querySelectorAll('.input_focus label');
