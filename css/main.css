@@ -210,7 +210,7 @@ p {
   display: block;
 }
 .button-add-button-edit{
-
+  padding: 12px 0;
   border: 1px solid #E1E3E6;
   border-radius: 8px;
 }
@@ -275,7 +275,12 @@ p {
   border-radius: 8px;
   cursor: pointer;
 }
-
+.popup__buttons{
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 0 0;
+  gap: 20px;
+}
 .popup__blue {
   border: none;
   color: white;
@@ -283,7 +288,9 @@ p {
   background: -o-linear-gradient(top, #6989FE 0%, #3C64F4 100%);
   background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);
 }
-
+.popup__blue:hover{
+  background: linear-gradient(180deg, #5B78E3 0%, #2A4BC5 100%);
+}
 .popup__white {
   background: #fff;
   color: #4E73F8;
@@ -1065,20 +1072,14 @@ span.name {
   line-height: 24px;
   color: white;
   background-color: #4E73F8;
-  -webkit-transition: 0.4s ease;
-  -o-transition: 0.4s ease;
-  transition: 0.4s ease;
+
 }
 
-.time-more-btn button:hover {
-  border: 1px #4E73F8 solid;
+.time-more-btn a:hover {
   border-radius: 8px;
   cursor: pointer;
-  color: #4E73F8;
-  background-color: white;
-  -webkit-transition: 0.4s ease;
-  -o-transition: 0.4s ease;
-  transition: 0.4s ease;
+  background: linear-gradient(180deg, #5B78E3 0%, #2A4BC5 100%);
+
 }
 
 .starrating {
@@ -1935,3 +1936,17 @@ td:nth-child(1){
   cursor: pointer;
   top: 13px;
 }
+.textarea-info{
+  position: relative;
+}
+.placeholder-textarea {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  font-size: 10px;
+  color: #757D8A;
+}
+/*.textarea-info:focus ~ .placeholder-textarea,*/
+/*.textarea-info:valid ~ .placeholder-textarea {*/
+/*  display: none;*/
+/*}*/

@@ -172,6 +172,9 @@
 <script src="/js/button__settings.js"></script>
 <script src="/js/printFailName.js"></script>
 <script>
+
+
+
     let entryDisplayDelete = document.querySelector('#delete__back');
     //  Замена видео
     window.onload = () => {
