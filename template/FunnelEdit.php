@@ -417,6 +417,7 @@
     }
 </script>
 <script src="/js/getNotifications.js"></script>
+<script src="/js/customInputs.js"></script>
 </body>
 
 </html>
