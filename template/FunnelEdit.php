@@ -312,6 +312,7 @@
 
 <?php include 'default/popupEditVideo.php';?>
 <script src="/js/jquery-3.6.1.min.js"></script>
+
 <script>
     let form__submit = $(function() {
         $('.media__form').each(function (){

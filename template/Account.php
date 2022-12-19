@@ -117,19 +117,30 @@
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
                                             </div>
-                                            <select class="select-account currencies" name="currency" id="currency">
-                                                <option value="null" <?php if (isset($_SESSION['user']['currency'])) echo "selected"?>>Выберите валюту</option>
-                                                <option value="$" <?php if (isset($_SESSION['user']['currency']) && $_SESSION['user']['currency'] == '$') echo "selected"?>>$</option>
-                                                <option value="€" <?php if (isset($_SESSION['user']['currency']) && $_SESSION['user']['currency'] == '€') echo "selected"?>>€</option>
-                                                <option value="₴" <?php if (isset($_SESSION['user']['currency']) && $_SESSION['user']['currency'] == '₴') echo "selected"?>>₴</option>
-                                                <option value="₽" <?php if (isset($_SESSION['user']['currency']) && $_SESSION['user']['currency'] == '₽') echo "selected"?>>₽</option>
-                                            </select>
+
+                                            <div class="select-account social-network">
+                                                <div id="myMultiselect" class="multiselect">
+                                                    <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
+                                                        <select class="form-select">
+                                                            <option name="currency"  id="name">Выберите валюту</option>
+                                                        </select>
+                                                        <div class="overSelect"></div>
+                                                    </div>
+                                                    <div class="mySelectOptions">
+                                                        <label class="item">$<input class="custom-checkbox" type="radio" value="$" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                        <label class="item">€<input class="custom-checkbox" type="radio" value="€" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                        <label class="item">₴<input class="custom-checkbox" type="radio" value="₴" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                        <label class="item">₽<input class="custom-checkbox" type="radio" value="₽" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                         <h2>Укажите соц сети для клиентов</h2>
                                         <div class="field">
                                             <div class="select-account social-network">
                                                 <div id="myMultiselect" class="multiselect">
-                                                    <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea()">
+                                                    <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
                                                         <select class="form-select">
                                                             <option id="name">Выберите соц сеть</option>
                                                         </select>
@@ -225,19 +236,26 @@
                                                 </span>
                                             </div>
 
+                                            <div class="select-account social-network">
+                                                <div id="myMultiselect" class="multiselect">
+                                                    <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
+                                                        <select class="form-select">
+                                                            <option name="niche"  id="name">Выберите вашу нишу</option>
+                                                        </select>
+                                                        <div class="overSelect"></div>
+                                                    </div>
+                                                    <div class="mySelectOptions">
+                                                        <?
+                                                        $options = ["Изотерика", "Обучение", "Дизайн", "Политика", "Спорт", "Игры", "Животные"];
+                                                        for($i = 0; $i<7; $i++){?>
+                                                          <label class="item"><?=$options[$i]?><input class="custom-checkbox" type="radio" value="<?=$options[$i]?>" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label><?
+                                                        }
+                                                        ?>
+                                                    </div>
+                                                </div>
+                                            </div>
 
 
-                                            <select class="selector inf" name="niche">
-
-                                                <?
-                                                $options = ["Изотерика", "Обучение", "Дизайн", "Политика", "Спорт", "Игры", "Животные"];
-                                                for($i = 0; $i<7; $i++){
-                                                    if($options[$i] == $content[0][0]['niche']){?><option selected="selected"><?=$options[$i]?></option>
-                                                    <?}else{?><option><?=$options[$i]?></option><?}
-                                                }
-                                                ?>
-
-                                            </select>
 
 
                                         </div>
@@ -464,48 +482,6 @@
         })
     })
 
-    /*Select*/
-    function checkboxStatusChange() {
-        let multiselectOption =  document.getElementById("name");
-        let values = [];
-        let checkboxes = document.getElementById("mySelectOptions");
-        let checkedCheckboxes = checkboxes.querySelectorAll('input');
-
-        checkedCheckboxes.forEach(item =>{
-
-            item.addEventListener('click', function(){
-                if(item.checked = true){
-                    checkedCheckboxes.forEach(el =>{
-                        el.checked = false
-                        el.parentElement.classList.remove('active')
-                        checkboxes.style.display = "none";
-                    })
-                    item.checked = true
-                    item.parentElement.classList.add('active')
-                    values = ( item.getAttribute('value'));
-                }
-                multiselectOption.innerText = values;
-                multiselectOption.value = values;
-                document.getElementById('social__input').value = document.querySelector('#mySelectLabel .form-select').value;
-            })
-        })
-    }
-
-    checkboxStatusChange()
-    function toggleCheckboxArea(onlyHide = false) {
-        let checkboxes = document.getElementById("mySelectOptions");
-        const displayValue = checkboxes.style.display;
-
-        if (displayValue != "flex") {
-            if (onlyHide == false) {
-                checkboxes.style.display = "flex";
-                checkboxes.style.flexDirection = "column";
-            }
-        } else {
-            checkboxes.style.display = "none";
-        }
-    }
-
     document.getElementById('social__inpu').addEventListener('input', function (){
         document.getElementById('social__link').value = this.value;
     })
@@ -528,6 +504,7 @@
 
 <script src="/js/getNotifications.js"></script>
 <script src="/js/customInputs.js"></script>
+<script src="/js/customSelect.js"></script>
 <script src="/js/printFailName.js" ></script>
 <script>
     let form__submit = $(function() {
