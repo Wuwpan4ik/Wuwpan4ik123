@@ -152,20 +152,12 @@
 
                         </div>
                     </div>
-
-
-
-
                 </div>
-
             </div>
-
-</div>
-
-</div>
-<div id="popup__background">
-    <div id="popup">
-
+        </div>
+    </div>
+    <div id="popup__background">
+        <div id="popup">
             <div class="popup__container">
                 <div class="popup-body">
                     <div class="popup__title">Вы действительно хотите удалить проект?</div>
@@ -173,11 +165,10 @@
                         <button class="popup__btn popup__delete popup__white">Удалить</button>
                         <button class="popup__btn popup__not-delete popup__blue">Не удалять</button>
                     </div>
+                </div>
             </div>
         </div>
-
     </div>
-</div>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="../js/script.js" ></script>
 <script src="../js/slick.min.js"></script>

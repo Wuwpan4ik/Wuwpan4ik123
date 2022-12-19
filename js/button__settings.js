@@ -9,9 +9,9 @@ const second_select = document.querySelector('#second_do');
 const names_option = {'email': "Ваша почта", 'name': "Ваше имя", 'tel': "Ваш номер телефон"};
 
 // Сохранение / закрытие
-function save(check = false) {
-    // if (!check) {
-        document.getElementById('send__edit-video').click();
+function save() {
+    // if (!check)
+    document.getElementById('send__edit-video').click();
     // } else {
     //     let input = document.createElement('input');
     //     input.name = 'save';
@@ -32,28 +32,6 @@ function save(check = false) {
     //     })
     //     requestDisable.send();
     // }
-}
-
-const close = document.querySelector('.close__btn');
-const entryDisplay = document.querySelector('#popup__background');
-close.addEventListener('click', function () {
-    toggleOverflow();
-    closePopup();
-    clearPopup();
-    defaultPopup(first_select);
-    defaultPopup(second_select);
-    document.querySelector('.popup__bonus').classList.remove('active');
-});
-
-entryDisplay.onclick = function (event) {
-    if (event.target === entryDisplay) {
-        toggleOverflow();
-        closePopup();
-        clearPopup();
-        defaultPopup(first_select);
-        defaultPopup(second_select);
-        document.querySelector('.popup__bonus').classList.remove('active');
-    }
 }
 
 function addPopup(input) {
@@ -325,7 +303,6 @@ function checkFirstSelect() {
             let button__send = document.querySelector('input[name="button__send"]');
             form__title.addEventListener('input', function () {
                 document.querySelector('.popup-title').innerHTML = this.value;
-                console.log(this.value)
             });
             form__desc.addEventListener('input', function () {
                 document.querySelector('.popup-text').innerHTML = this.value;

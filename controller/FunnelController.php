@@ -148,10 +148,9 @@
             return True;
         }
 
-        public function PopupSettings() {
-            //Форма
-            $save = $_POST['save'] ?? null;
-            $id_video = $_POST['item_id'];
+        public function CreatePopupSettings()
+        {
+            $id_video = (int) $_SESSION['item_id'];
             $funnel_content = $this->m->db->query("SELECT * FROM funnel_content WHERE id = '$id_video'");
             $funnel = $this->m->db->query("SELECT * FROM funnel WHERE id = ". $funnel_content[0]['funnel_id']);
 //            if (!$this->isUser($funnel[0]['author_id'])) return False;
@@ -208,7 +207,8 @@
                 $videoBtnHTML['form__desc'] = "Описание";
             }
             switch ($_POST['second_do']) {
-                case "pay_form": {
+                case "pay_form":
+                {
                     if (isset($_POST['form_id-4'])) {
                         $form_input_1 = $_POST['form_id-4'];
                         $videoBtnHTML['second_do'][$second_do] = [$form_input_1];
@@ -223,7 +223,8 @@
                     }
                     break;
                 }
-                case "link": {
+                case "link":
+                {
                     if (isset($_POST['link-2'])) {
                         $videoBtnHTML['second_do']['link'] = $_POST['link-2'];
                     }
@@ -232,9 +233,10 @@
                     }
                     break;
                 }
-                case "file": {
-                    if(!$_FILES['file']['name']){
-                        $file_name = uniqid('', true) .".jpg";
+                case "file":
+                {
+                    if (!$_FILES['file']['name']) {
+                        $file_name = uniqid('', true) . ".jpg";
                     } else {
                         $file_name = $_FILES['file']['name'];
                     }
@@ -251,26 +253,30 @@
                     $videoBtnHTML['second_do']['list'] = true;
                     break;
                 }
-                case 'next_lesson': {
+                case 'next_lesson':
+                {
                     $videoBtnHTML['second_do']['next_lesson'] = true;
                     break;
                 }
-                case '': {
+                case '':
+                {
                     $videoBtnHTML['second_do']['file'] = $_POST['file'];
                 }
             }
-//          // Если нет значения, то добавляет к кнопке "Посмотреть"
-            $button__standart = '';
+            //          Если нет значения, то добавляет к кнопке "Посмотреть"
             if (strlen($funnel_content[0]['button_text']) == 0) {
-                $button__standart = ', `button_text` = "Посмотреть"';
-            }
-
-            $videoBtnHTMLResult = json_encode($videoBtnHTML, JSON_UNESCAPED_UNICODE);
-            if ($save) {
-                $this->m->db->execute("UPDATE `funnel_content` SET `popup` = '$videoBtnHTMLResult'$button__standart WHERE id = '$id_video'");
+                $button__standart = 'Посмотреть';
             } else {
-                echo "Есть различия";
+                $button__standart = $funnel_content[0]['button_text'];
             }
+            $_SESSION['error'] = $videoBtnHTML;
+            return ['json' => $videoBtnHTML, 'button_standart' => $button__standart];
+        }
+
+        public function PopupSettings() {
+            $popup_settings = $this->CreatePopupSettings();
+            $videoBtnHTMLResult = json_encode($popup_settings['json'], JSON_UNESCAPED_UNICODE);
+            $this->m->db->execute("UPDATE `funnel_content` SET `popup` = '$videoBtnHTMLResult', `button_text` = '". $popup_settings['button_standart'] ."' WHERE id = " . $_POST['item_id']);
             return True;
         }
 

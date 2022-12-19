@@ -21,7 +21,7 @@
 </head>
 
 <body>
-
+<?php print_r($_SESSION['error']) ?>
 <style>
 
     .switch_box{
@@ -328,6 +328,16 @@
     }
 </script>
 <script>
+    function CloseFunnelPopup() {
+        document.querySelector('.popup__bonus').classList.remove('active');
+        document.querySelector('.exit-funnel-edit').classList.remove('display-flex');
+        toggleOverflow();
+        closePopup();
+        clearPopup();
+        defaultPopup(first_select);
+        defaultPopup(second_select);
+    }
+
     let exitFunnelEdit = document.querySelector('.exit-funnel-edit');
     let exitFunnelEditClose = document.querySelector('#close-popup');
     let saveFunnelEditClose = document.querySelector('#save-popup');
@@ -342,22 +352,69 @@
         })
     }
 
-    var promiseSave = new Promise(async function(resolve, reject) {
+    var promiseSave;
 
-        exitFunnelEditClose.addEventListener('click', function(){
-            resolve("Сломалось!");
-        })
+    function newPromise(){
+        promiseSave = new Promise(async function(resolve) {
 
-        saveFunnelEditClose.addEventListener('click', function(){
-            resolve("Работает!");
-        })
+            exitFunnelEditClose.addEventListener('click', function(){
+                resolve("1");
+            })
 
-    });
-    function SaveOrRemoveSettings() {
-        promiseSave.then(async function (result) {
-            result(); // "Обрабатываем результат!"
+            saveFunnelEditClose.addEventListener('click', function(){
+                resolve("save");
+            })
         });
     }
+    newPromise();
+
+    function promise() {
+        promiseSave.then(function (result) {
+            if (result === 'save') {
+                document.querySelector('#initButton').action = "/Funnel/"+ document.querySelector('#initButton').parentElement.querySelector('input[type="hidden"]').value +"/settings"
+                save();
+            } else {
+                CloseFunnelPopup();
+            }
+            newPromise();
+        });
+    }
+
+    function SaveOrRemoveSettings() {
+
+        document.querySelector('#initButton').action = "/Funnel/"+ document.querySelector('#initButton').parentElement.querySelector('input[type="hidden"]').value +"/checkSettings"
+
+        $.ajax({
+            url: "/Funnel/"+ document.querySelector('#id_item').value +"/checkSettings",
+            method: 'POST',             /* Метод передачи (post или get) */
+            dataType: 'html',          /* Тип данных в ответе (xml, json, script, html). */
+            data: $("#initButton").serialize(),     /* Параметры передаваемые в запросе. */
+            success: function(data){   /* функция которая будет выполнена после успешного запроса.  */
+                if (data == 0) {
+                    document.querySelector('.exit-funnel-edit').classList.add('display-flex');
+                    document.querySelector('.exit-funnel-edit').style.zIndex = '1000';
+                    promise();
+                } else {
+                    CloseFunnelPopup();
+                }
+            }
+        });
+    }
+
+    const close = document.querySelector('.close__btn');
+    const entryDisplay = document.querySelector('#popup__background');
+    function closeBtn() {
+        close.addEventListener('click', async function () {
+            SaveOrRemoveSettings();
+        });
+
+        entryDisplay.onclick = async function (event) {
+            if (event.target === entryDisplay) {
+                SaveOrRemoveSettings();
+            }
+        }
+    }
+    closeBtn();
 
     window.onload = () => {
         let inputs = document.querySelectorAll('.input_focus input, textarea');
