@@ -1,4 +1,4 @@
-<div id="popup__background" style="align-items: center">
+<div id="popup__background" class="popup__general" style="align-items: center">
     <div class="popup__edit">
         <div class="popup__header-container">
             <div class="popup__header">
