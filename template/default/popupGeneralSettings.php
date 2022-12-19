@@ -122,6 +122,17 @@
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
                     </div>
+                    
+                    <label class="popup-styles-buttons__title" for="first_do">Стиль кнопки</label>
+                    <div class="popup-styles-buttons">
+                        <div class="popup-styles-button button-shadow"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><a>Получить подарок</a></div>
+                        <div class="popup-styles-button "><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><a>Получить подарок</a></div>
+                        <div class="popup-styles-button button-dark"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><a>Получить подарок</a></div>
+                    </div>
+                </div>
+                <div class="popup__body-item script">
+                    <label for="first_do">Скрипты для HEAD</label>
+                    <textarea type="text" placeholder="DEFAULT"></textarea>
                 </div>
         </form>
     </div>

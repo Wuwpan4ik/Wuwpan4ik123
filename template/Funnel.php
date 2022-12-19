@@ -177,6 +177,7 @@
 <script src="../js/sliders.js"></script>
 <script>
     let colors = document.querySelectorAll('.popup-styles-color');
+    let buttons = document.querySelectorAll('.popup-styles-button');
     let videoBtn = document.querySelector('.button-video');
 
     colors.forEach(item =>{
@@ -193,13 +194,33 @@
             }
         })
     })
+    buttons.forEach(item =>{
+        item.addEventListener('click', () =>{
+            item.classList.toggle('active')
+            if(item.classList.contains('active')){
+                videoBtn.style.boxShadow = item.style.boxShadow;
+                videoBtn.style.background = item.style.background;
+                buttons.forEach(el =>{
+                    el.classList.remove('active');
+                    item.classList.add('active');
+                })
+
+            }
+        })
+    })
 </script>
 <script>
     let generalSettings = document.querySelectorAll('.general-settings');
+    let popupGeneralClose = document.querySelectorAll('.close__btn');
 
     generalSettings.forEach(item =>{
         item.addEventListener('click', () => {
             document.querySelector('.popup__general').style.display = 'flex';
+        })
+    })
+    popupGeneralClose.forEach(item =>{
+        item.addEventListener('click', () => {
+            document.querySelector('.popup__general').style.display = 'none';
         })
     })
 </script>

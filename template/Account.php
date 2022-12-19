@@ -118,38 +118,30 @@
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
                                             </div>
-                                            <select class="select-account currencies" name="currency" id="currency">
-                                                <option value="null" <?php if (isset($_SESSION['user']['currency'])) echo "selected"?>>Выберите валюту</option>
-                                                <option value="$" <?php if (isset($_SESSION['user']['currency']) && $_SESSION['user']['currency'] == '$') echo "selected"?>>$</option>
-                                                <option value="€" <?php if (isset($_SESSION['user']['currency']) && $_SESSION['user']['currency'] == '€') echo "selected"?>>€</option>
-                                                <option value="₴" <?php if (isset($_SESSION['user']['currency']) && $_SESSION['user']['currency'] == '₴') echo "selected"?>>₴</option>
-                                                <option value="₽" <?php if (isset($_SESSION['user']['currency']) && $_SESSION['user']['currency'] == '₽') echo "selected"?>>₽</option>
-                                            </select>
+
+                                            <div class="select-account social-network">
+                                                <div id="myMultiselect" class="multiselect">
+                                                    <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
+                                                        <select class="form-select">
+                                                            <option name="currency"  id="name">Выберите валюту</option>
+                                                        </select>
+                                                        <div class="overSelect"></div>
+                                                    </div>
+                                                    <div class="mySelectOptions">
+                                                        <label class="item">$<input class="custom-checkbox" type="radio" value="$" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                        <label class="item">€<input class="custom-checkbox" type="radio" value="€" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                        <label class="item">₴<input class="custom-checkbox" type="radio" value="₴" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                        <label class="item">₽<input class="custom-checkbox" type="radio" value="₽" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                         <h2>Укажите соц сети для клиентов</h2>
                                         <div class="field">
                                             <div class="select-account social-network">
                                                 <div id="myMultiselect" class="multiselect">
-                                                    <div id="mySelectLabel" class="selectBox">
-                                                        <select class="form-select">
-                                                            <option id="name">Выберите соц сеть</option>
-                                                        </select>
-                                                        <div class="overSelect"></div>
-                                                    </div>
-                                                    <div class="mySelectOptions">
-                                                        <label class="item">Вконтакте<input class="custom-checkbox" type="radio" value="Vk" /><label for="happy"></label></label>
-                                                        <label class="item">Твиттер<input class="custom-checkbox" type="radio" value="Twitter" /><label for="happy"></label></label>
-                                                        <label class="item">Фейсбук<input class="custom-checkbox" type="radio" value="Facebook" /><label for="happy"></label></label>
-                                                        <label class="item">Инстаграм<input class="custom-checkbox" type="radio"  value="Instagram" /><label for="happy"></label></label>
-                                                        <label class="item">Ютуб<input class="custom-checkbox" type="radio"  value="Youtube" /><label for="happy"></label></label>
-                                                        <label class="item">Телеграм<input class="custom-checkbox" type="radio"  value="Telegram" /><label for="happy"></label></label>
-                                                        <label class="item">Сайт<input class="custom-checkbox" type="radio" value="Site" /><label for="happy"></label></label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="select-account social-network">
-                                                <div id="myMultiselect" class="multiselect">
-                                                    <div id="mySelectLabel" class="selectBox">
+                                                    <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
                                                         <select class="form-select">
                                                             <option id="name">Выберите соц сеть</option>
                                                         </select>
@@ -244,19 +236,26 @@
                                                 </span>
                                             </div>
 
+                                            <div class="select-account social-network">
+                                                <div id="myMultiselect" class="multiselect">
+                                                    <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
+                                                        <select class="form-select">
+                                                            <option name="niche"  id="name">Выберите вашу нишу</option>
+                                                        </select>
+                                                        <div class="overSelect"></div>
+                                                    </div>
+                                                    <div class="mySelectOptions">
+                                                        <?
+                                                        $options = ["Изотерика", "Обучение", "Дизайн", "Политика", "Спорт", "Игры", "Животные"];
+                                                        for($i = 0; $i<7; $i++){?>
+                                                          <label class="item"><?=$options[$i]?><input class="custom-checkbox" type="radio" value="<?=$options[$i]?>" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label><?
+                                                        }
+                                                        ?>
+                                                    </div>
+                                                </div>
+                                            </div>
 
 
-                                            <select class="selector inf" name="niche">
-
-                                                <?
-                                                $options = ["Изотерика", "Обучение", "Дизайн", "Политика", "Спорт", "Игры", "Животные"];
-                                                for($i = 0; $i<7; $i++){
-                                                    if($options[$i] == $content[0][0]['niche']){?><option selected="selected"><?=$options[$i]?></option>
-                                                    <?}else{?><option><?=$options[$i]?></option><?}
-                                                }
-                                                ?>
-
-                                            </select>
 
 
                                         </div>
