@@ -4,6 +4,12 @@ window.onload = () =>{
     let inputClear = document.querySelectorAll('.input_focus span');
     let feed = document.querySelector('.feed');
 
+    function RemoveInput(i) {
+        inputsLabel[i].classList.remove('activeLabel')
+        inputs[i].value = "";
+        inputClear[i].classList.remove('has_content')
+    }
+
     for(let i =0; i < inputs.length; i++){
         if(inputs[i].value.length > 0){
             inputsLabel[i].classList.add('activeLabel');
@@ -29,9 +35,9 @@ window.onload = () =>{
         });
 
         inputClear[i].onclick = () =>{
-            inputsLabel[i].classList.remove('activeLabel')
-            inputs[i].value = "";
-            inputClear[i].classList.remove('has_content')
+            RemoveInput(i);
         }
     }
+
+
 }

@@ -15,11 +15,74 @@
 
     <link rel="stylesheet" href="/css/main.css">
 
+    <link rel="stylesheet" href="/css/aboutuser.css">
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 </head>
 
 <body>
+<?php print_r($_SESSION['error']) ?>
+<style>
+
+    .switch_box{
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        justify-content: space-around;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        margin: 20px 0;
+    }
+
+    /* Switch 1 Specific Styles Start */
+
+    input[type="checkbox"].switch_1{
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 3.5em;
+        height: 1.5em;
+        background: #ddd;
+        border-radius: 3em;
+        position: relative;
+        cursor: pointer;
+        outline: none;
+        -webkit-transition: all .2s ease-in-out;
+        transition: all .2s ease-in-out;
+    }
+
+    input[type="checkbox"].switch_1:checked{
+        background: #0ebeff;
+    }
+
+    input[type="checkbox"].switch_1:after{
+        position: absolute;
+        content: "";
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 50%;
+        background: #fff;
+        -webkit-box-shadow: 0 0 .25em rgba(0,0,0,.3);
+        box-shadow: 0 0 .25em rgba(0,0,0,.3);
+        -webkit-transform: scale(.7);
+        transform: scale(.7);
+        left: 0;
+        -webkit-transition: all .2s ease-in-out;
+        transition: all .2s ease-in-out;
+    }
+
+    input[type="checkbox"].switch_1:checked:after{
+        left: calc(100% - 1.5em);
+    }
+
+    /* Switch 1 Specific Style End */
+</style>
 
 <style>
     .input__wrapper {
@@ -184,7 +247,17 @@
     </div>
 
 </div>
-
+<div class="exit-funnel-edit popup-tariff">
+    <div class="popup-tariff-body">
+        <div class="popup__title">
+            У вас остались  не <br> сохраненные данные
+        </div>
+        <div class="popup__buttons">
+            <button id="close-popup" class="popup__btn popup__white">Выйти</button>
+            <button id="save-popup" class="popup__btn popup__blue">Сохранить</button>
+        </div>
+    </div>
+</div>
 <div class="popup__background" id="delete__back">
     <div id="popup">
         <div class="popup__container">
@@ -225,7 +298,6 @@
                             <span class="input__file-button-text">Добавить</span>
                         </label>
                     </div>
-
                 </div>
                 <div class="popup__form">
                     <button class="popup__btn popup__white" id="popup__not-change" >Отменить</button>
@@ -234,26 +306,124 @@
             </div>
         </div>
     </div>
+
 </div>
 
 
 <?php include 'default/popupEditVideo.php';?>
 <script src="/js/jquery-3.6.1.min.js"></script>
 <script>
+    let form__submit = $(function() {
+        $('.media__form').each(function (){
+            $(this).submit(function(e) {
+                e.preventDefault();
+                $.post(e.target.action, $(this).serialize());
+            });
+        })
+    });
+</script>
+<script>
     function click_settings(elem) {
         getCourseList(elem);
     }
 </script>
 <script>
-    window.onload = () =>{
+    function CloseFunnelPopup() {
+        document.querySelector('.popup__bonus').classList.remove('active');
+        document.querySelector('.exit-funnel-edit').classList.remove('display-flex');
+        toggleOverflow();
+        closePopup();
+        clearPopup();
+        defaultPopup(first_select);
+        defaultPopup(second_select);
+    }
+
+    let exitFunnelEdit = document.querySelector('.exit-funnel-edit');
+    let exitFunnelEditClose = document.querySelector('#close-popup');
+    let saveFunnelEditClose = document.querySelector('#save-popup');
+
+    async function DeleteSave() {
+        exitFunnelEditClose.addEventListener('click', function(){
+            return false;
+        })
+
+        saveFunnelEditClose.addEventListener('click', function(){
+            return true;
+        })
+    }
+
+    var promiseSave;
+
+    function newPromise(){
+        promiseSave = new Promise(async function(resolve) {
+
+            exitFunnelEditClose.addEventListener('click', function(){
+                resolve("1");
+            })
+
+            saveFunnelEditClose.addEventListener('click', function(){
+                resolve("save");
+            })
+        });
+    }
+    newPromise();
+
+    function promise() {
+        promiseSave.then(function (result) {
+            if (result === 'save') {
+                document.querySelector('#initButton').action = "/Funnel/"+ document.querySelector('#initButton').parentElement.querySelector('input[type="hidden"]').value +"/settings"
+                save();
+            } else {
+                CloseFunnelPopup();
+            }
+            newPromise();
+        });
+    }
+
+    function SaveOrRemoveSettings() {
+
+        document.querySelector('#initButton').action = "/Funnel/"+ document.querySelector('#initButton').parentElement.querySelector('input[type="hidden"]').value +"/checkSettings"
+
+        $.ajax({
+            url: "/Funnel/"+ document.querySelector('#id_item').value +"/checkSettings",
+            method: 'POST',             /* Метод передачи (post или get) */
+            dataType: 'html',          /* Тип данных в ответе (xml, json, script, html). */
+            data: $("#initButton").serialize(),     /* Параметры передаваемые в запросе. */
+            success: function(data){   /* функция которая будет выполнена после успешного запроса.  */
+                if (data == 0) {
+                    document.querySelector('.exit-funnel-edit').classList.add('display-flex');
+                    document.querySelector('.exit-funnel-edit').style.zIndex = '1000';
+                    promise();
+                } else {
+                    CloseFunnelPopup();
+                }
+            }
+        });
+    }
+
+    const close = document.querySelector('.close__btn');
+    const entryDisplay = document.querySelector('#popup__background');
+    function closeBtn() {
+        close.addEventListener('click', async function () {
+            SaveOrRemoveSettings();
+        });
+
+        entryDisplay.onclick = async function (event) {
+            if (event.target === entryDisplay) {
+                SaveOrRemoveSettings();
+            }
+        }
+    }
+    closeBtn();
+
+    window.onload = () => {
         let inputs = document.querySelectorAll('.input_focus input, textarea');
         let inputsLabel = document.querySelectorAll('.input_focus label');
         let inputClear = document.querySelectorAll('.input_focus span');
-        let textAreas = document.querySelectorAll('.input_focus textarea');
 
-        for(let i =0; i < inputs.length; i++){
-            inputs[i].addEventListener('input', function(){
-                if(inputs[i].value != ""){
+        for(let i =0; i < inputs.length; i++) {
+            inputs[i].addEventListener('input', function() {
+                if (inputs[i].value != "") {
                     inputsLabel[i].classList.add('activeLabel');
                     inputClear[i].classList.add('has_content');
                 }
@@ -263,7 +433,7 @@
                 }
             });
 
-            inputClear[i].onclick = () =>{
+            inputClear[i].onclick = () => {
                 inputsLabel[i].classList.remove('activeLabel')
                 inputs[i].value = "";
                 inputClear[i].classList.remove('has_content')
@@ -272,6 +442,7 @@
     }
 </script>
 <script type="text/javascript" src="../js/button__settings.js"></script>
+<script src="../js/jquery-3.6.1.min.js"></script>
 <script>
     let entryDisplayDelete = document.querySelector('#delete__back');
     //  Замена видео
@@ -290,12 +461,6 @@
         })
         let notChangeVideo = document.querySelectorAll('#popup__not-change');
 
-        // notChangeVideo.onclick = function (event) {
-        //     if (event.target === notChangeVideo) {
-        //         reload.classList.remove('display-block');
-        //         toggleOverflow();
-        //     }
-        // }
         notChangeVideo.forEach(item => {
             item.onclick = function (event) {
                 if (event.target === item) {
@@ -322,7 +487,6 @@
         }
     }
 
-
     let deletes = document.querySelector('.popup__delete');
 
     function toggleOverflow () {
@@ -331,16 +495,12 @@
     function deleteDirectory(elem) {
         toggleOverflow();
         entryDisplayDelete.classList.add('display-block');
-        deletes.addEventListener('click',function () {
+        deletes.addEventListener('click', function () {
             window.location.href = '/Funnel/' + elem.parentElement.parentElement.parentElement.querySelector('.new_name').children[0].value + "/delete";
         });
     }
 
-
-
-
     function uploadFile(target) {
-        console.log(1)
         document.getElementById("file-name").innerHTML = (target.files[0].name);
         document.getElementById("file-size").innerHTML = Math.round(target.files[0].size / 1024) + "кБ" + " из доступных 5Мб" ;
     }
@@ -430,7 +590,7 @@
     function getFunnelPopup(funnel_content_id) {
         let request = new XMLHttpRequest();
 
-        let url = "/Funnel/"+ funnel_content_id +"/getFunnelPopup?";
+        let url = "/Funnel/"+ funnel_content_id +"/getFunnelPopup";
 
         request.open('GET', url);
 
@@ -443,7 +603,7 @@
 
                     // first_do
                     let option_1 = Object.keys(popup['first_do'])[0];
-                    let option_item_1 = first_do.querySelector('option[value="'+ option_1 +'"]')
+                    let option_item_1 = first_do.querySelector('option[value="' + option_1 + '"]')
                     option_item_1.selected = true;
                     option_item_1.setAttribute('selected', 'selected')
 
@@ -453,37 +613,35 @@
 
                     // second_do
 
-                    let second_do = document.getElementById('second_do');
-                    let option_2 = Object.keys(popup['second_do'])[0];
-                    let option_item_2 = second_do.querySelector('option[value="'+ option_2 +'"]')
-                    option_item_2.selected = true;
-                    option_item_2.setAttribute('selected', 'selected')
+                    let option_2;
+                    let second_do;
+                    let option_item_2;
+
+                    if (popup['second_do']) {
+                        second_do = document.getElementById('second_do');
+                        option_2 = Object.keys(popup['second_do'])[0];
+                        option_item_2 = second_do.querySelector('option[value="' + option_2 + '"]')
+                        option_item_2.selected = true;
+                        option_item_2.setAttribute('selected', 'selected')
+                    }
 
                     // /second_do
 
                     checkSecondSelect();
-
-                    switch (option_2) {
-                        case 'link':
-                            document.querySelector('input[name="link-2"]').value = popup['second_do']['link'];
-                            break;
-                        case 'file':
-                            document.querySelector('#file-name').innerHTML = popup['second_do']['file'].toString().match(/.*\/(.+?)\./)[1];
-                            break;
-                    }
 
                     switch (option_1) {
                         case 'list':
                             let a = document.getElementById('course_list');
                             let option_list_1 = a.querySelector('option[value="'+ popup['first_do']['course_id'] +'"]');
                             option_list_1.selected = true;
+                            option_list_1.setAttribute('selected', 'selected')
                             break;
                         case 'pay_form':
                         case 'form':
                             if (popup['form__title']) {
                                 document.querySelector('input[name="form__title"]').value = popup['form__title'];
                             }
-                            if (popup['form__desc']) {в
+                            if (popup['form__desc']) {
                                 document.querySelector('input[name="form__desc"]').value = popup['form__desc'];
                             }
                             if (popup['button_text']) {
@@ -505,13 +663,34 @@
                             break;
                     }
                     setTimeout(function (){
-                        let form__title = document.querySelector('.popup-title');
-                        form__title.innerHTML = popup['form__title'];
-                        console.log(form__title)
-
-                        let form__desc = document.querySelector('.popup-text');
-                        form__desc.innerHTML = popup['form__desc'];
+                        if (popup['form__title']) {
+                            let form__title = document.querySelector('.popup-title');
+                            form__title.innerHTML = popup['form__title'];
+                        }
+                        if (popup['form__desc']) {
+                            let form__desc = document.querySelector('.popup-text');
+                            form__desc.innerHTML = popup['form__desc'];
+                        }
                     }, 400)
+
+
+                    switch (option_2) {
+                        case 'link':
+                            if ((document.querySelectorAll('.checkbox__wrapper')).length === 1) {
+                                document.querySelectorAll('.checkbox__wrapper').forEach(item => {
+                                    item.remove();
+                                })
+                            }
+                            document.querySelector('input[name="link-2"]').value = popup['second_do']['link'];
+                            addCheckbox(second_do);
+                            if (popup['second_do']['open_in_new']) {
+                                document.querySelector('input[name="open_new_window"]').checked = true;
+                            }
+                            break;
+                        case 'file':
+                            document.querySelector('#file-name').innerHTML = popup['second_do']['file'].toString().match(/.*\/(.+?)\./)[1];
+                            break;
+                    }
                 }
             }
         })
@@ -520,6 +699,7 @@
 
 </script>
 <script src="/js/getNotifications.js"></script>
+<script src="/js/customInputs.js"></script>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-<html lang="ru">
+<html lang="ru" xmlns="http://www.w3.org/1999/html">
 
 <head>
 
@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/css/main.css">
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
-  </head>
 
 </head>
 
@@ -50,7 +49,7 @@
                                     <form method="POST" action="/Account/MainSettings" enctype="multipart/form-data">
                                         <h2>Ваши данные</h2>
                                         <div class="field">
-                                            <div class="input_focus inf">
+                                            <div class="input_focus ">
                                                 <label for="username" class="label_focus ">Электронная почта</label>
                                                 <input class="half" type="email" name="email" value="<? echo $_SESSION['user']['email'] ?>">
                                                 <span class="clear_input_val">
@@ -59,9 +58,9 @@
                                             </div>
 
                                             <?php if(isset($_SESSION['error']['email_message'])) echo $_SESSION['error']['email_message'] ?>
-                                            <div class="input_focus inf">
-                                                <label for="username" class="label_focus ">Телефон</label>
-                                                <input class="half"  name="phone" value="<?php print(htmlspecialchars(isset($_SESSION['user']['phone']) ? $_SESSION['user']['phone'] : '+7')) ?>">
+                                            <div class="input_focus ">
+                                                <label for="username" class="label_focus">Телефон</label>
+                                                <input class="half" id="phone" name="phone" value="<?php print(htmlspecialchars(isset($_SESSION['user']['phone']) ? $_SESSION['user']['phone'] : '')) ?>">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
@@ -73,7 +72,7 @@
                                         <h2>Расскажите о себе</h2>
 
                                         <div class="field">
-                                            <div class="input_focus inf">
+                                            <div class="input_focus ">
                                                 <label for="username" class="label_focus ">Имя</label>
                                                 <input id="username" type="text" name="first_name" value="<? echo $_SESSION['user']['first_name'] ?>">
                                                 <span class="clear_input_val">
@@ -81,7 +80,7 @@
                                                 </span>
                                             </div>
 
-                                            <div class="input_focus inf">
+                                            <div class="input_focus ">
                                                 <label for="username" class="label_focus ">Фимилия</label>
                                                 <input id="username" type="text" name="second_name" >
                                                 <span class="clear_input_val">
@@ -89,9 +88,9 @@
                                                 </span>
                                             </div>
 
-                                            <div class="input_focus inf">
+                                            <div class="input_focus ">
                                                 <label for="username" class="label_focus "></label>
-                                                <input id="username" type="date" name="birthday"  value="<? print(htmlspecialchars($_SESSION['user']['birthday'])); ?>">
+                                                <input id="username" type="date" name="birthday" value="<? print(htmlspecialchars($_SESSION['user']['birthday'])); ?>">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
@@ -104,14 +103,14 @@
                                         </div>
                                         <h2>Откуда вы?</h2>
                                         <div class="field">
-                                            <div class="input_focus inf">
+                                            <div class="input_focus ">
                                                 <label for="username" class="label_focus">Страна</label>
-                                                <input type="text"  name="country" value="<?php print(htmlspecialchars(isset($_SESSION['user']['country']) ? $_SESSION['user']['country'] : '')) ?>">
+                                                <input type="text" name="country" value="<?php print(htmlspecialchars(isset($_SESSION['user']['country']) ? $_SESSION['user']['country'] : '')) ?>">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
                                             </div>
-                                            <div class="input_focus inf">
+                                            <div class="input_focus ">
                                                 <label for="username" class="label_focus">Город</label>
                                                 <input type="text"   name="city" value="<?php print(htmlspecialchars(isset($_SESSION['user']['city']) ? $_SESSION['user']['city'] : ''))?>">
                                                 <span class="clear_input_val">
@@ -137,25 +136,26 @@
                                                         <div class="overSelect"></div>
                                                     </div>
                                                     <div id="mySelectOptions">
-                                                        <label class="item">Вконтакте<input class="custom-checkbox" type="radio" value="Вконтакте" /><label for="happy"></label></label>
-                                                        <label class="item">Твиттер<input class="custom-checkbox" type="radio" value="Твиттер" /><label for="happy"></label></label>
-                                                        <label class="item">Фейсбук<input class="custom-checkbox" type="radio" value="Фейсбук" /><label for="happy"></label></label>
-                                                        <label class="item">Инстаграм<input class="custom-checkbox" type="radio"  value="Инстаграм" /><label for="happy"></label></label>
-                                                        <label class="item">Ютуб<input class="custom-checkbox" type="radio"  value="Ютуб" /><label for="happy"></label></label>
-                                                        <label class="item">Телеграм<input class="custom-checkbox" type="radio"  value="Телеграм" /><label for="happy"></label></label>
-                                                        <label class="item">Сайт<input class="custom-checkbox" type="radio" value="Сайт" /><label for="happy"></label></label>
+                                                        <label class="item">Вконтакте<input class="custom-checkbox social__input" type="radio" value="vk" /><label for="happy"></label></label>
+                                                        <label class="item">WhatsApp<input class="custom-checkbox social__input" type="radio" value="whatsapp" /><label for="happy"></label></label>
+                                                        <label class="item">Твиттер<input class="custom-checkbox social__input" type="radio" value="twitter" /><label for="happy"></label></label>
+                                                        <label class="item">Фейсбук<input class="custom-checkbox social__input" type="radio" value="facebook" /><label for="happy"></label></label>
+                                                        <label class="item">Инстаграм<input class="custom-checkbox social__input" type="radio" value="instagram" /><label for="happy"></label></label>
+                                                        <label class="item">Ютуб<input class="custom-checkbox social__input" type="radio" value="youtube" /><label for="happy"></label></label>
+                                                        <label class="item">Телеграм<input class="custom-checkbox social__input" type="radio" value="telegram" /><label for="happy"></label></label>
+                                                        <label class="item">Сайт<input class="custom-checkbox social__input" type="radio" value="site" /><label for="happy"></label></label>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="input_focus inf">
+                                            <div class="input_focus ">
                                                 <label for="username" class="label_focus">Укажите ссылку</label>
-                                                <input type="text" >
+                                                <input type="text" id="social__inpu" minlength="10">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
                                             </div>
                                         </div>
-                                        <button class="add-social-network"><img src="../img/addSocialNetwork.svg" alt=""> Добавить соц сеть</button>
+                                        <button type="button" id="social__submit" class="add-social-network"><img src="../img/addSocialNetwork.svg" alt=""> Добавить соц сеть</button>
                                         <div class="ProfileSetting">
                                             <h2 class="no_margin">Загрузите аватар автора:</h2>
                                             <script>
@@ -217,9 +217,17 @@
 
                                         <div class="field">
 
-                                            <input class="half" name="school_name" type="text" placeholder="<? print(htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : 'Название')) ?>"/>
+                                            <div class="input_focus ">
+                                                <label for="username" class="label_focus">Страна</label>
+                                                <input class="inf" type="text"  name="school_name" value="<? print(htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : '')) ?>">
+                                                <span class="clear_input_val">
+                                                     <img src="/img/clear_input.svg" alt="">
+                                                </span>
+                                            </div>
 
-                                            <select class="selector" name="niche">
+
+
+                                            <select class="selector inf" name="niche">
 
                                                 <?
                                                 $options = ["Изотерика", "Обучение", "Дизайн", "Политика", "Спорт", "Игры", "Животные"];
@@ -233,23 +241,27 @@
 
 
                                         </div>
+
                                         <div class="about_school">
                                             <textarea name="school_desc" placeholder="<? print(htmlspecialchars(isset($_SESSION['user']['school_desc']) ? $_SESSION['user']['school_desc'] : 'Описание для школы')) ?>"></textarea>
                                         </div>
                                         <h2>Данные вашего тарифа:</h2>
                                         <div class="field">
                                             <div class="tariff-card">
-                                                <div class="tariff-plan">
-                                                    <div class="tariff-price">2 600 <?=isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></div>
-                                                </div>
+
                                                 <div class="tariff-name">
-                                                    Для новичков
+                                                    У вас выбран тариф:
+                                                    <p>Starter</p>
+                                                </div>
+                                                <div class="tariff-plan">
+                                                    Стоимость тарифа:
+                                                    <div class="tariff-price">2 990 ₽/ мес  <?=isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></div>
                                                 </div>
                                                 <div class="tariff-img">
-                                                    <img src="/img/tarif-Image.jpg" alt="">
+                                                    <img src="/img/Starter.jpg" alt="">
                                                 </div>
-                                                <div class="tariff-btn">
-                                                    <button>Сменить тариф</button>
+                                                <div  class="tariff-btn">
+                                                    <a id="change-tariff">Сменить тариф</a>
                                                 </div>
                                             </div>
                                             <div class="tariff-card">
@@ -282,7 +294,80 @@
                                                     </div>
                                                 </div>
                                                 <div class="tariff-btn">
-                                                    <button>Сменить тариф</button>
+                                                    <a id="improvement-tariff">Увеличить хранилище</a>
+                                                </div>
+                                            </div>
+                                            <?php include 'template/default/popup__templates/popup__tariffs.php'?>
+                                            <div class="improvement-tariff-popup popup-tariff">
+                                                <div class="popup-tariff-body">
+                                                    <div class="popup__title">
+                                                        Хотите больше <br>
+                                                        возможностей?
+                                                    </div>
+
+                                                    <div class="popup-tariff__cards">
+                                                        <div class="popup-tariff__card">
+                                                            <div class="popup-tariff__card-body">
+                                                                <div class="popup-tariff__subtitle">
+                                                                    Вам доступно:
+                                                                </div>
+
+                                                                <div class="popup-tariff__info">
+                                                                    <div class="popup-tariff__info-users popup-tariff-info-body">
+                                                                            <p class="text">Пользователей:</p>
+                                                                            <div class="popup-tariff__info-users-body">
+                                                                                <div class="progress-users progress">
+                                                                                    <progress max="300" value="200">
+                                                                                    </progress>
+                                                                                    <div class="progress__info">
+                                                                                        <div class="progress__current-value">
+                                                                                            200
+                                                                                        </div>
+                                                                                        <div class="progress__max-value">
+                                                                                            300
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        <div class="button-add">
+                                                                            <button><img src="../img/addSocialNetwork.svg" alt="">Добавить 100</button>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="popup-tariff__info-place-memory popup-tariff-info-body">
+                                                                            <p class="text">Места на хостинге:</p>
+                                                                            <div class="popup-tariff__info-users-body">
+                                                                                <div class="progress-memory progress">
+                                                                                    <progress max="1000" value="225">
+                                                                                    </progress>
+                                                                                    <div class="progress__info">
+                                                                                        <div class="progress__current-value">
+                                                                                            225 мб
+                                                                                        </div>
+                                                                                        <div class="progress__max-value">
+                                                                                            1 000 мб
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="button-add">
+                                                                                <button><img src="../img/addSocialNetwork.svg" alt="">Добавить 100</button>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="popup-tariff__price">
+                                                                    К оплате
+                                                                    <div class="tariff-price">2 990 ₽/ мес </div>
+                                                                </div>
+                                                                <div class="popup-tariff-button ">
+                                                                    <button>
+                                                                        Перейти к оплате
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -298,26 +383,50 @@
                             <input type="radio" id="Tarif" name="mytabs"/>
 
                             <label class="menu-label" for="Tarif" id="cllab"><p>Дополнительно</p></label>
-
                             <div class="tab">
-
-                                <h2>Скрипты для HEAD:  </h2>
-
-                                <textarea class="additionally" placeholder="Default" name="head_additional"></textarea>
-
-                                <h2>Скрипты для Body:  </h2>
-
-                                <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>
-
-                                <div class="about-btn">
-                                    <button id="profile_send" type="submit">Сохранить</button>
+                        <div class="tab col">
+                            <div class="inner_row">
+                                <div class="row">
+                                    <h2>Подключение Prodamus:  </h2>
+                                    <input type="text" name="prodamus_api" placeholder="API Ключ">
                                 </div>
+                            </div>
+                            <div class="inner_row">
+                                <div class="row">
+                                    <h2>Подключение Albato:  </h2>
+                                    <input type="text" name="albato_api" placeholder="API Ключ">
+                                </div>
+                            </div>
+                            <div class="inner_row">
+                                <div class="row">
+                                    <h2>Скрипты для HEAD:  </h2>
+                                    <textarea class="additionally" placeholder="Default" name="head_additional"></textarea>
+                                </div>
+                                <div class="row">
+                                    <h2>Скрипты для Body:  </h2>
+                                    <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="about-btn">
+                                <button id="profile_send" type="submit">Сохранить</button>
                             </div>
                         </div>
                     </div>
 
 
                 </div>
+                        <div class="exit-settings popup-tariff active">
+                            <div class="popup-tariff-body">
+                                <div class="popup__title">
+                                    Если вы покинете страницу </br>введенные  вами данные </br> не сохраняться
+                                </div>
+                                <div class="popup__buttons">
+                                    <button id="close-popup" class="popup__btn popup__white">Покинуть</button>
+                                    <button class="popup__btn popup__blue">Сохранить</button>
+                                </div>
+                            </div>
+                        </div>
             </div>
 
     </div>
@@ -326,16 +435,41 @@
 
 </div>
 <?php unset($_SESSION['error']) ?>
-
-
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.maskedinput@1.4.1/src/jquery.maskedinput.min.js" type="text/javascript"></script>
 <script>
+    /*Popups*/
+    let changeTariff = document.querySelector('.change-tariff-popup');
+    let improvementTariff = document.querySelector('.improvement-tariff-popup');
+    let exitSettings = document.querySelector('.exit-settings');
+    let exitSettingsClose = document.querySelector('#close-popup');
+    let changeTariffOpen = document.querySelector('#change-tariff');
+    let improvementTariffOpen = document.querySelector('#improvement-tariff');
+
+    exitSettingsClose.addEventListener('click', function(){
+        exitSettings.classList.remove('active');
+    })
+
+    changeTariffOpen.addEventListener('click', function(){
+        changeTariff.classList.add('active');
+    })
+    improvementTariffOpen.addEventListener('click', function(){
+        improvementTariff.classList.add('active');
+    })
+
+    document.querySelectorAll('.popup-tariff').forEach(item => {
+        item.addEventListener('click', function(){
+            improvementTariff.classList.remove('active');
+            changeTariff.classList.remove('active');
+        })
+    })
+
     /*Select*/
     function checkboxStatusChange() {
         let multiselectOption =  document.getElementById("name");
         let values = [];
         let checkboxes = document.getElementById("mySelectOptions");
         let checkedCheckboxes = checkboxes.querySelectorAll('input');
-
 
         checkedCheckboxes.forEach(item =>{
 
@@ -351,6 +485,8 @@
                     values = ( item.getAttribute('value'));
                 }
                 multiselectOption.innerText = values;
+                multiselectOption.value = values;
+                document.getElementById('social__input').value = document.querySelector('#mySelectLabel .form-select').value;
             })
         })
     }
@@ -370,6 +506,14 @@
         }
     }
 
+    document.getElementById('social__inpu').addEventListener('input', function (){
+        document.getElementById('social__link').value = this.value;
+    })
+
+    document.getElementById('social__submit').addEventListener('click', function (){
+        document.getElementById('social__button').click();
+    })
+    console.log()
     const button_submit = document.querySelector('#profile_send');
     const check_url = document.querySelector('#check_url');
     const check_button = document.querySelector('#check_button');
@@ -377,29 +521,38 @@
 
     button_submit.addEventListener('click', function () {
         let second_button = document.querySelector('#apps');
-        console.log(second_button);
         second_button.click();
     });
-    // check_button.addEventListener('click', function () {
-    //     const request = new XMLHttpRequest();
-    //
-    //     const url = "?option=UrlController&site_url=" + check_url.value;
-    //
-    //     request.open('GET', url);
-    //
-    //     request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-    //     request.addEventListener("readystatechange", () => {
-    //         if (request.readyState === 4 && request.status === 200) {
-    //             message.innerHTML = request.responseText;
-    //         }
-    //     });
-    //     request.send();
-    // });
 
 </script>
+
 <script src="/js/getNotifications.js"></script>
 <script src="/js/customInputs.js"></script>
 <script src="/js/printFailName.js" ></script>
+<script>
+    let form__submit = $(function() {
+        $('#social__form').each(function (){
+            $(this).submit(function(e) {
+                e.preventDefault();
+                if (($(this).find('#social__link')[0].value.length) <= 10) {
+                    // Событие при нехватки длины
+                    alert("Впишите ссылку своей соцсети");
+                    return;
+                }
+                $.post(e.target.action, $(this).serialize());
+                try {
+                    // Alert
+                    alert("Ваши данные сохранены");
+                } catch {}
+            });
+        })
+    });
+</script>
+<form id="social__form" class="social__form display-none" action="/Account/SaveSocialSettings" method="POST">
+    <input id="social__input" type="text" name="social" value="">
+    <input id="social__link" type="text" name="link" value="">
+    <button id="social__button" type="submit"></button>
+</form>
 </body>
 
 </html>

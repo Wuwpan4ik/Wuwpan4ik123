@@ -4,11 +4,11 @@ class Router
 {
     private $pages = array();
 
-    function addRoute($url, $path, $method = null) {
+    function addRoute($url, $path, $method = null, $content = true) {
         if (is_null($method)) {
             $this->pages[$url] = $path;
         } else {
-            $this->pages[$url] = [$path, $method];
+            $this->pages[$url] = [$path, $method, $content];
         }
     }
 
@@ -16,6 +16,7 @@ class Router
         $path = $this->pages[$url];
 
         if (is_array($path)) {
+            $content = $path[2];
             $method = $path[1];
             $path = $path[0];
         }
@@ -31,7 +32,9 @@ class Router
                 if (method_exists($obj, "obr")) {
                     $obj->obr();
                 }
-                $content = $obj->get_content();
+                if ($path[2]) {
+                    $content = $obj->get_content();
+                }
                 require $template_url;
             }
         } else if (file_exists($template_url)) {
@@ -44,7 +47,9 @@ class Router
                 $obj = new $class;
                 if (method_exists($obj, $method)) {
                     $obj->$method();
-                    $obj->get_content();
+                    if ($path[2]) {
+                        $obj->get_content();
+                    }
                 }
             }
         }

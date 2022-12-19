@@ -10,6 +10,9 @@
             <?php if (isset($second_link)) { ?>
                 <input class="second_link" type="text" hidden="hidden" name="second_link" value="<?=$second_link?>">
             <?php } ?>
+            <?php if ($new_window) { ?>
+                <input class="new_window" type="text" hidden="hidden" name="second_link" value="<?=$new_window?>">
+            <?php } ?>
             <?php if (isset($popup->second_do->next__lesson)) { ?>
                 <input class="next__lesson" type="text" hidden="hidden" name="second_link" value="<?=$next__lesson?>">
             <?php } ?>
@@ -34,7 +37,7 @@
                             }?>
                             <img src="/img/smallPlayer/<?=$value?>.svg" alt="">
                         </div>
-                        <input name="<?=$input_name?>" type="text" placeholder="Ваш <?=$input?>">
+                        <input name="<?=$input_name?>" type="text" placeholder="Ваш <?=$input?>" required>
                     </div>
                 <?php } ?>
                 <?php if (isset($popup__do->form)) { ?>

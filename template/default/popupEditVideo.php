@@ -55,7 +55,7 @@
                         <option value="form" id="first_do_form" selected>Форма заявки</option>
                         <option value="pay_form" id="first_do_pay_form">Форма оплаты</option>
                         <option value="link" id="first_do_link">Переход по ссылке</option>
-                        <option value="next_lesson" id="first_do_next_lesson">Открыть следующий урок</option>
+                        <option value="next_lesson" id="first_do_next_lesson">Открыть следующее видео</option>
                     </select>
                     <div class="popup__body-item popup__margin" id="popup__body-list-select">
                         <div class="popup__body-item">
@@ -89,7 +89,7 @@
                     <label for="second_do">После нажатия на кнопку формы:</label>
                     <select name="second_do" id="second_do">
                         <option value="link" id="second_do_link">Переход по ссылке</option>
-                        <option value="next_lesson" id="second_do_next_lesson">Открыть следующий урок</option>
+                        <option value="next_lesson" id="second_do_next_lesson">Открыть следующее видео</option>
                         <option value="file" id="second_do_file">Отправка файла</option>
                     </select>
                     <div class="popup__body-item popup__margin" id="popup__body-form-2">
@@ -115,7 +115,6 @@
                                     <span class="input__file-button-text">Добавить</span>
                                 </label>
                             </div>
-
                         </div>
                     </div>
                 </div>

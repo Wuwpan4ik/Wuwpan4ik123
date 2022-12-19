@@ -39,6 +39,7 @@
     $router->addRoute("/Account/MainSettings", "AccountController.php", "SaveSettings");
     $router->addRoute("/Account/UserSettings", "AccountController.php", "SaveUserSettings");
     $router->addRoute("/Account/SaveSchoolSettings", "AccountController.php", "SaveSchoolSettings");
+    $router->addRoute("/Account/SaveSocialSettings", "AccountController.php", "SaveSocialSettings");
 
     $router->addRoute("/UserMain", "UserMain.php");
     $router->addRoute("/UserLogin", "UserLogin.php");
@@ -79,6 +80,7 @@
     $router->addRoute("/Funnel/$item_id/rename", "FunnelController.php", "RenameVideo");
     $router->addRoute("/Funnel/$item_id/change", "FunnelController.php", "ChangeVideo");
     $router->addRoute("/Funnel/$item_id/settings", "FunnelController.php", "PopupSettings");
+    $router->addRoute("/Funnel/$item_id/checkSettings", "CheckFunnelSettingsController.php", "CheckPopupSettings", false);
     $router->addRoute("/Funnel/getCourseList", "UserController.php", "GetCourseList");
     $router->addRoute("/Funnel/$item_id/getFunnelPopup", "UserController.php", "GetFunnelPopup");
 
@@ -100,6 +102,7 @@
 
     $router->addRoute("/StatisticsController/GetStatistics", "StatisticsController.php", 'GetAllStatistics');
     $router->addRoute("/StatisticsController/GetWeek", "StatisticsController.php", 'GetWeekGraph');
+    $router->addRoute("/StatisticsController/GetWeekDays", "StatisticsController.php", 'GetWeekDays');
 
     $router->addRoute("/UserController/getCourse", "UserController.php", 'getCourseSite');
     $router->addRoute("/UserController/getDisableCourse", "UserController.php", 'getDisableCourseSite');

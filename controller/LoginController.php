@@ -240,7 +240,7 @@
 			</head>
 			<body>
 				<script>
-					window.location.replace("/Account");
+					window.location.replace("/");
 				</script>
 			</body>
 			</html>';

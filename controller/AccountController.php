@@ -158,6 +158,16 @@ class AccountController extends ACoreCreator {
         $_SESSION["user"]['second_name'] = $second_name;
     }
 
+    function SaveSocialSettings() {
+        $social = $_POST['social'];
+        $link = $_POST['link'];
+        if ($this->m->isUserSocials()) {
+            $this->m->db->execute("UPDATE `user_contacts` SET `". $social ."` = '". $link ."' WHERE user_id = " . $_SESSION['user']['id']);
+        } else {
+            $this->m->db->execute("INSERT INTO `user_contacts` (`". $social ."`, `user_id`) VALUES ('". $link ."', ". $_SESSION['user']['id'] .")");
+        }
+    }
+
     function get_content()
     {
         echo '<!DOCTYPE html>

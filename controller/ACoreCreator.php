@@ -6,7 +6,7 @@ if (!class_exists('PHPMailer\PHPMailer\Exception'))
     require '/vendor/phpmailer/phpmailer/src/PHPMailer.php';
 }
 
-    abstract class ACoreCreator {
+    abstract class  ACoreCreator {
 
         protected $m;
         protected $ourEmail = "dimalim110@gmail.com";
@@ -26,7 +26,7 @@ if (!class_exists('PHPMailer\PHPMailer\Exception'))
             if (isset($_SESSION['user']['is_creator']) && $_SESSION['user']['is_creator'] == 0) {
                 header("Location: /UserMain");
             } else if (!isset($_SESSION['user']) || is_null($_SESSION['user'])) {
-                header("Location: /reg");
+                header("Location: /login");
             }
         }
 
