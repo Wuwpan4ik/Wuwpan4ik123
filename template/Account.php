@@ -119,7 +119,7 @@
                                             </div>
 
                                             <div class="select-account social-network">
-                                                <div id="myMultiselect" class="multiselect">
+                                                <div id="myMultiselect" class=" multiselect">
                                                     <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
                                                         <select class="form-select">
                                                             <option name="currency"  id="name">Выберите валюту</option>
@@ -146,7 +146,7 @@
                                                         </select>
                                                         <div class="overSelect"></div>
                                                     </div>
-                                                    <div id="mySelectOptions">
+                                                    <div class="mySelectOptions">
                                                         <label class="item">Вконтакте<input class="custom-checkbox social__input" type="radio" value="vk" /><label for="happy"></label></label>
                                                         <label class="item">WhatsApp<input class="custom-checkbox social__input" type="radio" value="whatsapp" /><label for="happy"></label></label>
                                                         <label class="item">Твиттер<input class="custom-checkbox social__input" type="radio" value="twitter" /><label for="happy"></label></label>
@@ -240,22 +240,19 @@
                                                 <div id="myMultiselect" class="multiselect">
                                                     <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
                                                         <select class="form-select">
-                                                            <option name="niche"  id="name">Выберите вашу нишу</option>
+                                                            <option name="niche" id="name">Выберите вашу нишу</option>
                                                         </select>
                                                         <div class="overSelect"></div>
                                                     </div>
                                                     <div class="mySelectOptions">
-                                                        <?
+                                                        <?php
                                                         $options = ["Изотерика", "Обучение", "Дизайн", "Политика", "Спорт", "Игры", "Животные"];
                                                         for($i = 0; $i<7; $i++){?>
-                                                          <label class="item"><?=$options[$i]?><input class="custom-checkbox" type="radio" value="<?=$options[$i]?>" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label><?
-                                                        }
-                                                        ?>
+                                                          <label class="item"><?=$options[$i]?><input class="custom-checkbox" type="radio" value="<?=$options[$i]?>" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                        <?php } ?>
                                                     </div>
                                                 </div>
                                             </div>
-
-
 
 
                                         </div>
@@ -434,7 +431,7 @@
 
 
                 </div>
-                        <div class="exit-settings popup-tariff active">
+                        <div class="exit-settings popup-tariff">
                             <div class="popup-tariff-body">
                                 <div class="popup__title">
                                     Если вы покинете страницу </br>введенные  вами данные </br> не сохраняться
