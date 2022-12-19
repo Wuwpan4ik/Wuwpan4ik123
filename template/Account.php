@@ -130,7 +130,7 @@
                                         <div class="field">
                                             <div class="select-account social-network">
                                                 <div id="myMultiselect" class="multiselect">
-                                                    <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea()">
+                                                    <div id="mySelectLabel" class="selectBox">
                                                         <select class="form-select">
                                                             <option id="name">Выберите соц сеть</option>
                                                         </select>
@@ -149,7 +149,7 @@
                                             </div>
                                             <div class="select-account social-network">
                                                 <div id="myMultiselect" class="multiselect">
-                                                    <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea()">
+                                                    <div id="mySelectLabel" class="selectBox">
                                                         <select class="form-select">
                                                             <option id="name">Выберите соц сеть</option>
                                                         </select>
@@ -593,21 +593,6 @@
         console.log(second_button);
         second_button.click();
     });
-    // check_button.addEventListener('click', function () {
-    //     const request = new XMLHttpRequest();
-    //
-    //     const url = "?option=UrlController&site_url=" + check_url.value;
-    //
-    //     request.open('GET', url);
-    //
-    //     request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-    //     request.addEventListener("readystatechange", () => {
-    //         if (request.readyState === 4 && request.status === 200) {
-    //             message.innerHTML = request.responseText;
-    //         }
-    //     });
-    //     request.send();
-    // });
 
 </script>
 <script src="/js/getNotifications.js"></script>

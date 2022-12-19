@@ -52,7 +52,7 @@
                     <label for="first_do">Шрифт для описания</label>
                     <div class="select-account social-network">
                         <div id="myMultiselect" class="multiselect">
-                            <div id="mySelectLabel" class="selectBox">
+                            <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
                                 <select class="form-select">
                                     <option id="name">Выберите шрифт</option>
                                 </select>
@@ -75,7 +75,7 @@
                     <label for="first_do">Шрифт для заголовоков</label>
                     <div class="select-account social-network">
                         <div id="myMultiselect" class="multiselect">
-                            <div id="mySelectLabel" class="selectBox">
+                            <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
                                 <select class="form-select">
                                     <option id="name">Выберите шрифт</option>
                                 </select>
