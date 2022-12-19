@@ -176,6 +176,25 @@
 <script src="../js/slick.min.js"></script>
 <script src="../js/sliders.js"></script>
 <script>
+    let colors = document.querySelectorAll('.popup-styles-color');
+    let videoBtn = document.querySelector('.button-video');
+
+    colors.forEach(item =>{
+        item.addEventListener('click', () =>{
+            item.classList.toggle('active')
+            if(item.classList.contains('active')){
+                videoBtn.style.background = item.style.background;
+                videoBtn.style.boxShadow = item.style.boxShadow;
+                    colors.forEach(el =>{
+                    el.classList.remove('active');
+                    item.classList.add('active');
+                })
+
+            }
+        })
+    })
+</script>
+<script>
     let generalSettings = document.querySelectorAll('.general-settings');
 
     generalSettings.forEach(item =>{

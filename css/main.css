@@ -2011,7 +2011,35 @@ td:nth-child(1){
   padding: 8px 16px;
   border-radius: 8px;
 }
+.popup-styles-colors{
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 20px 0 0 0;
 
+}
+.popup-styles-color {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 22%;
+  height: 48px;
+  border-radius: 8px;
+  background: #000;
+  box-shadow: none!important;
+}
+.popup-styles-color img {
+
+  opacity: 0;
+  transition: 0.3s;
+}
+.popup-styles-color:hover img{
+  opacity: 1;
+}
+.popup-styles-color.active img{
+
+  opacity: 1;
+}
 .mySelectOptions {
   position: absolute;
   width: 100%;
