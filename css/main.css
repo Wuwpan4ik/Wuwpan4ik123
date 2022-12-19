@@ -210,10 +210,22 @@ p {
   display: block;
 }
 .button-add-button-edit{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   padding: 12px 0;
   border: 1px solid #E1E3E6;
   border-radius: 8px;
+  color: #757D8A;
+  font-size: 16px;
+
 }
+.button-add-button-edit img{
+  transform: translateY(0px)!important;
+  padding: 0 !important;
+}
+
 .close {
   display: inline-block;
   border: 1px solid #0000cc;
@@ -1668,7 +1680,9 @@ td:nth-child(1){
   background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);
   cursor: pointer;
 }
-
+.popup__edit-btn:hover{
+  background: linear-gradient(180deg, #5B78E3 0%, #2A4BC5 100%);
+}
 .popup__body-container {
   display: -webkit-box;
   display: -ms-flexbox;

@@ -42,7 +42,7 @@
 
         </div>
          <button onclick="click_settings(this)" type="button" class="button__edit button__do-block <?php if (!isset($v['button_text'])) { ?> display-none <?php } ?>" style="background: #757D8A;text-align: center"><img style="width: 25px; transform: translate(0, 0)" src="/img/actions.svg">Действия</button>
-            <?php if (!isset($v['button_text'])) { ?> <button type="button" class="button-add-button-edit">Добавить кнопку</button><?php } ?>
+            <?php if (!isset($v['button_text'])) { ?> <button type="button" class="button-add-button-edit"><img src="../img/addSocialNetwork.svg" alt="">Добавить кнопку</button><?php } ?>
         <?php } else { ?>
             <div class="funnel-input input_focus">
                 <label for="name" class="label_focus">Укажите заголовок:</label>
