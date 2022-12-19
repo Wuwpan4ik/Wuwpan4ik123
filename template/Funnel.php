@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/lessons.css">
     <link rel="stylesheet" href="/css/main.css">
+
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 </head>
@@ -251,6 +252,7 @@
     });
 </script>
 <script src="/js/getNotifications.js"></script>
+<script src="/js/customSelect.js"></script>
 </body>
 
 </html>

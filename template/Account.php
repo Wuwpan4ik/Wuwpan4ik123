@@ -136,7 +136,26 @@
                                                         </select>
                                                         <div class="overSelect"></div>
                                                     </div>
-                                                    <div id="mySelectOptions">
+                                                    <div class="mySelectOptions">
+                                                        <label class="item">Вконтакте<input class="custom-checkbox" type="radio" value="Vk" /><label for="happy"></label></label>
+                                                        <label class="item">Твиттер<input class="custom-checkbox" type="radio" value="Twitter" /><label for="happy"></label></label>
+                                                        <label class="item">Фейсбук<input class="custom-checkbox" type="radio" value="Facebook" /><label for="happy"></label></label>
+                                                        <label class="item">Инстаграм<input class="custom-checkbox" type="radio"  value="Instagram" /><label for="happy"></label></label>
+                                                        <label class="item">Ютуб<input class="custom-checkbox" type="radio"  value="Youtube" /><label for="happy"></label></label>
+                                                        <label class="item">Телеграм<input class="custom-checkbox" type="radio"  value="Telegram" /><label for="happy"></label></label>
+                                                        <label class="item">Сайт<input class="custom-checkbox" type="radio" value="Site" /><label for="happy"></label></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="select-account social-network">
+                                                <div id="myMultiselect" class="multiselect">
+                                                    <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea()">
+                                                        <select class="form-select">
+                                                            <option id="name">Выберите соц сеть</option>
+                                                        </select>
+                                                        <div class="overSelect"></div>
+                                                    </div>
+                                                    <div class="mySelectOptions">
                                                         <label class="item">Вконтакте<input class="custom-checkbox" type="radio" value="Vk" /><label for="happy"></label></label>
                                                         <label class="item">Твиттер<input class="custom-checkbox" type="radio" value="Twitter" /><label for="happy"></label></label>
                                                         <label class="item">Фейсбук<input class="custom-checkbox" type="radio" value="Facebook" /><label for="happy"></label></label>
@@ -562,45 +581,7 @@
         })
     })
 
-    /*Select*/
-    function checkboxStatusChange() {
-        let multiselectOption =  document.getElementById("name");
-        let values = [];
-        let checkboxes = document.getElementById("mySelectOptions");
-        let checkedCheckboxes = checkboxes.querySelectorAll('input');
 
-        checkedCheckboxes.forEach(item =>{
-
-            item.addEventListener('click', function(){
-                if(item.checked = true){
-                    checkedCheckboxes.forEach(el =>{
-                        el.checked = false
-                        el.parentElement.classList.remove('active')
-                        checkboxes.style.display = "none";
-                    })
-                    item.checked = true
-                    item.parentElement.classList.add('active')
-                    values = ( item.getAttribute('value'));
-                }
-                multiselectOption.innerText = values;
-            })
-        })
-    }
-
-    checkboxStatusChange()
-    function toggleCheckboxArea(onlyHide = false) {
-        let checkboxes = document.getElementById("mySelectOptions");
-        const displayValue = checkboxes.style.display;
-
-        if (displayValue != "flex") {
-            if (onlyHide == false) {
-                checkboxes.style.display = "flex";
-                checkboxes.style.flexDirection = "column";
-            }
-        } else {
-            checkboxes.style.display = "none";
-        }
-    }
 
     const button_submit = document.querySelector('#profile_send');
     const check_url = document.querySelector('#check_url');
@@ -631,6 +612,7 @@
 </script>
 <script src="/js/getNotifications.js"></script>
 <script src="/js/customInputs.js"></script>
+<script src="/js/customSelect.js"></script>
 <script src="/js/printFailName.js" ></script>
 </body>
 
