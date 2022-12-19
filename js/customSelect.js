@@ -3,9 +3,6 @@ function checkboxStatusChange() {
 
     let values = [];
     let checkboxes = document.querySelector(".mySelectOptions");
-
-
-
         let checkedCheckboxes = document.querySelectorAll('input');
         let multiselectOption =  document.querySelector("#name");
         checkedCheckboxes.forEach(item =>{
@@ -31,17 +28,20 @@ function checkboxStatusChange() {
 
 checkboxStatusChange()
 function toggleCheckboxArea(onlyHide = false) {
-    let checkboxes = document.querySelectorAll(".mySelectOptions");
-    checkboxes.forEach( item => {
-        const displayValue = item.style.display;
-        if (displayValue != "flex") {
-            if (onlyHide == false) {
-                item.style.display = "flex";
-                item.style.flexDirection = "column";
+    let selectBoxes = document.querySelectorAll(".selectBox");
+    selectBoxes.forEach(item => {
+        item.addEventListener('click', function () {
+            let option = item.parentElement.querySelector('.mySelectOptions');
+            let displayValue = option.style.display;
+            if (displayValue != "flex") {
+                if (onlyHide == false) {
+                    option.style.display = "flex";
+                    option.style.flexDirection = "column";
+                }
+            } else {
+                option.style.display = "none";
             }
-        } else {
-            item.style.display = "none";
-        }
+        })
     })
-
 }
+toggleCheckboxArea();
