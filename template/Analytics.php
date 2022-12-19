@@ -102,7 +102,7 @@
 
                             </table>
 
-                            <div class="no-data">
+                            <div class="no-data" id="contact__havent_data">
                                 <p>Данных пока нет</p>
                             </div>
                         </div>
@@ -179,7 +179,7 @@
                                 </tbody>
 
                             </table>
-                            <div class="no-data">
+                            <div class="no-data" id="order__havent_data">
                                 <p>Данных пока нет</p>
                             </div>
                         </div>
@@ -316,10 +316,10 @@
             </div>
 
         </div>
-        <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
-        <script src="../js/script.js" ></script>
-        <div class="display-none" id="currency"><?php echo isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></div>
-  </body>
+  <div class="display-none" id="currency"><?php echo isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></div>
+</body>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
+  <script src="../js/script.js" ></script>
 
 <!--Проверка Clients-->
 <script>
@@ -355,7 +355,10 @@
     request.setRequestHeader('Content-Type', 'application/x-www-form-url');
     request.addEventListener("readystatechange", () => {
         if (request.readyState === 4 && request.status === 200) {
-            tab.innerHTML = request.responseText;
+            if (request.responseText) {
+                tab.innerHTML = request.responseText;
+                document.querySelector('#order__havent_data').classList.add('display-none');
+            }
         }
     });
     request.send();
@@ -378,7 +381,10 @@
             request.setRequestHeader('Content-Type', 'application/x-www-form-url');
             request.addEventListener("readystatechange", () => {
                 if (request.readyState === 4 && request.status === 200) {
-                    tab.innerHTML = request.responseText;
+                    if (request.responseText) {
+                        tab.innerHTML = request.responseText;
+                        document.querySelector('#order__havent_data').classList.add('display-none');
+                    }
                 }
             });
             request.send();
@@ -516,33 +522,21 @@
           }
       }
 
-      //Для фильтра по "Сначала новые" для клиентов
-      filtersBtns[0].onclick = () =>{
-          filtersBtns[0].classList.add('active');
-          filtersBtns[1].classList.remove('active');
-          filtersBtns[2].classList.remove('active');
-          filtersBtns[3].classList.remove('active');
-      }
-      //Для фильтра по "Сначала старые" для клиентов
-      filtersBtns[1].onclick = () =>{
-          filtersBtns[1].classList.add('active');
-          filtersBtns[0].classList.remove('active');
-          filtersBtns[2].classList.remove('active');
-          filtersBtns[3].classList.remove('active');
-      }
-      //Для фильтра по "Сначала новые" для заказов
-      filtersBtns[2].onclick = () =>{
-          filtersBtns[2].classList.add('active');
-          filtersBtns[1].classList.remove('active');
-          filtersBtns[0].classList.remove('active');
-          filtersBtns[3].classList.remove('active');
-      }
-      //Для фильтра по "Сначала старые" для закаов
-      filtersBtns[3].onclick = () =>{
-          filtersBtns[3].classList.add('active');
-          filtersBtns[1].classList.remove('active');
-          filtersBtns[2].classList.remove('active');
-          filtersBtns[0].classList.remove('active');
+      filterBtn.forEach(item => function (){
+          item.onclick = () => {
+              filterActive(item);
+          }
+      })
+
+      // Фильтр Новых старых
+      function filterActive(filter) {
+          filterBtn.forEach(item => function (){
+              if (item === filter) {
+                  item.classList.add('active');
+              } else {
+                  item.classList.remove('active');
+              }
+          })
       }
   </script>
 
@@ -558,7 +552,10 @@
     client_request.setRequestHeader('Content-Type', 'application/x-www-form-url');
     client_request.addEventListener("readystatechange", () => {
         if (client_request.readyState === 4 && client_request.status === 200) {
-            client_tab.innerHTML = client_request.responseText;
+            if (client_request.responseText) {
+                client_tab.innerHTML = client_request.responseText;
+                document.querySelector('#contact__havent_data').classList.add('display-none');
+            }
         }
     });
     client_request.send();
@@ -582,7 +579,10 @@
             request.setRequestHeader('Content-Type', 'application/x-www-form-url');
             request.addEventListener("readystatechange", () => {
                 if (request.readyState === 4 && request.status === 200) {
-                    client_tab.innerHTML = request.responseText;
+                    if (request.responseText) {
+                        client_tab.innerHTML = request.responseText;
+                        document.querySelector('#contact__havent_data').classList.add('display-none');
+                    }
                 }
             });
             request.send();

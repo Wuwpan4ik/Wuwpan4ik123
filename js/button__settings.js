@@ -1,6 +1,4 @@
 const body = document.querySelector('body');
-const close = document.querySelector('.close__btn');
-const entryDisplay = document.querySelector('#popup__background');
 const popup = document.querySelector('#popup');
 const buttonChanges = document.querySelectorAll('.button__edit');
 const form = document.querySelector('#popup__body-form');
@@ -9,6 +7,54 @@ const first_select = document.querySelector('#first_do');
 const second_select = document.querySelector('#second_do');
 // Поля option в форме
 const names_option = {'email': "Ваша почта", 'name': "Ваше имя", 'tel': "Ваш номер телефон"};
+
+// Сохранение / закрытие
+function save(check = false) {
+    // if (!check) {
+        document.getElementById('send__edit-video').click();
+    // } else {
+    //     let input = document.createElement('input');
+    //     input.name = 'save';
+    //     input.value = 'true';
+    //     document.getElementById('send__edit-video').before(input);
+    //
+    //     let requestDisable = new XMLHttpRequest();
+    //
+    //     let urlDisable = document.getElementById('send__edit-video').parentElement.action;
+    //
+    //     requestDisable.open('GET', urlDisable);
+    //
+    //     requestDisable.setRequestHeader('Content-Type', 'application/x-www-form-url');
+    //     requestDisable.addEventListener("readystatechange", () => {
+    //         if (requestDisable.readyState === 4 && requestDisable.status === 200) {
+    //             console.log(requestDisable)
+    //         }
+    //     })
+    //     requestDisable.send();
+    // }
+}
+
+const close = document.querySelector('.close__btn');
+const entryDisplay = document.querySelector('#popup__background');
+close.addEventListener('click', function () {
+    toggleOverflow();
+    closePopup();
+    clearPopup();
+    defaultPopup(first_select);
+    defaultPopup(second_select);
+    document.querySelector('.popup__bonus').classList.remove('active');
+});
+
+entryDisplay.onclick = function (event) {
+    if (event.target === entryDisplay) {
+        toggleOverflow();
+        closePopup();
+        clearPopup();
+        defaultPopup(first_select);
+        defaultPopup(second_select);
+        document.querySelector('.popup__bonus').classList.remove('active');
+    }
+}
 
 function addPopup(input) {
     if (input === 'list') {
@@ -203,10 +249,6 @@ async function addFormItem (elem, name = null) {
     }
 }
 
-function save() {
-    document.getElementById('send__edit-video').click();
-}
-
 function addSecondOptions(options) {
     let div = ``;
     options.forEach((item)=> {
@@ -379,6 +421,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelector('.button-click').innerHTML = button_text;
 
             id_item.value = item.parentElement.querySelector('input[type="hidden"]').value;
+            document.querySelector('#initButton').action = "/Funnel/"+ item.parentElement.querySelector('input[type="hidden"]').value +"/settings"
             entryDisplay.classList.toggle('display-flex');
             toggleOverflow();
 
@@ -407,24 +450,4 @@ document.addEventListener('DOMContentLoaded', function () {
             // })
         })
     })
-
-    close.addEventListener('click', function () {
-        toggleOverflow();
-        closePopup();
-        clearPopup();
-        defaultPopup(first_select);
-        defaultPopup(second_select);
-        document.querySelector('.popup__bonus').classList.remove('active');
-    });
-
-    entryDisplay.onclick = function (event) {
-        if (event.target === entryDisplay) {
-            toggleOverflow();
-            closePopup();
-            clearPopup();
-            defaultPopup(first_select);
-            defaultPopup(second_select);
-            document.querySelector('.popup__bonus').classList.remove('active');
-        }
-    }
 });

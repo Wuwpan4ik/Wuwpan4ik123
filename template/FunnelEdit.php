@@ -247,14 +247,14 @@
     </div>
 
 </div>
-<div class="exit-funnel-edit popup-tariff active">
+<div class="exit-funnel-edit popup-tariff">
     <div class="popup-tariff-body">
         <div class="popup__title">
             У вас остались  не <br> сохраненные данные
         </div>
         <div class="popup__buttons">
             <button id="close-popup" class="popup__btn popup__white">Выйти</button>
-            <button class="popup__btn popup__blue">Сохранить</button>
+            <button id="save-popup" class="popup__btn popup__blue">Сохранить</button>
         </div>
     </div>
 </div>
@@ -298,7 +298,6 @@
                             <span class="input__file-button-text">Добавить</span>
                         </label>
                     </div>
-
                 </div>
                 <div class="popup__form">
                     <button class="popup__btn popup__white" id="popup__not-change" >Отменить</button>
@@ -331,20 +330,43 @@
 <script>
     let exitFunnelEdit = document.querySelector('.exit-funnel-edit');
     let exitFunnelEditClose = document.querySelector('#close-popup');
+    let saveFunnelEditClose = document.querySelector('#save-popup');
 
-    exitFunnelEditClose.addEventListener('click', function(){
-        exitFunnelEdit.classList.remove('active');
-    })
+    async function DeleteSave() {
+        exitFunnelEditClose.addEventListener('click', function(){
+            return false;
+        })
 
-    window.onload = () =>{
+        saveFunnelEditClose.addEventListener('click', function(){
+            return true;
+        })
+    }
+
+    var promiseSave = new Promise(async function(resolve, reject) {
+
+        exitFunnelEditClose.addEventListener('click', function(){
+            resolve("Сломалось!");
+        })
+
+        saveFunnelEditClose.addEventListener('click', function(){
+            resolve("Работает!");
+        })
+
+    });
+    function SaveOrRemoveSettings() {
+        promiseSave.then(async function (result) {
+            result(); // "Обрабатываем результат!"
+        });
+    }
+
+    window.onload = () => {
         let inputs = document.querySelectorAll('.input_focus input, textarea');
         let inputsLabel = document.querySelectorAll('.input_focus label');
         let inputClear = document.querySelectorAll('.input_focus span');
-        let textAreas = document.querySelectorAll('.input_focus textarea');
 
-        for(let i =0; i < inputs.length; i++){
-            inputs[i].addEventListener('input', function(){
-                if(inputs[i].value != ""){
+        for(let i =0; i < inputs.length; i++) {
+            inputs[i].addEventListener('input', function() {
+                if (inputs[i].value != "") {
                     inputsLabel[i].classList.add('activeLabel');
                     inputClear[i].classList.add('has_content');
                 }
@@ -354,7 +376,7 @@
                 }
             });
 
-            inputClear[i].onclick = () =>{
+            inputClear[i].onclick = () => {
                 inputsLabel[i].classList.remove('activeLabel')
                 inputs[i].value = "";
                 inputClear[i].classList.remove('has_content')
@@ -382,12 +404,6 @@
         })
         let notChangeVideo = document.querySelectorAll('#popup__not-change');
 
-        // notChangeVideo.onclick = function (event) {
-        //     if (event.target === notChangeVideo) {
-        //         reload.classList.remove('display-block');
-        //         toggleOverflow();
-        //     }
-        // }
         notChangeVideo.forEach(item => {
             item.onclick = function (event) {
                 if (event.target === item) {
@@ -414,7 +430,6 @@
         }
     }
 
-
     let deletes = document.querySelector('.popup__delete');
 
     function toggleOverflow () {
@@ -423,13 +438,10 @@
     function deleteDirectory(elem) {
         toggleOverflow();
         entryDisplayDelete.classList.add('display-block');
-        deletes.addEventListener('click',function () {
+        deletes.addEventListener('click', function () {
             window.location.href = '/Funnel/' + elem.parentElement.parentElement.parentElement.querySelector('.new_name').children[0].value + "/delete";
         });
     }
-
-
-
 
     function uploadFile(target) {
         document.getElementById("file-name").innerHTML = (target.files[0].name);
@@ -521,7 +533,7 @@
     function getFunnelPopup(funnel_content_id) {
         let request = new XMLHttpRequest();
 
-        let url = "/Funnel/"+ funnel_content_id +"/getFunnelPopup?";
+        let url = "/Funnel/"+ funnel_content_id +"/getFunnelPopup";
 
         request.open('GET', url);
 

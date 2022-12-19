@@ -150,6 +150,7 @@
 
         public function PopupSettings() {
             //Форма
+            $save = $_POST['save'] ?? null;
             $id_video = $_POST['item_id'];
             $funnel_content = $this->m->db->query("SELECT * FROM funnel_content WHERE id = '$id_video'");
             $funnel = $this->m->db->query("SELECT * FROM funnel WHERE id = ". $funnel_content[0]['funnel_id']);
@@ -265,7 +266,11 @@
             }
 
             $videoBtnHTMLResult = json_encode($videoBtnHTML, JSON_UNESCAPED_UNICODE);
-            $this->m->db->execute("UPDATE `funnel_content` SET `popup` = '$videoBtnHTMLResult'$button__standart WHERE id = '$id_video'");
+            if ($save) {
+                $this->m->db->execute("UPDATE `funnel_content` SET `popup` = '$videoBtnHTMLResult'$button__standart WHERE id = '$id_video'");
+            } else {
+                echo "Есть различия";
+            }
             return True;
         }
 
