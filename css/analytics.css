@@ -470,7 +470,16 @@ th {
     border-radius: 8px;
     padding: 24px;
     background: #FFFFFF;
+    cursor: pointer;
+    opacity: 0.9;
 }
+
+.profit__item:hover {
+    transform: translateY(-5px);
+    transition-duration: 0.5s;
+    opacity: 1;
+}
+
 
 span.freen_profit {
     -ms-flex-item-align: center;

@@ -212,14 +212,12 @@
                                 <div class="profit__row">
                                     <div class="profit__item profit__user">
                                         <div class="profit_header"><h3>Доход на одного пользователя</h3></div>
-                                        <div class="profit_sum"><span id="one__user"></span>
-                                        </div>
+                                        <div class="profit_sum"><span id="one__user"></span></div>
                                     </div>
                                     <div class="profit__item profit_down profit__new-user">
                                         <div class="profit_header"><h3>Новые пользователи/мес</h3></div>
-                                        <div class="profit_sum"><span id="first__buy-count"></span>
-                                        </div>
-                                        </div>
+                                        <div class="profit_sum"><span id="first__buy-count"></span></div>
+                                    </div>
                                 </div>
                                 <div class="allprofit">
                                     <div class="profit_header"><h3>Общий доход</h3><div class="profit_header_dots"></div>
@@ -403,24 +401,30 @@
                   item.innerHTML = array.week + currency;
               })
           } else {
-            document.querySelector(".profit__week").classList.add("display-none");
+              document.querySelector('.profit__week .profit_footer').classList.add('display-none');
+              document.querySelector('.profit__week .profit_sum').innerHTML = "Нет данных";
+              document.querySelector('.rightSideFirst').remove();
           }
 
           if (array.month) {
               document.getElementById('this_month').innerHTML = array.month + currency;
           } else {
-              document.querySelector(".profit__month").classList.add("display-none");
+              document.querySelector('.profit__month .profit_footer').classList.add('display-none');
+              document.querySelector('.profit__month .profit_sum').innerHTML = "Нет данных";
           }
+
           if (array.one_user) {
               document.getElementById('one__user').innerText = array.one_user + currency;
           } else {
-              document.querySelector(".profit__user").classList.add("display-none");
+              document.querySelector('.profit__user .profit_footer').classList.add('display-none');
+              document.querySelector('.profit__user .profit_sum').innerHTML = "Нет данных";
           }
 
           if (array.count_first_buy) {
               document.getElementById('first__buy-count').innerText = array.count_first_buy;
           } else {
-              document.querySelector(".profit__new-user").classList.add("display-none");
+              document.querySelector('.profit__new-user .profit_footer').classList.add('display-none');
+              document.querySelector('.profit__new-user .profit_sum').innerHTML = "Нет данных";
           }
 
           let week_diff = array.week - array.prev_week;

@@ -1,12 +1,12 @@
 interval = (videoLocal) => {
     const interval = setInterval(function () {
         let progressBar = videoLocal.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector('.slick-dots li.slick-active button');
-        width = (videoLocal.currentTime * 100) / videoLocal.duration;
+        let width = (videoLocal.currentTime * 100) / videoLocal.duration;
         progressBar.style.background = `linear-gradient(to right,white 0%, white ${width}%,lightgrey ${width}% , lightgrey ${100 - width}%)`;
         if (videoLocal.paused) {
             clearTimeout(interval);
         }
-    }, 300);
+    }, 100);
 }
 
 document.addEventListener("DOMContentLoaded", function () {
