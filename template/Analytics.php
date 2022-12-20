@@ -289,24 +289,7 @@
                                     </div>
                                     <div class="profit_footer">На  <span class="week_diff"></span> <span class="week_diff-text"></span></div>
                                 </div>
-                                <div class="rightSideFirst">
-
-                                    <div class="Analytics-graphic__profitabilityIndicators">
-                                        <canvas width="264px" height="70px" class="graphic__profitabilityIndicators" id="profitabilityIndicators"></canvas>
-                                    </div>
-                                    <div class="rightSideFirst_header">
-                                        <div class="rightSideFirstText1">
-                                            <h3 class="full_week_value profit_sum"></h3>
-                                            <span>показатели доходности</span>
-                                        </div>
-                                        <div class="rightSideFirstText2">
-                                            <span class="week_procent"></span>
-                                        </div>
-                                    </div>
-                                    <div class="profit_footer">На  <span class="week_diff"></span> <span class="week_diff-text"></span></div>
                                 </div>
-
-                            </div>
                             </div>
                         </div>
                     </div>
@@ -404,6 +387,7 @@
   request1.addEventListener("readystatechange", () => {
       if (request1.readyState === 4 && request1.status === 200) {
           const array = JSON.parse(request1.responseText);
+          console.log(array)
 
           if (array.prev_week == null) {
               array.prev_week = 0;

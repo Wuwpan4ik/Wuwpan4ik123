@@ -67,54 +67,6 @@ document.addEventListener('DOMContentLoaded', function (){
 
 
             });
-            /*profitabilityIndicators*/
-            const ctx2 = document.getElementById('profitabilityIndicators').getContext('2d');
-
-            const ChartProfitabilityIndicators = new Chart(ctx2, {
-
-                type: 'line',
-                data: {
-                    labels: ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'],
-                    datasets: [{
-                        tension: 0.6,
-                        lineCap: 'round',
-                        borderJoinStyle: "round",
-                        data: array_money,
-                        borderColor: [
-                            '#4E73F8'
-                        ],
-                        borderWidth: 3,
-                        pointBackdropPadding: 2,
-                        pointWidth: 2,
-                        pointBackgroundWidth: 6,
-                        pointBackgroundColor: '#fff',
-                        pointBorderWidth: 3,
-                        pointBorderColor: '#4E73F8',
-
-                    }]
-                },
-                options: {
-
-                    pointRadius: [1, 1, 1, 1, 1, 1, 5],
-                    scales: {
-                        x: {
-                            display: false,
-                        },
-                        y: {
-                            display: false,
-                        },
-                    },
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                    },
-
-                },
-
-
-            });
         }
     });
     request2.send();
