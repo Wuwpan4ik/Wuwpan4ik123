@@ -19,7 +19,6 @@
 </head>
 
 <body>
-<?=$_SESSION['error']?>
 
 <style>
     .popup__background {
@@ -246,6 +245,7 @@
     function _(abc) {
         return document.getElementById(abc);
     }
+
     function uploadFileHandler() {
         var file = document.getElementById("video").files[0];
         if (file.length === 0) {

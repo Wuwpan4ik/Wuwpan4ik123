@@ -8,6 +8,25 @@
             $this->db = $db;
         }
 
+        protected function GetMoneyForWeekInterval($prev = false) {
+            if ($prev) {
+                $prev_week = "- INTERVAL 1 WEEK";
+            }
+            return $this->db->query("select sum(give_money) as money, to_char(achivment_date, 'DAY') as day
+                                    from clients WHERE YEAR(`achivment_date`) = YEAR(NOW()) AND WEEK(`achivment_date`, 1) = WEEK(NOW() $prev_week, 1) and `creator_id` = ". $_SESSION['user']['id'] ."
+                                    group by day order by mod(to_char(achivment_date, 'DAY') + 5, 7)");
+        }
+
+        protected function GetMoneyForMonthInterval($prev = false) {
+            if ($prev) {
+                $prev_month = "- INTERVAL 1 MONTH";
+            }
+            $days_in_month = date('t');
+            return $this->db->query("select sum(give_money) as money, to_char(achivment_date, 'MONTH') as day
+                                    from clients WHERE YEAR(`achivment_date`) = YEAR(NOW()) AND MONTH(`achivment_date`) = MONTH(NOW() $prev_month) and `creator_id` = 121
+                                    group by day order by mod(to_char(achivment_date, 'MONTH') + 5, $days_in_month)");
+        }
+
         public function getCurrentUser() {
             $result = $this->db->query("SELECT * FROM user WHERE id = " . $_SESSION['user']['id']);
             return $result;
@@ -183,46 +202,44 @@
             return $result;
         }
 
+//      Statistic
+
         public function GetMonthValue()
         {
-            $current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
             $sum = 0;
-            $result = $this->db->query("SELECT give_money from clients WHERE `creator_id` = " . $_SESSION['user']['id'] . " AND `achivment_date` BETWEEN '$current_date' -  interval 1 MONTH AND '$current_date'");
+            $result = $this->GetMoneyForMonthInterval();
             foreach ($result as $item) {
-                $sum += $item['give_money'];
+                $sum += $item['money'];
             }
             return $sum;
         }
 
         public function GetPrevMonthValue()
         {
-            $current_date = date("Y-m-d", mktime(0, 0, 0, date('m') , date('d'), date('Y')));
             $sum = 0;
-            $result = $this->db->query("SELECT give_money from clients WHERE `creator_id` = " . $_SESSION['user']['id'] . " AND `achivment_date` BETWEEN '$current_date' -  interval 2 MONTH AND '$current_date' - interval 1 MONTH");
+            $result = $this->GetMoneyForMonthInterval(true);
             foreach ($result as $item) {
-                $sum += $item['give_money'];
+                $sum += $item['money'];
             }
             return $sum;
         }
 
         public function GetWeekValue()
         {
-            $current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
             $sum = 0;
-            $result = $this->db->query("SELECT give_money from clients WHERE `creator_id` = " . $_SESSION['user']['id'] . " AND `achivment_date` BETWEEN '$current_date' -  interval 1 WEEK AND '$current_date'");
+            $result = $this->GetMoneyForWeekInterval();
             foreach ($result as $item) {
-                $sum += $item['give_money'];
+                $sum += $item['money'];
             }
             return $sum;
         }
 
         public function GetPrevWeekValue()
         {
-            $current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') , date('Y')));
             $sum = 0;
-            $result = $this->db->query("SELECT * from clients WHERE `creator_id` = " . $_SESSION['user']['id'] . " AND `achivment_date` BETWEEN '$current_date' -  interval 2 WEEK AND '$current_date' - interval 1 WEEK");
+            $result = $this->GetMoneyForWeekInterval(true);
             foreach ($result as $item) {
-                $sum += $item['give_money'];
+                $sum += $item['money'];
             }
             return $sum;
         }
@@ -254,50 +271,13 @@
             return $result;
         }
 
-        public function GetWeekGraph()
-        {
-            $current_date_6 = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 6, date('Y')));
-            $current_date_5 = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 5, date('Y')));
-            $current_date_4 = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 4, date('Y')));
-            $current_date_3 = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 3, date('Y')));
-            $current_date_2 = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 2, date('Y')));
-            $current_date_1 = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 1, date('Y')));
-            $current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
-            $result = $this->db->query("select give_money, achivment_date from clients WHERE YEAR(`achivment_date`) = YEAR(NOW()) AND WEEK(`achivment_date`, 1) = WEEK(NOW(), 1) and `creator_id` = ". $_SESSION['user']['id'] ." ORDER BY achivment_date");
-            $array = array_fill(0, 7, 0);
-            foreach ($result as $item) {
-                if ($item['achivment_date'] == $current_date) {
-                    $array[0] += $item['give_money'];
-                }
-                elseif ($item['achivment_date'] == $current_date_1) {
-                    $array[1] += $item['give_money'];
-                }
-                elseif ($item['achivment_date'] == $current_date_2) {
-                    $array[2] += $item['give_money'];
-                }
-                elseif ($item['achivment_date'] == $current_date_3) {
-                    $array[3] += $item['give_money'];
-                }
-                elseif ($item['achivment_date'] == $current_date_4) {
-                    $array[4] += $item['give_money'];
-                }
-                elseif ($item['achivment_date'] == $current_date_5) {
-                    $array[5] += $item['give_money'];
-                }
-                elseif ($item['achivment_date'] == $current_date_6) {
-                    $array[6] += $item['give_money'];
-                }
-            }
-            return array_reverse($array);
-        }
-
         public function GetWeekDays()
         {
-            $result = $this->db->query("select sum(give_money) as money, to_char(achivment_date, 'DAY') as day
-                                    from clients WHERE YEAR(`achivment_date`) = YEAR(NOW()) AND WEEK(`achivment_date`, 1) = WEEK(NOW(), 1) and `creator_id` = 121
-                                    group by day order by mod(to_char(achivment_date, 'DAY') + 5, 7)");
+            $result = $this->GetMoneyForWeekInterval();
             return $result;
         }
+
+//      /Statistic
 
         public function getVideosForPlayer()
         {

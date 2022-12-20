@@ -447,44 +447,42 @@
 <script>
     let entryDisplayDelete = document.querySelector('#delete__back');
     //  Замена видео
-    window.onload = () => {
-        let reload__video = document.querySelectorAll('.reload_video');
-        let reload = document.querySelector('#reload__back');
+    let reload__video = document.querySelectorAll('.reload_video');
+    let reload = document.querySelector('#reload__back');
 
-        let popup__back = document.querySelectorAll('.popup__container');
-        let notDelete = document.querySelector('.popup__not-delete');
+    let popup__back = document.querySelectorAll('.popup__container');
+    let notDelete = document.querySelector('.popup__not-delete');
 
-        reload__video.forEach(item => {
-            item.addEventListener('click', function () {
-                reload.classList.toggle('display-block');
-                _('change__video').action = '/Funnel/'+ item.dataset.id +'/change';
-            })
+    reload__video.forEach(item => {
+        item.addEventListener('click', function () {
+            reload.classList.toggle('display-block');
+            _('change__video').action = '/Funnel/'+ item.dataset.id +'/change';
         })
-        let notChangeVideo = document.querySelectorAll('#popup__not-change');
+    })
+    let notChangeVideo = document.querySelectorAll('#popup__not-change');
 
-        notChangeVideo.forEach(item => {
-            item.onclick = function (event) {
-                if (event.target === item) {
-                    reload.classList.remove('display-block');
-                    toggleOverflow();
-                }
+    notChangeVideo.forEach(item => {
+        item.onclick = function (event) {
+            if (event.target === item) {
+                reload.classList.remove('display-block');
+                toggleOverflow();
             }
-        })
-        popup__back.forEach(item => {
-            item.onclick = function (event) {
-                if (event.target === item) {
-                    reload.classList.remove('display-block');
-                    entryDisplayDelete.classList.remove('display-block');
-                    toggleOverflow();
-                }
-            }
-        })
-
-        notDelete.onclick = function (event) {
-            if (event.target === notDelete) {
+        }
+    })
+    popup__back.forEach(item => {
+        item.onclick = function (event) {
+            if (event.target === item) {
+                reload.classList.remove('display-block');
                 entryDisplayDelete.classList.remove('display-block');
                 toggleOverflow();
             }
+        }
+    })
+
+    notDelete.onclick = function (event) {
+        if (event.target === notDelete) {
+            entryDisplayDelete.classList.remove('display-block');
+            toggleOverflow();
         }
     }
 
