@@ -19,6 +19,7 @@
 </head>
 
 <body>
+<?php print_r($_SESSION['error']) ?>
 
 <style>
     .popup__background {
@@ -281,12 +282,19 @@
 <script src="../js/jquery-3.6.1.min.js"></script>
 <script>
     let form__submit = $(function() {
-        $('.media__form').each(function (){
-            $(this).submit(function(e) {
+        $('.media__form').each(function () {
+            $(this).submit(function (e) {
                 e.preventDefault();
-                $.post(e.target.action, $(this).serialize());
-            });
-        })
+                $.ajax({
+                    url: $(this).attr("action"),
+                    type: $(this).attr("method"),
+                    dataType: "JSON",
+                    data: new FormData(this),
+                    processData: false,
+                    contentType: false
+                });
+            })
+        });
     });
 </script>
 <script src="/js/customInputs.js"></script>
