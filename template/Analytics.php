@@ -196,13 +196,13 @@
                         <div class="geo__profit">
                             <div class="profit__leftSide">
                                 <div class="profit__row">
-                                    <div class="profit__item">
+                                    <div class="profit__item profit__week">
                                         <div class="profit_header"><h3>Доход за неделю</h3><span>Неделя</span></div>
                                         <div class="profit_sum"><span class="full_week_value profit_sum"></span> <span class="week_procent">14.6%</span>
                                         </div>
                                         <div class="profit_footer">На  <span class="week_diff"></span> <span class="week_diff-text"></span></div>
                                     </div>
-                                    <div class="profit__item profit_down">
+                                    <div class="profit__item profit_down profit__month">
                                         <div class="profit_header"><h3>Доход за месяц</h3><span>Месяц</span></div>
                                         <div class="profit_sum"><span id="this_month"></span> <span class="month_procent"></span>
                                         </div>
@@ -210,12 +210,12 @@
                                     </div>
                                 </div>
                                 <div class="profit__row">
-                                    <div class="profit__item">
+                                    <div class="profit__item profit__user">
                                         <div class="profit_header"><h3>Доход на одного пользователя</h3></div>
                                         <div class="profit_sum"><span id="one__user"></span>
                                         </div>
                                     </div>
-                                    <div class="profit__item profit_down">
+                                    <div class="profit__item profit_down profit__new-user">
                                         <div class="profit_header"><h3>Новые пользователи/мес</h3></div>
                                         <div class="profit_sum"><span id="first__buy-count"></span>
                                         </div>
@@ -387,8 +387,6 @@
   request1.addEventListener("readystatechange", () => {
       if (request1.readyState === 4 && request1.status === 200) {
           const array = JSON.parse(request1.responseText);
-          console.log(array)
-
           if (array.prev_week == null) {
               array.prev_week = 0;
           }
@@ -402,18 +400,27 @@
           }
           if (array.week) {
               document.querySelectorAll('.full_week_value').forEach(item => {
-                  console.log()
                   item.innerHTML = array.week + currency;
               })
+          } else {
+            document.querySelector(".profit__week").classList.add("display-none");
           }
+
           if (array.month) {
               document.getElementById('this_month').innerHTML = array.month + currency;
+          } else {
+              document.querySelector(".profit__month").classList.add("display-none");
           }
           if (array.one_user) {
               document.getElementById('one__user').innerText = array.one_user + currency;
+          } else {
+              document.querySelector(".profit__user").classList.add("display-none");
           }
+
           if (array.count_first_buy) {
               document.getElementById('first__buy-count').innerText = array.count_first_buy;
+          } else {
+              document.querySelector(".profit__new-user").classList.add("display-none");
           }
 
           let week_diff = array.week - array.prev_week;
