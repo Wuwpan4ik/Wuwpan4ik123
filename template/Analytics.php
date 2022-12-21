@@ -13,7 +13,6 @@
   </head>
 
   <body>
-  <?php print_r($_SESSION['error'])?>
 
         <div class="Analytics app">
 
@@ -385,6 +384,7 @@
   request1.addEventListener("readystatechange", () => {
       if (request1.readyState === 4 && request1.status === 200) {
           const array = JSON.parse(request1.responseText);
+          console.log(array)
           if (array.prev_week == null) {
               array.prev_week = 0;
           }
