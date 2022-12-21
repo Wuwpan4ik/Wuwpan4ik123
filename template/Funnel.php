@@ -201,8 +201,6 @@
         item.addEventListener('click', () =>{
             item.classList.toggle('active')
             if(item.classList.contains('active')){
-                videoBtn.style.boxShadow = item.style.boxShadow;
-                videoBtn.style.background = item.style.background;
                 buttons.forEach(el =>{
                     el.classList.remove('active');
                     item.classList.add('active');
