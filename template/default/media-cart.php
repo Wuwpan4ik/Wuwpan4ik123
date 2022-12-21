@@ -14,19 +14,19 @@
     </video>
     <img src="<?=$v['thubnails'] ?>" alt="">
 
-    <form method="POST" class="new_name" enctype="multipart/form-data" action="/<?php if(strstr($_SERVER['REQUEST_URI'], 'Course')) {echo 'Course';} else {echo 'Funnel';} ?>/<?=$v['id']?>/rename">
+    <form onsubmit="return false" method="POST" class="new_name" enctype="multipart/form-data" action="/<?php if(strstr($_SERVER['REQUEST_URI'], 'Course')) {echo 'Course';} else {echo 'Funnel';} ?>/<?=$v['id']?>/rename">
 
         <?php if (strstr($_SERVER['REQUEST_URI'], 'Funnel' )) {?>
         <input class="funnel__content-id" type="hidden" value="<?=$v['id']?>">
         <div class="funnel-input input_focus">
             <label for="name" class="label_focus activeLabel">Укажите заголовок:</label>
-            <input name="name" class="videoname" type="text" value="<?=$v['name']?>">
+            <input name="name" class="videoname video-desc" type="text" value="<?=$v['name']?>">
             <span class="clear_input_val">
         <img src="/img/clear_input.svg" alt="">
         </span>
         </div>
                 <div>
-                    <textarea name="description" class="videoname video-desc textarea-info "><?=$v['description']?></textarea>
+                    <textarea name="description" class="videoname  textarea-info "><?=$v['description']?></textarea>
                     <span class="placeholder-textarea">Укажите описание</span>
                 </div>
 
@@ -46,21 +46,21 @@
         <?php } else { ?>
             <div class="funnel-input input_focus">
                 <label for="name" class="label_focus">Укажите заголовок:</label>
-                <input name="name" class="videoname" type="text" value="<?=$v['name']?>">
+                <input name="name" class="videoname video-desc" type="text" value="<?=$v['name']?>">
                 <span class="clear_input_val">
             <img src="/img/clear_input.svg" alt="">
             </span>
             </div>
 
             <div>
-                <textarea name="description" class="videoname video-desc textarea-info "><?=$v['description']?></textarea>
+                <textarea name="description" class="videoname textarea-info "><?=$v['description']?></textarea>
                 <span class="placeholder-textarea">Укажите описание</span>
             </div>
 
 
             <div class="funnel-input input_focus">
                 <label for="name" class="label_focus">Укажите стоимость урока:</label>
-                <input name="price" class="videoname" type="number" value="<?=$v['price'] ?>">
+                <input name="price" class="videoname video-desc" type="number" value="<?=$v['price'] ?>">
                 <span class="clear_input_val">
             <img src="/img/clear_input.svg" alt="">
             </span>
@@ -89,11 +89,10 @@
                             <span class="input__file-button-text ">Добавить</span>
                         </label>
                     </div>
-
                 </div>
             </div>
         <?php } ?>
-        <button class="blue-button" type="submit">Сохранить</button>
+        <button class="blue-button save-btn"  type="button">Сохранить</button>
 
     </form>
 </div>

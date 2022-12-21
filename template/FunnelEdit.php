@@ -185,7 +185,7 @@
     </div>
 
 </div>
-<div class="exit-funnel-edit popup-tariff active">
+<div class="exit-funnel-edit popup-tariff">
     <div class="popup-tariff-body">
         <div class="popup__title">
             У вас остались  не <br> сохраненные данные
@@ -253,11 +253,25 @@
 <script src="/js/jquery-3.6.1.min.js"></script>
 
 <script>
+
     function click_settings(elem) {
         getCourseList(elem);
     }
 </script>
 <script>
+
+        let saveBtn = document.querySelector('.save-btn');
+
+
+        saveBtn.addEventListener('click', function(){
+            saveBtn.classList.add('active');
+            saveBtn.innerHTML = 'Сохранено';
+        })
+
+
+
+
+
     let exitFunnelEdit = document.querySelector('.exit-funnel-edit');
     let exitFunnelEditClose = document.querySelector('#close-popup');
 

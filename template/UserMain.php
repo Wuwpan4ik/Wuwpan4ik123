@@ -228,18 +228,18 @@
                                 <div class="popup__bonus-form-input-account input-img">
                                     <img src="../img/smallPlayer/account.svg" alt="">
                                 </div>
-                                <input name="name" type="text" value="<?php echo isset($_SESSION['user']['first_name']) ? $_SESSION['user']['first_name'] : 'Введите имя '?>" <?php echo isset($_SESSION['user']['first_name']) ? "readonly" : ''?>>
+                                <input name="name" type="text" placeholder="Ваше имя" value="<?php echo isset($_SESSION['user']['first_name']) ? $_SESSION['user']['first_name'] : ''?>" <?php echo isset($_SESSION['user']['first_name']) ? "readonly" : ''?>>
                             </div>
                             <?php } ?>
                             <div class="popup__buy-body-form question input">
                                 <div class="popup__bonus-form-input-email input-img">
                                     <img src="../img/smallPlayer/email.svg" alt="">
                                 </div>
-                                <input name="email" type="email" value="<?php echo isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : 'Введите имя '?>" readonly>
+                                <input name="email" type="email" placeholder="Ваш email" value="<?php echo isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : ''?>" readonly>
                             </div>
                             <div class="popup__buy-body-form question-textarea">
                                 <div class="popup__bonus-form-input-email input-img">
-                                    <img src="../img/smallPlayer/email.svg" alt="">
+                                    <img src="../img/smallPlayer/question.svg" alt="">
                                 </div>
                                 <textarea name="question" placeholder="Ваш вопрос"></textarea>
                             </div>
