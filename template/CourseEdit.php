@@ -291,7 +291,7 @@
                     dataType: "JSON",
                     data: new FormData(this),
                     processData: false,
-                    contentType: false
+                    contentType: false,
                 });
             })
         });

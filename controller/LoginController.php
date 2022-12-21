@@ -64,7 +64,6 @@
                         'avatar' => $res[0]['avatar'],
                         'is_creator' => 0
                     ];
-                    $response = "С возвращением, " . $_SESSION["user"]["name"];
                 } else {
                     $_SESSION["user"] = [
                         'id' => $res[0]['id'],
@@ -77,11 +76,12 @@
                         'site_url' => $res[0]['site_url'],
                         'is_creator' => 1
                     ];
-                    $response = "С возвращением, " . $_SESSION["user"]["name"];
                     $this->get_content();
                 }
             } else {
                 $response = "Неверный логин или пароль";
+                echo $response;
+                die(header("HTTP/1.0 404 Not Found"));
             }
             return True;
         }
@@ -206,6 +206,7 @@
                 $this->db->db->execute("UPDATE user SET `password` = '$npass' WHERE id = " . $_SESSION['user']['id']);
                 unset($_SESSION['error']['pass_message']);
             }
+            header('Location: /');
             return true;
         }
 
@@ -218,31 +219,20 @@
                 $this->db->db->execute("UPDATE `user` SET `password` = '$this->password' WHERE email = '$this->email'");
                 $body = "Вы сменили пароль на сайте <a href=\"/login\">Course Creator</a><br>Новый пароль: $this->password";
                 $this->SendEmail($title, $body);
+                header('Location: /');
                 return true;
             }
+            header('Location: /');
             return false;
         }
 
 
         public function logout() {
             unset($_SESSION['user']);
+            header('Location: /');
         }
 
         function get_content()
         {
-            echo '<!DOCTYPE html>
-			<html lang="en">
-			<head>
-			<meta charset="UTF-8">
-			<meta http-equiv="X-UA-Compatible" content="IE=edge">
-			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<title>Document</title>
-			</head>
-			<body>
-				<script>
-					window.location.replace("/");
-				</script>
-			</body>
-			</html>';
         }
     }

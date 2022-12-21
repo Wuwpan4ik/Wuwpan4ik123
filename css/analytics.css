@@ -487,6 +487,8 @@ span.freen_profit {
 }
 
 .green_profit, .red_profit {
+    max-width: none !important;
+    width: auto !important;
     cursor: auto;
     border-radius: 8px;
     padding: 2px 13px;

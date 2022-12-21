@@ -22,6 +22,8 @@ function checkboxStatusChange() {
                     values = (item.getAttribute('value'));
                 }
                 multiselectOption.innerText = values;
+                multiselectOption.value = values;
+                multiselectOption.selected = true;
             })
         })
     })
@@ -37,7 +39,6 @@ function deleteFlex() {
 
 function toggleCheckboxArea(select) {
     if (!select.parentElement.querySelector('.mySelectOptions').classList.contains('display-flex')) {
-        console.log(1)
         deleteFlex();
     }
     let option = select.parentElement.querySelector('.mySelectOptions');

@@ -261,7 +261,7 @@
             foreach ($result as $item) {
                 $sum += $item['give_money'];
             }
-            return $sum / count($result);
+            return round($sum / count($result));
         }
 
         public function GetCountFirstBuy()

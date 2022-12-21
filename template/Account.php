@@ -112,7 +112,7 @@
                                             </div>
                                             <div class="input_focus ">
                                                 <label for="username" class="label_focus">Город</label>
-                                                <input type="text"   name="city" value="<?php print(htmlspecialchars(isset($_SESSION['user']['city']) ? $_SESSION['user']['city'] : ''))?>">
+                                                <input type="text" name="city" value="<?php print(htmlspecialchars(isset($_SESSION['user']['city']) ? $_SESSION['user']['city'] : ''))?>">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
@@ -121,8 +121,8 @@
                                             <div class="select-account social-network">
                                                 <div id="myMultiselect" class=" multiselect">
                                                     <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
-                                                        <select class="form-select">
-                                                            <option name="currency"  id="name">Выберите валюту</option>
+                                                        <select name="currency" class="form-select">
+                                                            <option id="name" value=""><?php echo ($_SESSION['user']['currency']) ?? "Выберите валюту"; ?></option>
                                                         </select>
                                                         <div class="overSelect"></div>
                                                     </div>
@@ -142,7 +142,7 @@
                                                 <div id="myMultiselect" class="multiselect">
                                                     <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
                                                         <select class="form-select">
-                                                            <option id="name">Выберите соц сеть</option>
+                                                            <option class="form-select__social-name" id="name">Выберите соц сеть</option>
                                                         </select>
                                                         <div class="overSelect"></div>
                                                     </div>
@@ -239,8 +239,8 @@
                                             <div class="select-account social-network">
                                                 <div id="myMultiselect" class="multiselect">
                                                     <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
-                                                        <select class="form-select">
-                                                            <option name="niche" id="name">Выберите вашу нишу</option>
+                                                        <select name="niche" class="form-select">
+                                                            <option id="name">Выберите вашу нишу</option>
                                                         </select>
                                                         <div class="overSelect"></div>
                                                     </div>
@@ -513,9 +513,10 @@
                     alert("Впишите ссылку своей соцсети");
                     return;
                 }
-                $.post(e.target.action, $(this).serialize());
                 try {
                     // Alert
+                    $('#social__input')[0].value = $('.form-select__social-name')[0].value;
+                    $.post(e.target.action, $(this).serialize());
                     alert("Ваши данные сохранены");
                 } catch {}
             });

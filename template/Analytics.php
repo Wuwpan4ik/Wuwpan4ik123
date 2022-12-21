@@ -468,8 +468,8 @@
               }
           }
 
-          let week_procent = array.week / array.prev_week;
-          let month_procent = array.month / array.prev_month;
+          let week_procent = Math.round(array.week / array.prev_week);
+          let month_procent = Math.round(array.month / array.prev_month);
 
           document.querySelectorAll(".week_procent").forEach((elem) => {
               if (array.prev_week !== 0) {
