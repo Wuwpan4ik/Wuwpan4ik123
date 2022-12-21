@@ -1,4 +1,5 @@
 <div class="overlay-allLessons overlay overlay-<?=$name?>">
+
     <div class="popup__allLessons popup popup-<?=$name?>">
         <div class="popup__allLessons-body">
             <div class="popup__allLessons-title popup-title">Все уроки курса:</div>

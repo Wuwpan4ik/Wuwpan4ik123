@@ -26,7 +26,7 @@
         </span>
         </div>
                 <div>
-                    <textarea name="description" class="videoname video-desc textarea-info "><?=$v['description']?></textarea>
+                    <textarea name="description" class="videoname video-desc textarea-info " maxlength="100"><?=$v['description']?></textarea>
                     <span class="placeholder-textarea">Укажите описание</span>
                 </div>
 
@@ -53,7 +53,7 @@
             </div>
 
             <div>
-                <textarea name="description" class="videoname video-desc textarea-info "><?=$v['description']?></textarea>
+                <textarea name="description" class="videoname video-desc textarea-info " maxlength="100"><?=$v['description']?></textarea>
                 <span class="placeholder-textarea">Укажите описание</span>
             </div>
 

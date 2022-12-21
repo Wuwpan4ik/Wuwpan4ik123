@@ -75,11 +75,8 @@
 
                     function changeName(){
 
-                        document.getElementById("insert").innerHTML = '<input class="proj_name" name="title" placeholder="Введите новое название"><button type="submit" class="none"><img id="name_change" src="img/Pen.svg" class="ico"></button>';
+                        document.getElementById("insert").innerHTML = '<input class="proj_name" name="title" placeholder="Введите новое название" required><button type="submit" class="none"><img id="name_change" src="../img/Pen.svg" class="ico"></button>';
 
-                        document.getElementById("name_change").style.background = "linear-gradient(180deg, #6989FE 0%, #3C64F4 100%)";
-
-                        document.getElementById("name_change").style.borderRadius = "8px";
 
                     }
 

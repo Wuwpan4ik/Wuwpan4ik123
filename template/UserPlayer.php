@@ -94,7 +94,7 @@
                 </li>
             </ul>
         </div>
-        <video class="UserPlayerVideo" id="UserPlayerVideo" playsinline src=".<?=$content[0]['video']?>">
+        <video class="UserPlayerVideo" id="UserPlayerVideo" playsinline src=".<?=$content[0]['video']?>" autoplay="false">
         </video>
 
     </div>

@@ -142,7 +142,7 @@
                                         </div>
                                     </div>
 
-                                    <button class="ico_button "><img class="ico" src="img/Download.svg">Выгрузить</button>
+                                    <button class="ico_button disabledBtn"><img class="ico" src="img/Download.svg">Выгрузить</button>
 
                                     <input style="display:block; padding-left:35px;" class="ico_button" placeholder="Поиск">
                                 </div>
