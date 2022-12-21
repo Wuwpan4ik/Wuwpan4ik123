@@ -178,19 +178,22 @@
 <script>
     let colors = document.querySelectorAll('.popup-styles-color');
     let buttons = document.querySelectorAll('.popup-styles-button');
-    let videoBtn = document.querySelector('.button-video');
+    let videoBtns = document.querySelectorAll('.general-popup__button');
 
     colors.forEach(item =>{
         item.addEventListener('click', () =>{
             item.classList.toggle('active')
+            let color = item.style.background;
+            let shadow = item.style.boxShadow;
             if(item.classList.contains('active')){
-                videoBtn.style.background = item.style.background;
-                videoBtn.style.boxShadow = item.style.boxShadow;
+                videoBtns.forEach(item => {
+                    item.style.background = color;
+                    item.style.boxShadow = shadow;
                     colors.forEach(el =>{
-                    el.classList.remove('active');
-                    item.classList.add('active');
+                        el.classList.remove('active');
+                        item.classList.add('active');
+                    })
                 })
-
             }
         })
     })
@@ -216,6 +219,10 @@
     generalSettings.forEach(item =>{
         item.addEventListener('click', () => {
             document.querySelector('.popup__general').style.display = 'flex';
+            let slider = item.parentElement.parentElement.querySelector('.media-cart-img').cloneNode(true);
+            document.querySelector('.popup-video').appendChild(slider);
+            document.querySelector('.popup-video').querySelector('.slider__item-info').style.bottom = "18%";
+            sliders();
         })
     })
     popupGeneralClose.forEach(item =>{

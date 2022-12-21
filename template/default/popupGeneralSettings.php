@@ -16,33 +16,9 @@
                 <div class="slider__item">
                     <div class="slider__video popup-video">
                     </div>
-                    <div class="slider__header _conatiner-player ">
-                        <div class="slider__header-logo">
-                            <div class="slider__header-logo-img">
-                                <img width="48px" src="/<?=$_SESSION["user"]['avatar']?>" alt="">
-                            </div>
-                            <div class="slider__header-logo-text">
-                                <?=$_SESSION["user"]["first_name"]?>
-                            </div>
-                        </div>
-                        <div class="slider__header-views">
-                            <div class="slider__header-views-img">
-                                <img src="/img/smallPlayer/views.svg" alt="">
-                            </div>
-                            <div class="slider__header-views-count">
-                                126
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slider__item-info _conatiner-player">
-                        <div class="slider__item-title">
-
-                        </div>
-                        <div class="slider__item-text">
-
-                        </div>
+                    <div class="slider__item-info _conatiner-player" style="bottom: 7% !important;">
                         <div class="slider__item-button button-open">
-                            <button type="button" class="button button-video button-click">Клик</button>
+                            <button type="button" class="button button-video button-click general-popup__button">Клик</button>
                         </div>
                     </div>
                 </div>
@@ -125,15 +101,16 @@
                     
                     <label class="popup-styles-buttons__title" for="first_do">Стиль кнопки</label>
                     <div class="popup-styles-buttons">
-                        <div class="popup-styles-button button-shadow"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><a>Получить подарок</a></div>
-                        <div class="popup-styles-button "><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><a>Получить подарок</a></div>
-                        <div class="popup-styles-button button-dark"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><a>Получить подарок</a></div>
+                        <div class="popup-styles-button button-shadow"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><a class="general-popup__button">Получить подарок</a></div>
+                        <div class="popup-styles-button"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><a class="general-popup__button">Получить подарок</a></div>
+                        <div class="popup-styles-button button-dark"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><a class="general-popup__button">Получить подарок</a></div>
                     </div>
                 </div>
                 <div class="popup__body-item script">
                     <label for="first_do">Скрипты для HEAD</label>
                     <textarea type="text" placeholder="DEFAULT"></textarea>
                 </div>
+                <button type="submit" hidden id="main__settings-button"></button>
         </form>
     </div>
 </div>

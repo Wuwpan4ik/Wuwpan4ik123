@@ -615,7 +615,6 @@ input:checked + label {
 }
 
 .slider__video-item {
-    position: absolute;
     width:100%;
     max-width: 300px;
     height: 100%;

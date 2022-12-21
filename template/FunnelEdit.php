@@ -21,7 +21,7 @@
 </head>
 
 <body>
-<?php print_r($_SESSION['error']) ?>
+
 <style>
 
     .switch_box{
