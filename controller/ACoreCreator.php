@@ -9,9 +9,9 @@ if (!class_exists('PHPMailer\PHPMailer\Exception'))
     abstract class  ACoreCreator {
 
         protected $m;
-        protected $ourEmail = "dimalim110@gmail.com";
-        protected $ourPassword = "pumnwmlvfvxokkcp";
-        protected $ourNickName = "Wuwpan4ik";
+        protected $ourEmail = "reg@course-creator.io";
+        protected $ourPassword = "mX5iH9nO8n";
+        protected $ourNickName = "course-creator.io";
         protected $email;
 
         protected $url_dir;

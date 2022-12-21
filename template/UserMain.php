@@ -43,7 +43,7 @@
                             <div class="aboutTheAuthor popup-item">
                                 <div class=" popup__allLessons-item-video">
                                     <div class="popup__allLessons-item-video__img">
-                                        <img class="aboutTheAuthor video__img" src="/<?=$item['avatar']?>" alt="">
+                                        <img class="aboutTheAuthor video__img" src="<? echo (isset($item['avatar']) && !is_null($item['avatar'])  ? $item['avatar'] : "/uploads/ava/userAvatar.jpg") ?>" alt="">
                                     </div>
                                 </div>
                                 <div class="aboutTheAuthor popup__allLessons-item-info">

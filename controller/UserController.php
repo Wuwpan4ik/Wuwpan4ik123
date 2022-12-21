@@ -82,7 +82,7 @@
                             <input type="text" hidden="hidden" id="id" value="' . $item['id'] . '">
                             <div class="popup-item">
                                 <div class="popup__allLessons-item-video__img">
-                                    <img src="../img/smallPlayer/Group1426.png" alt="">
+                                    <img src="'. $item['preview'] .'" alt="">
                                 </div>
                                 <div class="popup__allLessons-item-info">
                                     <div class="popup__allLessons-item-info-header">
@@ -117,7 +117,7 @@
                             <input type="text" hidden="hidden" id="id" value="' . $item['id'] . '">
                             <div class="popup-item">
                                 <div class="popup__allLessons-item-video__img">
-                                    <img src="../img/smallPlayer/Group1426.png" alt="">
+                                    <img src="'. $item['preview'] .'" alt="">
                                 </div>
                                 <div class="popup__allLessons-item-info">
                                     <div class="popup__allLessons-item-info-header">

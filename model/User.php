@@ -117,7 +117,7 @@
                     array_push($purchases_array, $video_course_id);
                 }
             }
-            $course_query = "SELECT course.id, course.name, course.description, course.author_id, count(course_content.id) as 'count' FROM course INNER JOIN course_content on course_content.course_id = course.id WHERE (";
+            $course_query = "SELECT course.id, course.name, course_content.thubnails as 'preview', course.description, course.author_id, count(course_content.id) as 'count' FROM course INNER JOIN course_content on course_content.course_id = course.id WHERE (";
             foreach ($purchases_array as $course_id) {
                 $course_query .= " course.id = $course_id ";
                 if (count($purchases_array) != 1) {
@@ -141,7 +141,7 @@
                     array_push($purchases_array, $video_course_id);
                 }
             }
-            $course_query = "SELECT course.id, course.name, course.description, course.author_id, count(course_content.id) as 'count' FROM course INNER JOIN course_content on course_content.course_id = course.id WHERE NOT (";
+            $course_query = "SELECT course.id, course.name, course_content.thubnails as 'preview', course.description, course.author_id, count(course_content.id) as 'count' FROM course INNER JOIN course_content on course_content.course_id = course.id WHERE NOT (";
             foreach ($purchases_array as $course_id) {
                 $course_query .= " course.id = $course_id ";
                 if (count($purchases_array) != 1) {

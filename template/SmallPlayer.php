@@ -124,10 +124,12 @@
 
 <!--Закрытие AllLessons-->
 <script>
-    document.querySelector('.button-notBuy').addEventListener('click', function (){
-        document.querySelector('.overlay-allLessons').classList.remove('active');
-        document.querySelector('.popup-allLessons').classList.remove('active');
-    })
+    if (document.querySelector('.button-notBuy')) {
+        document.querySelector('.button-notBuy').addEventListener('click', function (){
+            document.querySelector('.overlay-allLessons').classList.remove('active');
+            document.querySelector('.popup-allLessons').classList.remove('active');
+        });
+    }
 </script>
 
 <script>
