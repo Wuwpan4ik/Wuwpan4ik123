@@ -44,8 +44,6 @@
 
             imagejpeg($image, $frame_path);
 
-            $_SESSION['error'] = $frame_path;
-
             $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `thubnails`, `query_id`) VALUES ($uid,'Укажите заголовок','Укажите описание', '$path', '$frame_path' , $count_video)");
 
             $this->local_get_content();
@@ -103,7 +101,6 @@
 
                 $file_url = $this->url_dir . "course_files/" . $res[0]['id'] . "/" . $_FILES['file']['name'];
 
-                $_SESSION['error'] = $_FILES['file'];
 //            }
 
             $this->m->db->execute("UPDATE `course_content` SET `name` = '$name', `description` = '$description', `price` = '$price', `file_url` = '$file_url' WHERE `id` = '$item_id'");

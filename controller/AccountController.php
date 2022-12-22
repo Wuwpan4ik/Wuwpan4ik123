@@ -107,8 +107,6 @@ class AccountController extends ACoreCreator {
 
         if($_FILES['avatar']['size'] != 0){
 
-            $_SESSION['error'] = $_FILES['avatar'];
-
             $avatar = "./uploads/ava/" . $email;
 
             move_uploaded_file($_FILES['avatar']['tmp_name'], $avatar);

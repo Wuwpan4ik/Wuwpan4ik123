@@ -19,7 +19,6 @@
 </head>
 
 <body>
-<?php print_r($_SESSION['error']) ?>
 
 <style>
     .popup__background {

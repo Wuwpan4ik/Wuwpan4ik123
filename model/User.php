@@ -23,7 +23,7 @@ class User {
         }
         $days_in_month = date('t');
         return $this->db->query("select sum(give_money) as money, to_char(achivment_date, 'MONTH') as day
-                                    from clients WHERE YEAR(`achivment_date`) = YEAR(NOW()) AND MONTH(`achivment_date`) = MONTH(NOW() $prev_month) and `creator_id` = 121
+                                    from clients WHERE YEAR(`achivment_date`) = YEAR(NOW()) AND MONTH(`achivment_date`) = MONTH(NOW() $prev_month) and `creator_id` = ". $_SESSION['user']['id'] ."
                                     group by day order by mod(to_char(achivment_date, 'MONTH') + 5, $days_in_month)");
     }
 
@@ -128,7 +128,6 @@ class User {
             array_shift($purchases_array);
         }
         $courses = $this->db->query($course_query);
-        $_SESSION['error'] = $course_query;
         return $courses;
     }
 
@@ -262,7 +261,10 @@ class User {
         foreach ($result as $item) {
             $sum += $item['give_money'];
         }
-        return round($sum / count($result));
+        if ($result) {
+            return round($sum / count($result));
+        }
+        return 0;
     }
 
     public function GetCountFirstBuy()

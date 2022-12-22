@@ -266,7 +266,6 @@
         public function GetFunnelPopup()
         {
             $funnel_id = $_SESSION['item_id'];
-            $_SESSION['error'] = $funnel_id;
             echo json_encode($this->m->db->query("SELECT popup from funnel_content WHERE `id` = " . $funnel_id)[0]['popup']);
         }
 
