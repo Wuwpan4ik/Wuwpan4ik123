@@ -230,17 +230,6 @@
     })
 </script>
 <script>
-
-
-    let saveBtn = document.querySelector('.save-btn');
-
-
-    saveBtn.addEventListener('click', function(){
-        saveBtn.classList.add('active');
-        saveBtn.innerHTML = 'Сохранено';
-    })
-
-
     //   Удалить все кнопки
     document.querySelectorAll('.slick-arrow').forEach(item => {
         item.remove();
