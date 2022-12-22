@@ -97,10 +97,10 @@
                 <div class="popup__body-item popup-styles">
                     <label for="first_do">Цвет кнопки</label>
                     <div class="popup-styles-colors">
-                        <div style="background: linear-gradient(180deg, #5CEAF3 0%, #4AA2C8 100%); box-shadow: 0px 3px 0px #000, 0px 10px 30px rgba(62, 102, 245, 0.6);" class="popup-styles-color">
+                        <div style="background: linear-gradient(180deg, #5CEAF3 0%, #4AA2C8 100%); box-shadow: 0px 3px 0px #3D57B7, 0px 10px 30px rgba(62, 102, 245, 0.6);" class="popup-styles-color">
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
-                        <div style="background: linear-gradient(180deg, #FF4B6E 0%, #EC234A 100%); box-shadow: 0px 3px 0px #000, 0px 10px 30px rgba(62, 102, 245, 0.6);" class="popup-styles-color">
+                        <div style="background: linear-gradient(180deg, #FF4B6E 0%, #EC234A 100%); box-shadow: 0px 3px 0px #AF1735, 0px 10px 30px rgba(238, 38, 77, 0.6);" class="popup-styles-color">
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
                         <div style="background: linear-gradient(180deg, #08B395 0%, #0C977F 100%); box-shadow: 0px 3px 0px #000, 0px 10px 30px rgba(62, 102, 245, 0.6);" class="popup-styles-color">
