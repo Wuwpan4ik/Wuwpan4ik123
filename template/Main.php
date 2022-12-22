@@ -150,6 +150,7 @@
     request1.addEventListener("readystatechange", () => {
         if (request1.readyState === 4 && request1.status === 200) {
             const array = JSON.parse(request1.responseText);
+            console.log(array)
             let currency = document.getElementById('currency').innerHTML;
             if (array.week) {
                 document.getElementById('this_week').innerHTML = array.week + currency;
