@@ -153,7 +153,7 @@
             mkdir("./uploads/users/". $_SESSION['user']['id'] . "/files");
             mkdir("./uploads/users/". $_SESSION['user']['id'] . "/course_files");
             mkdir("./uploads/users/". $_SESSION['user']['id'] . "/thumbnails");
-            header('Location: /');
+            echo "<script>window.location.replace('/')</script>";
             return True;
         }
 
