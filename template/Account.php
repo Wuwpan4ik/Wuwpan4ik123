@@ -404,7 +404,7 @@
                                                                     <div class="tariff-price">2 990 ₽/ мес </div>
                                                                 </div>
                                                                 <div class="popup-tariff-button ">
-                                                                    <button ">
+                                                                    <button >
                                                                         Выбран сейчас
                                                                     </button>
                                                                 </div>
@@ -497,31 +497,62 @@
                             </div>
 
                             <input type="radio" id="Tarif" name="mytabs"/>
-
                             <label class="menu-label" for="Tarif" id="cllab"><p>Дополнительно</p></label>
+
                             <div class="tab">
-                        <div class="tab col">
+                        <div class="prodamus-input col">
                             <div class="inner_row">
+                                <h2>Подключение Prodamus:  </h2>
                                 <div class="row">
-                                    <h2>Подключение Prodamus:  </h2>
-                                    <input type="text" name="prodamus_api" placeholder="API Ключ">
+                                    <div class="input_focus ">
+                                        <label for="username" class="label_focus">API Ключ</label>
+                                        <input class="inf" type="text"  name="prodamus_api" value="<? print(htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : '')) ?>">
+                                        <span class="clear_input_val">
+                                                     <img src="/img/clear_input.svg" alt="">
+                                                </span>
+                                    </div>
+                                    <div class="input_focus ">
+                                        <label for="username" class="label_focus">API Ключ</label>
+                                        <input class="inf" type="text"  name="prodamus_api" value="<? print(htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : '')) ?>">
+                                        <span class="clear_input_val">
+                                                     <img src="/img/clear_input.svg" alt="">
+                                                </span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="inner_row">
+                                <h2>Подключение Albato:  </h2>
                                 <div class="row">
-                                    <h2>Подключение Albato:  </h2>
-                                    <input type="text" name="albato_api" placeholder="API Ключ">
+                                    <div class="input_focus ">
+                                        <label for="username" class="label_focus">API Ключ</label>
+                                        <input class="inf" type="text"  name="albato_api" value="<? print(htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : '')) ?>">
+                                        <span class="clear_input_val">
+                                                     <img src="/img/clear_input.svg" alt="">
+                                                </span>
+                                    </div>
+                                    <div class="input_focus ">
+                                        <label for="username" class="label_focus">API Ключ</label>
+                                        <input class="inf" type="text"  name="albato_api" value="<? print(htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : '')) ?>">
+                                        <span class="clear_input_val">
+                                                     <img src="/img/clear_input.svg" alt="">
+                                                </span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="inner_row">
-                                <div class="row">
+                            <div class="inner_row scripts">
+                                <div class="script">
                                     <h2>Скрипты для HEAD:  </h2>
-                                    <textarea class="additionally" placeholder="Default" name="head_additional"></textarea>
+                                    <div class="row">
+                                        <textarea class="additionally" placeholder="Default" name="head_additional"></textarea>
+                                    </div>
                                 </div>
-                                <div class="row">
+                                <div class="script">
                                     <h2>Скрипты для Body:  </h2>
-                                    <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>
+                                    <div class="row">
+                                        <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>
+                                    </div>
                                 </div>
+
                             </div>
 
                             <div class="about-btn">

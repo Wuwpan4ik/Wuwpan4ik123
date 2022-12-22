@@ -910,10 +910,14 @@ input:checked + label {
     opacity: 1;
     pointer-events: all;
 }
-
+.popup__body-after{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
 .popup__body__input {
-    width: 250px;
+    width: 100%;
     border: 1px solid #E1E3E6;
     border-radius: 8px;
     padding: 12px 16px;

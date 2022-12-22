@@ -156,6 +156,7 @@
 <script src="../js/slick.min.js"></script>
 <script src="../js/sliders.js"></script>
 <script src="/js/customInputs.js"></script>
+
 <script>
     document.querySelectorAll('.slick-arrow').forEach(item => {
         item.remove();

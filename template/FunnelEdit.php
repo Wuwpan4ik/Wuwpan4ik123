@@ -44,27 +44,7 @@
         color: #000;
         height: calc(2rem - 2px);
     }
-    .input__file-button {
-        width: 132px;
-        height: 60px;
-        background: -webkit-gradient(linear, left top, left bottom, from(#08B395), to(#0C977F));
-        background: -o-linear-gradient(top, #08B395 0%, #0C977F 100%);
-        background: linear-gradient(180deg, #08B395 0%, #0C977F 100%);
-        font-size: 1.125rem;
-        font-weight: 700;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        -webkit-box-pack: start;
-        -ms-flex-pack: start;
-        justify-content: center;
-        border-radius: 3px;
-        cursor: pointer;
-        margin: 0 auto;
-    }
+
 
     .avatar {
         width: 100%;
@@ -565,6 +545,7 @@
 </script>
 <script src="/js/getNotifications.js"></script>
 <script src="/js/customInputs.js"></script>
+<script src="/js/customSelect.js"></script>
 </body>
 
 </html>

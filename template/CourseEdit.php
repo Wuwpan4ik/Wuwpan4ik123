@@ -172,6 +172,15 @@
 <script src="/js/button__settings.js"></script>
 <script src="/js/printFailName.js"></script>
 <script>
+    let saveBtn = document.querySelector('.save-btn');
+
+
+    saveBtn.addEventListener('click', function(){
+        saveBtn.classList.add('active');
+        saveBtn.innerHTML = 'Сохранено';
+    })
+</script>
+<script>
 
 
 

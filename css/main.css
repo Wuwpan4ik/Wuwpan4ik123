@@ -1251,6 +1251,7 @@ span.name {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  gap: 10px;
   flex-wrap: wrap;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1321,6 +1322,7 @@ span.name {
   background: linear-gradient(180deg, #08B395 0%, #0C977F 100%) !important;
   border: none!important;
 }
+
 .input__file-button:hover span{
   color: #fff !important;
   filter: invert(0%) sepia(4%) saturate(15%) hue-rotate(108deg) brightness(94%) contrast(106%); !important;

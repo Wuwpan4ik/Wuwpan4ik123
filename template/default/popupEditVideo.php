@@ -49,6 +49,7 @@
             </div>
             <div class="popup__body-block editVideo">
                 <div class="popup__body-item">
+
                     <label for="first_do">Действие после нажатия:</label>
                     <select name="first_do" id="first_do">
                         <option value="list">Список уроков</option>
