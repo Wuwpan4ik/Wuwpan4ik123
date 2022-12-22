@@ -71,17 +71,17 @@
 
                 <div class="box active">
 
-                    <p>В месяц<img class="index_ico" src="img/ArrowUp.svg"></p>
+                    <p>Прошлая неделя<img class="index_ico" src="img/ArrowUp.svg"></p>
 
-                    <h3 id="this_month">0 <?php echo isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></h3>
+                    <h3 id="prev_week">0 <?php echo isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></h3>
 
                 </div>
 
                 <div class="box active">
 
-                    <p>Прошлая неделя<img class="index_ico" src="img/ArrowUp.svg"></p>
+                    <p>В месяц<img class="index_ico" src="img/ArrowUp.svg"></p>
 
-                    <h3 id="prev_week">0 <?php echo isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></h3>
+                    <h3 id="this_month">0 <?php echo isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></h3>
 
                 </div>
 
