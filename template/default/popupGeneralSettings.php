@@ -111,6 +111,7 @@
                     <textarea type="text" placeholder="DEFAULT"></textarea>
                 </div>
                 <button type="submit" hidden id="main__settings-button"></button>
+            </div>
         </form>
     </div>
 </div>
