@@ -137,11 +137,6 @@
     let sourceVideo = document.querySelectorAll('#sourceVideo');
 
     document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('.slider__video-item').forEach((item) => {
-            item.addEventListener('ended', function () {
-                $('.slick-next').click();
-            })
-        })
         document.querySelectorAll('.slick-arrow').forEach((item) => {
             item.style.display = 'none';
         })
