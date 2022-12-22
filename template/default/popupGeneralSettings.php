@@ -73,36 +73,36 @@
                 <div class="popup__body-item popup-styles">
                     <label for="first_do">Цвет кнопки</label>
                     <div class="popup-styles-colors">
-                        <div style="background: linear-gradient(180deg, #5CEAF3 0%, #4AA2C8 100%);box-shadow: 0px 3px 0px #34909C; " class="popup-styles-color">
+                        <div style="background: linear-gradient(180deg, #5CEAF3 0%, #4AA2C8 100%); color: #34909C;" class="popup-styles-color">
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
-                        <div style="background: linear-gradient(180deg, #FF4B6E 0%, #EC234A 100%); box-shadow: 0px 3px 0px #AF1735, 0px 10px 30px rgba(238, 38, 77, 0.6);" class="popup-styles-color">
+                        <div style="background: linear-gradient(180deg, #FF4B6E 0%, #EC234A 100%); color:  #AF1735;" class="popup-styles-color">
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
-                        <div style="background: linear-gradient(180deg, #08B395 0%, #0C977F 100%); box-shadow: 0px 3px 0px #0B705E, 0px 10px 30px rgba(12, 153, 128, 0.6);" class="popup-styles-color">
+                        <div style="background: linear-gradient(180deg, #08B395 0%, #0C977F 100%); color:  #0B705E;" class="popup-styles-color">
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
-                        <div style="background: linear-gradient(180deg, #FCA549 0%, #F39531 100%);  box-shadow: 0px 3px 0px #CA7A25, 0px 10px 30px rgba(252, 165, 73, 0.6);" class="popup-styles-color">
+                        <div style="background: linear-gradient(180deg, #FCA549 0%, #F39531 100%); color:  #CA7A25;" class="popup-styles-color">
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
-                        <div style="background: #5A6474; box-shadow: 0px 3px 0px #374150, 0px 10px 30px rgba(90, 100, 116, 0.6);" class="popup-styles-color">
+                        <div style="background: #5A6474; color: #374150;" class="popup-styles-color">
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
-                        <div style="background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);box-shadow: 0px 3px 0px #3D57B7, 0px 10px 30px rgba(62, 102, 245, 0.6);" class="popup-styles-color">
+                        <div style="background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);color: #3D57B7" class="popup-styles-color">
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
-                        <div style="background: linear-gradient(180deg, #936DFF 0%, #8B23DD 100%); box-shadow: 0px 3px 0px #62349C;" class="popup-styles-color">
+                        <div style="background: linear-gradient(180deg, #936DFF 0%, #8B23DD 100%); color: #62349C;" class="popup-styles-color">
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
-                        <div style="background: linear-gradient(180deg, #FFDB59 0%, #EFA12C 100%); 0%, #F39531 100%); box-shadow: 0px 3px 0px #CA7A25, 0px 10px 30px rgba(252, 165, 73, 0.6);" class="popup-styles-color">
+                        <div style="background: linear-gradient(180deg, #FFDB59 0%, #EFA12C 100%); 0%, #F39531 100%); color: #CA7A25" class="popup-styles-color">
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
                     </div>
                     
                     <label class="popup-styles-buttons__title" for="first_do">Стиль кнопки</label>
                     <div class="popup-styles-buttons">
-                        <div class="popup-styles-button button-shadow"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><a class="general-popup__button">Получить подарок</a></div>
-                        <div class="popup-styles-button"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><a class="general-popup__button">Получить подарок</a></div>
+                        <div class="popup-styles-button button-shadow-down"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><a class="general-popup__button button-shadow-down">Получить подарок</a></div>
+                        <div class="popup-styles-button button-shadow-lite"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><a class="general-popup__button button-shadow-lite">Получить подарок</a></div>
                         <div class="popup-styles-button button-dark"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><a class="general-popup__button">Получить подарок</a></div>
                     </div>
                 </div>

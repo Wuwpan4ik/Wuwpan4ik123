@@ -179,29 +179,46 @@
     let colors = document.querySelectorAll('.popup-styles-color');
     let buttons = document.querySelectorAll('.popup-styles-button');
     let videoBtns = document.querySelectorAll('.general-popup__button');
+    let shadowDown = document.querySelector('.button-shadow-down a');
+    let shadowLite = document.querySelector('.button-shadow-lite a');
 
     colors.forEach(item =>{
         item.addEventListener('click', () =>{
             item.classList.toggle('active')
             let color = item.style.background;
-            let shadow = item.style.boxShadow;
+            let shadow = item.style.color;
+
+            console.log(item.style.color)
             if(item.classList.contains('active')){
                 videoBtns.forEach(item => {
                     item.style.background = color;
-                    item.style.boxShadow = shadow;
+                    shadowDown.style.boxShadow = '0px 3px 0px ' + shadow;
+                    shadowLite.style.boxShadow = '0px 10px 30px ' + shadow;
                     colors.forEach(el =>{
                         el.classList.remove('active');
                         item.classList.add('active');
                     })
+                    if(document.querySelector('.button-shadow-down').classList.contains('active')){
+                        item.style.boxShadow = '0px 3px 0px ' + shadow;
+                    }
+                    else if(document.querySelector('.button-shadow-lite').classList.contains('active')){
+                        item.style.boxShadow = '0px 10px 30px ' + shadow;
+                    }
+                    else {
+                        item.style.boxShadow = null;
+                    }
                 })
             }
+
         })
     })
     buttons.forEach(item =>{
         item.addEventListener('click', () =>{
+            let color = item.style.background;
             item.classList.toggle('active')
             if(item.classList.contains('active')){
                 buttons.forEach(el =>{
+                    item.style.background = color;
                     el.classList.remove('active');
                     item.classList.add('active');
                 })
