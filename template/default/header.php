@@ -21,8 +21,12 @@
         <button id="apps" class="ico_button" onclick="window.location.replace('Analytics')">Заявки</button>
 
         <div class="popupBell active">
-            <img class="arrow-bcg" src="img/Notification/arrowbcg.svg" alt="">
             <div class="popupBell-body">
+                <div class="popupBell-item not-bell">
+                <div class="popupBell-item__info ">
+                    <p>У вас пока нет уведомлений</p>
+                </div>
+            </div>
             </div>
         </div>
     </div>
