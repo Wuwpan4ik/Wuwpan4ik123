@@ -60,7 +60,7 @@
 
     $router->addRoute("/Course", "Course.php");
     $router->addRoute("/Course/$item_id", "CourseEdit.php");
-    $router->addRoute("/Course/create", "CourseController.php", "CreateCourse");
+    $router->addRoute("/Course/create", "CourseController.php", "CreateCourse", false);
     $router->addRoute("/Course-rename/$item_id", "CourseController.php", "RenameCourse");
     $router->addRoute("/Course-delete/$item_id", "CourseController.php", "DeleteCourse");
     $router->addRoute("/Course/$item_id/create", "CourseController.php", "AddVideo");
@@ -71,7 +71,7 @@
 
     $router->addRoute("/Funnel", "Funnel.php");
     $router->addRoute("/Funnel/$item_id", "FunnelEdit.php");
-    $router->addRoute("/Funnel/create", "FunnelController.php", "CreateFunnel");
+    $router->addRoute("/Funnel/create", "FunnelController.php", "CreateFunnel", false);
     $router->addRoute("/Funnel-rename/$item_id", "FunnelController.php", "RenameFunnel");
     $router->addRoute("/Funnel-delete/$item_id", "FunnelController.php", "DeleteFunnel");
     $router->addRoute("/Funnel-select/$item_id", "FunnelController.php", "SelectCourse");

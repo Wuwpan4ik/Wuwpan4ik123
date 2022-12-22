@@ -39,12 +39,16 @@
 
         public function getContactsByUser()
         {
-            return $this->db->query("SELECT user.id, user.telephone, user.email, contact.instagram, contact.whatsapp, contact.telegram, contact.facebook, contact.youtube, contact.twitter, contact.skype FROM user LEFT JOIN user_contacts as contact ON contact.user_id = user.id WHERE user.id = " . $_SESSION['item_id']);
+            $result = $this->db->query("SELECT user.id, user.telephone, user.email, contact.instagram, contact.whatsapp, contact.telegram, contact.facebook, contact.youtube, contact.twitter, contact.vk, contact.site FROM user LEFT JOIN user_contacts as contact ON contact.user_id = user.id WHERE user.id = " . $_SESSION['item_id']);
+//            if (!$result) {
+//                $result = $this->db->query("SELECT user.id, user.telephone, user.email FROM user WHERE user.id = " . $_SESSION['item_id']);
+//            }
+            return $result;
         }
 
         public function UserHaveAContacts()
         {
-            return $this->db->query("SELECT id FROM  user_contacts WHERE id = " . $_SESSION['item_id']);
+            return $this->db->query("SELECT id FROM  user_contacts WHERE user_id = " . $_SESSION['item_id']);
         }
 
         public function getNotifications($user_id) {

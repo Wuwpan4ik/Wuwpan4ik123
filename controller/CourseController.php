@@ -48,6 +48,8 @@
 
             $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `thubnails`, `query_id`) VALUES ($uid,'Укажите заголовок','Укажите описание', '$path', '$frame_path' , $count_video)");
 
+            $this->local_get_content();
+
             return true;
         }
 
@@ -59,6 +61,8 @@
 //            if (!$this->isUser($author_id)) return False;
             $this->m->db->execute("DELETE FROM `course_content` WHERE `id` = '$item_id'");
             unlink($path_in_files[0]['video']);
+            $this->local_get_content();
+
             return True;
         }
 
@@ -103,6 +107,9 @@
 //            }
 
             $this->m->db->execute("UPDATE `course_content` SET `name` = '$name', `description` = '$description', `price` = '$price', `file_url` = '$file_url' WHERE `id` = '$item_id'");
+
+            $this->local_get_content();
+
             return True;
         }
 
@@ -149,6 +156,8 @@
 
             $this->m->db->execute("UPDATE course_content SET `video` = '$path', `thubnails` = '$frame_path' WHERE id = " . $uid);
 
+            $this->local_get_content();
+
             return true;
         }
 
@@ -162,7 +171,10 @@
             $directory = $this->m->db->query("SELECT * FROM course WHERE author_id = '$uid'  ORDER BY ID DESC LIMIT 1");
 
             mkdir($this->url_dir ."courses/" . $directory[0]['id']);
+
             mkdir($this->url_dir ."thumbnails/" . $directory[0]['id']);
+
+            header("Location: /Course");
 
             return True;
         }
@@ -178,6 +190,8 @@
 
             rmdir($this->url_dir . "courses/$item_id");
             rmdir($this->url_dir . "thumbnails/$item_id");
+
+            $this->local_get_content();
 
             return True;
         }
@@ -196,6 +210,9 @@
                 $name = $res[0]['title'];
             }
             $this->m->db->execute("UPDATE course SET `name` = '$name' WHERE id = '$item_id'");
+
+            $this->local_get_content();
+
             return True;
         }
 
@@ -211,11 +228,18 @@
                 $price = $res[0]['price'];
             }
             $this->m->db->execute("UPDATE course SET `price` = '$price' WHERE id = '$item_id'");
+
+            $this->local_get_content();
         }
 
         function get_content()
         {
-            header('Location: ' . $_SERVER['HTTP_REFERER']);
+//            return header('Location: ' . $_SERVER['HTTP_REFERER']);
+        }
+
+        function local_get_content()
+        {
+            return header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
 
         function obr()
