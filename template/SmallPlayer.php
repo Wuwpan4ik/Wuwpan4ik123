@@ -93,6 +93,7 @@
                     $popup__do = $popup->first_do;
                     $second_link = $popup->second_do->link;
                     $id = $item['id'];
+                    $new_window = !is_null($popup->second_do->open_in_new);
                     $author_id = $item['author_id'];
                     include 'template/default/popup__templates/popup__form.php';
                 } ?>
@@ -123,10 +124,12 @@
 
 <!--Закрытие AllLessons-->
 <script>
-    document.querySelector('.button-notBuy').addEventListener('click', function (){
-        document.querySelector('.overlay-allLessons').classList.remove('active');
-        document.querySelector('.popup-allLessons').classList.remove('active');
-    })
+    if (document.querySelector('.button-notBuy')) {
+        document.querySelector('.button-notBuy').addEventListener('click', function (){
+            document.querySelector('.overlay-allLessons').classList.remove('active');
+            document.querySelector('.popup-allLessons').classList.remove('active');
+        });
+    }
 </script>
 
 <script>
@@ -134,11 +137,6 @@
     let sourceVideo = document.querySelectorAll('#sourceVideo');
 
     document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('.slider__video-item').forEach((item) => {
-            item.addEventListener('ended', function () {
-                $('.slick-next').click();
-            })
-        })
         document.querySelectorAll('.slick-arrow').forEach((item) => {
             item.style.display = 'none';
         })
@@ -182,7 +180,11 @@
                     alert("Форма успешно отправлена");
                 } catch {}
                 try {
-                    window.open($(this)[0].querySelector('.second_link').value);
+                    if ($(this)[0].querySelector('.new_window')) {
+                        window.open($(this)[0].querySelector('.second_link').value);
+                    } else {
+                        window.location = $(this)[0].querySelector('.second_link').value;
+                    }
                 } catch {}
             });
         })

@@ -13,7 +13,6 @@
   </head>
 
   <body>
-  <?php print_r($_SESSION['error'])?>
 
         <div class="Analytics app">
 
@@ -102,7 +101,7 @@
 
                             </table>
 
-                            <div class="no-data">
+                            <div class="no-data" id="contact__havent_data">
                                 <p>Данных пока нет</p>
                             </div>
                         </div>
@@ -179,7 +178,7 @@
                                 </tbody>
 
                             </table>
-                            <div class="no-data">
+                            <div class="no-data" id="order__havent_data">
                                 <p>Данных пока нет</p>
                             </div>
                         </div>
@@ -196,41 +195,77 @@
                         <div class="geo__profit">
                             <div class="profit__leftSide">
                                 <div class="profit__row">
-                                    <div class="profit__item">
+                                    <div class="profit__item profit__week">
                                         <div class="profit_header"><h3>Доход за неделю</h3><span>Неделя</span></div>
-                                        <div class="profit_sum"><span id="this_week"></span> <span class="green_profit week_procent">14.6%</span>
+                                        <div class="profit_sum"><span class="full_week_value profit_sum"></span> <span class="week_procent">14.6%</span>
                                         </div>
-<!--                                        <div class="profit_footer">На  <span id="week_diff"></span> <span id="week_diff-text"></span></div>-->
+                                        <div class="profit_footer">На  <span class="week_diff"></span> <span class="week_diff-text"></span></div>
                                     </div>
-                                    <div class="profit__item profit_down">
+                                    <div class="profit__item profit_down profit__month">
                                         <div class="profit_header"><h3>Доход за месяц</h3><span>Месяц</span></div>
-                                        <div class="profit_sum"><span id="this_month"></span> <span class="red_profit">4.16%</span>
+                                        <div class="profit_sum"><span id="this_month"></span> <span class="month_procent"></span>
                                         </div>
-<!--                                        <div class="profit_footer">На  <span id="month_diff"></span> <span id="month_diff-text"></span></div>-->
+                                        <div class="profit_footer">На  <span class="month_diff"></span> <span class="month_diff-text"></span></div>
                                     </div>
                                 </div>
                                 <div class="profit__row">
-                                    <div class="profit__item">
+                                    <div class="profit__item profit__user">
                                         <div class="profit_header"><h3>Доход на одного пользователя</h3></div>
-                                        <div class="profit_sum"><span id="one__user"></span>
-                                        </div>
+                                        <div class="profit_sum"><span id="one__user"></span></div>
                                     </div>
-                                    <div class="profit__item profit_down">
+                                    <div class="profit__item profit_down profit__new-user">
                                         <div class="profit_header"><h3>Новые пользователи/мес</h3></div>
-                                        <div class="profit_sum"><span id="first__buy-count"></span>
-                                        </div>
-                                        </div>
+                                        <div class="profit_sum"><span id="first__buy-count"></span></div>
+                                    </div>
                                 </div>
                                 <div class="allprofit">
                                     <div class="profit_header"><h3>Общий доход</h3><div class="profit_header_dots"></div>
                                     </div>
                                     <div class="profit_sum"><span id="full_value"></span></div>
                                     <div class="numbers">
-                                        <div class="numbers_item">0-5000 <span class="color1"></span></div>
-                                        <div class="numbers_item">>50 000<span class="color2"></span></div>
-                                        <div class="numbers_item">>100000<span class="color3"></span></div>
+                                        <div class="numbers_item">0-30000<span class="color1"></span></div>
+                                        <div class="numbers_item">>30000<span class="color2"></span></div>
+                                        <div class="numbers_item">>50000<span class="color3"></span></div>
                                     </div>
-                                    <div class="device"></div>
+                                    <div class="allprofit__devices">
+                                        <div class="allprofit__devices__name__item">
+                                            <div class="allprofit__devices__names">
+                                                <div class="allprofit__devices__name">Устройства</div>
+                                            </div>
+                                        </div>
+                                        <div class="allprofit__devices__item">
+                                            <div class="allprofit__devices__table">
+                                                <div class="allprofit__devices__item">
+                                                    <div class="allprofit__devices__slot"></div>
+                                                    <div class="allprofit__devices__name">ПН</div>
+                                                </div>
+                                                <div class="allprofit__devices__item">
+                                                    <div class="allprofit__devices__slot"></div>
+                                                    <div class="allprofit__devices__name">ВТ</div>
+                                                </div>
+                                                <div class="allprofit__devices__item">
+                                                    <div class="allprofit__devices__slot"></div>
+                                                    <div class="allprofit__devices__name">СР</div>
+                                                </div>
+                                                <div class="allprofit__devices__item">
+                                                    <div class="allprofit__devices__slot"></div>
+                                                    <div class="allprofit__devices__name">ЧТ</div>
+                                                </div>
+                                                <div class="allprofit__devices__item">
+                                                    <div class="allprofit__devices__slot"></div>
+                                                    <div class="allprofit__devices__name">ПТ</div>
+                                                </div>
+                                                <div class="allprofit__devices__item">
+                                                    <div class="allprofit__devices__slot"></div>
+                                                    <div class="allprofit__devices__name">СБ</div>
+                                                </div>
+                                                <div class="allprofit__devices__item">
+                                                    <div class="allprofit__devices__slot"></div>
+                                                    <div class="allprofit__devices__name">ВС</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="profit_rightSide">
@@ -238,38 +273,20 @@
                                     <div class="rightSideFirst_header">
                                         <img src="/img/credit-card.svg" alt="">
                                         <div class="rightSideFirstText1">
-                                            <h3 id="full_week_value"></h3>
+                                            <h3 class="full_week_value profit_sum"></h3>
                                             <span>Общая прибыль</span>
                                         </div>
                                         <div class="rightSideFirstText2">
                                             <span>Неделя</span>
-                                            <span class="green_profit week_procent">14.6%</span>
+                                            <span class="week_procent"></span>
                                         </div>
                                     </div>
                                     <div class="Analytics-graphic__totalProfit">
                                         <canvas width="264px" height="128px"  id="totalProfit"></canvas>
                                     </div>
-
-<!--                                 <div class="profit_footer">На  <span class="green_text"> 10,256 ₽ </span>больше</div>-->-->
+                                    <div class="profit_footer">На  <span class="week_diff"></span> <span class="week_diff-text"></span></div>
                                 </div>
-                                <div class="rightSideFirst">
-
-                                    <div class="Analytics-graphic__profitabilityIndicators">
-                                        <canvas width="264px" height="70px" class="graphic__profitabilityIndicators" id="profitabilityIndicators"></canvas>
-                                    </div>
-                                    <div class="rightSideFirst_header">
-                                        <div class="rightSideFirstText1">
-                                            <h3 class=" profit-price " >$16,355.49</h3>
-                                            <span>показатели доходности</span>
-                                        </div>
-                                        <div class="rightSideFirstText2">
-                                            <span class="green_profit week_procent">14.6%</span>
-                                        </div>
-                                    </div>
-<!--                                    <div class="profit_footer">На  <span class="green_text">10,256 ₽ </span>больше</div>-->
                                 </div>
-
-                            </div>
                             </div>
                         </div>
                     </div>
@@ -279,24 +296,24 @@
             </div>
 
         </div>
-        <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
-        <script src="../js/script.js" ></script>
-        <div class="display-none" id="currency"><?php echo isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></div>
-  </body>
+  <div class="display-none" id="currency"><?php echo isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></div>
+</body>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
+  <script src="../js/script.js" ></script>
 
-  <!--Проверка Clients-->
-  <script>
-      const main_check = document.querySelector('#main_check');
-      main_check.addEventListener('click', function (e) {
-          let check_user = document.querySelectorAll('.check_user');
-          Array.prototype.forEach.call(check_user, function(cb){
-              cb.checked = e.target.checked;
-          });
+<!--Проверка Clients-->
+<script>
+  const main_check = document.querySelector('#main_check');
+  main_check.addEventListener('click', function (e) {
+      let check_user = document.querySelectorAll('.check_user');
+      Array.prototype.forEach.call(check_user, function(cb){
+          cb.checked = e.target.checked;
       });
-  </script>
+  });
+</script>
 
-  <!--Проверка Orders-->
-  <script>
+<!--Проверка Orders-->
+<script>
       const order_check = document.querySelector('#order_check');
       order_check.addEventListener('click', function (e) {
           let check_user = document.querySelectorAll('.check_order');
@@ -305,52 +322,6 @@
           });
       });
   </script>
-<script>
-  let client_buttons = document.querySelectorAll('.contact__button');
-  let client_tab = document.querySelector('#conTab');
-  let client_request = new XMLHttpRequest();
-
-  let client_url = "SortController/AnalyticClients?sort=id";
-
-  client_request.open('GET', client_url);
-
-  client_request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-  client_request.addEventListener("readystatechange", () => {
-      if (client_request.readyState === 4 && client_request.status === 200) {
-          if (client_request.responseText.length !== 0) {
-              document.querySelector('.no-data').classList.add('display-none');
-          }
-          client_tab.innerHTML = client_request.responseText;
-      }
-  });
-  client_request.send();
-
-  client_buttons.forEach((elem) => {
-      elem.addEventListener('click', function(e) {
-          let param;
-          if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){
-              this.innerHTML = '<img class="table_ico" src="img/StickUp.svg">';
-              param = this.value;
-          }else{
-              this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
-              param = this.value + " DESC";
-          }
-          let request = new XMLHttpRequest();
-
-          let url = "SortController/AnalyticClients?sort=" + param;
-
-          request.open('GET', url);
-
-          request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-          request.addEventListener("readystatechange", () => {
-              if (request.readyState === 4 && request.status === 200) {
-                  client_tab.innerHTML = request.responseText;
-              }
-          });
-          request.send();
-      });
-  });
-</script>
 <!--OrderList-->
 <script>
     let order_button = document.querySelectorAll('.order__button');
@@ -364,7 +335,10 @@
     request.setRequestHeader('Content-Type', 'application/x-www-form-url');
     request.addEventListener("readystatechange", () => {
         if (request.readyState === 4 && request.status === 200) {
-            tab.innerHTML = request.responseText;
+            if (request.responseText) {
+                tab.innerHTML = request.responseText;
+                document.querySelector('#order__havent_data').classList.add('display-none');
+            }
         }
     });
     request.send();
@@ -387,14 +361,18 @@
             request.setRequestHeader('Content-Type', 'application/x-www-form-url');
             request.addEventListener("readystatechange", () => {
                 if (request.readyState === 4 && request.status === 200) {
-                    tab.innerHTML = request.responseText;
+                    if (request.responseText) {
+                        tab.innerHTML = request.responseText;
+                        document.querySelector('#order__havent_data').classList.add('display-none');
+                    }
                 }
             });
             request.send();
         });
     });
 </script>
-<script type="text/javascript">
+
+<script>
 
   let request1 = new XMLHttpRequest();
 
@@ -406,7 +384,7 @@
   request1.addEventListener("readystatechange", () => {
       if (request1.readyState === 4 && request1.status === 200) {
           const array = JSON.parse(request1.responseText);
-
+          console.log(array)
           if (array.prev_week == null) {
               array.prev_week = 0;
           }
@@ -415,51 +393,111 @@
               array.prev_month = 0;
           }
           let currency = document.getElementById('currency').innerHTML;
-          document.getElementById('this_week').innerHTML = array.week + currency;
-          document.getElementById('this_month').innerHTML = array.month + currency;
-          if (array.prev_month) {
-              document.getElementById('last_month').innerHTML = array.prev_month + currency;
-          }
           if (array.full_value) {
-              document.getElementById('full_week_value').innerText = array.week + currency;
               document.getElementById('full_value').innerText = array.full_value + currency;
           }
+          if (array.week) {
+              document.querySelectorAll('.full_week_value').forEach(item => {
+                  item.innerHTML = array.week + currency;
+              })
+          } else {
+              document.querySelector('.profit__week .profit_footer').classList.add('display-none');
+              document.querySelector('.profit__week .profit_sum').innerHTML = "Нет данных";
+              document.querySelector('.rightSideFirst').remove();
+          }
+
+          if (array.month) {
+              document.getElementById('this_month').innerHTML = array.month + currency;
+          } else {
+              document.querySelector('.profit__month .profit_footer').classList.add('display-none');
+              document.querySelector('.profit__month .profit_sum').innerHTML = "Нет данных";
+          }
+
           if (array.one_user) {
               document.getElementById('one__user').innerText = array.one_user + currency;
+          } else {
+              document.querySelector('.profit__user .profit_footer').classList.add('display-none');
+              document.querySelector('.profit__user .profit_sum').innerHTML = "Нет данных";
           }
+
           if (array.count_first_buy) {
               document.getElementById('first__buy-count').innerText = array.count_first_buy;
+          } else {
+              document.querySelector('.profit__new-user .profit_footer').classList.add('display-none');
+              document.querySelector('.profit__new-user .profit_sum').innerHTML = "Нет данных";
           }
 
           let week_diff = array.week - array.prev_week;
           let month_diff = array.month - array.prev_month;
 
-          if (week_diff > 0) {
-              document.getElementById('week_diff-text').innerText = 'больше';
-              document.getElementById('week_diff').classList.add('green_text');
-          } else {
-              document.getElementById('week_diff-text').innerText = 'меньше';
-              document.getElementById('week_diff').classList.add('red_text');
+          if (document.querySelectorAll('.profit_footer')) {
+              if (week_diff > 0) {
+                  document.querySelectorAll('.week_diff').forEach(item => {
+                      item.classList.add('green_text');
+                      item.innerHTML = week_diff + currency;
+                  })
+                  document.querySelectorAll('.week_diff-text').forEach(item => {
+                      item.innerText = 'больше';
+                  })
+              } else {
+                  document.querySelectorAll('.week_diff').forEach(item => {
+                      item.classList.add('red_text');
+                      item.innerHTML = week_diff + currency;
+                  })
+                  document.querySelectorAll('.week_diff-text').forEach(item => {
+                      item.innerText = 'меньше';
+                  })
+              }
+
+              if (month_diff > 0) {
+                  document.querySelectorAll('.month_diff').forEach(item => {
+                      item.classList.add('green_text');
+                      item.innerHTML = month_diff + currency;
+                  })
+                  document.querySelectorAll('.month_diff-text').forEach(item => {
+                      item.innerText = 'больше';
+                  })
+              } else {
+                  document.querySelectorAll('.month_diff').forEach(item => {
+                      item.classList.add('red_text');
+                      item.innerHTML = month_diff + currency;
+                  })
+                  document.querySelectorAll('.month_diff-text').forEach(item => {
+                      item.innerText = 'меньше';
+                  })
+              }
           }
-          if (month_diff > 0) {
-              document.getElementById('month_diff-text').innerText = 'больше';
-              document.getElementById('month_diff').classList.add('green_text');
-          } else {
-              document.getElementById('month_diff-text').innerText = 'меньше';
-              document.getElementById('month_diff').classList.add('red_text');
-          }
-          document.getElementById('week_diff').innerText = week_diff + currency;
-          document.getElementById('month_diff').innerText = month_diff + currency;
+
+          let week_procent = Math.round(array.week / array.prev_week);
+          let month_procent = Math.round(array.month / array.prev_month);
 
           document.querySelectorAll(".week_procent").forEach((elem) => {
               if (array.prev_week !== 0) {
-                  elem.innerHTML = array.week / array.prev_week * 100 + "%";
+                  elem.innerHTML = week_procent * 100 + "%";
               } else {
                   elem.style.display = 'none';
               }
+              if (week_diff > 0) {
+                  elem.classList.add('green_profit')
+              } else {
+                  elem.classList.add('red_profit');
+              }
           });
+
+          document.querySelectorAll(".month_procent").forEach((elem) => {
+              if (array.prev_month !== 0) {
+                  elem.innerHTML = month_procent * 100 + "%";
+              } else {
+                  elem.style.display = 'none';
+              }
+              if (month_diff > 0) {
+                  elem.classList.add('green_profit')
+              } else {
+                  elem.classList.add('red_profit');
+              }
+          })
       }
-  });
+      })
   request1.send();
 </script>
   <script>
@@ -479,33 +517,21 @@
           }
       }
 
-      //Для фильтра по "Сначала новые" для клиентов
-      filtersBtns[0].onclick = () =>{
-          filtersBtns[0].classList.add('active');
-          filtersBtns[1].classList.remove('active');
-          filtersBtns[2].classList.remove('active');
-          filtersBtns[3].classList.remove('active');
-      }
-      //Для фильтра по "Сначала старые" для клиентов
-      filtersBtns[1].onclick = () =>{
-          filtersBtns[1].classList.add('active');
-          filtersBtns[0].classList.remove('active');
-          filtersBtns[2].classList.remove('active');
-          filtersBtns[3].classList.remove('active');
-      }
-      //Для фильтра по "Сначала новые" для заказов
-      filtersBtns[2].onclick = () =>{
-          filtersBtns[2].classList.add('active');
-          filtersBtns[1].classList.remove('active');
-          filtersBtns[0].classList.remove('active');
-          filtersBtns[3].classList.remove('active');
-      }
-      //Для фильтра по "Сначала старые" для закаов
-      filtersBtns[3].onclick = () =>{
-          filtersBtns[3].classList.add('active');
-          filtersBtns[1].classList.remove('active');
-          filtersBtns[2].classList.remove('active');
-          filtersBtns[0].classList.remove('active');
+      filterBtn.forEach(item => function (){
+          item.onclick = () => {
+              filterActive(item);
+          }
+      })
+
+      // Фильтр Новых старых
+      function filterActive(filter) {
+          filterBtn.forEach(item => function (){
+              if (item === filter) {
+                  item.classList.add('active');
+              } else {
+                  item.classList.remove('active');
+              }
+          })
       }
   </script>
 
@@ -521,7 +547,10 @@
     client_request.setRequestHeader('Content-Type', 'application/x-www-form-url');
     client_request.addEventListener("readystatechange", () => {
         if (client_request.readyState === 4 && client_request.status === 200) {
-            client_tab.innerHTML = client_request.responseText;
+            if (client_request.responseText) {
+                client_tab.innerHTML = client_request.responseText;
+                document.querySelector('#contact__havent_data').classList.add('display-none');
+            }
         }
     });
     client_request.send();
@@ -545,11 +574,44 @@
             request.setRequestHeader('Content-Type', 'application/x-www-form-url');
             request.addEventListener("readystatechange", () => {
                 if (request.readyState === 4 && request.status === 200) {
-                    client_tab.innerHTML = request.responseText;
+                    if (request.responseText) {
+                        client_tab.innerHTML = request.responseText;
+                        document.querySelector('#contact__havent_data').classList.add('display-none');
+                    }
                 }
             });
             request.send();
         });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let request2 = new XMLHttpRequest();
+        let url2 = "/StatisticsController/GetWeekDays";
+        request2.open('GET', url2);
+
+        request2.setRequestHeader('Content-Type', 'application/x-www-form-url');
+        request2.addEventListener("readystatechange", () => {
+            if (request2.readyState === 4 && request2.status === 200) {
+                let arrays = JSON.parse(request2.responseText);
+                let array_money = [0, 0, 0, 0, 0, 0, 0];
+                let week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+                arrays.forEach(item => {
+                    array_money[week.indexOf((item.day).trim())] = parseInt(item.money);
+                })
+                let count = 0;
+                document.querySelectorAll('.allprofit__devices__slot').forEach(item => {
+                    if (array_money[count] >= 30000 && array_money[count] < 50000) {
+                        item.classList.add('color2');
+                    }
+                    if (array_money[count] >= 50000) {
+                        item.classList.add('color3');
+                    }
+                    count++;
+                })
+            }
+        });
+        request2.send();
     });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>

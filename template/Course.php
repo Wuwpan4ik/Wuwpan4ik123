@@ -62,7 +62,7 @@
                                                     <div class="slider__header _conatiner-player ">
                                                         <div class="slider__header-logo">
                                                             <div class="slider__header-logo-img">
-                                                                <img src="/<? echo (isset($_SESSION['user']['avatar'])  ? $_SESSION['user']['avatar'] : "1.jpg") ?>" alt="">
+                                                                <img src="<? echo (isset($_SESSION['user']['avatar'])  ? $_SESSION['user']['avatar'] : "/uploads/ava/userAvatar.jpg") ?>" alt="">
                                                             </div>
                                                             <div class="slider__header-logo-text">
                                                                 <?=$_SESSION['user']['first_name']?>
@@ -89,8 +89,8 @@
 
                         <h3><?=$p['name']?></h3>
 
-                        <div class="course-price" style="position:relative;">
-                            <form method="POST" action="/Course/<?=$p['id']?>/setPrice">
+                        <div class="course-price">
+                            <form action="/Course/<?=$p['id']?>/setPrice" class="media__form" method="POST">
                                 <div class="course__prices" style="position:relative;">
                                     <input type="number" name="course_price" min="100" placeholder="<? echo isset($p['price']) ? $p['price'] : "Укажите стоимость курса" ?>">
                                     <span class="course_currency">
@@ -155,6 +155,20 @@
 <script src="../js/script.js" ></script>
 <script src="../js/slick.min.js"></script>
 <script src="../js/sliders.js"></script>
+<script>
+    let form__submit = $(function() {
+        $('.media__form').each(function (){
+            $(this).submit(function(e) {
+                e.preventDefault();
+                $.post(e.target.action, $(this).serialize());
+                let input = $(this).find("input[name='course_price']")[0];
+                input.placeholder = input.value;
+                input.value = '';
+                $(this).find('.save_price')[0].classList.remove("activeButton");
+            });
+        })
+    });
+</script>
 <script src="/js/customInputs.js"></script>
 
 <script>

@@ -85,7 +85,6 @@
             return true;
         }
 
-//      Без какой либо зависимости, что человек уже купил видео курса (покупает по полной)
         public function BuyCourse() {
             if (!$this->RequestValidate()) return false;
 
@@ -114,13 +113,13 @@
                     $this->m->db->execute("INSERT INTO `user` (`telephone`) VALUES ('$this->phone') WHERE `email` = '$this->email'");
                 }
                 $res = $this->m->getUserByEmail($this->email);
-            }
-            $_SESSION["user"] = [
-                'id' => $res[0]['id'],
-                'email' => $res[0]['email'],
-                'is_creator' => 0
-            ];
 
+                $_SESSION["user"] = [
+                    'id' => $res[0]['id'],
+                    'email' => $res[0]['email'],
+                    'is_creator' => 0
+                ];
+            }
 
             if ($client[0]['buy_progress'] < $buy_progress[$comment]) {
 //          Добавление Clients
@@ -187,12 +186,14 @@
                     $this->m->db->execute("INSERT INTO `user` (`telephone`) VALUES ('$this->phone') WHERE `email` = '$this->email'");
                 }
                 $res = $this->m->getUserByEmail($this->email);
+
+                $_SESSION["user"] = [
+                    'id' => $res[0]['id'],
+                    'email' => $res[0]['email'],
+                    'is_creator' => 0
+                ];
             }
-            $_SESSION["user"] = [
-                'id' => $res[0]['id'],
-                'email' => $res[0]['email'],
-                'is_creator' => 0
-            ];
+
 
             if ($client[0]['buy_progress'] <= $buy_progress[$comment]) {
 

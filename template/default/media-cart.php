@@ -14,7 +14,7 @@
     </video>
     <img src="<?=$v['thubnails'] ?>" alt="">
 
-    <form onsubmit="return false" method="POST" class="new_name" enctype="multipart/form-data" action="/<?php if(strstr($_SERVER['REQUEST_URI'], 'Course')) {echo 'Course';} else {echo 'Funnel';} ?>/<?=$v['id']?>/rename">
+    <form method="POST" class="new_name media__form" enctype="multipart/form-data" action="/<?php if(strstr($_SERVER['REQUEST_URI'], 'Course')) {echo 'Course';} else {echo 'Funnel';} ?>/<?=$v['id']?>/rename">
 
         <?php if (strstr($_SERVER['REQUEST_URI'], 'Funnel' )) {?>
         <input class="funnel__content-id" type="hidden" value="<?=$v['id']?>">
@@ -25,12 +25,10 @@
         <img src="/img/clear_input.svg" alt="">
         </span>
         </div>
-                <div>
-                    <textarea name="description" class="videoname  textarea-info "><?=$v['description']?></textarea>
-                    <span class="placeholder-textarea">Укажите описание</span>
-                </div>
-
-
+        <div>
+            <textarea name="description" class="videoname  textarea-info "><?=$v['description']?></textarea>
+            <span class="placeholder-textarea">Укажите описание</span>
+        </div>
         <div class="button__do-block <?php if (!isset($v['button_text']) || is_null($v['button_text'])) { ?> display-none <?php } ?>" >
             <div class="funnel-input input_focus">
                 <label for="name" class="label_focus">Текст для кнопки:</label>
@@ -92,7 +90,6 @@
                 </div>
             </div>
         <?php } ?>
-        <button class="blue-button save-btn"  type="button">Сохранить</button>
-
+        <button class="blue-button save-btn" type="submit">Сохранить</button>
     </form>
 </div>

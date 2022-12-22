@@ -19,7 +19,7 @@
 </head>
 
 <body>
-<?=$_SESSION['error']?>
+<?php print_r($_SESSION['error']) ?>
 
 <style>
     .popup__background {
@@ -255,6 +255,7 @@
     function _(abc) {
         return document.getElementById(abc);
     }
+
     function uploadFileHandler() {
         var file = document.getElementById("video").files[0];
         if (file.length === 0) {
@@ -287,6 +288,24 @@
     }
 </script>
 <script src="/js/getNotifications.js"></script>
+<script src="../js/jquery-3.6.1.min.js"></script>
+<script>
+    let form__submit = $(function() {
+        $('.media__form').each(function () {
+            $(this).submit(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: $(this).attr("action"),
+                    type: $(this).attr("method"),
+                    dataType: "JSON",
+                    data: new FormData(this),
+                    processData: false,
+                    contentType: false,
+                });
+            })
+        });
+    });
+</script>
 <script src="/js/customInputs.js"></script>
 </body>
 

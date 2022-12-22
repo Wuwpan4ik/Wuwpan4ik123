@@ -78,7 +78,7 @@
         height:100px;
         border-radius: 20px;
         object-fit: cover;
-        object-position: left center;
+        object-position: center;
     }
 
     .youChosen .popup__allLessons-item-video__img img{
