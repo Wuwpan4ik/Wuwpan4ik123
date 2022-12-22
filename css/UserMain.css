@@ -78,15 +78,14 @@
         height:100px;
         border-radius: 20px;
         object-fit: cover;
-        object-position: left center;
+        object-position: center;
     }
 
     .youChosen .popup__allLessons-item-video__img img{
-        width:160px !important;
-        height:100px;
+        width:80px !important;
+        height:139px;
         border-radius: 20px;
         object-fit: cover;
-        object-position: left center;
     }
 
     .availableToYou .popup-item{
@@ -149,16 +148,15 @@
     }
 
     .accordion-button {
-        position: relative;
-        top: -36px;
-        padding: 1em 0;
+        position: absolute;
+        top:15px;
         color: #757D8A;
         font-size: 1.15rem;
         font-weight: 400;
         border: none;
         background: none;
         outline: none;
-
+        left:90%;
     }
 
     .accordion-button .icon {
@@ -166,7 +164,6 @@
         align-items: center;
         justify-content: center;
         position: absolute;
-        top: 18px;
         right: 0;
         width: 22px;
         height: 22px;
@@ -388,7 +385,7 @@
     .User-form-g{
         position: absolute;
         width: 89%;
-        bottom: 10px;
+        bottom: 0.5%;
         display: flex;
         gap: 10px;
     }
@@ -457,7 +454,7 @@
         -ms-flex-pack: justify;
         justify-content: space-between;
         border-top: 1px solid rgba(0, 0, 0, 0.05);
-        padding: 20px 0 0 0;
+        padding: 20px 0 12px 0;
         margin: 10px 0 0 0;
         font-weight: 500;
         font-size: 18px;
@@ -1133,7 +1130,7 @@
     }
     
     .Course.userPopup__body {
-        height: 70%;
+        height: 84%;
     }
     .userPopup__button button {
         width: 100%;
@@ -1141,6 +1138,7 @@
         margin-bottom: 10px;
         font-weight: 600;
         font-size: 16px;
+        font-family: "Inter";
         color: #fff;
         border-radius: 6px;
         -webkit-box-shadow: 0px 3px 0px #3168bb, 0px 10px 30px rgba(62, 138, 251, 0.6);
@@ -1799,4 +1797,40 @@
     font-size: 18px;
     line-height: 22px;
 }
+.Course-item.popup-item{
+    align-items:flex-start;
+}
+.Course-item.popup-item .popup__allLessons-item-info{
+    width:70%;
+    padding-top: 15px;
+}
+.Course-item.popup-item .popup__allLessons-item-info .popup__allLessons-item-info-header{
+    flex-direction: column;
+    align-items:flex-start;
+}
 
+.Course-item.popup-item .popup__allLessons-item-info .popup__allLessons-item-info-title{
+    margin:11px 0 0 0 !important;
+}
+.infoLesson{
+    margin-top:6px;
+}
+.infoLesson p{
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+button.download_file{
+    width:100%;
+    height:48px;
+    background: linear-gradient(180deg, #B675FF 0%, #7024C4 100%);
+    border-radius: 8px;
+    color:white;
+}
+
+.duration_time{
+    margin-left: 10px;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 10px;
+}

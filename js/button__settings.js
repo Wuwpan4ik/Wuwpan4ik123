@@ -1,6 +1,4 @@
 const body = document.querySelector('body');
-const close = document.querySelector('.close__btn');
-const entryDisplay = document.querySelector('#popup__background');
 const popup = document.querySelector('#popup');
 const buttonChanges = document.querySelectorAll('.button__edit');
 const form = document.querySelector('#popup__body-form');
@@ -8,7 +6,12 @@ const id_item = document.querySelector('#id_item');
 const first_select = document.querySelector('#first_do');
 const second_select = document.querySelector('#second_do');
 // Поля option в форме
-const names_option = {'email': "Email", 'name': "Имя", 'tel': "Телефон"};
+const names_option = {'email': "Ваша почта", 'name': "Ваше имя", 'tel': "Ваш номер телефон"};
+
+// Сохранение / закрытие
+function save() {
+    document.getElementById('send__edit-video').click();
+}
 
 function addPopup(input) {
     if (input === 'list') {
@@ -47,16 +50,27 @@ function addPopup(input) {
         form_inputs = document.querySelector('#popup__body-form-1').querySelectorAll('.form_id');
 
         form_inputs.forEach((elem) => {
+            switch (elem.value) {
+                case 'email':
+                    var val = 'Ваша почта'
+                    break;
+                case 'name':
+                    var val = 'Ваше имя'
+                    break;
+                case 'tel':
+                    var val = 'Ваш номер телефона'
+                    break;
+            }
             div += `<div class="popup__bonus-form-input input">
-                                    <div class="popup__bonus-form-input-email input-img">
-                                        <img src="../img/smallPlayer/`+ elem.value +`.svg" alt="">
-                                    </div>
-                                    <input name="`+ elem.value +`" type="text" placeholder="Ваш `+ elem.value +`">
-                                </div>`;
+                    <div class="popup__bonus-form-input-email input-img">
+                        <img src="../img/smallPlayer/`+ elem.value +`.svg" alt="">
+                    </div>
+                    <input name="`+ elem.value +`" type="text" placeholder="`+ val +`">
+                </div>`;
         });
 
         div += `<div class="popup__bonus-form-button button-form">
-            <button type="button" class="button next-lesson button__send">Оплатить</button>
+            <button type="button" class="button next-lesson button__send">Отправить</button>
         </div>`
 
         div += `</div>
@@ -68,8 +82,6 @@ function addPopup(input) {
     }
 }
 
-document.querySelectorAll('.form_id-1');
-
 // Очистка Popup
 function clearPopup () {
     defaultPopup(first_select);
@@ -78,6 +90,8 @@ function clearPopup () {
         elem.classList.remove('display-block');
     })
     document.querySelector('#popup__body-form-2').style.display = 'none';
+    document.querySelector('input[name="form__title"]').value = '';
+    document.querySelector('input[name="form__desc"]').value = '';
 }
 
 function toggleOverflow () {
@@ -95,9 +109,10 @@ function defaultPopup(parent_elem){
     parent_elem.parentElement.querySelectorAll('.link_item').forEach((elem) => {
         elem.remove();
     })
+    document.querySelector('#first_do-list').classList.remove('display-none');
 }
 
-async function addFormSelect(elem) {
+async function addFormSelect(elem, name) {
     let count_block = elem.parentElement.querySelectorAll('.form_id').length;
     let count_id = elem.parentElement.querySelectorAll('.form_id').length + 1;
     if (elem.id === 'second_do-list') {
@@ -109,10 +124,20 @@ async function addFormSelect(elem) {
     div.classList.add('input_selector');
     div.name = 'form_id-' + count_id;
     for (const [key, value] of Object.entries(names_option)) {
-        inner += `<option value="${key}">${value}</option>\n`;
+        let selected;
+        if (name === key) {
+            selected = "selected";
+        }
+        inner += `<option ` + selected +` value="${key}">${value}</option>\n`;
     }
     div.innerHTML = inner;
     elem.parentElement.children[count_block].after(div);
+    document.querySelectorAll('.input_selector').forEach(function (){
+        this.addEventListener('change', function (){
+            addPopup('form');
+            checkFormInputs();
+        })
+    })
 }
 
 function addFormLink(elem) {
@@ -129,10 +154,30 @@ function addFormLink(elem) {
     }
 }
 
-//Задаются id блоков формы
-async function addFormItem (elem) {
+function addCheckbox(elem) {
+    let checkbox = document.createElement('div');
+    checkbox.classList.add("checkbox__wrapper")
+    let switch_box = document.createElement('div');
+    switch_box.classList.add("switch_box")
+    switch_box.classList.add("box_1")
+    switch_box.style.color = '#5A6474'
+    let input = document.createElement('input');
+    input.name = 'open_new_window';
+    input.type = 'checkbox';
+    input.classList.add("switch_1")
+    input.value = 'open_new_window';
+    switch_box.appendChild(input)
+    checkbox.appendChild(switch_box)
+    let text = document.createElement('div');
+    text.innerHTML = 'Открывать в новом окне';
+    switch_box.appendChild(text)
+    elem.parentElement.children[2].after(checkbox);
+}
+
+//Добавление option
+async function addFormItem (elem, name = null) {
     let count = elem.parentElement.querySelectorAll('.form_id').length + 1;
-    await addFormSelect(elem, count);
+    await addFormSelect(elem, name);
     if (elem.id === 'first_do-list') {
         if (['form'].includes(first_select.value)) {
             addPopup('form');
@@ -159,14 +204,10 @@ async function addFormItem (elem) {
     }
 }
 
-function save() {
-    document.getElementById('send__edit-video').click();
-}
-
 function addSecondOptions(options) {
     let div = ``;
     options.forEach((item)=> {
-        div += `<option value="` + item[0] +`" selected>` + item[1] +`</option>`;
+        div += `<option value="` + item[0] +`">` + item[1] +`</option>`;
     });
     document.querySelector('#second_do').innerHTML = div;
 }
@@ -190,6 +231,10 @@ function checkFirstSelect() {
         enableAfterClickBlock();
     }
 
+    if (first_select.value === 'next_lesson') {
+        document.querySelector('#popup__body-list-select').classList.add('display-none');
+    }
+
     switch (first_select.value) {
         case 'list':
         case 'next_lesson': {
@@ -202,7 +247,9 @@ function checkFirstSelect() {
             disableAfterClickBlock();
             break;
         }
+
         case 'link': {
+            document.querySelector('#popup__body-list-select').classList.add('display-none');
             document.querySelector('#popup__body-form-1').style.display = 'none';
             addFormLink(first_select);
             defaultPopup(second_select);
@@ -210,6 +257,7 @@ function checkFirstSelect() {
             checkSecondSelect();
             break;
         }
+
         case 'form':
         case 'pay_form': {
             if ('form' === first_select.value) {
@@ -224,7 +272,7 @@ function checkFirstSelect() {
                 elem.classList.add('display-none');
             })
             defaultPopup(first_select);
-            addSecondOptions([['link', "Переход по ссылке"], ['next_lesson', 'Следующий урок'], ['file', 'Отправка файла']]);
+            addSecondOptions([['link', "Переход по ссылке"], ['next_lesson', 'Открыть следующее видео'], ['file', 'Отправка файла']]);
             enableAfterClickBlock();
             checkSecondSelect();
             let form__title = document.querySelector('input[name="form__title"]');
@@ -242,6 +290,12 @@ function checkFirstSelect() {
             break;
         }
     }
+}
+
+function checkFormInputs() {
+    document.querySelector('.popup-title').innerHTML = document.querySelector('input[name="form__title"]').value;
+    document.querySelector('.popup-text').innerHTML = document.querySelector('input[name="form__desc"]').value;
+    document.querySelector('.button__send').innerHTML = document.querySelector('input[name="button__send"]').value;
 }
 
 function checkSecondSelect() {
@@ -267,6 +321,9 @@ function checkSecondSelect() {
         if (second_select.value === 'link') {
             document.querySelector('#popup__body-form-2').style.display = 'none';
             addFormLink(second_select);
+            if (document.querySelector('.checkbox__wrapper')) {
+                document.querySelector('.checkbox__wrapper').classList.remove('display-none');
+            }
         }
     }
 
@@ -281,6 +338,7 @@ function checkBothSelect() {
     checkFirstSelect();
     checkSecondSelect();
 }
+
 document.addEventListener('DOMContentLoaded', function () {
     checkBothSelect();
 
@@ -318,6 +376,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelector('.button-click').innerHTML = button_text;
 
             id_item.value = item.parentElement.querySelector('input[type="hidden"]').value;
+            document.querySelector('#initButton').action = "/Funnel/"+ item.parentElement.querySelector('input[type="hidden"]').value +"/settings"
             entryDisplay.classList.toggle('display-flex');
             toggleOverflow();
 
@@ -331,39 +390,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 elem.classList.toggle('display-none');
             })
             document.querySelector('.popup__edit-button').classList.remove('display-none');
-            // Не должно ломаться
-            // let button_name = elem.parentElement.querySelector('.button_text');
-            // let popup_button = document.querySelector('.button-video');
-            // button_name.addEventListener('input', function () {
-            //     popup_button.innerHTML = this.value;
-            //     popup_button.classList.remove('display-none');
-            //     document.querySelectorAll('.second_do').forEach((elem) => {
-            //         elem.classList.add('display-block');
-            //         if (['form', 'pay_form'].includes(second_select.value)) {
-            //             document.querySelector('#popup__body-form-2').style.display = 'flex';
-            //         }
-            //     })
-            // })
         })
     })
-
-    close.addEventListener('click', function () {
-        toggleOverflow();
-        closePopup();
-        clearPopup();
-        defaultPopup(first_select);
-        defaultPopup(second_select);
-        document.querySelector('.popup__bonus').classList.remove('active');
-    });
-
-    entryDisplay.onclick = function (event) {
-        if (event.target === entryDisplay) {
-            toggleOverflow();
-            closePopup();
-            clearPopup();
-            defaultPopup(first_select);
-            defaultPopup(second_select);
-            document.querySelector('.popup__bonus').classList.remove('active');
-        }
-    }
 });

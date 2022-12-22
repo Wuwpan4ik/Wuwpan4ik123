@@ -39,6 +39,7 @@
     $router->addRoute("/Account/MainSettings", "AccountController.php", "SaveSettings");
     $router->addRoute("/Account/UserSettings", "AccountController.php", "SaveUserSettings");
     $router->addRoute("/Account/SaveSchoolSettings", "AccountController.php", "SaveSchoolSettings");
+    $router->addRoute("/Account/SaveSocialSettings", "AccountController.php", "SaveSocialSettings");
 
     $router->addRoute("/UserMain", "UserMain.php");
     $router->addRoute("/UserLogin", "UserLogin.php");
@@ -59,7 +60,7 @@
 
     $router->addRoute("/Course", "Course.php");
     $router->addRoute("/Course/$item_id", "CourseEdit.php");
-    $router->addRoute("/Course/create", "CourseController.php", "CreateCourse");
+    $router->addRoute("/Course/create", "CourseController.php", "CreateCourse", false);
     $router->addRoute("/Course-rename/$item_id", "CourseController.php", "RenameCourse");
     $router->addRoute("/Course-delete/$item_id", "CourseController.php", "DeleteCourse");
     $router->addRoute("/Course/$item_id/create", "CourseController.php", "AddVideo");
@@ -70,7 +71,7 @@
 
     $router->addRoute("/Funnel", "Funnel.php");
     $router->addRoute("/Funnel/$item_id", "FunnelEdit.php");
-    $router->addRoute("/Funnel/create", "FunnelController.php", "CreateFunnel");
+    $router->addRoute("/Funnel/create", "FunnelController.php", "CreateFunnel", false);
     $router->addRoute("/Funnel-rename/$item_id", "FunnelController.php", "RenameFunnel");
     $router->addRoute("/Funnel-delete/$item_id", "FunnelController.php", "DeleteFunnel");
     $router->addRoute("/Funnel-select/$item_id", "FunnelController.php", "SelectCourse");
@@ -79,11 +80,9 @@
     $router->addRoute("/Funnel/$item_id/rename", "FunnelController.php", "RenameVideo");
     $router->addRoute("/Funnel/$item_id/change", "FunnelController.php", "ChangeVideo");
     $router->addRoute("/Funnel/$item_id/settings", "FunnelController.php", "PopupSettings");
+    $router->addRoute("/Funnel/$item_id/checkSettings", "CheckFunnelSettingsController.php", "CheckPopupSettings", false);
     $router->addRoute("/Funnel/getCourseList", "UserController.php", "GetCourseList");
-
-    $router->addRoute("/SortController/Clients", "SortController.php", "getClientsForMain");
-    $router->addRoute("/SortController/AnalyticClients", "SortController.php", "getClientsForAnalytics");
-    $router->addRoute("/SortController/AnalyticOrders", "SortController.php", "getOrdersForAnalytics");
+    $router->addRoute("/Funnel/$item_id/getFunnelPopup", "UserController.php", "GetFunnelPopup");
 
     $router->addRoute("/LoginController/login", "LoginController.php", 'login');
     $router->addRoute("/LoginController/reg", "LoginController.php", 'registration');
@@ -95,12 +94,15 @@
     $router->addRoute("/ClientsController/CourseVideo", "ClientsController.php", 'BuyVideo');
     $router->addRoute("/PopupController/get_popup", "PopupController.php", 'get_popup');
 
+    $router->addRoute("/SortController/Clients", "SortController.php", "getClientsForMain");
+    $router->addRoute("/SortController/AnalyticClients", "SortController.php", "getClientsForAnalytics");
+    $router->addRoute("/SortController/AnalyticOrders", "SortController.php", "getOrdersForAnalytics");
     $router->addRoute("/AnalyticController/$item_id/deleteOrder", "AnalyticController.php", 'DeleteOrder');
     $router->addRoute("/AnalyticController/$item_id/deleteClient", "AnalyticController.php", 'DeleteClient');
 
     $router->addRoute("/StatisticsController/GetStatistics", "StatisticsController.php", 'GetAllStatistics');
     $router->addRoute("/StatisticsController/GetWeek", "StatisticsController.php", 'GetWeekGraph');
-    $router->addRoute("/StatisticsController/GetWeek", "StatisticsController.php", 'GetWeekGraph');
+    $router->addRoute("/StatisticsController/GetWeekDays", "StatisticsController.php", 'GetWeekDays');
 
     $router->addRoute("/UserController/getCourse", "UserController.php", 'getCourseSite');
     $router->addRoute("/UserController/getDisableCourse", "UserController.php", 'getDisableCourseSite');

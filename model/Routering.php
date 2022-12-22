@@ -4,11 +4,11 @@ class Router
 {
     private $pages = array();
 
-    function addRoute($url, $path, $method = null) {
+    function addRoute($url, $path, $method = null, $content = true) {
         if (is_null($method)) {
             $this->pages[$url] = $path;
         } else {
-            $this->pages[$url] = [$path, $method];
+            $this->pages[$url] = [$path, $method, $content];
         }
     }
 
@@ -44,7 +44,9 @@ class Router
                 $obj = new $class;
                 if (method_exists($obj, $method)) {
                     $obj->$method();
-                    $obj->get_content();
+                    if ($path[2]) {
+                        $obj->get_content();
+                    }
                 }
             }
         }

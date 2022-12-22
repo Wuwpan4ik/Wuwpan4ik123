@@ -1,17 +1,17 @@
 <?php
 if (!class_exists('PHPMailer\PHPMailer\Exception'))
 {
-    require '/vendor/phpmailer/phpmailer/src/PHPMailer.php';
-    require '/vendor/phpmailer/phpmailer/src/SMTP.php';
-    require '/vendor/phpmailer/phpmailer/src/PHPMailer.php';
+    require '../vendor/phpmailer/phpmailer/src/PHPMailer.php';
+    require '../vendor/phpmailer/phpmailer/src/SMTP.php';
+    require '../vendor/phpmailer/phpmailer/src/PHPMailer.php';
 }
 
-    abstract class ACoreCreator {
+    abstract class  ACoreCreator {
 
         protected $m;
         protected $ourEmail = "dimalim110@gmail.com";
-        protected $ourPassword = "pumnwmlvfvxokkcp";
-        protected $ourNickName = "Wuwpan4ik";
+        protected $ourPassword = "uyrmpfgzbivwrvdp";
+        protected $ourNickName = "course-creator.io";
         protected $email;
 
         protected $url_dir;
@@ -26,7 +26,7 @@ if (!class_exists('PHPMailer\PHPMailer\Exception'))
             if (isset($_SESSION['user']['is_creator']) && $_SESSION['user']['is_creator'] == 0) {
                 header("Location: /UserMain");
             } else if (!isset($_SESSION['user']) || is_null($_SESSION['user'])) {
-                header("Location: /reg");
+                header("Location: /login");
             }
         }
 

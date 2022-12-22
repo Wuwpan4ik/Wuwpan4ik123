@@ -1,4 +1,4 @@
-<html lang="ru">
+<html lang="ru" xmlns="http://www.w3.org/1999/html">
 
 <head>
 
@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/css/main.css">
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
-  </head>
 
 </head>
 
@@ -60,8 +59,8 @@
 
                                             <?php if(isset($_SESSION['error']['email_message'])) echo $_SESSION['error']['email_message'] ?>
                                             <div class="input_focus ">
-                                                <label for="username" class="label_focus ">Телефон</label>
-                                                <input class="half"  name="phone" value="<?php print(htmlspecialchars(isset($_SESSION['user']['phone']) ? $_SESSION['user']['phone'] : '+7')) ?>">
+                                                <label for="username" class="label_focus">Телефон</label>
+                                                <input class="half" id="phone" name="phone" value="<?php print(htmlspecialchars(isset($_SESSION['user']['phone']) ? $_SESSION['user']['phone'] : '')) ?>">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
@@ -91,7 +90,7 @@
 
                                             <div class="input_focus ">
                                                 <label for="username" class="label_focus "></label>
-                                                <input id="username" type="date" name="birthday"  value="<? print(htmlspecialchars($_SESSION['user']['birthday'])); ?>">
+                                                <input id="username" type="date" name="birthday" value="<? print(htmlspecialchars($_SESSION['user']['birthday'])); ?>">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
@@ -106,56 +105,68 @@
                                         <div class="field">
                                             <div class="input_focus ">
                                                 <label for="username" class="label_focus">Страна</label>
-                                                <input type="text"  name="country" value="<?php print(htmlspecialchars(isset($_SESSION['user']['country']) ? $_SESSION['user']['country'] : '')) ?>">
+                                                <input type="text" name="country" value="<?php print(htmlspecialchars(isset($_SESSION['user']['country']) ? $_SESSION['user']['country'] : '')) ?>">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
                                             </div>
                                             <div class="input_focus ">
                                                 <label for="username" class="label_focus">Город</label>
-                                                <input type="text"   name="city" value="<?php print(htmlspecialchars(isset($_SESSION['user']['city']) ? $_SESSION['user']['city'] : ''))?>">
+                                                <input type="text" name="city" value="<?php print(htmlspecialchars(isset($_SESSION['user']['city']) ? $_SESSION['user']['city'] : ''))?>">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
                                             </div>
-                                            <select class="select-account currencies" name="currency" id="currency">
-                                                <option value="null" <?php if (isset($_SESSION['user']['currency'])) echo "selected"?>>Выберите валюту</option>
-                                                <option value="$" <?php if (isset($_SESSION['user']['currency']) && $_SESSION['user']['currency'] == '$') echo "selected"?>>$</option>
-                                                <option value="€" <?php if (isset($_SESSION['user']['currency']) && $_SESSION['user']['currency'] == '€') echo "selected"?>>€</option>
-                                                <option value="₴" <?php if (isset($_SESSION['user']['currency']) && $_SESSION['user']['currency'] == '₴') echo "selected"?>>₴</option>
-                                                <option value="₽" <?php if (isset($_SESSION['user']['currency']) && $_SESSION['user']['currency'] == '₽') echo "selected"?>>₽</option>
-                                            </select>
+
+                                            <div class="select-account social-network">
+                                                <div id="myMultiselect" class=" multiselect">
+                                                    <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
+                                                        <select name="currency" class="form-select">
+                                                            <option id="name" value=""><?php echo ($_SESSION['user']['currency']) ?? "Выберите валюту"; ?></option>
+                                                        </select>
+                                                        <div class="overSelect"></div>
+                                                    </div>
+                                                    <div class="mySelectOptions">
+                                                        <label class="item">$<input class="custom-checkbox" type="radio" value="$" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                        <label class="item">€<input class="custom-checkbox" type="radio" value="€" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                        <label class="item">₴<input class="custom-checkbox" type="radio" value="₴" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                        <label class="item">₽<input class="custom-checkbox" type="radio" value="₽" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                         <h2>Укажите соц сети для клиентов</h2>
                                         <div class="field">
                                             <div class="select-account social-network">
                                                 <div id="myMultiselect" class="multiselect">
-                                                    <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea()">
+                                                    <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
                                                         <select class="form-select">
-                                                            <option id="name">Выберите соц сеть</option>
+                                                            <option class="form-select__social-name" id="name">Выберите соц сеть</option>
                                                         </select>
                                                         <div class="overSelect"></div>
                                                     </div>
-                                                    <div id="mySelectOptions">
-                                                        <label class="item">Вконтакте<input class="custom-checkbox" type="radio" value="Вконтакте" /><label for="happy"></label></label>
-                                                        <label class="item">Твиттер<input class="custom-checkbox" type="radio" value="Твиттер" /><label for="happy"></label></label>
-                                                        <label class="item">Фейсбук<input class="custom-checkbox" type="radio" value="Фейсбук" /><label for="happy"></label></label>
-                                                        <label class="item">Инстаграм<input class="custom-checkbox" type="radio"  value="Инстаграм" /><label for="happy"></label></label>
-                                                        <label class="item">Ютуб<input class="custom-checkbox" type="radio"  value="Ютуб" /><label for="happy"></label></label>
-                                                        <label class="item">Телеграм<input class="custom-checkbox" type="radio"  value="Телеграм" /><label for="happy"></label></label>
-                                                        <label class="item">Сайт<input class="custom-checkbox" type="radio" value="Сайт" /><label for="happy"></label></label>
+                                                    <div class="mySelectOptions">
+                                                        <label class="item">Вконтакте<input class="custom-checkbox social__input" type="radio" value="vk" /><label for="happy"></label></label>
+                                                        <label class="item">WhatsApp<input class="custom-checkbox social__input" type="radio" value="whatsapp" /><label for="happy"></label></label>
+                                                        <label class="item">Твиттер<input class="custom-checkbox social__input" type="radio" value="twitter" /><label for="happy"></label></label>
+                                                        <label class="item">Фейсбук<input class="custom-checkbox social__input" type="radio" value="facebook" /><label for="happy"></label></label>
+                                                        <label class="item">Инстаграм<input class="custom-checkbox social__input" type="radio" value="instagram" /><label for="happy"></label></label>
+                                                        <label class="item">Ютуб<input class="custom-checkbox social__input" type="radio" value="youtube" /><label for="happy"></label></label>
+                                                        <label class="item">Телеграм<input class="custom-checkbox social__input" type="radio" value="telegram" /><label for="happy"></label></label>
+                                                        <label class="item">Сайт<input class="custom-checkbox social__input" type="radio" value="site" /><label for="happy"></label></label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="input_focus ">
                                                 <label for="username" class="label_focus">Укажите ссылку</label>
-                                                <input type="text" >
+                                                <input type="text" id="social__inpu" minlength="10">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
                                             </div>
                                         </div>
-                                        <button class="add-social-network"><img src="../img/addSocialNetwork.svg" alt=""> Добавить соц сеть</button>
+                                        <button type="button" id="social__submit" class="add-social-network"><img src="../img/addSocialNetwork.svg" alt=""> Добавить соц сеть</button>
                                         <div class="ProfileSetting">
                                             <h2 class="no_margin">Загрузите аватар автора:</h2>
                                             <script>
@@ -165,7 +176,7 @@
                                             </script>
                                             <div class="ProfileSetting-body">
                                                 <div class="ProfileSetting-avatar">
-                                                    <img src="<? echo (isset($_SESSION['user']['avatar'])  ? $_SESSION['user']['avatar'] : "userAvatar.jpg") ?>" id="ava_preload">
+                                                    <img src="<? echo (isset($_SESSION['user']['avatar'])  ? $_SESSION['user']['avatar'] : "/uploads/ava/userAvatar.jpg") ?>" id="ava_preload">
                                                     <div class="ProfileSetting-name">
                                                         <?=$_SESSION["user"]["first_name"]?>
                                                         <? if (!isset($_SESSION["user"]["second_name"])) {echo "Фамилия";} else {echo $_SESSION["user"]["second_name"];} ?>
@@ -225,19 +236,23 @@
                                                 </span>
                                             </div>
 
-
-
-                                            <select class="selector inf" name="niche">
-
-                                                <?
-                                                $options = ["Изотерика", "Обучение", "Дизайн", "Политика", "Спорт", "Игры", "Животные"];
-                                                for($i = 0; $i<7; $i++){
-                                                    if($options[$i] == $content[0][0]['niche']){?><option selected="selected"><?=$options[$i]?></option>
-                                                    <?}else{?><option><?=$options[$i]?></option><?}
-                                                }
-                                                ?>
-
-                                            </select>
+                                            <div class="select-account social-network">
+                                                <div id="myMultiselect" class="multiselect">
+                                                    <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
+                                                        <select name="niche" class="form-select">
+                                                            <option id="name">Выберите вашу нишу</option>
+                                                        </select>
+                                                        <div class="overSelect"></div>
+                                                    </div>
+                                                    <div class="mySelectOptions">
+                                                        <?php
+                                                        $options = ["Изотерика", "Обучение", "Дизайн", "Политика", "Спорт", "Игры", "Животные"];
+                                                        for($i = 0; $i<7; $i++){?>
+                                                          <label class="item"><?=$options[$i]?><input class="custom-checkbox" type="radio" value="<?=$options[$i]?>" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                        <?php } ?>
+                                                    </div>
+                                                </div>
+                                            </div>
 
 
                                         </div>
@@ -297,105 +312,7 @@
                                                     <a id="improvement-tariff">Увеличить хранилище</a>
                                                 </div>
                                             </div>
-
-                                            <div class="change-tariff-popup popup-tariff">
-                                                <div class="popup-tariff-body">
-                                                    <div class="popup__title">
-                                                        Выберите лучшее соотношение цены <br> и возможностей Сourse-creator.io
-                                                    </div>
-
-                                                    <div class="popup-tariff__cards">
-                                                        <div class="popup-tariff__card">
-                                                            <div class="popup-tariff__card-body">
-                                                                <div class="popup-tariff__subtitle">
-                                                                    Starter
-                                                                </div>
-                                                                <p>Идеально подходит для тех, кто начинает свой первый курс</p>
-                                                                <div class="popup-tariff__img">
-                                                                    <img src="../img/Tarifs/starter-tariff.jpg" alt="">
-                                                                </div>
-
-                                                                <div class="popup-tariff__info">
-                                                                    <ul>
-                                                                        <li>1 воронка (сайт)</li>
-                                                                        <li>1 курс </li>
-                                                                        <li>1  гб места на хостинге</li>
-                                                                        <li>до 1 000 учеников</li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="popup-tariff__price">
-                                                                    Стоимость
-                                                                    <div class="tariff-price">2 990 ₽/ мес </div>
-                                                                </div>
-                                                                <div class="popup-tariff-button ">
-                                                                    <button class="selected">
-                                                                        Выбран сейчас
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="popup-tariff__card">
-                                                            <div class="popup-tariff__card-body">
-                                                                <div class="popup-tariff__subtitle">
-                                                                    Starter
-                                                                </div>
-                                                                <p>Идеально подходит для тех, кто начинает свой первый курс</p>
-                                                                <div class="popup-tariff__img">
-                                                                    <img src="../img/Tarifs/starter-tariff.jpg" alt="">
-                                                                </div>
-
-                                                                <div class="popup-tariff__info">
-                                                                    <ul>
-                                                                        <li>1 воронка (сайт)</li>
-                                                                        <li>1 курс </li>
-                                                                        <li>1  гб места на хостинге</li>
-                                                                        <li>до 1 000 учеников</li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="popup-tariff__price">
-                                                                    Стоимость
-                                                                    <div class="tariff-price">2 990 ₽/ мес </div>
-                                                                </div>
-                                                                <div class="popup-tariff-button ">
-                                                                    <button >
-                                                                        Выбран сейчас
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="popup-tariff__card">
-                                                            <div class="popup-tariff__card-body">
-                                                                <div class="popup-tariff__subtitle">
-                                                                    Starter
-                                                                </div>
-                                                                <p>Идеально подходит для тех, кто начинает свой первый курс</p>
-                                                                <div class="popup-tariff__img">
-                                                                    <img src="../img/Tarifs/starter-tariff.jpg" alt="">
-                                                                </div>
-
-                                                                <div class="popup-tariff__info">
-                                                                    <ul>
-                                                                        <li>1 воронка (сайт)</li>
-                                                                        <li>1 курс </li>
-                                                                        <li>1  гб места на хостинге</li>
-                                                                        <li>до 1 000 учеников</li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="popup-tariff__price">
-                                                                    Стоимость
-                                                                    <div class="tariff-price">2 990 ₽/ мес </div>
-                                                                </div>
-                                                                <div class="popup-tariff-button ">
-                                                                    <button ">
-                                                                        Выбран сейчас
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
+                                            <?php include 'template/default/popup__templates/popup__tariffs.php'?>
                                             <div class="improvement-tariff-popup popup-tariff">
                                                 <div class="popup-tariff-body">
                                                     <div class="popup__title">
@@ -481,26 +398,50 @@
                             <input type="radio" id="Tarif" name="mytabs"/>
 
                             <label class="menu-label" for="Tarif" id="cllab"><p>Дополнительно</p></label>
-
                             <div class="tab">
-
-                                <h2>Скрипты для HEAD:  </h2>
-
-                                <textarea class="additionally" placeholder="Default" name="head_additional"></textarea>
-
-                                <h2>Скрипты для Body:  </h2>
-
-                                <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>
-
-                                <div class="about-btn">
-                                    <button id="profile_send" type="submit">Сохранить</button>
+                        <div class="tab col">
+                            <div class="inner_row">
+                                <div class="row">
+                                    <h2>Подключение Prodamus:  </h2>
+                                    <input type="text" name="prodamus_api" placeholder="API Ключ">
                                 </div>
+                            </div>
+                            <div class="inner_row">
+                                <div class="row">
+                                    <h2>Подключение Albato:  </h2>
+                                    <input type="text" name="albato_api" placeholder="API Ключ">
+                                </div>
+                            </div>
+                            <div class="inner_row">
+                                <div class="row">
+                                    <h2>Скрипты для HEAD:  </h2>
+                                    <textarea class="additionally" placeholder="Default" name="head_additional"></textarea>
+                                </div>
+                                <div class="row">
+                                    <h2>Скрипты для Body:  </h2>
+                                    <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="about-btn">
+                                <button id="profile_send" type="submit">Сохранить</button>
                             </div>
                         </div>
                     </div>
 
 
                 </div>
+                        <div class="exit-settings popup-tariff">
+                            <div class="popup-tariff-body">
+                                <div class="popup__title">
+                                    Если вы покинете страницу </br>введенные  вами данные </br> не сохраняться
+                                </div>
+                                <div class="popup__buttons">
+                                    <button id="close-popup" class="popup__btn popup__white">Покинуть</button>
+                                    <button class="popup__btn popup__blue">Сохранить</button>
+                                </div>
+                            </div>
+                        </div>
             </div>
 
     </div>
@@ -509,14 +450,20 @@
 
 </div>
 <?php unset($_SESSION['error']) ?>
-
-
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.maskedinput@1.4.1/src/jquery.maskedinput.min.js" type="text/javascript"></script>
 <script>
     /*Popups*/
     let changeTariff = document.querySelector('.change-tariff-popup');
     let improvementTariff = document.querySelector('.improvement-tariff-popup');
+    let exitSettings = document.querySelector('.exit-settings');
+    let exitSettingsClose = document.querySelector('#close-popup');
     let changeTariffOpen = document.querySelector('#change-tariff');
     let improvementTariffOpen = document.querySelector('#improvement-tariff');
+
+    exitSettingsClose.addEventListener('click', function(){
+        exitSettings.classList.remove('active');
+    })
 
     changeTariffOpen.addEventListener('click', function(){
         changeTariff.classList.add('active');
@@ -532,46 +479,14 @@
         })
     })
 
-    /*Select*/
-    function checkboxStatusChange() {
-        let multiselectOption =  document.getElementById("name");
-        let values = [];
-        let checkboxes = document.getElementById("mySelectOptions");
-        let checkedCheckboxes = checkboxes.querySelectorAll('input');
+    document.getElementById('social__inpu').addEventListener('input', function (){
+        document.getElementById('social__link').value = this.value;
+    })
 
-        checkedCheckboxes.forEach(item =>{
-
-            item.addEventListener('click', function(){
-                if(item.checked = true){
-                    checkedCheckboxes.forEach(el =>{
-                        el.checked = false
-                        el.parentElement.classList.remove('active')
-                        checkboxes.style.display = "none";
-                    })
-                    item.checked = true
-                    item.parentElement.classList.add('active')
-                    values = ( item.getAttribute('value'));
-                }
-                multiselectOption.innerText = values;
-            })
-        })
-    }
-
-    checkboxStatusChange()
-    function toggleCheckboxArea(onlyHide = false) {
-        let checkboxes = document.getElementById("mySelectOptions");
-        const displayValue = checkboxes.style.display;
-
-        if (displayValue != "flex") {
-            if (onlyHide == false) {
-                checkboxes.style.display = "flex";
-                checkboxes.style.flexDirection = "column";
-            }
-        } else {
-            checkboxes.style.display = "none";
-        }
-    }
-
+    document.getElementById('social__submit').addEventListener('click', function (){
+        document.getElementById('social__button').click();
+    })
+    console.log()
     const button_submit = document.querySelector('#profile_send');
     const check_url = document.querySelector('#check_url');
     const check_button = document.querySelector('#check_button');
@@ -579,32 +494,40 @@
 
     button_submit.addEventListener('click', function () {
         let second_button = document.querySelector('#apps');
-        console.log(second_button);
         second_button.click();
-    });
-    check_button.addEventListener('click', function () {
-        const request = new XMLHttpRequest();
-
-        const url = "?option=UrlController&site_url=" + check_url.value;
-
-        /* Здесь мы указываем параметры соединения с сервером, т.е. мы указываем метод соединения GET,
-        а после запятой мы указываем путь к файлу на сервере который будет обрабатывать наш запрос. */
-        request.open('GET', url);
-
-        // Указываем заголовки для сервера, говорим что тип данных, - контент который мы хотим получить должен быть не закодирован.
-        request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-        request.addEventListener("readystatechange", () => {
-            if (request.readyState === 4 && request.status === 200) {
-                message.innerHTML = request.responseText;
-            }
-        });
-        request.send();
     });
 
 </script>
+
 <script src="/js/getNotifications.js"></script>
 <script src="/js/customInputs.js"></script>
+<script src="/js/customSelect.js"></script>
 <script src="/js/printFailName.js" ></script>
+<script>
+    let form__submit = $(function() {
+        $('#social__form').each(function (){
+            $(this).submit(function(e) {
+                e.preventDefault();
+                if (($(this).find('#social__link')[0].value.length) <= 10) {
+                    // Событие при нехватки длины
+                    alert("Впишите ссылку своей соцсети");
+                    return;
+                }
+                try {
+                    // Alert
+                    $('#social__input')[0].value = $('.form-select__social-name')[0].value;
+                    $.post(e.target.action, $(this).serialize());
+                    alert("Ваши данные сохранены");
+                } catch {}
+            });
+        })
+    });
+</script>
+<form id="social__form" class="social__form display-none" action="/Account/SaveSocialSettings" method="POST">
+    <input id="social__input" type="text" name="social" value="">
+    <input id="social__link" type="text" name="link" value="">
+    <button id="social__button" type="submit"></button>
+</form>
 </body>
 
 </html>

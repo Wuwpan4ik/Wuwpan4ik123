@@ -211,13 +211,18 @@ wrapper.activeFullscreen{
     bottom:0px !important;
 }
 
-.wrapper.activePlayer{
+.wrapper.has__file{
     opacity: 1 !important;
     pointer-events: all;
     bottom: 46% !important;
     z-index: 4;
 }
-
+.wrapper.non__file{
+    opacity: 1 !important;
+    pointer-events: all;
+    bottom: 36.5% !important;
+    z-index: 4;
+}
 .popup__allLessons-item-video__img img{
     width:80px;
     height:139px;
@@ -243,20 +248,13 @@ wrapper.activeFullscreen{
 .popup__allLessons-item-info{
     width:100%;
 }
-
-
-/* Выводим кнопки варварским методом */
-
-
-
 /* В случае, если файл присутсвует */
 
-.wrapper.has__file{
-
+.youWatching.has__file{
+    height:46% !important;
 }
-
-.youWatching{
-    height:46%;
+.youWatching.non__file{
+    height:36.5% !important;
 }
 .UserPlayer.Сourse-form{
     transition: 0.6s all ease;
@@ -351,9 +349,9 @@ wrapper.activeFullscreen{
     width: 110px;
     height: 110px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0px 50px 80px rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(7.5px);
     display:flex;
     justify-content: center;
     align-items: center;
@@ -364,10 +362,8 @@ wrapper.activeFullscreen{
     width: 110px;
     height: 110px;
     border-radius: 50%;
-
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0px 50px 80px rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(7.5px);
     display:flex;
     justify-content: center;
     align-items: center;

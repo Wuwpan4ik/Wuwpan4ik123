@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!--Выдаем вместо этой хуйни нормальный тайтл названия воронки / курса-->
     <title>Course Creator - Плеер</title>
     <link type="text/css" rel="stylesheet" href="/css/smallPlayer.css">
@@ -23,7 +23,6 @@
         </div>
         <?php if (!empty($content['course_content'])) { ?>
         <div class="slider">
-
             <?php
                 foreach ($content['funnel_content'] as $item) {
                     if (isset($item['popup'])) $popup = json_decode($item['popup']);
@@ -94,6 +93,7 @@
                     $popup__do = $popup->first_do;
                     $second_link = $popup->second_do->link;
                     $id = $item['id'];
+                    $new_window = !is_null($popup->second_do->open_in_new);
                     $author_id = $item['author_id'];
                     include 'template/default/popup__templates/popup__form.php';
                 } ?>
@@ -124,10 +124,12 @@
 
 <!--Закрытие AllLessons-->
 <script>
-    document.querySelector('.button-notBuy').addEventListener('click', function (){
-        document.querySelector('.overlay-allLessons').classList.remove('active');
-        document.querySelector('.popup-allLessons').classList.remove('active');
-    })
+    if (document.querySelector('.button-notBuy')) {
+        document.querySelector('.button-notBuy').addEventListener('click', function (){
+            document.querySelector('.overlay-allLessons').classList.remove('active');
+            document.querySelector('.popup-allLessons').classList.remove('active');
+        });
+    }
 </script>
 
 <script>
@@ -135,11 +137,6 @@
     let sourceVideo = document.querySelectorAll('#sourceVideo');
 
     document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('.slider__video-item').forEach((item) => {
-            item.addEventListener('ended', function () {
-                $('.slick-next').click();
-            })
-        })
         document.querySelectorAll('.slick-arrow').forEach((item) => {
             item.style.display = 'none';
         })
@@ -183,7 +180,11 @@
                     alert("Форма успешно отправлена");
                 } catch {}
                 try {
-                    window.open($(this)[0].querySelector('.second_link').value);
+                    if ($(this)[0].querySelector('.new_window')) {
+                        window.open($(this)[0].querySelector('.second_link').value);
+                    } else {
+                        window.location = $(this)[0].querySelector('.second_link').value;
+                    }
                 } catch {}
             });
         })

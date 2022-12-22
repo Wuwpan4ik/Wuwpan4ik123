@@ -322,7 +322,7 @@ a.button__back {
 }
 .Article-body{
     position: relative;
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -423,4 +423,7 @@ a.button__back {
     border-radius: 8px;
     color: #fff;
     padding: 16px 0;
+}
+.Article-post-item__button:hover button{
+    background: linear-gradient(180deg, #5B78E3 0%, #2A4BC5 100%);
 }

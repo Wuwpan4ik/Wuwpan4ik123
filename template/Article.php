@@ -8,7 +8,7 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
     <link rel="stylesheet" href="/css/nullCss.css">
 
@@ -91,7 +91,7 @@
         if(scroll >= 270){
             document.querySelector('.Article-post-item').classList.remove('active');
             document.querySelector('.Article-post-item').style.position = 'fixed';
-            document.querySelector('.Article-post-item').style.left = '26.5%';
+            document.querySelector('.Article-post-item').style.left = '26.3%';
             document.querySelector('.Article-post-item').style.top = '70px';
             document.querySelector('.Article-post-item').style.bottom = 'null';
         }

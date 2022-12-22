@@ -50,7 +50,7 @@ class AccountController extends ACoreCreator {
                 return False;
             }
 
-            if (count($this->m->db->query("SELECT * FROM user WHERE email = '$temp_email'")) != 0) {
+            if (count($this->m->db->query("SELECT * FROM user WHERE email = '$temp_email'")) != 0 && $temp_email != $_SESSION['user']['email']) {
                 $_SESSION['error']['email_message'] = 'Такой email уже зарегистрирован';
                 return False;
             }
@@ -92,7 +92,7 @@ class AccountController extends ACoreCreator {
         } else {
             $country = $_POST['country'];
         }
-
+        $_SESSION['error'] = $_POST['currency'];
         if (strlen($_POST['currency']) == 0) {
             $currency= $user[0]['currency'];
         } else {
@@ -101,7 +101,9 @@ class AccountController extends ACoreCreator {
 
         if($_FILES['avatar']['size'] != 0){
 
-            $avatar = "./uploads/ava/" . $email. "_" .$_FILES['avatar']['name'];
+            $_SESSION['error'] = $_FILES['avatar'];
+
+            $avatar = "./uploads/ava/" . $email;
 
             move_uploaded_file($_FILES['avatar']['tmp_name'], $avatar);
 
@@ -156,6 +158,16 @@ class AccountController extends ACoreCreator {
         $this->m->db->execute("UPDATE user SET `first_name` = '$first_name', `second_name` = '$second_name' WHERE id = " . $_SESSION['user']['id']);
         $_SESSION["user"]['first_name'] = $first_name;
         $_SESSION["user"]['second_name'] = $second_name;
+    }
+
+    function SaveSocialSettings() {
+        $social = $_POST['social'];
+        $link = $_POST['link'];
+        if ($this->m->isUserSocials()) {
+            $this->m->db->execute("UPDATE `user_contacts` SET `". $social ."` = '". $link ."' WHERE user_id = " . $_SESSION['user']['id']);
+        } else {
+            $this->m->db->execute("INSERT INTO `user_contacts` (`". $social ."`, `user_id`) VALUES ('". $link ."', ". $_SESSION['user']['id'] .")");
+        }
     }
 
     function get_content()

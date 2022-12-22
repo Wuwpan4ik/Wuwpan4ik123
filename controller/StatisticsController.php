@@ -33,9 +33,9 @@
             echo json_encode($result);
         }
 
-        public function GetWeekGraph()
+        public function GetWeekDays()
         {
-            $result = ['prev' => $this->m->GetWeekGraph()];
+            $result = $this->m->GetWeekDays();
             echo json_encode($result);
         }
 
