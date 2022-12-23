@@ -1,16 +1,16 @@
 <?php
 if (!class_exists('PHPMailer\PHPMailer\Exception'))
 {
-    require '/vendor/phpmailer/phpmailer/src/PHPMailer.php';
-    require '/vendor/phpmailer/phpmailer/src/SMTP.php';
-    require '/vendor/phpmailer/phpmailer/src/PHPMailer.php';
+    require '../vendor/phpmailer/phpmailer/src/PHPMailer.php';
+    require '../vendor/phpmailer/phpmailer/src/SMTP.php';
+    require '../vendor/phpmailer/phpmailer/src/PHPMailer.php';
 }
 
     abstract class  ACoreCreator {
 
         protected $m;
-        protected $ourEmail = "reg@course-creator.io";
-        protected $ourPassword = "mX5iH9nO8n";
+        protected $ourEmail = "dimalim110@gmail.com";
+        protected $ourPassword = "uyrmpfgzbivwrvdp";
         protected $ourNickName = "course-creator.io";
         protected $email;
 

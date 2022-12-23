@@ -125,7 +125,11 @@ button {
 }
 
 .mytabs label p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 10px 0;
+    cursor: pointer;
 }
 
 .mytabs label p:hover{

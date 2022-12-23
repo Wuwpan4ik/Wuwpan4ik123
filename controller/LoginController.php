@@ -48,6 +48,7 @@
             } else {
                 $response = "Такого пользователя не существует";
             }
+            header('Location: /');
         }
 
         public function login () {
@@ -83,6 +84,7 @@
                 echo $response;
                 die(header("HTTP/1.0 404 Not Found"));
             }
+            header('Location: /');
             return True;
         }
 
@@ -151,6 +153,13 @@
             mkdir("./uploads/users/". $_SESSION['user']['id'] . "/files");
             mkdir("./uploads/users/". $_SESSION['user']['id'] . "/course_files");
             mkdir("./uploads/users/". $_SESSION['user']['id'] . "/thumbnails");
+            chmod("./uploads/users/" . $_SESSION['user']['id'], 0777);
+            chmod("./uploads/users/". $_SESSION['user']['id'] . "/funnels", 0777);
+            chmod("./uploads/users/". $_SESSION['user']['id'] . "/courses", 0777);
+            chmod("./uploads/users/". $_SESSION['user']['id'] . "/files", 0777);
+            chmod("./uploads/users/". $_SESSION['user']['id'] . "/course_files", 0777);
+            chmod("./uploads/users/". $_SESSION['user']['id'] . "/thumbnails", 0777);
+            echo "<script>window.location.replace('/')</script>";
             return True;
         }
 
@@ -219,7 +228,7 @@
                 $this->db->db->execute("UPDATE `user` SET `password` = '$this->password' WHERE email = '$this->email'");
                 $body = "Вы сменили пароль на сайте <a href=\"/login\">Course Creator</a><br>Новый пароль: $this->password";
                 $this->SendEmail($title, $body);
-                header('Location: /');
+                header('Location: /login');
                 return true;
             }
             header('Location: /');

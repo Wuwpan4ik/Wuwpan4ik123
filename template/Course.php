@@ -170,6 +170,7 @@
     });
 </script>
 <script src="/js/customInputs.js"></script>
+
 <script>
     document.querySelectorAll('.slick-arrow').forEach(item => {
         item.remove();

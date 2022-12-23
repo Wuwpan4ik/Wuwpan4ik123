@@ -81,8 +81,8 @@
                                             </div>
 
                                             <div class="input_focus ">
-                                                <label for="username" class="label_focus ">Фимилия</label>
-                                                <input id="username" type="text" name="second_name" >
+                                                <label for="username" class="label_focus ">Фамилия</label>
+                                                <input id="username" type="text" name="second_name" value="<? echo $_SESSION['user']['second_name'] ?>">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
@@ -90,7 +90,7 @@
 
                                             <div class="input_focus ">
                                                 <label for="username" class="label_focus "></label>
-                                                <input id="username" type="date" name="birthday" value="<? print(htmlspecialchars($_SESSION['user']['birthday'])); ?>">
+                                                <input id="username" type="date" name="birthday" value="<? echo (htmlspecialchars($_SESSION['user']['birthday'])); ?>">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
@@ -230,7 +230,7 @@
 
                                             <div class="input_focus ">
                                                 <label for="username" class="label_focus">Страна</label>
-                                                <input class="inf" type="text"  name="school_name" value="<? print(htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : '')) ?>">
+                                                <input class="inf" type="text" name="school_name" value="<? echo (htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : '')) ?>">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
@@ -240,7 +240,7 @@
                                                 <div id="myMultiselect" class="multiselect">
                                                     <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
                                                         <select name="niche" class="form-select">
-                                                            <option id="name">Выберите вашу нишу</option>
+                                                            <option id="name" selected><?php echo ($_SESSION['user']['niche']) ?? "Выберите вашу нишу"?></option>
                                                         </select>
                                                         <div class="overSelect"></div>
                                                     </div>
@@ -258,7 +258,7 @@
                                         </div>
 
                                         <div class="about_school">
-                                            <textarea name="school_desc" placeholder="<? print(htmlspecialchars(isset($_SESSION['user']['school_desc']) ? $_SESSION['user']['school_desc'] : 'Описание для школы')) ?>"></textarea>
+                                            <textarea name="school_desc" placeholder="Описание школы"><?php echo $_SESSION['user']['school_desc']?></textarea>
                                         </div>
                                         <h2>Данные вашего тарифа:</h2>
                                         <div class="field">
@@ -396,31 +396,62 @@
                             </div>
 
                             <input type="radio" id="Tarif" name="mytabs"/>
-
                             <label class="menu-label" for="Tarif" id="cllab"><p>Дополнительно</p></label>
+
                             <div class="tab">
-                        <div class="tab col">
+                        <div class="prodamus-input col">
                             <div class="inner_row">
+                                <h2>Подключение Prodamus:  </h2>
                                 <div class="row">
-                                    <h2>Подключение Prodamus:  </h2>
-                                    <input type="text" name="prodamus_api" placeholder="API Ключ">
+                                    <div class="input_focus ">
+                                        <label for="username" class="label_focus">API Ключ</label>
+                                        <input class="inf" type="text"  name="prodamus_api" value="<? print(htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : '')) ?>">
+                                        <span class="clear_input_val">
+                                                     <img src="/img/clear_input.svg" alt="">
+                                                </span>
+                                    </div>
+                                    <div class="input_focus ">
+                                        <label for="username" class="label_focus">API Ключ</label>
+                                        <input class="inf" type="text"  name="prodamus_api" value="<? print(htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : '')) ?>">
+                                        <span class="clear_input_val">
+                                                     <img src="/img/clear_input.svg" alt="">
+                                                </span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="inner_row">
+                                <h2>Подключение Albato:  </h2>
                                 <div class="row">
-                                    <h2>Подключение Albato:  </h2>
-                                    <input type="text" name="albato_api" placeholder="API Ключ">
+                                    <div class="input_focus ">
+                                        <label for="username" class="label_focus">API Ключ</label>
+                                        <input class="inf" type="text"  name="albato_api" value="<? print(htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : '')) ?>">
+                                        <span class="clear_input_val">
+                                                     <img src="/img/clear_input.svg" alt="">
+                                                </span>
+                                    </div>
+                                    <div class="input_focus ">
+                                        <label for="username" class="label_focus">API Ключ</label>
+                                        <input class="inf" type="text"  name="albato_api" value="<? print(htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : '')) ?>">
+                                        <span class="clear_input_val">
+                                                     <img src="/img/clear_input.svg" alt="">
+                                                </span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="inner_row">
-                                <div class="row">
+                            <div class="inner_row scripts">
+                                <div class="script">
                                     <h2>Скрипты для HEAD:  </h2>
-                                    <textarea class="additionally" placeholder="Default" name="head_additional"></textarea>
+                                    <div class="row">
+                                        <textarea class="additionally" placeholder="Default" name="head_additional"></textarea>
+                                    </div>
                                 </div>
-                                <div class="row">
+                                <div class="script">
                                     <h2>Скрипты для Body:  </h2>
-                                    <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>
+                                    <div class="row">
+                                        <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>
+                                    </div>
                                 </div>
+
                             </div>
 
                             <div class="about-btn">

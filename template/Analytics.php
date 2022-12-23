@@ -13,7 +13,6 @@
   </head>
 
   <body>
-  <?php print_r($_SESSION['error'])?>
 
         <div class="Analytics app">
 
@@ -188,7 +187,7 @@
 
                     <input type="radio" id="Tarif" name="mytabs"/>
 
-                    <label id="cllab" for="Tarif"><p>Статистика</p></label>
+                    <label class="statistic__button" id="cllab" for="Tarif"><p>Статистика</p></label>
 
                     <div class="tab">
 
@@ -395,6 +394,8 @@
           let currency = document.getElementById('currency').innerHTML;
           if (array.full_value) {
               document.getElementById('full_value').innerText = array.full_value + currency;
+          } else {
+              document.querySelector('.statistic__button').classList.add('display-none');
           }
           if (array.week) {
               document.querySelectorAll('.full_week_value').forEach(item => {

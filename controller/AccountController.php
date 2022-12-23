@@ -92,16 +92,20 @@ class AccountController extends ACoreCreator {
         } else {
             $country = $_POST['country'];
         }
-        $_SESSION['error'] = $_POST['currency'];
+
         if (strlen($_POST['currency']) == 0) {
             $currency= $user[0]['currency'];
         } else {
             $currency = $_POST['currency'];
         }
 
-        if($_FILES['avatar']['size'] != 0){
+        if (strlen($_POST['birthday']) == 0) {
+            $birthday = $user[0]['birthday'];
+        } else {
+            $birthday = $_POST['birthday'];
+        }
 
-            $_SESSION['error'] = $_FILES['avatar'];
+        if($_FILES['avatar']['size'] != 0){
 
             $avatar = "./uploads/ava/" . $email;
 
@@ -111,7 +115,7 @@ class AccountController extends ACoreCreator {
             $avatar = $user[0]['avatar'];
         }
 
-        $this->m->db->execute("UPDATE user SET `email` = '$email', `avatar` = '$avatar', `first_name` = '$first_name', `second_name` = '$second_name', `telephone` = '$phone', `currency` = '$currency' WHERE id = " . $_SESSION['user']['id']);
+        $this->m->db->execute("UPDATE user SET `email` = '$email', `birthday` = '$birthday', `avatar` = '$avatar', `first_name` = '$first_name', `second_name` = '$second_name', `telephone` = '$phone', `currency` = '$currency', `city` = '$city', `country` = '$country' WHERE id = " . $_SESSION['user']['id']);
         $_SESSION["user"]['first_name'] = $first_name;
         $_SESSION["user"]['second_name'] = $second_name;
         $_SESSION["user"]['email'] = $email;
@@ -120,6 +124,7 @@ class AccountController extends ACoreCreator {
         $_SESSION["user"]['city'] = $city;
         $_SESSION["user"]['country'] = $country;
         $_SESSION['user']['avatar'] = $avatar;
+        $_SESSION['user']['birthday'] = $birthday;
         return true;
     }
 
@@ -172,20 +177,7 @@ class AccountController extends ACoreCreator {
 
     function get_content()
     {
-        echo '<!DOCTYPE html>
-                <html lang="en">
-                <head>
-                <meta charset="UTF-8">
-                <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Document</title>
-                </head>
-                <body>
-                    <script>
-                        window.history.go(-1);
-                    </script>
-                </body>
-                </html>';
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     function obr()

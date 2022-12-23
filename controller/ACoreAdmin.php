@@ -2,8 +2,8 @@
 abstract class ACoreAdmin {
 
     protected $m;
-    protected $ourEmail = "reg@course-creator.io";
-    protected $ourPassword = "mX5iH9nO8n";
+    protected $ourEmail = "dimalim110@gmail.com";
+    protected $ourPassword = "uyrmpfgzbivwrvdp";
     protected $ourNickName = "course-creator.io";
     protected $email;
 
@@ -48,6 +48,7 @@ abstract class ACoreAdmin {
             $result = $mail->ErrorInfo;
             $status = "Сообщение не было отправлено. Причина ошибки: {$mail->ErrorInfo}";
         }
+        $_SESSION['status'] = $status;
         echo $result;
     }
 

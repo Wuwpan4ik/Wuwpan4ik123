@@ -228,18 +228,18 @@
                                 <div class="popup__bonus-form-input-account input-img">
                                     <img src="../img/smallPlayer/account.svg" alt="">
                                 </div>
-                                <input name="name" type="text" value="<?php echo isset($_SESSION['user']['first_name']) ? $_SESSION['user']['first_name'] : 'Введите имя '?>" <?php echo isset($_SESSION['user']['first_name']) ? "readonly" : ''?>>
+                                <input name="name" type="text" placeholder="Ваше имя" value="<?php echo isset($_SESSION['user']['first_name']) ? $_SESSION['user']['first_name'] : ''?>" <?php echo isset($_SESSION['user']['first_name']) ? "readonly" : ''?>>
                             </div>
                             <?php } ?>
                             <div class="popup__buy-body-form question input">
                                 <div class="popup__bonus-form-input-email input-img">
                                     <img src="../img/smallPlayer/email.svg" alt="">
                                 </div>
-                                <input name="email" type="email" value="<?php echo isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : 'Введите имя '?>" readonly>
+                                <input name="email" type="email" placeholder="Ваш email" value="<?php echo isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : ''?>" readonly>
                             </div>
                             <div class="popup__buy-body-form question-textarea">
                                 <div class="popup__bonus-form-input-email input-img">
-                                    <img src="../img/smallPlayer/email.svg" alt="">
+                                    <img src="../img/smallPlayer/question.svg" alt="">
                                 </div>
                                 <textarea name="question" placeholder="Ваш вопрос"></textarea>
                             </div>
@@ -364,16 +364,11 @@ unset($_SESSION['course_id']);
     }
 
     function getCoursePage (number) {
-        let request = new XMLHttpRequest();
-
-        let url = "/UserController/getCourse?author_id=" + number;
-
-        request.open('GET', url);
-
-        request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-        request.addEventListener("readystatechange", () => {
-            if (request.readyState === 4 && request.status === 200) {
-                document.querySelector('.course__List').innerHTML = request.responseText;
+        $.ajax({
+            url: "/UserController/getCourse?author_id=" + number,
+            type: "GET",
+            success: function (data) {
+                document.querySelector('.course__List').innerHTML = data;
                 let availableСourses = document.body.querySelectorAll('.availableСourses');
                 document.getElementById('question_author-id').value = number;
                 availableСourses.forEach(item => {
@@ -384,21 +379,15 @@ unset($_SESSION['course_id']);
                     }, false);
                 })
             }
-        })
-        request.send();
+        });
 
-        let requestDisable = new XMLHttpRequest();
+        $.ajax({
+            url: "/UserController/getDisableCourse?author_id=" + number,
+            type: "GET",
+            success: function (data) {
+                document.querySelector('.disabled__body').innerHTML = data;
 
-        let urlDisable = "/UserController/getDisableCourse?author_id=" + number;
-
-        requestDisable.open('GET', urlDisable);
-
-        requestDisable.setRequestHeader('Content-Type', 'application/x-www-form-url');
-        requestDisable.addEventListener("readystatechange", () => {
-            if (requestDisable.readyState === 4 && requestDisable.status === 200) {
-                document.querySelector('.disabled__body').innerHTML = requestDisable.responseText;
-
-                if (requestDisable.responseText.length === 0) {
+                if (data.length === 0) {
                     document.querySelector('.otherСourses').style = 'display:none;';
                     return false;
                 }
@@ -411,8 +400,7 @@ unset($_SESSION['course_id']);
                     }
                 }, false)
             }
-        })
-        requestDisable.send();
+        });
     }
 
     function getCourseName(number) {

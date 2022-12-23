@@ -54,7 +54,6 @@ $('.slider').each(function() {
         // Закончил здесь
         this.addEventListener('click', function (){
             let videoLocal = this;
-            //let videoMirror = document.getElementById('mirrorVideo')
             interval(videoLocal);
 
             if(this.paused){
@@ -73,16 +72,33 @@ $('.slider').each(function() {
     $(this).on('pause', function (event, slick) {
         stopVideos();
         $(this).find('.slider__video-item').each(function () {
-            let videoLocal = this;
-            interval(videoLocal);
-        })
-    });
+            this.addEventListener('click', function () {
+                let videoLocal = this;
+                interval(videoLocal);
 
-    $(this).on('play', function (event, slick ) {
-        stopVideos();
-        $(this).find('.slider__video-item').each(function () {
-            let videoLocal = this;
-            interval(videoLocal);
-        });
-    });
-});
+                $(this).on('afterChange', function (event, slick) {
+                    stopVideos();
+                    $(this).find('.slider__video-item').each(function () {
+                        let videoLocal = this;
+                        interval(videoLocal);
+                    })
+                });
+
+                $(this).on('beforeChange', function (event, slick) {
+                    stopVideos();
+                    $(this).find('.slider__video-item').each(function () {
+                        let videoLocal = this;
+                        interval(videoLocal);
+                    });
+                });
+                $(this).on('play', function (event, slick) {
+                    stopVideos();
+                    $(this).find('.slider__video-item').each(function () {
+                        let videoLocal = this;
+                        interval(videoLocal);
+                    });
+                });
+            })
+        })
+    })
+})
