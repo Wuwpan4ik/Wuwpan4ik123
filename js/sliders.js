@@ -101,4 +101,4 @@ $('.slider').each(function() {
             })
         })
     })
-}
+})

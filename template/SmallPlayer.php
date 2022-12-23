@@ -142,9 +142,6 @@
         mirrorVideo.src = sourceVideo[0].src;
 
         document.querySelectorAll('.slider__video-item').forEach((item) => {
-            item.addEventListener('ended', function () {
-                $('.slick-next').click();
-            })
             item.addEventListener('playing', function (){
                 if(mirrorVideo.src === item.parentElement.querySelector('source').src){
                     return;
