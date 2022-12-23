@@ -79,7 +79,7 @@
 
 .slick-dots ul {
     position: absolute;
-    top: 22px;
+    top: 10px;
     width: 395px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -165,6 +165,7 @@
 .slider__item-text {
     margin: 12px 0 0 0;
     line-height: 17px;
+    word-break: break-all;
 }
 
 .slider__item-button.button-open button {
@@ -205,7 +206,7 @@
 /*----------------------------------------*/
 .slider__header {
     position: absolute;
-    top: 6%;
+    top: 40px;
     left: 0;
     right: 0;
     display: -webkit-box;
@@ -351,6 +352,7 @@
     font-weight: 600;
     line-height: 17px;
     font-size:14px;
+    word-break: break-all;
 }
 
 .popup__bonus-text span {
@@ -371,11 +373,12 @@
 }
 
 .input input {
-    width: 80%;
+    width: 100%;
     border-radius: 6px;
     border: none;
     padding: 21px 45px;
     background: #F4F4F4;
+    box-sizing: border-box;
 }
 
 .button-form button {
@@ -428,7 +431,6 @@
 }
 
 .popup__allLessons-body__items {
-    margin: 0 0 180px 0;
     overflow: auto;
 }
 
@@ -459,8 +461,17 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-
 }
+
+.popup__allLessons-item-video__img img{
+    width: 76px;
+    max-width: 76px;
+    height: 100px;
+    border-radius: 20px;
+    object-fit: cover;
+    object-position: center top;
+}
+
 .video__img{
     width: 160px;
 
@@ -491,10 +502,6 @@
     align-items: center;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.3);
-    -webkit-box-shadow: 0px 50px 80px rgba(0, 0, 0, 0.6);
-    box-shadow: 0px 50px 80px rgba(0, 0, 0, 0.6);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
 }
 
 .popup__allLessons-item-info {
@@ -669,6 +676,21 @@
     height:100%;
     object-fit: cover;
 }
+
+.popup__allLessons .popup__allLessons-item-info{
+    width:100% !important;
+    margin-top: 15px;
+}
+.popup__allLessons .popup__allLessons-item{
+    width:90% !important;
+    margin:0 auto;
+    align-items: flex-start !important;
+}
+
+.popup__form .popup-text{
+    padding: 12px 0 10px 0px;
+}
+
 /* Adaptive */
 
 @media screen and (max-width: 992px) {
@@ -692,6 +714,12 @@
 }
 
 @media screen and (max-width: 500px) {
+    .slider__item-info{
+        bottom: 70px;
+    }
+    .popup__form{
+        margin-bottom: 30px;
+    }
     ._conatiner {
         max-width: 100%;
     }
@@ -704,10 +732,6 @@
     }
     ._conatiner-player{
         width:90%;
-    }
-    .popup__bonus-body .popup-title{
-        margin: 20px 0 40px 0;
-        font-size: 22px;
     }
     .popup__bonus-form-input-email.input-img .input input{
         width:73%;

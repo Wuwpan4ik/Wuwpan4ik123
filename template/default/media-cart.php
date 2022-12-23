@@ -26,7 +26,7 @@
         </span>
         </div>
         <div>
-            <textarea name="description" class="videoname  textarea-info "><?=$v['description']?></textarea>
+            <textarea name="description" class="videoname video-desc textarea-info " maxlength="100"><?=$v['description']?></textarea>
             <span class="placeholder-textarea">Укажите описание</span>
         </div>
         <div class="button__do-block <?php if (!isset($v['button_text']) || is_null($v['button_text'])) { ?> display-none <?php } ?>" >
@@ -51,7 +51,7 @@
             </div>
 
             <div>
-                <textarea name="description" class="videoname textarea-info "><?=$v['description']?></textarea>
+                <textarea name="description" class="videoname video-desc textarea-info " maxlength="100"><?=$v['description']?></textarea>
                 <span class="placeholder-textarea">Укажите описание</span>
             </div>
 

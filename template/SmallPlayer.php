@@ -136,7 +136,23 @@
     let mirrorVideo = document.getElementById('mirrorVideo');
     let sourceVideo = document.querySelectorAll('#sourceVideo');
 
+
+
     document.addEventListener('DOMContentLoaded', function () {
+        mirrorVideo.src = sourceVideo[0].src;
+
+        document.querySelectorAll('.slider__video-item').forEach((item) => {
+            item.addEventListener('ended', function () {
+                $('.slick-next').click();
+            })
+            item.addEventListener('playing', function (){
+                if(mirrorVideo.src === item.parentElement.querySelector('source').src){
+                    return;
+                }else{
+                    mirrorVideo.src = item.parentElement.querySelector('source').src;
+                }
+            })
+        })
         document.querySelectorAll('.slick-arrow').forEach((item) => {
             item.style.display = 'none';
         })
