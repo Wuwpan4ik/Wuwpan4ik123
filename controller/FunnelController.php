@@ -122,6 +122,8 @@
 
             mkdir($this->url_dir ."/funnels/" . $funnel[0]['id']);
 
+            chmod($this->url_dir ."funnels/" . $funnel[0]['id'], 0777);
+
             header('Location: /Funnel');
 
             return True;

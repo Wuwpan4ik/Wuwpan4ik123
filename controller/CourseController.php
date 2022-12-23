@@ -171,6 +171,10 @@
 
             mkdir($this->url_dir ."thumbnails/" . $directory[0]['id']);
 
+            chmod($this->url_dir ."courses/" . $directory[0]['id'], 0777);
+
+            chmod($this->url_dir ."thumbnails/" . $directory[0]['id'], 0777);
+
             header("Location: /Course");
 
             return True;

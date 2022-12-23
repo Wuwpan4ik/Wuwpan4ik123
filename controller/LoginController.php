@@ -153,6 +153,12 @@
             mkdir("./uploads/users/". $_SESSION['user']['id'] . "/files");
             mkdir("./uploads/users/". $_SESSION['user']['id'] . "/course_files");
             mkdir("./uploads/users/". $_SESSION['user']['id'] . "/thumbnails");
+            chmod("./uploads/users/" . $_SESSION['user']['id'], 0777);
+            chmod("./uploads/users/". $_SESSION['user']['id'] . "/funnels", 0777);
+            chmod("./uploads/users/". $_SESSION['user']['id'] . "/courses", 0777);
+            chmod("./uploads/users/". $_SESSION['user']['id'] . "/files", 0777);
+            chmod("./uploads/users/". $_SESSION['user']['id'] . "/course_files", 0777);
+            chmod("./uploads/users/". $_SESSION['user']['id'] . "/thumbnails", 0777);
             echo "<script>window.location.replace('/')</script>";
             return True;
         }
