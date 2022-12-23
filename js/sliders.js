@@ -8,7 +8,7 @@ interval = (videoLocal) => {
         }
     }, 100);
 }
-const pauseVideo = document.querySelector('.pause__video');
+const pauseVideo = document.querySelectorAll('.pause__video');
 
 document.addEventListener("DOMContentLoaded", function () {
     $('.slick-dots li button').on('click', function(e){
@@ -45,7 +45,7 @@ $('.slider').each(function() {
             overlays[i].classList.remove('active');
             Array.from(document.querySelectorAll('.popup')).forEach((elem) => {
                 elem.classList.remove('active');
-                pauseVideo.classList.remove('active');
+                pauseVideo[i].classList.remove('active');
             });
         }
     }

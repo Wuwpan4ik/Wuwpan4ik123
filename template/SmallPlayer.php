@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <!--Выдаем вместо этой хуйни нормальный тайтл названия воронки / курса-->
     <title>Course Creator - Плеер</title>
     <link type="text/css" rel="stylesheet" href="/css/smallPlayer.css">
@@ -29,7 +29,7 @@
             ?>
             <div class="slider__item">
                 <div class="slider__video">
-                    <video playsinline id="123" class="slider__video-item" data-player="playing" autoplay="false">
+                    <video playsinline id="123" class="slider__video-item" data-player="playing" preload="auto">
                         <source class="video" src="/<?=$item['video']?>" id="sourceVideo"  />
                     </video>
                 </div>
