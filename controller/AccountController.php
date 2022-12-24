@@ -107,7 +107,7 @@ class AccountController extends ACoreCreator {
 
         if($_FILES['avatar']['size'] != 0){
 
-            $avatar = "./uploads/ava/" . $email;
+            $avatar = "./uploads/ava/" . $email . substr($_FILES['avatar']['name'], -4, 4);
 
             move_uploaded_file($_FILES['avatar']['tmp_name'], $avatar);
 
@@ -177,7 +177,14 @@ class AccountController extends ACoreCreator {
 
     function get_content()
     {
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        echo "<!doctype html>
+            <html lang=\"ru\">
+            <head>
+            </head>
+            <body>
+                <script>window.location.replace('/')</script>
+            </body>
+            </html>";
     }
 
     function obr()

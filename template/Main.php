@@ -128,10 +128,7 @@
 
         </div>
         </div>
-
-
     </div>
-
 </div>
 <div class="display-none" id="currency"><?php echo isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></div>
 

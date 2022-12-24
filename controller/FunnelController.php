@@ -21,7 +21,7 @@
 
             move_uploaded_file($_FILES['video_uploader']['tmp_name'], $path);
 
-            $this->m->db->execute("INSERT INTO funnel_content (`funnel_id`, `name`, `description`, `video`, `query_id`) VALUES ($item_id,'Укажите заголовок','Укажите описание', '$path', $count_video)");
+            $this->m->db->execute("INSERT INTO funnel_content (`funnel_id`, `name`, `description`, `video`, `query_id`) VALUES ($item_id,NULL ,NULL, '$path', $count_video)");
 
             $this->local_get_content();
 
@@ -59,13 +59,7 @@
             if (isset($_POST['description']) && strlen($_POST['description']) > 0) {
                 $description = $_POST['description'];
             } else {
-                $description = $funnelContent[0]['description'];
-            }
-
-            if (isset($_POST['price']) && strlen($_POST['price']) > 0) {
-                $price = $_POST['price'];
-            } else {
-                $price = $funnelContent[0]['price'];
+                $description = null;
             }
 
             if (isset($_POST['button_text']) && strlen($_POST['button_text']) > 0) {
@@ -79,7 +73,7 @@
                 }
             }
 
-            $this->m->db->execute("UPDATE `funnel_content` SET `name` = '$name', `price` = '$price', `description` = '$description', $change__button WHERE `id` = '$item_id'");
+            $this->m->db->execute("UPDATE `funnel_content` SET `name` = '$name', `description` = '$description', $change__button WHERE `id` = '$item_id'");
 
             $this->local_get_content();
 

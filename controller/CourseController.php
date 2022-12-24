@@ -44,7 +44,7 @@
 
             imagejpeg($image, $frame_path);
 
-            $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `thubnails`, `query_id`) VALUES ($uid,'Укажите заголовок','Укажите описание', '$path', '$frame_path' , $count_video)");
+            $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `thubnails`, `query_id`) VALUES ($uid ,null , null , '$path', '$frame_path' , $count_video)");
 
             $this->local_get_content();
 

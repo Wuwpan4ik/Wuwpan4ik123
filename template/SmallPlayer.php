@@ -29,7 +29,7 @@
             ?>
             <div class="slider__item">
                 <div class="slider__video">
-                    <video playsinline id="123" class="slider__video-item" data-player="playing" autoplay="false">
+                    <video playsinline id="123" class="slider__video-item video-<?=$item['video_id']?>" data-player="playing" autoplay="false">
                         <source class="video" src="/<?=$item['video']?>" id="sourceVideo"  />
                     </video>
                 </div>
@@ -69,40 +69,47 @@
                     </div>
                     <?php
                     if (isset($item['button_text'])) { ?>
-                    <div class="slider__item-button button-open">
-                        <button <?php echo (isset($popup->first_do->link)) ? "onClick=\"window.open('". $popup->first_do->link ."')\"": ''; ?> class="button"><?=$item['button_text']?></button>
-                    </div>
+                            <div class="slider__item-button button-open">
+                                <button <?php echo (isset($popup->first_do->link)) ? "onClick=\"window.open('". $popup->first_do->link ."')\"": ''; ?> class="button"><?=$item['button_text']?></button>
+                            </div>
+                            <?php } else { ?>
+                        <script>
+                            document.querySelector('.video-<?=$item['video_id']?>').addEventListener('ended', function () {
+                                document.querySelector('.slick-next').click();
+                                console.log(1)
+                            })
+                        </script>
                     <?php } ?>
-                </div>
-                <?php
-                // popup при клике
-                if (isset($popup->first_do->form) || isset($popup->first_do->pay_form)) {
-                    if (isset($popup->first_do->form)) {
-                        $form = $popup->first_do->form;
-                    } else {
-                        $form = $popup->first_do->pay_form;
-                    }
-                    if (isset($popup->second_do->file)) {
-                        $first_file = $popup->second_do->file;
-                    }
-                    // Первое или второе действие
-                    $name = 'button';
-                    $form__title = $popup->form__title;
-                    $form__desc = $popup->form__desc;
-                    $submit__text = $popup->button_text;
-                    $popup__do = $popup->first_do;
-                    $second_link = $popup->second_do->link;
-                    $id = $item['id'];
-                    $new_window = !is_null($popup->second_do->open_in_new);
-                    $author_id = $item['author_id'];
-                    include 'template/default/popup__templates/popup__form.php';
-                } ?>
-                <?php if (isset($popup->first_do->list)) {
-                    $name = 'video';
-                    $course_id = $popup->first_do->course_id;
-                    include 'template/default/popup__templates/popup__all-lessons.php';
-                ?>
-                <?php } ?>
+                        </div>
+                        <?php
+                        // popup при клике
+                        if (isset($popup->first_do->form) || isset($popup->first_do->pay_form)) {
+                            if (isset($popup->first_do->form)) {
+                                $form = $popup->first_do->form;
+                            } else {
+                                $form = $popup->first_do->pay_form;
+                            }
+                            if (isset($popup->second_do->file)) {
+                                $first_file = $popup->second_do->file;
+                            }
+                            // Первое или второе действие
+                            $name = 'button';
+                            $form__title = $popup->form__title;
+                            $form__desc = $popup->form__desc;
+                            $submit__text = $popup->button_text;
+                            $popup__do = $popup->first_do;
+                            $second_link = $popup->second_do->link;
+                            $id = $item['id'];
+                            $new_window = !is_null($popup->second_do->open_in_new);
+                            $author_id = $item['author_id'];
+                            include 'template/default/popup__templates/popup__form.php';
+                        } ?>
+                        <?php if (isset($popup->first_do->list)) {
+                            $name = 'video';
+                            $course_id = $popup->first_do->course_id;
+                            include 'template/default/popup__templates/popup__all-lessons.php';
+                        ?>
+                        <?php } ?>
             </div>
             <?php } ?>
         </div>
