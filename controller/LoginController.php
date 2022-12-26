@@ -111,15 +111,14 @@
 
             $res = $this->db->db->query("SELECT * FROM user WHERE email = '$email'");
             if(count($res) != 0){
-                $_SESSION['error']['registration_message'] = "На этот адрес электронной почты уже был зарегистрирован аккаунт";
-                return false;
+                $response = "На этот адрес электронной почты уже был зарегистрирован аккаунт";
+                echo $response;
+                die(header("HTTP/1.0 404 Not Found"));
             }
 
             $this->validate_data($email, $first_name);
-            if (isset($_SESSION['email_message']) || isset($_SESSION['first_name_message'])) return False;
 
             $this->db->db->execute("INSERT INTO `user` (`niche`, `avatar`,`username`, `first_name`, `second_name`, `email`, `password`, `is_creator`) VALUES ('$niche', '$ava', '$username', '$first_name', '$second_name', '$email', '$password', 1)");
-            $_SESSION['error']['registration_message'] = "Регистрация прошла успешно";
             $res = $this->db->db->query("SELECT * FROM user WHERE email = '$email' AND password = '$password'");
             if(count($res) != 0) {
                 if ($res[0]['is_creator'] == 0) {
@@ -129,7 +128,6 @@
                         'avatar' => $res[0]['avatar'],
                         'is_creator' => 0
                     ];
-                    $response = "С возвращением, " . $_SESSION["user"]["name"];
                 } else {
                     $_SESSION["user"] = [
                         'id' => $res[0]['id'],
@@ -142,11 +140,13 @@
                         'site_url' => $res[0]['site_url'],
                         'is_creator' => 1
                     ];
-                    $response = "С возвращением, " . $_SESSION["user"]["name"];
                 }
             } else {
                 $response = "Неверный логин или пароль";
+                echo $response;
+                die(header("HTTP/1.0 404 Not Found"));
             }
+
             mkdir("./uploads/users/" . $_SESSION['user']['id']);
             mkdir("./uploads/users/". $_SESSION['user']['id'] . "/funnels");
             mkdir("./uploads/users/". $_SESSION['user']['id'] . "/courses");
@@ -159,7 +159,7 @@
             chmod("./uploads/users/". $_SESSION['user']['id'] . "/files", 0777);
             chmod("./uploads/users/". $_SESSION['user']['id'] . "/course_files", 0777);
             chmod("./uploads/users/". $_SESSION['user']['id'] . "/thumbnails", 0777);
-            echo "<script>window.location.replace('/')</script>";
+            echo "success";
             return True;
         }
 

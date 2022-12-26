@@ -21,6 +21,8 @@
 
             move_uploaded_file($_FILES['video_uploader']['tmp_name'], $path);
 
+            chmod($path, 0777);
+
             $this->m->db->execute("INSERT INTO funnel_content (`funnel_id`, `name`, `description`, `video`, `query_id`) VALUES ($item_id,NULL ,NULL, '$path', $count_video)");
 
             $this->local_get_content();
