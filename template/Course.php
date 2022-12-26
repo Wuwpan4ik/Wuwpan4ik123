@@ -1,7 +1,8 @@
 <html lang="ru">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8"
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Creator - Мои курсы</title>
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/lessons.css">
@@ -229,6 +230,7 @@
     }
 
 </script>
+<script src="../js/sidebar.js"></script>
 </body>
 
 </html>
