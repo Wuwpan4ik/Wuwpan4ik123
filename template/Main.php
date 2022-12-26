@@ -5,7 +5,7 @@
 <head>
 
     <meta charset="utf-8">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Creator - Основные показатели</title>
 
     <link rel="stylesheet" href="/css/nullCss.css">
@@ -216,5 +216,6 @@
             });
         }
     </script>
+    <script src="../js/sidebar.js"></script>
     <script src="/js/getNotifications.js"></script>
 </html>

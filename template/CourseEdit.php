@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Creator - Редактирование курса</title>
 
     <link rel="stylesheet" href="/css/nullCss.css">
@@ -306,6 +306,7 @@
         });
     });
 </script>
+<script src="../js/sidebar.js"></script>
 <script src="/js/customInputs.js"></script>
 </body>
 

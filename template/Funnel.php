@@ -2,7 +2,9 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Creator - Воронки</title>
+
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/lessons.css">
     <link rel="stylesheet" href="/css/main.css">
@@ -182,50 +184,68 @@
     let shadowDown = document.querySelector('.button-shadow-down a');
     let shadowLite = document.querySelector('.button-shadow-lite a');
 
-    colors.forEach(item =>{
-        item.addEventListener('click', () =>{
-            item.classList.toggle('active')
-            let color = item.style.background;
-            let shadow = item.style.color;
 
-            console.log(item.style.color)
-            if(item.classList.contains('active')){
-                videoBtns.forEach(item => {
-                    item.style.background = color;
-                    shadowDown.style.boxShadow = '0px 3px 0px ' + shadow;
-                    shadowLite.style.boxShadow = '0px 10px 30px ' + shadow;
-                    colors.forEach(el =>{
-                        el.classList.remove('active');
-                        item.classList.add('active');
+    function changeStyleBtn (item, color, shadow = null) {
+        item.style.background = color;
+
+        if (shadow != null) {
+            if (document.querySelector('.button-shadow-down').classList.contains('active')) {
+                item.style.boxShadow = '0px 3px 0px ' + shadow;
+            }
+            else if (document.querySelector('.button-shadow-lite').classList.contains('active')) {
+                item.style.boxShadow = '0px 10px 30px ' + shadow;
+            }
+            else {
+                item.style.boxShadow = null;
+            }
+        }
+
+    }
+    let color = null;
+    let shadow = null;
+
+        colors.forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('active')
+                color = item.style.background;
+                shadow = item.style.color;
+
+                if (item.classList.contains('active')) {
+                    videoBtns.forEach(item => {
+                        shadowDown.style.boxShadow = '0px 3px 0px ' + shadow;
+                        shadowLite.style.boxShadow = '0px 10px 30px ' + shadow;
+                        changeStyleBtn(item, color, shadow)
+
+                        colors.forEach(el => {
+                            el.classList.remove('active');
+                            item.classList.add('active');
+                        })
+
                     })
-                    if(document.querySelector('.button-shadow-down').classList.contains('active')){
-                        item.style.boxShadow = '0px 3px 0px ' + shadow;
-                    }
-                    else if(document.querySelector('.button-shadow-lite').classList.contains('active')){
-                        item.style.boxShadow = '0px 10px 30px ' + shadow;
-                    }
-                    else {
-                        item.style.boxShadow = null;
-                    }
+                }
+
+            })
+
+        })
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+
+            button.classList.toggle('active')
+            if (button.classList.contains('active')) {
+                changeStyleBtn(document.querySelector('.button-video'), color, shadow)
+                color = button.style.background;
+                buttons.forEach(b => {
+                    button.style.background = color;
+                    b.classList.remove('active');
+                    button.classList.add('active');
                 })
+
             }
 
         })
     })
-    buttons.forEach(item =>{
-        item.addEventListener('click', () =>{
-            let color = item.style.background;
-            item.classList.toggle('active')
-            if(item.classList.contains('active')){
-                buttons.forEach(el =>{
-                    item.style.background = color;
-                    el.classList.remove('active');
-                    item.classList.add('active');
-                })
 
-            }
-        })
-    })
+
 </script>
 <script>
     let generalSettings = document.querySelectorAll('.general-settings');
@@ -249,13 +269,8 @@
 <script>
 
 
-    let saveBtn = document.querySelector('.save-btn');
 
 
-    saveBtn.addEventListener('click', function(){
-        saveBtn.classList.add('active');
-        saveBtn.innerHTML = 'Сохранено';
-    })
 
 
     //   Удалить все кнопки
@@ -324,6 +339,7 @@
         })
     });
 </script>
+<script src="../js/sidebar.js"></script>
 <script src="/js/getNotifications.js"></script>
 <script src="/js/customSelect.js"></script>
 </body>

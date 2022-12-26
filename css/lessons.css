@@ -14,7 +14,11 @@
     height: 70%;
     margin-bottom: 4em;
 }
-
+@media (max-width: 694px) {
+    .media{
+        justify-content: center;
+    }
+}
 .media-cart p {
     font-weight: 400;
     font-size: 14px;

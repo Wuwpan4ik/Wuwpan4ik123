@@ -554,6 +554,7 @@
         })
     });
 </script>
+    <script src="../js/sidebar.js"></script>
 <form id="social__form" class="social__form display-none" action="/Account/SaveSocialSettings" method="POST">
     <input id="social__input" type="text" name="social" value="">
     <input id="social__link" type="text" name="link" value="">

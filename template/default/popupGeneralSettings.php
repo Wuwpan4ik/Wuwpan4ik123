@@ -9,7 +9,7 @@
                 <button type="button" onclick="save();" class="popup__edit-btn">Сохранить</button>
             </div>
         </div>
-        <form id="initButton" action="/Funnel/$item_id/settings" method="POST" class="popup__body-container"  enctype="multipart/form-data">
+        <form  id="initButton" action="/Funnel/$item_id/settings" method="POST" class="popup__body-container popup-wrapp"  enctype="multipart/form-data">
             <input id="id_item" name="item_id" type="hidden" value="">
             <div class="popup__body-block" style="width: 320px;">
                 <!--Прелоудер-->
@@ -103,7 +103,7 @@
                     <div class="popup-styles-buttons">
                         <div class="popup-styles-button button-shadow-down"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><a class="general-popup__button button-shadow-down">Получить подарок</a></div>
                         <div class="popup-styles-button button-shadow-lite"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><a class="general-popup__button button-shadow-lite">Получить подарок</a></div>
-                        <div class="popup-styles-button button-dark"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><a class="general-popup__button">Получить подарок</a></div>
+                        <div class="popup-styles-button button-shadow-none"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><a class="general-popup__button">Получить подарок</a></div>
                     </div>
                 </div>
                 <div class="popup__body-item script">
