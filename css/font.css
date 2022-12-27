@@ -29,3 +29,58 @@
     font-weight: 500;
     font-style: normal;
 }
+@font-face{
+    font-family: 'DIN Pro';
+    src:url(/fonts/DINPro/dinpro_condensedregular.otf) format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face{
+    font-family: 'DIN Pro';
+    src:url(/fonts/DINPro/dinpro_black.otf) format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+@font-face{
+    font-family: 'Akrobat';
+    src:url(/fonts/Akrobat/Akrobat-Regular.otf) format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face{
+    font-family: 'Akrobat';
+    src:url(/fonts/Akrobat/Akrobat-Black.otf) format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+@font-face{
+    font-family: 'American Captain';
+    src:url(/fonts/AmericanCaptain/AmericanCaptain.otf) format('opentype'),
+    url(/fonts/AmericanCaptain/AmericanCaptain.ttf) format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+@font-face{
+    font-family: 'Ubuntu';
+    src:url(/fonts/Ubuntu/Ubuntu-Regular.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face{
+    font-family: 'Ubuntu';
+    src:url(/fonts/Ubuntu/Ubuntu-Bold.ttf) format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+@font-face{
+    font-family: 'Roboto';
+    src:url(/fonts/Roboto/Roboto-Regular.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face{
+    font-family: 'Roboto';
+    src:url(/fonts/Roboto/Roboto-Black.ttf) format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}

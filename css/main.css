@@ -612,10 +612,10 @@ a.button__back {
 
 /*sidebar*/
 .nav {
-  height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  height: 100vh;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
@@ -1073,8 +1073,19 @@ span.name {
   line-height: 32px;
   -ms-flex-item-align: end;
   align-self: end;
+  text-align: right;
 }
-
+@media (max-width: 600px) {
+  .price h2{
+    font-size: 16px;
+  }
+  .service-titile{
+    font-size: 16px;
+  }
+  .name{
+    font-size: 16px;
+  }
+}
 .service-text-2 {
   margin: 24px 0 0 0;
 }
@@ -1753,6 +1764,15 @@ td:nth-child(1){
   padding: 24px 40px;
   gap: 40px;
 }
+@media (max-width: 808px) {
+  .popup-wrap{
+    flex-wrap: wrap;
+  }
+  .editVideo{
+    max-width: 500px;
+    width: 100% !important;
+  }
+}
 
 .popup__body-item select {
   width: 100%;
@@ -1817,7 +1837,7 @@ td:nth-child(1){
   margin: 24px 0 0 0;
 }
 
-.popup__body-item label {
+.popup__subtitle {
   font-size: 18px;
   line-height: 24px;
   color: #404D61 !important;
@@ -2125,13 +2145,16 @@ td:nth-child(1){
   z-index: 10;
 }
 .mySelectOptions .item {
+
+
   width: 100% ;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-weight: normal;
+  font-weight: normal ;
   white-space: nowrap;
   border: none;
+  color: #404D61 !important;
   background-color: #ffffff00;
   padding: 8px 16px;
   border-radius: 8px;

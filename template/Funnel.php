@@ -6,8 +6,10 @@
     <title>Course Creator - Воронки</title>
 
     <link rel="stylesheet" href="/css/nullCss.css">
-    <link rel="stylesheet" href="/css/lessons.css">
+    <link rel="stylesheet" href="/css/font.css">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/lessons.css">
+
 
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
@@ -173,31 +175,50 @@
         </div>
     </div>
     <?php include 'default/popupGeneralSettings.php'?>
+
+
+
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<script src="../js/script.js" ></script>
 <script src="../js/slick.min.js"></script>
+<script src="../js/script.js" ></script>
 <script src="../js/sliders.js"></script>
+<script src="../js/customSelect.js"></script>
+
 <script>
+
+
     let colors = document.querySelectorAll('.popup-styles-color');
     let buttons = document.querySelectorAll('.popup-styles-button');
     let videoBtns = document.querySelectorAll('.general-popup__button');
     let shadowDown = document.querySelector('.button-shadow-down a');
     let shadowLite = document.querySelector('.button-shadow-lite a');
+    let shadowNone = document.querySelector('.button-shadow-none a');
+
+
+
+        let title = document.querySelector('.slider__item-title');
+        let text = document.querySelector('.slider__item-text');
+
+        title.style.fontFamily = heading.value.style.fontFamily;
+        title.style.fontWeight = '900px';
 
 
     function changeStyleBtn (item, color, shadow = null) {
         item.style.background = color;
+        if (document.querySelector('.button-shadow-down').classList.contains('active')) {
 
+            document.querySelector('.button-video').style.boxShadow = '0px 3px 0px ' + shadow;
+        }
+        else if (document.querySelector('.button-shadow-lite').classList.contains('active')) {
+
+            document.querySelector('.button-video').style.boxShadow = '0px 10px 30px ' + shadow;
+        }
+        else if (document.querySelector('.button-shadow-none').classList.contains('active')){
+
+            document.querySelector('.button-video').style.boxShadow = null;
+        }
         if (shadow != null) {
-            if (document.querySelector('.button-shadow-down').classList.contains('active')) {
-                item.style.boxShadow = '0px 3px 0px ' + shadow;
-            }
-            else if (document.querySelector('.button-shadow-lite').classList.contains('active')) {
-                item.style.boxShadow = '0px 10px 30px ' + shadow;
-            }
-            else {
-                item.style.boxShadow = null;
-            }
+
         }
 
     }
@@ -209,16 +230,18 @@
                 item.classList.toggle('active')
                 color = item.style.background;
                 shadow = item.style.color;
-
+                shadowDown.style.boxShadow = '0px 3px 0px ' + shadow;
+                shadowLite.style.boxShadow = '0px 10px 30px ' + shadow;
+                shadowNone.style.boxShadow = '';
                 if (item.classList.contains('active')) {
                     videoBtns.forEach(item => {
-                        shadowDown.style.boxShadow = '0px 3px 0px ' + shadow;
-                        shadowLite.style.boxShadow = '0px 10px 30px ' + shadow;
-                        changeStyleBtn(item, color, shadow)
+
+
 
                         colors.forEach(el => {
                             el.classList.remove('active');
                             item.classList.add('active');
+                            changeStyleBtn(item, color, shadow)
                         })
 
                     })
@@ -232,10 +255,8 @@
 
             button.classList.toggle('active')
             if (button.classList.contains('active')) {
-                changeStyleBtn(document.querySelector('.button-video'), color, shadow)
-                color = button.style.background;
                 buttons.forEach(b => {
-                    button.style.background = color;
+                    changeStyleBtn(document.querySelector('.button-video'), color, shadow)
                     b.classList.remove('active');
                     button.classList.add('active');
                 })
@@ -340,8 +361,9 @@
     });
 </script>
 <script src="../js/sidebar.js"></script>
-<script src="/js/getNotifications.js"></script>
-<script src="/js/customSelect.js"></script>
+<script src="../js/getNotifications.js"></script>
+
+
 </body>
 
 </html>
