@@ -14,8 +14,7 @@
 </head>
 
 <body>
-
-<? print_r($_SESSION['error']) ?>
+q
 
 <div class="SettingAccount">
 
