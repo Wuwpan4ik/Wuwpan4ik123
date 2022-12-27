@@ -165,6 +165,7 @@ class AccountController extends ACoreCreator {
         }
         $this->m->db->execute("UPDATE user SET `first_name` = '$first_name', `second_name` = '$second_name' WHERE id = " . $_SESSION['user']['id']);
         $_SESSION["user"]['first_name'] = $first_name;
+
         $_SESSION["user"]['second_name'] = $second_name;
     }
 
