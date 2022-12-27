@@ -143,8 +143,6 @@
     let mirrorVideo = document.getElementById('mirrorVideo');
     let sourceVideo = document.querySelectorAll('#sourceVideo');
 
-
-
     document.addEventListener('DOMContentLoaded', function () {
         mirrorVideo.src = sourceVideo[0].src;
 

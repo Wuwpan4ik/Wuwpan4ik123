@@ -471,6 +471,7 @@ span.button__back {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  gap: 10px;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
@@ -628,7 +629,53 @@ a.button__back {
   background-color: #F6F7F9;
   z-index: 300;
 }
+@media (max-width: 979px) {
+  .nav .sidebar,.contactSignout{
+    display: none;
+  }
+  .open-sidebar{
+    left: 5px !important;
+  }
 
+}
+.nav.active {
+  position: absolute;
+}
+.nav.active .sidebar,.nav.active .contactSignout{
+  display: flex;
+}
+.open-sidebar{
+  position: absolute;
+  top: 20px;
+  left: 15px;
+  width: 20px;
+  height: 14px;
+  background: #fff;
+  padding: 5px;
+  border-radius: 50%;
+  z-index: 1000;
+  cursor: pointer;
+}
+.open-sidebar:before, .open-sidebar:after, .open-sidebar span {
+  content: "";
+  background-color: #5A6474;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  left: 0;
+  -webkit-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+.open-sidebar:before {
+  top: 0;
+}
+.open-sidebar span {
+  top: 6px;
+}
+.open-sidebar:after {
+  bottom: 0;
+}
 .sidebar {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -804,6 +851,7 @@ a {
 
 .box {
   max-width: 350px;
+  min-width: 150px;
   width: 100%;
   height: 144px;
   border-radius: 10px;
@@ -851,11 +899,13 @@ a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  gap: 10px;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+
 }
 
 .header h2 {
@@ -1587,7 +1637,7 @@ td:nth-child(1){
 
 .new_name div label {
   position: absolute;
-  top: 10px;
+  top: 12px;
   left: 10px;
   font-size: 13px;
 }
@@ -1704,6 +1754,15 @@ td:nth-child(1){
   padding: 24px 40px;
   gap: 40px;
 }
+@media (max-width: 808px) {
+  .popup-wrap{
+    flex-wrap: wrap;
+  }
+  .editVideo{
+    max-width: 500px;
+    width: 100% !important;
+  }
+}
 
 .popup__body-item select {
   width: 100%;
@@ -1773,6 +1832,7 @@ td:nth-child(1){
   line-height: 24px;
   color: #404D61 !important;
   text-align: left;
+  pointer-events: none;
 }
 
 .addFormInput img {
@@ -1940,14 +2000,14 @@ td:nth-child(1){
   transition: 0.3s all ease;
   pointer-events: none;
   font-weight: 400;
-  top:14px;
+  top:11px;
   left:16px !important;
   line-height: 24px;
   color: #757D8A;
 }
 
 .label_focus.activeLabel{
-  top:2%;
+  top:0px;
   font-size:10px;
 }
 
@@ -2017,7 +2077,7 @@ td:nth-child(1){
 }
 .checkMark{
   filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(178deg) brightness(104%) contrast(1003%);
- }
+}
 
 .сurrencies{
   padding: 8px 16px;
@@ -2249,8 +2309,14 @@ td:nth-child(1){
 .custom-radio:disabled+label::before {
   border: 1px solid #C3C7CE;
 }
-.button-shadow a{
-  box-shadow: 0px 3px 0px #3D57B7, 0px 10px 30px rgba(62, 102, 245, 0.6);
+.button-shadow-down a{
+  box-shadow: 0px 3px 0px #3D57B7;
+}
+.button-shadow-lite a{
+  box-shadow: 0px 10px 30px rgba(62, 102, 245, 0.6);
+}
+.button-shadow-none a{
+  box-shadow: none !important;
 }
 .popup-styles-button{
   display: flex;
@@ -2278,4 +2344,9 @@ td:nth-child(1){
 }
 .button-dark a{
   background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%), #5A6474;;
+}
+@media (max-width: 540px) {
+  .feed-header{
+    padding: 28px 5px !important;
+  }
 }
