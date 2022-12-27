@@ -5,7 +5,7 @@ function checkboxStatusChange() {
 
     multiselect.forEach(element =>{
         let checkboxes = element.querySelector(".mySelectOptions");
-        let checkedCheckboxes = checkboxes.querySelectorAll('input');
+        let checkedCheckboxes = checkboxes.querySelectorAll('.custom-checkbox');
         let multiselectOption =  element.querySelector("#name");
 
         checkedCheckboxes.forEach(item =>{
