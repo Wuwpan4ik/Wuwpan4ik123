@@ -9,7 +9,7 @@
             <button onclick="deleteDirectory(this)"><img src="/img/Delete.svg" alt=""></button>
         </div>
     </div>
-    <video id="123" class="media-cart-img" style="object-fit: cover;">
+    <video id="123" class="media-cart-img" style=" object-fit: cover;">
         <source class="video" src=".<?=$v['video']?>"/>
     </video>
     <img src="<?=$v['thubnails'] ?>" alt="">

@@ -699,10 +699,12 @@
         }, 500)
     }
 </script>
+<script src="/js/customSelect.js"></script>
 <script src="../js/sidebar.js"></script>
 <script src="/js/getNotifications.js"></script>
 <script src="/js/customInputs.js"></script>
-<script src="/js/customSelect.js"></script>
+<script src="../js/customSelect.js"> </script>
+
 </body>
 
 </html>
