@@ -44,17 +44,18 @@ class AccountController extends ACoreCreator {
         if (strlen($_POST['email']) == 0) {
             $email = $user[0]['email'];
         } else {
-            $temp_email = $_POST['email'];
-            if (!filter_var($temp_email, FILTER_VALIDATE_EMAIL)) {
-                $_SESSION['error']['email_message'] = 'Неверный email';
-                return False;
-            }
-
-            if (count($this->m->db->query("SELECT * FROM user WHERE email = '$temp_email'")) != 0) {
-                $_SESSION['error']['email_message'] = 'Такой email уже зарегистрирован';
-                return False;
-            }
             $email = $_POST['email'];
+            if ($email != $user[0]['email']) {
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $_SESSION['error']['email_message'] = 'Неверный email';
+                    return False;
+                }
+
+                if (count($this->m->db->query("SELECT * FROM user WHERE email = '$email'")) != 0 && $email != $_SESSION['user']['email']) {
+                    $_SESSION['error']['email_message'] = 'Такой email уже зарегистрирован';
+                    return False;
+                }
+            }
         }
 
         if (strlen($_POST['first_name']) == 0) {
@@ -99,9 +100,15 @@ class AccountController extends ACoreCreator {
             $currency = $_POST['currency'];
         }
 
-        if($_FILES['avatar']['size'] != 0){
+        if (strlen($_POST['birthday']) == 0) {
+            $birthday = $user[0]['birthday'];
+        } else {
+            $birthday = $_POST['birthday'];
+        }
 
-            $avatar = "./uploads/ava/" . $email. "_" .$_FILES['avatar']['name'];
+        if($_FILES['avatar']['size'] != 0) {
+
+            $avatar = "./uploads/ava/" . $email . substr($_FILES['avatar']['name'], -4);
 
             move_uploaded_file($_FILES['avatar']['tmp_name'], $avatar);
 
@@ -109,7 +116,9 @@ class AccountController extends ACoreCreator {
             $avatar = $user[0]['avatar'];
         }
 
-        $this->m->db->execute("UPDATE user SET `email` = '$email', `avatar` = '$avatar', `first_name` = '$first_name', `second_name` = '$second_name', `telephone` = '$phone', `currency` = '$currency' WHERE id = " . $_SESSION['user']['id']);
+        $this->m->db->execute("UPDATE `user` SET `email` = '$email', `birthday` = '$birthday', `first_name` = '$first_name', `second_name` = '$second_name', `telephone` = '$phone', `currency` = '$currency', `city` = '$city', `country` = '$country' WHERE id = {$user[0]['id']}");
+        $this->m->db->execute("UPDATE `user` SET `avatar` = '$avatar' WHERE id = {$user[0]['id']}");
+
         $_SESSION["user"]['first_name'] = $first_name;
         $_SESSION["user"]['second_name'] = $second_name;
         $_SESSION["user"]['email'] = $email;
@@ -118,6 +127,7 @@ class AccountController extends ACoreCreator {
         $_SESSION["user"]['city'] = $city;
         $_SESSION["user"]['country'] = $country;
         $_SESSION['user']['avatar'] = $avatar;
+        $_SESSION['user']['birthday'] = $birthday;
         return true;
     }
 
@@ -168,22 +178,20 @@ class AccountController extends ACoreCreator {
         }
     }
 
+    function TakeSocialUrls() {
+        echo json_encode($this->m->TakeSocialUrls());
+    }
+
     function get_content()
     {
-        echo '<!DOCTYPE html>
-                <html lang="en">
-                <head>
-                <meta charset="UTF-8">
-                <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Document</title>
-                </head>
-                <body>
-                    <script>
-                        window.history.go(-1);
-                    </script>
-                </body>
-                </html>';
+        echo "<!doctype html>
+            <html lang=\"ru\">
+            <head>
+            </head>
+            <body>
+                <script>window.location.replace('/')</script>
+            </body>
+            </html>";
     }
 
     function obr()

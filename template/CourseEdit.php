@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="utf-8">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Creator - Редактирование курса</title>
 
     <link rel="stylesheet" href="/css/nullCss.css">
@@ -19,7 +19,6 @@
 </head>
 
 <body>
-<?=$_SESSION['error']?>
 
 <style>
     .popup__background {
@@ -75,11 +74,8 @@
 
                     function changeName(){
 
-                        document.getElementById("insert").innerHTML = '<input class="proj_name" name="title" placeholder="Введите новое название"><button type="submit" class="none"><img id="name_change" src="img/Pen.svg" class="ico"></button>';
+                        document.getElementById("insert").innerHTML = '<input class="proj_name" name="title" placeholder="Введите новое название" required><button type="submit" class="none"><img id="name_change" src="../img/Pen.svg" class="ico"></button>';
 
-                        document.getElementById("name_change").style.background = "linear-gradient(180deg, #6989FE 0%, #3C64F4 100%)";
-
-                        document.getElementById("name_change").style.borderRadius = "8px";
 
                     }
 
@@ -172,6 +168,15 @@
 <script src="/js/button__settings.js"></script>
 <script src="/js/printFailName.js"></script>
 <script>
+    let saveBtn = document.querySelector('.save-btn');
+
+
+    saveBtn.addEventListener('click', function(){
+        saveBtn.classList.add('active');
+        saveBtn.innerHTML = 'Сохранено';
+    })
+</script>
+<script>
 
 
 
@@ -246,6 +251,7 @@
     function _(abc) {
         return document.getElementById(abc);
     }
+
     function uploadFileHandler() {
         var file = document.getElementById("video").files[0];
         if (file.length === 0) {
@@ -281,14 +287,22 @@
 <script src="../js/jquery-3.6.1.min.js"></script>
 <script>
     let form__submit = $(function() {
-        $('.media__form').each(function (){
-            $(this).submit(function(e) {
+        $('.media__form').each(function () {
+            $(this).submit(function (e) {
                 e.preventDefault();
-                $.post(e.target.action, $(this).serialize());
-            });
-        })
+                $.ajax({
+                    url: $(this).attr("action"),
+                    type: $(this).attr("method"),
+                    dataType: "JSON",
+                    data: new FormData(this),
+                    processData: false,
+                    contentType: false,
+                });
+            })
+        });
     });
 </script>
+<script src="../js/sidebar.js"></script>
 <script src="/js/customInputs.js"></script>
 </body>
 

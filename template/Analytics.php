@@ -13,7 +13,6 @@
   </head>
 
   <body>
-  <?php print_r($_SESSION['error'])?>
 
         <div class="Analytics app">
 
@@ -142,7 +141,7 @@
                                         </div>
                                     </div>
 
-                                    <button class="ico_button "><img class="ico" src="img/Download.svg">Выгрузить</button>
+                                    <button class="ico_button disabledBtn"><img class="ico" src="img/Download.svg">Выгрузить</button>
 
                                     <input style="display:block; padding-left:35px;" class="ico_button" placeholder="Поиск">
                                 </div>
@@ -188,7 +187,7 @@
 
                     <input type="radio" id="Tarif" name="mytabs"/>
 
-                    <label id="cllab" for="Tarif"><p>Статистика</p></label>
+                    <label class="statistic__button" id="cllab" for="Tarif"><p>Статистика</p></label>
 
                     <div class="tab">
 
@@ -196,13 +195,13 @@
                         <div class="geo__profit">
                             <div class="profit__leftSide">
                                 <div class="profit__row">
-                                    <div class="profit__item">
+                                    <div class="profit__item profit__week">
                                         <div class="profit_header"><h3>Доход за неделю</h3><span>Неделя</span></div>
                                         <div class="profit_sum"><span class="full_week_value profit_sum"></span> <span class="week_procent">14.6%</span>
                                         </div>
                                         <div class="profit_footer">На  <span class="week_diff"></span> <span class="week_diff-text"></span></div>
                                     </div>
-                                    <div class="profit__item profit_down">
+                                    <div class="profit__item profit_down profit__month">
                                         <div class="profit_header"><h3>Доход за месяц</h3><span>Месяц</span></div>
                                         <div class="profit_sum"><span id="this_month"></span> <span class="month_procent"></span>
                                         </div>
@@ -210,16 +209,14 @@
                                     </div>
                                 </div>
                                 <div class="profit__row">
-                                    <div class="profit__item">
+                                    <div class="profit__item profit__user">
                                         <div class="profit_header"><h3>Доход на одного пользователя</h3></div>
-                                        <div class="profit_sum"><span id="one__user"></span>
-                                        </div>
+                                        <div class="profit_sum"><span id="one__user"></span></div>
                                     </div>
-                                    <div class="profit__item profit_down">
+                                    <div class="profit__item profit_down profit__new-user">
                                         <div class="profit_header"><h3>Новые пользователи/мес</h3></div>
-                                        <div class="profit_sum"><span id="first__buy-count"></span>
-                                        </div>
-                                        </div>
+                                        <div class="profit_sum"><span id="first__buy-count"></span></div>
+                                    </div>
                                 </div>
                                 <div class="allprofit">
                                     <div class="profit_header"><h3>Общий доход</h3><div class="profit_header_dots"></div>
@@ -289,24 +286,7 @@
                                     </div>
                                     <div class="profit_footer">На  <span class="week_diff"></span> <span class="week_diff-text"></span></div>
                                 </div>
-                                <div class="rightSideFirst">
-
-                                    <div class="Analytics-graphic__profitabilityIndicators">
-                                        <canvas width="264px" height="70px" class="graphic__profitabilityIndicators" id="profitabilityIndicators"></canvas>
-                                    </div>
-                                    <div class="rightSideFirst_header">
-                                        <div class="rightSideFirstText1">
-                                            <h3 class="full_week_value profit_sum"></h3>
-                                            <span>показатели доходности</span>
-                                        </div>
-                                        <div class="rightSideFirstText2">
-                                            <span class="week_procent"></span>
-                                        </div>
-                                    </div>
-                                    <div class="profit_footer">На  <span class="week_diff"></span> <span class="week_diff-text"></span></div>
                                 </div>
-
-                            </div>
                             </div>
                         </div>
                     </div>
@@ -404,7 +384,6 @@
   request1.addEventListener("readystatechange", () => {
       if (request1.readyState === 4 && request1.status === 200) {
           const array = JSON.parse(request1.responseText);
-
           if (array.prev_week == null) {
               array.prev_week = 0;
           }
@@ -416,20 +395,36 @@
           if (array.full_value) {
               document.getElementById('full_value').innerText = array.full_value + currency;
           }
+
           if (array.week) {
               document.querySelectorAll('.full_week_value').forEach(item => {
-                  console.log()
                   item.innerHTML = array.week + currency;
               })
+          } else {
+              document.querySelector('.profit__week .profit_footer').classList.add('display-none');
+              document.querySelector('.profit__week .profit_sum').innerHTML = "Нет данных";
+              document.querySelector('.rightSideFirst').remove();
           }
+
           if (array.month) {
               document.getElementById('this_month').innerHTML = array.month + currency;
+          } else {
+              document.querySelector('.profit__month .profit_footer').classList.add('display-none');
+              document.querySelector('.profit__month .profit_sum').innerHTML = "Нет данных";
           }
+
           if (array.one_user) {
               document.getElementById('one__user').innerText = array.one_user + currency;
+          } else {
+              document.querySelector('.profit__user .profit_footer').classList.add('display-none');
+              document.querySelector('.profit__user .profit_sum').innerHTML = "Нет данных";
           }
+
           if (array.count_first_buy) {
               document.getElementById('first__buy-count').innerText = array.count_first_buy;
+          } else {
+              document.querySelector('.profit__new-user .profit_footer').classList.add('display-none');
+              document.querySelector('.profit__new-user .profit_sum').innerHTML = "Нет данных";
           }
 
           let week_diff = array.week - array.prev_week;
@@ -473,8 +468,8 @@
               }
           }
 
-          let week_procent = array.week / array.prev_week;
-          let month_procent = array.month / array.prev_month;
+          let week_procent = Math.round(array.week / array.prev_week);
+          let month_procent = Math.round(array.month / array.prev_month);
 
           document.querySelectorAll(".week_procent").forEach((elem) => {
               if (array.prev_week !== 0) {

@@ -10,28 +10,7 @@ const names_option = {'email': "Ваша почта", 'name': "Ваше имя",
 
 // Сохранение / закрытие
 function save() {
-    // if (!check)
     document.getElementById('send__edit-video').click();
-    // } else {
-    //     let input = document.createElement('input');
-    //     input.name = 'save';
-    //     input.value = 'true';
-    //     document.getElementById('send__edit-video').before(input);
-    //
-    //     let requestDisable = new XMLHttpRequest();
-    //
-    //     let urlDisable = document.getElementById('send__edit-video').parentElement.action;
-    //
-    //     requestDisable.open('GET', urlDisable);
-    //
-    //     requestDisable.setRequestHeader('Content-Type', 'application/x-www-form-url');
-    //     requestDisable.addEventListener("readystatechange", () => {
-    //         if (requestDisable.readyState === 4 && requestDisable.status === 200) {
-    //             console.log(requestDisable)
-    //         }
-    //     })
-    //     requestDisable.send();
-    // }
 }
 
 function addPopup(input) {
@@ -103,8 +82,6 @@ function addPopup(input) {
     }
 }
 
-document.querySelectorAll('.form_id-1');
-
 // Очистка Popup
 function clearPopup () {
     defaultPopup(first_select);
@@ -163,20 +140,21 @@ async function addFormSelect(elem, name) {
     })
 }
 
-
 function addFormLink(elem) {
     let count = elem.parentElement.querySelectorAll('.link_item').length;
     let count_id = elem.id === 'second_do' ? 2 : 1;
     let div = document.createElement('input');
-    div.placeholder = "Укажите ссылку";
+    div.placeholder = "Переход по ссылке";
     div.classList.add('videoname');
     div.classList.add('link_item');
     div.name = 'link-' + count_id;
     div.style.paddingLeft = '15px';
+    div.style.marginTop = '20px';
     if (count === 0) {
         elem.parentElement.children[1].after(div);
     }
 }
+
 function addCheckbox(elem) {
     let checkbox = document.createElement('div');
     checkbox.classList.add("checkbox__wrapper")
@@ -252,6 +230,7 @@ function checkFirstSelect() {
         document.querySelector('#popup__body-list-select').classList.remove('display-none');
         addSecondOptions([['pay_form', "Форма оплаты"], ['form', 'Форма заявки']]);
         enableAfterClickBlock();
+        initListCourse();
     }
 
     if (first_select.value === 'next_lesson') {
@@ -361,6 +340,7 @@ function checkBothSelect() {
     checkFirstSelect();
     checkSecondSelect();
 }
+
 document.addEventListener('DOMContentLoaded', function () {
     checkBothSelect();
 
@@ -412,19 +392,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 elem.classList.toggle('display-none');
             })
             document.querySelector('.popup__edit-button').classList.remove('display-none');
-            // Не должно ломаться
-            // let button_name = elem.parentElement.querySelector('.button_text');
-            // let popup_button = document.querySelector('.button-video');
-            // button_name.addEventListener('input', function () {
-            //     popup_button.innerHTML = this.value;
-            //     popup_button.classList.remove('display-none');
-            //     document.querySelectorAll('.second_do').forEach((elem) => {
-            //         elem.classList.add('display-block');
-            //         if (['form', 'pay_form'].includes(second_select.value)) {
-            //             document.querySelector('#popup__body-form-2').style.display = 'flex';
-            //         }
-            //     })
-            // })
         })
     })
 });

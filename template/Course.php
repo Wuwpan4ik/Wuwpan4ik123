@@ -1,7 +1,8 @@
 <html lang="ru">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8"
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Creator - Мои курсы</title>
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/lessons.css">
@@ -62,7 +63,7 @@
                                                     <div class="slider__header _conatiner-player ">
                                                         <div class="slider__header-logo">
                                                             <div class="slider__header-logo-img">
-                                                                <img src="/<? echo (isset($_SESSION['user']['avatar'])  ? $_SESSION['user']['avatar'] : "1.jpg") ?>" alt="">
+                                                                <img src="<? echo (isset($_SESSION['user']['avatar'])  ? $_SESSION['user']['avatar'] : "/uploads/ava/userAvatar.jpg") ?>" alt="">
                                                             </div>
                                                             <div class="slider__header-logo-text">
                                                                 <?=$_SESSION['user']['first_name']?>
@@ -170,6 +171,7 @@
     });
 </script>
 <script src="/js/customInputs.js"></script>
+
 <script>
     document.querySelectorAll('.slick-arrow').forEach(item => {
         item.remove();
@@ -228,6 +230,7 @@
     }
 
 </script>
+<script src="../js/sidebar.js"></script>
 </body>
 
 </html>

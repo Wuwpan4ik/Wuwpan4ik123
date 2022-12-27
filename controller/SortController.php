@@ -10,7 +10,7 @@ class SortController extends ACoreCreator {
     function getClientsForMain(){
         $get = $_GET["order"];
 
-        $content = $this->m->db->query("SELECT clients.email, clients.first_name, clients.give_money, clients.tel, clients.tel, course.id as 'course_id', course.name FROM clients, course WHERE course.id = clients.course_id AND `creator_id` = ". $_SESSION['user']['id'] ." ORDER BY '$get'");
+        $content = $this->m->db->query("SELECT clients.email, clients.first_name, clients.give_money, clients.tel, course.id as 'course_id', course.name FROM clients, course WHERE course.id = clients.course_id AND `creator_id` = ". $_SESSION['user']['id'] ." ORDER BY $get");
 
         $i = 1;
 

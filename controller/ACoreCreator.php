@@ -1,17 +1,17 @@
 <?php
 if (!class_exists('PHPMailer\PHPMailer\Exception'))
 {
-    require '/vendor/phpmailer/phpmailer/src/PHPMailer.php';
-    require '/vendor/phpmailer/phpmailer/src/SMTP.php';
-    require '/vendor/phpmailer/phpmailer/src/PHPMailer.php';
+    require '../vendor/phpmailer/phpmailer/src/PHPMailer.php';
+    require '../vendor/phpmailer/phpmailer/src/SMTP.php';
+    require '../vendor/phpmailer/phpmailer/src/PHPMailer.php';
 }
 
     abstract class  ACoreCreator {
 
         protected $m;
-        protected $ourEmail = "dimalim110@gmail.com";
-        protected $ourPassword = "pumnwmlvfvxokkcp";
-        protected $ourNickName = "Wuwpan4ik";
+        protected $ourEmail = "envelope@course-creator.io";
+        protected $ourPassword = "1u*V90z*29pP";
+        protected $ourNickName = "course-creator.io";
         protected $email;
 
         protected $url_dir;
@@ -69,7 +69,7 @@ if (!class_exists('PHPMailer\PHPMailer\Exception'))
                 $mail->Debugoutput = function($str, $level) {$GLOBALS['status'][] = $str;};
 
                 // Настройки вашей почты
-                $mail->Host       = 'smtp.gmail.com'; // SMTP сервера вашей почты
+                $mail->Host       = 'smtp.yandex.ru'; // SMTP сервера вашей почты
                 $mail->Username   = $this->ourEmail; // Логин на почте
                 $mail->Password   = $this->ourPassword; // Пароль на почте
                 $mail->SMTPSecure = 'ssl';

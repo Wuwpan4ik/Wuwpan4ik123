@@ -1,4 +1,4 @@
-<div class="popup__buy popup">
+<div class="popup__buy popup" style="color: black;">
     <div class="popup__buy-body">
 <!--        <div class="popup__buy-title popup-title">Вы выбрали:</div>-->
 <!--        <div class="popup__buy-body">-->

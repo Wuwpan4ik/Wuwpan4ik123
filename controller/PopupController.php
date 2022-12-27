@@ -11,6 +11,7 @@ class PopupController extends ACoreCreator {
             {
                 $content = $this->m->getPopupForPreloader($_GET['id']);
                 $div = include './template/default/popup__templates/popup__all-lessons.php';
+                $div .= include './template/default/popup__templates/popup__buy.php';
                 echo $div;
                 return True;
             }

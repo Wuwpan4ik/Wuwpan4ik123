@@ -5,7 +5,7 @@
 <head>
 
     <meta charset="utf-8">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Creator - Основные показатели</title>
 
     <link rel="stylesheet" href="/css/nullCss.css">
@@ -71,17 +71,17 @@
 
                 <div class="box active">
 
-                    <p>В месяц<img class="index_ico" src="img/ArrowUp.svg"></p>
+                    <p>Прошлая неделя<img class="index_ico" src="img/ArrowUp.svg"></p>
 
-                    <h3 id="this_month">0 <?php echo isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></h3>
+                    <h3 id="prev_week">0 <?php echo isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></h3>
 
                 </div>
 
                 <div class="box active">
 
-                    <p>Прошлая неделя<img class="index_ico" src="img/ArrowUp.svg"></p>
+                    <p>В месяц<img class="index_ico" src="img/ArrowUp.svg"></p>
 
-                    <h3 id="prev_week">0 <?php echo isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></h3>
+                    <h3 id="this_month">0 <?php echo isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></h3>
 
                 </div>
 
@@ -128,10 +128,7 @@
 
         </div>
         </div>
-
-
     </div>
-
 </div>
 <div class="display-none" id="currency"><?php echo isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></div>
 
@@ -150,6 +147,7 @@
     request1.addEventListener("readystatechange", () => {
         if (request1.readyState === 4 && request1.status === 200) {
             const array = JSON.parse(request1.responseText);
+            console.log(array)
             let currency = document.getElementById('currency').innerHTML;
             if (array.week) {
                 document.getElementById('this_week').innerHTML = array.week + currency;
@@ -216,5 +214,6 @@
             });
         }
     </script>
+    <script src="../js/sidebar.js"></script>
     <script src="/js/getNotifications.js"></script>
 </html>

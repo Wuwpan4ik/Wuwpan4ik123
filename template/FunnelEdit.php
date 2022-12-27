@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Creator - Редактирование воронки</title>
 
     <link rel="stylesheet" href="/css/nullCss.css">
@@ -21,7 +21,7 @@
 </head>
 
 <body>
-<?php print_r($_SESSION['error']) ?>
+
 <style>
 
     .switch_box{
@@ -106,27 +106,7 @@
         color: #000;
         height: calc(2rem - 2px);
     }
-    .input__file-button {
-        width: 132px;
-        height: 60px;
-        background: -webkit-gradient(linear, left top, left bottom, from(#08B395), to(#0C977F));
-        background: -o-linear-gradient(top, #08B395 0%, #0C977F 100%);
-        background: linear-gradient(180deg, #08B395 0%, #0C977F 100%);
-        font-size: 1.125rem;
-        font-weight: 700;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        -webkit-box-pack: start;
-        -ms-flex-pack: start;
-        justify-content: center;
-        border-radius: 3px;
-        cursor: pointer;
-        margin: 0 auto;
-    }
+
 
     .avatar {
         width: 100%;
@@ -210,7 +190,7 @@
 
                     function changeName(){
 
-                        document.getElementById("insert").innerHTML = '<input class="proj_name" name="title" placeholder="Введите новое название"><button type="submit" class="none"><img id="name_change" src="/img/Pen.svg" class="ico"></button>';
+                        document.getElementById("insert").innerHTML = '<input class="proj_name" name="title" placeholder="Введите новое название" requiredutton type="submit" class="none"><img id="name_change" src="/img/Pen.svg" class="ico"></button>';
 
                     }
 
@@ -312,11 +292,19 @@
 
 <?php include 'default/popupEditVideo.php';?>
 <script src="/js/jquery-3.6.1.min.js"></script>
+
 <script>
     let form__submit = $(function() {
         $('.media__form').each(function (){
             $(this).submit(function(e) {
                 e.preventDefault();
+                let saveBtn = $(this).find('.save-btn');
+                saveBtn.addClass("active");
+                saveBtn.text('Сохранено');
+                setTimeout(function () {
+                    saveBtn.removeClass("active");
+                    saveBtn.text('Сохранить');
+                }, 1500)
                 $.post(e.target.action, $(this).serialize());
             });
         })
@@ -446,44 +434,42 @@
 <script>
     let entryDisplayDelete = document.querySelector('#delete__back');
     //  Замена видео
-    window.onload = () => {
-        let reload__video = document.querySelectorAll('.reload_video');
-        let reload = document.querySelector('#reload__back');
+    let reload__video = document.querySelectorAll('.reload_video');
+    let reload = document.querySelector('#reload__back');
 
-        let popup__back = document.querySelectorAll('.popup__container');
-        let notDelete = document.querySelector('.popup__not-delete');
+    let popup__back = document.querySelectorAll('.popup__container');
+    let notDelete = document.querySelector('.popup__not-delete');
 
-        reload__video.forEach(item => {
-            item.addEventListener('click', function () {
-                reload.classList.toggle('display-block');
-                _('change__video').action = '/Funnel/'+ item.dataset.id +'/change';
-            })
+    reload__video.forEach(item => {
+        item.addEventListener('click', function () {
+            reload.classList.toggle('display-block');
+            _('change__video').action = '/Funnel/'+ item.dataset.id +'/change';
         })
-        let notChangeVideo = document.querySelectorAll('#popup__not-change');
+    })
+    let notChangeVideo = document.querySelectorAll('#popup__not-change');
 
-        notChangeVideo.forEach(item => {
-            item.onclick = function (event) {
-                if (event.target === item) {
-                    reload.classList.remove('display-block');
-                    toggleOverflow();
-                }
+    notChangeVideo.forEach(item => {
+        item.onclick = function (event) {
+            if (event.target === item) {
+                reload.classList.remove('display-block');
+                toggleOverflow();
             }
-        })
-        popup__back.forEach(item => {
-            item.onclick = function (event) {
-                if (event.target === item) {
-                    reload.classList.remove('display-block');
-                    entryDisplayDelete.classList.remove('display-block');
-                    toggleOverflow();
-                }
-            }
-        })
-
-        notDelete.onclick = function (event) {
-            if (event.target === notDelete) {
+        }
+    })
+    popup__back.forEach(item => {
+        item.onclick = function (event) {
+            if (event.target === item) {
+                reload.classList.remove('display-block');
                 entryDisplayDelete.classList.remove('display-block');
                 toggleOverflow();
             }
+        }
+    })
+
+    notDelete.onclick = function (event) {
+        if (event.target === notDelete) {
+            entryDisplayDelete.classList.remove('display-block');
+            toggleOverflow();
         }
     }
 
@@ -698,8 +684,25 @@
     }
 
 </script>
+
+<!-- Форма списков курса -->
+<script>
+    function initListCourse(){
+        setTimeout(function (){
+            document.querySelector('.button-buy').addEventListener('click', function (){
+                document.querySelector('.popup__allLessons').classList.remove('active');
+                document.querySelector('.overlay-allLessons').classList.remove('active');
+                document.querySelector('.popup__buy').classList.add('active');
+                document.querySelector('.popup__buy').style.zIndex = 100;
+                document.querySelector('.popup__buy-footer').style.padding = 0;
+            })
+        }, 500)
+    }
+</script>
+<script src="../js/sidebar.js"></script>
 <script src="/js/getNotifications.js"></script>
 <script src="/js/customInputs.js"></script>
+<script src="/js/customSelect.js"></script>
 </body>
 
 </html>

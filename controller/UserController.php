@@ -76,13 +76,15 @@
                 $div = '';
                 foreach ($course_page as $item) {
                     $name = $item['name'];
+                    $course_id = (int) $item['count'];
+                    $count = (int) ($this->m->db->query("SELECT count(course_content.id) as 'count' FROM course_content JOIN course ON course.id = {$course_id} WHERE course.id = course_content.course_id"));
                     $div .= '
                     <div class="popup__allLessons-item availableСourses">
                         <div class="popup__allLessons-item__header">
                             <input type="text" hidden="hidden" id="id" value="' . $item['id'] . '">
                             <div class="popup-item">
                                 <div class="popup__allLessons-item-video__img">
-                                    <img src="../img/smallPlayer/Group1426.png" alt="">
+                                    <img src="'. $item['preview'] .'" alt="">
                                 </div>
                                 <div class="popup__allLessons-item-info">
                                     <div class="popup__allLessons-item-info-header">
@@ -90,7 +92,7 @@
                                             Курс
                                         </div>
                                         <div class="aboutTheAuthor-name">
-                                            ' . $item['count'] . ' урока
+                                            ' . $count  . ' урока
                                         </div>
                                     </div>
                                     <div class="popup__allLessons-item-info-title">
@@ -111,13 +113,15 @@
                 $div = '';
                 foreach ($course_page as $item) {
                     $name = $item['name'];
+                    $course_id = (int) $item['count'];
+                    $count = (int) ($this->m->db->query("SELECT count(course_content.id) as 'count' FROM course_content JOIN course ON course.id = {$course_id} WHERE course.id = course_content.course_id"));
                     $div .= '
                     <div class="popup__allLessons-item otherCourses">
                         <div class="popup__allLessons-item__header">
                             <input type="text" hidden="hidden" id="id" value="' . $item['id'] . '">
                             <div class="popup-item">
                                 <div class="popup__allLessons-item-video__img">
-                                    <img src="../img/smallPlayer/Group1426.png" alt="">
+                                    <img src="'. $item['preview'] .'" alt="">
                                 </div>
                                 <div class="popup__allLessons-item-info">
                                     <div class="popup__allLessons-item-info-header">
@@ -125,7 +129,7 @@
                                             Курс
                                         </div>
                                         <div class="aboutTheAuthor-name">
-                                            ' . $item['count'] . ' урока
+                                            ' . $count . ' урока
                                         </div>
                                     </div>
                                     <div class="popup__allLessons-item-info-title">
@@ -156,7 +160,7 @@
                 $file = $getID3->analyze($item['video']);
                 $duration = $file['playtime_string'];
                 if (!in_array($item['id'], $purchase_info['video_id']) == 1 && !in_array($item['course_id'], $purchase_info['course_id'])) {
-                    $class = 'choice-video';
+//                    $class = 'choice-video';
                     $number_color = 'Notavailable-number';
                     $url_start = "";
                     $url_end = "";
@@ -266,7 +270,6 @@
         public function GetFunnelPopup()
         {
             $funnel_id = $_SESSION['item_id'];
-            $_SESSION['error'] = $funnel_id;
             echo json_encode($this->m->db->query("SELECT popup from funnel_content WHERE `id` = " . $funnel_id)[0]['popup']);
         }
 

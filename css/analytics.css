@@ -125,7 +125,11 @@ button {
 }
 
 .mytabs label p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 10px 0;
+    cursor: pointer;
 }
 
 .mytabs label p:hover{
@@ -470,7 +474,16 @@ th {
     border-radius: 8px;
     padding: 24px;
     background: #FFFFFF;
+    cursor: pointer;
+    opacity: 0.9;
 }
+
+.profit__item:hover {
+    transform: translateY(-5px);
+    transition-duration: 0.5s;
+    opacity: 1;
+}
+
 
 span.freen_profit {
     -ms-flex-item-align: center;
@@ -478,6 +491,8 @@ span.freen_profit {
 }
 
 .green_profit, .red_profit {
+    max-width: none !important;
+    width: auto !important;
     cursor: auto;
     border-radius: 8px;
     padding: 2px 13px;

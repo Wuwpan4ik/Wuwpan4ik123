@@ -26,6 +26,8 @@
 
             move_uploaded_file($_FILES['video_uploader']['tmp_name'], $path);
 
+            chmod($path, 0777);
+
             $ffmpeg = FFMpeg\FFMpeg::create([
                 'ffmpeg.binaries'  => './settings/ffmpeg.exe',
                 'ffprobe.binaries' => './settings/ffprobe.exe',
@@ -44,9 +46,9 @@
 
             imagejpeg($image, $frame_path);
 
-            $_SESSION['error'] = $frame_path;
+            $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `thubnails`, `query_id`) VALUES ($uid ,null , null , '$path', '$frame_path' , $count_video)");
 
-            $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `thubnails`, `query_id`) VALUES ($uid,'Укажите заголовок','Укажите описание', '$path', '$frame_path' , $count_video)");
+            $this->local_get_content();
 
             return true;
         }
@@ -59,6 +61,8 @@
 //            if (!$this->isUser($author_id)) return False;
             $this->m->db->execute("DELETE FROM `course_content` WHERE `id` = '$item_id'");
             unlink($path_in_files[0]['video']);
+            $this->local_get_content();
+
             return True;
         }
 
@@ -89,21 +93,26 @@
 //          Проверить наличие course_files
             if (!is_dir($this->url_dir . "course_files")) {
                 mkdir($this->url_dir . "course_files");
+            }
+
+            if (!is_dir($this->url_dir . "course_files/" . $res[0]['id'])) {
                 mkdir($this->url_dir . "course_files/" . $res[0]['id']);
             }
 
-//
 //            if ($_FILES['file']['size'] != 0) {
 //                unlink($courseContent[0]['file_url']);
 
-                $_SESSION['error'] = $this->url_dir . "course_files/" . $res[0]['id'] . "/" . $_FILES['file']['name'];
+            $file_url = $this->url_dir . "course_files/" . $res[0]['id'] . "/" . $_FILES['file']['name'];
 
-                move_uploaded_file($_FILES['file']['tmp_name'], $this->url_dir . "course_files/" . $res[0]['id'] . "/" . $_FILES['file']['name']);
+            move_uploaded_file($_FILES['file']['tmp_name'], $file_url);
 
-                $file_url = $this->url_dir . "course_files/" . $res[0]['id'] . "/" . $_FILES['file']['name'];
+
 //            }
 
             $this->m->db->execute("UPDATE `course_content` SET `name` = '$name', `description` = '$description', `price` = '$price', `file_url` = '$file_url' WHERE `id` = '$item_id'");
+
+            $this->local_get_content();
+
             return True;
         }
 
@@ -150,6 +159,8 @@
 
             $this->m->db->execute("UPDATE course_content SET `video` = '$path', `thubnails` = '$frame_path' WHERE id = " . $uid);
 
+            $this->local_get_content();
+
             return true;
         }
 
@@ -163,7 +174,14 @@
             $directory = $this->m->db->query("SELECT * FROM course WHERE author_id = '$uid'  ORDER BY ID DESC LIMIT 1");
 
             mkdir($this->url_dir ."courses/" . $directory[0]['id']);
+
             mkdir($this->url_dir ."thumbnails/" . $directory[0]['id']);
+
+            chmod($this->url_dir ."courses/" . $directory[0]['id'], 0777);
+
+            chmod($this->url_dir ."thumbnails/" . $directory[0]['id'], 0777);
+
+            header("Location: /Course");
 
             return True;
         }
@@ -179,6 +197,8 @@
 
             rmdir($this->url_dir . "courses/$item_id");
             rmdir($this->url_dir . "thumbnails/$item_id");
+
+            $this->local_get_content();
 
             return True;
         }
@@ -197,6 +217,9 @@
                 $name = $res[0]['title'];
             }
             $this->m->db->execute("UPDATE course SET `name` = '$name' WHERE id = '$item_id'");
+
+            $this->local_get_content();
+
             return True;
         }
 
@@ -212,11 +235,18 @@
                 $price = $res[0]['price'];
             }
             $this->m->db->execute("UPDATE course SET `price` = '$price' WHERE id = '$item_id'");
+
+            $this->local_get_content();
         }
 
         function get_content()
         {
-            header('Location: ' . $_SERVER['HTTP_REFERER']);
+//            return header('Location: ' . $_SERVER['HTTP_REFERER']);
+        }
+
+        function local_get_content()
+        {
+            return header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
 
         function obr()

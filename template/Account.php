@@ -15,6 +15,8 @@
 
 <body>
 
+<? print_r($_SESSION['error']) ?>
+
 <div class="SettingAccount">
 
     <?php include 'default/sidebar.php';?>
@@ -80,8 +82,8 @@
                                             </div>
 
                                             <div class="input_focus ">
-                                                <label for="username" class="label_focus ">Фимилия</label>
-                                                <input id="username" type="text" name="second_name" >
+                                                <label for="username" class="label_focus ">Фамилия</label>
+                                                <input id="username" type="text" name="second_name" value="<? echo $_SESSION['user']['second_name'] ?>">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
@@ -89,7 +91,7 @@
 
                                             <div class="input_focus ">
                                                 <label for="username" class="label_focus "></label>
-                                                <input id="username" type="date" name="birthday" value="<? print(htmlspecialchars($_SESSION['user']['birthday'])); ?>">
+                                                <input id="username" type="date" name="birthday" value="<? echo (htmlspecialchars($_SESSION['user']['birthday'])); ?>">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
@@ -111,38 +113,49 @@
                                             </div>
                                             <div class="input_focus ">
                                                 <label for="username" class="label_focus">Город</label>
-                                                <input type="text"   name="city" value="<?php print(htmlspecialchars(isset($_SESSION['user']['city']) ? $_SESSION['user']['city'] : ''))?>">
+                                                <input type="text" name="city" value="<?php print(htmlspecialchars(isset($_SESSION['user']['city']) ? $_SESSION['user']['city'] : ''))?>">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
                                             </div>
-                                            <select class="select-account currencies" name="currency" id="currency">
-                                                <option value="null" <?php if (isset($_SESSION['user']['currency'])) echo "selected"?>>Выберите валюту</option>
-                                                <option value="$" <?php if (isset($_SESSION['user']['currency']) && $_SESSION['user']['currency'] == '$') echo "selected"?>>$</option>
-                                                <option value="€" <?php if (isset($_SESSION['user']['currency']) && $_SESSION['user']['currency'] == '€') echo "selected"?>>€</option>
-                                                <option value="₴" <?php if (isset($_SESSION['user']['currency']) && $_SESSION['user']['currency'] == '₴') echo "selected"?>>₴</option>
-                                                <option value="₽" <?php if (isset($_SESSION['user']['currency']) && $_SESSION['user']['currency'] == '₽') echo "selected"?>>₽</option>
-                                            </select>
+
+                                            <div class="select-account social-network">
+                                                <div id="myMultiselect" class=" multiselect">
+                                                    <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
+                                                        <select name="currency" class="form-select">
+                                                            <option id="name" value=""><?php echo ($_SESSION['user']['currency']) ?? "Выберите валюту"; ?></option>
+                                                        </select>
+                                                        <div class="overSelect"></div>
+                                                    </div>
+                                                    <div class="mySelectOptions">
+                                                        <label class="item">$<input class="custom-checkbox" type="radio" value="$" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                        <label class="item">€<input class="custom-checkbox" type="radio" value="€" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                        <label class="item">₴<input class="custom-checkbox" type="radio" value="₴" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                        <label class="item">₽<input class="custom-checkbox" type="radio" value="₽" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                         <h2>Укажите соц сети для клиентов</h2>
                                         <div class="field">
                                             <div class="select-account social-network">
                                                 <div id="myMultiselect" class="multiselect">
-                                                    <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea()">
+                                                    <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
                                                         <select class="form-select">
-                                                            <option id="name">Выберите соц сеть</option>
+                                                            <option class="form-select__social-name" id="name">Выберите соц сеть</option>
                                                         </select>
                                                         <div class="overSelect"></div>
                                                     </div>
-                                                    <div id="mySelectOptions">
-                                                        <label class="item">Вконтакте<input class="custom-checkbox social__input" type="radio" value="vk" /><label for="happy"></label></label>
-                                                        <label class="item">WhatsApp<input class="custom-checkbox social__input" type="radio" value="whatsapp" /><label for="happy"></label></label>
-                                                        <label class="item">Твиттер<input class="custom-checkbox social__input" type="radio" value="twitter" /><label for="happy"></label></label>
-                                                        <label class="item">Фейсбук<input class="custom-checkbox social__input" type="radio" value="facebook" /><label for="happy"></label></label>
-                                                        <label class="item">Инстаграм<input class="custom-checkbox social__input" type="radio" value="instagram" /><label for="happy"></label></label>
-                                                        <label class="item">Ютуб<input class="custom-checkbox social__input" type="radio" value="youtube" /><label for="happy"></label></label>
-                                                        <label class="item">Телеграм<input class="custom-checkbox social__input" type="radio" value="telegram" /><label for="happy"></label></label>
-                                                        <label class="item">Сайт<input class="custom-checkbox social__input" type="radio" value="site" /><label for="happy"></label></label>
+                                                    <div class="mySelectOptions">
+                                                        <label class="item social__item">Вконтакте<input class="custom-checkbox social__input" type="radio" value="vk" /><label for="happy"></label></label>
+                                                        <label class="item social__item">WhatsApp<input class="custom-checkbox social__input" type="radio" value="whatsapp" /><label for="happy"></label></label>
+                                                        <label class="item social__item">Твиттер<input class="custom-checkbox social__input" type="radio" value="twitter" /><label for="happy"></label></label>
+                                                        <label class="item social__item">Фейсбук<input class="custom-checkbox social__input" type="radio" value="facebook" /><label for="happy"></label></label>
+                                                        <label class="item social__item">Инстаграм<input class="custom-checkbox social__input" type="radio" value="instagram" /><label for="happy"></label></label>
+                                                        <label class="item social__item">Ютуб<input class="custom-checkbox social__input" type="radio" value="youtube" /><label for="happy"></label></label>
+                                                        <label class="item social__item">Телеграм<input class="custom-checkbox social__input" type="radio" value="telegram" /><label for="happy"></label></label>
+                                                        <label class="item social__item">Сайт<input class="custom-checkbox social__input" type="radio" value="site" /><label for="happy"></label></label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -164,7 +177,7 @@
                                             </script>
                                             <div class="ProfileSetting-body">
                                                 <div class="ProfileSetting-avatar">
-                                                    <img src="<? echo (isset($_SESSION['user']['avatar'])  ? $_SESSION['user']['avatar'] : "userAvatar.jpg") ?>" id="ava_preload">
+                                                    <img src="<? echo (isset($_SESSION['user']['avatar'])  ? $_SESSION['user']['avatar'] : "/uploads/ava/userAvatar.jpg") ?>" id="ava_preload">
                                                     <div class="ProfileSetting-name">
                                                         <?=$_SESSION["user"]["first_name"]?>
                                                         <? if (!isset($_SESSION["user"]["second_name"])) {echo "Фамилия";} else {echo $_SESSION["user"]["second_name"];} ?>
@@ -218,31 +231,35 @@
 
                                             <div class="input_focus ">
                                                 <label for="username" class="label_focus">Страна</label>
-                                                <input class="inf" type="text"  name="school_name" value="<? print(htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : '')) ?>">
+                                                <input class="inf" type="text" name="school_name" value="<? echo (htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : '')) ?>">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
                                             </div>
 
-
-
-                                            <select class="selector inf" name="niche">
-
-                                                <?
-                                                $options = ["Изотерика", "Обучение", "Дизайн", "Политика", "Спорт", "Игры", "Животные"];
-                                                for($i = 0; $i<7; $i++){
-                                                    if($options[$i] == $content[0][0]['niche']){?><option selected="selected"><?=$options[$i]?></option>
-                                                    <?}else{?><option><?=$options[$i]?></option><?}
-                                                }
-                                                ?>
-
-                                            </select>
+                                            <div class="select-account social-network">
+                                                <div id="myMultiselect" class="multiselect">
+                                                    <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
+                                                        <select name="niche" class="form-select">
+                                                            <option id="name" selected><?php echo ($_SESSION['user']['niche']) ?? "Выберите вашу нишу"?></option>
+                                                        </select>
+                                                        <div class="overSelect"></div>
+                                                    </div>
+                                                    <div class="mySelectOptions">
+                                                        <?php
+                                                        $options = ["Изотерика", "Обучение", "Дизайн", "Политика", "Спорт", "Игры", "Животные"];
+                                                        for($i = 0; $i<7; $i++){?>
+                                                          <label class="item"><?=$options[$i]?><input class="custom-checkbox" type="radio" value="<?=$options[$i]?>" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                        <?php } ?>
+                                                    </div>
+                                                </div>
+                                            </div>
 
 
                                         </div>
 
                                         <div class="about_school">
-                                            <textarea name="school_desc" placeholder="<? print(htmlspecialchars(isset($_SESSION['user']['school_desc']) ? $_SESSION['user']['school_desc'] : 'Описание для школы')) ?>"></textarea>
+                                            <textarea name="school_desc" placeholder="Описание школы"><?php echo $_SESSION['user']['school_desc']?></textarea>
                                         </div>
                                         <h2>Данные вашего тарифа:</h2>
                                         <div class="field">
@@ -380,31 +397,62 @@
                             </div>
 
                             <input type="radio" id="Tarif" name="mytabs"/>
-
                             <label class="menu-label" for="Tarif" id="cllab"><p>Дополнительно</p></label>
+
                             <div class="tab">
-                        <div class="tab col">
+                        <div class="prodamus-input col">
                             <div class="inner_row">
+                                <h2>Подключение Prodamus:  </h2>
                                 <div class="row">
-                                    <h2>Подключение Prodamus:  </h2>
-                                    <input type="text" name="prodamus_api" placeholder="API Ключ">
+                                    <div class="input_focus ">
+                                        <label for="username" class="label_focus">API Ключ</label>
+                                        <input class="inf" type="text"  name="prodamus_api" value="<? print(htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : '')) ?>">
+                                        <span class="clear_input_val">
+                                                     <img src="/img/clear_input.svg" alt="">
+                                                </span>
+                                    </div>
+                                    <div class="input_focus ">
+                                        <label for="username" class="label_focus">API Ключ</label>
+                                        <input class="inf" type="text"  name="prodamus_api" value="<? print(htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : '')) ?>">
+                                        <span class="clear_input_val">
+                                                     <img src="/img/clear_input.svg" alt="">
+                                                </span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="inner_row">
+                                <h2>Подключение Albato:  </h2>
                                 <div class="row">
-                                    <h2>Подключение Albato:  </h2>
-                                    <input type="text" name="albato_api" placeholder="API Ключ">
+                                    <div class="input_focus ">
+                                        <label for="username" class="label_focus">API Ключ</label>
+                                        <input class="inf" type="text"  name="albato_api" value="<? print(htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : '')) ?>">
+                                        <span class="clear_input_val">
+                                                     <img src="/img/clear_input.svg" alt="">
+                                                </span>
+                                    </div>
+                                    <div class="input_focus ">
+                                        <label for="username" class="label_focus">API Ключ</label>
+                                        <input class="inf" type="text"  name="albato_api" value="<? print(htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : '')) ?>">
+                                        <span class="clear_input_val">
+                                                     <img src="/img/clear_input.svg" alt="">
+                                                </span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="inner_row">
-                                <div class="row">
+                            <div class="inner_row scripts">
+                                <div class="script">
                                     <h2>Скрипты для HEAD:  </h2>
-                                    <textarea class="additionally" placeholder="Default" name="head_additional"></textarea>
+                                    <div class="row">
+                                        <textarea class="additionally" placeholder="Default" name="head_additional"></textarea>
+                                    </div>
                                 </div>
-                                <div class="row">
+                                <div class="script">
                                     <h2>Скрипты для Body:  </h2>
-                                    <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>
+                                    <div class="row">
+                                        <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>
+                                    </div>
                                 </div>
+
                             </div>
 
                             <div class="about-btn">
@@ -415,7 +463,7 @@
 
 
                 </div>
-                        <div class="exit-settings popup-tariff active">
+                        <div class="exit-settings popup-tariff">
                             <div class="popup-tariff-body">
                                 <div class="popup__title">
                                     Если вы покинете страницу </br>введенные  вами данные </br> не сохраняться
@@ -463,55 +511,15 @@
         })
     })
 
-    /*Select*/
-    function checkboxStatusChange() {
-        let multiselectOption =  document.getElementById("name");
-        let values = [];
-        let checkboxes = document.getElementById("mySelectOptions");
-        let checkedCheckboxes = checkboxes.querySelectorAll('input');
-
-        checkedCheckboxes.forEach(item =>{
-
-            item.addEventListener('click', function(){
-                if(item.checked = true){
-                    checkedCheckboxes.forEach(el =>{
-                        el.checked = false
-                        el.parentElement.classList.remove('active')
-                        checkboxes.style.display = "none";
-                    })
-                    item.checked = true
-                    item.parentElement.classList.add('active')
-                    values = ( item.getAttribute('value'));
-                }
-                multiselectOption.innerText = values;
-                multiselectOption.value = values;
-                document.getElementById('social__input').value = document.querySelector('#mySelectLabel .form-select').value;
-            })
-        })
-    }
-
-    checkboxStatusChange()
-    function toggleCheckboxArea(onlyHide = false) {
-        let checkboxes = document.getElementById("mySelectOptions");
-        const displayValue = checkboxes.style.display;
-
-        if (displayValue != "flex") {
-            if (onlyHide == false) {
-                checkboxes.style.display = "flex";
-                checkboxes.style.flexDirection = "column";
-            }
-        } else {
-            checkboxes.style.display = "none";
-        }
-    }
-
     document.getElementById('social__inpu').addEventListener('input', function (){
+        console.log(this.value)
         document.getElementById('social__link').value = this.value;
     })
 
     document.getElementById('social__submit').addEventListener('click', function (){
         document.getElementById('social__button').click();
     })
+
     console.log()
     const button_submit = document.querySelector('#profile_send');
     const check_url = document.querySelector('#check_url');
@@ -527,6 +535,7 @@
 
 <script src="/js/getNotifications.js"></script>
 <script src="/js/customInputs.js"></script>
+<script src="/js/customSelect.js"></script>
 <script src="/js/printFailName.js" ></script>
 <script>
     let form__submit = $(function() {
@@ -535,18 +544,39 @@
                 e.preventDefault();
                 if (($(this).find('#social__link')[0].value.length) <= 10) {
                     // Событие при нехватки длины
-                    alert("Впишите ссылку своей соцсети");
+                    alert("Не хватает длины");
                     return;
                 }
-                $.post(e.target.action, $(this).serialize());
                 try {
                     // Alert
+                    $('#social__input')[0].value = $('.form-select__social-name')[0].value;
+                    $.post(e.target.action, $(this).serialize());
                     alert("Ваши данные сохранены");
                 } catch {}
             });
         })
     });
 </script>
+
+<script>
+    $.ajax({
+        url: "/Account/SocialUrls",
+        type: "POST",
+        success: function (data) {
+            let social__url = JSON.parse(data)
+            let social__button = document.querySelectorAll('.social__item');
+            console.log(social__url[0])
+            social__button.forEach(item => {
+                item.addEventListener('click', function (){
+                    let val = item.querySelector('.social__input').value;
+                    document.querySelector('#social__inpu').value = social__url[0][val];
+                    CheckInputs();
+                })
+            })
+        }
+    });
+</script>
+<script src="../js/sidebar.js"></script>
 <form id="social__form" class="social__form display-none" action="/Account/SaveSocialSettings" method="POST">
     <input id="social__input" type="text" name="social" value="">
     <input id="social__link" type="text" name="link" value="">

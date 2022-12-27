@@ -74,7 +74,7 @@
                 if (isset($_POST['file'])) {
                     $file = $_POST['second_file'];
                     $file_name = "Прикреплённый файл";
-                    $body = "Вы оставили заявку на сайте <a href=\"/https://course-creator.io/\">Course Creator</a><br>Ваша файл:";
+                    $body = "Вы оставили заявку на сайте <a href=\"/https://course-creator.io/\">Course Creator</a><br>Ваш файл:";
                     $this->SendEmail($title, $body, $_POST['email'], $file, $file_name);
                 } else {
                     $body = "Вы оставили заявку на сайте <a href=\"/https://course-creator.io/\">Course Creator</a><br>";
@@ -85,7 +85,6 @@
             return true;
         }
 
-//      Без какой либо зависимости, что человек уже купил видео курса (покупает по полной)
         public function BuyCourse() {
             if (!$this->RequestValidate()) return false;
 
@@ -101,7 +100,7 @@
 
                 $title = "Регистрация аккаунта";
                 $this->password = $this->GenerateRandomPassword(12);
-                $body = "Ваш аккаунт на <a href=\"https://course-creator.io/UserLogin\">Course Creator</a><br>Почта: $this->email<br>Пароль:$this->password";
+                $body = "Ваш аккаунт на <a href=\"https://course-creator.io/UserLogin\">Course Creator</a><br>Почта: $this->email<br>Пароль: $this->password";
                 $this->SendEmail($title, $body, $this->email);
 
                 $this->m->db->execute("INSERT INTO `user` (`email`, `password`, `is_creator`) VALUES ('$this->email', '$this->password', 0)");
@@ -114,13 +113,13 @@
                     $this->m->db->execute("INSERT INTO `user` (`telephone`) VALUES ('$this->phone') WHERE `email` = '$this->email'");
                 }
                 $res = $this->m->getUserByEmail($this->email);
-            }
-            $_SESSION["user"] = [
-                'id' => $res[0]['id'],
-                'email' => $res[0]['email'],
-                'is_creator' => 0
-            ];
 
+                $_SESSION["user"] = [
+                    'id' => $res[0]['id'],
+                    'email' => $res[0]['email'],
+                    'is_creator' => 0
+                ];
+            }
 
             if ($client[0]['buy_progress'] < $buy_progress[$comment]) {
 //          Добавление Clients
@@ -187,12 +186,14 @@
                     $this->m->db->execute("INSERT INTO `user` (`telephone`) VALUES ('$this->phone') WHERE `email` = '$this->email'");
                 }
                 $res = $this->m->getUserByEmail($this->email);
+
+                $_SESSION["user"] = [
+                    'id' => $res[0]['id'],
+                    'email' => $res[0]['email'],
+                    'is_creator' => 0
+                ];
             }
-            $_SESSION["user"] = [
-                'id' => $res[0]['id'],
-                'email' => $res[0]['email'],
-                'is_creator' => 0
-            ];
+
 
             if ($client[0]['buy_progress'] <= $buy_progress[$comment]) {
 

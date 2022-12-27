@@ -21,7 +21,11 @@
 
             move_uploaded_file($_FILES['video_uploader']['tmp_name'], $path);
 
-            $this->m->db->execute("INSERT INTO funnel_content (`funnel_id`, `name`, `description`, `video`, `query_id`) VALUES ($item_id,'Укажите заголовок','Укажите описание', '$path', $count_video)");
+            chmod($path, 0777);
+
+            $this->m->db->execute("INSERT INTO funnel_content (`funnel_id`, `name`, `description`, `video`, `query_id`) VALUES ($item_id,NULL ,NULL, '$path', $count_video)");
+
+            $this->local_get_content();
 
             return true;
         }
@@ -36,6 +40,8 @@
 
             $this->m->db->execute("DELETE FROM `funnel_content` WHERE `id` = '$item_id'");
             unlink($path_in_files[0]['video']);
+
+            $this->local_get_content();
 
             return True;
         }
@@ -55,13 +61,7 @@
             if (isset($_POST['description']) && strlen($_POST['description']) > 0) {
                 $description = $_POST['description'];
             } else {
-                $description = $funnelContent[0]['description'];
-            }
-
-            if (isset($_POST['price']) && strlen($_POST['price']) > 0) {
-                $price = $_POST['price'];
-            } else {
-                $price = $funnelContent[0]['price'];
+                $description = null;
             }
 
             if (isset($_POST['button_text']) && strlen($_POST['button_text']) > 0) {
@@ -75,7 +75,9 @@
                 }
             }
 
-            $this->m->db->execute("UPDATE `funnel_content` SET `name` = '$name', `price` = '$price', `description` = '$description', $change__button WHERE `id` = '$item_id'");
+            $this->m->db->execute("UPDATE `funnel_content` SET `name` = '$name', `description` = '$description', $change__button WHERE `id` = '$item_id'");
+
+            $this->local_get_content();
 
             return True;
         }
@@ -102,6 +104,8 @@
 
             $this->m->db->execute("UPDATE funnel_content SET `video` = '$path' WHERE id = " . $uid);
 
+            $this->local_get_content();
+
             return true;
         }
 
@@ -113,6 +117,10 @@
             $funnel = $this->m->db->query("SELECT * FROM funnel WHERE author_id = '$uid'  ORDER BY ID DESC LIMIT 1");
 
             mkdir($this->url_dir ."/funnels/" . $funnel[0]['id']);
+
+            chmod($this->url_dir ."funnels/" . $funnel[0]['id'], 0777);
+
+            header('Location: /Funnel');
 
             return True;
         }
@@ -127,6 +135,8 @@
             $this->m->db->execute("DELETE FROM funnel WHERE id = '$item_id'");
 
             rmdir($this->url_dir . "/funnels/$item_id");
+
+            $this->local_get_content();
 
             return True;
         }
@@ -145,6 +155,8 @@
 
                 $this->m->db->execute("UPDATE funnel SET `name` = '$name' WHERE id = '$item_id'");
             }
+            $this->local_get_content();
+
             return True;
         }
 
@@ -269,7 +281,9 @@
             } else {
                 $button__standart = $funnel_content[0]['button_text'];
             }
-            $_SESSION['error'] = $videoBtnHTML;
+
+            $this->local_get_content();
+
             return ['json' => $videoBtnHTML, 'button_standart' => $button__standart];
         }
 
@@ -277,6 +291,8 @@
             $popup_settings = $this->CreatePopupSettings();
             $videoBtnHTMLResult = json_encode($popup_settings['json'], JSON_UNESCAPED_UNICODE);
             $this->m->db->execute("UPDATE `funnel_content` SET `popup` = '$videoBtnHTMLResult', `button_text` = '". $popup_settings['button_standart'] ."' WHERE id = " . $_POST['item_id']);
+
+            $this->local_get_content();
             return True;
         }
 
@@ -289,12 +305,19 @@
             if (!$this->isUser($course[0]['author_id'])) return False;
             if (!$this->isUser($funnel[0]['author_id'])) return False;
             $this->m->db->execute("UPDATE `funnel` SET `course_id` = '$course_id' WHERE `id` = '$id'");
+
+            $this->local_get_content();
             return True;
         }
 
         function get_content()
         {
-            header('Location: ' . $_SERVER['HTTP_REFERER']);
+//            return header('Location: ' . $_SERVER['HTTP_REFERER']);
+        }
+
+        function local_get_content()
+        {
+            return header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
 
         function obr()

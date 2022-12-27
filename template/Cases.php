@@ -27,13 +27,14 @@
                                 <div class="service-text">
                                     <h2 class="service-titile">Курс менеджер инстаграм</h2>
                                     <div class="starrating">
-                                        <p><span class="name">InstaKilogram</span> из Москвы</p>
+                                        <p><span class="name">InstaKilogram</span></p>
                                         <h2><img src="img/Star.svg" class="ico"> 4.1</h2>
                                     </div>
                                 </div>
                             </div>
                             <div class="price">
                                 <h2>109 100Р - 160 000Р в месяц</h2>
+                                <p><img src="../img/timer.svg" alt="">26.01.2022</p>
                             </div>
                         </div>
                         <div class="status-container">
@@ -43,7 +44,7 @@
                             <p>Этот кейс – это история о том, как прокачать языковую онлайн школу для детей, запустив проект с нуля с начала пандемии, и увеличить количество преподавателей в 7 раз, получив 3061 заявку из таргета Инстаграм. Об этом кейсе мы и рассказываем в этой статье.</p>
                         </div>
                         <div class="time-more-btn">
-                            <p>29 января 2022</p>
+
                             <a href="/Article">
                                 Узнать больше
                             </a>
@@ -58,13 +59,14 @@
                                 <div class="service-text">
                                     <h2 class="service-titile">Курсы по режиссуре</h2>
                                     <div class="starrating">
-                                        <p><span class="name">Lexa</span> из Армении</p>
+                                        <p><span class="name">Lexa</span></p>
                                         <h2><img src="img/Star.svg" class="ico"> 4.4</h2>
                                     </div>
                                 </div>
                             </div>
                             <div class="price">
                                 <h2>109 100Р - 160 000Р в месяц</h2>
+                                <p><img src="../img/timer.svg" alt="">26.01.2022</p>
                             </div>
                         </div>
                         <div class="status-container">
@@ -77,7 +79,7 @@
                                 За меня всё скажет интернет». Читай отзывы, смотри YouTube</p>
                         </div>
                         <div class="time-more-btn">
-                            <p>29 января 2022</p>
+
 
                                 <a href="/Article">
                                     Узнать больше
