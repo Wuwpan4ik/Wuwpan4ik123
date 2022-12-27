@@ -230,6 +230,7 @@ function checkFirstSelect() {
         document.querySelector('#popup__body-list-select').classList.remove('display-none');
         addSecondOptions([['pay_form', "Форма оплаты"], ['form', 'Форма заявки']]);
         enableAfterClickBlock();
+        initListCourse();
     }
 
     if (first_select.value === 'next_lesson') {

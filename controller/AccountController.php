@@ -178,6 +178,10 @@ class AccountController extends ACoreCreator {
         }
     }
 
+    function TakeSocialUrls() {
+        echo json_encode($this->m->TakeSocialUrls());
+    }
+
     function get_content()
     {
         echo "<!doctype html>

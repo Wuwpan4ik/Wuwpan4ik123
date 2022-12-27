@@ -93,15 +93,19 @@
 //          Проверить наличие course_files
             if (!is_dir($this->url_dir . "course_files")) {
                 mkdir($this->url_dir . "course_files");
+            }
+
+            if (!is_dir($this->url_dir . "course_files/" . $res[0]['id'])) {
                 mkdir($this->url_dir . "course_files/" . $res[0]['id']);
             }
 
 //            if ($_FILES['file']['size'] != 0) {
 //                unlink($courseContent[0]['file_url']);
 
-                move_uploaded_file($_FILES['file']['tmp_name'], $this->url_dir . "course_files/" . $res[0]['id'] . "/" . $_FILES['file']['name']);
+            $file_url = $this->url_dir . "course_files/" . $res[0]['id'] . "/" . $_FILES['file']['name'];
 
-                $file_url = $this->url_dir . "course_files/" . $res[0]['id'] . "/" . $_FILES['file']['name'];
+            move_uploaded_file($_FILES['file']['tmp_name'], $file_url);
+
 
 //            }
 

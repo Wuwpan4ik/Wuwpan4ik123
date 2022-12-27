@@ -387,8 +387,7 @@ unset($_SESSION['course_id']);
             type: "GET",
             success: function (data) {
                 document.querySelector('.disabled__body').innerHTML = data;
-
-                if (data.length === 0) {
+                if (data.trim().length === 0) {
                     document.querySelector('.otherСourses').style = 'display:none;';
                     return false;
                 }

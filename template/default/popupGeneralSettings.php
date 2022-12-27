@@ -42,11 +42,11 @@
                                 <label class="item">Montserrat<input class="custom-checkbox" type="radio" value="Montserrat" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                 <label class="item">Ubuntu<input class="custom-checkbox" type="radio" value="Ubuntu" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                 <label class="item">American Captain<input class="custom-checkbox" type="radio" value="American Captain" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                           
+
                             </div>
                         </div>
                     </div>
-            </div>
+                </div>
                 <div class="popup__body-item">
                     <label for="first_do">Шрифт для заголовоков</label>
                     <div class="select-account social-network">

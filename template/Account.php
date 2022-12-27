@@ -149,14 +149,14 @@
                                                         <div class="overSelect"></div>
                                                     </div>
                                                     <div class="mySelectOptions">
-                                                        <label class="item">Вконтакте<input class="custom-checkbox social__input" type="radio" value="vk" /><label for="happy"></label></label>
-                                                        <label class="item">WhatsApp<input class="custom-checkbox social__input" type="radio" value="whatsapp" /><label for="happy"></label></label>
-                                                        <label class="item">Твиттер<input class="custom-checkbox social__input" type="radio" value="twitter" /><label for="happy"></label></label>
-                                                        <label class="item">Фейсбук<input class="custom-checkbox social__input" type="radio" value="facebook" /><label for="happy"></label></label>
-                                                        <label class="item">Инстаграм<input class="custom-checkbox social__input" type="radio" value="instagram" /><label for="happy"></label></label>
-                                                        <label class="item">Ютуб<input class="custom-checkbox social__input" type="radio" value="youtube" /><label for="happy"></label></label>
-                                                        <label class="item">Телеграм<input class="custom-checkbox social__input" type="radio" value="telegram" /><label for="happy"></label></label>
-                                                        <label class="item">Сайт<input class="custom-checkbox social__input" type="radio" value="site" /><label for="happy"></label></label>
+                                                        <label class="item social__item">Вконтакте<input class="custom-checkbox social__input" type="radio" value="vk" /><label for="happy"></label></label>
+                                                        <label class="item social__item">WhatsApp<input class="custom-checkbox social__input" type="radio" value="whatsapp" /><label for="happy"></label></label>
+                                                        <label class="item social__item">Твиттер<input class="custom-checkbox social__input" type="radio" value="twitter" /><label for="happy"></label></label>
+                                                        <label class="item social__item">Фейсбук<input class="custom-checkbox social__input" type="radio" value="facebook" /><label for="happy"></label></label>
+                                                        <label class="item social__item">Инстаграм<input class="custom-checkbox social__input" type="radio" value="instagram" /><label for="happy"></label></label>
+                                                        <label class="item social__item">Ютуб<input class="custom-checkbox social__input" type="radio" value="youtube" /><label for="happy"></label></label>
+                                                        <label class="item social__item">Телеграм<input class="custom-checkbox social__input" type="radio" value="telegram" /><label for="happy"></label></label>
+                                                        <label class="item social__item">Сайт<input class="custom-checkbox social__input" type="radio" value="site" /><label for="happy"></label></label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -513,12 +513,14 @@
     })
 
     document.getElementById('social__inpu').addEventListener('input', function (){
+        console.log(this.value)
         document.getElementById('social__link').value = this.value;
     })
 
     document.getElementById('social__submit').addEventListener('click', function (){
         document.getElementById('social__button').click();
     })
+
     console.log()
     const button_submit = document.querySelector('#profile_send');
     const check_url = document.querySelector('#check_url');
@@ -543,7 +545,7 @@
                 e.preventDefault();
                 if (($(this).find('#social__link')[0].value.length) <= 10) {
                     // Событие при нехватки длины
-                    alert("Впишите ссылку своей соцсети");
+                    alert("Не хватает длины");
                     return;
                 }
                 try {
@@ -556,7 +558,26 @@
         })
     });
 </script>
-    <script src="../js/sidebar.js"></script>
+
+<script>
+    $.ajax({
+        url: "/Account/SocialUrls",
+        type: "POST",
+        success: function (data) {
+            let social__url = JSON.parse(data)
+            let social__button = document.querySelectorAll('.social__item');
+            console.log(social__url[0])
+            social__button.forEach(item => {
+                item.addEventListener('click', function (){
+                    let val = item.querySelector('.social__input').value;
+                    document.querySelector('#social__inpu').value = social__url[0][val];
+                    CheckInputs();
+                })
+            })
+        }
+    });
+</script>
+<script src="../js/sidebar.js"></script>
 <form id="social__form" class="social__form display-none" action="/Account/SaveSocialSettings" method="POST">
     <input id="social__input" type="text" name="social" value="">
     <input id="social__link" type="text" name="link" value="">

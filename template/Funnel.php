@@ -116,7 +116,7 @@
                                             <option <?php if ($p['course_id'] == $course['id']) echo "selected";?> value="<?=$course['id']?>"><?=$course['name']?> </option>
                                         <?php } } else { ?>
                                         <option>Нет курсов для выбора</option>
-                                    <?php } print_r($content[1]) ?>
+                                    <?php } ?>
                                 </select>
                             </form>
 
@@ -334,6 +334,7 @@
 <script src="../js/sidebar.js"></script>
 <script src="/js/getNotifications.js"></script>
 <script src="/js/customSelect.js"></script>
+<script src="/js/customInputs.js"></script>
 </body>
 
 </html>

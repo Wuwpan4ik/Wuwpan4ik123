@@ -36,6 +36,7 @@
     $router->addRoute("/PasswordRecovery", "PasswordRecovery.php");
     $router->addRoute("/Cases", "Cases.php");
     $router->addRoute("/Account", "Account.php");
+    $router->addRoute("/Account/SocialUrls", "AccountController.php", "TakeSocialUrls", false);
     $router->addRoute("/Account/MainSettings", "AccountController.php", "SaveSettings");
     $router->addRoute("/Account/UserSettings", "AccountController.php", "SaveUserSettings");
     $router->addRoute("/Account/SaveSchoolSettings", "AccountController.php", "SaveSchoolSettings");

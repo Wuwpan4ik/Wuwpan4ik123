@@ -684,6 +684,21 @@
     }
 
 </script>
+
+<!-- Форма списков курса -->
+<script>
+    function initListCourse(){
+        setTimeout(function (){
+            document.querySelector('.button-buy').addEventListener('click', function (){
+                document.querySelector('.popup__allLessons').classList.remove('active');
+                document.querySelector('.overlay-allLessons').classList.remove('active');
+                document.querySelector('.popup__buy').classList.add('active');
+                document.querySelector('.popup__buy').style.zIndex = 100;
+                document.querySelector('.popup__buy-footer').style.padding = 0;
+            })
+        }, 500)
+    }
+</script>
 <script src="../js/sidebar.js"></script>
 <script src="/js/getNotifications.js"></script>
 <script src="/js/customInputs.js"></script>

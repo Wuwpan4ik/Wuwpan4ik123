@@ -279,6 +279,14 @@ class User {
     public function getVideosForPlayer()
     {
         $id = $_SESSION['item_id'];
+        $author_id = $this->db->query("SELECT funnel.author_id FROM funnel WHERE id = '$id'")[0]['author_id'];
+        $course_temp = $this->db->query("SELECT funnel.course_id FROM funnel WHERE id = '$id'");
+        $course_have_id = is_null($course_temp);
+        if ($course_have_id) {
+            $course_id = $course_temp[0]['course_id'];
+        } else {
+            $course_id = $this->db->query("SELECT course.id FROM course WHERE author_id = '$author_id'")[0]['id'];
+        }
         $funnel_content = $this->db->query("SELECT  
                                                 course.id,
                                                 course.name,
@@ -294,7 +302,7 @@ class User {
                                                 user_info.avatar,
                                                 user_info.first_name
                                                 FROM `course` AS course
-                                                INNER JOIN `funnel` AS funnel ON course.id = funnel.course_id AND funnel.id = '$id'
+                                                INNER JOIN `funnel` AS funnel ON course.id = '$course_id' AND funnel.id = '$id'
                                                 INNER JOIN `user` AS user_info ON funnel.author_id = user_info.id
                                                 INNER JOIN `funnel_content` AS content ON content.funnel_id = funnel.id GROUP BY content.id");
         $course_content = $this->db->query("SELECT course_content.name,
@@ -305,15 +313,15 @@ class User {
                                                 course_content.thubnails,
                                                 course.author_id
                                                 FROM `funnel` AS funnel
-                                                INNER JOIN `course_content` ON course_content.course_id = funnel.course_id AND funnel.id = '$id'
+                                                INNER JOIN `course_content` ON course_content.course_id = '$course_id' AND funnel.id = '$id'
                                                 INNER JOIN `course` ON course.id = course_content.course_id");
-        $course_id = $this->db->query("SELECT course.id,
+        $course = $this->db->query("SELECT course.id,
                                                 course.author_id,
                                                 course.price
                                                 FROM `funnel` AS funnel
-                                                INNER JOIN `course_content` ON course_content.course_id = funnel.course_id AND funnel.id = '$id'
+                                                INNER JOIN `course_content` ON course_content.course_id = '$course_id' AND funnel.id = '$id'
                                                 INNER JOIN `course` ON course.id = course_content.course_id LIMIT 1");
-        return ['funnel_content' => $funnel_content, 'course_content' => $course_content, 'course_id' => $course_id];
+        return ['funnel_content' => $funnel_content, 'course_content' => $course_content, 'course_id' => $course];
 
     }
 
@@ -357,6 +365,11 @@ class User {
     public function isUserSocials()
     {
         return count($this->db->query("SELECT * FROM `user_contacts` WHERE `user_id` = " . $_SESSION['user']['id'])) == 1;
+    }
+
+    public function TakeSocialUrls()
+    {
+        return $this->db->query("SELECT * FROM `user_contacts` WHERE `user_id` = " . $_SESSION['user']['id']);
     }
 }
 ?>
