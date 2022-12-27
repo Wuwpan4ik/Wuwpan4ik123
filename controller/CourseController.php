@@ -26,6 +26,8 @@
 
             move_uploaded_file($_FILES['video_uploader']['tmp_name'], $path);
 
+            chmod($path, 0777);
+
             $ffmpeg = FFMpeg\FFMpeg::create([
                 'ffmpeg.binaries'  => './settings/ffmpeg.exe',
                 'ffprobe.binaries' => './settings/ffprobe.exe',
