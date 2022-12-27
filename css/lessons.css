@@ -927,7 +927,6 @@ input:checked + label {
 .popup__body-after{
     display: flex;
     flex-direction: column;
-    gap: 20px;
 }
 
 .popup__body__input {

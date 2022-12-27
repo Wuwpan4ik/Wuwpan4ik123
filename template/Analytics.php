@@ -394,9 +394,8 @@
           let currency = document.getElementById('currency').innerHTML;
           if (array.full_value) {
               document.getElementById('full_value').innerText = array.full_value + currency;
-          } else {
-              document.querySelector('.statistic__button').classList.add('display-none');
           }
+
           if (array.week) {
               document.querySelectorAll('.full_week_value').forEach(item => {
                   item.innerHTML = array.week + currency;

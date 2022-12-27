@@ -15,6 +15,8 @@
 
 <body>
 
+<? print_r($_SESSION['error']) ?>
+
 <div class="SettingAccount">
 
     <?php include 'default/sidebar.php';?>

@@ -204,32 +204,32 @@
     let color = null;
     let shadow = null;
 
-        colors.forEach(item => {
-            item.addEventListener('click', () => {
-                item.classList.toggle('active')
-                color = item.style.background;
-                shadow = item.style.color;
+    colors.forEach(item => {
+        item.addEventListener('click', () => {
+            item.classList.toggle('active')
+            color = item.style.background;
+            shadow = item.style.color;
 
-                if (item.classList.contains('active')) {
-                    videoBtns.forEach(item => {
-                        shadowDown.style.boxShadow = '0px 3px 0px ' + shadow;
-                        shadowLite.style.boxShadow = '0px 10px 30px ' + shadow;
-                        changeStyleBtn(item, color, shadow)
+            if (item.classList.contains('active')) {
+                videoBtns.forEach(item => {
+                    shadowDown.style.boxShadow = '0px 3px 0px ' + shadow;
+                    shadowLite.style.boxShadow = '0px 10px 30px ' + shadow;
+                    changeStyleBtn(item, color, shadow)
 
-                        colors.forEach(el => {
-                            el.classList.remove('active');
-                            item.classList.add('active');
-                        })
-
+                    colors.forEach(el => {
+                        el.classList.remove('active');
+                        item.classList.add('active');
                     })
-                }
 
-            })
+                })
+            }
 
         })
+
+    })
+
     buttons.forEach(button => {
         button.addEventListener('click', () => {
-
             button.classList.toggle('active')
             if (button.classList.contains('active')) {
                 changeStyleBtn(document.querySelector('.button-video'), color, shadow)
@@ -239,9 +239,7 @@
                     b.classList.remove('active');
                     button.classList.add('active');
                 })
-
             }
-
         })
     })
 

@@ -2,8 +2,8 @@
 abstract class ACoreAdmin {
 
     protected $m;
-    protected $ourEmail = "dimalim110@gmail.com";
-    protected $ourPassword = "uyrmpfgzbivwrvdp";
+    protected $ourEmail = "envelope@course-creator.io";
+    protected $ourPassword = "1u*V90z*29pP";
     protected $ourNickName = "course-creator.io";
     protected $email;
 
@@ -18,7 +18,7 @@ abstract class ACoreAdmin {
             $mail->Debugoutput = function($str, $level) {$GLOBALS['status'][] = $str;};
 
             // Настройки вашей почты
-            $mail->Host       = 'smtp.gmail.com'; // SMTP сервера вашей почты
+            $mail->Host       = 'smtp.yandex.ru'; // SMTP сервера вашей почты
             $mail->Username   = $this->ourEmail; // Логин на почте
             $mail->Password   = $this->ourPassword; // Пароль на почте
             $mail->SMTPSecure = 'ssl';

@@ -44,17 +44,18 @@ class AccountController extends ACoreCreator {
         if (strlen($_POST['email']) == 0) {
             $email = $user[0]['email'];
         } else {
-            $temp_email = $_POST['email'];
-            if (!filter_var($temp_email, FILTER_VALIDATE_EMAIL)) {
-                $_SESSION['error']['email_message'] = 'Неверный email';
-                return False;
-            }
-
-            if (count($this->m->db->query("SELECT * FROM user WHERE email = '$temp_email'")) != 0 && $temp_email != $_SESSION['user']['email']) {
-                $_SESSION['error']['email_message'] = 'Такой email уже зарегистрирован';
-                return False;
-            }
             $email = $_POST['email'];
+            if ($email != $user[0]['email']) {
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $_SESSION['error']['email_message'] = 'Неверный email';
+                    return False;
+                }
+
+                if (count($this->m->db->query("SELECT * FROM user WHERE email = '$email'")) != 0 && $email != $_SESSION['user']['email']) {
+                    $_SESSION['error']['email_message'] = 'Такой email уже зарегистрирован';
+                    return False;
+                }
+            }
         }
 
         if (strlen($_POST['first_name']) == 0) {
@@ -105,9 +106,9 @@ class AccountController extends ACoreCreator {
             $birthday = $_POST['birthday'];
         }
 
-        if($_FILES['avatar']['size'] != 0){
+        if($_FILES['avatar']['size'] != 0) {
 
-            $avatar = "./uploads/ava/" . $email . substr($_FILES['avatar']['name'], -4, 4);
+            $avatar = "./uploads/ava/" . $email . substr($_FILES['avatar']['name'], -4);
 
             move_uploaded_file($_FILES['avatar']['tmp_name'], $avatar);
 
@@ -115,7 +116,9 @@ class AccountController extends ACoreCreator {
             $avatar = $user[0]['avatar'];
         }
 
-        $this->m->db->execute("UPDATE user SET `email` = '$email', `birthday` = '$birthday', `avatar` = '$avatar', `first_name` = '$first_name', `second_name` = '$second_name', `telephone` = '$phone', `currency` = '$currency', `city` = '$city', `country` = '$country' WHERE id = " . $_SESSION['user']['id']);
+        $this->m->db->execute("UPDATE `user` SET `email` = '$email', `birthday` = '$birthday', `first_name` = '$first_name', `second_name` = '$second_name', `telephone` = '$phone', `currency` = '$currency', `city` = '$city', `country` = '$country' WHERE id = {$user[0]['id']}");
+        $this->m->db->execute("UPDATE `user` SET `avatar` = '$avatar' WHERE id = {$user[0]['id']}");
+
         $_SESSION["user"]['first_name'] = $first_name;
         $_SESSION["user"]['second_name'] = $second_name;
         $_SESSION["user"]['email'] = $email;
