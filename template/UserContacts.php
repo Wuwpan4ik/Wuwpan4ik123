@@ -56,7 +56,7 @@
                             <img src="../img/UserContacts/SocialNetworks.svg" alt="">
                             <span>Социальные сети:</span>
                             <ul class="UserContacts-list">
-                                <?php foreach (['instagram', 'whatsapp', 'telegram', 'facebook', 'youtube', 'twitter', 'skype', 'site'] as $item) {
+                                <?php foreach (['instagram', 'whatsapp', 'telegram', 'facebook', 'youtube', 'twitter', 'vk', 'site'] as $item) {
                                     if (!is_null($content['contacts'][0][$item])) {
                                 ?>
                                 <li><a href="<?php echo htmlspecialchars($content['contacts'][0][$item]) ?>"><img src="../img/UserContacts/SocialNetworcs/<?=$item?>.svg" alt=""></a></li>
