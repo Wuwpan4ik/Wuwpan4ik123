@@ -111,7 +111,7 @@ class User {
                 array_push($purchases_array, $video_course_id);
             }
         }
-        $course_query = "SELECT course.id, course.name, course_content.thubnails as 'preview', course.description, course.author_id FROM course INNER JOIN course_content on course_content.course_id = course.id WHERE (";
+        $course_query = "SELECT course.id, course.name, ANY_VALUE(course_content.thubnails) as 'preview', ANY_VALUE(count(course_content.id)) as 'count', course.description, course.author_id FROM course INNER JOIN course_content on course_content.course_id = course.id WHERE (";
         foreach ($purchases_array as $course_id) {
             $course_query .= " course.id = $course_id ";
             if (count($purchases_array) != 1) {
@@ -122,6 +122,7 @@ class User {
             array_shift($purchases_array);
         }
         $courses = $this->db->query($course_query);
+        $_SESSION['error'] = $course_query;
         return $courses;
     }
 
@@ -135,7 +136,7 @@ class User {
                 array_push($purchases_array, $video_course_id);
             }
         }
-        $course_query = "SELECT course.id, course.name, course_content.thubnails as 'preview', course.description, course.author_id FROM course INNER JOIN course_content on course_content.course_id = course.id WHERE NOT (";
+        $course_query = "SELECT course.id, course.name, ANY_VALUE(course_content.thubnails) as 'preview', ANY_VALUE(count(course_content.id)) as 'count', course.description, course.author_id FROM course INNER JOIN course_content on course_content.course_id = course.id WHERE NOT (";
         foreach ($purchases_array as $course_id) {
             $course_query .= " course.id = $course_id ";
             if (count($purchases_array) != 1) {

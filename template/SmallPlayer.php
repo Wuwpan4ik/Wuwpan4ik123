@@ -125,9 +125,6 @@
 <?php } ?>
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
-<script src="/js/script.js" ></script>
-<script src="/js/slick.min.js"></script>
-<script src="/js/sliders.js"></script>
 
 <!--Закрытие AllLessons-->
 <script>
@@ -210,6 +207,9 @@
         })
     });
 </script>
+<script src="/js/script.js" ></script>
+<script src="/js/slick.min.js"></script>
+<script src="/js/sliders.js"></script>
 </body>
 </html>
 

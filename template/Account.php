@@ -14,8 +14,6 @@
 </head>
 
 <body>
-q
-
 
 <div class="SettingAccount">
 
@@ -553,6 +551,7 @@ q
                     $('#social__input')[0].value = $('.form-select__social-name')[0].value;
                     $.post(e.target.action, $(this).serialize());
                     alert("Ваши данные сохранены");
+                    GetSocial();
                 } catch {}
             });
         })
@@ -560,22 +559,25 @@ q
 </script>
 
 <script>
-    $.ajax({
-        url: "/Account/SocialUrls",
-        type: "POST",
-        success: function (data) {
-            let social__url = JSON.parse(data)
-            let social__button = document.querySelectorAll('.social__item');
-            console.log(social__url[0])
-            social__button.forEach(item => {
-                item.addEventListener('click', function (){
-                    let val = item.querySelector('.social__input').value;
-                    document.querySelector('#social__inpu').value = social__url[0][val];
-                    CheckInputs();
+    function GetSocial() {
+        $.ajax({
+            url: "/Account/SocialUrls",
+            type: "POST",
+            success: function (data) {
+                let social__url = JSON.parse(data)
+                let social__button = document.querySelectorAll('.social__item');
+                console.log(social__url[0])
+                social__button.forEach(item => {
+                    item.addEventListener('click', function () {
+                        let val = item.querySelector('.social__input').value;
+                        document.querySelector('#social__inpu').value = social__url[0][val];
+                        CheckInputs();
+                    })
                 })
-            })
-        }
-    });
+            }
+        });
+    }
+    GetSocial();
 </script>
 <script src="../js/sidebar.js"></script>
 <form id="social__form" class="social__form display-none" action="/Account/SaveSocialSettings" method="POST">

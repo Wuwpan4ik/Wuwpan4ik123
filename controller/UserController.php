@@ -76,8 +76,6 @@
                 $div = '';
                 foreach ($course_page as $item) {
                     $name = $item['name'];
-                    $course_id = (int) $item['count'];
-                    $count = (int) ($this->m->db->query("SELECT count(course_content.id) as 'count' FROM course_content JOIN course ON course.id = {$course_id} WHERE course.id = course_content.course_id"));
                     $div .= '
                     <div class="popup__allLessons-item availableСourses">
                         <div class="popup__allLessons-item__header">
@@ -92,7 +90,7 @@
                                             Курс
                                         </div>
                                         <div class="aboutTheAuthor-name">
-                                            ' . $count  . ' урока
+                                            ' . $item['count']  . ' урока
                                         </div>
                                     </div>
                                     <div class="popup__allLessons-item-info-title">
@@ -113,8 +111,6 @@
                 $div = '';
                 foreach ($course_page as $item) {
                     $name = $item['name'];
-                    $course_id = (int) $item['count'];
-                    $count = (int) ($this->m->db->query("SELECT count(course_content.id) as 'count' FROM course_content JOIN course ON course.id = {$course_id} WHERE course.id = course_content.course_id"));
                     $div .= '
                     <div class="popup__allLessons-item otherCourses">
                         <div class="popup__allLessons-item__header">
@@ -129,7 +125,7 @@
                                             Курс
                                         </div>
                                         <div class="aboutTheAuthor-name">
-                                            ' . $count . ' урока
+                                            ' . $item['count'] . ' урока
                                         </div>
                                     </div>
                                     <div class="popup__allLessons-item-info-title">

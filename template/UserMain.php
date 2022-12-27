@@ -12,6 +12,7 @@
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 </head>
 <body class="body">
+<?php print_r($_SESSION['error']) ?>
 
 <div class="UserMain bcg">
     <div class="_container" style="height: 9%;">
