@@ -308,7 +308,7 @@ unset($_SESSION['course_id']);
         hiddenAllPopups();
         document.querySelector('.course__popup').classList.add('active');
         document.querySelector('.back__to__course').dataset.course_id = course__get_id;
-        getListPage(course__get_id);
+        getListPage(author__get_id);
         course__get_url.searchParams.delete('course_id');
         window.history.pushState({}, '', course__get_url.toString());
     }
@@ -383,6 +383,10 @@ unset($_SESSION['course_id']);
             }
         });
 
+        document.querySelectorAll('.course__back-btn').forEach(item => {
+            item.dataset.author_id = number;
+        })
+
         $.ajax({
             url: "/UserController/getDisableCourse?author_id=" + number,
             type: "GET",
@@ -440,9 +444,6 @@ unset($_SESSION['course_id']);
                         youChosen.classList.add('active');
                         getVideoInfo(item.querySelector('.item__list-id').dataset.id);
                     }
-                })
-                document.querySelectorAll('.course__back-btn').forEach(item => {
-                    item.dataset.author_id = number;
                 })
                 startAccordion();
             }

@@ -184,7 +184,7 @@
 
                     <h2 id="display_name"><?=$content[0][0]['name']?></h2>
 
-                    <button class="none"><img id="name_change" src="/img/Pen.svg" class="ico" onclick="changeName()"></button>
+                    <button class="none" type="submit"><img id="name_change" src="/img/Pen.svg" class="ico" onclick="changeName()"></button>
 
                 </form>
 
@@ -192,7 +192,7 @@
 
                     function changeName(){
 
-                        document.getElementById("insert").innerHTML = '<input class="proj_name" name="title" placeholder="Введите новое название" requiredutton type="submit" class="none"><img id="name_change" src="/img/Pen.svg" class="ico"></button>';
+                        document.getElementById("insert").innerHTML = '<input class="proj_name" name="title" placeholder="Введите новое название" required type="text" class="none"><button type="submit"><img id="name_change" src="/img/Pen.svg" class="ico"></button>';
 
                     }
 

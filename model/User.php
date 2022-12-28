@@ -105,19 +105,13 @@ class User {
     {
         $purchases = $this->db->query("SELECT `purchase` FROM `purchase` WHERE user_id = " . $_SESSION['user']['id'])[0]['purchase'];
         $purchases_array = json_decode($purchases, true)['course_id'];
-        foreach (json_decode($purchases, true)['video_id'] as $item) {
-            $video_course_id = $this->db->query("SELECT `course_id` FROM `course_content` WHERE id = $item")[0]['course_id'];
-            if (!in_array($video_course_id, $purchases_array)) {
-                array_push($purchases_array, $video_course_id);
-            }
-        }
-        $course_query = "SELECT course.id, course.name, ANY_VALUE(course_content.thubnails) as 'preview', ANY_VALUE(count(course_content.id)) as 'count', course.description, course.author_id FROM course INNER JOIN course_content on course_content.course_id = course.id WHERE (";
+        $course_query = "SELECT course.id, course.name, ANY_VALUE(course_content.thubnails) as 'preview', count(course_content.id) as 'count', course.description, course.author_id FROM course INNER JOIN course_content on course_content.course_id = course.id WHERE (";
         foreach ($purchases_array as $course_id) {
             $course_query .= " course.id = $course_id ";
             if (count($purchases_array) != 1) {
                 $course_query .= " OR ";
             } else {
-                $course_query .= ") GROUP BY id";
+                $course_query .= ") AND course.author_id = {$author_id} GROUP BY course.id";
             }
             array_shift($purchases_array);
         }
@@ -136,13 +130,13 @@ class User {
                 array_push($purchases_array, $video_course_id);
             }
         }
-        $course_query = "SELECT course.id, course.name, ANY_VALUE(course_content.thubnails) as 'preview', ANY_VALUE(count(course_content.id)) as 'count', course.description, course.author_id FROM course INNER JOIN course_content on course_content.course_id = course.id WHERE NOT (";
+        $course_query = "SELECT course.id, course.name, ANY_VALUE(course_content.thubnails) as 'preview', count(course_content.id) as 'count', course.description, course.author_id FROM course INNER JOIN course_content on course_content.course_id = course.id AND course.author_id = {$author_id} WHERE NOT (";
         foreach ($purchases_array as $course_id) {
             $course_query .= " course.id = $course_id ";
             if (count($purchases_array) != 1) {
                 $course_query .= " OR ";
             } else {
-                $course_query .= ") GROUP BY id";
+                $course_query .= ") AND course.author_id = {$author_id} GROUP BY course.id";
             }
             array_shift($purchases_array);
         }

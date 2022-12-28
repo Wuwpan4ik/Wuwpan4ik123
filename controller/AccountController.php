@@ -5,8 +5,10 @@ class AccountController extends ACoreCreator {
         $site_url = $_GET['site_url'];
 
         if ((int)$this->m->db->query("SELECT count(*) FROM user WHERE `site_url` = " . $site_url) > 0) {
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
             return False;
         }
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
         return True;
     }
 
@@ -35,7 +37,8 @@ class AccountController extends ACoreCreator {
         $_SESSION["user"]['school_name'] = $school_name;
         $_SESSION["user"]['school_desc'] = $school_desc;
         $_SESSION["user"]['niche'] = $niche;
-        return true;
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     public function SaveSettings() {
@@ -48,11 +51,13 @@ class AccountController extends ACoreCreator {
             if ($email != $user[0]['email']) {
                 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     $_SESSION['error']['email_message'] = 'Неверный email';
+                    header('Location: ' . $_SERVER['HTTP_REFERER']);
                     return False;
                 }
 
                 if (count($this->m->db->query("SELECT * FROM user WHERE email = '$email'")) != 0 && $email != $_SESSION['user']['email']) {
                     $_SESSION['error']['email_message'] = 'Такой email уже зарегистрирован';
+                    header('Location: ' . $_SERVER['HTTP_REFERER']);
                     return False;
                 }
             }
@@ -128,7 +133,8 @@ class AccountController extends ACoreCreator {
         $_SESSION["user"]['country'] = $country;
         $_SESSION['user']['avatar'] = $avatar;
         $_SESSION['user']['birthday'] = $birthday;
-        return true;
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     function SaveUserSettings() {
@@ -167,6 +173,8 @@ class AccountController extends ACoreCreator {
         $_SESSION["user"]['first_name'] = $first_name;
 
         $_SESSION["user"]['second_name'] = $second_name;
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     function SaveSocialSettings() {
@@ -177,22 +185,16 @@ class AccountController extends ACoreCreator {
         } else {
             $this->m->db->execute("INSERT INTO `user_contacts` (`". $social ."`, `user_id`) VALUES ('". $link ."', ". $_SESSION['user']['id'] .")");
         }
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     function TakeSocialUrls() {
         echo json_encode($this->m->TakeSocialUrls());
+        return true;
     }
 
     function get_content()
     {
-        echo "<!doctype html>
-            <html lang=\"ru\">
-            <head>
-            </head>
-            <body>
-                <script>window.location.replace('/')</script>
-            </body>
-            </html>";
     }
 
     function obr()
