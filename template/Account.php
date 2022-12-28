@@ -566,7 +566,6 @@
             success: function (data) {
                 let social__url = JSON.parse(data)
                 let social__button = document.querySelectorAll('.social__item');
-                console.log(social__url)
                 social__button.forEach(item => {
                     item.addEventListener('click', function () {
                         let val = item.querySelector('.social__input').value;
