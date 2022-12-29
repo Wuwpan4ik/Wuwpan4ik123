@@ -296,6 +296,10 @@
 <script src="/js/jquery-3.6.1.min.js"></script>
 
 <script>
+    function uploadFile(target) {
+        document.getElementById("file-name").innerHTML = (target.files[0].name);
+        document.getElementById("file-size").innerHTML = Math.round(target.files[0].size / 1024) + "кБ" + " из доступных 5Мб" ;
+    }
     let form__submit = $(function() {
         $('.media__form').each(function (){
             $(this).submit(function(e) {
@@ -380,7 +384,6 @@
             dataType: 'html',          /* Тип данных в ответе (xml, json, script, html). */
             data: $("#initButton").serialize(),     /* Параметры передаваемые в запросе. */
             success: function(data){   /* функция которая будет выполнена после успешного запроса.  */
-                console.log(data)
                 if (data == 0) {
                     document.querySelector('.exit-funnel-edit').classList.add('display-flex');
                     document.querySelector('.exit-funnel-edit').style.zIndex = '1000';
@@ -489,10 +492,6 @@
         });
     }
 
-    function uploadFile(target) {
-        document.getElementById("file-name").innerHTML = (target.files[0].name);
-        document.getElementById("file-size").innerHTML = Math.round(target.files[0].size / 1024) + "кБ" + " из доступных 5Мб" ;
-    }
     function _(abc) {
         return document.getElementById(abc);
     }

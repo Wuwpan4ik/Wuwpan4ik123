@@ -90,7 +90,7 @@
                                 $form = $popup->first_do->pay_form;
                             }
                             if (isset($popup->second_do->file)) {
-                                $first_file = $popup->second_do->file;
+                                $file = $popup->second_do->file;
                             }
                             // Первое или второе действие
                             $name = 'button';

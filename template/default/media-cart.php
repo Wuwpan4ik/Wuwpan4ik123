@@ -16,8 +16,8 @@
 
     <form method="POST" class="new_name media__form" enctype="multipart/form-data" action="/<?php if(strstr($_SERVER['REQUEST_URI'], 'Course')) {echo 'Course';} else {echo 'Funnel';} ?>/<?=$v['id']?>/rename">
 
-        <?php if (strstr($_SERVER['REQUEST_URI'], 'Funnel' )) {?>
         <input class="funnel__content-id" type="hidden" value="<?=$v['id']?>">
+        <?php if (strstr($_SERVER['REQUEST_URI'], 'Funnel' )) {?>
         <div class="funnel-input input_focus">
             <label for="name" class="label_focus activeLabel">Укажите заголовок:</label>
             <input name="name" class="videoname video-desc" type="text" value="<?=$v['name']?>">
