@@ -194,13 +194,10 @@
     let shadowLite = document.querySelector('.button-shadow-lite a');
     let shadowNone = document.querySelector('.button-shadow-none a');
 
+    let title = document.querySelector('.slider__item-title');
+    let text = document.querySelector('.slider__item-text');
 
-
-        let title = document.querySelector('.slider__item-title');
-        let text = document.querySelector('.slider__item-text');
-
-        title.style.fontFamily = heading.value.style.fontFamily;
-        title.style.fontWeight = '900px';
+    title.style.fontWeight = '900px';
 
 
     function changeStyleBtn (item, color, shadow = null) {
@@ -235,9 +232,6 @@
                 shadowNone.style.boxShadow = '';
                 if (item.classList.contains('active')) {
                     videoBtns.forEach(item => {
-
-
-
                         colors.forEach(el => {
                             el.classList.remove('active');
                             item.classList.add('active');
