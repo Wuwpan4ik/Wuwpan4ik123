@@ -87,7 +87,7 @@
     </div>
 </div>
 
-
+<script src="/js/getNotifications.js"></script>
 <script>
     let feed = document.querySelector('.feed');
 

@@ -220,14 +220,7 @@
             $this->db->db->execute("INSERT INTO `user` (`niche`, `avatar`,`username`, `first_name`, `second_name`, `email`, `password`, `is_creator`) VALUES ('$niche', '$ava', '$username', '$first_name', '$second_name', '$email', '$password', 1)");
             $res = $this->db->db->query("SELECT * FROM user WHERE email = '$email' AND password = '$password'");
             if(count($res) != 0) {
-                if ($res[0]['is_creator'] == 0) {
-                    $_SESSION["user"] = [
-                        'id' => $res[0]['id'],
-                        'email' => $res[0]['email'],
-                        'avatar' => $res[0]['avatar'],
-                        'is_creator' => 0
-                    ];
-                } else {
+                if ($res[0]['is_creator'] != 0) {
                     $_SESSION["user"] = [
                         'id' => $res[0]['id'],
                         'niche' => $res[0]['niche'],

@@ -72,10 +72,10 @@
                     <div class="avatar-body">
                         <img src="../img/saveAvatar.svg" alt="">
                         <div class="avatar-body__info">
-                            <span id="file-name" class="file-box">
+                            <span id="file-name" class="file-box file_name">
                                 <?php if (isset($v['file_url'])) {print_r(substr(basename($v['file_url']), 0, 10));} else {echo 'Название файла';}?>
                             </span>
-                            <span id="file-size" class="file-box">
+                            <span id="file-size" class="file-box file_size">
                                 <?php if (isset($v['file_url'])) {print_r(round(filesize($v['file_url']) / 1024));} else {echo '0';} ?>кб из 5мб
                             </span>
                         </div>
