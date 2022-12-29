@@ -86,19 +86,21 @@
 
 
 <script>
+    let feed = document.querySelector('.feed');
+
     window.addEventListener("scroll", (event) => {
         let scroll = this.scrollY;
         if(scroll >= 270){
             document.querySelector('.Article-post-item').classList.remove('active');
             document.querySelector('.Article-post-item').style.position = 'fixed';
-            document.querySelector('.Article-post-item').style.left = '24%';
+            document.querySelector('.Article-post-item').style.left = '30%';
             document.querySelector('.Article-post-item').style.top = '70px';
             document.querySelector('.Article-post-item').style.bottom = 'null';
         }
         else if(scroll <= 270){
             document.querySelector('.Article-post-item').classList.add('active');
             document.querySelector('.Article-post-item').style.position = 'absolute'
-            document.querySelector('.Article-post-item').style.left = '40px';
+            document.querySelector('.Article-post-item').style.left = '';
             document.querySelector('.Article-post-item').style.top = '';
         }
         console.log(scroll)

@@ -460,6 +460,7 @@ span.button__back {
   -ms-flex-direction: column;
   flex-direction: column;
   width: 100%;
+
   margin-left: auto;
   margin-right: 0;
   color: #404D61;
@@ -629,7 +630,13 @@ a.button__back {
   background-color: #F6F7F9;
   z-index: 300;
 }
+.open-sidebar{
+  display: none;
+}
 @media (max-width: 979px) {
+  .open-sidebar{
+    display: flex;
+  }
   .nav .sidebar,.contactSignout{
     display: none;
   }
