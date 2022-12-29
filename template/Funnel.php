@@ -196,11 +196,7 @@
 
 
 
-        let title = document.querySelector('.slider__item-title');
-        let text = document.querySelector('.slider__item-text');
-
-        title.style.fontFamily = heading.value.style.fontFamily;
-        title.style.fontWeight = '900px';
+    function fonts()
 
 
     function changeStyleBtn (item, color, shadow = null) {
