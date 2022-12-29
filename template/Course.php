@@ -144,10 +144,12 @@
 <div id="popup__background">
     <div id="popup">
         <div class="popup__container">
-            <div class="popup__title">Вы действительно хотите удалить проект?</div>
-            <div class="popup__form">
-                <button class="popup__btn popup__not-delete">Не удалять</button>
-                <button class="popup__btn popup__delete">Удалить</button>
+            <div class="popup-body">
+                <div class="popup__title">Вы действительно хотите удалить проект?</div>
+                <div class="popup__form">
+                    <button class="popup__btn popup__delete popup__white">Удалить</button>
+                    <button class="popup__btn popup__not-delete popup__blue">Не удалять</button>
+                </div>
             </div>
         </div>
     </div>
