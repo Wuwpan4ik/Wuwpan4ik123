@@ -26,7 +26,7 @@
                     </div>
                     <div class="popup-tariff__price">
                         Стоимость
-                        <div class="tariff-price"><?php echo htmlspecialchars($item['price'])?> ₽/ мес </div>
+                        <div class="tariff-price__popup "><?php echo htmlspecialchars($item['price'])?> ₽/ мес </div>
                     </div>
                     <div class="popup-tariff-button ">
                         <button <?php if ($_SESSION['user']['tariff'] == $item['id']) echo 'class="selected"'?>>
