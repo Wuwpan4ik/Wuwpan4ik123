@@ -89,6 +89,7 @@
     $router->addRoute("/LoginController/login", "LoginController.php", 'login');
     $router->addRoute("/LoginController/reg", "LoginController.php", 'registration');
     $router->addRoute("/LoginController/recovery", "LoginController.php", 'recovery');
+    $router->addRoute("/LoginController/UserRecovery", "LoginController.php", 'UserRecovery');
     $router->addRoute("/LoginController/logout", "LoginController.php", 'logout');
 
     $router->addRoute("/ClientsController/application", "ClientsController.php", 'AddApplication');

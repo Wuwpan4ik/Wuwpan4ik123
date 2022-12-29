@@ -88,7 +88,7 @@ if (!class_exists('PHPMailer\PHPMailer\Exception'))
                 // Получатель письма
                 $mail->addAddress($email);
 
-                $mail->isHTML(true);
+                $mail->isHTML();
                 $mail->Subject = $title;
                 $mail->Body = $body;
                 if (!is_null($file)) {

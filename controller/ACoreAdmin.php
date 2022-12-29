@@ -37,7 +37,7 @@ abstract class ACoreAdmin {
             // Получатель письма
             $mail->addAddress($this->email);
 
-            $mail->isHTML(true);
+            $mail->isHTML();
             $mail->Subject = $title;
             $mail->Body = $body;
 
