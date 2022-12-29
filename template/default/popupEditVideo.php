@@ -19,7 +19,7 @@
                     <div class="slider__header _conatiner-player ">
                         <div class="slider__header-logo">
                             <div class="slider__header-logo-img">
-                                <img width="48px" src="<? echo ($_SESSION["user"]['avatar']) ? $_SESSION["user"]['avatar'] : '/uploads/ava/userAvatar.jpg' ?>" alt="">
+                                <img width="48px" src="/<? echo (isset($_SESSION['user']['avatar'])  ? $_SESSION['user']['avatar'] : "uploads/ava/userAvatar.jpg") ?>" alt="">
                             </div>
                             <div class="slider__header-logo-text">
                                 <?=$_SESSION["user"]["first_name"]?>
@@ -47,7 +47,7 @@
                     </div>
                 </div>
             </div>
-            <div class="popup__body-block editVideo">
+            <div class="popup__body-block editVideo" style="color: black">
                 <div class="popup__body-item">
 
                     <label for="first_do">Действие после нажатия:</label>
