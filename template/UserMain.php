@@ -22,11 +22,11 @@
                 <div class="user__logo-text">Course Creator</div>
             </div>
             <div class="header-main__burger">
-                <a href="/UserMenu">
+                <button onclick="UserMenuLocation()">
                     <div class="main__burger">
                         <span></span>
                     </div>
-                </a>
+                </button>
             </div>
         </div>
     </div>
@@ -264,6 +264,11 @@
 unset($_SESSION['course_price']);
 unset($_SESSION['course_id']);
 ?>
+<script>
+    function UserMenuLocation() {
+        window.location.replace('/UserMenu');
+    }
+</script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
 <script src="../js/script.js" ></script>
 <script>
