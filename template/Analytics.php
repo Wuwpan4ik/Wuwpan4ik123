@@ -141,7 +141,7 @@
                                         </div>
                                     </div>
 
-                                    <button class="ico_button "><img class="ico" src="img/Download.svg">Выгрузить</button>
+                                    <button class="ico_button disabledBtn"><img class="ico" src="img/Download.svg">Выгрузить</button>
 
                                     <input style="display:block; padding-left:35px;" class="ico_button" placeholder="Поиск">
                                 </div>
@@ -187,7 +187,7 @@
 
                     <input type="radio" id="Tarif" name="mytabs"/>
 
-                    <label id="cllab" for="Tarif"><p>Статистика</p></label>
+                    <label class="statistic__button" id="cllab" for="Tarif"><p>Статистика</p></label>
 
                     <div class="tab">
 
@@ -384,7 +384,6 @@
   request1.addEventListener("readystatechange", () => {
       if (request1.readyState === 4 && request1.status === 200) {
           const array = JSON.parse(request1.responseText);
-          console.log(array)
           if (array.prev_week == null) {
               array.prev_week = 0;
           }
@@ -396,6 +395,7 @@
           if (array.full_value) {
               document.getElementById('full_value').innerText = array.full_value + currency;
           }
+
           if (array.week) {
               document.querySelectorAll('.full_week_value').forEach(item => {
                   item.innerHTML = array.week + currency;

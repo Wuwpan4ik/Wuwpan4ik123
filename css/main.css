@@ -265,6 +265,7 @@ p {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  flex-direction: column;
   float: bottom;
 }
 
@@ -2017,7 +2018,7 @@ td:nth-child(1){
 }
 
 .label_focus.activeLabel{
-  top:-3px;
+  top:2%;
   font-size:10px;
 }
 

@@ -9,8 +9,10 @@
                 <button type="button" onclick="save();" class="popup__edit-btn">Сохранить</button>
             </div>
         </div>
-        <form  id="initButton" action="/Funnel/$item_id/settings" method="POST" class="popup__body-container popup-wrap"  enctype="multipart/form-data">
+        <form id="initButton" action="/Funnel/$item_id/main_settings" method="POST" class="popup__body-container popup-wrap"  enctype="multipart/form-data">
             <input id="id_item" name="item_id" type="hidden" value="">
+            <input id="button__style-color" name="button__style-color" type="hidden" value="">
+            <input id="button__style-style" name="button__style-style" type="hidden" value="">
             <div class="popup__body-block" style="width: 320px;">
                 <!--Прелоудер-->
                 <div class="slider__item">
@@ -29,7 +31,7 @@
                     <div class="select-account social-network">
                         <div id="myMultiselect" class="multiselect">
                             <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
-                                <select class="form-select">
+                                <select name="desc__font" class="form-select">
                                     <option id="name">Выберите шрифт</option>
                                 </select>
                                 <div class="overSelect"></div>
@@ -42,18 +44,17 @@
                                 <label class="item">Montserrat<input class="custom-checkbox" type="radio" value="Montserrat" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                 <label class="item">Ubuntu<input class="custom-checkbox" type="radio" value="Ubuntu" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                 <label class="item">American Captain<input class="custom-checkbox" type="radio" value="American Captain" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                           
+
                             </div>
                         </div>
                     </div>
-
-            </div>
+                </div>
                 <div class="popup__body-item">
                     <label class="popup__subtitle" for="first_do">Шрифт для заголовоков</label>
                     <div class="select-account social-network heading">
                         <div id="myMultiselect" class="multiselect">
                             <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
-                                <select class="form-select">
+                                <select name="title__font" class="form-select">
                                     <option id="name">Выберите шрифт</option>
                                 </select>
                                 <div class="overSelect"></div>
@@ -99,7 +100,7 @@
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
                     </div>
-                    
+
                     <label class=" popup__subtitle popup-styles-buttons__title" for="first_do">Стиль кнопки</label>
                     <div class="popup-styles-buttons">
                         <div class="popup-styles-button button-shadow-down"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><a class="general-popup__button button-shadow-down">Получить подарок</a></div>
@@ -109,9 +110,10 @@
                 </div>
                 <div class="popup__body-item script">
                     <label class="popup__subtitle" for="first_do">Скрипты для HEAD</label>
-                    <textarea type="text" placeholder="DEFAULT"></textarea>
+                    <textarea name="head__settings" type="text" placeholder="DEFAULT"></textarea>
                 </div>
                 <button type="submit" hidden id="main__settings-button"></button>
+            </div>
         </form>
     </div>
-</div>
+</div>g

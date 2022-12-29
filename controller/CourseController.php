@@ -26,6 +26,8 @@
 
             move_uploaded_file($_FILES['video_uploader']['tmp_name'], $path);
 
+            chmod($path, 0777);
+
             $ffmpeg = FFMpeg\FFMpeg::create([
                 'ffmpeg.binaries'  => './settings/ffmpeg.exe',
                 'ffprobe.binaries' => './settings/ffprobe.exe',
@@ -44,9 +46,7 @@
 
             imagejpeg($image, $frame_path);
 
-            $_SESSION['error'] = $frame_path;
-
-            $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `thubnails`, `query_id`) VALUES ($uid,'Укажите заголовок','Укажите описание', '$path', '$frame_path' , $count_video)");
+            $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `thubnails`, `query_id`) VALUES ($uid ,null , null , '$path', '$frame_path' , $count_video)");
 
             $this->local_get_content();
 
@@ -93,17 +93,20 @@
 //          Проверить наличие course_files
             if (!is_dir($this->url_dir . "course_files")) {
                 mkdir($this->url_dir . "course_files");
+            }
+
+            if (!is_dir($this->url_dir . "course_files/" . $res[0]['id'])) {
                 mkdir($this->url_dir . "course_files/" . $res[0]['id']);
             }
 
 //            if ($_FILES['file']['size'] != 0) {
 //                unlink($courseContent[0]['file_url']);
 
-                move_uploaded_file($_FILES['file']['tmp_name'], $this->url_dir . "course_files/" . $res[0]['id'] . "/" . $_FILES['file']['name']);
+            $file_url = $this->url_dir . "course_files/" . $res[0]['id'] . "/" . $_FILES['file']['name'];
 
-                $file_url = $this->url_dir . "course_files/" . $res[0]['id'] . "/" . $_FILES['file']['name'];
+            move_uploaded_file($_FILES['file']['tmp_name'], $file_url);
 
-                $_SESSION['error'] = $_FILES['file'];
+
 //            }
 
             $this->m->db->execute("UPDATE `course_content` SET `name` = '$name', `description` = '$description', `price` = '$price', `file_url` = '$file_url' WHERE `id` = '$item_id'");
@@ -173,6 +176,10 @@
             mkdir($this->url_dir ."courses/" . $directory[0]['id']);
 
             mkdir($this->url_dir ."thumbnails/" . $directory[0]['id']);
+
+            chmod($this->url_dir ."courses/" . $directory[0]['id'], 0777);
+
+            chmod($this->url_dir ."thumbnails/" . $directory[0]['id'], 0777);
 
             header("Location: /Course");
 

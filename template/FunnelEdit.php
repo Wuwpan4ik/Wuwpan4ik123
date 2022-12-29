@@ -4,7 +4,9 @@
 
 <head>
     <meta charset="utf-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Course Creator - Редактирование воронки</title>
 
     <link rel="stylesheet" href="/css/nullCss.css">
@@ -182,7 +184,7 @@
 
                     <h2 id="display_name"><?=$content[0][0]['name']?></h2>
 
-                    <button class="none"><img id="name_change" src="/img/Pen.svg" class="ico" onclick="changeName()"></button>
+                    <button class="none" type="submit"><img id="name_change" src="/img/Pen.svg" class="ico" onclick="changeName()"></button>
 
                 </form>
 
@@ -190,7 +192,7 @@
 
                     function changeName(){
 
-                        document.getElementById("insert").innerHTML = '<input class="proj_name" name="title" placeholder="Введите новое название"><button type="submit" class="none"><img id="name_change" src="/img/Pen.svg" class="ico"></button>';
+                        document.getElementById("insert").innerHTML = '<input class="proj_name" name="title" placeholder="Введите новое название" required type="text" class="none"><button type="submit"><img id="name_change" src="/img/Pen.svg" class="ico"></button>';
 
                     }
 
@@ -683,6 +685,21 @@
         request.send();
     }
 
+</script>
+
+<!-- Форма списков курса -->
+<script>
+    function initListCourse(){
+        setTimeout(function (){
+            document.querySelector('.button-buy').addEventListener('click', function (){
+                document.querySelector('.popup__allLessons').classList.remove('active');
+                document.querySelector('.overlay-allLessons').classList.remove('active');
+                document.querySelector('.popup__buy').classList.add('active');
+                document.querySelector('.popup__buy').style.zIndex = 100;
+                document.querySelector('.popup__buy-footer').style.padding = 0;
+            })
+        }, 500)
+    }
 </script>
 <script src="/js/customSelect.js"></script>
 <script src="../js/sidebar.js"></script>
