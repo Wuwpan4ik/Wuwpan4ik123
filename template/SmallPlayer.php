@@ -61,16 +61,16 @@
                     <img src="/img/smallPlayer/pause.svg" alt="">
                 </div>
                 <div class="slider__item-info _conatiner-player">
-                    <div class="slider__item-title">
+                    <div class="slider__item-title <? echo (json_decode($content['main__settings'], true)['title__font'])?>">
                         <?=$item['content_name']?>
                     </div>
-                    <div class="slider__item-text">
+                    <div class="slider__item-text <? echo (json_decode($content['main__settings'], true)['desc__font'])?>">
                         <?=$item['content_description']?>
                     </div>
                     <?php
                     if (isset($item['button_text'])) { ?>
                             <div class="slider__item-button button-open">
-                                <button <?php echo (isset($popup->first_do->link)) ? "onClick=\"window.open('". $popup->first_do->link ."')\"": ''; ?> class="button"><?=$item['button_text']?></button>
+                                <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" <?php echo (isset($popup->first_do->link)) ? "onClick=\"window.open('". $popup->first_do->link ."')\"": ''; ?> class="button"><?=$item['button_text']?></button>
                             </div>
                             <?php } else { ?>
                         <script>

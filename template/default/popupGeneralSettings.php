@@ -38,13 +38,12 @@
                             </div>
                             <div class="mySelectOptions">
                                 <label class="item">Roboto<input class="custom-checkbox" type="radio" value="Roboto" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                <label class="item">DIN Pro<input class="custom-checkbox" type="radio" value="DIN Pro" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                <label class="item">DIN Pro<input class="custom-checkbox" type="radio" value="DINPro" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                 <label class="item">Akrobat<input class="custom-checkbox" type="radio" value="Akrobat" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                <label class="item">TT Trailers<input class="custom-checkbox" type="radio" value="TT Trailers" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                <label class="item">TT Trailers<input class="custom-checkbox" type="radio" value="TTTrailers" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                 <label class="item">Montserrat<input class="custom-checkbox" type="radio" value="Montserrat" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                 <label class="item">Ubuntu<input class="custom-checkbox" type="radio" value="Ubuntu" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                <label class="item">American Captain<input class="custom-checkbox" type="radio" value="American Captain" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-
+                                <label class="item">American Captain<input class="custom-checkbox" type="radio" value="AmericanCaptain" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                             </div>
                         </div>
                     </div>
@@ -60,14 +59,13 @@
                                 <div class="overSelect"></div>
                             </div>
                             <div class="mySelectOptions">
-                                <label class="item" style="font-family: 'Roboto', sans-serif;">Roboto<input class="custom-checkbox" type="radio" value="Roboto" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                <label class="item" style="font-family: 'DIN Pro', sans-serif;">DIN Pro<input class="custom-checkbox" type="radio" value="DIN Pro" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                <label class="item" style="font-family: 'Akrobat', sans-serif;">Akrobat<input class="custom-checkbox" type="radio" value="Akrobat" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                <label class="item" style="font-family: 'TT Trailers', sans-serif;">TT Trailers<input class="custom-checkbox" type="radio" value="TT Trailers" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                <label class="item" style="font-family: 'Montserrat', sans-serif;">Montserrat<input class="custom-checkbox" type="radio" value="Montserrat" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                <label class="item" style="font-family: 'Ubuntu', sans-serif;">Ubuntu<input class="custom-checkbox" type="radio" value="Ubuntu" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                <label class="item" style="font-family: 'American Captain', sans-serif;">American Captain<input class="custom-checkbox" type="radio" value="American Captain" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-
+                                <label class="item">Roboto<input class="custom-checkbox" type="radio" value="Roboto" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                <label class="item">DIN Pro<input class="custom-checkbox" type="radio" value="DINPro" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                <label class="item">Akrobat<input class="custom-checkbox" type="radio" value="Akrobat" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                <label class="item">TT Trailers<input class="custom-checkbox" type="radio" value="TTTrailers" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                <label class="item">Montserrat<input class="custom-checkbox" type="radio" value="Montserrat" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                <label class="item">Ubuntu<input class="custom-checkbox" type="radio" value="Ubuntu" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                <label class="item">American Captain<input class="custom-checkbox" type="radio" value="AmericanCaptain" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                             </div>
                         </div>
                     </div>

@@ -316,7 +316,9 @@ class User {
                                                 FROM `funnel` AS funnel
                                                 INNER JOIN `course_content` ON course_content.course_id = '$course_id' AND funnel.id = '$id'
                                                 INNER JOIN `course` ON course.id = course_content.course_id LIMIT 1");
-        return ['funnel_content' => $funnel_content, 'course_content' => $course_content, 'course_id' => $course];
+        $main__settings = $this->db->query("SELECT style_settings
+                                                FROM `funnel` WHERE id = '$id'");
+        return ['funnel_content' => $funnel_content, 'course_content' => $course_content, 'course_id' => $course, 'main__settings' => $main__settings[0]['style_settings']];
 
     }
 

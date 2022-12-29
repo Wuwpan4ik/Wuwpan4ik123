@@ -300,7 +300,7 @@
 
         public function MainSettings()
         {
-            $main_settings = $this->CreatePopupSettings();
+            $main_settings = $this->CreateMainSettings();
             $main__settingsResult = json_encode($main_settings['json'], JSON_UNESCAPED_UNICODE);
             $this->m->db->execute("UPDATE `funnel` SET `style_settings` = '$main__settingsResult' WHERE id = " . $_POST['item_id']);
 

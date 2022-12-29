@@ -186,7 +186,6 @@
 
 <script>
 
-
     let colors = document.querySelectorAll('.popup-styles-color');
     let buttons = document.querySelectorAll('.popup-styles-button');
     let videoBtns = document.querySelectorAll('.general-popup__button');
@@ -198,17 +197,19 @@
     let title = document.querySelector('.slider__item-title');
     let text = document.querySelector('.slider__item-text');
 
-    title.style.fontWeight = '900px';
+    title.style.fontWeight = '900';
 
 
     function changeStyleBtn (item, color, shadow = null) {
         item.style.background = color;
+        let temp_shadow;
         if (document.querySelector('.button-shadow-down').classList.contains('active')) {
             document.querySelector('.button-video').style.boxShadow = '0px 3px 0px ' + shadow;
+            temp_shadow = '0px 3px 0px ' + shadow;
         }
         else if (document.querySelector('.button-shadow-lite').classList.contains('active')) {
             document.querySelector('.button-video').style.boxShadow = '0px 10px 30px ' + shadow;
-            console.log(shadow)
+            temp_shadow = '0px 10px 30px ' + shadow;
         }
         else if (document.querySelector('.button-shadow-none').classList.contains('active')){
 
@@ -217,7 +218,8 @@
         if (shadow != null) {
 
         }
-
+        document.getElementById("button__style-color").value = 'background:' + color;
+        document.getElementById("button__style-style").value = 'box-shadow:' + temp_shadow;
     }
     let color = null;
     let shadow = null;
@@ -235,12 +237,9 @@
                     colors.forEach(el => {
                         el.classList.remove('active');
                         item.classList.add('active');
-                        document.getElementById("button__style-color").value = color;
-                        document.getElementById("button__style-style").value = shadow;
-                        console.log(document.getElementById("button__style-style"));
                     })
                     changeStyleBtn(item, color, shadow)
-                })g
+                })
             }
         })
     })
@@ -271,6 +270,7 @@
             document.querySelector('.popup-video').appendChild(slider);
             document.querySelector('.popup-video').querySelector('.slider__item-info').style.bottom = "18%";
             document.querySelector('#initButton').action = '/Funnel/' + item.dataset.funnel_id + '/main_settings';
+            document.querySelector('#id_item').value = item.dataset.funnel_id;
         })
     })
     popupGeneralClose.forEach(item =>{
@@ -295,6 +295,10 @@
 
     function course__send(item) {
         item.parentElement.submit();
+    }
+
+    function save() {
+        document.getElementById('main__settings-button').click();
     }
 
     function copy_link(elem) {
