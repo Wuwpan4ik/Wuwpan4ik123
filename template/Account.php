@@ -136,37 +136,43 @@
                                             </div>
 
                                         </div>
-                                        <h2>Укажите соц сети для клиентов</h2>
-                                        <div class="field">
-                                            <div class="select-account social-network">
-                                                <div id="myMultiselect" class="multiselect">
-                                                    <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
-                                                        <select class="form-select">
-                                                            <option class="form-select__social-name" id="name">Выберите соц сеть</option>
-                                                        </select>
-                                                        <div class="overSelect"></div>
-                                                    </div>
-                                                    <div class="mySelectOptions">
-                                                        <label class="item social__item">Вконтакте<input class="custom-checkbox social__input" type="radio" value="vk" /><label for="happy"></label></label>
-                                                        <label class="item social__item">WhatsApp<input class="custom-checkbox social__input" type="radio" value="whatsapp" /><label for="happy"></label></label>
-                                                        <label class="item social__item">Твиттер<input class="custom-checkbox social__input" type="radio" value="twitter" /><label for="happy"></label></label>
-                                                        <label class="item social__item">Фейсбук<input class="custom-checkbox social__input" type="radio" value="facebook" /><label for="happy"></label></label>
-                                                        <label class="item social__item">Инстаграм<input class="custom-checkbox social__input" type="radio" value="instagram" /><label for="happy"></label></label>
-                                                        <label class="item social__item">Ютуб<input class="custom-checkbox social__input" type="radio" value="youtube" /><label for="happy"></label></label>
-                                                        <label class="item social__item">Телеграм<input class="custom-checkbox social__input" type="radio" value="telegram" /><label for="happy"></label></label>
-                                                        <label class="item social__item">Сайт<input class="custom-checkbox social__input" type="radio" value="site" /><label for="happy"></label></label>
+                                        <div class="social__block">
+                                            <h2>Укажите соц сети для клиентов</h2>
+                                            <div class="field">
+                                                <div class="select-account social-network">
+                                                    <div id="myMultiselect" class="multiselect">
+                                                        <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
+                                                            <select class="form-select">
+                                                                <option class="form-select__social-name" id="name">Выберите соц сеть</option>
+                                                            </select>
+                                                            <div class="overSelect"></div>
+                                                        </div>
+                                                        <div class="mySelectOptions">
+                                                            <label class="item social__item">Вконтакте<input class="custom-checkbox social__input" type="radio" value="vk" /><label for="happy"></label></label>
+                                                            <label class="item social__item">WhatsApp<input class="custom-checkbox social__input" type="radio" value="whatsapp" /><label for="happy"></label></label>
+                                                            <label class="item social__item">Твиттер<input class="custom-checkbox social__input" type="radio" value="twitter" /><label for="happy"></label></label>
+                                                            <label class="item social__item">Фейсбук<input class="custom-checkbox social__input" type="radio" value="facebook" /><label for="happy"></label></label>
+                                                            <label class="item social__item">Инстаграм<input class="custom-checkbox social__input" type="radio" value="instagram" /><label for="happy"></label></label>
+                                                            <label class="item social__item">Ютуб<input class="custom-checkbox social__input" type="radio" value="youtube" /><label for="happy"></label></label>
+                                                            <label class="item social__item">Телеграм<input class="custom-checkbox social__input" type="radio" value="telegram" /><label for="happy"></label></label>
+                                                            <label class="item social__item">Сайт<input class="custom-checkbox social__input" type="radio" value="site" /><label for="happy"></label></label>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="input_focus ">
-                                                <label for="username" class="label_focus">Укажите ссылку</label>
-                                                <input type="text" id="social__inpu" minlength="10">
-                                                <span class="clear_input_val">
+                                                <div class="input_focus ">
+                                                    <label for="username" class="label_focus">Укажите ссылку</label>
+                                                    <input type="text" id="social__inpu" minlength="10">
+                                                    <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
+                                                </div>
                                             </div>
                                         </div>
+
+
                                         <button type="button" id="social__submit" class="add-social-network"><img src="../img/addSocialNetwork.svg" alt=""> Добавить соц сеть</button>
+
+
                                         <div class="ProfileSetting">
                                             <h2 class="no_margin">Загрузите аватар автора:</h2>
                                             <script>
@@ -516,10 +522,9 @@
     })
 
     document.getElementById('social__submit').addEventListener('click', function (){
-        document.getElementById('social__button').click();
+        this.before(document.querySelector('.social__block').cloneNode(true));
     })
-
-    console.log()
+    
     const button_submit = document.querySelector('#profile_send');
     const check_url = document.querySelector('#check_url');
     const check_button = document.querySelector('#check_button');

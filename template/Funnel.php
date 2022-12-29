@@ -199,19 +199,17 @@
         let title = document.querySelector('.slider__item-title');
         let text = document.querySelector('.slider__item-text');
 
-        title.style.fontFamily = heading.value.style.fontFamily;
         title.style.fontWeight = '900px';
 
 
     function changeStyleBtn (item, color, shadow = null) {
         item.style.background = color;
         if (document.querySelector('.button-shadow-down').classList.contains('active')) {
-
             document.querySelector('.button-video').style.boxShadow = '0px 3px 0px ' + shadow;
         }
         else if (document.querySelector('.button-shadow-lite').classList.contains('active')) {
-
             document.querySelector('.button-video').style.boxShadow = '0px 10px 30px ' + shadow;
+            console.log(shadow)
         }
         else if (document.querySelector('.button-shadow-none').classList.contains('active')){
 
@@ -225,31 +223,27 @@
     let color = null;
     let shadow = null;
 
-        colors.forEach(item => {
-            item.addEventListener('click', () => {
-                item.classList.toggle('active')
-                color = item.style.background;
-                shadow = item.style.color;
-                shadowDown.style.boxShadow = '0px 3px 0px ' + shadow;
-                shadowLite.style.boxShadow = '0px 10px 30px ' + shadow;
-                shadowNone.style.boxShadow = '';
-                if (item.classList.contains('active')) {
-                    videoBtns.forEach(item => {
-                        colors.forEach(el => {
-                            el.classList.remove('active');
-                            item.classList.add('active');
-                            changeStyleBtn(item, color, shadow)
-                        })
+    colors.forEach(item => {
+        item.addEventListener('click', () => {
+            item.classList.toggle('active')
+            color = item.style.background;
+            shadow = item.style.color;
+            shadowDown.style.boxShadow = '0px 3px 0px ' + shadow;
+            shadowLite.style.boxShadow = '0px 10px 30px ' + shadow;
+            shadowNone.style.boxShadow = '';
+            if (item.classList.contains('active')) {
+                videoBtns.forEach(item => {
                     colors.forEach(el => {
                         el.classList.remove('active');
                         item.classList.add('active');
+                        document.getElementById("button__style-color").value = color;
+                        document.getElementById("button__style-style").value = shadow;
+                        console.log(document.getElementById("button__style-style"));
                     })
-
+                    changeStyleBtn(item, color, shadow)
                 })
             }
-
         })
-
     })
 
     buttons.forEach(button => {
