@@ -276,7 +276,7 @@
                                                 </div>
                                                 <div class="tariff-plan">
                                                     Стоимость тарифа:
-                                                    <div class="tariff-price">2 990 ₽/ мес  <?=isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></div>
+                                                    <div class="tariff-price">2 990 ₽/ мес  <?=isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : ''?></div>
                                                 </div>
                                                 <div class="tariff-img">
                                                     <img src="/img/Starter.jpg" alt="">
@@ -378,7 +378,7 @@
                                                                 </div>
                                                                 <div class="popup-tariff__price">
                                                                     К оплате
-                                                                    <div class="tariff-price">2 990 ₽/ мес </div>
+                                                                    <div class="tariff-price__popup">2 990 ₽/ мес </div>
                                                                 </div>
                                                                 <div class="popup-tariff-button ">
                                                                     <button>

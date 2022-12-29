@@ -233,11 +233,11 @@
             shadowLite.style.boxShadow = '0px 10px 30px ' + shadow;
             shadowNone.style.boxShadow = '';
             if (item.classList.contains('active')) {
+                colors.forEach(el => {
+                    el.classList.remove('active');
+                    item.classList.add('active');
+                })
                 videoBtns.forEach(item => {
-                    colors.forEach(el => {
-                        el.classList.remove('active');
-                        item.classList.add('active');
-                    })
                     changeStyleBtn(item, color, shadow)
                 })
             }
