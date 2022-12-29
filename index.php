@@ -81,6 +81,7 @@
     $router->addRoute("/Funnel/$item_id/rename", "FunnelController.php", "RenameVideo");
     $router->addRoute("/Funnel/$item_id/change", "FunnelController.php", "ChangeVideo");
     $router->addRoute("/Funnel/$item_id/settings", "FunnelController.php", "PopupSettings");
+    $router->addRoute("/Funnel/$item_id/main_settings", "FunnelController.php", "MainSettings");
     $router->addRoute("/Funnel/$item_id/checkSettings", "CheckFunnelSettingsController.php", "CheckPopupSettings", false);
     $router->addRoute("/Funnel/getCourseList", "UserController.php", "GetCourseList");
     $router->addRoute("/Funnel/$item_id/getFunnelPopup", "UserController.php", "GetFunnelPopup");

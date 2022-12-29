@@ -287,6 +287,27 @@
             return ['json' => $videoBtnHTML, 'button_standart' => $button__standart];
         }
 
+        public function CreateMainSettings()
+        {
+            $funnelSettings = [];
+            $funnelSettings['desc__font'] = $_POST['desc__font'];
+            $funnelSettings['title__font'] = $_POST['title__font'];
+            $funnelSettings['button__style-color'] = $_POST['button__style-color'];
+            $funnelSettings['button__style-style'] = $_POST['button__style-style'];
+            $funnelSettings['head__settings'] = $_POST['head__settings'];
+            return ['json' => $funnelSettings];
+        }
+
+        public function MainSettings()
+        {
+            $main_settings = $this->CreatePopupSettings();
+            $main__settingsResult = json_encode($main_settings['json'], JSON_UNESCAPED_UNICODE);
+            $this->m->db->execute("UPDATE `funnel` SET `style_settings` = '$main__settingsResult' WHERE id = " . $_POST['item_id']);
+
+            $this->local_get_content();
+            return True;
+        }
+
         public function PopupSettings() {
             $popup_settings = $this->CreatePopupSettings();
             $videoBtnHTMLResult = json_encode($popup_settings['json'], JSON_UNESCAPED_UNICODE);
