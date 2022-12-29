@@ -241,7 +241,7 @@
                     ];
                     $title = "Спасибо за регистрацию";
                     $body = $this->GetRegistrationHtml($username);
-                    $this->SendEmail($title, $body);
+                    $this->SendEmail($title, $body, $email);
                 }
             } else {
                 $response = "Неверный логин или пароль";

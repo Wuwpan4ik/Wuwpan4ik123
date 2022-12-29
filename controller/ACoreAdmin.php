@@ -7,7 +7,7 @@ abstract class ACoreAdmin {
     protected $ourNickName = "course-creator.io";
     protected $email;
 
-    protected function SendEmail ($title, $body) {
+    protected function SendEmail ($title, $body, $email) {
 
         $mail = new PHPMailer\PHPMailer\PHPMailer(true);
 
@@ -35,7 +35,7 @@ abstract class ACoreAdmin {
             $mail->setFrom($this->ourEmail, $this->ourNickName); // Адрес самой почты и имя отправителя
 
             // Получатель письма
-            $mail->addAddress($this->email);
+            $mail->addAddress($email);
 
             $mail->isHTML();
             $mail->Subject = $title;
