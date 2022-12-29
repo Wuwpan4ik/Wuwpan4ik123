@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <!--Выдаем вместо этой хуйни нормальный тайтл названия воронки / курса-->
     <title>Course Creator - Плеер</title>
     <link type="text/css" rel="stylesheet" href="/css/smallPlayer.css">
@@ -29,7 +29,7 @@
             ?>
             <div class="slider__item">
                 <div class="slider__video">
-                    <video playsinline id="123" class="slider__video-item" data-player="playing" autoplay="false">
+                    <video playsinline id="123" class="slider__video-item video-<?=$item['video_id']?>" data-player="playing" autoplay="false">
                         <source class="video" src="/<?=$item['video']?>" id="sourceVideo"  />
                     </video>
                 </div>
@@ -69,40 +69,47 @@
                     </div>
                     <?php
                     if (isset($item['button_text'])) { ?>
-                    <div class="slider__item-button button-open">
-                        <button <?php echo (isset($popup->first_do->link)) ? "onClick=\"window.open('". $popup->first_do->link ."')\"": ''; ?> class="button"><?=$item['button_text']?></button>
-                    </div>
+                            <div class="slider__item-button button-open">
+                                <button <?php echo (isset($popup->first_do->link)) ? "onClick=\"window.open('". $popup->first_do->link ."')\"": ''; ?> class="button"><?=$item['button_text']?></button>
+                            </div>
+                            <?php } else { ?>
+                        <script>
+                            document.querySelector('.video-<?=$item['video_id']?>').addEventListener('ended', function () {
+                                document.querySelector('.slick-next').click();
+                                console.log(1)
+                            })
+                        </script>
                     <?php } ?>
-                </div>
-                <?php
-                // popup при клике
-                if (isset($popup->first_do->form) || isset($popup->first_do->pay_form)) {
-                    if (isset($popup->first_do->form)) {
-                        $form = $popup->first_do->form;
-                    } else {
-                        $form = $popup->first_do->pay_form;
-                    }
-                    if (isset($popup->second_do->file)) {
-                        $first_file = $popup->second_do->file;
-                    }
-                    // Первое или второе действие
-                    $name = 'button';
-                    $form__title = $popup->form__title;
-                    $form__desc = $popup->form__desc;
-                    $submit__text = $popup->button_text;
-                    $popup__do = $popup->first_do;
-                    $second_link = $popup->second_do->link;
-                    $id = $item['id'];
-                    $new_window = !is_null($popup->second_do->open_in_new);
-                    $author_id = $item['author_id'];
-                    include 'template/default/popup__templates/popup__form.php';
-                } ?>
-                <?php if (isset($popup->first_do->list)) {
-                    $name = 'video';
-                    $course_id = $popup->first_do->course_id;
-                    include 'template/default/popup__templates/popup__all-lessons.php';
-                ?>
-                <?php } ?>
+                        </div>
+                        <?php
+                        // popup при клике
+                        if (isset($popup->first_do->form) || isset($popup->first_do->pay_form)) {
+                            if (isset($popup->first_do->form)) {
+                                $form = $popup->first_do->form;
+                            } else {
+                                $form = $popup->first_do->pay_form;
+                            }
+                            if (isset($popup->second_do->file)) {
+                                $first_file = $popup->second_do->file;
+                            }
+                            // Первое или второе действие
+                            $name = 'button';
+                            $form__title = $popup->form__title;
+                            $form__desc = $popup->form__desc;
+                            $submit__text = $popup->button_text;
+                            $popup__do = $popup->first_do;
+                            $second_link = $popup->second_do->link;
+                            $id = $item['id'];
+                            $new_window = !is_null($popup->second_do->open_in_new);
+                            $author_id = $item['author_id'];
+                            include 'template/default/popup__templates/popup__form.php';
+                        } ?>
+                        <?php if (isset($popup->first_do->list)) {
+                            $name = 'video';
+                            $course_id = $popup->first_do->course_id;
+                            include 'template/default/popup__templates/popup__all-lessons.php';
+                        ?>
+                        <?php } ?>
             </div>
             <?php } ?>
         </div>
@@ -118,9 +125,6 @@
 <?php } ?>
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
-<script src="/js/script.js" ></script>
-<script src="/js/slick.min.js"></script>
-<script src="/js/sliders.js"></script>
 
 <!--Закрытие AllLessons-->
 <script>
@@ -136,7 +140,20 @@
     let mirrorVideo = document.getElementById('mirrorVideo');
     let sourceVideo = document.querySelectorAll('#sourceVideo');
 
+
+
     document.addEventListener('DOMContentLoaded', function () {
+        mirrorVideo.src = sourceVideo[0].src;
+
+        document.querySelectorAll('.slider__video-item').forEach((item) => {
+            item.addEventListener('playing', function (){
+                if(mirrorVideo.src === item.parentElement.querySelector('source').src){
+                    return;
+                }else{
+                    mirrorVideo.src = item.parentElement.querySelector('source').src;
+                }
+            })
+        })
         document.querySelectorAll('.slick-arrow').forEach((item) => {
             item.style.display = 'none';
         })
@@ -190,6 +207,9 @@
         })
     });
 </script>
+<script src="/js/script.js" ></script>
+<script src="/js/slick.min.js"></script>
+<script src="/js/sliders.js"></script>
 </body>
 </html>
 

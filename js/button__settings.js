@@ -144,11 +144,12 @@ function addFormLink(elem) {
     let count = elem.parentElement.querySelectorAll('.link_item').length;
     let count_id = elem.id === 'second_do' ? 2 : 1;
     let div = document.createElement('input');
-    div.placeholder = "Укажите ссылку";
+    div.placeholder = "Переход по ссылке";
     div.classList.add('videoname');
     div.classList.add('link_item');
     div.name = 'link-' + count_id;
     div.style.paddingLeft = '15px';
+    div.style.marginTop = '20px';
     if (count === 0) {
         elem.parentElement.children[1].after(div);
     }
@@ -229,6 +230,7 @@ function checkFirstSelect() {
         document.querySelector('#popup__body-list-select').classList.remove('display-none');
         addSecondOptions([['pay_form', "Форма оплаты"], ['form', 'Форма заявки']]);
         enableAfterClickBlock();
+        initListCourse();
     }
 
     if (first_select.value === 'next_lesson') {

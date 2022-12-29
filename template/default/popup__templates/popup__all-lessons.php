@@ -1,4 +1,7 @@
 <div class="overlay-allLessons overlay overlay-<?=$name?>">
+    <div class="whiteSpace" style="position: absolute;top: 0;width: 100%;">
+
+    </div>
     <div class="popup__allLessons popup popup-<?=$name?>">
         <div class="popup__allLessons-body">
             <div class="popup__allLessons-title popup-title">Все уроки курса:</div>

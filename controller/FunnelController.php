@@ -21,7 +21,9 @@
 
             move_uploaded_file($_FILES['video_uploader']['tmp_name'], $path);
 
-            $this->m->db->execute("INSERT INTO funnel_content (`funnel_id`, `name`, `description`, `video`, `query_id`) VALUES ($item_id,'Укажите заголовок','Укажите описание', '$path', $count_video)");
+            chmod($path, 0777);
+
+            $this->m->db->execute("INSERT INTO funnel_content (`funnel_id`, `name`, `description`, `video`, `query_id`) VALUES ($item_id,NULL ,NULL, '$path', $count_video)");
 
             $this->local_get_content();
 
@@ -59,13 +61,7 @@
             if (isset($_POST['description']) && strlen($_POST['description']) > 0) {
                 $description = $_POST['description'];
             } else {
-                $description = $funnelContent[0]['description'];
-            }
-
-            if (isset($_POST['price']) && strlen($_POST['price']) > 0) {
-                $price = $_POST['price'];
-            } else {
-                $price = $funnelContent[0]['price'];
+                $description = null;
             }
 
             if (isset($_POST['button_text']) && strlen($_POST['button_text']) > 0) {
@@ -79,7 +75,7 @@
                 }
             }
 
-            $this->m->db->execute("UPDATE `funnel_content` SET `name` = '$name', `price` = '$price', `description` = '$description', $change__button WHERE `id` = '$item_id'");
+            $this->m->db->execute("UPDATE `funnel_content` SET `name` = '$name', `description` = '$description', $change__button WHERE `id` = '$item_id'");
 
             $this->local_get_content();
 
@@ -121,6 +117,8 @@
             $funnel = $this->m->db->query("SELECT * FROM funnel WHERE author_id = '$uid'  ORDER BY ID DESC LIMIT 1");
 
             mkdir($this->url_dir ."/funnels/" . $funnel[0]['id']);
+
+            chmod($this->url_dir ."funnels/" . $funnel[0]['id'], 0777);
 
             header('Location: /Funnel');
 
@@ -287,6 +285,27 @@
             $this->local_get_content();
 
             return ['json' => $videoBtnHTML, 'button_standart' => $button__standart];
+        }
+
+        public function CreateMainSettings()
+        {
+            $funnelSettings = [];
+            $funnelSettings['desc__font'] = $_POST['desc__font'];
+            $funnelSettings['title__font'] = $_POST['title__font'];
+            $funnelSettings['button__style-color'] = $_POST['button__style-color'];
+            $funnelSettings['button__style-style'] = $_POST['button__style-style'];
+            $funnelSettings['head__settings'] = $_POST['head__settings'];
+            return ['json' => $funnelSettings];
+        }
+
+        public function MainSettings()
+        {
+            $main_settings = $this->CreatePopupSettings();
+            $main__settingsResult = json_encode($main_settings['json'], JSON_UNESCAPED_UNICODE);
+            $this->m->db->execute("UPDATE `funnel` SET `style_settings` = '$main__settingsResult' WHERE id = " . $_POST['item_id']);
+
+            $this->local_get_content();
+            return True;
         }
 
         public function PopupSettings() {

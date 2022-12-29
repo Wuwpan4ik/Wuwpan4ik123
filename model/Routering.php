@@ -44,7 +44,7 @@ class Router
                 $obj = new $class;
                 if (method_exists($obj, $method)) {
                     $obj->$method();
-                    if ($path[2]) {
+                    if (!$path[2]) {
                         $obj->get_content();
                     }
                 }

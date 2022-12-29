@@ -1,4 +1,7 @@
 <div class="overlay-bonus overlay overlay-<?=$name?>">
+    <div class="whiteSpace" style="position: absolute;top: 0;width: 100%;">
+
+    </div>
     <div class="popup__bonus  popup popup-<?=$name?>">
         <div class="popup__bonus-body">
             <form class="popup__form" method="POST" action="<?php if (isset($popup__do->form)) { echo '/ClientsController/application';} else { echo '/ClientsController/CourseBuy';}?>">
