@@ -179,7 +179,6 @@
 <script>
 
 
-
     let entryDisplayDelete = document.querySelector('#delete__back');
     //  Замена видео
     window.onload = () => {

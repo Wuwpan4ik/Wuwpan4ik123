@@ -308,6 +308,13 @@
             return True;
         }
 
+        public function GetMainSettings()
+        {
+            $result = $this->m->db->query("SELECT `style_settings` FROM funnel WHERE id = " . $_SESSION['item_id'])[0]['style_settings'];
+            print_r($result);
+            return True;
+        }
+
         public function PopupSettings() {
             $popup_settings = $this->CreatePopupSettings();
             $videoBtnHTMLResult = json_encode($popup_settings['json'], JSON_UNESCAPED_UNICODE);
@@ -333,7 +340,6 @@
 
         function get_content()
         {
-//            return header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
 
         function local_get_content()

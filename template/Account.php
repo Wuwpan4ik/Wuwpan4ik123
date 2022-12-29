@@ -522,7 +522,7 @@
     })
 
     document.getElementById('social__submit').addEventListener('click', function (){
-        this.before(document.querySelector('.social__block').cloneNode(true));
+        document.querySelector('#social__button').click();
     })
     
     const button_submit = document.querySelector('#profile_send');
