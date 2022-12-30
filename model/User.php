@@ -105,7 +105,7 @@ class User {
     {
         $purchases = $this->db->query("SELECT `purchase` FROM `purchase` WHERE user_id = " . $_SESSION['user']['id'])[0]['purchase'];
         $purchases_array = json_decode($purchases, true)['course_id'];
-        $course_query = "SELECT course.id, course.name, ANY_VALUE(course_content.thubnails) as 'preview', count(course_content.id) as 'count', course.description, course.author_id FROM course INNER JOIN course_content on course_content.course_id = course.id WHERE (";
+        $course_query = "SELECT course.id, course.name, course_content.thubnails as 'preview', count(course_content.id) as 'count', course.description, course.author_id FROM course INNER JOIN course_content on course_content.course_id = course.id WHERE (";
         foreach ($purchases_array as $course_id) {
             $course_query .= " course.id = $course_id ";
             if (count($purchases_array) != 1) {

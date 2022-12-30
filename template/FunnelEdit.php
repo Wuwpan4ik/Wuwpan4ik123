@@ -294,8 +294,17 @@
 
 <?php include 'default/popupEditVideo.php';?>
 <script src="/js/jquery-3.6.1.min.js"></script>
-
+<script type="text/javascript" src="../js/button__settings.js"></script>
+<script src="/js/customSelect.js"></script>
+<script src="../js/sidebar.js"></script>
+<script src="/js/getNotifications.js"></script>
+<script src="/js/customInputs.js"></script>
+<script src="../js/customSelect.js"> </script>
 <script>
+    function uploadFile(target) {
+        document.getElementById("file-name").innerHTML = (target.files[0].name);
+        document.getElementById("file-size").innerHTML = Math.round(target.files[0].size / 1024) + "кБ" + " из доступных 5Мб" ;
+    }
     let form__submit = $(function() {
         $('.media__form').each(function (){
             $(this).submit(function(e) {
@@ -431,8 +440,6 @@
         }
     }
 </script>
-<script type="text/javascript" src="../js/button__settings.js"></script>
-<script src="../js/jquery-3.6.1.min.js"></script>
 <script>
     let entryDisplayDelete = document.querySelector('#delete__back');
     //  Замена видео
@@ -488,10 +495,6 @@
         });
     }
 
-    function uploadFile(target) {
-        document.getElementById("file-name").innerHTML = (target.files[0].name);
-        document.getElementById("file-size").innerHTML = Math.round(target.files[0].size / 1024) + "кБ" + " из доступных 5Мб" ;
-    }
     function _(abc) {
         return document.getElementById(abc);
     }
@@ -514,12 +517,14 @@
         ajax.open("POST", "/Funnel/<?=$content[0][0]['id']?>/create");
         ajax.send(formdata);
     }
+
     function progressHandler(event) {
         var loaded = new Number((event.loaded / 1048576));//Make loaded a "number" and divide bytes to get Megabytes
         var total = new Number((event.total / 1048576));//Make total file size a "number" and divide bytes to get Megabytes
         var percent = (event.loaded / event.total) * 100;//Get percentage of upload progress
         _("progressBar").value = Math.round(percent);//Round value to solid
     }
+
     function completeHandler(event) {
         _("progressBar").value = 0;//Set progress bar to 0
         document.getElementById('progressDiv').style.display = 'none';//Hide progress bar
@@ -701,11 +706,6 @@
         }, 500)
     }
 </script>
-<script src="/js/customSelect.js"></script>
-<script src="../js/sidebar.js"></script>
-<script src="/js/getNotifications.js"></script>
-<script src="/js/customInputs.js"></script>
-<script src="../js/customSelect.js"> </script>
 
 </body>
 

@@ -260,6 +260,17 @@
 
 </script>
 <script>
+    function GetMainSettings(count) {
+        $.ajax({
+            url: '/Funnel/'+ count +'/GetMainSettings',
+            type: "POST",
+            success: function (data) {
+                let temp_data = JSON.parse(data);
+            }
+        });
+    }
+
+
     let generalSettings = document.querySelectorAll('.general-settings');
     let popupGeneralClose = document.querySelectorAll('.close__btn');
 
@@ -271,6 +282,7 @@
             document.querySelector('.popup-video').querySelector('.slider__item-info').style.bottom = "18%";
             document.querySelector('#initButton').action = '/Funnel/' + item.dataset.funnel_id + '/main_settings';
             document.querySelector('#id_item').value = item.dataset.funnel_id;
+            GetMainSettings(item.dataset.funnel_id);
         })
     })
     popupGeneralClose.forEach(item =>{

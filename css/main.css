@@ -1795,8 +1795,8 @@ td:nth-child(1){
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background: url(../img/arrow_custom.svg) no-repeat right;
-  background-position-x: calc(100% - 21px);
+  background: url(../img/arrow_custom.svg) no-repeat right !important;
+  background-position-x: calc(100% - 21px) !important;
 }
 
 .popup__body-item select:focus {

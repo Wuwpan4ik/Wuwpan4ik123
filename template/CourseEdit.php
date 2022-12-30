@@ -179,7 +179,6 @@
 <script>
 
 
-
     let entryDisplayDelete = document.querySelector('#delete__back');
     //  Замена видео
     window.onload = () => {
@@ -228,7 +227,7 @@
             }
         }
     }
-    let deletes = document.querySelector('#popup__delete');
+    let deletes = document.querySelector('.popup__delete');
 
     function toggleOverflow () {
         body.classList.toggle("overflow-hidden");
@@ -237,6 +236,7 @@
     function deleteDirectory(elem) {
         toggleOverflow();
         entryDisplayDelete.classList.add('display-block');
+        console.log(deletes)
         deletes.addEventListener('click',function () {
             window.location.href = '/Course/' + elem.parentElement.parentElement.parentElement.querySelector('.new_name').children[0].value + "/delete";
         });

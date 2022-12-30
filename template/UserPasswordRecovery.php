@@ -20,25 +20,26 @@
             <div class="user__logo-text">Course Creator</div>
         </div>
         <div class="UserPasswordRecovery-popup popup">
-            <div class="UserPasswordRecovery-popup__subtitle popup__subtitle">
-                Забыли пароль?
-            </div>
-            <div class="UserPasswordRecovery-popup__title popup__title">
-                Восстановление пароля
-            </div>
-            <div class="UserPasswordRecovery-form popup-form">
-                <div class="input_focus inputLog">
-                    <label for="email" class="label_focus">Ваша почта</label>
-                    <input type="email" name="email">
-                    <span class="clear_input_val">
-                        <img src="/img/clear_input.svg" alt="">
-                    </span>
+            <form action="/LoginController/UserRecovery" method="POST" enctype="multipart/form-data">
+                <div class="UserPasswordRecovery-popup__subtitle popup__subtitle">
+                    Забыли пароль?
                 </div>
-                <div class="button-send ">
-                    <input type="submit" value="Отправить новый пароль" id="apps">
+                <div class="UserPasswordRecovery-popup__title popup__title">
+                    Восстановление пароля
                 </div>
-            </div>
-
+                <div class="UserPasswordRecovery-form popup-form">
+                    <div class="input_focus inputLog">
+                        <label for="email" class="label_focus">Ваша почта</label>
+                        <input type="email" name="email">
+                        <span class="clear_input_val">
+                            <img src="/img/clear_input.svg" alt="">
+                        </span>
+                    </div>
+                    <div class="button-send ">
+                        <input type="submit" value="Отправить новый пароль" id="apps">
+                    </div>
+                </div>
+            </form>
         </div>
         <div class="user-text">
             <a href="/UserLogin">Войти</a>

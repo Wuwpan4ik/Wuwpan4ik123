@@ -30,9 +30,9 @@
                 <input id="course_id" value="" name="course_id" type="hidden">
                 <div class="popup__buy-price">
                     <div class="popup__buy-price-title">
-                        Стоимость урока:
+                        Стоимость курса:
                     </div><div class="popup__buy-price-cost">
-                        <span id="price"></span> ₽
+                        <span id="price">1000</span> ₽
                     </div>
                 </div>
                 <div class="popup__buy-register">
