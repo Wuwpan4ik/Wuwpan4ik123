@@ -794,8 +794,7 @@ a {
 #avatar {
   width: 64px;
   height: 64px;
-  border-radius: 99px;
-
+  border-radius: 50%;
 }
 
 .UserProfile p {
