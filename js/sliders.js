@@ -38,8 +38,8 @@ $('.slider').each(function() {
     let currVideo = $('.slider__video-item');
     let overlays = $('.overlay');
 
-    for(let i = 0; i < whiteSpace.length; i++){
-        whiteSpace[i].onclick = () =>{
+    for (let i = 0; i < whiteSpace.length; i++) {
+        whiteSpace[i].onclick = () => {
             interval(currVideo[i]);
             currVideo[i].play();
             overlays[i].classList.remove('active');
@@ -73,6 +73,7 @@ $('.slider').each(function() {
         stopVideos();
         $(this).find('.slider__video-item').each(function () {
             this.addEventListener('click', function () {
+
                 let videoLocal = this;
                 interval(videoLocal);
 
@@ -91,6 +92,7 @@ $('.slider').each(function() {
                         interval(videoLocal);
                     });
                 });
+
                 $(this).on('play', function (event, slick) {
                     stopVideos();
                     $(this).find('.slider__video-item').each(function () {

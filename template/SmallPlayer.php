@@ -70,15 +70,14 @@
                         <?=$item['content_description']?>
                     </div>
                     <?php
-                    if (isset($item['button_text']) && !isset($popup->first_do->next_lesson)) { ?>
+                    if (isset($item['button_text'])) { ?>
                             <div class="slider__item-button button-open">
-                                <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" <?php echo (isset($popup->first_do->link)) ? "onClick=\"window.open('". $popup->first_do->link ."')\"": ''; ?> class="button"><?=$item['button_text']?></button>
+                                <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" <?php echo (isset($popup->first_do->link)) ? "onClick=\"window.open('". $popup->first_do->link ."')\"": ''; ?> <?php if ($popup->first_do->next_lesson) echo "onclick=\"document.querySelector('.slick-next').click();\""?> class="button"><?=$item['button_text']?></button>
                             </div>
                             <?php } else { ?>
                         <script>
                             document.querySelector('.video-<?=$item['video_id']?>').addEventListener('ended', function () {
                                 document.querySelector('.slick-next').click();
-                                console.log(1)
                             })
                         </script>
                     <?php } ?>
