@@ -91,13 +91,16 @@
 <script>
     let feed = document.querySelector('.feed');
 
-        window.addEventListener("scroll", (event) => {
-            let scroll = this.scrollY;
+
+
+    feed.addEventListener("scroll", (event) => {
+        let scroll = feed.scrollTop;
+
             let postItem = document.querySelector('.Article-post-item')
             if(scroll >= 270){
                 postItem.classList.remove('active');
                 postItem.style.position = 'fixed';
-                postItem.style.left = '370px';
+                postItem.style.left = feed.clientWidth - 60;
                 postItem.style.top = '70px';
                 postItem.style.bottom = 'null';
             }
@@ -107,7 +110,9 @@
                 postItem.style.left = '';
                 postItem.style.top = '';
             }
-            console.log(scroll)
+
+
+
         });
 
 

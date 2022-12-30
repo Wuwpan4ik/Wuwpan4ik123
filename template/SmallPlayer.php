@@ -128,11 +128,12 @@
 
 <!--Закрытие AllLessons-->
 <script>
-    if (document.querySelector('.button-notBuy')) {
-        document.querySelector('.button-notBuy').addEventListener('click', function (){
-            document.querySelector('.overlay-allLessons').classList.remove('active');
-            document.querySelector('.popup-allLessons').classList.remove('active');
-        });
+    function notBuy() {
+        $(this).find('.button-notBuy').each(function (){
+            $('.slider__video-item').find('.overlay-allLessons').removeClass('active');
+            $('.slider__video-item').find('.popup-allLessons').removeClass('active');
+            this.pause();
+        })
     }
 </script>
 
