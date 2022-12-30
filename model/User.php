@@ -47,8 +47,13 @@ class User {
         return $this->db->query("SELECT id FROM user_contacts WHERE user_id = " . $_SESSION['item_id']);
     }
 
-    public function getNotifications($user_id) {
+    public function getCheckedNotifications($user_id) {
         $result = $this->db->query("SELECT * FROM notifications WHERE `user_id` = '$user_id' AND `is_checked` = 0");
+        return $result;
+    }
+
+    public function getNotifications($user_id) {
+        $result = $this->db->query("SELECT * FROM notifications WHERE `user_id` = '$user_id' LIMIT 5");
         return $result;
     }
 

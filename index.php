@@ -117,6 +117,7 @@
     $router->addRoute("/UserController/save", "LoginController.php", 'saveUserSettings');
 
     $router->addRoute("/ContactController/sendQuestions", "ContactController.php", "SendQuestion");
+    $router->addRoute("/getCheckedNotifications", "NotificationsController.php", "getCheckedNotifications");
     $router->addRoute("/getNotifications", "NotificationsController.php", "getNotifications");
     $router->addRoute("/getCountNotifications", "NotificationsController.php", "getCountNotifications");
     $router->addRoute("/NotificationsController/checkout", "NotificationsController.php", "checkNotifications");
