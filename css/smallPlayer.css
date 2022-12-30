@@ -330,7 +330,7 @@
 }
 
 .pause__video.active {
-    display: flex;
+    display: flex !important;
     transform:scale(1);
 }
 .play__video.active {
