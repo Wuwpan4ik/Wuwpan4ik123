@@ -53,8 +53,10 @@ function GetAllNotif() {
             if (document.querySelector('.popupBell-body')) {
                 document.querySelector('.popupBell-body').innerHTML = request.responseText;
             }
-            document.querySelector('.popupBell-body').classList.toggle('display-none')
-            document.querySelector('.popupBell').classList.toggle('active')
+            if (request.responseText.length > 4) {
+                document.querySelector('.popupBell-body').classList.toggle('display-none')
+                document.querySelector('.popupBell').classList.toggle('active')
+            }
         }
     })
     request.send();
