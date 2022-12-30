@@ -70,7 +70,7 @@
                         <?=$item['content_description']?>
                     </div>
                     <?php
-                    if (isset($item['button_text'])) { ?>
+                    if (isset($item['button_text']) && !isset($popup->first_do->next_lesson)) { ?>
                             <div class="slider__item-button button-open">
                                 <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" <?php echo (isset($popup->first_do->link)) ? "onClick=\"window.open('". $popup->first_do->link ."')\"": ''; ?> class="button"><?=$item['button_text']?></button>
                             </div>
@@ -143,8 +143,6 @@
     let mirrorVideo = document.getElementById('mirrorVideo');
     let sourceVideo = document.querySelectorAll('#sourceVideo');
 
-
-
     document.addEventListener('DOMContentLoaded', function () {
         mirrorVideo.src = sourceVideo[0].src;
 
@@ -213,6 +211,25 @@
 <script src="/js/script.js" ></script>
 <script src="/js/slick.min.js"></script>
 <script src="/js/sliders.js"></script>
+<script>
+    function startAccordion() {
+        let accordionButton = document.querySelectorAll(".accordion-button");
+        let accordionInner = document.querySelectorAll(".accordion .accordion-item .accordion-content");
+
+        for(let i = 0; i < accordionButton.length; i++){
+            accordionButton[i].onclick = () =>{
+                if(accordionInner[i].classList.contains('active')){
+                    accordionInner[i].classList.remove('active')
+                    accordionButton[i].classList.remove('active')
+                }else{
+                    accordionInner[i].classList.add('active')
+                    accordionButton[i].classList.add('active')
+                }
+            }
+        }
+    }
+    startAccordion()
+</script>
 </body>
 </html>
 

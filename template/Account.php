@@ -46,7 +46,7 @@
 
                                 <div class="about">
 
-                                    <form method="POST" action="/Account/MainSettings" enctype="multipart/form-data">
+                                    <form method="POST" action="/Account/MainSettings" class="account__form" enctype="multipart/form-data">
                                         <h2>Ваши данные</h2>
                                         <div class="field">
                                             <div class="input_focus ">
@@ -487,8 +487,7 @@
 
 </div>
 <?php unset($_SESSION['error']) ?>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" type="text/javascript"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery.maskedinput@1.4.1/src/jquery.maskedinput.min.js" type="text/javascript"></script>
+<script src="/js/jquery-3.6.1.min.js"></script>
 <script>
     /*Popups*/
     let changeTariff = document.querySelector('.change-tariff-popup');
@@ -524,19 +523,12 @@
     document.getElementById('social__submit').addEventListener('click', function (){
         document.querySelector('#social__button').click();
     })
-    
-    const button_submit = document.querySelector('#profile_send');
+
     const check_url = document.querySelector('#check_url');
     const check_button = document.querySelector('#check_button');
     const message = document.querySelector('#message');
 
-    button_submit.addEventListener('click', function () {
-        let second_button = document.querySelector('#apps');
-        second_button.click();
-    });
-
 </script>
-
 <script src="/js/getNotifications.js"></script>
 <script src="/js/customInputs.js"></script>
 <script src="/js/customSelect.js"></script>
@@ -562,7 +554,6 @@
         })
     });
 </script>
-
 <script>
     function GetSocial() {
         $.ajax({
@@ -582,6 +573,23 @@
         });
     }
     GetSocial();
+</script>
+<script>
+    let account_submit = $(function() {
+        $('.account__form').each(function () {
+            $(this).submit(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: $(this).attr("action"),
+                    type: $(this).attr("method"),
+                    dataType: "JSON",
+                    data: new FormData(this),
+                    processData: false,
+                    contentType: false
+                });
+            })
+        });
+    });
 </script>
 <script src="../js/sidebar.js"></script>
 <form id="social__form" class="social__form display-none" action="/Account/SaveSocialSettings" method="POST">
