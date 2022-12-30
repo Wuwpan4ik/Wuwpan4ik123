@@ -24,12 +24,10 @@ function checkboxStatusChange() {
 
                     })
                     item.checked = true
-                    console.log(item.parentElement.style.fontFamily)
                     title.forEach(t=>{
                         t.style.fontFamily = item.parentElement.style.fontFamily;
                         t.style.fontWeight = '900px';
                     })
-                    console.log(title)
                     item.parentElement.classList.add('active')
                     values = (item.getAttribute('value'));
 

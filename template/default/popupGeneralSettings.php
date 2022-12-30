@@ -13,6 +13,8 @@
             <input id="id_item" name="item_id" type="hidden" value="">
             <input id="button__style-color" name="button__style-color" type="hidden" value="">
             <input id="button__style-style" name="button__style-style" type="hidden" value="">
+            <input id="number-style" name="number-style" type="hidden" value="">
+            <input id="number-color" name="number-color" type="hidden" value="">
             <div class="popup__body-block" style="width: 320px;">
                 <!--Прелоудер-->
                 <div class="slider__item">
@@ -36,7 +38,7 @@
                                 </select>
                                 <div class="overSelect"></div>
                             </div>
-                            <div class="mySelectOptions">
+                            <div class="mySelectOptions description__general">
                                 <label class="item">Roboto<input class="custom-checkbox" type="radio" value="Roboto" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                 <label class="item">DIN Pro<input class="custom-checkbox" type="radio" value="DINPro" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                 <label class="item">Akrobat<input class="custom-checkbox" type="radio" value="Akrobat" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
@@ -58,7 +60,7 @@
                                 </select>
                                 <div class="overSelect"></div>
                             </div>
-                            <div class="mySelectOptions">
+                            <div class="mySelectOptions title__general">
                                 <label class="item">Roboto<input class="custom-checkbox" type="radio" value="Roboto" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                 <label class="item">DIN Pro<input class="custom-checkbox" type="radio" value="DINPro" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                 <label class="item">Akrobat<input class="custom-checkbox" type="radio" value="Akrobat" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
@@ -73,28 +75,28 @@
                 <div class="popup__body-item popup-styles">
                     <label class="popup__subtitle" for="first_do">Цвет кнопки</label>
                     <div class="popup-styles-colors">
-                        <div style="background: linear-gradient(180deg, #5CEAF3 0%, #4AA2C8 100%); color: #34909C;" class="popup-styles-color">
+                        <div data-id="1" style="background: linear-gradient(180deg, #5CEAF3 0%, #4AA2C8 100%); color: #34909C;" class="popup-styles-color">
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
-                        <div style="background: linear-gradient(180deg, #FF4B6E 0%, #EC234A 100%); color:  #AF1735;" class="popup-styles-color">
+                        <div data-id="2" style="background: linear-gradient(180deg, #FF4B6E 0%, #EC234A 100%); color:  #AF1735;" class="popup-styles-color">
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
-                        <div style="background: linear-gradient(180deg, #08B395 0%, #0C977F 100%); color:  #0B705E;" class="popup-styles-color">
+                        <div data-id="3" style="background: linear-gradient(180deg, #08B395 0%, #0C977F 100%); color:  #0B705E;" class="popup-styles-color">
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
-                        <div style="background: linear-gradient(180deg, #FCA549 0%, #F39531 100%); color:  #CA7A25;" class="popup-styles-color">
+                        <div data-id="4" style="background: linear-gradient(180deg, #FCA549 0%, #F39531 100%); color:  #CA7A25;" class="popup-styles-color">
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
-                        <div style="background: #5A6474; color: #374150;" class="popup-styles-color">
+                        <div data-id="5" style="background: #5A6474; color: #374150;" class="popup-styles-color">
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
-                        <div style="background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);color: #3D57B7" class="popup-styles-color">
+                        <div data-id="6" style="background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);color: #3D57B7" class="popup-styles-color">
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
-                        <div style="background: linear-gradient(180deg, #936DFF 0%, #8B23DD 100%); color: #62349C;" class="popup-styles-color">
+                        <div data-id="7" style="background: linear-gradient(180deg, #936DFF 0%, #8B23DD 100%); color: #62349C;" class="popup-styles-color">
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
-                        <div style="background: linear-gradient(180deg, #FFDB59 0%, #EFA12C 100%); 0%, #F39531 100%); color: #CA7A25" class="popup-styles-color">
+                        <div data-id="8" style="background: linear-gradient(180deg, #FFDB59 0%, #EFA12C 100%); 0%, #F39531 100%); color: #CA7A25" class="popup-styles-color">
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
                     </div>
@@ -108,10 +110,10 @@
                 </div>
                 <div class="popup__body-item script">
                     <label class="popup__subtitle" for="first_do">Скрипты для HEAD</label>
-                    <textarea name="head__settings" type="text" placeholder="DEFAULT"></textarea>
+                    <textarea name="head__settings" placeholder="DEFAULT"></textarea>
                 </div>
                 <button type="submit" hidden id="main__settings-button"></button>
             </div>
         </form>
     </div>
-</div>g
+</div>

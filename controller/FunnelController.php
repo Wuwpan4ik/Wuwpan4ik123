@@ -294,6 +294,8 @@
             $funnelSettings['title__font'] = $_POST['title__font'];
             $funnelSettings['button__style-color'] = $_POST['button__style-color'];
             $funnelSettings['button__style-style'] = $_POST['button__style-style'];
+            $funnelSettings['number__style'] = $_POST['number-style'];
+            $funnelSettings['number__color'] = $_POST['number-color'];
             $funnelSettings['head__settings'] = $_POST['head__settings'];
             return ['json' => $funnelSettings];
         }

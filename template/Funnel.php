@@ -205,15 +205,18 @@
         let temp_shadow;
         if (document.querySelector('.button-shadow-down').classList.contains('active')) {
             document.querySelector('.button-video').style.boxShadow = '0px 3px 0px ' + shadow;
+            document.querySelector('#number-style').value = 1;
             temp_shadow = '0px 3px 0px ' + shadow;
         }
         else if (document.querySelector('.button-shadow-lite').classList.contains('active')) {
             document.querySelector('.button-video').style.boxShadow = '0px 10px 30px ' + shadow;
             temp_shadow = '0px 10px 30px ' + shadow;
+            document.querySelector('#number-style').value = 2;
         }
         else if (document.querySelector('.button-shadow-none').classList.contains('active')){
 
             document.querySelector('.button-video').style.boxShadow = null;
+            document.querySelector('#number-style').value = 3;
         }
         if (shadow != null) {
 
@@ -226,6 +229,7 @@
 
     colors.forEach(item => {
         item.addEventListener('click', () => {
+            document.querySelector('#number-color').value = item.dataset.id;
             item.classList.toggle('active')
             color = item.style.background;
             shadow = item.style.color;
@@ -259,13 +263,29 @@
 
 
 </script>
+
+<!--Лоудер-->
 <script>
     function GetMainSettings(count) {
         $.ajax({
             url: '/Funnel/'+ count +'/GetMainSettings',
             type: "POST",
             success: function (data) {
-                let temp_data = JSON.parse(data);
+                if (data){
+                    let temp_data = JSON.parse(data);
+                    let description = temp_data['desc__font'];
+                    let title = temp_data['title__font'];
+                    let title__block = document.querySelector('.title__general').querySelector('input[value="'+ title +'"]');
+                    let description__block = document.querySelector('.description__general').querySelector('input[value="'+ description +'"]');
+                    title__block.click();
+                    description__block.click();
+                    let color__button = temp_data['number__color'];
+                    let shadow__button = temp_data['number__style'];
+                    let head__text = temp_data['head__settings'];
+                    document.querySelectorAll('.popup-styles-color')[color__button - 1].click();
+                    document.querySelectorAll('.general-popup__button')[shadow__button - 1].click();
+                    document.querySelector('textarea[name="head__settings"]').innerHTML = head__text;
+                }
             }
         });
     }
@@ -274,7 +294,7 @@
     let generalSettings = document.querySelectorAll('.general-settings');
     let popupGeneralClose = document.querySelectorAll('.close__btn');
 
-    generalSettings.forEach(item =>{
+    generalSettings.forEach(item => {
         item.addEventListener('click', () => {
             document.querySelector('.popup__general').style.display = 'flex';
             let slider = item.parentElement.parentElement.querySelector('.media-cart-img').cloneNode(true);
