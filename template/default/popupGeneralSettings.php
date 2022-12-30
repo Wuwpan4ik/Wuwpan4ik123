@@ -28,16 +28,16 @@
             </div>
             <div class="popup__body-block editVideo">
                 <div class="popup__body-item">
-                    <label class="popup__subtitle" for="first_do">Шрифт для описания</label>
-                    <div class="select-account social-network">
+                    <label class="popup__subtitle" for="first_do">Шрифт для заголовоков</label>
+                    <div class="select-account social-network heading">
                         <div id="myMultiselect" class="multiselect">
                             <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
-                                <select name="desc__font" class="form-select">
+                                <select name="title__font" class="form-select">
                                     <option id="name">Выберите шрифт</option>
                                 </select>
                                 <div class="overSelect"></div>
                             </div>
-                            <div class="mySelectOptions description__general">
+                            <div class="mySelectOptions title__general">
                                 <label class="item">Roboto<input class="custom-checkbox" type="radio" value="Roboto" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                 <label class="item">DIN Pro<input class="custom-checkbox" type="radio" value="DINPro" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                 <label class="item">Akrobat<input class="custom-checkbox" type="radio" value="Akrobat" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
@@ -50,16 +50,16 @@
                     </div>
                 </div>
                 <div class="popup__body-item">
-                    <label class="popup__subtitle" for="first_do">Шрифт для заголовоков</label>
-                    <div class="select-account social-network heading">
+                    <label class="popup__subtitle" for="first_do">Шрифт для описания</label>
+                    <div class="select-account social-network">
                         <div id="myMultiselect" class="multiselect">
                             <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
-                                <select name="title__font" class="form-select">
+                                <select name="desc__font" class="form-select">
                                     <option id="name">Выберите шрифт</option>
                                 </select>
                                 <div class="overSelect"></div>
                             </div>
-                            <div class="mySelectOptions title__general">
+                            <div class="mySelectOptions description__general">
                                 <label class="item">Roboto<input class="custom-checkbox" type="radio" value="Roboto" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                 <label class="item">DIN Pro<input class="custom-checkbox" type="radio" value="DINPro" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                 <label class="item">Akrobat<input class="custom-checkbox" type="radio" value="Akrobat" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>

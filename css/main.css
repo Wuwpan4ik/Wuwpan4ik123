@@ -633,13 +633,7 @@ a.button__back {
   background-color: #F6F7F9;
   z-index: 300;
 }
-.open-sidebar{
-  display: none;
-}
 @media (max-width: 979px) {
-  .open-sidebar{
-    display: flex;
-  }
   .nav .sidebar,.contactSignout{
     display: none;
   }
@@ -650,7 +644,6 @@ a.button__back {
 }
 .nav.active {
   position: absolute;
-
 }
 .nav.active .sidebar,.nav.active .contactSignout{
   display: flex;
@@ -1659,7 +1652,7 @@ td:nth-child(1){
 
 .new_name div label {
   position: absolute;
-  top: 10px;
+  top: 12px;
   left: 10px;
   font-size: 13px;
 }
@@ -2022,14 +2015,14 @@ td:nth-child(1){
   transition: 0.3s all ease;
   pointer-events: none;
   font-weight: 400;
-  top:14px;
+  top:11px;
   left:16px !important;
   line-height: 24px;
   color: #757D8A;
 }
 
 .label_focus.activeLabel{
-  top:2%;
+  top:0px;
   font-size:10px;
 }
 
@@ -2099,7 +2092,7 @@ td:nth-child(1){
 }
 .checkMark{
   filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(178deg) brightness(104%) contrast(1003%);
- }
+}
 
 .сurrencies{
   padding: 8px 16px;
