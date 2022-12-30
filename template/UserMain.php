@@ -518,7 +518,6 @@ unset($_SESSION['course_id']);
                             item.classList.remove('active');
                             item.parentElement.classList.remove('hide-content');
                         })
-
                     }
                 })
             }

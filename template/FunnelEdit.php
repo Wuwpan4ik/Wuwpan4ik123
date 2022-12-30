@@ -294,7 +294,12 @@
 
 <?php include 'default/popupEditVideo.php';?>
 <script src="/js/jquery-3.6.1.min.js"></script>
-
+<script type="text/javascript" src="../js/button__settings.js"></script>
+<script src="/js/customSelect.js"></script>
+<script src="../js/sidebar.js"></script>
+<script src="/js/getNotifications.js"></script>
+<script src="/js/customInputs.js"></script>
+<script src="../js/customSelect.js"> </script>
 <script>
     function uploadFile(target) {
         document.getElementById("file-name").innerHTML = (target.files[0].name);
@@ -435,8 +440,6 @@
         }
     }
 </script>
-<script type="text/javascript" src="../js/button__settings.js"></script>
-<script src="../js/jquery-3.6.1.min.js"></script>
 <script>
     let entryDisplayDelete = document.querySelector('#delete__back');
     //  Замена видео
@@ -703,11 +706,6 @@
         }, 500)
     }
 </script>
-<script src="/js/customSelect.js"></script>
-<script src="../js/sidebar.js"></script>
-<script src="/js/getNotifications.js"></script>
-<script src="/js/customInputs.js"></script>
-<script src="../js/customSelect.js"> </script>
 
 </body>
 

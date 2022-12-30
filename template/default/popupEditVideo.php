@@ -72,7 +72,7 @@
                             <input class="popup__body__input" type="text" name="form__title" placeholder="Укажите заголовок">
                             <input class="popup__body__input" type="text" name="form__desc" placeholder="Укажите описание">
                         </div>
-                        <div class="popup__body-item popup__margin">
+                        <div class="popup__body-item popup__margin form__input">
                             <label for="form_id display-none">Составляющие формы:</label>
                             <button class="addFormInput" id="first_do-list" onclick="addFormItem(this)" type="button"><img src="../../img/add.png"> Добавить поле</button>
                         </div>
