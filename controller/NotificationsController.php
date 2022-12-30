@@ -3,6 +3,20 @@
 class NotificationsController extends ACoreCreator
 {
 
+    public function getCheckedNotifications() {
+        $notifications = $this->m->getCheckedNotifications($_SESSION['user']['id']);
+        foreach ($notifications as $item) {
+            $div .= '
+                <div class="popupBell-item">
+                    <img style="width: 32px;" src="'. $item['image'] .'">
+                    <div class="popupBell-item__info">
+                        <p>'. $item['body'] . ' ' . $item['date'] .'</p>
+                    </div>
+                </div>';
+        }
+        echo $div;
+    }
+
     public function getNotifications() {
         $notifications = $this->m->getNotifications($_SESSION['user']['id']);
         foreach ($notifications as $item) {
@@ -19,7 +33,7 @@ class NotificationsController extends ACoreCreator
 
     public function getCountNotifications()
     {
-        $notifications = $this->m->getNotifications($_SESSION['user']['id']);
+        $notifications = $this->m->getCheckedNotifications($_SESSION['user']['id']);
         echo json_encode($notifications);
     }
 
