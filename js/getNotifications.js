@@ -53,9 +53,16 @@ function GetAllNotif() {
             if (document.querySelector('.popupBell-body')) {
                 document.querySelector('.popupBell-body').innerHTML = request.responseText;
             }
-            if (request.responseText.length > 4) {
-                document.querySelector('.popupBell-body').classList.toggle('display-none')
-                document.querySelector('.popupBell').classList.toggle('active')
+            document.querySelector('.popupBell-body').classList.toggle('display-none')
+            document.querySelector('.popupBell').classList.toggle('active')
+            if (request.responseText.length < 4) {
+                document.querySelector('.popupBell-body').innerHTML = `<div class="popupBell-body">
+                <div class="popupBell-item not-bell">
+                <div class="popupBell-item__info ">
+                    <p>У вас пока нет уведомлений</p>
+                </div>
+          </div>
+          </div>`;
             }
         }
     })
