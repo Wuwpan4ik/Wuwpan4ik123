@@ -6,10 +6,12 @@
     <!--Выдаем вместо этой хуйни нормальный тайтл названия воронки / курса-->
     <title>Course Creator - Плеер</title>
     <link type="text/css" rel="stylesheet" href="/css/smallPlayer.css">
+    <link type="text/css" rel="stylesheet" href="/css/UserMain.css">
     <!--Делаем так, чтобы страницы не индексировались в поиске-->
     <meta name="robots" content="noindex" />
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
+
 </head>
 <body class="body">
 <div class="mirror_smallPlayer">

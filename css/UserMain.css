@@ -1797,10 +1797,11 @@
     line-height: 22px;
 }
 .Course-item.popup-item{
+    position: relative;
     align-items:flex-start;
 }
 .Course-item.popup-item .popup__allLessons-item-info{
-    width:70%;
+    width:70% !important;
     padding-top: 15px;
 }
 .Course-item.popup-item .popup__allLessons-item-info .popup__allLessons-item-info-header{
