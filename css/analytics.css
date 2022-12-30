@@ -105,33 +105,36 @@ button {
     display: none;
 }
 
-.mytabs label {
-    width: 31.6%;
-    border: 1px #E1E3E6 solid;
-    border-width: 1px 0px 1px 0px;
-    padding: 4px;
-    text-align: center;
-    font-weight: 500;
-    line-height: 27px;
-    color: #757D8A;
-    background: #F8F8F8;
-    -webkit-transition: 0.2s ease-in;
-    -o-transition: 0.2s ease-in;
-    transition: 0.2s ease-in;
-}
 
-.mytabs label:nth-child(2) {
-    margin: 0 0 0 40px;
-}
 
 .mytabs label p {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 40px;
     padding: 10px 0;
-    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    background-color: #F8F8F8;
+    border-radius: 8px;
+    -webkit-transition: 0.2s ease-in;
+    -o-transition: 0.2s ease-in;
+    transition: 0.2s ease-in;
 }
-
+.menu-label{
+    width: 33.33%;
+    padding: 4px;
+    border: 1px #E1E3E6 solid;
+    border-width: 1px 0px 1px 0px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 27px;
+    background: #F8F8F8;
+    -webkit-transition: 0.2s ease-in;
+    -o-transition: 0.2s ease-in;
+    transition: 0.2s ease-in;
+    height: 48px;
+}
 .mytabs label p:hover{
     background-color: #f0f0f0;
 }
