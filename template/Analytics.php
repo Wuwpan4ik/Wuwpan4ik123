@@ -3,6 +3,7 @@
   <head>
 
     <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Creator - Статистика</title>
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/analytics.css">
@@ -10,6 +11,7 @@
 
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
+
   </head>
 
   <body>
@@ -25,13 +27,13 @@
                 include ('default/header.php');
                 ?>
 
-                <div class="mytabs">
+                <div class="mytabs  _container">
 
                     <input type="radio" id="About" name="mytabs" checked="checked"/>
 
-                    <label id="oplab" for="About"><p>Клиенты</p></label>
+                    <label class="menu-label" id="oplab" for="About"><p>Клиенты</p></label>
 
-                    <div class="tab _container">
+                    <div class="tab ">
 
                         <div class="Tableusers">
 
@@ -110,7 +112,7 @@
 
                     <input type="radio" id="Orders" name="mytabs"/>
 
-                    <label id="ordlab" for="Orders"><p>Заказы</p></label>
+                    <label class="menu-label" id="ordlab" for="Orders"><p>Заказы</p></label>
                     <div class="tab _container">
 
                         <div class="Tableusers" style="overflow: hidden">
@@ -187,7 +189,7 @@
 
                     <input type="radio" id="Tarif" name="mytabs"/>
 
-                    <label class="statistic__button" id="cllab" for="Tarif"><p>Статистика</p></label>
+                    <label class="statistic__button menu-label" id="cllab" for="Tarif"><p>Статистика</p></label>
 
                     <div class="tab">
 

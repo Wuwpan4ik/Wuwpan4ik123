@@ -657,6 +657,15 @@ a.button__back {
   .feed{
     padding: 0 0 20px 0;
   }
+  #apps{
+      width: 119px;
+  }
+  .input__wrapper{
+    width: 100%;
+  }
+  .input__file-button{
+    width: 100% !important;
+  }
 }
 .nav.active {
   position: absolute;
@@ -1634,6 +1643,7 @@ td:nth-child(1){
   display:flex;
   align-items:center;
   width:100%;
+  line-height: 37px;
 }
 
 #grey {
@@ -1676,7 +1686,7 @@ td:nth-child(1){
 }
 
 .new_name div textarea {
-  padding-top: 15px !important;
+  padding-top: 22px !important;
   padding-left: 15px;
   font-size: 16px;
   height: 60px;
