@@ -91,7 +91,7 @@
                 </div>
             </div>
         </div>
-
+        <script src="../js/sidebar.js"></script>
         <script src="/js/getNotifications.js"></script>
   </body>
 </html>

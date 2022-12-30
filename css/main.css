@@ -620,6 +620,8 @@ a.button__back {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: 25%;
+  min-width: 378px;
   height: 100vh;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -633,17 +635,33 @@ a.button__back {
   background-color: #F6F7F9;
   z-index: 300;
 }
+
+.open-sidebar{
+  display: none;
+}
+
 @media (max-width: 979px) {
+  .open-sidebar{
+    display: flex;
+  }
+  .nav{
+    width: 10px;
+    min-width: 10px;
+  }
   .nav .sidebar,.contactSignout{
     display: none;
   }
   .open-sidebar{
     left: 5px !important;
   }
-
+  .feed{
+    padding: 0 0 20px 0;
+  }
 }
 .nav.active {
   position: absolute;
+  width: 25%;
+  min-width: 378px;
 }
 .nav.active .sidebar,.nav.active .contactSignout{
   display: flex;

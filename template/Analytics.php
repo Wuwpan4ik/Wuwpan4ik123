@@ -613,7 +613,7 @@
         });
         request2.send();
     });
-</script>
+</script><script src="../js/sidebar.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
 <script src="../js/charts.js"></script>
   <script src="/js/getNotifications.js"></script>
