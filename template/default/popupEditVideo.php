@@ -9,7 +9,7 @@
                 <button type="button" onclick="save();" class="popup__edit-btn">Сохранить</button>
             </div>
         </div>
-        <form id="initButton" action="/Funnel/$item_id/settings" method="POST" class="popup__body-container"  enctype="multipart/form-data">
+        <form id="initButton" action="/Funnel/$item_id/settings" method="POST" class="popup__body-container popup-wrap"  enctype="multipart/form-data">
             <input id="id_item" name="item_id" type="hidden" value="">
             <div class="popup__body-block" style="width: 320px;">
                 <!--Прелоудер-->
@@ -19,7 +19,7 @@
                     <div class="slider__header _conatiner-player ">
                         <div class="slider__header-logo">
                             <div class="slider__header-logo-img">
-                                <img width="48px" src="<? echo ($_SESSION["user"]['avatar']) ? $_SESSION["user"]['avatar'] : '/uploads/ava/userAvatar.jpg' ?>" alt="">
+                                <img width="48px" src="/<? echo (isset($_SESSION['user']['avatar'])  ? $_SESSION['user']['avatar'] : "uploads/ava/userAvatar.jpg") ?>" alt="">
                             </div>
                             <div class="slider__header-logo-text">
                                 <?=$_SESSION["user"]["first_name"]?>
@@ -47,7 +47,7 @@
                     </div>
                 </div>
             </div>
-            <div class="popup__body-block editVideo">
+            <div class="popup__body-block editVideo" style="color: black">
                 <div class="popup__body-item">
 
                     <label for="first_do">Действие после нажатия:</label>
@@ -72,7 +72,7 @@
                             <input class="popup__body__input" type="text" name="form__title" placeholder="Укажите заголовок">
                             <input class="popup__body__input" type="text" name="form__desc" placeholder="Укажите описание">
                         </div>
-                        <div class="popup__body-item popup__margin">
+                        <div class="popup__body-item popup__margin form__input">
                             <label for="form_id display-none">Составляющие формы:</label>
                             <button class="addFormInput" id="first_do-list" onclick="addFormItem(this)" type="button"><img src="../../img/add.png"> Добавить поле</button>
                         </div>

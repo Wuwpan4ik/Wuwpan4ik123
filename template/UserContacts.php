@@ -35,6 +35,7 @@
             </div>
             <div class=" UserContacts userPopup__body">
                 <div class="UserContacts-body ">
+                    <?php if ($content['contacts'][0]["telephone"]) { ?>
                     <div class="UserContacts-item UserContacts-body__telephone ">
                         <div class="UserContacts-body__header">
                             <img src="../img/UserContacts/phone.svg" alt="">
@@ -42,6 +43,7 @@
                         </div>
                         <input style="font-size: 16px;" type="tel" placeholder="<?=$content['contacts'][0]["telephone"]?>" maxlength="15" disabled>
                     </div>
+                    <?php } ?>
                     <div class="UserContacts-item UserContacts-body__telephone ">
                         <div class="UserContacts-body__header">
                             <img src="../img/UserContacts/email.svg" alt="">
@@ -56,10 +58,12 @@
                             <img src="../img/UserContacts/SocialNetworks.svg" alt="">
                             <span>Социальные сети:</span>
                             <ul class="UserContacts-list">
-                                <?php foreach (['instagram', 'whatsapp', 'telegram', 'facebook', 'youtube', 'twitter', 'skype', 'site'] as $item) {
+                                <?php foreach (['vk', 'instagram', 'whatsapp', 'telegram', 'facebook', 'youtube', 'twitter', 'site'] as $item) {
                                     if (!is_null($content['contacts'][0][$item])) {
                                 ?>
-                                <li><a href="<?php echo htmlspecialchars($content['contacts'][0][$item]) ?>"><img src="../img/UserContacts/SocialNetworcs/<?=$item?>.svg" alt=""></a></li>
+                                <li>
+                                    <a href="<?php echo htmlspecialchars($content['contacts'][0][$item]) ?>"><img src="../img/UserContacts/SocialNetworcs/<?=$item?>.svg" alt=""></a>
+                                </li>
                                 <?php } } ?>
                             </ul>
                         </div>

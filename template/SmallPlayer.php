@@ -6,10 +6,12 @@
     <!--Выдаем вместо этой хуйни нормальный тайтл названия воронки / курса-->
     <title>Course Creator - Плеер</title>
     <link type="text/css" rel="stylesheet" href="/css/smallPlayer.css">
+    <link type="text/css" rel="stylesheet" href="/css/UserMain.css">
     <!--Делаем так, чтобы страницы не индексировались в поиске-->
     <meta name="robots" content="noindex" />
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
+
 </head>
 <body class="body">
 <div class="mirror_smallPlayer">
@@ -61,16 +63,16 @@
                     <img src="/img/smallPlayer/pause.svg" alt="">
                 </div>
                 <div class="slider__item-info _conatiner-player">
-                    <div class="slider__item-title">
+                    <div class="slider__item-title <? echo (json_decode($content['main__settings'], true)['title__font'])?>">
                         <?=$item['content_name']?>
                     </div>
-                    <div class="slider__item-text">
+                    <div class="slider__item-text <? echo (json_decode($content['main__settings'], true)['desc__font'])?>">
                         <?=$item['content_description']?>
                     </div>
                     <?php
-                    if (isset($item['button_text'])) { ?>
+                    if (isset($item['button_text']) && !isset($popup->first_do->next_lesson)) { ?>
                             <div class="slider__item-button button-open">
-                                <button <?php echo (isset($popup->first_do->link)) ? "onClick=\"window.open('". $popup->first_do->link ."')\"": ''; ?> class="button"><?=$item['button_text']?></button>
+                                <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" <?php echo (isset($popup->first_do->link)) ? "onClick=\"window.open('". $popup->first_do->link ."')\"": ''; ?> class="button"><?=$item['button_text']?></button>
                             </div>
                             <?php } else { ?>
                         <script>
@@ -90,7 +92,7 @@
                                 $form = $popup->first_do->pay_form;
                             }
                             if (isset($popup->second_do->file)) {
-                                $first_file = $popup->second_do->file;
+                                $file = $popup->second_do->file;
                             }
                             // Первое или второе действие
                             $name = 'button';
@@ -125,9 +127,6 @@
 <?php } ?>
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
-<script src="/js/script.js" ></script>
-<script src="/js/slick.min.js"></script>
-<script src="/js/sliders.js"></script>
 
 <!--Закрытие AllLessons-->
 <script>
@@ -140,6 +139,12 @@
             currentVideo.play();
             document.querySelector('.popup-allLessons').classList.remove('active');
         });
+    function notBuy() {
+        $(this).find('.button-notBuy').each(function (){
+            $('.slider__video-item').find('.overlay-allLessons').removeClass('active');
+            $('.slider__video-item').find('.popup-allLessons').removeClass('active');
+            this.pause();
+        })
     }
 </script>
 
@@ -211,6 +216,28 @@
             });
         })
     });
+</script>
+<script src="/js/script.js" ></script>
+<script src="/js/slick.min.js"></script>
+<script src="/js/sliders.js"></script>
+<script>
+    function startAccordion() {
+        let accordionButton = document.querySelectorAll(".accordion-button");
+        let accordionInner = document.querySelectorAll(".accordion .accordion-item .accordion-content");
+
+        for(let i = 0; i < accordionButton.length; i++){
+            accordionButton[i].onclick = () =>{
+                if(accordionInner[i].classList.contains('active')){
+                    accordionInner[i].classList.remove('active')
+                    accordionButton[i].classList.remove('active')
+                }else{
+                    accordionInner[i].classList.add('active')
+                    accordionButton[i].classList.add('active')
+                }
+            }
+        }
+    }
+    startAccordion()
 </script>
 </body>
 </html>

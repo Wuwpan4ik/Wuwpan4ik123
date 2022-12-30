@@ -21,11 +21,11 @@
                 <div class="user__logo-text">Course Creator</div>
             </div>
             <div class="header-main__burger">
-                <a href="/UserMenu">
+                <button onclick="UserMenuLocation()">
                     <div class="main__burger">
                         <span></span>
                     </div>
-                </a>
+                </button>
             </div>
         </div>
     </div>
@@ -224,6 +224,7 @@
                     <div class="popup__buy-register">
                         <form id="formQuest" method="POST" action="/ContactController/sendQuestions">
                             <input type="hidden" value="" name="author_id" id="question_author-id">
+                            <input type="hidden" value="" name="course_id" id="question_course-id">
                             <?php if (!isset($_SESSION['user']['first_name'])) { ?>
                             <div class="popup__buy-body-form question input">
                                 <div class="popup__bonus-form-input-account input-img">
@@ -263,6 +264,11 @@
 unset($_SESSION['course_price']);
 unset($_SESSION['course_id']);
 ?>
+<script>
+    function UserMenuLocation() {
+        window.location.replace('/UserMenu');
+    }
+</script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
 <script src="../js/script.js" ></script>
 <script>
@@ -307,7 +313,7 @@ unset($_SESSION['course_id']);
         hiddenAllPopups();
         document.querySelector('.course__popup').classList.add('active');
         document.querySelector('.back__to__course').dataset.course_id = course__get_id;
-        getListPage(course__get_id);
+        getListPage(author__get_id);
         course__get_url.searchParams.delete('course_id');
         window.history.pushState({}, '', course__get_url.toString());
     }
@@ -336,8 +342,6 @@ unset($_SESSION['course_id']);
         });
         request.send();
     }
-
-
 
     function getVideoInfo(number) {
         let request = new XMLHttpRequest();
@@ -382,13 +386,16 @@ unset($_SESSION['course_id']);
             }
         });
 
+        document.querySelectorAll('.course__back-btn').forEach(item => {
+            item.dataset.author_id = number;
+        })
+
         $.ajax({
             url: "/UserController/getDisableCourse?author_id=" + number,
             type: "GET",
             success: function (data) {
                 document.querySelector('.disabled__body').innerHTML = data;
-
-                if (data.length === 0) {
+                if (data.trim().length === 0) {
                     document.querySelector('.otherСourses').style = 'display:none;';
                     return false;
                 }
@@ -433,6 +440,7 @@ unset($_SESSION['course_id']);
             if (request1.readyState === 4 && request1.status === 200) {
                 document.querySelector('.lesson__list').innerHTML = request1.responseText;
                 getCourseName(number);
+                document.getElementById('question_course-id').value = number;
                 let choiceVideo = document.body.querySelectorAll('.choice-video');
                 choiceVideo.forEach(item => {
                     item.onclick = function () {
@@ -440,9 +448,6 @@ unset($_SESSION['course_id']);
                         youChosen.classList.add('active');
                         getVideoInfo(item.querySelector('.item__list-id').dataset.id);
                     }
-                })
-                document.querySelectorAll('.course__back-btn').forEach(item => {
-                    item.dataset.author_id = number;
                 })
                 startAccordion();
             }
@@ -496,30 +501,6 @@ unset($_SESSION['course_id']);
             }
         }
     }
-
-
-    more = function (){
-        let hideContent = document.querySelectorAll('.aboutTheAuthor__info-text');
-        hideContent.forEach(item =>{
-            let height = item.clientHeight
-            if(height >= 47){
-                item.innerHTML+= '<a class="button-more active">Узнать больше</a>'
-                const buttonMore = document.querySelectorAll('.button-more ')
-                buttonMore.forEach(item =>{
-                    item.onclick = function (){
-                        buttonMore.forEach(el =>{
-                            el.classList.add('active');
-                            el.parentElement.classList.add('hide-content');
-                            item.classList.remove('active');
-                            item.parentElement.classList.remove('hide-content');
-                        })
-
-                    }
-                })
-            }
-        })
-    }
-    more()
 
 
 </script>

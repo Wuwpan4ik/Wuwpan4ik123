@@ -394,9 +394,8 @@
           let currency = document.getElementById('currency').innerHTML;
           if (array.full_value) {
               document.getElementById('full_value').innerText = array.full_value + currency;
-          } else {
-              document.querySelector('.statistic__button').classList.add('display-none');
           }
+
           if (array.week) {
               document.querySelectorAll('.full_week_value').forEach(item => {
                   item.innerHTML = array.week + currency;
@@ -614,7 +613,7 @@
         });
         request2.send();
     });
-</script>
+</script><script src="../js/sidebar.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
 <script src="../js/charts.js"></script>
   <script src="/js/getNotifications.js"></script>

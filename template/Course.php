@@ -1,7 +1,8 @@
 <html lang="ru">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8"
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Creator - Мои курсы</title>
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/lessons.css">
@@ -143,10 +144,12 @@
 <div id="popup__background">
     <div id="popup">
         <div class="popup__container">
-            <div class="popup__title">Вы действительно хотите удалить проект?</div>
-            <div class="popup__form">
-                <button class="popup__btn popup__not-delete">Не удалять</button>
-                <button class="popup__btn popup__delete">Удалить</button>
+            <div class="popup-body">
+                <div class="popup__title">Вы действительно хотите удалить проект?</div>
+                <div class="popup__form">
+                    <button class="popup__btn popup__delete popup__white">Удалить</button>
+                    <button class="popup__btn popup__not-delete popup__blue">Не удалять</button>
+                </div>
             </div>
         </div>
     </div>
@@ -229,6 +232,7 @@
     }
 
 </script>
+<script src="../js/sidebar.js"></script>
 </body>
 
 </html>

@@ -39,16 +39,21 @@ class User {
 
     public function getContactsByUser()
     {
-        return $this->db->query("SELECT user.id, user.telephone, user.email, contact.instagram, contact.whatsapp, contact.telegram, contact.facebook, contact.youtube, contact.twitter, contact.skype FROM user LEFT JOIN user_contacts as contact ON contact.user_id = user.id WHERE user.id = " . $_SESSION['item_id']);
+        return $this->db->query("SELECT user.id, user.telephone, user.email, contact.vk, contact.instagram, contact.whatsapp, contact.telegram, contact.facebook, contact.youtube, contact.twitter, contact.site FROM user LEFT JOIN user_contacts as contact ON contact.user_id = user.id WHERE user.id = " . $_SESSION['item_id']);
     }
 
     public function UserHaveAContacts()
     {
-        return $this->db->query("SELECT id FROM  user_contacts WHERE id = " . $_SESSION['item_id']);
+        return $this->db->query("SELECT id FROM user_contacts WHERE user_id = " . $_SESSION['item_id']);
+    }
+
+    public function getCheckedNotifications($user_id) {
+        $result = $this->db->query("SELECT * FROM notifications WHERE `user_id` = '$user_id' AND `is_checked` = 0");
+        return $result;
     }
 
     public function getNotifications($user_id) {
-        $result = $this->db->query("SELECT * FROM notifications WHERE `user_id` = '$user_id' AND `is_checked` = 0");
+        $result = $this->db->query("SELECT * FROM notifications WHERE `user_id` = '$user_id' LIMIT 5");
         return $result;
     }
 
@@ -85,7 +90,7 @@ class User {
     public function getContentForUserAuthorPage()
     {
         $purchases = $this->db->query("SELECT `purchase` FROM `purchase` WHERE user_id = " . $_SESSION['user']['id'])[0]['purchase'];
-        $course_query = "SELECT user.id, course.name, user.avatar, user.school_name, course.description, user.first_name, user.second_name, count(course.id) as 'count', course.author_id FROM course AS course INNER JOIN user ON user.id = course.author_id WHERE";
+        $course_query = "SELECT user.id, user.email, course.name, user.avatar, user.school_name, course.description, user.first_name, user.second_name, count(course.id) as 'count', course.author_id FROM course AS course INNER JOIN user ON user.id = course.author_id WHERE";
         $purchases_array = json_decode($purchases, true)['course_id'];
         foreach ($purchases_array as $course_id) {
             $course_query .= " course.id = $course_id ";
@@ -105,23 +110,18 @@ class User {
     {
         $purchases = $this->db->query("SELECT `purchase` FROM `purchase` WHERE user_id = " . $_SESSION['user']['id'])[0]['purchase'];
         $purchases_array = json_decode($purchases, true)['course_id'];
-        foreach (json_decode($purchases, true)['video_id'] as $item) {
-            $video_course_id = $this->db->query("SELECT `course_id` FROM `course_content` WHERE id = $item")[0]['course_id'];
-            if (!in_array($video_course_id, $purchases_array)) {
-                array_push($purchases_array, $video_course_id);
-            }
-        }
-        $course_query = "SELECT course.id, course.name, course_content.thubnails as 'preview', course.description, course.author_id FROM course INNER JOIN course_content on course_content.course_id = course.id WHERE (";
+        $course_query = "SELECT course.id, course.name, course_content.thubnails as 'preview', count(course_content.id) as 'count', course.description, course.author_id FROM course INNER JOIN course_content on course_content.course_id = course.id WHERE (";
         foreach ($purchases_array as $course_id) {
             $course_query .= " course.id = $course_id ";
             if (count($purchases_array) != 1) {
                 $course_query .= " OR ";
             } else {
-                $course_query .= ") GROUP BY id";
+                $course_query .= ") AND course.author_id = {$author_id} GROUP BY course.id";
             }
             array_shift($purchases_array);
         }
         $courses = $this->db->query($course_query);
+        $_SESSION['error'] = $course_query;
         return $courses;
     }
 
@@ -135,13 +135,13 @@ class User {
                 array_push($purchases_array, $video_course_id);
             }
         }
-        $course_query = "SELECT course.id, course.name, course_content.thubnails as 'preview', course.description, course.author_id FROM course INNER JOIN course_content on course_content.course_id = course.id WHERE NOT (";
+        $course_query = "SELECT course.id, course.name, ANY_VALUE(course_content.thubnails) as 'preview', count(course_content.id) as 'count', course.description, course.author_id FROM course INNER JOIN course_content on course_content.course_id = course.id AND course.author_id = {$author_id} WHERE NOT (";
         foreach ($purchases_array as $course_id) {
             $course_query .= " course.id = $course_id ";
             if (count($purchases_array) != 1) {
                 $course_query .= " OR ";
             } else {
-                $course_query .= ") GROUP BY id";
+                $course_query .= ") AND course.author_id = {$author_id} GROUP BY course.id";
             }
             array_shift($purchases_array);
         }
@@ -279,6 +279,14 @@ class User {
     public function getVideosForPlayer()
     {
         $id = $_SESSION['item_id'];
+        $author_id = $this->db->query("SELECT funnel.author_id FROM funnel WHERE id = '$id'")[0]['author_id'];
+        $course_temp = $this->db->query("SELECT funnel.course_id FROM funnel WHERE id = '$id'");
+        $course_have_id = is_null($course_temp);
+        if ($course_have_id) {
+            $course_id = $course_temp[0]['course_id'];
+        } else {
+            $course_id = $this->db->query("SELECT course.id FROM course WHERE author_id = '$author_id'")[0]['id'];
+        }
         $funnel_content = $this->db->query("SELECT  
                                                 course.id,
                                                 course.name,
@@ -294,7 +302,7 @@ class User {
                                                 user_info.avatar,
                                                 user_info.first_name
                                                 FROM `course` AS course
-                                                INNER JOIN `funnel` AS funnel ON course.id = funnel.course_id AND funnel.id = '$id'
+                                                INNER JOIN `funnel` AS funnel ON course.id = '$course_id' AND funnel.id = '$id'
                                                 INNER JOIN `user` AS user_info ON funnel.author_id = user_info.id
                                                 INNER JOIN `funnel_content` AS content ON content.funnel_id = funnel.id GROUP BY content.id");
         $course_content = $this->db->query("SELECT course_content.name,
@@ -305,15 +313,17 @@ class User {
                                                 course_content.thubnails,
                                                 course.author_id
                                                 FROM `funnel` AS funnel
-                                                INNER JOIN `course_content` ON course_content.course_id = funnel.course_id AND funnel.id = '$id'
+                                                INNER JOIN `course_content` ON course_content.course_id = '$course_id' AND funnel.id = '$id'
                                                 INNER JOIN `course` ON course.id = course_content.course_id");
-        $course_id = $this->db->query("SELECT course.id,
+        $course = $this->db->query("SELECT course.id,
                                                 course.author_id,
                                                 course.price
                                                 FROM `funnel` AS funnel
-                                                INNER JOIN `course_content` ON course_content.course_id = funnel.course_id AND funnel.id = '$id'
+                                                INNER JOIN `course_content` ON course_content.course_id = '$course_id' AND funnel.id = '$id'
                                                 INNER JOIN `course` ON course.id = course_content.course_id LIMIT 1");
-        return ['funnel_content' => $funnel_content, 'course_content' => $course_content, 'course_id' => $course_id];
+        $main__settings = $this->db->query("SELECT style_settings
+                                                FROM `funnel` WHERE id = '$id'");
+        return ['funnel_content' => $funnel_content, 'course_content' => $course_content, 'course_id' => $course, 'main__settings' => $main__settings[0]['style_settings']];
 
     }
 
@@ -357,6 +367,11 @@ class User {
     public function isUserSocials()
     {
         return count($this->db->query("SELECT * FROM `user_contacts` WHERE `user_id` = " . $_SESSION['user']['id'])) == 1;
+    }
+
+    public function TakeSocialUrls()
+    {
+        return $this->db->query("SELECT * FROM `user_contacts` WHERE `user_id` = " . $_SESSION['user']['id']);
     }
 }
 ?>

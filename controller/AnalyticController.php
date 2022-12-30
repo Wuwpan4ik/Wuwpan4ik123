@@ -9,6 +9,7 @@ class AnalyticController extends ACoreCreator
             return false;
         }
         $this->m->db->execute("DELETE FROM `clients` WHERE `id` = '$item_id'");
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
         return true;
     }
 
@@ -19,6 +20,7 @@ class AnalyticController extends ACoreCreator
             return false;
         }
         $this->m->db->execute("DELETE FROM `orders` WHERE `id` = '$item_id'");
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
         return true;
     }
 

@@ -27,7 +27,7 @@
                     Войдите в аккаунт
                 </div>
                 <div class="userLogin-form popup-form">
-					<form method="POST" action="/LoginController/UserLogin">
+					<form method="POST" class="login__form" action="/LoginController/UserLogin">
                         <input type="hidden" value="true" name="userLogin">
                         <div class="input_focus inputLog">
                             <label for="email" class="label_focus">Ваша почта</label>
@@ -59,6 +59,26 @@
     </div>
     <!--For Input Holders-->
     <script src="/js/jquery-3.6.1.min.js"></script>
+    <script>
+        let form__submit = $(function() {
+            $('.login__form').each(function () {
+                $(this).submit(function (e) {
+                    e.preventDefault();
+                    $.ajax({
+                        url: $(this).attr("action"),
+                        type: $(this).attr("method"),
+                        data: $(this).serialize(),
+                        success: function (data) {
+                            window.location.replace('/');
+                        },
+                        error: function (data) {
+                            document.querySelector(".error").innerHTML = data.responseText;
+                        }
+                    });
+                })
+            });
+        });
+    </script>
     <script>
         window.onload = () =>{
             let inputs = document.querySelectorAll('.input_focus input');

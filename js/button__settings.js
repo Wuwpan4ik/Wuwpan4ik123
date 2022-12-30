@@ -112,13 +112,27 @@ function defaultPopup(parent_elem){
     document.querySelector('#first_do-list').classList.remove('display-none');
 }
 
+function removeSelect(elem) {
+
+    let count = elem.parentElement.parentElement.querySelectorAll('.form-select__container').length;
+    elem.parentElement.remove();
+    if (count <=3 ) {
+        document.querySelector('.addFormInput').classList.remove('display-none');
+        return false;
+    }
+}
+
 async function addFormSelect(elem, name) {
     let count_block = elem.parentElement.querySelectorAll('.form_id').length;
     let count_id = elem.parentElement.querySelectorAll('.form_id').length + 1;
     if (elem.id === 'second_do-list') {
         count_id = elem.parentElement.querySelectorAll('.form_id').length + 4;
     }
+    let div_container = document.createElement('div');
+    div_container.style.position = 'relative';
+    div_container.classList.add("form-select__container");
     let div = document.createElement('select');
+    let button = `<button style="position: absolute; bottom: 13px; right: 10px; z-index: 100;" onclick="removeSelect(this)"><img src="/img/basket_delete.svg" width="16" height="16" alt=""></button>`;
     let inner = '';
     div.classList.add('form_id');
     div.classList.add('input_selector');
@@ -128,10 +142,13 @@ async function addFormSelect(elem, name) {
         if (name === key) {
             selected = "selected";
         }
-        inner += `<option ` + selected +` value="${key}">${value}</option>\n`;
+
+        inner += `<option style="position: relative; " ` + selected +` value="${key}">${value}</option>`;
     }
     div.innerHTML = inner;
-    elem.parentElement.children[count_block].after(div);
+    div_container.appendChild(div);
+    div_container.innerHTML += button;
+    elem.parentElement.children[count_block].after(div_container);
     document.querySelectorAll('.input_selector').forEach(function (){
         this.addEventListener('change', function (){
             addPopup('form');
@@ -144,11 +161,12 @@ function addFormLink(elem) {
     let count = elem.parentElement.querySelectorAll('.link_item').length;
     let count_id = elem.id === 'second_do' ? 2 : 1;
     let div = document.createElement('input');
-    div.placeholder = "Укажите ссылку";
+    div.placeholder = "Переход по ссылке";
     div.classList.add('videoname');
     div.classList.add('link_item');
     div.name = 'link-' + count_id;
     div.style.paddingLeft = '15px';
+    div.style.marginTop = '20px';
     if (count === 0) {
         elem.parentElement.children[1].after(div);
     }
@@ -229,6 +247,7 @@ function checkFirstSelect() {
         document.querySelector('#popup__body-list-select').classList.remove('display-none');
         addSecondOptions([['pay_form', "Форма оплаты"], ['form', 'Форма заявки']]);
         enableAfterClickBlock();
+        initListCourse();
     }
 
     if (first_select.value === 'next_lesson') {

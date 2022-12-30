@@ -1,9 +1,12 @@
 @import url("/css/font.css");
+
+
 body {
-  overflow-x: hidden;
+  overflow: hidden;
   width: 100%;
   height: 100%;
   margin: 0;
+
 }
 
 .display-flex {
@@ -265,6 +268,7 @@ p {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  flex-direction: column;
   float: bottom;
 }
 
@@ -459,6 +463,7 @@ span.button__back {
   -ms-flex-direction: column;
   flex-direction: column;
   width: 100%;
+  height: 100vh;
   margin-left: auto;
   margin-right: 0;
   color: #404D61;
@@ -612,11 +617,12 @@ a.button__back {
 
 /*sidebar*/
 .nav {
-  height: 100vh;
-  width:24%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: 25%;
+  min-width: 378px;
+  height: 100vh;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
@@ -629,17 +635,33 @@ a.button__back {
   background-color: #F6F7F9;
   z-index: 300;
 }
+
+.open-sidebar{
+  display: none;
+}
+
 @media (max-width: 979px) {
+  .open-sidebar{
+    display: flex;
+  }
+  .nav{
+    width: 10px;
+    min-width: 10px;
+  }
   .nav .sidebar,.contactSignout{
     display: none;
   }
   .open-sidebar{
     left: 5px !important;
   }
-
+  .feed{
+    padding: 0 0 20px 0;
+  }
 }
 .nav.active {
   position: absolute;
+  width: 25%;
+  min-width: 378px;
 }
 .nav.active .sidebar,.nav.active .contactSignout{
   display: flex;
@@ -1073,8 +1095,19 @@ span.name {
   line-height: 32px;
   -ms-flex-item-align: end;
   align-self: end;
+  text-align: right;
 }
-
+@media (max-width: 600px) {
+  .price h2{
+    font-size: 16px;
+  }
+  .service-titile{
+    font-size: 16px;
+  }
+  .name{
+    font-size: 16px;
+  }
+}
 .service-text-2 {
   margin: 24px 0 0 0;
 }
@@ -1642,7 +1675,7 @@ td:nth-child(1){
 }
 
 .new_name div textarea {
-  padding-top: 15px;
+  padding-top: 15px !important;
   padding-left: 15px;
   font-size: 16px;
   height: 60px;
@@ -1772,8 +1805,8 @@ td:nth-child(1){
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background: url(../img/arrow_custom.svg) no-repeat right;
-  background-position-x: calc(100% - 21px);
+  background: url(../img/arrow_custom.svg) no-repeat right !important;
+  background-position-x: calc(100% - 21px) !important;
 }
 
 .popup__body-item select:focus {
@@ -1826,7 +1859,7 @@ td:nth-child(1){
   margin: 24px 0 0 0;
 }
 
-.popup__body-item label {
+.popup__subtitle {
   font-size: 18px;
   line-height: 24px;
   color: #404D61 !important;
@@ -2134,13 +2167,16 @@ td:nth-child(1){
   z-index: 10;
 }
 .mySelectOptions .item {
+
+
   width: 100% ;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-weight: normal;
+  font-weight: normal ;
   white-space: nowrap;
   border: none;
+  color: #404D61 !important;
   background-color: #ffffff00;
   padding: 8px 16px;
   border-radius: 8px;

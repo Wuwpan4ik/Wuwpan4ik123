@@ -9,15 +9,15 @@
             <button onclick="deleteDirectory(this)"><img src="/img/Delete.svg" alt=""></button>
         </div>
     </div>
-    <video id="123" class="media-cart-img" style="object-fit: cover;">
+    <video id="123" class="media-cart-img" style=" object-fit: cover;">
         <source class="video" src=".<?=$v['video']?>"/>
     </video>
     <img src="<?=$v['thubnails'] ?>" alt="">
 
     <form method="POST" class="new_name media__form" enctype="multipart/form-data" action="/<?php if(strstr($_SERVER['REQUEST_URI'], 'Course')) {echo 'Course';} else {echo 'Funnel';} ?>/<?=$v['id']?>/rename">
 
-        <?php if (strstr($_SERVER['REQUEST_URI'], 'Funnel' )) {?>
         <input class="funnel__content-id" type="hidden" value="<?=$v['id']?>">
+        <?php if (strstr($_SERVER['REQUEST_URI'], 'Funnel' )) {?>
         <div class="funnel-input input_focus">
             <label for="name" class="label_focus activeLabel">Укажите заголовок:</label>
             <input name="name" class="videoname video-desc" type="text" value="<?=$v['name']?>">
@@ -72,10 +72,10 @@
                     <div class="avatar-body">
                         <img src="../img/saveAvatar.svg" alt="">
                         <div class="avatar-body__info">
-                            <span id="file-name" class="file-box">
+                            <span id="file-name" class="file-box file_name">
                                 <?php if (isset($v['file_url'])) {print_r(substr(basename($v['file_url']), 0, 10));} else {echo 'Название файла';}?>
                             </span>
-                            <span id="file-size" class="file-box">
+                            <span id="file-size" class="file-box file_size">
                                 <?php if (isset($v['file_url'])) {print_r(round(filesize($v['file_url']) / 1024));} else {echo '0';} ?>кб из 5мб
                             </span>
                         </div>

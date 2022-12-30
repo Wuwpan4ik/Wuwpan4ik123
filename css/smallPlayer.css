@@ -8,6 +8,33 @@ html{
     overflow: hidden !important;
 }
 
+.Roboto {
+    font-family: "Roboto", sans-serif;
+}
+
+.DINPro {
+    font-family: "DIN Pro", sans-serif;
+}
+
+.Akrobat {
+    font-family: "Akrobat", sans-serif;
+}
+
+.TTTrailers {
+     font-family: "TT Trailers", sans-serif;
+}
+.Montserrat {
+    font-family: "Montserrat", sans-serif;
+}
+.Ubuntu {
+    font-family: "Ubuntu", sans-serif;
+}
+
+.AmericanCaptain {
+    font-family: "American Captain", sans-serif;
+}
+
+
 .smallPlayer {
     width: 500px;
     height: 100%;
@@ -304,7 +331,7 @@ html{
 }
 
 .pause__video.active {
-    display: flex;
+    display: flex !important;
     transform:scale(1);
 }
 .play__video.active {
@@ -671,6 +698,20 @@ html{
     height:100%;
     object-fit: cover;
 }
+.popup__allLessons .popup__allLessons-item-info{
+    width:100% !important;
+
+}
+.popup__allLessons .popup__allLessons-item{
+    width:90% !important;
+    margin:0 auto;
+    align-items: flex-start !important;
+}
+
+.popup__form .popup-text{
+    padding: 12px 0 10px 0px;
+}
+
 /* Adaptive */
 
 @media (max-width: 992px) {

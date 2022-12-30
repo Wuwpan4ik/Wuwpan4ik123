@@ -287,6 +287,36 @@
             return ['json' => $videoBtnHTML, 'button_standart' => $button__standart];
         }
 
+        public function CreateMainSettings()
+        {
+            $funnelSettings = [];
+            $funnelSettings['desc__font'] = $_POST['desc__font'];
+            $funnelSettings['title__font'] = $_POST['title__font'];
+            $funnelSettings['button__style-color'] = (string) $_POST['button__style-color'];
+            $funnelSettings['button__style-style'] = (string) $_POST['button__style-style'];
+            $funnelSettings['number__style'] = (string) $_POST['number-style'];
+            $funnelSettings['number__color'] = (string) $_POST['number-color'];
+
+            return ['json' => $funnelSettings];
+        }
+
+        public function MainSettings()
+        {
+            $main_settings = $this->CreateMainSettings();
+            $main__settingsResult = json_encode($main_settings['json'], JSON_UNESCAPED_UNICODE);
+            $this->m->db->execute("UPDATE `funnel` SET `style_settings` = '$main__settingsResult' WHERE id = " . $_SESSION['item_id']);
+
+            $this->local_get_content();
+            return True;
+        }
+
+        public function GetMainSettings()
+        {
+            $result = $this->m->db->query("SELECT `style_settings` FROM funnel WHERE id = " . $_SESSION['item_id'])[0]['style_settings'];
+            print_r($result);
+            return True;
+        }
+
         public function PopupSettings() {
             $popup_settings = $this->CreatePopupSettings();
             $videoBtnHTMLResult = json_encode($popup_settings['json'], JSON_UNESCAPED_UNICODE);
@@ -312,7 +342,6 @@
 
         function get_content()
         {
-//            return header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
 
         function local_get_content()

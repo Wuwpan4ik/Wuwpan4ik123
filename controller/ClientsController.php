@@ -5,6 +5,236 @@
         private $name;
         private $phone;
 
+        private function GetApplicationHtml () {
+            return '<html lang="RU">
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    </head>
+                    <body style="padding:0px;margin:0px;max-width: 800px;font-family: Verdana, Geneva, Tahoma, sans-serif;background: #EFEFEF;">
+                        <div class="envelope-body" style="background:white;">
+                            <div class="first_row">
+                                <img style="width:100%;" src="https://course-creator.io/envelope-images/envelope-zayavka.jpg" alt="Добро пожаловать в Course Creator!">
+                            </div>
+                            <div class="second_row" style="padding:40px;">
+                                <h2 style="font-size:24px;font-weight: 400;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;">
+                                    Вам пришла заявка!
+                                </h2>
+                                <span style="color: rgba(0, 0, 0, 0.6);font-size:16px;font-weight:400;">
+                                    Спасибо, что вы зарегистрировались в Сourse Сreator! Ниже важная информация о вашем аккаунте. Пожалуйста, сохраните это письмо, чтобы можно было обратиться к нему позже.
+                                </span>
+                                <div class="info_account" style="display:flex;justify-content: space-between;gap: 20px;margin-top: 40px;flex-direction: column;">
+                                    <div class="whereFrom" style="border-bottom: 1px dashed rgba(0, 0, 0, 0.2);border-top: 1px dashed rgba(0, 0, 0, 0.2);width:100%;padding-top:30px;padding-bottom: 30px;">
+                                        <div class="from" style="margin-bottom: 20px;display:flex; justify-content: space-between;">
+                                            <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
+                                                Откуда заявка:
+                                            </span>
+                                            <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
+                                                Воронка №1
+                                            </span>
+                                        </div>
+                                        <div class="where" style="display:flex; justify-content: space-between">
+                                            <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
+                                                На каком слайде:
+                                            </span>
+                                            <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
+                                                Слайд №3
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="whom" style="padding-bottom: 30px;border-bottom: 1px dashed rgba(0, 0, 0, 0.2);margin-bottom: 30px;">
+                                        <div class="person" style="margin-bottom:20px;display:flex; justify-content: space-between">
+                                            <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
+                                                Имя:
+                                            </span>
+                                            <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
+                                                Андрей
+                                            </span>
+                                        </div>
+                                        <div class="email" style="margin-bottom:20px;display:flex; justify-content: space-between">
+                                            <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
+                                                Email:
+                                            </span>
+                                            <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
+                                                adnrey@gmail/com
+                                            </span>
+                                        </div>
+                                        <div class="phone" style="display:flex; justify-content: space-between">
+                                            <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
+                                                Телефон:
+                                            </span>
+                                            <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
+                                                +380 66 768 87 34
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="link_account">
+                                    <div class="first_row" style="width:100%">
+                                        <p style="font-weight:700;font-size:14px;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;color: rgba(0, 0, 0, 0.9);">
+                                            Смотрите другие заявки на сайте:
+                                        </p>
+                                        <div style="background: #EFF3F6;border-radius: 3px;padding-top: 15px;padding-bottom: 15px;padding-right: 20px;padding-left: 20px;">
+                                            <a href="https://course-creator.io/" target="_blank" style="color: #8098AB;">
+                                                https://course-creator.io/
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="envelope_info_bottom" style="text-align: center;margin-top:20px;margin-bottom: 20px;">
+                            <div>
+                                Если у вас есть вопросы, пожалуйста, напишите <br> в службу поддержки: <a href="mailto:support@course-creator.io">support@course-creator.io</a>
+                            </div>
+                        </div>
+                    </body>
+                    </html>';
+        }
+
+        private function GetRegistrationUserHtml ($email, $password) {
+            return '<html lang="RU">
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    </head>
+                    <body style="padding:0px;margin:0px;max-width: 800px;font-family: Verdana, Geneva, Tahoma, sans-serif;background: #EFEFEF;">
+                        <div class="envelope-body" style="background:white;">
+                            <div class="first_row">
+                                <img style="width:100%;" src="https://course-creator.io/envelope-images/envelope-welcome.jpg" alt="Добро пожаловать в Course Creator!">
+                            </div>
+                            <div class="second_row" style="padding:40px;">
+                                <h2 style="font-size:24px;font-weight: 400;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;">
+                                    Вы приобрели курс!
+                                </h2>
+                                <span style="color: rgba(0, 0, 0, 0.6);font-size:16px;font-weight:400;">
+                                    Спасибо, что вы зарегистрировались в Сourse Сreator! Ниже важная информация о вашем аккаунте. Пожалуйста, сохраните это письмо, чтобы можно было обратиться к нему позже.
+                                </span>
+                                <div class="info_account" style="display:flex;justify-content: space-between;gap: 20px;margin-top: 40px;">
+                                    <div class="first_row" style="width:50%">
+                                        <p style="font-weight:700;font-size:14px;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;color: rgba(0, 0, 0, 0.9);">
+                                            Ваш логин: 
+                                        </p>
+                                        <div style="color: #8098AB;background: #EFF3F6;border-radius: 3px;padding-top: 15px;padding-bottom: 15px;padding-right: 20px;padding-left: 20px;">
+                                            ' . $email . '
+                                        </div>
+                                    </div>
+                                    <div class="second_row" style="width:50%">
+                                        <p style="font-weight:700;font-size:14px;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;color: rgba(0, 0, 0, 0.9);">
+                                            Ваш пароль:
+                                        </p>
+                                        <div style="color: #8098AB;background: #EFF3F6;border-radius: 3px;padding-top: 15px;padding-bottom: 15px;padding-right: 20px;padding-left: 20px;">
+                                            ' . $password . '
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="link_account" style="margin-top: 20px;">
+                                    <a href="https://course-creator.io/UserLogin" target="_blank">
+                                        <button style="width:100%; height:48px;border:none;font-size:16px;border-radius: 10px;background: linear-gradient(299.36deg, rgba(55, 101, 223, 0.93) 0%, rgba(100, 162, 255, 0.96) 100%);color:white;cursor: pointer;">
+                                            Перейти в аккаунт
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="envelope_info_bottom" style="text-align: center;margin-top:20px;margin-bottom: 20px;">
+                            <div>
+                                Если у вас есть вопросы, пожалуйста, напишите <br> в службу поддержки: <a href="mailto:support@course-creator.io">support@course-creator.io</a>
+                            </div>
+                        </div>
+                    </body>
+                    </html>';
+        }
+
+        private function GetRegistrationClientHtml($name, $cost, $email)
+        {
+            return '<html lang="RU">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        </head>
+                        <body style="padding:0px;margin:0px;max-width: 800px;font-family: Verdana, Geneva, Tahoma, sans-serif;background: #EFEFEF;">
+                            <div class="envelope-body" style="background:white;">
+                                <div class="second_row" style="padding:40px;">
+                                    <h2 style="font-size:24px;font-weight: 400;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;">
+                                        Поздравляем, у вас купили курс!
+                                    </h2>
+                                    <span style="color: rgba(0, 0, 0, 0.6);font-size:16px;font-weight:400;">
+                                        Спасибо, что вы зарегистрировались в Сourse Сreator! Ниже важная информация о вашем аккаунте. Пожалуйста, сохраните это письмо, чтобы можно было обратиться к нему позже.
+                                    </span>
+                                    <div class="info_account" style="display:flex; justify-content: space-between; margin-top: 40px;flex-direction: column;">
+                                        <div class="whereFrom" style="border-bottom: 1px dashed rgba(0, 0, 0, 0.2);border-top: 1px dashed rgba(0, 0, 0, 0.2);width:100%;padding-top:30px;padding-bottom: 30px;">
+                   
+                                            <div class="courseInfo" style="margin-bottom: 30px;background: #EFF3F6;border-radius: 10px;padding:10px;">
+                                                <div class="infoCourse" style="display:flex;align-items:center;justify-content: space-between;">
+                                                    <div class="innerCS" style="display: flex;
+                                                    align-items: center;">
+                                                        <div class="imageCourse" style="width:76px;height:100px;">
+                                                            <!--Выводим превью курса-->
+                                                            <img src="https://course-creator.io/envelope-images/envelope-zayavka.jpg" alt="Название курса" width="76px" height="100px" style="object-fit: cover;object-position:center;border-radius:6px">
+                                                        </div>
+                                                        <div class="aboutCourse" style="margin-left:20px;">
+                                                            <div class="infoUrk">
+                                                                <span style="text-align:center;background: #4DAA21;color:white;font-size:10px;font-weight:500;padding-top:4px;padding-bottom:4px;padding-right:6px;padding-left:6px;text-align: center;border-radius: 10px;">
+                                                                    <!--Выводим название курса-->
+                                                                    Курс
+                                                                </span>
+                                                            </div>
+                                                            <div class="nameCourse" style="font-size:14px;color: rgba(0, 0, 0, 0.6);margin-top:11px;">
+                                                                '. $name .'
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="priceCourse" style="display: flex;
+                                                    flex-direction: column;
+                                                    text-align: end;">
+                                                        <span style="font-size:10px;font-weight:300;color: rgba(0, 0, 0, 0.6);">
+                                                            Стоимость заказа
+                                                        </span>
+                                                        <span style="font-size:14px;font-weight:500;color: rgba(0, 0, 0, 0.6);margin-top:11px;">
+                                                            '. $cost .'
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="whom" style="padding-bottom: 30px;border-bottom: 1px dashed rgba(0, 0, 0, 0.2);margin-bottom: 30px;">
+                                            <div class="email" style="margin-bottom:20px;display:flex; justify-content: space-between">
+                                                <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
+                                                    Email:
+                                                </span>
+                                                <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
+                                                    '. $email .'
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="link_account">
+                                        <div class="first_row" style="width:100%">
+                                            <p style="font-weight:700;font-size:14px;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;color: rgba(0, 0, 0, 0.9);">
+                                                Смотрите другие заявки на сайте:
+                                            </p>
+                                            <div style="background: #EFF3F6;border-radius: 3px;padding-top: 15px;padding-bottom: 15px;padding-right: 20px;padding-left: 20px;">
+                                                <a href="https://course-creator.io/" target="_blank" style="color: #8098AB;">
+                                                    https://course-creator.io/
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="envelope_info_bottom" style="text-align: center;margin-top:20px;margin-bottom: 20px;">
+                                <div>
+                                    Если у вас есть вопросы, пожалуйста, напишите <br> в службу поддержки: <a href="mailto:support@course-creator.io">support@course-creator.io</a>
+                                </div>
+                            </div>
+                        </body>
+                        </html>';
+        }
+
         private function GenerateRandomPassword ($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') {
             $str = '';
             $max = strlen($keyspace) - 1;
@@ -74,10 +304,10 @@
                 if (isset($_POST['file'])) {
                     $file = $_POST['second_file'];
                     $file_name = "Прикреплённый файл";
-                    $body = "Вы оставили заявку на сайте <a href=\"/https://course-creator.io/\">Course Creator</a><br>Ваша файл:";
+                    $body = $this->GetApplicationHtml();
                     $this->SendEmail($title, $body, $_POST['email'], $file, $file_name);
                 } else {
-                    $body = "Вы оставили заявку на сайте <a href=\"/https://course-creator.io/\">Course Creator</a><br>";
+                    $body = $this->GetApplicationHtml();
                     $this->SendEmail($title, $body, $_POST['email']);
                 }
                 $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], 0);
@@ -100,7 +330,7 @@
 
                 $title = "Регистрация аккаунта";
                 $this->password = $this->GenerateRandomPassword(12);
-                $body = "Ваш аккаунт на <a href=\"https://course-creator.io/UserLogin\">Course Creator</a><br>Почта: $this->email<br>Пароль:$this->password";
+                $body = $this->GetRegistrationUserHtml($this->email, $this->password);
                 $this->SendEmail($title, $body, $this->email);
 
                 $this->m->db->execute("INSERT INTO `user` (`email`, `password`, `is_creator`) VALUES ('$this->email', '$this->password', 0)");
@@ -147,11 +377,14 @@
                     $purchase_text = '{"course_id":["'.$course_id.'"], "video_id":[]}';
                     $this->m->db->execute("INSERT INTO `purchase` (`user_id`, `purchase`) VALUES ('$user_id', '$purchase_text')");
                 }
-                $course_name = $this->m->db->query("SELECT name FROM course WHERE id = $course_id")[0]['name'];
+                $course_info = $this->m->db->query("SELECT course.name, course.price, user.email FROM course INNER JOIN user ON user.id = course.author_id WHERE course.id = $course_id");
 
 //              Добавление уведомлений
-                $this->addNotifications("item-like", 'Вы купили курс ' . $course_name, '/img/Notification/message.png', $_SESSION['user']['id']);
-                $this->addNotifications("item-like", 'Ваш курс ' . $course_name . ' купил пользователь' . $this->name, '/img/Notification/message.png', $creator_id);
+                $this->addNotifications("item-like", 'Вы купили курс ' . $course_info[0]['name'], '/img/Notification/message.png', $_SESSION['user']['id']);
+                $this->addNotifications("item-like", 'Ваш курс ' . $course_info[0]['name'] . ' купил пользователь' . $this->name, '/img/Notification/message.png', $creator_id);
+                $title = "У вас купили курс!";
+                $body = $this->GetRegistrationClientHtml($course_info[0]['name'], $course_info[0]['price'], $this->email);
+                $this->SendEmail($title, $body, $course_info[0]['email']);
                 return true;
             }
             return true;

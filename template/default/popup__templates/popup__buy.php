@@ -1,4 +1,4 @@
-<div class="popup__buy popup">
+<div class="popup__buy popup" style="color: black;">
     <div class="popup__buy-body">
 <!--        <div class="popup__buy-title popup-title">Вы выбрали:</div>-->
 <!--        <div class="popup__buy-body">-->
@@ -30,9 +30,9 @@
                 <input id="course_id" value="" name="course_id" type="hidden">
                 <div class="popup__buy-price">
                     <div class="popup__buy-price-title">
-                        Стоимость урока:
+                        Стоимость курса:
                     </div><div class="popup__buy-price-cost">
-                        <span id="price"></span> ₽
+                        <span id="price">1000</span> ₽
                     </div>
                 </div>
                 <div class="popup__buy-register">
