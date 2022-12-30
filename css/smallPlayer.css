@@ -3,6 +3,11 @@
 html{
     overflow:hidden !important;
 }
+
+* button{
+    font-family: "Inter" !important;
+}
+
 .body {
     margin: 0;
     overflow: hidden !important;
@@ -669,6 +674,19 @@ html{
     height: 30px;
 }
 
+.overlay-allLessons .popup-title{
+    font-size:38px;
+    font-family: "TT Trailers";
+    margin:0px;
+}
+
+.overlay-allLessons .popup-text{
+    padding: 6px 0 20px 0px;
+}
+.overlay-allLessons .popup__allLessons-body__items{
+    width: 90%;
+    margin: 0 auto !important;
+}
 /* Mirror Video Effect */
 
 .mirror_smallPlayer{
