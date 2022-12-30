@@ -1822,6 +1822,28 @@ td:nth-child(1){
   background-position-x: calc(100% - 21px) !important;
 }
 
+.popup__body-item select[name="form_id-1"], select[name="form_id-2"], select[name="form_id-3"]{
+  background-position-x: calc(100% - 50px) !important;
+}
+
+#delete_selectForm{
+  background: #F8F8F8;
+  border-radius: 8px;
+  width: 30px;
+  height: 30px;
+  transition: 0.3s all ease;
+}
+#delete_selectForm svg path{
+  transition: 0.3s all ease;
+}
+
+#delete_selectForm:hover{
+  background: #4E73F8;
+}
+
+#delete_selectForm:hover svg path{
+  fill:white;
+}
 .popup__body-item select:focus {
   border: 1px solid #4E73F8;
   -webkit-box-shadow: 0 0 0 4px rgba(31, 45, 207, 0.2);
@@ -1829,7 +1851,7 @@ td:nth-child(1){
 }
 
 .addFormInput {
-  width: 250px;
+  width: 100%;
   background: #F8F8F8;
   border: 1px solid #E1E3E6;
   border-radius: 8px;
@@ -1981,15 +2003,15 @@ td:nth-child(1){
   text-transform: uppercase;
 }
 
-.popup__body-block.editVideo{
-  padding-left:20px;
-}
-
 /* Brench: Styles */
 
 #delete__back .popup__title{
   font-size:24px;
   line-height: 30px;
+}
+
+#delete__back .popup__form{
+  flex-direction: row !important;
 }
 
 .avatar{
