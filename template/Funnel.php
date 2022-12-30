@@ -266,6 +266,26 @@
 
 <!--Лоудер-->
 <script>
+    function ClearPopupSettings() {
+        document.querySelectorAll('.popup-styles-color').forEach(item => {
+            item.classList.remove('active');
+        })
+
+        document.querySelectorAll('.popup-styles-button').forEach(item => {
+            item.classList.remove('active');
+        })
+
+        document.querySelectorAll('.form-select').forEach(item => {
+            item.querySelector('option').value = null;
+            item.querySelector('option').innerHTML = "Выберите шрифт";
+        })
+
+        document.querySelectorAll('.mySelectOptions .item').forEach(item => {
+            item.classList.remove('active');
+        })
+    }
+
+
     function GetMainSettings(count) {
         $.ajax({
             url: '/Funnel/'+ count +'/GetMainSettings',
@@ -281,10 +301,9 @@
                     description__block.click();
                     let color__button = temp_data['number__color'];
                     let shadow__button = temp_data['number__style'];
-                    let head__text = temp_data['head__settings'];
                     document.querySelectorAll('.popup-styles-color')[color__button - 1].click();
-                    document.querySelectorAll('.general-popup__button')[shadow__button - 1].click();
-                    document.querySelector('textarea[name="head__settings"]').innerHTML = head__text;
+                    document.querySelectorAll('.popup-styles-button')[shadow__button - 1].classList.add('active');
+                    document.querySelector('textarea[name="head__settings"]').innerHTML = temp_data['head__settings'];
                 }
             }
         });
@@ -299,15 +318,17 @@
             document.querySelector('.popup__general').style.display = 'flex';
             let slider = item.parentElement.parentElement.querySelector('.media-cart-img').cloneNode(true);
             document.querySelector('.popup-video').appendChild(slider);
-            document.querySelector('.popup-video').querySelector('.slider__item-info').style.bottom = "18%";
+            if (document.querySelector('.popup-video').querySelector('.slider__item-info')) {
+                document.querySelector('.popup-video').querySelector('.slider__item-info').style.bottom = "18%";
+            }
             document.querySelector('#initButton').action = '/Funnel/' + item.dataset.funnel_id + '/main_settings';
-            document.querySelector('#id_item').value = item.dataset.funnel_id;
             GetMainSettings(item.dataset.funnel_id);
         })
     })
     popupGeneralClose.forEach(item =>{
         item.addEventListener('click', () => {
             document.querySelector('.popup__general').style.display = 'none';
+            ClearPopupSettings();
         })
     })
 </script>

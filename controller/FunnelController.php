@@ -292,11 +292,11 @@
             $funnelSettings = [];
             $funnelSettings['desc__font'] = $_POST['desc__font'];
             $funnelSettings['title__font'] = $_POST['title__font'];
-            $funnelSettings['button__style-color'] = $_POST['button__style-color'];
-            $funnelSettings['button__style-style'] = $_POST['button__style-style'];
-            $funnelSettings['number__style'] = $_POST['number-style'];
-            $funnelSettings['number__color'] = $_POST['number-color'];
-            $funnelSettings['head__settings'] = $_POST['head__settings'];
+            $funnelSettings['button__style-color'] = (string) $_POST['button__style-color'];
+            $funnelSettings['button__style-style'] = (string) $_POST['button__style-style'];
+            $funnelSettings['number__style'] = (string) $_POST['number-style'];
+            $funnelSettings['number__color'] = (string) $_POST['number-color'];
+
             return ['json' => $funnelSettings];
         }
 
@@ -304,7 +304,7 @@
         {
             $main_settings = $this->CreateMainSettings();
             $main__settingsResult = json_encode($main_settings['json'], JSON_UNESCAPED_UNICODE);
-            $this->m->db->execute("UPDATE `funnel` SET `style_settings` = '$main__settingsResult' WHERE id = " . $_POST['item_id']);
+            $this->m->db->execute("UPDATE `funnel` SET `style_settings` = '$main__settingsResult' WHERE id = " . $_SESSION['item_id']);
 
             $this->local_get_content();
             return True;

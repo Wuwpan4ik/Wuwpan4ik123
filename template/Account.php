@@ -538,7 +538,7 @@
         $('#social__form').each(function (){
             $(this).submit(function(e) {
                 e.preventDefault();
-                if (($(this).find('#social__link')[0].value.length) <= 10) {
+                if (($(this).find('#social__link')[0].value.length) <= 3) {
                     // Событие при нехватки длины
                     alert("Не хватает длины");
                     return;

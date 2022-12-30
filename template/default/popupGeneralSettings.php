@@ -9,8 +9,7 @@
                 <button type="button" onclick="save();" class="popup__edit-btn">Сохранить</button>
             </div>
         </div>
-        <form id="initButton" action="/Funnel/$item_id/main_settings" method="POST" class="popup__body-container popup-wrap"  enctype="multipart/form-data">
-            <input id="id_item" name="item_id" type="hidden" value="">
+        <form id="initButton" action="/Funnel/$item_id/main_settings" method="POST" class="popup__body-container popup-wrap">
             <input id="button__style-color" name="button__style-color" type="hidden" value="">
             <input id="button__style-style" name="button__style-style" type="hidden" value="">
             <input id="number-style" name="number-style" type="hidden" value="">
@@ -110,7 +109,7 @@
                 </div>
                 <div class="popup__body-item script">
                     <label class="popup__subtitle" for="first_do">Скрипты для HEAD</label>
-                    <textarea name="head__settings" placeholder="DEFAULT"></textarea>
+                    <textarea name="head__settings" type="text" placeholder="DEFAULT"></textarea>
                 </div>
                 <button type="submit" hidden id="main__settings-button"></button>
             </div>
