@@ -20,6 +20,8 @@
 
 <body>
 
+<?php //echo $_SESSION['error'?>
+
 <style>
     .popup__background {
         position: fixed;

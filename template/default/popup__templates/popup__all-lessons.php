@@ -31,8 +31,11 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <?php if (isset($item['description'])) { ?>
                                     <button class="accordion-button" id="accordion-button-1" aria-expanded="false">
-                                        <span class="icon" aria-hidden="true"></span></button>
+                                        <span class="icon" aria-hidden="true" style="cursor: pointer;"></span>
+                                    </button>
+                                    <?php } ?>
                                 </div>
                             </div>
                             <div class="accordion">
@@ -44,7 +47,6 @@
                             </div>
                         </div>
 
-
                     <?php $count += 1;
                 } ?>
             </div>
@@ -54,7 +56,7 @@
                 <button data-price="<?=$content['course_id'][0]['price']?>" data-course="<?=$content['course_id'][0]['id']?>" data-author="<?=$content['course_id'][0]['author_id']?>" type="button" class="button button-buy">Купить весь курс за <?php print_r($content['course_id'][0]['price']) ?> <?=isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></button>
             </div>
             <div class="popup__allLessons-form-notBuy">
-                <button type="button" class="button button-notBuy">Пока не хочу покупать</button>
+                <button type="button" class="button button-notBuy" onclick="notBuy()">Пока не хочу покупать</button>
             </div>
         </div>
     </div>

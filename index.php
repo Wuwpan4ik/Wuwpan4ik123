@@ -1,6 +1,6 @@
 <?php
-    session_start();
     header("Content-Type:text/html;charset=UTF-8");
+    session_start();
     require_once './vendor/autoload.php';
     require_once './model/Routering.php';
     $item_id = 0;

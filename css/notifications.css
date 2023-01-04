@@ -1,0 +1,32 @@
+.popup__notifications {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display:  none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 1000;
+    color: white;
+    background-color: #5552D9;
+    padding: 20px 40px;
+    border-radius: 20px;
+}
+
+.popup__notifications__body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.popup__notifications.active {
+    display: flex;
+}
+
+.popup__notifications__title {
+    font-size: 24px;
+}
+
+.popup__notifications__desc {
+    font-size: 16px;
+}

@@ -7,6 +7,7 @@
     <title>Course Creator - Плеер</title>
     <link type="text/css" rel="stylesheet" href="/css/smallPlayer.css">
     <link type="text/css" rel="stylesheet" href="/css/UserMain.css">
+    <link type="text/css" rel="stylesheet" href="/css/notifications.css">
     <!--Делаем так, чтобы страницы не индексировались в поиске-->
     <meta name="robots" content="noindex" />
     <!--Favicon-->
@@ -122,19 +123,24 @@
     </div>
 </div>
 
+<?php include 'template/default/notificationsPopup.php' ?>
+
 <?php if (empty($content['course_content'])) { ?>
     <h1 style="font-size: 34px; color: white; display:flex; justify-content: center">Вы не добавили курс, к которому будет принадлежать воронка или внутри него нет видео!</h1>
 <?php } ?>
+
+<script src="/js/notifications.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
 
 <!--Закрытие AllLessons-->
 <script>
     function notBuy() {
-        $(this).find('.button-notBuy').each(function (){
-            $('.slider__video-item').find('.overlay-allLessons').removeClass('active');
-            $('.slider__video-item').find('.popup-allLessons').removeClass('active');
-            this.pause();
+        document.querySelectorAll('.overlay').forEach(item => {
+            item.classList.remove('active');
+        })
+        document.querySelectorAll('.popup').forEach(item => {
+            item.classList.remove('active');
         })
     }
 </script>
@@ -195,7 +201,8 @@
                 try {
                     $(this)[0].querySelector('.next__lesson');
                     $('.slick-next').click();
-                    alert("Форма успешно отправлена");
+                    notBuy()
+                    AddNotifications('Вы успешно купили курс', 'Аккаунт отправлен на почту');
                 } catch {}
                 try {
                     if ($(this)[0].querySelector('.new_window')) {

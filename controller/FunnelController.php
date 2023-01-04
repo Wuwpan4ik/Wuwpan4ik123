@@ -55,7 +55,7 @@
             if (isset($_POST['name']) && strlen($_POST['name']) > 0) {
                 $name = $_POST['name'];
             } else {
-                $name = $funnelContent[0]['name'];
+                $description = null;
             }
 
             if (isset($_POST['description']) && strlen($_POST['description']) > 0) {
@@ -155,6 +155,7 @@
 
                 $this->m->db->execute("UPDATE funnel SET `name` = '$name' WHERE id = '$item_id'");
             }
+
             $this->local_get_content();
 
             return True;

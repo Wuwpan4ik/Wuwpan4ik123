@@ -8,6 +8,10 @@ html{
     overflow: hidden !important;
 }
 
+button {
+    cursor: pointer;
+}
+
 .Roboto {
     font-family: "Roboto", sans-serif;
 }

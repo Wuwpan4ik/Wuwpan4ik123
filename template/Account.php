@@ -465,26 +465,21 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
-                        <div class="exit-settings popup-tariff">
-                            <div class="popup-tariff-body">
-                                <div class="popup__title">
-                                    Если вы покинете страницу </br>введенные  вами данные </br> не сохраняться
-                                </div>
-                                <div class="popup__buttons">
-                                    <button id="close-popup" class="popup__btn popup__white">Покинуть</button>
-                                    <button class="popup__btn popup__blue">Сохранить</button>
-                                </div>
-                            </div>
+                <div class="exit-settings popup-tariff">
+                    <div class="popup-tariff-body">
+                        <div class="popup__title">
+                            Если вы покинете страницу </br>введенные  вами данные </br> не сохраняться
                         </div>
+                        <div class="popup__buttons">
+                            <button id="close-popup" class="popup__btn popup__white">Покинуть</button>
+                            <button class="popup__btn popup__blue">Сохранить</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-
+        </div>
     </div>
-
-</div>
-
 </div>
 <?php unset($_SESSION['error']) ?>
 <script src="/js/jquery-3.6.1.min.js"></script>
