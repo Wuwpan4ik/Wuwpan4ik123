@@ -257,11 +257,6 @@
                 echo json_encode($content);
             }
 
-            public function GetCourseList()
-            {
-                echo json_encode($this->m->db->query("SELECT * from course WHERE `author_id` = " . $_SESSION['user']['id']));
-            }
-
             public function GetFunnelPopup()
             {
                 $funnel_id = $_SESSION['item_id'];

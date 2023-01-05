@@ -190,12 +190,12 @@
                 }
                 case "list": {
                     $videoBtnHTML['first_do']['list'] = true;
-                    $videoBtnHTML['first_do']['course_id'] = $_POST['course_list'];
                     break;
                 }
                 case "link": {
                     if (isset($_POST['link-1'])) {
                         $videoBtnHTML['first_do']['link'] = $_POST['link-1'];
+                        $videoBtnHTML['first_do']['open_in_new'] = $_POST['open_new_window'];
                     }
                     break;
                 }
@@ -219,61 +219,59 @@
             } else {
                 $videoBtnHTML['form__desc'] = "Описание";
             }
-            switch ($_POST['second_do']) {
-                case "pay_form":
-                {
-                    if (isset($_POST['form_id-4'])) {
-                        $form_input_1 = $_POST['form_id-4'];
-                        $videoBtnHTML['second_do'][$second_do] = [$form_input_1];
+            if (isset($_POST['second_do'])) {
+                switch ($_POST['second_do']) {
+                    case "pay_form":
+                    {
+                        if (isset($_POST['form_id-4'])) {
+                            $form_input_1 = $_POST['form_id-4'];
+                            $videoBtnHTML['second_do'][$second_do] = [$form_input_1];
+                        }
+                        if (isset($_POST['form_id-5'])) {
+                            $form_input_2 = $_POST['form_id-5'];
+                            $videoBtnHTML['second_do'][$second_do] = array_merge(array_values($videoBtnHTML['second_do'][$second_do]), [$form_input_2]);
+                        }
+                        if (isset($_POST['form_id-6'])) {
+                            $form_input_3 = $_POST['form_id-6'];
+                            $videoBtnHTML['second_do'][$second_do] = array_merge(array_values($videoBtnHTML['second_do'][$second_do]), [$form_input_3]);
+                        }
+                        break;
                     }
-                    if (isset($_POST['form_id-5'])) {
-                        $form_input_2 = $_POST['form_id-5'];
-                        $videoBtnHTML['second_do'][$second_do] = array_merge(array_values($videoBtnHTML['second_do'][$second_do]), [$form_input_2]);
+                    case "link":
+                    {
+                        if (isset($_POST['link-2'])) {
+                            $videoBtnHTML['second_do']['link'] = $_POST['link-2'];
+                        }
+                        if (isset($_POST['link-2'])) {
+                            $videoBtnHTML['second_do']['open_in_new'] = $_POST['open_new_window'];
+                        }
+                        break;
                     }
-                    if (isset($_POST['form_id-6'])) {
-                        $form_input_3 = $_POST['form_id-6'];
-                        $videoBtnHTML['second_do'][$second_do] = array_merge(array_values($videoBtnHTML['second_do'][$second_do]), [$form_input_3]);
-                    }
-                    break;
-                }
-                case "link":
-                {
-                    if (isset($_POST['link-2'])) {
-                        $videoBtnHTML['second_do']['link'] = $_POST['link-2'];
-                    }
-                    if (isset($_POST['link-2'])) {
-                        $videoBtnHTML['second_do']['open_in_new'] = $_POST['open_new_window'];
-                    }
-                    break;
-                }
-                case "file":
-                {
-                    if (!$_FILES['file']['name']) {
-                        $file_name = uniqid('', true) . ".jpg";
-                    } else {
-                        $file_name = $_FILES['file']['name'];
-                    }
+                    case "file":
+                    {
+                        if (!$_FILES['file']['name']) {
+                            $file_name = uniqid('', true) . ".jpg";
+                        } else {
+                            $file_name = $_FILES['file']['name'];
+                        }
 
-                    $file = $this->url_dir . "/files/" . $funnel[0]['id'] . '_' . $file_name;
+                        $file = $this->url_dir . "/files/" . $funnel[0]['id'] . '_' . $file_name;
 
-                    move_uploaded_file($_FILES['file']['tmp_name'], $file);
+                        move_uploaded_file($_FILES['file']['tmp_name'], $file);
 
-                    $videoBtnHTML['second_do']['file'] = $file;
-                    break;
-                }
-                case 'list':
-                {
-                    $videoBtnHTML['second_do']['list'] = true;
-                    break;
-                }
-                case 'next_lesson':
-                {
-                    $videoBtnHTML['second_do']['next_lesson'] = true;
-                    break;
-                }
-                case '':
-                {
-                    $videoBtnHTML['second_do']['file'] = $_POST['file'];
+                        $videoBtnHTML['second_do']['file'] = $file;
+                        break;
+                    }
+                    case 'list':
+                    {
+                        $videoBtnHTML['second_do']['list'] = true;
+                        break;
+                    }
+                    case 'next_lesson':
+                    {
+                        $videoBtnHTML['second_do']['next_lesson'] = true;
+                        break;
+                    }
                 }
             }
             //          Если нет значения, то добавляет к кнопке "Посмотреть"

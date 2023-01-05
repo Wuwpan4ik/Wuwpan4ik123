@@ -73,7 +73,7 @@
                     <?php
                     if (isset($item['button_text']) && !isset($popup->first_do->next_lesson)) { ?>
                             <div class="slider__item-button button-open">
-                                <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" <?php echo (isset($popup->first_do->link)) ? "onClick=\"window.open('". $popup->first_do->link ."')\"": ''; ?> class="button"><?=$item['button_text']?></button>
+                                <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" <?php echo ($popup->first_do->open_in_new == 'open_new_window') ? "onClick=\"window.open('". $popup->first_do->link ."')\"" : "onClick=\"window.location = ('". $popup->first_do->link ."')\"" ?> class="button"><?=$item['button_text']?></button>
                             </div>
                             <?php } else { ?>
                         <script>
@@ -104,6 +104,7 @@
                             $second_link = $popup->second_do->link;
                             $id = $item['id'];
                             $new_window = !is_null($popup->second_do->open_in_new);
+                            $new_window = !is_null($popup->first_do->open_in_new);
                             $author_id = $item['author_id'];
                             include 'template/default/popup__templates/popup__form.php';
                         } ?>
@@ -202,7 +203,12 @@
                     $(this)[0].querySelector('.next__lesson');
                     $('.slick-next').click();
                     notBuy()
-                    AddNotifications('Вы успешно купили курс', 'Аккаунт отправлен на почту');
+                    if ($(this).hasClass('popup__application')) {
+                        AddNotifications('Вы успешно оставили заявку', 'Сообщение отправлено на почту');
+                    } else {
+                        AddNotifications('Вы успешно купили курс', 'Аккаунт отправлен на почту');
+                    }
+
                 } catch {}
                 try {
                     if ($(this)[0].querySelector('.new_window')) {

@@ -190,6 +190,7 @@ function addCheckbox(elem) {
     text.innerHTML = 'Открывать в новом окне';
     switch_box.appendChild(text)
     elem.parentElement.children[2].after(checkbox);
+    console.log(elem.parentElement)
 }
 
 //Добавление option
@@ -244,14 +245,9 @@ function checkFirstSelect() {
     if (['list'].includes(first_select.value)) {
         addPopup('list');
         defaultPopup(second_select);
-        document.querySelector('#popup__body-list-select').classList.remove('display-none');
         addSecondOptions([['pay_form', "Форма оплаты"], ['form', 'Форма заявки']]);
         enableAfterClickBlock();
         initListCourse();
-    }
-
-    if (first_select.value === 'next_lesson') {
-        document.querySelector('#popup__body-list-select').classList.add('display-none');
     }
 
     switch (first_select.value) {
@@ -268,8 +264,8 @@ function checkFirstSelect() {
         }
 
         case 'link': {
-            document.querySelector('#popup__body-list-select').classList.add('display-none');
             document.querySelector('#popup__body-form-1').style.display = 'none';
+            addCheckbox(document.querySelector('#first_do'));
             addFormLink(first_select);
             defaultPopup(second_select);
             disableAfterClickBlock();
@@ -286,7 +282,6 @@ function checkFirstSelect() {
             }
             document.querySelector('#popup__body-form-1').style.display = 'flex';
             first_select.parentElement.querySelector('.addFormInput').classList.remove('display-none');
-            document.querySelector('#popup__body-list-select').classList.add('display-none');
             first_select.parentElement.querySelectorAll('.link_item').forEach((elem) => {
                 elem.classList.add('display-none');
             })

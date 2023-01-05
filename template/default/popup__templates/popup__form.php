@@ -4,7 +4,7 @@
     </div>
     <div class="popup__bonus  popup popup-<?=$name?>">
         <div class="popup__bonus-body">
-            <form class="popup__form" method="POST" action="<?php if (isset($popup__do->form)) { echo '/ClientsController/application';} else { echo '/ClientsController/CourseBuy';}?>">
+            <form class="popup__form <?php if (isset($popup__do->form)) echo 'popup__application' ?>" method="POST" action="<?php if (isset($popup__do->form)) { echo '/ClientsController/application';} else { echo '/ClientsController/CourseBuy';}?>">
                 <input type="text" hidden="hidden" name="course_id" value="<?=$id?>">
                 <input type="text" hidden="hidden" name="creator_id" value="<?=$author_id?>">
             <?php if (isset($file)) { ?>

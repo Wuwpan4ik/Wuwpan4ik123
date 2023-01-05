@@ -49,7 +49,6 @@
             </div>
             <div class="popup__body-block editVideo" style="color: black">
                 <div class="popup__body-item">
-
                     <label for="first_do">Действие после нажатия:</label>
                     <select name="first_do" id="first_do">
                         <option value="list">Список уроков</option>
@@ -58,14 +57,6 @@
                         <option value="link" id="first_do_link">Переход по ссылке</option>
                         <option value="next_lesson" id="first_do_next_lesson">Открыть следующее видео</option>
                     </select>
-                    <div class="popup__body-item popup__margin" id="popup__body-list-select">
-                        <div class="popup__body-item">
-                            <label for="course_list">Выбрать курс:</label>
-                            <select name="course_list" id="course_list">
-
-                            </select>
-                        </div>
-                    </div>
                     <div class="popup__body-item popup__margin" id="popup__body-form-1">
                         <div class="popup__body-item">
                             <label for="form_id">Данные для формы:</label>

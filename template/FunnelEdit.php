@@ -365,14 +365,13 @@
     });
 </script>
 <script>
-    function click_settings(elem) {
-        getCourseList(elem);
-    }
-</script>
-<script>
     function CloseFunnelPopup() {
-        document.querySelector('.popup__bonus').classList.remove('active');
-        document.querySelector('.exit-funnel-edit').classList.remove('display-flex');
+        if (document.querySelector('.popup__bonus')) {
+            document.querySelector('.popup__bonus').classList.remove('active');
+        }
+        if (document.querySelector('.exit-funnel-edit')) {
+            document.querySelector('.exit-funnel-edit').classList.remove('display-flex');
+        }
         toggleOverflow();
         closePopup();
         clearPopup();
@@ -593,33 +592,7 @@
     })
 </script>
 
-<!--Подсос курсов для воронки-->
-<script>
-    function getCourseList(elem) {
-        let requestDisable = new XMLHttpRequest();
 
-        let urlDisable = "/Funnel/getCourseList";
-
-        requestDisable.open('GET', urlDisable);
-
-        requestDisable.setRequestHeader('Content-Type', 'application/x-www-form-url');
-        requestDisable.addEventListener("readystatechange", () => {
-            if (requestDisable.readyState === 4 && requestDisable.status === 200) {
-                let block = document.getElementById('course_list');
-                block.replaceChildren();
-                let course_list = JSON.parse(requestDisable.responseText);
-                for (let course_item of course_list) {
-                    let option = document.createElement('option');
-                    option.value = course_item['id'];
-                    option.innerHTML = course_item['name'];
-                    block.appendChild(option);
-                }
-            }
-        })
-        requestDisable.send();
-        getFunnelPopup(elem.parentElement.querySelector('.funnel__content-id').value);
-    }
-</script>
 
 <!-- Получить popup funnel_content -->
 <script>
@@ -643,35 +616,7 @@
                     option_item_1.selected = true;
                     option_item_1.setAttribute('selected', 'selected')
 
-                    // /first_do
-
-                    checkBothSelect();
-
-                    // second_do
-
-                    let option_2;
-                    let second_do;
-                    let option_item_2;
-
-                    if (popup['second_do']) {
-                        second_do = document.getElementById('second_do');
-                        option_2 = Object.keys(popup['second_do'])[0];
-                        option_item_2 = second_do.querySelector('option[value="' + option_2 + '"]')
-                        option_item_2.selected = true;
-                        option_item_2.setAttribute('selected', 'selected')
-                    }
-
-                    // /second_do
-
-                    checkSecondSelect();
-
                     switch (option_1) {
-                        case 'list':
-                            let a = document.getElementById('course_list');
-                            let option_list_1 = a.querySelector('option[value="'+ popup['first_do']['course_id'] +'"]');
-                            option_list_1.selected = true;
-                            option_list_1.setAttribute('selected', 'selected')
-                            break;
                         case 'pay_form':
                         case 'form':
                             if (popup['form__title']) {
@@ -688,16 +633,58 @@
                                 for (let item of popup['first_do']['form']) {
                                     addFormItem(div, item);
                                 }
-                            } else if(option_1 === 'pay_form') {
+                            } else if (option_1 === 'pay_form') {
                                 for (let item of popup['first_do']['pay_form']) {
                                     addFormItem(div, item);
                                 }
                             }
                             break;
                         case 'link':
-                            document.querySelector('.link_item').value = popup['first_do']['link']
+                            addCheckbox(document.querySelector('#first_do'));
+                            if (popup['first_do']['open_in_new']) {
+                                document.querySelector('input[name="open_new_window"]').checked = true;
+                            }
                             break;
                     }
+
+                    // /first_do
+
+                    checkBothSelect();
+
+                    if (popup['first_do']['link']) {
+                        document.querySelector('input[name="link-1"]').value = popup['first_do']['link']
+                    }
+
+                    // second_do
+
+                    let option_2;
+                    let second_do;
+                    let option_item_2;
+
+                    if (popup['second_do'] != null) {
+                        second_do = document.getElementById('second_do');
+                        option_2 = Object.keys(popup['second_do'])[0];
+                        option_item_2 = second_do.querySelector('option[value="' + option_2 + '"]')
+                        option_item_2.selected = true;
+                        option_item_2.setAttribute('selected', 'selected')
+                        switch (option_2) {
+                            case 'link':
+                                document.querySelector('input[name="link-2"]').value = popup['second_do']['link'];
+                                addCheckbox(second_do);
+                                if (popup['second_do']['open_in_new']) {
+                                    document.querySelector('input[name="open_new_window"]').checked = true;
+                                }
+                                break;
+                            case 'file':
+                                document.querySelector('#file-name').innerHTML = popup['second_do']['file'].toString().match(/.*\/(.+?)\./)[1];
+                                break;
+                        }
+                    }
+
+                    // /second_do
+
+                    checkSecondSelect();
+
                     setTimeout(function (){
                         if (popup['form__title']) {
                             let form__title = document.querySelector('.popup-title');
@@ -708,25 +695,6 @@
                             form__desc.innerHTML = popup['form__desc'];
                         }
                     }, 400)
-
-
-                    switch (option_2) {
-                        case 'link':
-                            if ((document.querySelectorAll('.checkbox__wrapper')).length === 1) {
-                                document.querySelectorAll('.checkbox__wrapper').forEach(item => {
-                                    item.remove();
-                                })
-                            }
-                            document.querySelector('input[name="link-2"]').value = popup['second_do']['link'];
-                            addCheckbox(second_do);
-                            if (popup['second_do']['open_in_new']) {
-                                document.querySelector('input[name="open_new_window"]').checked = true;
-                            }
-                            break;
-                        case 'file':
-                            document.querySelector('#file-name').innerHTML = popup['second_do']['file'].toString().match(/.*\/(.+?)\./)[1];
-                            break;
-                    }
                 }
             }
         })
