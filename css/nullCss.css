@@ -2,7 +2,7 @@
 .error {
     font-size: 16px;
     font-weight: 700;
-    margin: 10px 0 0 0;
+    margin: 30px 0 0 0;
     color: #ff5325;
 }
 * {
@@ -19,11 +19,11 @@
 }
 :focus,
 :active {
-// outline: none;
+ outline: none;
 }
 a:focus,
 a:active {
-// outline: none;
+ outline: none;
 }
 aside,
 nav,
