@@ -129,15 +129,13 @@
 
 <!--Закрытие AllLessons-->
 <script>
-    let currentVideo = document.getElementById('123')
-
     if (document.querySelector('.button-notBuy')) {
-        document.querySelector('.button-notBuy').addEventListener('click', function (){
+        document.querySelector('.button-notBuy').addEventListener('click', function () {
             document.querySelector('.overlay-allLessons').classList.remove('active');
-            document.getElementById('pause_video').classList.remove('active');
-            currentVideo.play();
+            document.querySelector('.popup').classList.remove('active');
             document.querySelector('.popup-allLessons').classList.remove('active');
         });
+    }
     function notBuy() {
         $(this).find('.button-notBuy').each(function (){
             $('.slider__video-item').find('.overlay-allLessons').removeClass('active');

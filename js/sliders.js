@@ -59,12 +59,10 @@ $('.slider').each(function() {
             if(this.paused){
                 $('.slick-current').find('.play__video').removeClass('active');
                 $('.slick-current').find('.pause__video').removeClass('active');
-                //videoMirror.play();
                 this.play();
             }
             else{
                 $('.slick-current').find('.pause__video').addClass('active');
-                //videoMirror.pause();
                 this.pause();
             }
         })
