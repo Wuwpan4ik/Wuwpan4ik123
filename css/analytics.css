@@ -365,6 +365,8 @@ tr {
     -ms-flex-align: center;
     align-items: center;
     gap: 13px;
+    text-align: center;
+    justify-content: start;
 }
 
 th {
@@ -423,10 +425,12 @@ th {
     display: flex;
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
-    justify-content: space-between;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 20px 10px !important;
 }
 
 .iconed img {
