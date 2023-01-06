@@ -38,8 +38,8 @@ $('.slider').each(function() {
     let currVideo = $('.slider__video-item');
     let overlays = $('.overlay');
 
-    for(let i = 0; i < whiteSpace.length; i++){
-        whiteSpace[i].onclick = () =>{
+    for (let i = 0; i < whiteSpace.length; i++) {
+        whiteSpace[i].onclick = () => {
             interval(currVideo[i]);
             currVideo[i].play();
             overlays[i].classList.remove('active');
@@ -59,12 +59,10 @@ $('.slider').each(function() {
             if(this.paused){
                 $('.slick-current').find('.play__video').removeClass('active');
                 $('.slick-current').find('.pause__video').removeClass('active');
-                //videoMirror.play();
                 this.play();
             }
             else{
                 $('.slick-current').find('.pause__video').addClass('active');
-                //videoMirror.pause();
                 this.pause();
             }
         })
@@ -73,6 +71,7 @@ $('.slider').each(function() {
         stopVideos();
         $(this).find('.slider__video-item').each(function () {
             this.addEventListener('click', function () {
+
                 let videoLocal = this;
                 interval(videoLocal);
 
@@ -91,6 +90,7 @@ $('.slider').each(function() {
                         interval(videoLocal);
                     });
                 });
+
                 $(this).on('play', function (event, slick) {
                     stopVideos();
                     $(this).find('.slider__video-item').each(function () {

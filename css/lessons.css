@@ -330,18 +330,35 @@ input[name="price"]{
     display: flex;
     gap: 24px;
 }
+.Lessons .media-cart .btn-upload .create-new{
+    padding: 10px 11px 10px 23px;
+    height: 82px;
+    transition: 0.3s all ease;
+}
+
+.Lessons .media-cart .btn-upload .create-new:hover{
+    background: white;
+}
 
 .create-new {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    background-color: #fff;
     border-radius: 20px;
-    padding: 11px 23px;
+    padding: 18px 25px;
     text-decoration: none;
     cursor: pointer;
+    gap:17px;
+    width:240px;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(10px);
 }
-
+.create-new p{
+    margin:0 !important;
+    line-height: 23px !important;
+}
 :active, :hover, :focus {
     outline: 0;
     outline-offset: 0;
@@ -424,6 +441,10 @@ input:checked + label {
     border: 1px solid #E1E3E6;
     border-radius: 8px;
     padding: 24px 16px 10px 16px!important;
+}
+
+textarea.videoname{
+    max-height: 130px;
 }
 .video-desc{
     padding:20px 16px 10px 16px !important;
@@ -914,12 +935,6 @@ input:checked + label {
     position: relative;
 }
 
-
-
-
-
-
-
 .clear_input_val{
     position: absolute;
     pointer-events: none;
@@ -958,7 +973,7 @@ input:checked + label {
     border: 1px solid #E1E3E6;
     border-radius: 8px;
     width: 100%;
-    padding: 0 16px;
+    padding: 13px 16px 12px 16px;
     color: #757D8A;
     height: 48px;
 }

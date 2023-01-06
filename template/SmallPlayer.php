@@ -71,7 +71,7 @@
                         <?=$item['content_description']?>
                     </div>
                     <?php
-                    if (isset($item['button_text']) && !isset($popup->first_do->next_lesson)) { ?>
+                    if (isset($item['button_text'])) { ?>
                             <div class="slider__item-button button-open">
                                 <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" <?php if (isset($popup->first_do->open_in_new)) if ($popup->first_do->open_in_new == 'open_new_window') { echo "onClick=\"window.open('". $popup->first_do->link ."')\""; } else { echo "onClick=\"window.location = ('". $popup->first_do->link ."')\""; } ?> class="button"><?=$item['button_text']?></button>
                             </div>
@@ -79,7 +79,6 @@
                         <script>
                             document.querySelector('.video-<?=$item['video_id']?>').addEventListener('ended', function () {
                                 document.querySelector('.slick-next').click();
-                                console.log(1)
                             })
                         </script>
                     <?php } ?>
@@ -136,6 +135,13 @@
 
 <!--Закрытие AllLessons-->
 <script>
+    if (document.querySelector('.button-notBuy')) {
+        document.querySelector('.button-notBuy').addEventListener('click', function () {
+            document.querySelector('.overlay-allLessons').classList.remove('active');
+            document.querySelector('.popup').classList.remove('active');
+            document.querySelector('.popup-allLessons').classList.remove('active');
+        });
+    }
     function notBuy() {
         document.querySelectorAll('.overlay').forEach(item => {
             item.classList.remove('active');

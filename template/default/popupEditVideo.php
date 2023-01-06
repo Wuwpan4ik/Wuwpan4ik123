@@ -11,7 +11,7 @@
         </div>
         <form id="initButton" action="/Funnel/$item_id/settings" method="POST" class="popup__body-container popup-wrap"  enctype="multipart/form-data">
             <input id="id_item" name="item_id" type="hidden" value="">
-            <div class="popup__body-block" style="width: 320px;">
+            <div class="popup__body-block">
                 <!--Прелоудер-->
                 <div class="slider__item">
                     <div class="slider__video popup-video">

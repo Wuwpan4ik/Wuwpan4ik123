@@ -56,7 +56,7 @@
             </div>
 
 
-            <div class="funnel-input input_focus">
+            <div class="funnel-input input_focus" style="display:none;">
                 <label for="name" class="label_focus">Укажите стоимость урока:</label>
                 <input name="price" class="videoname video-desc" type="number" value="<?=$v['price'] ?>">
                 <span class="clear_input_val">
