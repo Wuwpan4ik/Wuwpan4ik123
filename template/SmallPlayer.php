@@ -73,7 +73,7 @@
                     <?php
                     if (isset($item['button_text']) && !isset($popup->first_do->next_lesson)) { ?>
                             <div class="slider__item-button button-open">
-                                <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" <?php echo ($popup->first_do->open_in_new == 'open_new_window') ? "onClick=\"window.open('". $popup->first_do->link ."')\"" : "onClick=\"window.location = ('". $popup->first_do->link ."')\"" ?> class="button"><?=$item['button_text']?></button>
+                                <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" <?php if (isset($popup->first_do->open_in_new)) if ($popup->first_do->open_in_new == 'open_new_window') { echo "onClick=\"window.open('". $popup->first_do->link ."')\""; } else { echo "onClick=\"window.location = ('". $popup->first_do->link ."')\""; } ?> class="button"><?=$item['button_text']?></button>
                             </div>
                             <?php } else { ?>
                         <script>

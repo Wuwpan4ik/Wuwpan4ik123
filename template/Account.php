@@ -276,7 +276,7 @@
                                                 </div>
                                                 <div class="tariff-plan">
                                                     Стоимость тарифа:
-                                                    <div class="tariff-price">2 990 ₽/ мес  <?=isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : ''?></div>
+                                                    <div class="tariff-price">2 990 <?=isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : ''?>/ мес</div>
                                                 </div>
                                                 <div class="tariff-img">
                                                     <img src="/img/Starter.jpg" alt="">
@@ -411,14 +411,14 @@
                                 <div class="row">
                                     <div class="input_focus ">
                                         <label for="username" class="label_focus">API Ключ</label>
-                                        <input class="inf" type="text"  name="prodamus_api" value="<? print(htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : '')) ?>">
+                                        <input class="inf" type="text"  name="prodamus_api" value="">
                                         <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
                                     </div>
                                     <div class="input_focus ">
                                         <label for="username" class="label_focus">API Ключ</label>
-                                        <input class="inf" type="text"  name="prodamus_api" value="<? print(htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : '')) ?>">
+                                        <input class="inf" type="text"  name="prodamus_api" value="">
                                         <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
@@ -430,14 +430,14 @@
                                 <div class="row">
                                     <div class="input_focus ">
                                         <label for="username" class="label_focus">API Ключ</label>
-                                        <input class="inf" type="text"  name="albato_api" value="<? print(htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : '')) ?>">
+                                        <input class="inf" type="text"  name="albato_api" value="">
                                         <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
                                     </div>
                                     <div class="input_focus ">
                                         <label for="username" class="label_focus">API Ключ</label>
-                                        <input class="inf" type="text"  name="albato_api" value="<? print(htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : '')) ?>">
+                                        <input class="inf" type="text"  name="albato_api" value="">
                                         <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>

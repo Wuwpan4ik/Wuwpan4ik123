@@ -100,8 +100,8 @@
     $router->addRoute("/SortController/Clients", "SortController.php", "getClientsForMain");
     $router->addRoute("/SortController/AnalyticClients", "SortController.php", "getClientsForAnalytics");
     $router->addRoute("/SortController/AnalyticOrders", "SortController.php", "getOrdersForAnalytics");
-    $router->addRoute("/AnalyticController/$item_id/deleteOrder", "AnalyticController.php", 'DeleteOrder');
-    $router->addRoute("/AnalyticController/$item_id/deleteClient", "AnalyticController.php", 'DeleteClient');
+    $router->addRoute("/AnalyticController/DeleteAllClients", "AnalyticController.php", 'DeleteAllClients');
+    $router->addRoute("/AnalyticController/DeleteAllOrders", "AnalyticController.php", 'DeleteAllOrders');
 
     $router->addRoute("/StatisticsController/GetStatistics", "StatisticsController.php", 'GetAllStatistics');
     $router->addRoute("/StatisticsController/GetWeek", "StatisticsController.php", 'GetWeekGraph');

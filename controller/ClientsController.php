@@ -374,7 +374,7 @@
                 $course_info = $this->m->db->query("SELECT course.name, course.price, user.email FROM course INNER JOIN user ON user.id = course.author_id WHERE course.id = $course_id");
 
 //              Добавление уведомлений
-                $this->addNotifications("item-like", 'Вы купили курс ' . $course_info[0]['name'], '/img/Notification/message.png', $_SESSION['user']['id']);
+                $this->addNotifications("item-like", 'Вы купили курс ' . $course_info[0]['name'], '/img/Notification/message.png', $this->email);
                 $this->addNotifications("item-like", 'Ваш курс ' . $course_info[0]['name'] . ' купил пользователь' . $this->name, '/img/Notification/message.png', $creator_id);
                 $title = "У вас купили курс!";
                 $body = $this->GetRegistrationClientHtml($course_info[0]['name'], $course_info[0]['price'], $this->email);
