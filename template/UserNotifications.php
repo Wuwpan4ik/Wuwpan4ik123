@@ -46,10 +46,18 @@
                     </div>
                     <div class="UserNotifications-item__info">
                         <div class="UserNotifications-item__info-time">
-                            <?=$nt["time"]?>
+                            <?php
+                            $timestamp = strtotime($nt["time"]);
+                            $time_starts = date('H:i', $timestamp);
+                            echo $time_starts;
+                            ?>
                         </div>
                         <div class="UserNotifications-item__info-date">
-                            <?=$nt["date"]?>
+                            <?php
+                            $datestamp = strtotime($nt["date"]);
+                            $date_starts = date('d.m.Y', $datestamp);
+                            echo $date_starts;
+                            ?>
                         </div>
                     </div>
                 </div>
