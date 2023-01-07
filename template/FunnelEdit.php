@@ -507,7 +507,10 @@
             elem.style.display = 'none';
         })
         _("progressBar").classList.add('active');
-        _("progressText").classList.add('active');
+        _("progressTitle").classList.add('active');
+        _("progressSubTitle").classList.add('active');
+        _("progress-values").classList.add('active');
+        document.querySelector('.upload__form').classList.add('active');
         document.querySelector('.btn-upload').classList.add('active');
         var formdata = new FormData();
         formdata.append("video_uploader", file);

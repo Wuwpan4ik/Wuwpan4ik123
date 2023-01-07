@@ -100,7 +100,6 @@
             if(scroll >= 270){
                 postItem.classList.remove('active');
                 postItem.style.position = 'fixed';
-                postItem.style.left = feed.clientWidth - 60;
                 postItem.style.top = '70px';
                 postItem.style.bottom = 'null';
             }

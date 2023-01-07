@@ -352,7 +352,9 @@ span.button__back {
   padding: 20px;
   border-radius: 30px;
 }
-
+.upload__form.active{
+  background: none !important;
+}
 .upload__label {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -375,16 +377,19 @@ span.button__back {
   color: black;
   margin-top: 0;
 }
-
+.upload__form.active{
+  background: none !important;
+}
 .progress {
   width: 100%;
+}
+.progressBar{
+  margin: 20px 0 0 0 !important;
 }
 
 #progressBar {
   display: none;
   width: 100%;
-  padding: 15px 0 0 0;
-  margin: 0;
   background: none;
   border: 0;
   border-radius: 50px;
@@ -394,18 +399,33 @@ span.button__back {
   font-size: 15px;
 }
 
-.btn-upload.active {
-  width: 80%;
-}
 
-#progressText {
+.progressTitle{
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 23px;
+  color: #000;
+}
+.progressSubTitle{
+  color: rgba(0, 0, 0, 0.6);
+  margin: 4px 0 0 0;
+}
+#progressTitle, #progressSubTitle, #progress-values {
   display: none;
-}
 
-#progressText.active {
+}
+.progress-values{
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+#progressTitle.active, #progressSubTitle.active {
   display: block;
-}
 
+}
+#progress-values.active{
+  display: flex;
+}
 #progressBar.active {
   display: block;
 }
@@ -432,8 +452,7 @@ span.button__back {
 #progressBar:after {
   padding: 0;
   width: 100%;
-  float: left;
-  content: attr(value) "%";
+  content: attr(value);
   color: #555;
   -webkit-transform: translate(-25px, 7px);
   -ms-transform: translate(-25px, 7px);
@@ -1173,7 +1192,11 @@ span.name {
   align-items: center;
   margin: 16px 0 0 0;
 }
-
+@media (max-width: 699px) {
+  .time-more-btn a{
+    width: 100% !important;
+  }
+}
 .time-more-btn a {
 
   padding: 8px 43px;
