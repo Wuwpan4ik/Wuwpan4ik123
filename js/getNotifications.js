@@ -56,7 +56,10 @@ function GetAllNotif() {
             if (document.querySelector('.popupBell-body')) {
                 document.querySelector('.popupBell-body').innerHTML = request.responseText;
             }
-            document.querySelector('.popupBell').classList.toggle('active')
+            if (!document.querySelector('.popupBell').classList.contains('active')) {
+                document.querySelector('.popupBell').classList.add('active')
+            }
+            document.querySelector('.popupBell-body').classList.remove('display-none');
             if (request.responseText.length < 4) {
                 document.querySelector('.popupBell-body').innerHTML = `<div class="popupBell-body">
                 <div class="popupBell-item not-bell">

@@ -293,6 +293,7 @@
             $buy_progress = include './settings/buy_progress.php';
             $creator_id = $_POST['creator_id'];
             $course_id = $_POST['course_id'];
+            $creator_email = $this->m->db->query("SELECT email FROM user WHERE id = {$creator_id}")[0]['email'];
             $comment = 'Заявка';
             $client = $this->GetClient($course_id);
             if (count($client) == 1){
@@ -302,13 +303,13 @@
             } else {
                 $title = "Оставили заявку";
                 if (isset($_POST['file'])) {
-                    $file = $_POST['second_file'];
-                    $file_name = "Прикреплённый файл";
+//                    $file = $_POST['second_file'];
+//                    $file_name = "Прикреплённый файл";
+//                    $body = $this->GetApplicationHtml();
+//                    $this->SendEmail($title, $body, $_POST['email'], $file, $file_name);
+//                } else {
                     $body = $this->GetApplicationHtml();
-                    $this->SendEmail($title, $body, $_POST['email'], $file, $file_name);
-                } else {
-                    $body = $this->GetApplicationHtml();
-                    $this->SendEmail($title, $body, $_POST['email']);
+                    $this->SendEmail($title, $body, $creator_email);
                 }
                 $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], 0);
             }
