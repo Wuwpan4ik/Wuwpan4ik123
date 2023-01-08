@@ -33,7 +33,7 @@
 
                     <label class="menu-label" id="oplab" for="About"><p>Клиенты</p></label>
 
-                    <div class="tab _container">
+                    <div class="tab">
 
                         <div class="Tableusers">
 
@@ -120,7 +120,7 @@
                     <input type="radio" id="Orders" name="mytabs"/>
 
                     <label class="menu-label" id="ordlab" for="Orders"><p>Заказы</p></label>
-                    <div class="tab _container">
+                    <div class="tab">
 
                         <div class="Tableusers" style="overflow: hidden">
 
@@ -204,7 +204,7 @@
 
                     <label class="statistic__button menu-label" id="cllab" for="Tarif"><p>Статистика</p></label>
 
-                    <div class="tab _container">
+                    <div class="tab">
                         <div class="geo__profit">
                             <div class="profit__leftSide">
                                 <div class="profit__row">
