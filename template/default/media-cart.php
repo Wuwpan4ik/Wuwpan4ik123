@@ -20,7 +20,7 @@
         <?php if (strstr($_SERVER['REQUEST_URI'], 'Funnel' )) {?>
         <div class="funnel-input input_focus">
             <label for="name" class="label_focus activeLabel">Укажите заголовок:</label>
-            <input name="name" class="videoname video-desc" type="text" value="<?=$v['name']?>">
+            <input name="name" maxlength="30" class="videoname video-desc" type="text" value="<?=$v['name']?>">
             <span class="clear_input_val">
         <img src="/img/clear_input.svg" alt="">
         </span>
@@ -32,7 +32,7 @@
         <div class="button__do-block <?php if (!isset($v['button_text']) || is_null($v['button_text'])) { ?> display-none <?php } ?>" >
             <div class="funnel-input input_focus">
                 <label for="name" class="label_focus">Текст для кнопки:</label>
-                <input name="button_text" class="videoname video-desc" type="text" value="<?=$v['button_text']?>">
+                <input name="button_text" maxlength="15" class="videoname video-desc" type="text" value="<?=$v['button_text']?>">
                 <span class="clear_input_val">
             <img src="/img/clear_input.svg" alt="">
             </span>
@@ -44,7 +44,7 @@
         <?php } else { ?>
             <div class="funnel-input input_focus">
                 <label for="name" class="label_focus">Укажите заголовок:</label>
-                <input name="name" class="videoname video-desc" type="text" value="<?=$v['name']?>">
+                <input name="name" maxlength="30" class="videoname video-desc" type="text" value="<?=$v['name']?>">
                 <span class="clear_input_val">
             <img src="/img/clear_input.svg" alt="">
             </span>
@@ -58,7 +58,7 @@
 
             <div class="funnel-input input_focus" style="display:none;">
                 <label for="name" class="label_focus">Укажите стоимость урока:</label>
-                <input name="price" class="videoname video-desc" type="number" value="<?=$v['price'] ?>">
+                <input name="price" class="videoname video-desc" type="number" min="100" max="100000" maxlength="6" value="<?=$v['price'] ?>">
                 <span class="clear_input_val">
             <img src="/img/clear_input.svg" alt="">
             </span>

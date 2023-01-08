@@ -16,7 +16,7 @@
         <div class="User-header">
                 <div class="User-logo user__logo">
                     <div class="user__logo-img"><img src="../img/Logo.svg" alt=""></div>
-                    <div class="user__logo-text">Центр Ратнера</div>
+                    <div class="user__logo-text">Course Creator</div>
                 </div>
             <div class="header-white__burger">
                 <a href="/UserMenu">
@@ -30,7 +30,7 @@
     <div class="popup__container">
     <div class="userPopup">
         <div class="user-content">
-            <div class="aboutTheAuthor userPopup__title">
+            <div class="aboutTheAuthor userPopup__title" style="text-align:center;margin-bottom: 40px;">
                 Об авторе:
             </div>
             <div class="userPopup__body">

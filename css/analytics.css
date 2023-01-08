@@ -849,3 +849,10 @@ span.red_text {
     background: rgba(78, 115, 248, 0.24);
     border-radius: 5px;
 }
+
+
+/* Brench: Styles */
+
+input.check_order{
+    margin-right: 20px;
+}
