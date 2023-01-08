@@ -37,19 +37,23 @@
                 <div class="UserContacts-body ">
                     <?php if ($content['contacts'][0]["telephone"]) { ?>
                     <div class="UserContacts-item UserContacts-body__telephone ">
-                        <div class="UserContacts-body__header">
+                        <div class="UserContacts-body__header" style="margin-bottom: 8px;">
                             <img src="../img/UserContacts/phone.svg" alt="">
                             <span>Телефон:</span>
                         </div>
-                        <input style="font-size: 16px;" type="tel" placeholder="<?=$content['contacts'][0]["telephone"]?>" maxlength="15" disabled>
+                        <a href="tel:<?=$content['contacts'][0]["telephone"]?>" style="font-size: 16px;">
+                            <?=$content['contacts'][0]["telephone"]?>
+                        </a>
                     </div>
                     <?php } ?>
                     <div class="UserContacts-item UserContacts-body__telephone ">
-                        <div class="UserContacts-body__header">
+                        <div class="UserContacts-body__header" style="margin-bottom: 8px;">
                             <img src="../img/UserContacts/email.svg" alt="">
                             <span>Почта:</span>
                         </div>
-                        <input style="font-size: 16px;" type="tel" placeholder="<?=$content['contacts'][0]["email"]?>" maxlength="15" disabled>
+                        <a href="mailto:<?=$content['contacts'][0]["email"]?>" style="font-size: 16px;">
+                            <?=$content['contacts'][0]["email"]?>
+                        </a>
                     </div>
                     <?php
                     if ($content['is_contacts']) { ?>
@@ -78,7 +82,7 @@
                         Есть вопросы?
                     </div>
                     <div class="UserContacts-footer__tarea">
-                        <textarea name="question" id=""  placeholder="Ваш вопрос"></textarea>
+                        <textarea name="question" id=""  placeholder="Ваш вопрос" maxlength="400" style="max-height: 160px;min-height: 100px"></textarea>
                         <span> <img src="../img/textarea.svg" alt=""></span>
                     </div>
                 </div>
