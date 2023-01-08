@@ -47,7 +47,7 @@ class SortController extends ACoreCreator {
 
                 '<tr>
 
-						<td class="nick"> <input type="checkbox" class="check_user">' . mb_strimwidth($client["first_name"], 0, 8, '') . '</td>
+						<td class="nick"> <input type="checkbox" data-id="'. $client["id"] .'" class="check_user">' . mb_strimwidth($client["first_name"], 0, 8, '') . '</td>
 											
 						<td>' . $client["give_money"] . (isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : "₽") . '</td>
 
@@ -62,9 +62,13 @@ class SortController extends ACoreCreator {
 						<td class="iconed">
 
 							<span>
-
-								<a href="/AnalyticController/' . $client['id'] . '/deleteClient"><img class="table_ico" src="img/Trash.svg"></a>
-
+							
+                                <form class="DeleteItem" action="/AnalyticController/DeleteAllClients" method="POST">
+                                    <input type="hidden" name="items_id" value="'. $client['id'] .'">
+                                    <button type="submit">
+                                        <img class="table_ico" src="img/Trash.svg">
+                                    </button>
+                                </form>
 							</span>
 
 						</td>
@@ -88,7 +92,7 @@ class SortController extends ACoreCreator {
             echo
 
                 '<tr>
-                        <td> <input type="checkbox" class="check_order">' . $count . '</td>
+                        <td> <input type="checkbox" data-id="'. $order["id"] .'" class="check_order">' . $count . '</td>
 				
 						<td>' . $order["money"] . (isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : "₽") . '</td>
 
@@ -104,7 +108,13 @@ class SortController extends ACoreCreator {
     
 							<span>
 
-								<a href="/AnalyticController/' . $order['id'] . '/deleteOrder"><img class="table_ico" src="img/Trash.svg"></a>
+								<form class="DeleteItem" action="/AnalyticController/DeleteAllOrders" method="POST">
+                                    <input type="hidden" name="items_id" value="'. $order['id'] .'">
+                                    <button type="submit">
+                                        <img class="table_ico" src="img/Trash.svg">
+                                    </button>
+                                    
+                                </form>
 
 							</span>
 

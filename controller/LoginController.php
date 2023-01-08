@@ -142,10 +142,15 @@
                     }
                     $response = "С возвращением, " . $_SESSION["user"]["name"];
                 } else {
+
                     $response = "Вам не разрешён доступ";
+                    echo $response;
+                    die(header("HTTP/1.0 404 Not Found"));
                 }
             } else {
-                $response = "Такого пользователя не существует";
+                $response = "Неверный пароль или логин";
+                echo $response;
+                die(header("HTTP/1.0 404 Not Found"));
             }
             header('Location: /');
         }

@@ -6,10 +6,10 @@
     <title>Course Creator - Воронки</title>
 
     <link rel="stylesheet" href="/css/nullCss.css">
-    <link rel="stylesheet" href="/css/font.css">
+
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/lessons.css">
-
+    <link rel="stylesheet" href="/css/font.css">
 
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
@@ -183,7 +183,21 @@
 <script src="../js/script.js" ></script>
 <script src="../js/sliders.js"></script>
 <script src="../js/customSelect.js"></script>
+<script>
+    document.querySelectorAll(".title__general .item").forEach(item => {
+        item.addEventListener('click', () => {
+            document.querySelector('.preview__title').className  = "slider__item-title preview__title";
+            document.querySelector('.preview__title').classList.add(item.querySelector('input').value)
+        })
+    })
 
+    document.querySelectorAll(".description__general .item").forEach(item => {
+        item.addEventListener('click', () => {
+            document.querySelector('.preview__text').className  = "slider__item-text preview__text";
+            document.querySelector('.preview__text').classList.add(item.querySelector('input').value)
+        })
+    })
+</script>
 <script>
 
     let colors = document.querySelectorAll('.popup-styles-color');
@@ -205,15 +219,18 @@
         let temp_shadow;
         if (document.querySelector('.button-shadow-down').classList.contains('active')) {
             document.querySelector('.button-video').style.boxShadow = '0px 3px 0px ' + shadow;
+            document.querySelector('#number-style').value = 1;
             temp_shadow = '0px 3px 0px ' + shadow;
         }
         else if (document.querySelector('.button-shadow-lite').classList.contains('active')) {
             document.querySelector('.button-video').style.boxShadow = '0px 10px 30px ' + shadow;
             temp_shadow = '0px 10px 30px ' + shadow;
+            document.querySelector('#number-style').value = 2;
         }
         else if (document.querySelector('.button-shadow-none').classList.contains('active')){
 
             document.querySelector('.button-video').style.boxShadow = null;
+            document.querySelector('#number-style').value = 3;
         }
         if (shadow != null) {
 
@@ -226,6 +243,7 @@
 
     colors.forEach(item => {
         item.addEventListener('click', () => {
+            document.querySelector('#number-color').value = item.dataset.id;
             item.classList.toggle('active')
             color = item.style.background;
             shadow = item.style.color;
@@ -259,13 +277,48 @@
 
 
 </script>
+
+<!--Лоудер-->
 <script>
+    function ClearPopupSettings() {
+        document.querySelectorAll('.popup-styles-color').forEach(item => {
+            item.classList.remove('active');
+        })
+
+        document.querySelectorAll('.popup-styles-button').forEach(item => {
+            item.classList.remove('active');
+        })
+
+        document.querySelectorAll('.form-select').forEach(item => {
+            item.querySelector('option').value = null;
+            item.querySelector('option').innerHTML = "Выберите шрифт";
+        })
+
+        document.querySelectorAll('.mySelectOptions .item').forEach(item => {
+            item.classList.remove('active');
+        })
+    }
+
+
     function GetMainSettings(count) {
         $.ajax({
             url: '/Funnel/'+ count +'/GetMainSettings',
             type: "POST",
             success: function (data) {
-                let temp_data = JSON.parse(data);
+                if (data){
+                    let temp_data = JSON.parse(data);
+                    let description = temp_data['desc__font'];
+                    let title = temp_data['title__font'];
+                    let title__block = document.querySelector('.title__general').querySelector('input[value="'+ title +'"]');
+                    let description__block = document.querySelector('.description__general').querySelector('input[value="'+ description +'"]');
+                    title__block.click();
+                    description__block.click();
+                    let color__button = temp_data['number__color'];
+                    let shadow__button = temp_data['number__style'];
+                    document.querySelectorAll('.popup-styles-color')[color__button - 1].click();
+                    document.querySelectorAll('.popup-styles-button')[shadow__button - 1].classList.add('active');
+                    document.querySelector('textarea[name="head__settings"]').innerHTML = temp_data['head__settings'];
+                }
             }
         });
     }
@@ -274,20 +327,24 @@
     let generalSettings = document.querySelectorAll('.general-settings');
     let popupGeneralClose = document.querySelectorAll('.close__btn');
 
-    generalSettings.forEach(item =>{
+    generalSettings.forEach(item => {
         item.addEventListener('click', () => {
             document.querySelector('.popup__general').style.display = 'flex';
             let slider = item.parentElement.parentElement.querySelector('.media-cart-img').cloneNode(true);
+            slider.querySelector('.slider__item-title').classList.add('preview__title')
+            slider.querySelector('.slider__item-text').classList.add('preview__text')
             document.querySelector('.popup-video').appendChild(slider);
-            document.querySelector('.popup-video').querySelector('.slider__item-info').style.bottom = "18%";
+            if (document.querySelector('.popup-video').querySelector('.slider__item-info')) {
+                document.querySelector('.popup-video').querySelector('.slider__item-info').style.bottom = "18%";
+            }
             document.querySelector('#initButton').action = '/Funnel/' + item.dataset.funnel_id + '/main_settings';
-            document.querySelector('#id_item').value = item.dataset.funnel_id;
             GetMainSettings(item.dataset.funnel_id);
         })
     })
     popupGeneralClose.forEach(item =>{
         item.addEventListener('click', () => {
             document.querySelector('.popup__general').style.display = 'none';
+            ClearPopupSettings();
         })
     })
 </script>

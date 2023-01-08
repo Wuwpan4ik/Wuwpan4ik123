@@ -1,6 +1,6 @@
 <?php
-    session_start();
     header("Content-Type:text/html;charset=UTF-8");
+    session_start();
     require_once './vendor/autoload.php';
     require_once './model/Routering.php';
     $item_id = 0;
@@ -84,7 +84,6 @@
     $router->addRoute("/Funnel/$item_id/main_settings", "FunnelController.php", "MainSettings");
     $router->addRoute("/Funnel/$item_id/GetMainSettings", "FunnelController.php", "GetMainSettings");
     $router->addRoute("/Funnel/$item_id/checkSettings", "CheckFunnelSettingsController.php", "CheckPopupSettings", false);
-    $router->addRoute("/Funnel/getCourseList", "UserController.php", "GetCourseList");
     $router->addRoute("/Funnel/$item_id/getFunnelPopup", "UserController.php", "GetFunnelPopup");
 
     $router->addRoute("/LoginController/login", "LoginController.php", 'login');
@@ -101,8 +100,8 @@
     $router->addRoute("/SortController/Clients", "SortController.php", "getClientsForMain");
     $router->addRoute("/SortController/AnalyticClients", "SortController.php", "getClientsForAnalytics");
     $router->addRoute("/SortController/AnalyticOrders", "SortController.php", "getOrdersForAnalytics");
-    $router->addRoute("/AnalyticController/$item_id/deleteOrder", "AnalyticController.php", 'DeleteOrder');
-    $router->addRoute("/AnalyticController/$item_id/deleteClient", "AnalyticController.php", 'DeleteClient');
+    $router->addRoute("/AnalyticController/DeleteAllClients", "AnalyticController.php", 'DeleteAllClients');
+    $router->addRoute("/AnalyticController/DeleteAllOrders", "AnalyticController.php", 'DeleteAllOrders');
 
     $router->addRoute("/StatisticsController/GetStatistics", "StatisticsController.php", 'GetAllStatistics');
     $router->addRoute("/StatisticsController/GetWeek", "StatisticsController.php", 'GetWeekGraph');

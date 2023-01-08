@@ -7,6 +7,7 @@
     <title>Course Creator - Плеер</title>
     <link type="text/css" rel="stylesheet" href="/css/smallPlayer.css">
     <link type="text/css" rel="stylesheet" href="/css/UserMain.css">
+    <link type="text/css" rel="stylesheet" href="/css/notifications.css">
     <!--Делаем так, чтобы страницы не индексировались в поиске-->
     <meta name="robots" content="noindex" />
     <!--Favicon-->
@@ -72,15 +73,9 @@
                     <?php
                     if (isset($item['button_text'])) { ?>
                             <div class="slider__item-button button-open">
-                                <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" <?php echo (isset($popup->first_do->link)) ? "onClick=\"window.open('". $popup->first_do->link ."')\"": ''; ?> class="button"><?=$item['button_text']?></button>
+                                <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" <?php if ($popup->first_do->next_lesson) echo 'onclick="NextSlide()"' ?> <?php if (isset($popup->first_do->link)) if ($popup->first_do->open_in_new == 'open_new_window') { echo "onClick=\"window.open('". $popup->first_do->link ."')\""; } else { echo "onclick=\"window.location = ('". $popup->first_do->link ."')\""; } ?> class="button"><?=$item['button_text']?></button>
                             </div>
                             <?php } else { ?>
-                        <script>
-                            document.querySelector('.video-<?=$item['video_id']?>').addEventListener('ended', function () {
-                                document.querySelector('.slick-next').click();
-                                console.log(1)
-                            })
-                        </script>
                     <?php } ?>
                         </div>
                         <?php
@@ -103,6 +98,7 @@
                             $second_link = $popup->second_do->link;
                             $id = $item['id'];
                             $new_window = !is_null($popup->second_do->open_in_new);
+                            $new_window = !is_null($popup->first_do->open_in_new);
                             $author_id = $item['author_id'];
                             include 'template/default/popup__templates/popup__form.php';
                         } ?>
@@ -122,19 +118,38 @@
     </div>
 </div>
 
+<?php include 'template/default/notificationsPopup.php' ?>
+
 <?php if (empty($content['course_content'])) { ?>
     <h1 style="font-size: 34px; color: white; display:flex; justify-content: center">Вы не добавили курс, к которому будет принадлежать воронка или внутри него нет видео!</h1>
 <?php } ?>
+
+<script src="/js/notifications.js"></script>
+
+<!--На некст слайд-->
+<script>
+    function NextSlide() {
+        $('.slick-next').click();
+    }
+</script>
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
 
 <!--Закрытие AllLessons-->
 <script>
+    if (document.querySelector('.button-notBuy')) {
+        document.querySelector('.button-notBuy').addEventListener('click', function () {
+            document.querySelector('.overlay-allLessons').classList.remove('active');
+            document.querySelector('.popup').classList.remove('active');
+            document.querySelector('.popup-allLessons').classList.remove('active');
+        });
+    }
     function notBuy() {
-        $(this).find('.button-notBuy').each(function (){
-            $('.slider__video-item').find('.overlay-allLessons').removeClass('active');
-            $('.slider__video-item').find('.popup-allLessons').removeClass('active');
-            this.pause();
+        document.querySelectorAll('.overlay').forEach(item => {
+            item.classList.remove('active');
+        })
+        document.querySelectorAll('.popup').forEach(item => {
+            item.classList.remove('active');
         })
     }
 </script>
@@ -142,8 +157,6 @@
 <script>
     let mirrorVideo = document.getElementById('mirrorVideo');
     let sourceVideo = document.querySelectorAll('#sourceVideo');
-
-
 
     document.addEventListener('DOMContentLoaded', function () {
         mirrorVideo.src = sourceVideo[0].src;
@@ -197,7 +210,13 @@
                 try {
                     $(this)[0].querySelector('.next__lesson');
                     $('.slick-next').click();
-                    alert("Форма успешно отправлена");
+                    notBuy()
+                    if ($(this).hasClass('popup__application')) {
+                        AddNotifications('Вы успешно оставили заявку', 'Сообщение отправлено на почту');
+                    } else {
+                        AddNotifications('Вы успешно купили курс', 'Аккаунт отправлен на почту');
+                    }
+
                 } catch {}
                 try {
                     if ($(this)[0].querySelector('.new_window')) {
@@ -213,6 +232,25 @@
 <script src="/js/script.js" ></script>
 <script src="/js/slick.min.js"></script>
 <script src="/js/sliders.js"></script>
+<script>
+    function startAccordion() {
+        let accordionButton = document.querySelectorAll(".accordion-button");
+        let accordionInner = document.querySelectorAll(".accordion .accordion-item .accordion-content");
+
+        for(let i = 0; i < accordionButton.length; i++){
+            accordionButton[i].onclick = () =>{
+                if(accordionInner[i].classList.contains('active')){
+                    accordionInner[i].classList.remove('active')
+                    accordionButton[i].classList.remove('active')
+                }else{
+                    accordionInner[i].classList.add('active')
+                    accordionButton[i].classList.add('active')
+                }
+            }
+        }
+    }
+    startAccordion()
+</script>
 </body>
 </html>
 

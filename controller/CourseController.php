@@ -11,13 +11,16 @@
 
         public function AddVideo() {
             require './vendor/autoload.php';
+
             if ($_FILES['video_uploader']['size'] == 0)
             {
                 return False;
             }
 
             $uid = $_SESSION['item_id'];
+
             $res = $this->m->db->query("SELECT * FROM `course` WHERE id = '$uid' ORDER BY `id` DESC LIMIT 1");
+
             $count_video = count($this->m->db->query("SELECT * FROM `course_content` WHERE course_id = ". $res[0]['id'])) + 1;
 
             if (!$this->isUser($res[0]['author_id'])) return False;
@@ -28,23 +31,27 @@
 
             chmod($path, 0777);
 
-            $ffmpeg = FFMpeg\FFMpeg::create([
-                'ffmpeg.binaries'  => './settings/ffmpeg.exe',
-                'ffprobe.binaries' => './settings/ffprobe.exe',
-                'ffplay.binaries' => './settings/ffplay.exe',
-            ]);
+//            try {
+                $ffmpeg = FFMpeg\FFMpeg::create([
+                    'ffmpeg.binaries'  => './settings/ffmpeg.exe',
+                    'ffprobe.binaries' => './settings/ffprobe.exe',
+                    'ffplay.binaries' => './settings/ffplay.exe',
+                ]);
 
-            $video = $ffmpeg->open($path);
+                $video = $ffmpeg->open($path);
 
-            $frame = $video->frame(FFMpeg\Coordinate\TimeCode::fromSeconds(1));
+                $frame = $video->frame(FFMpeg\Coordinate\TimeCode::fromSeconds(1));
 
-            $frame_path = $this->url_dir . "thumbnails/$uid/" . $count_video ."_" . $_FILES['video_uploader']['name'] . ".jpg";
+                $frame_path = $this->url_dir . "thumbnails/$uid/" . $count_video ."_" . $_FILES['video_uploader']['name'] . ".jpg";
 
-            $frame->save($frame_path);
+                $frame->save($frame_path);
 
-            $image = imagescale(imagecreatefromjpeg($frame_path), 512, 288);
+                $image = imagescale(imagecreatefromjpeg($frame_path), 512, 288);
 
-            imagejpeg($image, $frame_path);
+                imagejpeg($image, $frame_path);
+//            } catch (Exception $exept) {
+//                $_SESSION['error'] = $exept;
+//            }
 
             $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `thubnails`, `query_id`) VALUES ($uid ,null , null , '$path', '$frame_path' , $count_video)");
 

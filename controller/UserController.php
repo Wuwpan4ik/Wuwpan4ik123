@@ -139,7 +139,7 @@
                 echo $div;
             }
 
-        function getList() {
+            function getList() {
             $course_id = $_GET['course_id'];
             $course_page = $this->m->getContentForCourseListPage($course_id);
             $purchase = $this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $_SESSION['user']['id']);
@@ -204,78 +204,72 @@
                     echo $div;
                 }
 
-                function GetListForSmallPlayer()
-                {
-                    $course_content = $this->m->db->query("SELECT course_content.name,
-                                                    course_content.description,
-                                                    course_content.video,
-                                                    course_content.price,
-                                                    course_content.thubnails
-                                                    FROM `funnel` AS funnel
-                                                    INNER JOIN `course_content` AS course_content ON course_content.course_id = funnel.course_id AND funnel.id = '$id'");
-                    $count = 1;
-                    foreach ($course_content as $item) {
-                        $div = '<div class="popup__allLessons-item popup-item">
-                        <div class="popup__allLessons-item-video">
-                            <div class="popup__allLessons-item-video__img">
-                                <img src="/' . $item['thubnails'] . '" alt="">
-                                <div class="popup__allLessons-item-video-play">
-                                    <img src="../img/smallPlayer/play.png" alt="">
-                                </div>
+            function GetListForSmallPlayer() {
+                $course_content = $this->m->db->query("SELECT course_content.name,
+                                                course_content.description,
+                                                course_content.video,
+                                                course_content.price,
+                                                course_content.thubnails
+                                                FROM `funnel` AS funnel
+                                                INNER JOIN `course_content` AS course_content ON course_content.course_id = funnel.course_id AND funnel.id = '$id'");
+                $count = 1;
+                foreach ($course_content as $item) {
+                    $div = '<div class="popup__allLessons-item popup-item">
+                    <div class="popup__allLessons-item-video">
+                        <div class="popup__allLessons-item-video__img">
+                            <img src="/' . $item['thubnails'] . '" alt="">
+                            <div class="popup__allLessons-item-video-play">
+                                <img src="../img/smallPlayer/play.png" alt="">
                             </div>
                         </div>
-                        <div class="popup__allLessons-item-info">
-                            <div class="popup__allLessons-item-info-header">
-                                <div class="popup__allLessons-item-info-header-number">
-                                    ' . $count . '
-                                </div>
-                            </div>
-                            <div class="popup__allLessons-item-info-title">
-                                ' . $item['name'] . '
+                    </div>
+                    <div class="popup__allLessons-item-info">
+                        <div class="popup__allLessons-item-info-header">
+                            <div class="popup__allLessons-item-info-header-number">
+                                ' . $count . '
                             </div>
                         </div>
-                    </div>';
-                        $count += 1;
-                    }
-                    echo $div;
+                        <div class="popup__allLessons-item-info-title">
+                            ' . $item['name'] . '
+                        </div>
+                    </div>
+                </div>';
+                    $count += 1;
                 }
-
-                function getBuyCourse()
-                {
-                    $course_id = $_GET['course_id'];
-                    $course = $this->m->db->query("SELECT course.name, course.description, course.author_id, course.price, count(course_content.id) as 'count' FROM course_content INNER JOIN course ON course_content.course_id = course.id WHERE course.id = $course_id");
-                    echo json_encode($course);
-                }
-
-                function getBuyVideo()
-                {
-                    $video_id = $_GET['video_id'];
-                    $content = $this->m->db->query("SELECT course_content.id, course_content.thubnails, course_content.name, course_content.description, course_content.video, course_content.price, course_content.query_id, user.id AS 'author_id' FROM course_content INNER JOIN course ON course_content.course_id = course.id INNER JOIN user ON course.author_id = user.id WHERE course_content.id = '$video_id'")[0];
-                    $getID3 = new getID3;
-                    $file = $getID3->analyze($content['video']);
-                    $duration = $file['playtime_string'];
-                    array_push($content, $duration);
-                    echo json_encode($content);
-                }
-
-                public
-                function GetCourseList()
-                {
-                    echo json_encode($this->m->db->query("SELECT * from course WHERE `author_id` = " . $_SESSION['user']['id']));
-                }
-        public function GetFunnelPopup()
-        {
-            $funnel_id = $_SESSION['item_id'];
-            echo json_encode($this->m->db->query("SELECT popup from funnel_content WHERE `id` = " . $funnel_id)[0]['popup']);
-        }
-
-        function get_content()
-        {
-            // TODO: Implement get_content() method.
-        }
-
-                function obr()
-                {
-                    // TODO: Implement obr() method.
-                }
+                echo $div;
             }
+
+            function getBuyCourse()
+            {
+                $course_id = $_GET['course_id'];
+                $course = $this->m->db->query("SELECT course.name, course.description, course.author_id, course.price, count(course_content.id) as 'count' FROM course_content INNER JOIN course ON course_content.course_id = course.id WHERE course.id = $course_id");
+                echo json_encode($course);
+            }
+
+            function getBuyVideo()
+            {
+                $video_id = $_GET['video_id'];
+                $content = $this->m->db->query("SELECT course_content.id, course_content.thubnails, course_content.name, course_content.description, course_content.video, course_content.price, course_content.query_id, user.id AS 'author_id' FROM course_content INNER JOIN course ON course_content.course_id = course.id INNER JOIN user ON course.author_id = user.id WHERE course_content.id = '$video_id'")[0];
+                $getID3 = new getID3;
+                $file = $getID3->analyze($content['video']);
+                $duration = $file['playtime_string'];
+                array_push($content, $duration);
+                echo json_encode($content);
+            }
+
+            public function GetFunnelPopup()
+            {
+                $funnel_id = $_SESSION['item_id'];
+                echo json_encode($this->m->db->query("SELECT popup from funnel_content WHERE `id` = " . $funnel_id)[0]['popup']);
+            }
+
+            function get_content()
+            {
+                // TODO: Implement get_content() method.
+            }
+
+            function obr()
+            {
+                // TODO: Implement obr() method.
+            }
+        }

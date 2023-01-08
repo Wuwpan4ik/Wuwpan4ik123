@@ -293,6 +293,7 @@
             $buy_progress = include './settings/buy_progress.php';
             $creator_id = $_POST['creator_id'];
             $course_id = $_POST['course_id'];
+            $creator_email = $this->m->db->query("SELECT email FROM user WHERE id = {$creator_id}")[0]['email'];
             $comment = 'Заявка';
             $client = $this->GetClient($course_id);
             if (count($client) == 1){
@@ -302,13 +303,13 @@
             } else {
                 $title = "Оставили заявку";
                 if (isset($_POST['file'])) {
-                    $file = $_POST['second_file'];
-                    $file_name = "Прикреплённый файл";
+//                    $file = $_POST['second_file'];
+//                    $file_name = "Прикреплённый файл";
+//                    $body = $this->GetApplicationHtml();
+//                    $this->SendEmail($title, $body, $_POST['email'], $file, $file_name);
+//                } else {
                     $body = $this->GetApplicationHtml();
-                    $this->SendEmail($title, $body, $_POST['email'], $file, $file_name);
-                } else {
-                    $body = $this->GetApplicationHtml();
-                    $this->SendEmail($title, $body, $_POST['email']);
+                    $this->SendEmail($title, $body, $creator_email);
                 }
                 $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], 0);
             }
@@ -342,13 +343,7 @@
                 if (isset($this->phone)) {
                     $this->m->db->execute("INSERT INTO `user` (`telephone`) VALUES ('$this->phone') WHERE `email` = '$this->email'");
                 }
-                $res = $this->m->getUserByEmail($this->email);
-
-                $_SESSION["user"] = [
-                    'id' => $res[0]['id'],
-                    'email' => $res[0]['email'],
-                    'is_creator' => 0
-                ];
+                $res = $this->m->getUserByEmail($this->email)[0];
             }
 
             if ($client[0]['buy_progress'] < $buy_progress[$comment]) {
@@ -361,26 +356,25 @@
 
 //          Добавление Order
                 $current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
-                $this->m->db->execute("INSERT INTO `orders` (`user_id`, `course_id`, `creator_id`, `money`, `achivment_date`) VALUES ('". $_SESSION['user']['id'] ."', '$course_id', '$creator_id', '$give_money', '$current_date')");
+                $this->m->db->execute("INSERT INTO `orders` (`user_id`, `course_id`, `creator_id`, `money`, `achivment_date`) VALUES ('". $res['id'] ."', '$course_id', '$creator_id', '$give_money', '$current_date')");
 
 
 //              Добавление Purchase
-                $purchase = $this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $_SESSION['user']['id']);
+                $purchase = $this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $res['id']);
                 if (isset($purchase) && count($purchase) == 1) {
                     $purchase_info = json_decode($purchase[0]['purchase'], true);
                     if (!in_array($course_id, $purchase_info['course_id'])) {
                         array_push($purchase_info['course_id'], $course_id);
-                        $this->m->db->execute("UPDATE `purchase` SET purchase = '" . json_encode($purchase_info) . "' WHERE user_id = " . $_SESSION['user']['id']);
+                        $this->m->db->execute("UPDATE `purchase` SET purchase = '" . json_encode($purchase_info) . "' WHERE user_id = " . $res['id']);
                     }
                 } else {
-                    $user_id = $_SESSION['user']['id'];
                     $purchase_text = '{"course_id":["'.$course_id.'"], "video_id":[]}';
-                    $this->m->db->execute("INSERT INTO `purchase` (`user_id`, `purchase`) VALUES ('$user_id', '$purchase_text')");
+                    $this->m->db->execute("INSERT INTO `purchase` (`user_id`, `purchase`) VALUES ('{$res['id']}', '$purchase_text')");
                 }
                 $course_info = $this->m->db->query("SELECT course.name, course.price, user.email FROM course INNER JOIN user ON user.id = course.author_id WHERE course.id = $course_id");
 
 //              Добавление уведомлений
-                $this->addNotifications("item-like", 'Вы купили курс ' . $course_info[0]['name'], '/img/Notification/message.png', $_SESSION['user']['id']);
+                $this->addNotifications("item-like", 'Вы купили курс ' . $course_info[0]['name'], '/img/Notification/message.png', $this->email);
                 $this->addNotifications("item-like", 'Ваш курс ' . $course_info[0]['name'] . ' купил пользователь' . $this->name, '/img/Notification/message.png', $creator_id);
                 $title = "У вас купили курс!";
                 $body = $this->GetRegistrationClientHtml($course_info[0]['name'], $course_info[0]['price'], $this->email);
@@ -390,96 +384,96 @@
             return true;
         }
 
-        public function BuyVideo() {
-            if (!$this->RequestValidate()) return false;
-            $buy_progress = include './settings/buy_progress.php';
-            $creator_id = $_POST['creator_id'];
-            $video_id = $_POST['course_id'];
-            $course__real_id = $this->m->db->query("SELECT course_id FROM course_content WHERE id = '$video_id'")[0]['course_id'];
-            $comment = 'Купил видео';
-            $client = $this->GetClient($course__real_id);
-            $price_video = $this->GetPriceOfVideo($video_id)[0]['price'];
-            $give_money = $client[0]['give_money'] + $price_video;
-
+//        public function BuyVideo() {
+//            if (!$this->RequestValidate()) return false;
+//            $buy_progress = include './settings/buy_progress.php';
+//            $creator_id = $_POST['creator_id'];
+//            $video_id = $_POST['course_id'];
+//            $course__real_id = $this->m->db->query("SELECT course_id FROM course_content WHERE id = '$video_id'")[0]['course_id'];
+//            $comment = 'Купил видео';
+//            $client = $this->GetClient($course__real_id);
+//            $price_video = $this->GetPriceOfVideo($video_id)[0]['price'];
+//            $give_money = $client[0]['give_money'] + $price_video;
+//
 //          Добавление User
-            if (count($this->m->getUserByEmail($this->email)) != 1) {
-                $title = "Регистрация аккаунта";
-                $this->password = $this->GenerateRandomPassword(12);
-                $body = "Ваш аккаунт на <a href=\"https://course-creator.io/UserLogin\">Course Creator</a><br>Почта: $this->email<br>Пароль:$this->password";
-
-                $this->SendEmail($title, $body, $this->email);
-
-                $this->m->db->execute("INSERT INTO `user` (`email`, `password`, `is_creator`) VALUES ('$this->email', '$this->password', 0)");
-
-                if (isset($this->name)) {
-                    $this->m->db->execute("INSERT INTO `user` (`first_name`) VALUES ('$this->name') WHERE `email` = '$this->email'");
-                }
-
-                if (isset($this->phone)) {
-                    $this->m->db->execute("INSERT INTO `user` (`telephone`) VALUES ('$this->phone') WHERE `email` = '$this->email'");
-                }
-                $res = $this->m->getUserByEmail($this->email);
-
-                $_SESSION["user"] = [
-                    'id' => $res[0]['id'],
-                    'email' => $res[0]['email'],
-                    'is_creator' => 0
-                ];
-            }
-
-
-            if ($client[0]['buy_progress'] <= $buy_progress[$comment]) {
-
-//              Добавление Clients
-                if (count($client) == 1){
-                    $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]', `give_money` = '$give_money', `first_buy` = 0 WHERE `creator_id` = '$creator_id' AND `course_id` = '$course__real_id' AND `email` = '$this->email'");
-                } else {
-                    $this->InsertToTable($creator_id, $course__real_id, $buy_progress[$comment], $give_money);
-                }
-
-//                     Добавление Order
-                    $current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
-                    $this->m->db->execute("INSERT INTO `orders` (`user_id`,`course_id`, `course_content_id`, `creator_id`, `money`, `achivment_date`) VALUES ('". $_SESSION['user']['id'] ."', '$course__real_id', '$video_id', '$creator_id', '$price_video', '$current_date')");
+//            if (count($this->m->getUserByEmail($this->email)) != 1) {
+//                $title = "Регистрация аккаунта";
+//                $this->password = $this->GenerateRandomPassword(12);
+//                $body = "Ваш аккаунт на <a href=\"https://course-creator.io/UserLogin\">Course Creator</a><br>Почта: $this->email<br>Пароль:$this->password";
+//
+//                $this->SendEmail($title, $body, $this->email);
+//
+//                $this->m->db->execute("INSERT INTO `user` (`email`, `password`, `is_creator`) VALUES ('$this->email', '$this->password', 0)");
+//
+//                if (isset($this->name)) {
+//                    $this->m->db->execute("INSERT INTO `user` (`first_name`) VALUES ('$this->name') WHERE `email` = '$this->email'");
+//                }
+//
+//                if (isset($this->phone)) {
+//                    $this->m->db->execute("INSERT INTO `user` (`telephone`) VALUES ('$this->phone') WHERE `email` = '$this->email'");
+//                }
+//                $res = $this->m->getUserByEmail($this->email);
+//
+//                $_SESSION["user"] = [
+//                    'id' => $res[0]['id'],
+//                    'email' => $res[0]['email'],
+//                    'is_creator' => 0
+//                ];
+//            }
 
 
-                    //          Добавление Purchase
-                    $purchase = $this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $_SESSION['user']['id']);
-                    if (isset($purchase) && count($purchase) == 1) {
-                        $purchase_info = json_decode($purchase[0]['purchase'], true);
-                        if (!in_array($video_id, $purchase_info['video_id'])) {
-                            array_push($purchase_info['video_id'], $video_id);
-                            $this->m->db->execute("UPDATE `purchase` SET purchase = '" . json_encode($purchase_info) . "' WHERE user_id = " . $_SESSION['user']['id']);
-                        }
-                    } else {
-                        $user_id = $_SESSION['user']['id'];
-                        $purchase_text = '{"course_id":[], "video_id":["'.$video_id.'"]}';
-                        $this->m->db->execute("INSERT INTO `purchase` (`user_id`, `purchase`) VALUES ('$user_id', '$purchase_text')");
-                    }
-
-        //          Проверка покупки всех видео
-                    $purchase_video = json_decode($this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $_SESSION['user']['id'])[0]['purchase'], true);
-                    $id = $this->m->db->query("SELECT course_content.course_id FROM course_content WHERE id = '$video_id'")[0]['course_id'];
-                    $course_list = explode(',', $this->m->db->query("SELECT GROUP_CONCAT(`id`) FROM `course_content` WHERE course_id = '$id'")[0]['GROUP_CONCAT(`id`)']);
-                    foreach ($course_list as $item) {
-                        if (!in_array($item, $purchase_video['video_id'])) {
-                            return true;
-                        }
-                    }
-                    foreach ($purchase_video['video_id'] as $key=>$item) {
-                        if (in_array($item, $course_list)) unset($purchase_video['video_id'][$key]);
-                    }
-                    array_push($purchase_video['course_id'], $id);
-                    $this->m->db->execute("UPDATE `purchase` SET purchase = '" . json_encode($purchase_video) . "' WHERE user_id = " . $_SESSION['user']['id']);
-                    $video_name = $this->m->db->query("SELECT name FROM course_content WHERE id = $video_id")[0]['name'];
-
-    //              Добавление уведомлений
-
-                    $this->addNotifications("item-like", 'Вы купили видео ' . $video_name, '/img/Notification/message.png', $_SESSION['user']['id']);
-                    $this->addNotifications("item-like", 'Ваш урок ' . $video_name . ' купил пользователь' . $this->name, '/img/Notification/message.png', $creator_id);
-                    return true;
-                }
-            return true;
-        }
+//            if ($client[0]['buy_progress'] <= $buy_progress[$comment]) {
+//
+////              Добавление Clients
+//                if (count($client) == 1){
+//                    $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]', `give_money` = '$give_money', `first_buy` = 0 WHERE `creator_id` = '$creator_id' AND `course_id` = '$course__real_id' AND `email` = '$this->email'");
+//                } else {
+//                    $this->InsertToTable($creator_id, $course__real_id, $buy_progress[$comment], $give_money);
+//                }
+//
+////                     Добавление Order
+//                    $current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
+//                    $this->m->db->execute("INSERT INTO `orders` (`user_id`,`course_id`, `course_content_id`, `creator_id`, `money`, `achivment_date`) VALUES ('". $_SESSION['user']['id'] ."', '$course__real_id', '$video_id', '$creator_id', '$price_video', '$current_date')");
+//
+//
+//                    //          Добавление Purchase
+//                    $purchase = $this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $_SESSION['user']['id']);
+//                    if (isset($purchase) && count($purchase) == 1) {
+//                        $purchase_info = json_decode($purchase[0]['purchase'], true);
+//                        if (!in_array($video_id, $purchase_info['video_id'])) {
+//                            array_push($purchase_info['video_id'], $video_id);
+//                            $this->m->db->execute("UPDATE `purchase` SET purchase = '" . json_encode($purchase_info) . "' WHERE user_id = " . $_SESSION['user']['id']);
+//                        }
+//                    } else {
+//                        $user_id = $_SESSION['user']['id'];
+//                        $purchase_text = '{"course_id":[], "video_id":["'.$video_id.'"]}';
+//                        $this->m->db->execute("INSERT INTO `purchase` (`user_id`, `purchase`) VALUES ('$user_id', '$purchase_text')");
+//                    }
+//
+//        //          Проверка покупки всех видео
+//                    $purchase_video = json_decode($this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $_SESSION['user']['id'])[0]['purchase'], true);
+//                    $id = $this->m->db->query("SELECT course_content.course_id FROM course_content WHERE id = '$video_id'")[0]['course_id'];
+//                    $course_list = explode(',', $this->m->db->query("SELECT GROUP_CONCAT(`id`) FROM `course_content` WHERE course_id = '$id'")[0]['GROUP_CONCAT(`id`)']);
+//                    foreach ($course_list as $item) {
+//                        if (!in_array($item, $purchase_video['video_id'])) {
+//                            return true;
+//                        }
+//                    }
+//                    foreach ($purchase_video['video_id'] as $key=>$item) {
+//                        if (in_array($item, $course_list)) unset($purchase_video['video_id'][$key]);
+//                    }
+//                    array_push($purchase_video['course_id'], $id);
+//                    $this->m->db->execute("UPDATE `purchase` SET purchase = '" . json_encode($purchase_video) . "' WHERE user_id = " . $_SESSION['user']['id']);
+//                    $video_name = $this->m->db->query("SELECT name FROM course_content WHERE id = $video_id")[0]['name'];
+//
+//    //              Добавление уведомлений
+//
+//                    $this->addNotifications("item-like", 'Вы купили видео ' . $video_name, '/img/Notification/message.png', $_SESSION['user']['id']);
+//                    $this->addNotifications("item-like", 'Ваш урок ' . $video_name . ' купил пользователь' . $this->name, '/img/Notification/message.png', $creator_id);
+//                    return true;
+//                }
+//            return true;
+//        }
 
         function get_content()
         {

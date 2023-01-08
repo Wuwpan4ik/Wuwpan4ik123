@@ -224,6 +224,7 @@
                     <div class="popup__buy-register">
                         <form id="formQuest" method="POST" action="/ContactController/sendQuestions">
                             <input type="hidden" value="" name="author_id" id="question_author-id">
+                            <input type="hidden" value="" name="course_id" id="question_course-id">
                             <?php if (!isset($_SESSION['user']['first_name'])) { ?>
                             <div class="popup__buy-body-form question input">
                                 <div class="popup__bonus-form-input-account input-img">
@@ -342,8 +343,6 @@ unset($_SESSION['course_id']);
         request.send();
     }
 
-
-
     function getVideoInfo(number) {
         let request = new XMLHttpRequest();
 
@@ -441,6 +440,7 @@ unset($_SESSION['course_id']);
             if (request1.readyState === 4 && request1.status === 200) {
                 document.querySelector('.lesson__list').innerHTML = request1.responseText;
                 getCourseName(number);
+                document.getElementById('question_course-id').value = number;
                 let choiceVideo = document.body.querySelectorAll('.choice-video');
                 choiceVideo.forEach(item => {
                     item.onclick = function () {
@@ -501,29 +501,6 @@ unset($_SESSION['course_id']);
             }
         }
     }
-
-
-    more = function (){
-        let hideContent = document.querySelectorAll('.aboutTheAuthor__info-text');
-        hideContent.forEach(item =>{
-            let height = item.clientHeight
-            if(height >= 47){
-                item.innerHTML+= '<a class="button-more active">Узнать больше</a>'
-                const buttonMore = document.querySelectorAll('.button-more ')
-                buttonMore.forEach(item =>{
-                    item.onclick = function (){
-                        buttonMore.forEach(el =>{
-                            el.classList.add('active');
-                            el.parentElement.classList.add('hide-content');
-                            item.classList.remove('active');
-                            item.parentElement.classList.remove('hide-content');
-                        })
-                    }
-                })
-            }
-        })
-    }
-    more()
 
 
 </script>
