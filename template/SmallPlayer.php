@@ -73,14 +73,9 @@
                     <?php
                     if (isset($item['button_text'])) { ?>
                             <div class="slider__item-button button-open">
-                                <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" <?php if (isset($popup->first_do->open_in_new)) if ($popup->first_do->open_in_new == 'open_new_window') { echo "onClick=\"window.open('". $popup->first_do->link ."')\""; } else { echo "onClick=\"window.location = ('". $popup->first_do->link ."')\""; } ?> class="button"><?=$item['button_text']?></button>
+                                <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" <?php if ($popup->first_do->next_lesson) echo 'onclick="NextSlide()"' ?> <?php if (isset($popup->first_do->open_in_new)) if ($popup->first_do->open_in_new == 'open_new_window') { echo "onClick=\"window.open('". $popup->first_do->link ."')\""; } else { echo "onClick=\"window.location = ('". $popup->first_do->link ."')\""; } ?> class="button"><?=$item['button_text']?></button>
                             </div>
                             <?php } else { ?>
-                        <script>
-                            document.querySelector('.video-<?=$item['video_id']?>').addEventListener('ended', function () {
-                                document.querySelector('.slick-next').click();
-                            })
-                        </script>
                     <?php } ?>
                         </div>
                         <?php
@@ -130,6 +125,13 @@
 <?php } ?>
 
 <script src="/js/notifications.js"></script>
+
+<!--На некст слайд-->
+<script>
+    function NextSlide() {
+        $('.slick-next').click();
+    }
+</script>
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
 
