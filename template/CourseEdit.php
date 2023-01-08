@@ -94,7 +94,7 @@
 
                 <button id="apps" class="ico_button" onclick="window.location.replace('Analytics')">Заявки</button>
 
-                <div class="popupBell active">
+                <div class="popupBell">
                     <div class="popupBell-body">
                         <div class="popupBell-item not-bell">
                             <div class="popupBell-item__info ">
@@ -321,13 +321,18 @@
 
 
 <script src="/js/getNotifications.js"></script><script>
-    let buttonBell =  document.body.querySelector('.button-bell');
-    let popupBell =  document.body.querySelector('.popupBell')
+    let buttonBell =  document.querySelector('.button-bell');
+    let popupBell =  document.querySelector('.popupBell')
+    let popupBellBody = document.querySelector('.popupBell-body')
     function popupBellActive() {
         popupBell.classList.add('active');
     }
     function popupBellDisable() {
-        popupBell.classList.remove('active');
+        setTimeout(function () {
+            if (!popupBellBody.onmouseover) {
+                popupBell.classList.remove('active');
+            }
+        }, 1000)
     }
     buttonBell.addEventListener('mouseover', popupBellActive)
     buttonBell.addEventListener('mouseout', popupBellDisable)

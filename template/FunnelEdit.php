@@ -209,7 +209,7 @@
 
                 <button id="apps" class="ico_button" onclick="window.location.replace('Analytics')">Заявки</button>
 
-                <div class="popupBell active">
+                <div class="popupBell">
                     <div class="popupBell-body">
                         <div class="popupBell-item not-bell">
                             <div class="popupBell-item__info ">

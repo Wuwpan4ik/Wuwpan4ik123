@@ -342,7 +342,7 @@
                 if (isset($this->phone)) {
                     $this->m->db->execute("INSERT INTO `user` (`telephone`) VALUES ('$this->phone') WHERE `email` = '$this->email'");
                 }
-                $res = $this->m->getUserByEmail($this->email);
+                $res = $this->m->getUserByEmail($this->email)[0];
             }
 
             if ($client[0]['buy_progress'] < $buy_progress[$comment]) {
@@ -355,21 +355,20 @@
 
 //          Добавление Order
                 $current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
-                $this->m->db->execute("INSERT INTO `orders` (`user_id`, `course_id`, `creator_id`, `money`, `achivment_date`) VALUES ('". $_SESSION['user']['id'] ."', '$course_id', '$creator_id', '$give_money', '$current_date')");
+                $this->m->db->execute("INSERT INTO `orders` (`user_id`, `course_id`, `creator_id`, `money`, `achivment_date`) VALUES ('". $res['id'] ."', '$course_id', '$creator_id', '$give_money', '$current_date')");
 
 
 //              Добавление Purchase
-                $purchase = $this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $_SESSION['user']['id']);
+                $purchase = $this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $res['id']);
                 if (isset($purchase) && count($purchase) == 1) {
                     $purchase_info = json_decode($purchase[0]['purchase'], true);
                     if (!in_array($course_id, $purchase_info['course_id'])) {
                         array_push($purchase_info['course_id'], $course_id);
-                        $this->m->db->execute("UPDATE `purchase` SET purchase = '" . json_encode($purchase_info) . "' WHERE user_id = " . $_SESSION['user']['id']);
+                        $this->m->db->execute("UPDATE `purchase` SET purchase = '" . json_encode($purchase_info) . "' WHERE user_id = " . $res['id']);
                     }
                 } else {
-                    $user_id = $_SESSION['user']['id'];
                     $purchase_text = '{"course_id":["'.$course_id.'"], "video_id":[]}';
-                    $this->m->db->execute("INSERT INTO `purchase` (`user_id`, `purchase`) VALUES ('$user_id', '$purchase_text')");
+                    $this->m->db->execute("INSERT INTO `purchase` (`user_id`, `purchase`) VALUES ('{$res['id']}', '$purchase_text')");
                 }
                 $course_info = $this->m->db->query("SELECT course.name, course.price, user.email FROM course INNER JOIN user ON user.id = course.author_id WHERE course.id = $course_id");
 
