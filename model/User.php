@@ -11,6 +11,8 @@ class User {
     protected function GetMoneyForWeekInterval($prev = false) {
         if ($prev) {
             $prev_week = "- INTERVAL 1 WEEK";
+        } else {
+            $prev_week = '';
         }
         return $this->db->query("select sum(give_money) as money, to_char(achivment_date, 'DAY') as day
                                     from clients WHERE YEAR(`achivment_date`) = YEAR(NOW()) AND WEEK(`achivment_date`, 1) = WEEK(NOW() $prev_week, 1) and `creator_id` = ". $_SESSION['user']['id'] ."
@@ -20,7 +22,9 @@ class User {
     protected function GetMoneyForMonthInterval($prev = false) {
         if ($prev) {
             $prev_month = "- INTERVAL 1 MONTH";
-        }
+        } else {
+            $prev_week = '';
+        }g
         $days_in_month = date('t');
         return $this->db->query("select sum(give_money) as money, to_char(achivment_date, 'MONTH') as day
                                     from clients WHERE YEAR(`achivment_date`) = YEAR(NOW()) AND MONTH(`achivment_date`) = MONTH(NOW() $prev_month) and `creator_id` = ". $_SESSION['user']['id'] ."
