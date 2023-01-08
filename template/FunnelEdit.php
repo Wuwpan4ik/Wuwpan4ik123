@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="/css/aboutuser.css">
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
+
+    <link rel="stylesheet" href="">
 </head>
 
 <body>
@@ -328,7 +330,6 @@
         buttonBell.removeEventListener('mouseout', popupBellDisable)
         let request = new XMLHttpRequest();
         let url = "/NotificationsController/checkout";
-        document.querySelector('#msg').innerHTML = '0';
 
         request.open('POST', url);
 
@@ -628,9 +629,10 @@
                             if (popup['button_text']) {
                                 document.querySelector('input[name="button__send"]').value = popup['button_text'];
                             }
-                            let div = document.querySelector('.addFormInput');
+                            let div = document.querySelector('#first_do-list');
                             if (option_1 === 'form') {
                                 for (let item of popup['first_do']['form']) {
+                                    console.log(item)
                                     addFormItem(div, item);
                                 }
                             } else if (option_1 === 'pay_form') {

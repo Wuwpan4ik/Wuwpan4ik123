@@ -40,10 +40,8 @@
     }
     function popupBellDisable() {
         setTimeout(function () {
-            if (popupBellBody.onmouseover) {
-                popupBell.classList.remove('active');
-            }
-        }, 1000)
+            popupBell.classList.remove('active');
+        }, 3000)
     }
     buttonBell.addEventListener('mouseover', popupBellActive)
     buttonBell.addEventListener('mouseout', popupBellDisable)

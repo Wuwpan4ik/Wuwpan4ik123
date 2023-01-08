@@ -17,33 +17,6 @@ button {
     cursor: pointer;
 }
 
-.Roboto {
-    font-family: "Roboto", sans-serif;
-}
-
-.DINPro {
-    font-family: "DIN Pro", sans-serif;
-}
-
-.Akrobat {
-    font-family: "Akrobat", sans-serif;
-}
-
-.TTTrailers {
-    font-family: "TT Trailers", sans-serif;
-}
-.Montserrat {
-    font-family: "Montserrat", sans-serif;
-}
-.Ubuntu {
-    font-family: "Ubuntu", sans-serif;
-}
-
-.AmericanCaptain {
-    font-family: "American Captain", sans-serif;
-}
-
-
 .smallPlayer {
     width: 500px;
     height: 100%;

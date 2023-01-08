@@ -6,10 +6,10 @@
     <title>Course Creator - Воронки</title>
 
     <link rel="stylesheet" href="/css/nullCss.css">
-    <link rel="stylesheet" href="/css/font.css">
+
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/lessons.css">
-
+    <link rel="stylesheet" href="/css/font.css">
 
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
@@ -183,7 +183,21 @@
 <script src="../js/script.js" ></script>
 <script src="../js/sliders.js"></script>
 <script src="../js/customSelect.js"></script>
+<script>
+    document.querySelectorAll(".title__general .item").forEach(item => {
+        item.addEventListener('click', () => {
+            document.querySelector('.preview__title').className  = "slider__item-title preview__title";
+            document.querySelector('.preview__title').classList.add(item.querySelector('input').value)
+        })
+    })
 
+    document.querySelectorAll(".description__general .item").forEach(item => {
+        item.addEventListener('click', () => {
+            document.querySelector('.preview__text').className  = "slider__item-text preview__text";
+            document.querySelector('.preview__text').classList.add(item.querySelector('input').value)
+        })
+    })
+</script>
 <script>
 
     let colors = document.querySelectorAll('.popup-styles-color');
@@ -317,6 +331,8 @@
         item.addEventListener('click', () => {
             document.querySelector('.popup__general').style.display = 'flex';
             let slider = item.parentElement.parentElement.querySelector('.media-cart-img').cloneNode(true);
+            slider.querySelector('.slider__item-title').classList.add('preview__title')
+            slider.querySelector('.slider__item-text').classList.add('preview__text')
             document.querySelector('.popup-video').appendChild(slider);
             if (document.querySelector('.popup-video').querySelector('.slider__item-info')) {
                 document.querySelector('.popup-video').querySelector('.slider__item-info').style.bottom = "18%";
