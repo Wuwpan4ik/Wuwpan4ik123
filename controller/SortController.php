@@ -89,6 +89,22 @@ class SortController extends ACoreCreator {
 						<td><a href="/Course/' . $order["course_id"] . '">' . $order["course_name"] . '</td>
 											
 						<td>' . $order["achivment_date"] . '</td>
+
+						<td class="iconed">
+    
+							<span>
+
+								<form class="DeleteItem" action="/AnalyticController/DeleteAllOrders" method="POST">
+                                    <input type="hidden" name="items_id" value="'. $order['id'] .'">
+                                    <button type="submit">
+                                        <img class="table_ico" src="img/Trash.svg">
+                                    </button>
+                                    
+                                </form>
+
+							</span>
+
+						</td>
 						
 					</tr>';
             $count += 1;
