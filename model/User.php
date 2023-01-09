@@ -69,7 +69,8 @@ class User {
                                                 course.id,
                                                 course.name,
                                                 content.thubnails,
-                                                content.query_id,
+                                                content.query_id,   
+                                                content.count_view as 'count',
                                                 user_info.id as 'user_id',
                                                 user_info.avatar,
                                                 user_info.first_name,
@@ -387,6 +388,19 @@ class User {
     }
 
     public function AddView($id, $count)
+    {
+        $count += 1;
+        $this->db->execute("UPDATE `funnel_content` SET `count_view`  = {$count} WHERE id = {$id}");
+        return true;
+    }
+
+    public function GetCourseView($id)
+    {
+        $count = $this->db->query("SELECT `count_view` FROM `funnel_content` WHERE id = '$id'")[0]['count_view'];
+        return $count;
+    }
+
+    public function AddCourseView($id, $count)
     {
         $count += 1;
         $this->db->execute("UPDATE `funnel_content` SET `count_view`  = {$count} WHERE id = {$id}");

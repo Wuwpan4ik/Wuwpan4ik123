@@ -54,7 +54,7 @@
                             <img src="/img/smallPlayer/views.svg" alt="">
                         </div>
                         <div class="slider__header-views-count">
-                            126
+                            <?=$item['count']?>
                         </div>
                     </div>
                 </div>
@@ -139,7 +139,6 @@
         request.setRequestHeader('Content-Type', 'application/x-www-form-url');
         request.addEventListener("readystatechange", () => {
             if (request.readyState === 4 && request.status === 200) {
-                console.log(request.responseText)
             }
         });
         request.send();

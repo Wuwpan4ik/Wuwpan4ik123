@@ -69,6 +69,7 @@
     $router->addRoute("/Course/$item_id/rename", "CourseController.php", "RenameVideo");
     $router->addRoute("/Course/$item_id/change", "CourseController.php", "ChangeVideo");
     $router->addRoute("/Course/$item_id/setPrice", "CourseController.php", "SetPrice");
+    $router->addRoute("/Course/$item_id/AddView", "CourseController.php", "AddView");
 
     $router->addRoute("/Funnel", "Funnel.php");
     $router->addRoute("/Funnel/$item_id", "FunnelEdit.php");

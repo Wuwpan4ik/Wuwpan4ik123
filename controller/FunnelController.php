@@ -35,7 +35,6 @@
         public function AddView()
         {
              $this->m->AddView($_SESSION['item_id'], $this->m->GetView($_SESSION['item_id']));
-             echo 'dwdwd';
              return true;
         }
 
