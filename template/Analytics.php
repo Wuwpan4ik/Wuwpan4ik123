@@ -97,7 +97,7 @@
 
                                         <th><div class="th-title"><button class="order_button contact__button" value="achivment_date"><img class="table_ico" src="img/StickDown.svg"></button>Дата</div></th>
 
-                                        <th><div class="th-title">Функции</div></th>
+<!--                                        <th><div class="th-title">Функции</div></th>-->
 
                                         <th><div class="th-title"> </div></th>
 									</tr>
@@ -181,7 +181,7 @@
 
                                     <th><div class="th-title"><button class="order_button order__button" value="achivment_date"><img class="table_ico" src="img/StickDown.svg"></button>Дата</div></th>
 
-                                    <th><div class="th-title">Функции</div></th>
+<!--                                    <th><div class="th-title">Функции</div></th>-->
 
 
                                 </tr>
@@ -215,7 +215,22 @@
                                         <div class="profit_footer">На  <span class="week_diff"></span> <span class="week_diff-text"></span></div>
                                     </div>
                                     <div class="profit__item profit_down profit__month">
-                                        <div class="profit_header"><h3>Доход за месяц</h3><span>Месяц</span></div>
+                                        <div class="profit_header"><h3>Доход за месяц</h3><span><?php $arr = [
+                                                    'Январь',
+                                                    'Февраль',
+                                                    'Март',
+                                                    'Апрель',
+                                                    'Май',
+                                                    'Июнь',
+                                                    'Июль',
+                                                    'Август',
+                                                    'Сентябрь',
+                                                    'Октябрь',
+                                                    'Ноябрь',
+                                                    'Декабрь'
+                                                ];
+                                                $month = date('n')-1;
+                                                echo $arr[$month].' '.date('d, Y'); ?></span></div>
                                         <div class="profit_sum"><span id="this_month"></span> <span class="month_procent"></span>
                                         </div>
                                         <div class="profit_footer">На  <span class="month_diff"></span> <span class="month_diff-text"></span></div>
