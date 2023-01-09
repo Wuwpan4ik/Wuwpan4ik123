@@ -313,8 +313,10 @@ unset($_SESSION['course_id']);
         hiddenAllPopups();
         document.querySelector('.course__popup').classList.add('active');
         document.querySelector('.back__to__course').dataset.course_id = course__get_id;
-        getListPage(author__get_id);
+        getListPage(course__get_id);
+        getCoursePage(author__get_id)
         course__get_url.searchParams.delete('course_id');
+        course__get_url.searchParams.delete('author_id');
         window.history.pushState({}, '', course__get_url.toString());
     }
 
@@ -439,6 +441,7 @@ unset($_SESSION['course_id']);
         request1.addEventListener("readystatechange", () => {
             if (request1.readyState === 4 && request1.status === 200) {
                 document.querySelector('.lesson__list').innerHTML = request1.responseText;
+                console.log(request1.responseText)
                 getCourseName(number);
                 document.getElementById('question_course-id').value = number;
                 let choiceVideo = document.body.querySelectorAll('.choice-video');

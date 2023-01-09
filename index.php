@@ -83,6 +83,7 @@
     $router->addRoute("/Funnel/$item_id/settings", "FunnelController.php", "PopupSettings");
     $router->addRoute("/Funnel/$item_id/main_settings", "FunnelController.php", "MainSettings");
     $router->addRoute("/Funnel/$item_id/GetMainSettings", "FunnelController.php", "GetMainSettings");
+    $router->addRoute("/Funnel/$item_id/AddView", "FunnelController.php", "AddView");
     $router->addRoute("/Funnel/$item_id/checkSettings", "CheckFunnelSettingsController.php", "CheckPopupSettings", false);
     $router->addRoute("/Funnel/$item_id/getFunnelPopup", "UserController.php", "GetFunnelPopup");
 

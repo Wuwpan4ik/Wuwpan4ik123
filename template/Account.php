@@ -416,25 +416,11 @@
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
                                     </div>
-                                    <div class="input_focus ">
-                                        <label for="username" class="label_focus">API Ключ</label>
-                                        <input class="inf" type="text"  name="prodamus_api" value="">
-                                        <span class="clear_input_val">
-                                                     <img src="/img/clear_input.svg" alt="">
-                                                </span>
-                                    </div>
                                 </div>
                             </div>
                             <div class="inner_row">
                                 <h2>Подключение Albato:  </h2>
                                 <div class="row">
-                                    <div class="input_focus ">
-                                        <label for="username" class="label_focus">API Ключ</label>
-                                        <input class="inf" type="text"  name="albato_api" value="">
-                                        <span class="clear_input_val">
-                                                     <img src="/img/clear_input.svg" alt="">
-                                                </span>
-                                    </div>
                                     <div class="input_focus ">
                                         <label for="username" class="label_focus">API Ключ</label>
                                         <input class="inf" type="text"  name="albato_api" value="">
