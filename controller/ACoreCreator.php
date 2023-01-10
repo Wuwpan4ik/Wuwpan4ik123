@@ -11,7 +11,7 @@ if (!class_exists('PHPMailer\PHPMailer\Exception'))
         protected $m;
         protected $ourEmail = "envelope@course-creator.io";
         protected $ourPassword = "1u*V90z*29pP";
-        protected $ourNickName = "course-creator.io";
+        protected $ourNickName = "Course Creator IO";
         protected $email;
 
         protected $url_dir;

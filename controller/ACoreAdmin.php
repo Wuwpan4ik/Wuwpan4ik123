@@ -4,7 +4,7 @@ abstract class ACoreAdmin {
     protected $m;
     protected $ourEmail = "envelope@course-creator.io";
     protected $ourPassword = "1u*V90z*29pP";
-    protected $ourNickName = "course-creator.io";
+    protected $ourNickName = "Course Creator IO";
     protected $email;
 
     protected function SendEmail ($title, $body, $email) {

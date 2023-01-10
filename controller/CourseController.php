@@ -168,7 +168,7 @@
 
             $frame->save($frame_path);
 
-            $image = imagescale(imagecreatefromjpeg($frame_path), 288, 512);
+            $image = imagescale(imagecreatefromjpeg($frame_path), 512, 288);
 
             imagejpeg($image, $frame_path);
 
