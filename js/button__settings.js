@@ -273,7 +273,7 @@ function checkFirstSelect() {
         }
 
         case 'link': {
-            if (!document.querySelectorAll('.checkbox__wrapper')) {
+            if (document.querySelectorAll('.checkbox__wrapper').length == 0) {
                 addFormLink(first_select);
             }
             document.querySelector('#popup__body-form-1').style.display = 'none';
