@@ -15,6 +15,7 @@
 
 </head>
 <body class="body">
+<?php print_r($_SESSION['error']) ?>
 <div class="mirror_smallPlayer">
     <div class="mirrorWrap"></div>
     <video id="mirrorVideo" src="" playsinline muted></video>
@@ -53,7 +54,7 @@
                             <img src="/img/smallPlayer/views.svg" alt="">
                         </div>
                         <div class="slider__header-views-count">
-                            126
+                            <?=$item['count']?>
                         </div>
                     </div>
                 </div>
@@ -73,7 +74,7 @@
                     <?php
                     if (isset($item['button_text'])) { ?>
                             <div class="slider__item-button button-open">
-                                <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" <?php if ($popup->first_do->next_lesson) echo 'onclick="NextSlide()"' ?> <?php if (isset($popup->first_do->link)) if ($popup->first_do->open_in_new == 'open_new_window') { echo "onClick=\"window.open('". $popup->first_do->link ."')\""; } else { echo "onclick=\"window.location = ('". $popup->first_do->link ."')\""; } ?> class="button"><?=$item['button_text']?></button>
+                                <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" <?php if ($popup->first_do->next_lesson) echo 'onclick="NextSlide('. $item["video_id"] .')"' ?> <?php if (isset($popup->first_do->link)) if ($popup->first_do->open_in_new == 'open_new_window') { echo "onClick=\"window.open('". $popup->first_do->link ."')\""; } else { echo "onclick=\"window.location = ('". $popup->first_do->link ."')\""; } ?> class="button"><?=$item['button_text']?></button>
                             </div>
                             <?php } else { ?>
                     <?php } ?>
@@ -128,8 +129,19 @@
 
 <!--На некст слайд-->
 <script>
-    function NextSlide() {
+    function NextSlide(count) {
         $('.slick-next').click();
+
+        let request = new XMLHttpRequest();
+        let url = "/Funnel/"+ count +"/AddView";
+        console.log(url)
+        request.open('POST', url);
+        request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+        request.addEventListener("readystatechange", () => {
+            if (request.readyState === 4 && request.status === 200) {
+            }
+        });
+        request.send();
     }
 </script>
 
@@ -209,7 +221,7 @@
                 $.post(e.target.action, $(this).serialize());
                 try {
                     $(this)[0].querySelector('.next__lesson');
-                    $('.slick-next').click();
+                    NextSlide();
                     notBuy()
                     if ($(this).hasClass('popup__application')) {
                         AddNotifications('Вы успешно оставили заявку', 'Сообщение отправлено на почту');

@@ -2518,7 +2518,6 @@ td:nth-child(1){
   justify-content: center;
   flex-shrink: 0;
   flex-grow: 0;
-  border: 1px solid #adb5bd;
   border-radius: 50%;
   background-repeat: no-repeat;
   background-position: center center;
@@ -2553,14 +2552,21 @@ td:nth-child(1){
 .custom-radio:disabled+label::before {
   border: 1px solid #C3C7CE;
 }
-.button-shadow-down a{
+.button-shadow-down button{
   box-shadow: 0px 3px 0px #3D57B7;
 }
-.button-shadow-lite a{
+.button-shadow-lite button{
   box-shadow: 0px 10px 30px rgba(62, 102, 245, 0.6);
 }
-.button-shadow-none a{
+.button-shadow-none button{
   box-shadow: none !important;
+}
+.popup-styles-buttons button{
+  font-size: 24px;
+  color: white;
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 10px;
 }
 .popup-styles-button{
   display: flex;

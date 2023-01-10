@@ -23,11 +23,19 @@
 
             chmod($path, 0777);
 
-            $this->m->db->execute("INSERT INTO funnel_content (`funnel_id`, `name`, `description`, `video`, `query_id`) VALUES ($item_id,NULL ,NULL, '$path', $count_video)");
+            $count_view = rand(1000, 10000);
+
+            $this->m->db->execute("INSERT INTO funnel_content (`funnel_id`, `name`, `description`, `video`, `count_view`, `query_id`) VALUES ($item_id,NULL ,NULL, '$path', $count_view, $count_video)");
 
             $this->local_get_content();
 
             return true;
+        }
+
+        public function AddView()
+        {
+             $this->m->AddView($_SESSION['item_id'], $this->m->GetView($_SESSION['item_id']));
+             return true;
         }
 
         public function DeleteVideo()

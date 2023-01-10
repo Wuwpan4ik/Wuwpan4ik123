@@ -52,11 +52,18 @@
 //            } catch (Exception $exept) {
 //                $_SESSION['error'] = $exept;
 //            }
+            $count = rand(1000, 10000);
 
-            $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `thubnails`, `query_id`) VALUES ($uid ,null , null , '$path', '$frame_path' , $count_video)");
+            $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `thubnails`, `count_view`, `query_id`) VALUES ($uid ,null , null , '$path', '$frame_path', $count, $count_video)");
 
             $this->local_get_content();
 
+            return true;
+        }
+
+        public function AddView()
+        {
+            $this->m->AddCourseView($_SESSION['item_id'], $this->m->GetView($_SESSION['item_id']));
             return true;
         }
 

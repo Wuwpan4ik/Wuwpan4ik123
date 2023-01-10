@@ -69,6 +69,7 @@
     $router->addRoute("/Course/$item_id/rename", "CourseController.php", "RenameVideo");
     $router->addRoute("/Course/$item_id/change", "CourseController.php", "ChangeVideo");
     $router->addRoute("/Course/$item_id/setPrice", "CourseController.php", "SetPrice");
+    $router->addRoute("/Course/$item_id/AddView", "CourseController.php", "AddView");
 
     $router->addRoute("/Funnel", "Funnel.php");
     $router->addRoute("/Funnel/$item_id", "FunnelEdit.php");
@@ -83,7 +84,9 @@
     $router->addRoute("/Funnel/$item_id/settings", "FunnelController.php", "PopupSettings");
     $router->addRoute("/Funnel/$item_id/main_settings", "FunnelController.php", "MainSettings");
     $router->addRoute("/Funnel/$item_id/GetMainSettings", "FunnelController.php", "GetMainSettings");
+    $router->addRoute("/Funnel/$item_id/AddView", "FunnelController.php", "AddView");
     $router->addRoute("/Funnel/$item_id/checkSettings", "CheckFunnelSettingsController.php", "CheckPopupSettings", false);
+    $router->addRoute("/Funnel/$item_id/checkMainSettings", "CheckFunnelSettingsController.php", "CheckMainSettings", false);
     $router->addRoute("/Funnel/$item_id/getFunnelPopup", "UserController.php", "GetFunnelPopup");
 
     $router->addRoute("/LoginController/login", "LoginController.php", 'login');

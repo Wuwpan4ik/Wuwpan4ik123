@@ -11,6 +11,8 @@ class User {
     protected function GetMoneyForWeekInterval($prev = false) {
         if ($prev) {
             $prev_week = "- INTERVAL 1 WEEK";
+        } else {
+            $prev_week = '';
         }
         return $this->db->query("select sum(give_money) as money, to_char(achivment_date, 'DAY') as day
                                     from clients WHERE YEAR(`achivment_date`) = YEAR(NOW()) AND WEEK(`achivment_date`, 1) = WEEK(NOW() $prev_week, 1) and `creator_id` = ". $_SESSION['user']['id'] ."
@@ -20,6 +22,8 @@ class User {
     protected function GetMoneyForMonthInterval($prev = false) {
         if ($prev) {
             $prev_month = "- INTERVAL 1 MONTH";
+        } else {
+            $prev_week = '';
         }
         $days_in_month = date('t');
         return $this->db->query("select sum(give_money) as money, to_char(achivment_date, 'MONTH') as day
@@ -65,7 +69,8 @@ class User {
                                                 course.id,
                                                 course.name,
                                                 content.thubnails,
-                                                content.query_id,
+                                                content.query_id,   
+                                                content.count_view as 'count',
                                                 user_info.id as 'user_id',
                                                 user_info.avatar,
                                                 user_info.first_name,
@@ -296,6 +301,7 @@ class User {
                                                 content.name AS 'content_name',
                                                 content.description AS 'content_description',
                                                 content.popup,
+                                                content.count_view as 'count',
                                                 content.id as 'video_id',
                                                 content.video,
                                                 content.button_text,
@@ -373,6 +379,32 @@ class User {
     public function TakeSocialUrls()
     {
         return $this->db->query("SELECT * FROM `user_contacts` WHERE `user_id` = " . $_SESSION['user']['id']);
+    }
+
+    public function GetView($id)
+    {
+        $count = $this->db->query("SELECT `count_view` FROM `funnel_content` WHERE id = '$id'")[0]['count_view'];
+        return $count;
+    }
+
+    public function AddView($id, $count)
+    {
+        $count += 1;
+        $this->db->execute("UPDATE `funnel_content` SET `count_view`  = {$count} WHERE id = {$id}");
+        return true;
+    }
+
+    public function GetCourseView($id)
+    {
+        $count = $this->db->query("SELECT `count_view` FROM `funnel_content` WHERE id = '$id'")[0]['count_view'];
+        return $count;
+    }
+
+    public function AddCourseView($id, $count)
+    {
+        $count += 1;
+        $this->db->execute("UPDATE `funnel_content` SET `count_view`  = {$count} WHERE id = {$id}");
+        return true;
     }
 }
 ?>

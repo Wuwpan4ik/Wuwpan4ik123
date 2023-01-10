@@ -222,6 +222,18 @@
         let mirrorVideo = document.getElementById('mirrorVideo');
         let sourceVideo = document.querySelectorAll('#UserPlayerVideo');
 
+        if (sourceVideo.ended) {
+            let request = new XMLHttpRequest();
+            let url = "/Course/"+ <?php $content[0]['count'] ?> +"/AddView";
+            request.open('POST', url);
+            request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+            request.addEventListener("readystatechange", () => {
+                if (request.readyState === 4 && request.status === 200) {
+                }
+            });
+            request.send();
+        }
+
         mirrorVideo.src = sourceVideo[0].src;
     </script>
 

@@ -6,7 +6,7 @@
     <title>Course Creator - Воронки</title>
 
     <link rel="stylesheet" href="/css/nullCss.css">
-
+    <link rel="stylesheet" href="/css/aboutuser.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/lessons.css">
     <link rel="stylesheet" href="/css/font.css">
@@ -78,7 +78,7 @@
                                                                     <img src="../img/smallPlayer/views.svg" alt="">
                                                                 </div>
                                                                 <div class="slider__header-views-count">
-                                                                    126
+                                                                        <?=$v['count_view']?>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -175,6 +175,17 @@
         </div>
     </div>
     <?php include 'default/popupGeneralSettings.php'?>
+    <div class="exit-funnel-edit popup-tariff">
+        <div class="popup-tariff-body">
+            <div class="popup__title">
+                У вас остались  не <br> сохраненные данные
+            </div>
+            <div class="popup__buttons">
+                <button id="close-popup" class="popup__btn popup__white">Выйти</button>
+                <button id="save-popup" class="popup__btn popup__blue">Сохранить</button>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -203,9 +214,9 @@
     let colors = document.querySelectorAll('.popup-styles-color');
     let buttons = document.querySelectorAll('.popup-styles-button');
     let videoBtns = document.querySelectorAll('.general-popup__button');
-    let shadowDown = document.querySelector('.button-shadow-down a');
-    let shadowLite = document.querySelector('.button-shadow-lite a');
-    let shadowNone = document.querySelector('.button-shadow-none a');
+    let shadowDown = document.querySelector('.button-shadow-down button');
+    let shadowLite = document.querySelector('.button-shadow-lite button');
+    let shadowNone = document.querySelector('.button-shadow-none button');
 
 
     let title = document.querySelector('.slider__item-title');
@@ -277,7 +288,6 @@
 
 
 </script>
-
 <!--Лоудер-->
 <script>
     function ClearPopupSettings() {
@@ -317,6 +327,7 @@
                     let shadow__button = temp_data['number__style'];
                     document.querySelectorAll('.popup-styles-color')[color__button - 1].click();
                     document.querySelectorAll('.popup-styles-button')[shadow__button - 1].classList.add('active');
+                    changeStyleBtn(document.querySelector('.button-video'), color, shadow);
                     document.querySelector('textarea[name="head__settings"]').innerHTML = temp_data['head__settings'];
                 }
             }
@@ -325,7 +336,9 @@
 
 
     let generalSettings = document.querySelectorAll('.general-settings');
-    let popupGeneralClose = document.querySelectorAll('.close__btn');
+
+
+
 
     generalSettings.forEach(item => {
         item.addEventListener('click', () => {
@@ -338,15 +351,86 @@
                 document.querySelector('.popup-video').querySelector('.slider__item-info').style.bottom = "18%";
             }
             document.querySelector('#initButton').action = '/Funnel/' + item.dataset.funnel_id + '/main_settings';
+            document.querySelector('#id_item').value = item.dataset.funnel_id;
             GetMainSettings(item.dataset.funnel_id);
         })
     })
-    popupGeneralClose.forEach(item =>{
-        item.addEventListener('click', () => {
-            document.querySelector('.popup__general').style.display = 'none';
-            ClearPopupSettings();
+
+    let exitFunnelEditClose = document.querySelector('#close-popup');
+    let saveFunnelEditClose = document.querySelector('#save-popup');
+
+    async function DeleteSave() {
+        exitFunnelEditClose.addEventListener('click', function(){
+            return false;
         })
-    })
+
+        saveFunnelEditClose.addEventListener('click', function(){
+            return true;
+        })
+    }
+
+    var promiseSave;
+
+    function newPromise(){
+        promiseSave = new Promise(async function(resolve) {
+
+            exitFunnelEditClose.addEventListener('click', function(){
+                resolve("1");
+            })
+
+            saveFunnelEditClose.addEventListener('click', function(){
+                resolve("save");
+            })
+        });
+    }
+    newPromise();
+
+    function promise() {
+        promiseSave.then(function (result) {
+            if (result === 'save') {
+                save();
+            } else {
+                document.querySelector('.exit-funnel-edit').classList.remove('display-flex');
+                document.querySelector('.popup__general').style.display = 'none';
+                ClearPopupSettings();
+            }
+            newPromise();
+        });
+    }
+
+    function SaveOrRemoveSettings() {
+        console.log("/Funnel/"+ document.querySelector('#id_item').value +"/checkMainSettings")
+        $.ajax({
+            url: "/Funnel/"+ document.querySelector('#id_item').value +"/checkMainSettings",
+            method: 'POST',             /* Метод передачи (post или get) */
+            dataType: 'html',          /* Тип данных в ответе (xml, json, script, html). */
+            data: $("#initButton").serialize(),     /* Параметры передаваемые в запросе. */
+            success: function(data){   /* функция которая будет выполнена после успешного запроса.  */
+                if (data == 0) {
+                    document.querySelector('.exit-funnel-edit').classList.add('display-flex');
+                    document.querySelector('.exit-funnel-edit').style.zIndex = '1000';
+                    promise();
+                } else {
+                    document.querySelector('.exit-funnel-edit').classList.remove('display-flex');
+                    document.querySelector('.popup__general').style.display = 'none';
+                    ClearPopupSettings();
+                }
+            }
+        });
+    }
+    let notDelete = document.querySelector('.close__btn');
+    let mainBackground = document.querySelector('.popup__general');
+
+    notDelete.onclick = async function (event) {
+        if (event.target === notDelete) {
+            SaveOrRemoveSettings();
+        }
+    }
+    mainBackground.onclick = async function (event) {
+        if (event.target === mainBackground) {
+            SaveOrRemoveSettings();
+        }
+    }
 </script>
 <script>
 
@@ -356,7 +440,6 @@
     })
 
     let deleteButtons = document.querySelectorAll('.reboot');
-    let notDelete = document.querySelector('.popup__not-delete');
     let deletes = document.querySelector('.popup__delete');
     let entryDisplay = document.querySelector('#popup__background');
     let entryContainer = document.querySelector('.popup__container');
@@ -395,19 +478,6 @@
         deletes.addEventListener('click',function () {
             window.location.href = '/Funnel-delete/'+ elem.parentElement.children[0].value;
         });
-    }
-    notDelete.onclick = function (event) {
-        if (event.target === notDelete) {
-            entryDisplay.classList.remove('display-block');
-            toggleOverflow();
-        }
-    }
-    entryContainer.onclick = function (event) {
-        if (event.target === entryContainer) {
-            entryDisplay.classList.remove('display-block');
-            toggleOverflow();
-
-        }
     }
 
     // Удаление лишних пагинаций в слайдерах

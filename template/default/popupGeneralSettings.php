@@ -12,6 +12,7 @@
         <form id="initButton" action="/Funnel/$item_id/main_settings" method="POST" class="popup__body-container popup-wrap">
             <input id="button__style-color" name="button__style-color" type="hidden" value="">
             <input id="button__style-style" name="button__style-style" type="hidden" value="">
+            <input id="id_item" name="id_item" type="hidden" value="">
             <input id="number-style" name="number-style" type="hidden" value="">
             <input id="number-color" name="number-color" type="hidden" value="">
             <div class="popup__body-block" style="width: 320px;">
@@ -102,9 +103,13 @@
 
                     <label class=" popup__subtitle popup-styles-buttons__title" for="first_do">Стиль кнопки</label>
                     <div class="popup-styles-buttons">
-                        <div class="popup-styles-button button-shadow-down"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><a class="general-popup__button button-shadow-down">Получить подарок</a></div>
-                        <div class="popup-styles-button button-shadow-lite"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><a class="general-popup__button button-shadow-lite">Получить подарок</a></div>
-                        <div class="popup-styles-button button-shadow-none"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><a class="general-popup__button">Получить подарок</a></div>
+                        <div class="popup-styles-button button-shadow-down">
+                            <input class="custom-radio" name="color" type="radio" id="color-green" value="green">
+                            <label for="color-green"></label>
+                            <button type="button" class="general-popup__button button-shadow-down">Получить подарок</button>
+                        </div>
+                        <div class="popup-styles-button button-shadow-lite"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><button type="button" class="general-popup__button button-shadow-lite">Получить подарок</button></div>
+                        <div class="popup-styles-button button-shadow-none"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><button type="button" class="general-popup__button">Получить подарок</button></div>
                     </div>
                 </div>
                 <div class="popup__body-item script">
