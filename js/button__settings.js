@@ -89,7 +89,6 @@ function clearPopup () {
     document.querySelectorAll('.second_do').forEach((elem) => {
         elem.classList.remove('display-block');
     })
-    document.querySelector('#popup__body-form-2').style.display = 'none';
     document.querySelector('input[name="form__title"]').value = '';
     document.querySelector('input[name="form__desc"]').value = '';
 }
@@ -113,10 +112,9 @@ function defaultPopup(parent_elem){
 }
 
 function removeSelect(elem) {
-
     let count = elem.parentElement.parentElement.querySelectorAll('.form-select__container').length;
     elem.parentElement.remove();
-    if (count <=3 ) {
+    if (count <= 3 ) {
         document.querySelector('.addFormInput').classList.remove('display-none');
         return false;
     }
@@ -146,8 +144,10 @@ async function addFormSelect(elem, name) {
         option.innerHTML = value;
         option.style.position = 'relative';
         if (name === key) {
-            option.selected = true;
+            option.setAttribute('selected', true);
+
         }
+        console.log(option)
         div.appendChild(option)
     }
     div_container.appendChild(div);
@@ -161,8 +161,7 @@ async function addFormSelect(elem, name) {
     })
 }
 
-function addFormLink(block, elem) {
-    let count = elem.parentElement.querySelectorAll('.link_item').length;
+function addFormLink(elem) {
     let count_id = elem.id === 'second_do' ? 2 : 1;
     let div = document.createElement('input');
     div.placeholder = "Переход по ссылке";
@@ -171,9 +170,7 @@ function addFormLink(block, elem) {
     div.name = 'link-' + count_id;
     div.style.paddingLeft = '15px';
     div.style.marginTop = '20px';
-    if (count === 0) {
-        if (block) addCheckbox(div, elem)
-    }
+    addCheckbox(div, elem)
 }
 
 function addCheckbox(block, elem) {
@@ -222,7 +219,9 @@ async function addFormItem (elem, name = null) {
     }
 
     if (count > 2) {
-        elem.parentElement.querySelector('.addFormInput').classList.add('display-none');
+        if (elem.parentElement.querySelector('.addFormInput')) {
+            elem.parentElement.querySelector('.addFormInput').classList.add('display-none');
+        }
         return false;
     }
 }
@@ -253,6 +252,7 @@ function checkFirstSelect() {
         enableAfterClickBlock();
         initListCourse();
     }
+
     if (document.querySelector('.checkbox__wrapper')) {
         if (first_select.value !== 'link') {
             document.querySelector('.checkbox__wrapper').remove();
@@ -274,7 +274,7 @@ function checkFirstSelect() {
 
         case 'link': {
             document.querySelector('#popup__body-form-1').style.display = 'none';
-            addFormLink(true, first_select);
+            addFormLink(first_select);
             defaultPopup(second_select);
             disableAfterClickBlock();
             checkSecondSelect();
@@ -289,12 +289,11 @@ function checkFirstSelect() {
                 addPopup('pay_form');
             }
             document.querySelector('#popup__body-form-1').style.display = 'flex';
-            first_select.parentElement.querySelector('.addFormInput').classList.remove('display-none');
             first_select.parentElement.querySelectorAll('.link_item').forEach((elem) => {
                 elem.classList.add('display-none');
             })
-            defaultPopup(first_select);
-            addSecondOptions([['link', "Переход по ссылке"], ['next_lesson', 'Открыть следующее видео'], ['file', 'Отправка файла']]);
+            defaultPopup(second_select);
+            addSecondOptions([['', 'Выберете'], ['link', "Переход по ссылке"], ['next_lesson', 'Открыть следующее видео'], ['file', 'Отправка файла']]);
             enableAfterClickBlock();
             checkSecondSelect();
             let form__title = document.querySelector('input[name="form__title"]');
@@ -312,6 +311,7 @@ function checkFirstSelect() {
             break;
         }
     }
+
 }
 
 function checkFormInputs() {
@@ -327,22 +327,24 @@ function checkSecondSelect() {
         document.querySelector('#popup__body-file').classList.add('display-none');
     }
 
+    if (document.querySelector('.checkbox__wrapper')) {
+        if (second_select.value !== 'link') {
+            second_select.parentElement.querySelector('.checkbox__wrapper').remove();
+        }
+    }
+
     if (!['form', 'pay_form', 'link'].includes(second_select.value)) {
-        document.querySelector('#popup__body-form-2').style.display = 'none';
+        // document.querySelector('#popup__body-form-2').style.display = 'none';
         second_select.parentElement.querySelectorAll('.link_item').forEach((elem) => {
             elem.classList.add('display-none');
         })
         defaultPopup(second_select);
     } else {
-        document.querySelector('#popup__body-form-2').style.display = 'flex';
-        second_select.parentElement.querySelector('.addFormInput').classList.remove('display-none');
-        second_select.parentElement.querySelectorAll('.link_item').forEach((elem) => {
-            elem.classList.add('display-none');
-        })
         defaultPopup(second_select);
         if (second_select.value === 'link') {
-            document.querySelector('#popup__body-form-2').style.display = 'none';
-            addFormLink(false, second_select);
+            if (second_select.parentElement.querySelectorAll('.checkbox__wrapper').length === 0) {
+                addFormLink(second_select);
+            }
         }
     }
 

@@ -84,12 +84,6 @@
                         <option value="next_lesson" id="second_do_next_lesson">Открыть следующее видео</option>
                         <option value="file" id="second_do_file">Отправка файла</option>
                     </select>
-                    <div class="popup__body-item popup__margin" id="popup__body-form-2">
-                        <div>
-                            <label for="form_id">Составляющие формы:</label>
-                            <button class="addFormInput" id="second_do-list" onclick="addFormItem(this)" type="button"><img src="/img/add.png"> Добавить поле</button>
-                        </div>
-                    </div>
                     <div class="popup__body-item display-none popup__margin" id="popup__body-file">
                         <label for="second_do-list">Файл:</label>
                         <div class="avatar" style="margin: 0">
