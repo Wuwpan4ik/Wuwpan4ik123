@@ -732,10 +732,12 @@ span.red_text {
 .Analytics-graphic__totalProfit {
     margin: 34px 0 0 0;
 }
+
 .no-data{
     width: 100%;
     height: 65vh;
 }
+
 .no-data p{
     display: flex;
     justify-content: center;

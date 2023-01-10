@@ -125,6 +125,9 @@
                 </tbody>
 
             </table>
+            <div class="no-data" id="order__havent_data">
+                <p>Данных пока нет</p>
+            </div>
 
         </div>
         </div>
@@ -183,7 +186,11 @@
         request.setRequestHeader('Content-Type', 'application/x-www-form-url');
         request.addEventListener("readystatechange", () => {
             if (request.readyState === 4 && request.status === 200) {
-                tab.innerHTML = request.responseText;
+                if (request.responseText.length != 0) {
+                    document.querySelector('.no-data').remove();
+                    tab.innerHTML = request.responseText;
+                }
+
             }
         });
         request.send();
@@ -207,7 +214,9 @@
                 request.setRequestHeader('Content-Type', 'application/x-www-form-url');
                 request.addEventListener("readystatechange", () => {
                     if (request.readyState === 4 && request.status === 200) {
-                        tab.innerHTML = request.responseText;
+                        if (request.responseText.length != 0) {
+                            tab.innerHTML = request.responseText;
+                        }
                     }
                 });
                 request.send();
