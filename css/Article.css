@@ -47,7 +47,7 @@
 
 .Article-post{
     position: relative;
-    width: 59%;
+    width: 68%;
     display: flex;
     flex-direction: column;
     gap: 25px;
@@ -62,8 +62,24 @@
 .Article-post-container{
     position: absolute;
     top: 250px;
-    left: -63%;
+    left: -43%;
     z-index: 400;
+}
+@media (max-width: 1705px) {
+    .Article-post{
+        width: 60%;
+    }
+    .Article-post-container{
+        left: -60%;
+    }
+}
+@media (max-width: 1465px) {
+    .Article-post{
+        width: 55%;
+    }
+    .Article-post-container{
+        left: -75%;
+    }
 }
 .Article-post-item.active{
     bottom: 0;
@@ -130,7 +146,7 @@
 .Article-post-item__button:hover button{
     background: linear-gradient(180deg, #5B78E3 0%, #2A4BC5 100%);
 }
-@media (max-width: 1224px) {
+@media (max-width: 1312hpx) {
     /*.Article-post-item.active{*/
     /*    bottom: -155vh;*/
     /*}*/

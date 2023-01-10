@@ -1167,7 +1167,39 @@ a.button__back {
   display: flex;
   margin-bottom: 20px;
 }
-
+@media (max-width: 530px) {
+  .service, .price{
+    width: 100% !important;
+  }
+  .price{
+    align-items: center !important;
+  }
+  .price h2{
+    align-self: center !important;
+    text-align: center !important;
+  }
+  .service-price {
+    flex-wrap: wrap;
+  }
+  .starrating{
+    flex-wrap: wrap;
+  }
+  .service-text{
+    gap: 5px;
+  }
+  p, .time-more-btn a{
+    font-size: 16px !important;
+    line-height: 22px !important;
+  }
+  .Article-post-quotation{
+    flex-wrap: wrap;
+  }
+  .Article-post-quotation p{
+    width: 100%;
+    font-size: 18px !important;
+    line-height: 28px!important;
+  }
+}
 span.name {
   color: #4E73F8;
 }
@@ -2601,5 +2633,8 @@ td:nth-child(1){
   }
 }
 #DeleteAllClients{
+  display: none;
+}
+#DeleteAllOrders{
   display: none;
 }
