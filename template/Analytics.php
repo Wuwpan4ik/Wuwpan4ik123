@@ -326,45 +326,13 @@
 <!--Удаление элементов-->
 <script>
     function checkEmptyAnalyticsArray(arrayTemp, name) {
-        name = "." + name + "__delete-all"
-        if (arrayTemp.length > 0) {
-            document.querySelector(name).classList.remove('display-none')
-        } else {
-            document.querySelector(name).classList.add('display-none')
-        }
+        // name = "." + name + "__delete-all"
+        // if (arrayTemp.length > 0) {
+        //     document.querySelector(name).classList.remove('display-none')
+        // } else {
+        //     document.querySelector(name).classList.add('display-none')
+        // }
     }
-
-    function DeleteAllUser() {
-        document.querySelectorAll('.check_user').forEach(item => {
-            item.addEventListener('click', function () {
-                if (item.checked) {
-                    clients_id.push(item.dataset.id);
-                } else {
-                    clients_id.pop(item.dataset.id);
-                }
-            })
-        })
-    }
-
-    function DeleteAllOrder() {
-        document.querySelectorAll('.check_order').forEach(item => {
-            item.addEventListener('click', function () {
-                if (item.checked) {
-                    orders_id.push(item.dataset.id);
-                } else {
-                    orders_id.pop(item.dataset.id);
-                }
-            })
-        })
-    }
-
-    let clients_id = [];
-    let orders_id = [];
-
-    clients_id.push = function() { Array.prototype.push.apply(this, arguments);  checkEmptyAnalyticsArray(clients_id, "clients_id");};
-    clients_id.pop = function() { Array.prototype.pop.apply(this, arguments);  checkEmptyAnalyticsArray(clients_id, "clients_id");};
-    orders_id.push = function() { Array.prototype.push.apply(this, arguments);  checkEmptyAnalyticsArray(orders_id, "orders_id");};
-    orders_id.pop = function() { Array.prototype.pop.apply(this, arguments);  checkEmptyAnalyticsArray(orders_id, "orders_id");};
 
     const main_check = document.querySelector('#main_check');
     main_check.addEventListener('click', function (e) {
@@ -372,43 +340,7 @@
         Array.prototype.forEach.call(check_user, function(cb){
             cb.checked = e.target.checked;
         });
-        if (main_check.checked) {
-            document.querySelectorAll('.check_user').forEach(item => {
-                clients_id.push(item.dataset.id)
-            })
-            checkEmptyAnalyticsArray(clients_id, "clients_id")
-        } else {
-            clients_id.length = 0;
-            checkEmptyAnalyticsArray(clients_id, "clients_id")
-        }
     });
-
-    $('#DeleteAllClients').submit(function(e) {
-        e.preventDefault();
-        $('#DeleteAllClients_input').val(clients_id);
-        $.post(e.target.action, $(this).serialize());
-        location.reload();
-    });
-
-    $('#DeleteAllOrders').submit(function(e) {
-        e.preventDefault();
-        $('#DeleteAllOrders_input').val(orders_id);
-        $.post(e.target.action, $(this).serialize());
-        location.reload();
-    });
-    function AddDeleteItemsFunction() {
-        $('.DeleteItem').each(function () {
-            $(this).submit(function (e) {
-                e.preventDefault();
-                $.ajax({
-                    url: $(this).attr("action"),
-                    type: $(this).attr("method"),
-                    data: $(this).serialize(),
-                });
-                location.reload()
-            })
-        })
-    }
 
     const order_check = document.querySelector('#order_check');
     order_check.addEventListener('click', function (e) {
@@ -416,15 +348,6 @@
         Array.prototype.forEach.call(check_user, function(cb){
             cb.checked = e.target.checked;
         });
-        if (order_check.checked) {
-            document.querySelectorAll('.check_order').forEach(item => {
-                orders_id.push(item.dataset.id)
-            })
-            checkEmptyAnalyticsArray(orders_id, "orders_id")
-        } else {
-            orders_id.length = 0;
-            checkEmptyAnalyticsArray(orders_id, "orders_id")
-        }
     })
 </script>
 
@@ -445,9 +368,7 @@
                 if (request.responseText) {
                     tab.innerHTML = request.responseText;
                     document.querySelector('#order__havent_data').classList.add('display-none');
-                    DeleteAllOrder();
                 }
-                AddDeleteItemsFunction()
             }
         });
         request.send();
@@ -462,7 +383,6 @@
                 if (client_request.responseText) {
                     client_tab.innerHTML = client_request.responseText;
                     document.querySelector('#contact__havent_data').classList.add('display-none');
-                    DeleteAllUser();
                 }
             }
         });
@@ -494,8 +414,6 @@
             let client_url = "SortController/AnalyticClients?sort=" + param;
 
             GetClients(client_url, client_request);
-
-            DeleteAllUser();
         });
     });
 
@@ -515,8 +433,6 @@
             let url = "SortController/AnalyticOrders?sort=" + param;
 
             GetOrders(url, request);
-
-            orders_id.length = 0;
         });
     });
 </script>
@@ -716,7 +632,7 @@
 
 
 <script src="../js/sidebar.js"></script>
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>-->
-<!--<script src="../js/charts.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<script src="../js/charts.js"></script>
 <script src="/js/getNotifications.js"></script>
 </html>
