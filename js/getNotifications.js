@@ -15,6 +15,7 @@ requestCount.addEventListener("readystatechange", () => {
         }
         if (JSON.parse(requestCount.responseText).length === 0) {
             document.querySelector('.button-bell').addEventListener('click', GetAllNotif);
+            _('msg').style.backgroundColor = '#757D8A';
         }  else {
             document.querySelector('.popupBell-body').classList.remove('display-none');
         }

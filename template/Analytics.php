@@ -97,9 +97,6 @@
 
                                         <th><div class="th-title"><button class="order_button contact__button" value="achivment_date"><img class="table_ico" src="img/StickDown.svg"></button>Дата</div></th>
 
-<!--                                        <th><div class="th-title">Функции</div></th>-->
-
-                                        <th><div class="th-title"> </div></th>
 									</tr>
 
                                 </thead>

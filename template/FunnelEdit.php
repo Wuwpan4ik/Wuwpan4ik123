@@ -273,33 +273,35 @@
     <div id="popup">
         <div class="popup__container">
             <div class="popup-body">
-                <div class="popup__title">Хотите изменить видео?</div>
-                <div class="avatar inCourse">
-                    <div class="avatar-body">
-                        <img src="../img/saveAvatar.svg" alt="">
-                        <div class="avatar-body__info">
-                            <span id="file-name" class="file-box">
-                                Название файла
-                            </span>
-                            <span id="file-size" class="file-box">
-                                0кб из 5мб
-                            </span>
+                <form method="POST" action="" class="upload__form" id="change__video" enctype="multipart/form-data">
+                    <div class="popup__title">Хотите изменить видео?</div>
+                    <div class="avatar inCourse">
+                        <div class="avatar-body">
+                            <img src="../img/saveAvatar.svg" alt="">
+                            <div class="avatar-body__info">
+                                <span id="file-name" class="file-box">
+                                    Название файла
+                                </span>
+                                <span id="file-size" class="file-box">
+                                    0кб из 5мб
+                                </span>
+                            </div>
+
                         </div>
 
+                        <div class="input__wrapper">
+                            <input name="video_change" type="file" id="input__file" class="input input__file" onchange="uploadFile(this)" multiple="">
+                            <label for="input__file" class="input__file-button" style="">
+                                <span class="input__file-icon-wrapper"><img class="input__file-icon" src="/img/plus.svg" width="25"></span>
+                                <span class="input__file-button-text">Добавить</span>
+                            </label>
+                        </div>
                     </div>
-
-                    <div class="input__wrapper">
-                        <input name="file" type="file" id="input__file" class="input input__file" onchange="uploadFile(this)" multiple="">
-                        <label for="input__file" class="input__file-button" style="">
-                            <span class="input__file-icon-wrapper"><img class="input__file-icon" src="/img/plus.svg" width="25"></span>
-                            <span class="input__file-button-text">Добавить</span>
-                        </label>
+                    <div class="popup__form">
+                        <button class="popup__btn popup__white" id="popup__not-change" >Отменить</button>
+                        <button class="popup__btn popup__blue ">Заменить</button>
                     </div>
-                </div>
-                <div class="popup__form">
-                    <button class="popup__btn popup__white" id="popup__not-change" >Отменить</button>
-                    <button class="popup__btn popup__blue ">Заменить</button>
-                </div>
+                </form>
             </div>
         </div>
     </div>

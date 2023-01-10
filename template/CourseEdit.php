@@ -20,7 +20,7 @@
 
 <body>
 
-<?php //echo $_SESSION['error'?>
+<?php print_r($_SESSION['error'])    ?>
 
 <style>
     .popup__background {
@@ -146,34 +146,36 @@
     <div id="popup">
         <div class="popup__container">
             <div class="popup-body">
-                <div class="popup__title">Хотите изменить видео?</div>
-                <div class="avatar inCourse">
-                    <div class="avatar-body">
-                        <img src="../img/saveAvatar.svg" alt="">
-                        <div class="avatar-body__info">
-                            <span id="file-name" class="file-box">
-                                Название файла
-                            </span>
-                            <span id="file-size" class="file-box">
-                                0кб из 5мб
-                            </span>
+                <form method="POST" action="/Course/$item_id/rename" class="upload__form" id="change__video" enctype="multipart/form-data">
+                    <div class="popup__title">Хотите изменить видео?</div>
+                    <div class="avatar inCourse">
+                        <div class="avatar-body">
+                            <img src="../img/saveAvatar.svg" alt="">
+                            <div class="avatar-body__info">
+                                <span id="file-name" class="file-box">
+                                    Название файла
+                                </span>
+                                <span id="file-size" class="file-box">
+                                    0кб из 5мб
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <div class="input__wrapper">
+                            <input class="input input__file" id="video_change" name="video_change" type="file" onchange="uploadFile(this)"/>
+                            <label for="video_change" class="input__file-button" style="">
+                                <span class="input__file-icon-wrapper"><img class="input__file-icon" src="/img/plus.svg" width="25"></span>
+                                <span class="input__file-button-text">Добавить</span>
+                            </label>
                         </div>
 
                     </div>
-
-                    <div class="input__wrapper">
-                        <input name="file" type="file" id="input__file" class="input input__file" onchange="uploadFile(this)" multiple="">
-                        <label for="input__file" class="input__file-button" style="">
-                            <span class="input__file-icon-wrapper"><img class="input__file-icon" src="/img/plus.svg" width="25"></span>
-                            <span class="input__file-button-text">Добавить</span>
-                        </label>
+                    <div class="popup__form">
+                        <button type="button" class="popup__btn popup__white" id="popup__not-change" >Отменить</button>
+                        <button type="submit" class="popup__btn popup__blue ">Заменить</button>
                     </div>
-
-                </div>
-                <div class="popup__form">
-                    <button class="popup__btn popup__white" id="popup__not-change" >Отменить</button>
-                    <button class="popup__btn popup__blue ">Заменить</button>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -183,7 +185,6 @@
 <script src="/js/printFailName.js"></script>
 <script>
     let saveBtn = document.querySelector('.save-btn');
-
 
     saveBtn.addEventListener('click', function(){
         saveBtn.classList.add('active');
@@ -205,7 +206,8 @@
         reload__video.forEach(item => {
             item.addEventListener('click', function () {
                 reload.classList.toggle('display-block');
-                _('change__video').action = '/Funnel/'+ item.dataset.id +'/change';
+                let file = document.getElementById("video_change").files[0];
+                _('change__video').action = '/Course/'+ item.dataset.id +'/change';
             })
         })
         let notChangeVideo = document.querySelectorAll('#popup__not-change');
@@ -275,7 +277,10 @@
             elem.style.display = 'none';
         })
         _("progressBar").classList.add('active');
-        _("progressText").classList.add('active');
+        _("progressTitle").classList.add('active');
+        _("progressSubTitle").classList.add('active');
+        _("progress-values").classList.add('active');
+        document.querySelector('.upload__form').classList.add('active');
         document.querySelector('.btn-upload').classList.add('active');
         var formdata = new FormData();
         formdata.append("video_uploader", file);

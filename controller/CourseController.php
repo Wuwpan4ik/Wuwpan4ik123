@@ -134,10 +134,10 @@
         {
             require './vendor/autoload.php';
 
-            if ($_FILES['video_change']['size'] == 0)
-            {
-                return False;
-            }
+//            if ($_FILES['video_change']['size'] == 0)
+//            {
+//                return False;
+//            }
 
             $uid = $_SESSION['item_id'];
             $res = $this->m->db->query("SELECT * FROM `course_content` WHERE id = '$uid'");
@@ -146,10 +146,11 @@
 
             if (!$this->isUser($course[0]['author_id'])) return False;
 
-            unlink($res[0]['video']);
-            unlink($res[0]['thubnails']);
+            if (file_exists($res[0]['video'])) unlink($res[0]['video']);
 
-            $path = $this->url_dir . 'courses/' . $res[0]['course_id']. "/$count_video" ."_" . $_FILES['video_change']['name'];
+            $_SESSION['error'] = $_FILES['video_change'];
+
+            $path = $this->url_dir . "courses/{$res[0]['course_id']}"."/$count_video"."_".$_FILES['video_change']['name'];
 
             move_uploaded_file($_FILES['video_change']['tmp_name'], $path);
 

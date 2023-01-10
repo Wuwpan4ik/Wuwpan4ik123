@@ -337,11 +337,11 @@
                 $this->m->db->execute("INSERT INTO `user` (`email`, `password`, `is_creator`) VALUES ('$this->email', '$this->password', 0)");
 
                 if (isset($this->name)) {
-                    $this->m->db->execute("INSERT INTO `user` (`first_name`) VALUES ('$this->name') WHERE `email` = '$this->email'");
+                    $this->m->db->execute("UPDATE `user` SET `first_name` = '$this->name' WHERE `email` = '$this->email'");
                 }
 
                 if (isset($this->phone)) {
-                    $this->m->db->execute("INSERT INTO `user` (`telephone`) VALUES ('$this->phone') WHERE `email` = '$this->email'");
+                    $this->m->db->execute("UPDATE `user` SET `telephone` = '$this->phone' WHERE `email` = '$this->email'");
                 }
                 $res = $this->m->getUserByEmail($this->email)[0];
             }
