@@ -375,6 +375,9 @@
         if (document.querySelector('.exit-funnel-edit')) {
             document.querySelector('.exit-funnel-edit').classList.remove('display-flex');
         }
+        if (document.querySelector('.checkbox__wrapper')) {
+            document.querySelector('.checkbox__wrapper').remove();
+        }
         toggleOverflow();
         closePopup();
         clearPopup();
@@ -647,7 +650,7 @@
                             }
                             break;
                         case 'link':
-                            addCheckbox(document.querySelector('#first_do'));
+                            addFormLink(true, document.querySelector('#first_do'))
                             if (popup['first_do']['open_in_new']) {
                                 document.querySelector('input[name="open_new_window"]').checked = true;
                             }

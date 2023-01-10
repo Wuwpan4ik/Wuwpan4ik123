@@ -161,7 +161,7 @@ async function addFormSelect(elem, name) {
     })
 }
 
-function addFormLink(elem) {
+function addFormLink(block, elem) {
     let count = elem.parentElement.querySelectorAll('.link_item').length;
     let count_id = elem.id === 'second_do' ? 2 : 1;
     let div = document.createElement('input');
@@ -172,11 +172,11 @@ function addFormLink(elem) {
     div.style.paddingLeft = '15px';
     div.style.marginTop = '20px';
     if (count === 0) {
-        elem.parentElement.children[1].after(div);
+        if (block) addCheckbox(div, elem)
     }
 }
 
-function addCheckbox(elem) {
+function addCheckbox(block, elem) {
     let checkbox = document.createElement('div');
     checkbox.classList.add("checkbox__wrapper")
     let switch_box = document.createElement('div');
@@ -190,11 +190,11 @@ function addCheckbox(elem) {
     input.value = 'open_new_window';
     switch_box.appendChild(input)
     checkbox.appendChild(switch_box)
+    checkbox.prepend(block);
     let text = document.createElement('div');
     text.innerHTML = 'Открывать в новом окне';
     switch_box.appendChild(text)
     elem.parentElement.children[2].after(checkbox);
-    console.log(elem.parentElement)
 }
 
 //Добавление option
@@ -253,6 +253,11 @@ function checkFirstSelect() {
         enableAfterClickBlock();
         initListCourse();
     }
+    if (document.querySelector('.checkbox__wrapper')) {
+        if (first_select.value !== 'link') {
+            document.querySelector('.checkbox__wrapper').remove();
+        }
+    }
 
     switch (first_select.value) {
         case 'list':
@@ -269,8 +274,7 @@ function checkFirstSelect() {
 
         case 'link': {
             document.querySelector('#popup__body-form-1').style.display = 'none';
-            addCheckbox(document.querySelector('#first_do'));
-            addFormLink(first_select);
+            addFormLink(true, first_select);
             defaultPopup(second_select);
             disableAfterClickBlock();
             checkSecondSelect();
@@ -338,10 +342,7 @@ function checkSecondSelect() {
         defaultPopup(second_select);
         if (second_select.value === 'link') {
             document.querySelector('#popup__body-form-2').style.display = 'none';
-            addFormLink(second_select);
-            if (document.querySelector('.checkbox__wrapper')) {
-                document.querySelector('.checkbox__wrapper').classList.remove('display-none');
-            }
+            addFormLink(false, second_select);
         }
     }
 

@@ -30,7 +30,7 @@
                                 <img src="/img/smallPlayer/views.svg" alt="">
                             </div>
                             <div class="slider__header-views-count">
-                                126
+                                0
                             </div>
                         </div>
                     </div>
