@@ -105,7 +105,7 @@ function defaultPopup(parent_elem){
     parent_elem.parentElement.querySelectorAll('.form_id').forEach((elem) => {
         elem.remove();
     })
-    parent_elem.parentElement.querySelectorAll('.link_item').forEach((elem) => {
+    parent_elem.parentElement.querySelectorAll('.checkbox__wrapper').forEach((elem) => {
         elem.remove();
     })
     document.querySelector('#first_do-list').classList.remove('display-none');
@@ -247,7 +247,6 @@ function enableAfterClickBlock() {
 function checkFirstSelect() {
     if (['list'].includes(first_select.value)) {
         addPopup('list');
-        defaultPopup(second_select);
         addSecondOptions([['pay_form', "Форма оплаты"], ['form', 'Форма заявки']]);
         enableAfterClickBlock();
         initListCourse();
@@ -262,20 +261,22 @@ function checkFirstSelect() {
     switch (first_select.value) {
         case 'list':
         case 'next_lesson': {
+            defaultPopup(second_select);
+            defaultPopup(first_select);
             document.querySelector('#popup__body-form-1').style.display = 'none';
             first_select.parentElement.querySelectorAll('.link_item').forEach((elem) => {
                 elem.classList.add('display-none');
             })
-            defaultPopup(second_select);
-            defaultPopup(first_select);
+
             disableAfterClickBlock();
             break;
         }
 
         case 'link': {
+            if (!document.querySelectorAll('.checkbox__wrapper')) {
+                addFormLink(first_select);
+            }
             document.querySelector('#popup__body-form-1').style.display = 'none';
-            addFormLink(first_select);
-            defaultPopup(second_select);
             disableAfterClickBlock();
             checkSecondSelect();
             break;
@@ -292,8 +293,8 @@ function checkFirstSelect() {
             first_select.parentElement.querySelectorAll('.link_item').forEach((elem) => {
                 elem.classList.add('display-none');
             })
+            addSecondOptions([['', 'Выберите'], ['link', "Переход по ссылке"], ['next_lesson', 'Открыть следующее видео'], ['file', 'Отправка файла']]);
             defaultPopup(second_select);
-            addSecondOptions([['', 'Выберете'], ['link', "Переход по ссылке"], ['next_lesson', 'Открыть следующее видео'], ['file', 'Отправка файла']]);
             enableAfterClickBlock();
             checkSecondSelect();
             let form__title = document.querySelector('input[name="form__title"]');
@@ -327,7 +328,7 @@ function checkSecondSelect() {
         document.querySelector('#popup__body-file').classList.add('display-none');
     }
 
-    if (document.querySelector('.checkbox__wrapper')) {
+    if (second_select.parentElement.querySelector('.checkbox__wrapper')) {
         if (second_select.value !== 'link') {
             second_select.parentElement.querySelector('.checkbox__wrapper').remove();
         }

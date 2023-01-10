@@ -126,15 +126,18 @@
 <?php } ?>
 
 <script src="/js/notifications.js"></script>
-
+<script src="/js/jquery-3.6.1.min.js" ></script>
+<script src="/js/script.js" ></script>
+<script src="/js/slick.min.js"></script>
+<script src="/js/sliders.js"></script>
 <!--На некст слайд-->
 <script>
     function NextSlide(count) {
         $('.slick-next').click();
+        console.log($('.slider'))
 
         let request = new XMLHttpRequest();
         let url = "/Funnel/"+ count +"/AddView";
-        console.log(url)
         request.open('POST', url);
         request.setRequestHeader('Content-Type', 'application/x-www-form-url');
         request.addEventListener("readystatechange", () => {
@@ -144,8 +147,6 @@
         request.send();
     }
 </script>
-
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
 
 <!--Закрытие AllLessons-->
 <script>
@@ -241,9 +242,6 @@
         })
     });
 </script>
-<script src="/js/script.js" ></script>
-<script src="/js/slick.min.js"></script>
-<script src="/js/sliders.js"></script>
 <script>
     function startAccordion() {
         let accordionButton = document.querySelectorAll(".accordion-button");

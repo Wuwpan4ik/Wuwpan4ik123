@@ -497,7 +497,6 @@
     })
 
     document.getElementById('social__inpu').addEventListener('input', function (){
-        console.log(this.value)
         document.getElementById('social__link').value = this.value;
     })
 

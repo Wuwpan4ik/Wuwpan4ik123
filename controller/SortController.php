@@ -39,6 +39,8 @@ class SortController extends ACoreCreator {
 
             $tel = $client["tel"];
 
+            $date = date('d.m.Y', strtotime($client["achivment_date"]));
+
             if (strlen($tel) == 0) {
                 $tel = '—';
             }
@@ -56,7 +58,7 @@ class SortController extends ACoreCreator {
 						
 						<td><a href="/Course/' . $client["course_id"] . '">' . $client["course_name"] . '</td>
 											
-						<td>' . $client["achivment_date"] . '</td>
+						<td>' . $date . '</td>
 						
 					</tr>';
 
@@ -68,7 +70,9 @@ class SortController extends ACoreCreator {
         $result_course = $this->m->db->query("SELECT course.name as course_name, course.id as course_id, orders.achivment_date, orders.money, user.first_name, user.email, user.telephone, orders.id FROM orders JOIN course ON orders.course_id = course.id JOIN user ON orders.user_id = user.id WHERE creator_id = " . $_SESSION['user']['id']." ORDER BY " . $get);
         $count = 1;
         foreach($result_course as $order){
+
             $tel = $order["tel"];
+            $date = date('d.m.Y', strtotime($order["achivment_date"]));
 
             if (strlen($tel) == 0) {
                 $tel = '—';
@@ -87,7 +91,7 @@ class SortController extends ACoreCreator {
 						
 						<td><a href="/Course/' . $order["course_id"] . '">' . $order["course_name"] . '</td>
 											
-						<td>' . $order["achivment_date"] . '</td>
+						<td>' . $date . '</td>
 						
 					</tr>';
             $count += 1;

@@ -361,7 +361,6 @@
                             } else if (option_1 === 'pay_form') {
                                 for (let item of popup['first_do']['pay_form']) {
                                     addFormItem(div, item);
-                                    console.log(item)
                                 }
                             }
 
