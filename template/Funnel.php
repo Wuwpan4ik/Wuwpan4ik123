@@ -299,6 +299,8 @@
             item.classList.remove('active');
         })
 
+        document.querySelector('.popup-video .media-cart-img').remove();
+
         document.querySelectorAll('.form-select').forEach(item => {
             item.querySelector('option').value = null;
             item.querySelector('option').innerHTML = "Выберите шрифт";
@@ -315,6 +317,7 @@
             url: '/Funnel/'+ count +'/GetMainSettings',
             type: "POST",
             success: function (data) {
+                console.log(data)
                 if (data){
                     let temp_data = JSON.parse(data);
                     let description = temp_data['desc__font'];
@@ -329,6 +332,10 @@
                     document.querySelectorAll('.popup-styles-button')[shadow__button - 1].classList.add('active');
                     changeStyleBtn(document.querySelector('.button-video'), color, shadow);
                     document.querySelector('textarea[name="head__settings"]').innerHTML = temp_data['head__settings'];
+                } else {
+                    document.querySelectorAll('.popup-styles-color')[0].click();
+                    document.querySelectorAll('.popup-styles-button')[0].classList.add('active');
+                    changeStyleBtn(document.querySelector('.button-video'), color, shadow);
                 }
             }
         });
@@ -343,16 +350,25 @@
     generalSettings.forEach(item => {
         item.addEventListener('click', () => {
             document.querySelector('.popup__general').style.display = 'flex';
-            let slider = item.parentElement.parentElement.querySelector('.media-cart-img').cloneNode(true);
-            slider.querySelector('.slider__item-title').classList.add('preview__title')
-            slider.querySelector('.slider__item-text').classList.add('preview__text')
-            document.querySelector('.popup-video').appendChild(slider);
-            if (document.querySelector('.popup-video').querySelector('.slider__item-info')) {
-                document.querySelector('.popup-video').querySelector('.slider__item-info').style.bottom = "18%";
+            if (item.parentElement.parentElement.querySelector('.media-cart-img').querySelector('video')) {
+                let slider = item.parentElement.parentElement.querySelector('.media-cart-img').cloneNode(true);
+
+                if (slider.querySelector('.slider__item-title')) {
+                    slider.querySelector('.slider__item-title').classList.add('preview__title')
+                }
+
+                if (slider.querySelector('.slider__item-text')) {
+                    slider.querySelector('.slider__item-text').classList.add('preview__text')
+                }
+
+                document.querySelector('.popup-video').appendChild(slider);
+                if (document.querySelector('.popup-video').querySelector('.slider__item-info')) {
+                    document.querySelector('.popup-video').querySelector('.slider__item-info').style.bottom = "18%";
+                }
+                document.querySelector('#initButton').action = '/Funnel/' + item.dataset.funnel_id + '/main_settings';
+                document.querySelector('#id_item').value = item.dataset.funnel_id;
+                GetMainSettings(item.dataset.funnel_id);
             }
-            document.querySelector('#initButton').action = '/Funnel/' + item.dataset.funnel_id + '/main_settings';
-            document.querySelector('#id_item').value = item.dataset.funnel_id;
-            GetMainSettings(item.dataset.funnel_id);
         })
     })
 
@@ -399,7 +415,6 @@
     }
 
     function SaveOrRemoveSettings() {
-        console.log("/Funnel/"+ document.querySelector('#id_item').value +"/checkMainSettings")
         $.ajax({
             url: "/Funnel/"+ document.querySelector('#id_item').value +"/checkMainSettings",
             method: 'POST',             /* Метод передачи (post или get) */
