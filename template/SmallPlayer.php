@@ -15,7 +15,10 @@
 
 </head>
 <body class="body">
-<?php print_r($_SESSION['error']) ?>
+<div class="display-none">
+    <?php print_r($_SESSION['error']) ?>
+</div>
+
 <div class="mirror_smallPlayer">
     <div class="mirrorWrap"></div>
     <video id="mirrorVideo" src="" playsinline muted></video>
@@ -101,6 +104,8 @@
                             $new_window = !is_null($popup->second_do->open_in_new);
                             $new_window = !is_null($popup->first_do->open_in_new);
                             $author_id = $item['author_id'];
+                            $funnel_id = $content['course_content'][0]['funnel_id'];
+                            $slider_id = $item['count_slider'];
                             include 'template/default/popup__templates/popup__form.php';
                         } ?>
                         <?php if (isset($popup->first_do->list)) {
@@ -113,7 +118,7 @@
             <?php } ?>
         </div>
         <?php }?>
-        <?php if (isset($popup->second_do->list) || isset($popup->first_do->list)) {
+        <?php if (isset($popup->first_do->list)) {
         include 'template/default/popup__templates/popup__buy.php';
         } ?>
     </div>

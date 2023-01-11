@@ -41,6 +41,11 @@ class User {
         return $result;
     }
 
+    public function getFunnelById($id) {
+        $result = $this->db->query("SELECT * FROM funnel WHERE id = $id");
+        return $result;
+    }
+
     public function getContactsByUser()
     {
         return $this->db->query("SELECT user.id, user.telephone, user.email, contact.vk, contact.instagram, contact.whatsapp, contact.telegram, contact.facebook, contact.youtube, contact.twitter, contact.site FROM user LEFT JOIN user_contacts as contact ON contact.user_id = user.id WHERE user.id = " . $_SESSION['item_id']);
@@ -286,10 +291,10 @@ class User {
     {
         $id = $_SESSION['item_id'];
         $author_id = $this->db->query("SELECT funnel.author_id FROM funnel WHERE id = '$id'")[0]['author_id'];
-        $course_temp = $this->db->query("SELECT funnel.course_id FROM funnel WHERE id = '$id'");
-        $course_have_id = is_null($course_temp);
-        if ($course_have_id) {
-            $course_id = $course_temp[0]['course_id'];
+        $course_temp = $this->db->query("SELECT course_id FROM funnel WHERE id = '$id'")[0]['course_id'];
+        $course_have_id = (is_null($course_temp) && !isset($course_temp));
+        if (!$course_have_id) {
+            $course_id = $course_temp;
         } else {
             $course_id = $this->db->query("SELECT course.id FROM course WHERE author_id = '$author_id'")[0]['id'];
         }
@@ -305,6 +310,7 @@ class User {
                                                 content.id as 'video_id',
                                                 content.video,
                                                 content.button_text,
+                                                content.query_id as 'count_slider',
                                                 user_info.id as 'author_id',
                                                 user_info.avatar,
                                                 user_info.first_name
@@ -318,7 +324,8 @@ class User {
                                                 course_content.video,
                                                 course_content.price,
                                                 course_content.thubnails,
-                                                course.author_id
+                                                course.author_id,
+                                                funnel.id as 'funnel_id'
                                                 FROM `funnel` AS funnel
                                                 INNER JOIN `course_content` ON course_content.course_id = '$course_id' AND funnel.id = '$id'
                                                 INNER JOIN `course` ON course.id = course_content.course_id");

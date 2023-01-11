@@ -43,7 +43,9 @@
                                     <span style="color: rgba(0, 0, 0, 0.6);font-size:16px;font-weight:400;">
                                         Если вы не отправляли запрос и это письмо пришло к вам по ошибке, свяжитесь с нами в телеграмм: <a href="https://t.me/CourseCreatorBot" target="_blank">@CourseCreatorBot</a>
                                     </span>
-                                    <div class="info_account" style="display:flex;justify-content: space-between;gap: 20px;margin-top: 40px;">
+                                    <div class="info_account" style="display:-webkit-box;
+                                    display:-ms-flexbox;
+                                    display:flex;-webkit-box-pack: justify;-ms-flex-pack: justify;justify-content: space-between;gap: 20px;margin-top: 40px;">
                                         <div class="first_row" style="width:50%">
                                             <p style="font-weight:700;font-size:14px;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;color: rgba(0, 0, 0, 0.9);">
                                                 Ваш логин:
@@ -92,13 +94,15 @@
                                     <span style="color: rgba(0, 0, 0, 0.6);font-size:16px;font-weight:400;">
                                         Спасибо, что вы зарегистрировались в Сourse Сreator! Ниже важная информация о вашем аккаунте. Пожалуйста, сохраните это письмо, чтобы можно было обратиться к нему позже.
                                     </span>
-                                    <div class="info_account" style="display:flex;justify-content: space-between;gap: 20px;margin-top: 40px;">
+                                    <div class="info_account" style="display:-webkit-box;
+                                    display:-ms-flexbox;
+                                    display:flex;-webkit-box-pack: justify;-ms-flex-pack: justify;justify-content: space-between;gap: 20px;margin-top: 40px;">
                                         <div class="first_row" style="width:50%">
                                             <p style="font-weight:700;font-size:14px;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;color: rgba(0, 0, 0, 0.9);">
                                                 Ваш логин:
                                             </p>
                                             <div style="color: #8098AB;background: #EFF3F6;border-radius: 3px;padding-top: 15px;padding-bottom: 15px;padding-right: 20px;padding-left: 20px;">
-                                                '. $login .'
+                                                '.$login.'
                                             </div>
                                         </div>
                                         <div class="second_row" style="width:50%">
@@ -328,7 +332,7 @@
                 $this->password = $this->GenerateRandomPassword(12);
                 $this->db->db->execute("UPDATE `user` SET `password` = '$this->password' WHERE email = '$this->email'");
                 $body = $this->GetRecoveryHtml($user[0]['login'], $this->password);
-                $this->SendEmail($title, $body);
+                $this->SendEmail($title, $body, $this->email);
                 header('Location: /login');
                 return true;
             }
@@ -345,7 +349,7 @@
                 $this->password = $this->GenerateRandomPassword(12);
                 $this->db->db->execute("UPDATE `user` SET `password` = '$this->password' WHERE email = '$this->email'");
                 $body = $this->GetRecoveryHtml($user[0]['email'], $this->password);
-                $this->SendEmail($title, $body);
+                $this->SendEmail($title, $body, $user[0]['email']);
                 header('Location: /UserLogin');
                 return true;
             }

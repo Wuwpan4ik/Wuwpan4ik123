@@ -97,7 +97,7 @@
 
     $router->addRoute("/ClientsController/application", "ClientsController.php", 'AddApplication');
     $router->addRoute("/ClientsController/CourseBuy", "ClientsController.php", 'BuyCourse');
-    $router->addRoute("/ClientsController/CourseVideo", "ClientsController.php", 'BuyVideo');
+//    $router->addRoute("/ClientsController/CourseVideo", "ClientsController.php", 'BuyVideo');
     $router->addRoute("/PopupController/get_popup", "PopupController.php", 'get_popup');
 
     $router->addRoute("/SortController/Clients", "SortController.php", "getClientsForMain");
