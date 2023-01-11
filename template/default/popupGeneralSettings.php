@@ -106,7 +106,7 @@
                         <div class="popup-styles-button button-shadow-down">
                             <input class="custom-radio" name="color" type="radio" id="color-green" value="green">
                             <label for="color-green"></label>
-                            <button type="button" class="general-popup__button button-shadow-down">Получить подарок</button>
+                            <button type="button"    class="general-popup__button button-shadow-down">Получить подарок</button>
                         </div>
                         <div class="popup-styles-button button-shadow-lite"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><button type="button" class="general-popup__button button-shadow-lite">Получить подарок</button></div>
                         <div class="popup-styles-button button-shadow-none"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><button type="button" class="general-popup__button">Получить подарок</button></div>
