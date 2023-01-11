@@ -55,15 +55,6 @@
                 <span class="placeholder-textarea">Укажите описание</span>
             </div>
 
-
-            <div class="funnel-input input_focus" style="display:none;">
-                <label for="name" class="label_focus">Укажите стоимость урока:</label>
-                <input name="price" class="videoname video-desc" type="number" min="100" max="100000" maxlength="6" value="<?=$v['price'] ?>">
-                <span class="clear_input_val">
-            <img src="/img/clear_input.svg" alt="">
-            </span>
-            </div>
-
             <div class="file_input">
                 <span>
                     Прикрепите файл к уроку:
@@ -81,8 +72,8 @@
                         </div>
                     </div>
                     <div class="input__wrapper">
-                        <input name="file" type="file" id="input__file" class="input input__file" onchange="uploadFile(this)" multiple="">
-                        <label for="input__file" class="input__file-button" style="">
+                        <input name="file" type="file" id="input__file-<?=$count ?>" class="input input__file" onchange="uploadFile(this)" multiple="">
+                        <label for="input__file-<?=$count ?>" class="input__file-button" style="">
                             <span class="input__file-icon-wrapper"><img class="input__file-icon" src="/img/plus.svg" width="25"></span>
                             <span class="input__file-button-text ">Добавить</span>
                         </label>

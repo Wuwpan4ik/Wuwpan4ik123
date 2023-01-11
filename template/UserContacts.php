@@ -20,7 +20,7 @@
                 <div class="user__logo-text">Course Creator</div>
             </div>
             <div class="header-main__burger">
-                <a href="/UserMenu">
+                <a href="/">
                     <div class="main__burger">
                         <span></span>
                     </div>

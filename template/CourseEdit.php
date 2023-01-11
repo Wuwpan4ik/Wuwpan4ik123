@@ -20,8 +20,6 @@
 
 <body>
 
-<?php print_r($_SESSION['error'])    ?>
-
 <style>
     .popup__background {
         position: fixed;
@@ -112,13 +110,14 @@
             <div class="media _container">
 
                 <?php
-                foreach($content[1] as $v){?>
+                $count = 1;
+                foreach($content[1] as $v){
+                    ?>
+
 
                     <?php include 'default/media-cart.php'; ?>
 
-                <?}
-
-                ?>
+                <? $count += 1;} ?>
                 <?php include 'default/add_new_video.php'?>
             </div>
 
@@ -182,13 +181,20 @@
 </div>
 
 <script src="/js/button__settings.js"></script>
-<script src="/js/printFailName.js"></script>
 <script>
-    let saveBtn = document.querySelector('.save-btn');
-
-    saveBtn.addEventListener('click', function(){
-        saveBtn.classList.add('active');
-        saveBtn.innerHTML = 'Сохранено';
+    function uploadFile(target) {
+        console.log(target.parentElement.parentElement)
+        target.parentElement.parentElement.querySelector("#file-name").innerHTML = (target.files[0].name);
+        target.parentElement.parentElement.querySelector("#file-size").innerHTML = Math.round(target.files[0].size / 1024) + "кБ из доступных 5мб" ;
+    }
+</script>
+<script>
+    let saveBtn = document.querySelectorAll('.save-btn');
+    saveBtn.forEach(item => {
+        item.addEventListener('click', function(){
+            item.classList.add('active');
+            item.innerHTML = 'Сохранено';
+        })
     })
 </script>
 <script>

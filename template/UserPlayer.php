@@ -149,9 +149,7 @@
                                     </div>
                                 </div>
                                 <div class="secondRow">
-                                    <button type="button" onclick="get_file_url('<?=$content[0]['file_url'] ?>')" class="download_file">
-                                        Скачать файл
-                                    </button>
+                                    <a href="" class="download_file" download>Скачать файл</a>
                                 </div>
                             </div>
                         </div>
@@ -206,17 +204,10 @@
     </div>
     <script>
         function get_file_url(url) {
-
-            var link_url = document.createElement("a");
-
-            link_url.download = url.substring((url.lastIndexOf("/") + 1), url.length);
-            link_url.href = url;
-            document.body.appendChild(link_url);
-            link_url.click();
-            document.body.removeChild(link_url);
-            delete link_url;
-
+            let link_url = url.substring((url.lastIndexOf("/") + 1), url.length);
+            document.querySelector('.download_file').href = "https:" + link_url;
         }
+        get_file_url("<?=$content[0]['file_url'] ?>");
     </script>
     <script>
         let mirrorVideo = document.getElementById('mirrorVideo');

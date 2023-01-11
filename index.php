@@ -97,7 +97,6 @@
 
     $router->addRoute("/ClientsController/application", "ClientsController.php", 'AddApplication');
     $router->addRoute("/ClientsController/CourseBuy", "ClientsController.php", 'BuyCourse');
-//    $router->addRoute("/ClientsController/CourseVideo", "ClientsController.php", 'BuyVideo');
     $router->addRoute("/PopupController/get_popup", "PopupController.php", 'get_popup');
 
     $router->addRoute("/SortController/Clients", "SortController.php", "getClientsForMain");
@@ -122,6 +121,7 @@
     $router->addRoute("/getCheckedNotifications", "NotificationsController.php", "getCheckedNotifications");
     $router->addRoute("/getNotifications", "NotificationsController.php", "getNotifications");
     $router->addRoute("/getCountNotifications", "NotificationsController.php", "getCountNotifications");
+    $router->addRoute("/NotificationsController/checkout", "NotificationsController.php", "checkNotifications");
     $router->addRoute("/NotificationsController/checkout", "NotificationsController.php", "checkNotifications");
 
 

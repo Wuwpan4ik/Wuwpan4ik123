@@ -608,6 +608,7 @@
     }
 
     .UserMenu {
+        display: none;
         width: 410px;
         background: #757D8A;
         height: 100%;
