@@ -149,7 +149,7 @@
                                     </div>
                                 </div>
                                 <div class="secondRow">
-                                    <a href="" class="download_file" download>Скачать файл</a>
+                                    <a href="<?=$content[0]['file_url'] ?>" class="download_file" download>Скачать файл</a>
                                 </div>
                             </div>
                         </div>

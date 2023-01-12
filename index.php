@@ -123,7 +123,7 @@
     $router->addRoute("/getCountNotifications", "NotificationsController.php", "getCountNotifications");
     $router->addRoute("/NotificationsController/checkout", "NotificationsController.php", "checkNotifications");
     $router->addRoute("/NotificationsController/checkout", "NotificationsController.php", "checkNotifications");
-
+    $router->addRoute("/files/$item_id/take", "FilesController.php", "DownloadFile");
 
     $router->route("/$url");
 
