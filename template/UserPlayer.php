@@ -149,8 +149,10 @@
                                     </div>
                                 </div>
                                 <div class="secondRow">
-                                    <a href="<?=$content[0]['file_url'] ?>" class="download_file" download>Скачать файл</a>
-                                </div>
+                                    <?php $url = include "settings/site_url.php"; ?>
+                                    <button type="button" onclick="get_file_url('<?php echo "{$url}/{$content[0]['file_url']}"?>')" class="download_file">
+                                    Скачать файл
+                                    </button></div>
                             </div>
                         </div>
                         <?php } ?>
@@ -202,12 +204,19 @@
             </div>
         </div>
     </div>
+    <div class="file_name-download display-none">
+        <?=$content[0]['content_name']?>
+    </div>
     <script>
         function get_file_url(url) {
-            let link_url = url.substring((url.lastIndexOf("/") + 1), url.length);
-            document.querySelector('.download_file').href = "https:" + link_url;
+            const a = document.createElement('a')
+            a.href = url
+            a.download = document.querySelector('.file_name-download').innerHTML.trim()
+            document.body.appendChild(a)
+            a.click()
+            document.body.removeChild(a)
+
         }
-        get_file_url("<?=$content[0]['file_url'] ?>");
     </script>
     <script>
         let mirrorVideo = document.getElementById('mirrorVideo');

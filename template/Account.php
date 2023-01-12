@@ -15,6 +15,8 @@
 
 <body>
 
+<?php print_r($_SESSION['error']) ?>
+
 <div class="SettingAccount">
 
     <?php include 'default/sidebar.php';?>
@@ -122,7 +124,7 @@
                                                 <div id="myMultiselect" class=" multiselect">
                                                     <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
                                                         <select name="currency" class="form-select">
-                                                            <option id="name" value=""><?php echo ($_SESSION['user']['currency']) ?? "Выберите валюту"; ?></option>
+                                                            <option id="name" value="<?php echo ($_SESSION['user']['currency']) ?? ""; ?>"><?php echo ($_SESSION['user']['currency']) ?? "Выберите валюту"; ?></option>
                                                         </select>
                                                         <div class="overSelect"></div>
                                                     </div>
@@ -136,40 +138,47 @@
                                             </div>
 
                                         </div>
-                                        <div class="social__block">
-                                            <h2>Укажите соц сети для клиентов</h2>
-                                            <div class="field">
-                                                <div class="select-account social-network">
-                                                    <div id="myMultiselect" class="multiselect">
-                                                        <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
-                                                            <select class="form-select">
-                                                                <option class="form-select__social-name" id="name">Выберите соц сеть</option>
-                                                            </select>
-                                                            <div class="overSelect"></div>
-                                                        </div>
-                                                        <div class="mySelectOptions">
-                                                            <label class="item social__item">Вконтакте<input class="custom-checkbox social__input" type="radio" value="vk" /><label for="happy"></label></label>
-                                                            <label class="item social__item">WhatsApp<input class="custom-checkbox social__input" type="radio" value="whatsapp" /><label for="happy"></label></label>
-                                                            <label class="item social__item">Твиттер<input class="custom-checkbox social__input" type="radio" value="twitter" /><label for="happy"></label></label>
-                                                            <label class="item social__item">Фейсбук<input class="custom-checkbox social__input" type="radio" value="facebook" /><label for="happy"></label></label>
-                                                            <label class="item social__item">Инстаграм<input class="custom-checkbox social__input" type="radio" value="instagram" /><label for="happy"></label></label>
-                                                            <label class="item social__item">Ютуб<input class="custom-checkbox social__input" type="radio" value="youtube" /><label for="happy"></label></label>
-                                                            <label class="item social__item">Телеграм<input class="custom-checkbox social__input" type="radio" value="telegram" /><label for="happy"></label></label>
-                                                            <label class="item social__item">Сайт<input class="custom-checkbox social__input" type="radio" value="site" /><label for="happy"></label></label>
+                                        <div class="social__blocks">
+                                            <?php
+                                            $options = ["vk", "whatsapp", "twitter", "facebook", "instagram", "youtube", "telegram", "site"];
+                                            for($i = 0; $i<8; $i++){
+                                                if (is_null($content[2][0][$options[$i]])) continue;
+                                                ?>
+                                            <div class="social__block">
+                                                <h2>Укажите соц сети для клиентов</h2>
+                                                <div class="field">
+                                                    <div class="select-account social-network">
+                                                        <div id="myMultiselect" class="multiselect">
+                                                            <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
+                                                                <select class="form-select">
+                                                                    <option class="form-select__social-name" id="name"><?=$options[$i] ?></option>
+                                                                </select>
+                                                                <div class="overSelect"></div>
+                                                            </div>
+                                                            <div class="mySelectOptions">
+                                                                <label class="item social__item">Вконтакте<input class="custom-checkbox social__input" type="radio" value="vk" /><label for="happy"></label></label>
+                                                                <label class="item social__item">WhatsApp<input class="custom-checkbox social__input" type="radio" value="whatsapp" /><label for="happy"></label></label>
+                                                                <label class="item social__item">Твиттер<input class="custom-checkbox social__input" type="radio" value="twitter" /><label for="happy"></label></label>
+                                                                <label class="item social__item">Фейсбук<input class="custom-checkbox social__input" type="radio" value="facebook" /><label for="happy"></label></label>
+                                                                <label class="item social__item">Инстаграм<input class="custom-checkbox social__input" type="radio" value="instagram" /><label for="happy"></label></label>
+                                                                <label class="item social__item">Ютуб<input class="custom-checkbox social__input" type="radio" value="youtube" /><label for="happy"></label></label>
+                                                                <label class="item social__item">Телеграм<input class="custom-checkbox social__input" type="radio" value="telegram" /><label for="happy"></label></label>
+                                                                <label class="item social__item">Сайт<input class="custom-checkbox social__input" type="radio" value="site" /><label for="happy"></label></label>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="input_focus ">
-                                                    <label for="username" class="label_focus">Укажите ссылку</label>
-                                                    <input type="text" id="social__inpu" minlength="10">
-                                                    <span class="clear_input_val">
-                                                     <img src="/img/clear_input.svg" alt="">
-                                                </span>
+                                                    <div class="input_focus ">
+                                                        <label for="username" class="label_focus">Укажите ссылку</label>
+                                                        <input type="text" id="social__inpu" minlength="3" name="<?=$options[$i]?>" value="<?=$content[2][0][$options[$i]] ?>">
+                                                        <span class="clear_input_val">
+                                                         <img src="/img/clear_input.svg" alt="">
+                                                    </span>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <?php } ?>
+
                                         </div>
-
-
                                         <button type="button" id="social__submit" class="add-social-network"><img src="../img/addSocialNetwork.svg" alt=""> Добавить соц сеть</button>
 
 
@@ -467,8 +476,10 @@
         </div>
     </div>
 </div>
-<?php unset($_SESSION['error']) ?>
 <script src="/js/jquery-3.6.1.min.js"></script>
+<script>
+
+</script>
 <script>
     /*Popups*/
     let changeTariff = document.querySelector('.change-tariff-popup');
@@ -495,13 +506,56 @@
             changeTariff.classList.remove('active');
         })
     })
+    function checkInputsForUrl() {
+        let checkedCheckboxes = document.querySelectorAll('.custom-checkbox');
+        checkedCheckboxes.forEach(item =>{
+            item.addEventListener('click', function(){
+                item.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector('#social__inpu').name = item.value;
+            })
+        })
+    }
+    checkInputsForUrl();
 
-    document.getElementById('social__inpu').addEventListener('input', function (){
-        document.getElementById('social__link').value = this.value;
-    })
-
+    // Проверка на количество и add social
     document.getElementById('social__submit').addEventListener('click', function (){
-        document.querySelector('#social__button').click();
+        if (document.querySelectorAll('.social__block').length === 8) {
+            return;
+        }
+        let div = `<div class="social__block">
+            <h2>Укажите соц сети для клиентов</h2>
+            <div class="field">
+                <div class="select-account social-network">
+                    <div id="myMultiselect" class="multiselect">
+                        <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
+                            <select class="form-select">
+                                <option class="form-select__social-name" id="name">Выберите</option>
+                            </select>
+                            <div class="overSelect"></div>
+                        </div>
+                        <div class="mySelectOptions">
+                            <label class="item social__item">Вконтакте<input class="custom-checkbox social__input" type="radio" value="vk" /><label for="happy"></label></label>
+                            <label class="item social__item">WhatsApp<input class="custom-checkbox social__input" type="radio" value="whatsapp" /><label for="happy"></label></label>
+                            <label class="item social__item">Твиттер<input class="custom-checkbox social__input" type="radio" value="twitter" /><label for="happy"></label></label>
+                            <label class="item social__item">Фейсбук<input class="custom-checkbox social__input" type="radio" value="facebook" /><label for="happy"></label></label>
+                            <label class="item social__item">Инстаграм<input class="custom-checkbox social__input" type="radio" value="instagram" /><label for="happy"></label></label>
+                            <label class="item social__item">Ютуб<input class="custom-checkbox social__input" type="radio" value="youtube" /><label for="happy"></label></label>
+                            <label class="item social__item">Телеграм<input class="custom-checkbox social__input" type="radio" value="telegram" /><label for="happy"></label></label>
+                            <label class="item social__item">Сайт<input class="custom-checkbox social__input" type="radio" value="site" /><label for="happy"></label></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="input_focus ">
+                    <label for="username" class="label_focus">Укажите ссылку</label>
+                    <input type="text" id="social__inpu" minlength="3">
+                    <span class="clear_input_val">
+                     <img src="/img/clear_input.svg" alt="">
+                </span>
+                </div>
+            </div>
+        </div>`;
+        document.querySelector('.social__blocks').innerHTML += div;
+        checkboxStatusChange();
+        checkInputsForUrl();
     })
 
     const check_url = document.querySelector('#check_url');
@@ -514,51 +568,11 @@
 <script src="/js/customSelect.js"></script>
 <script src="/js/printFailName.js" ></script>
 <script>
-    let form__submit = $(function() {
-        $('#social__form').each(function (){
-            $(this).submit(function(e) {
-                e.preventDefault();
-                if (($(this).find('#social__link')[0].value.length) <= 3) {
-                    // Событие при нехватки длины
-                    alert("Не хватает длины");
-                    return;
-                }
-                try {
-                    // Alert
-                    $('#social__input')[0].value = $('.form-select__social-name')[0].value;
-                    $.post(e.target.action, $(this).serialize());
-                    alert("Ваши данные сохранены");
-                    GetSocial();
-                } catch {}
-            });
-        })
-    });
-</script>
-<script>
-    function GetSocial() {
-        $.ajax({
-            url: "/Account/SocialUrls",
-            type: "POST",
-            success: function (data) {
-                let social__url = JSON.parse(data)
-                let social__button = document.querySelectorAll('.social__item');
-                social__button.forEach(item => {
-                    item.addEventListener('click', function () {
-                        let val = item.querySelector('.social__input').value;
-                        document.querySelector('#social__inpu').value = social__url[0][val];
-                        CheckInputs();
-                    })
-                })
-            }
-        });
-    }
-    GetSocial();
-</script>
-<script>
     let account_submit = $(function() {
         $('.account__form').each(function () {
             $(this).submit(function (e) {
                 e.preventDefault();
+                console.log(new FormData(this))
                 $.ajax({
                     url: $(this).attr("action"),
                     type: $(this).attr("method"),
@@ -572,11 +586,6 @@
     });
 </script>
 <script src="../js/sidebar.js"></script>
-<form id="social__form" class="social__form display-none" action="/Account/SaveSocialSettings" method="POST">
-    <input id="social__input" type="text" name="social" value="">
-    <input id="social__link" type="text" name="link" value="">
-    <button id="social__button" type="submit"></button>
-</form>
 </body>
 
 </html>
