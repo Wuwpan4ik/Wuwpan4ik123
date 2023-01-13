@@ -413,5 +413,29 @@ class User {
         $this->db->execute("UPDATE `funnel_content` SET `count_view`  = {$count} WHERE id = {$id}");
         return true;
     }
+
+    public function GetTariff($user_id)
+    {
+        return $this->db->query("SELECT * FROM `users_tariff` WHERE user_id = {$user_id}");
+    }
+
+    public function BuyTariff($user_id, $tariff_id)
+    {
+        $duration = $this->db->query("SELECT duration FROM `tariffs` WHERE `id` = {$tariff_id}")[0]['duration'];
+
+        if (in_array($duration, ['MONTH', 'WEEK', 'YEAR'])) {
+            $date_end =  date("Y-m-d", strtotime("+1 $duration", mktime(0, 0, 0, date('m'), date('d'), date('Y'))));
+            if (count($this->GetTariff($user_id)) !== 1) {
+                $this->db->execute("INSERT INTO `users_tariff` (`user_id`, `tariff_id`, `date`) VALUES ('$user_id', '$tariff_id', '$date_end')");
+            } else {
+                $this->db->execute("UPDATE `users_tariff` SET `tariff_id` = '$tariff_id', `date` = '$date_end' WHERE `user_id` = '$user_id'");
+            }
+        } else {
+            $request = 'Невалидное значение даты';
+            return false;
+        }
+
+        return true;
+    }
 }
 ?>

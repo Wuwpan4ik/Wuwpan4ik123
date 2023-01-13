@@ -122,8 +122,8 @@
     $router->addRoute("/getNotifications", "NotificationsController.php", "getNotifications");
     $router->addRoute("/getCountNotifications", "NotificationsController.php", "getCountNotifications");
     $router->addRoute("/NotificationsController/checkout", "NotificationsController.php", "checkNotifications");
-    $router->addRoute("/NotificationsController/checkout", "NotificationsController.php", "checkNotifications");
-    $router->addRoute("/files/$item_id/take", "FilesController.php", "DownloadFile");
+
+    $router->addRoute("/TariffController/Buy", "TariffController.php", "Buy");
 
     $router->route("/$url");
 

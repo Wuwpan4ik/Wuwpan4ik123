@@ -310,7 +310,7 @@
                                                     <p class="text">Файловое хранилище:</p>
                                                     <div class="storage-rate-body">
                                                         <div class="progress-storage">
-                                                            <progress  max="1000" value="<?php print_r(round($content[2]))?>">
+                                                            <progress max="1000" value="<?php print_r(round($content[2]))?>">
                                                             </progress>
                                                             <div class="progress-storage__info">
                                                                 <div class="progress-storage__current-value">
@@ -327,7 +327,9 @@
                                                     <a id="improvement-tariff">Увеличить хранилище</a>
                                                 </div>
                                             </div>
+
                                             <?php include 'template/default/popup__templates/popup__tariffs.php'?>
+
                                             <div class="improvement-tariff-popup popup-tariff">
                                                 <div class="popup-tariff-body">
                                                     <div class="popup__title">
@@ -476,10 +478,10 @@
         </div>
     </div>
 </div>
+<form id="tariff-buy-form" action="/TariffController/Buy" method="POST">
+    <input type="hidden" id="tariff_buy" name="tariff_id">
+</form>
 <script src="/js/jquery-3.6.1.min.js"></script>
-<script>
-
-</script>
 <script>
     /*Popups*/
     let changeTariff = document.querySelector('.change-tariff-popup');
@@ -496,16 +498,18 @@
     changeTariffOpen.addEventListener('click', function(){
         changeTariff.classList.add('active');
     })
+
     improvementTariffOpen.addEventListener('click', function(){
         improvementTariff.classList.add('active');
     })
 
-    document.querySelectorAll('.popup-tariff').forEach(item => {
-        item.addEventListener('click', function(){
+    changeTariff.onclick = async function (event) {
+        if (event.target === changeTariff) {
             improvementTariff.classList.remove('active');
             changeTariff.classList.remove('active');
-        })
-    })
+        }
+    }
+
     function checkInputsForUrl() {
         let checkedCheckboxes = document.querySelectorAll('.custom-checkbox');
         checkedCheckboxes.forEach(item =>{
@@ -562,6 +566,18 @@
     const check_button = document.querySelector('#check_button');
     const message = document.querySelector('#message');
 
+</script>
+
+<!--Покупка тарифа-->
+<script>
+    $('.tariff__button-buy').not('.selected').each(function (){
+        $(this).click(function (){
+            $('#tariff_buy').val(this.dataset.id)
+            $('#tariff-buy-form').submit();
+            improvementTariff.classList.remove('active');
+            changeTariff.classList.remove('active');
+        })
+    })
 </script>
 <script src="/js/getNotifications.js"></script>
 <script src="/js/customInputs.js"></script>
