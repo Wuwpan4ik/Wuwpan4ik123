@@ -311,7 +311,7 @@
                                                     <div class="tariff-header">
                                                         <?php if ($_SESSION['user']['tariff']) { ?>
                                                         <p>Тариф оплачен до:</p>
-                                                        <div class="tariff-price"><?=($content[3])?></div>
+                                                        <div class="tariff-price"><?=date('d.m.Y', strtotime($content[3]))?></div>
                                                         <?php } else { ?>
                                                             <p>Тариф не куплен</p>
                                                         <?php } ?>
