@@ -144,7 +144,6 @@
                     if (!is_null($res[0]['first_name'])) {
                         $_SESSION['user']['first_name'] = $res[0]['first_name'];
                     }
-                    $response = "С возвращением, " . $_SESSION["user"]["name"];
                 } else {
 
                     $response = "Вам не разрешён доступ";
@@ -166,14 +165,7 @@
             $res = $this->db->db->query("SELECT * FROM user WHERE username = '$login' AND password = '$password'");
             if(count($res) != 0) {
                 unset($_SESSION["user"]);
-                if ($res[0]['is_creator'] == 0) {
-                    $_SESSION["user"] = [
-                        'id' => $res[0]['id'],
-                        'email' => $res[0]['email'],
-                        'avatar' => $res[0]['avatar'],
-                        'is_creator' => 0
-                    ];
-                } else {
+                if ($res[0]['is_creator'] != 0) {
                     $_SESSION["user"] = [
                         'id' => $res[0]['id'],
                         'niche' => $res[0]['niche'],
@@ -183,8 +175,11 @@
                         'second_name' => $res[0]['second_name'],
                         'email' => $res[0]['email'],
                         'site_url' => $res[0]['site_url'],
-                        'is_creator' => 1
+                        'is_creator' => 1,
+
                     ];
+                    $tariff_id = $this->db->db->query("SELECT * FROM `users_tariff` WHERE `user_id` = {$_SESSION['user']['id']}")[0]['tariff_id'];
+                    if (count($tariff_id) != 0) $_SESSION['user']['tariff'] = $tariff_id;
                     $this->get_content();
                 }
             } else {

@@ -5,17 +5,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Creator - Настройки аккаунта</title>
+
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/aboutuser.css">
     <link rel="stylesheet" href="/css/main.css">
+
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
-
 </head>
 
 <body>
 
-<?php print_r($_SESSION['error']) ?>
+<?php var_dump($_SESSION['user']['tariff']) ?>
 
 <div class="SettingAccount">
 
@@ -281,14 +282,15 @@
 
                                                 <div class="tariff-name">
                                                     У вас выбран тариф:
-                                                    <p>Starter</p>
+
+                                                    <p><?=($content[0][$_SESSION['user']['tariff'] - 1]['name'])?></p>
                                                 </div>
                                                 <div class="tariff-plan">
                                                     Стоимость тарифа:
-                                                    <div class="tariff-price">2 990 <?=isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : ''?>/ мес</div>
+                                                    <div class="tariff-price"><?=($content[0][$_SESSION['user']['tariff'] - 1]['price'])?> <?=isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : ''?>/ мес</div>
                                                 </div>
                                                 <div class="tariff-img">
-                                                    <img src="/img/Starter.jpg" alt="">
+                                                    <img src="<?=($content[0][$_SESSION['user']['tariff'] - 1]['image'])?>" alt="">
                                                 </div>
                                                 <div  class="tariff-btn">
                                                     <a id="change-tariff">Сменить тариф</a>

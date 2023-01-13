@@ -184,6 +184,42 @@ class User {
         return [$result, $videos];
     }
 
+    protected function dir_size($path) {
+        $path = ($path . '/');
+        $size = 0;
+        $dir = opendir($path);
+        if (!$dir) {
+            return 0;
+        }
+
+        while (false !== ($file = readdir($dir))) {
+            if ($file == '.' || $file == '..') {
+                continue;
+            } elseif (is_dir($path . $file)) {
+                $size += $this->dir_size($path . '//' . $file);
+            } else {
+                $size += filesize($path . '//' . $file);
+            }
+        }
+        closedir($dir);
+        return $size;
+    }
+
+    public function CheckInfoTariff()
+    {
+        $funnel_count = $this->db->query("SELECT * FROM `funnel` WHERE `author_id` = {$_SESSION['user']['id']}");
+        $course_count = $this->db->query("SELECT * FROM `course` WHERE `author_id` = {$_SESSION['user']['id']}");
+        $children_count = $this->db->query("SELECT * FROM `clients` WHERE `creator_id` = {$_SESSION['user']['id']}");
+        $file_size = $this->dir_size('./uploads/users/' . $_SESSION['user']['id']) / 1024 / 1024;
+
+        return ['funnel_count' => $funnel_count, 'course_count' => $course_count, 'children_count' => $children_count, 'file_size' => $file_size];
+    }
+
+    public function CheckTariff()
+    {
+        return $this->db->query("SELECT users_tariff.tariff_id, tariffs.funnel_count, tariffs.course_count, tariffs.file_size, tariffs.children_count FROM `users_tariff` INNER JOIN `tariffs` ON tariffs.id = users_tariff.tariff_id WHERE users_tariff.user_id = {$_SESSION['user']['id']}");
+    }
+
     public function getCourseUser() {
         $result = $this->db->query("SELECT * FROM course WHERE author_id = " . $_SESSION['user']['id'] . " GROUP BY id");
         return $result;

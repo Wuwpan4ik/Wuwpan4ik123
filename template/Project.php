@@ -13,6 +13,8 @@
 
   <body>
 
+  <?php var_dump($_SESSION['error']) ?>
+
   <div class="Project app">
 
       <?php include 'default/sidebar.php'; ?>
@@ -28,7 +30,7 @@
                   <div class="_container">
                       <div class="media">
                           <div class="media-cart project__cart">
-                              <p>Создано <?php echo $content['count_funnel']; ?> из 3</p>
+                              <p>Создано <?php echo $content['count_funnel']; ?> из <?= $content['max_count_funnel']; ?></p>
                               <h3>Мои воронки</h3>
                               <img class="media-cart__img" src="../img/Funnel.png" alt="">
                               <?php if ($content['count_funnel'] != 0) { ?>
@@ -42,7 +44,7 @@
                               <?php } ?>
                           </div>
                           <div class="media-cart project__cart">
-                              <p>Создано <?php echo $content['count_course']; ?> из 3</p>
+                              <p>Создано <?php echo $content['count_course']; ?> из <?= $content['max_count_course']; ?></p>
                               <h3>Мои курсы</h3>
                               <img class="media-cart__img" src="../img/Course.png" alt="">
                               <?php if ($content['count_course'] !== 0) { ?>
@@ -74,7 +76,7 @@
         </div>
   <script src="../js/jquery-3.6.1.min.js"></script>
 <script src="../js/script.js"></script>
-
+<?php unset($_SESSION['error']) ?>
 <script>
     let deleteButtons = document.querySelectorAll('.reboot');
     let notDelete = document.querySelector('.popup__not-delete');
