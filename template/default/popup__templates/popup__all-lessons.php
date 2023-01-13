@@ -52,8 +52,8 @@
             </div>
         </div>
         <div class="popup__allLessons-form">
-            <div class="popup__allLessons-form-buy button-open">
-                <button data-price="<?=$content['course_id'][0]['price']?>" data-course="<?=$content['course_id'][0]['id']?>" data-author="<?=$content['course_id'][0]['author_id']?>" type="button" class="button button-buy">Купить весь курс за <?php print_r($content['course_id'][0]['price']) ?> <?=isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></button>
+            <div class="popup__allLessons-form-buy button-open" >
+                <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" data-price="<?=$content['course_id'][0]['price']?>" data-course="<?=$content['course_id'][0]['id']?>" data-author="<?=$content['course_id'][0]['author_id']?>" type="button" class="button button-buy">Купить весь курс за <?php print_r($content['course_id'][0]['price']) ?> <?=isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></button>
             </div>
             <div class="popup__allLessons-form-notBuy">
                 <button type="button" class="button button-notBuy" onclick="notBuy()">Пока не хочу покупать</button>

@@ -51,11 +51,11 @@
                     <?php } ?>
                     <?php if (isset($popup__do->form)) { ?>
                         <div class="popup__bonus-form-button button-form">
-                            <button class="button next-lesson"><?=$submit__text?></button>
+                            <button class="button next-lesson" style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>"><?=$submit__text?></button>
                         </div>
                     <?php } else if (isset($popup__do->pay_form)) { ?>
                         <div class="popup__bonus-form-button button-form">
-                            <button type="submit" class="button next-lesson2"><?=$submit__text?></button>
+                            <button type="submit" class="button next-lesson2" style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>"><?=$submit__text?></button>
                         </div>
                     <?php } ?>
                 </div>

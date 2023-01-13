@@ -61,7 +61,7 @@
                         <button type="button" class="button button-back">Назад</button>
                     </div>
                     <div class="popup__buy-form-back button-form">
-                        <button type="submit" class="button">Перейти к оплате</button>
+                        <button type="submit" class="button" style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>">Перейти к оплате</button>
                     </div>
                 </div>
             </form>
