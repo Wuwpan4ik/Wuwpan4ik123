@@ -142,7 +142,7 @@
                         </div>
 
                         <?$k++;}?>
-
+                    <?php if ($k <= $content[2]) { ?>
                     <div class="media-cart placeholder">
 
                         <div class="btn-upload" style="width: auto;">
@@ -157,6 +157,7 @@
 
                         </div>
                     </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>

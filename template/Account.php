@@ -300,7 +300,7 @@
                                                 <div class="tariff-current">
                                                     <div class="tariff-header">
                                                         <p>Тариф оплачен до:</p>
-                                                        <div class="tariff-price">22.10.2022</div>
+                                                        <div class="tariff-price"><?=($content[3])?></div>
                                                     </div>
 
                                                 </div>

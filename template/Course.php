@@ -33,7 +33,7 @@
 
                 $k = 1;
 
-                foreach($content[0] as $p){?>
+                foreach($content['content'][0] as $p){?>
 
                     <div class="media-cart">
 
@@ -48,7 +48,7 @@
 
                                         $i=1;
 
-                                        foreach($content[1] as $v){
+                                        foreach($content['content'][1] as $v){
                                             if ($v['course_id'] == $p['id']) {?>
 
                                                 <div class="slider__item ">
@@ -118,6 +118,8 @@
 
                     <?$k++;}?>
 
+                <?php if ($k <= $content['limit_course']) {?>
+
                 <div class="media-cart placeholder">
 
                     <div class="btn-upload" style="width: auto;">
@@ -133,6 +135,7 @@
                     </div>
 
                 </div>
+                <?php } ?>
 
             </div>
 

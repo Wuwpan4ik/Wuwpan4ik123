@@ -39,6 +39,11 @@ if (!class_exists('PHPMailer\PHPMailer\Exception'))
             return $this->m->db->execute("INSERT INTO `notifications` (`user_id`, `class`, `body`, `image`, `date`, `time`, `is_checked`) VALUES ('$user_id', '$class', '$message', '$image', '$date', '$time', 0)");
         }
 
+        public function CheckTariff()
+        {
+            return $this->m->db->query("SELECT users_tariff.tariff_id, tariffs.funnel_count, tariffs.course_count, tariffs.file_size, tariffs.children_count FROM `users_tariff` INNER JOIN `tariffs` ON tariffs.id = users_tariff.tariff_id WHERE users_tariff.user_id = {$_SESSION['user']['id']}");
+        }
+
 
         public function SendEmail ($title, $body, $email, $file = null, $file_name = null) {
 

@@ -13,7 +13,7 @@
 
   <body>
 
-  <?php var_dump($_SESSION['error']) ?>
+  <?php print_r($_SESSION['error']) ?>
 
   <div class="Project app">
 

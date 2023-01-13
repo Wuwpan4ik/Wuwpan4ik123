@@ -6,4 +6,11 @@ class SmallPlayer extends ACoreAdmin
         $content = $this->db->getVideosForPlayer();
         return $content;
     }
+
+    public function obr()
+    {
+        if (!$this->db->GetTariff($_SESSION['user']['id'])) {
+            header("Location: /Tariff-absent");
+        }
+    }
 }

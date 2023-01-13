@@ -124,6 +124,7 @@
     $router->addRoute("/NotificationsController/checkout", "NotificationsController.php", "checkNotifications");
 
     $router->addRoute("/TariffController/Buy", "TariffController.php", "Buy");
+    $router->addRoute("/Tariff-absent", "tariff-absent.php");
 
     $router->route("/$url");
 

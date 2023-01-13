@@ -34,11 +34,6 @@ class Router
                     $obj->obr();
                 }
 
-//              Проверка на конец тарифа
-//                if (method_exists($obj, "CheckTimeTariff")) {
-//                    $obj->CheckTimeTariff();
-//                }
-
 //              Загрузка классов из pages - преждевременная подгрузка из базы данных
                 $content = $obj->get_content();
 
