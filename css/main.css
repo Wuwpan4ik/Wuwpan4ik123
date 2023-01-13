@@ -2606,7 +2606,8 @@ td:nth-child(1){
   box-shadow: none !important;
 }
 .popup-styles-buttons button{
-  font-size: 24px;
+  font-family: 'Inter';
+  font-size: 20px;
   color: white;
   width: 100%;
   padding: 10px 0;
