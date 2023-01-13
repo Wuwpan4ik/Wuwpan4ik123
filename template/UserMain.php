@@ -281,8 +281,6 @@
                 </div>
             </div>
         </div>
-
-    </div>
         <div class="youChosen userPopup">
             <div class="userPopup__title">
                 Вы выбрали:
