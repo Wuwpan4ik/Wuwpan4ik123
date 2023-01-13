@@ -438,6 +438,40 @@
         -ms-flex-pack: justify;
         justify-content: space-between;
     }
+    /* Question Popup */
+
+    .question.userPopup{
+        position: absolute;
+        bottom:0;
+    }
+
+    .questionBackground{
+        height:100%;
+        width:100%;
+        position: absolute;
+        border-radius: 30px 30px 0px 0px;
+        margin: 34px 0 0 0;
+        top:0;
+        background: black;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.3s all ease;
+        left:0;
+    }
+
+    .questionBackground.active{
+        opacity: 0.6;
+        pointer-events: all;
+    }
+
+    .questionUserPop{
+        max-width: 410px;
+        margin: 0 auto;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        pointer-events: none;
+    }
 
     /*youChosen*/
     .youChosen.userPopup {
@@ -1792,7 +1826,7 @@
 
 .slider__darkness{
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%) !important;
-    height:20% !important;
+    height:40% !important;
     transition: 0.3s all ease;
 }
 

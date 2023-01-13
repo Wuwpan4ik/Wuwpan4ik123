@@ -122,6 +122,9 @@
                 </div>
 
             </div>
+            <div class="questionBackground">
+
+            </div>
         </div>
 
         <div class="AllLessons  userPopup ">
@@ -348,43 +351,45 @@
             </div>
         </div>
         <div class="question userPopup">
-            <div class="youPick userPopup__title button__questions">
-                Есть вопросы?
-            </div>
-            <div class="question  userPopup__body">
-                <div class=" question ">
-                    <div class="popup__buy-register">
-                        <form id="formQuest" method="POST" action="/ContactController/sendQuestions">
-                            <input type="hidden" value="" name="author_id" id="question_author-id">
-                            <input type="hidden" value="" name="course_id" id="question_course-id">
-                            <?php if (!isset($_SESSION['user']['first_name'])) { ?>
-                            <div class="popup__buy-body-form question input">
-                                <div class="popup__bonus-form-input-account input-img">
-                                    <img src="../img/smallPlayer/account.svg" alt="">
+            <div class="questionInner">
+                <div class="youPick userPopup__title button__questions">
+                    Есть вопросы?
+                </div>
+                <div class="question  userPopup__body">
+                    <div class=" question ">
+                        <div class="popup__buy-register">
+                            <form id="formQuest" method="POST" action="/ContactController/sendQuestions">
+                                <input type="hidden" value="" name="author_id" id="question_author-id">
+                                <input type="hidden" value="" name="course_id" id="question_course-id">
+                                <?php if (!isset($_SESSION['user']['first_name'])) { ?>
+                                    <div class="popup__buy-body-form question input">
+                                        <div class="popup__bonus-form-input-account input-img">
+                                            <img src="../img/smallPlayer/account.svg" alt="">
+                                        </div>
+                                        <input name="name" type="text" placeholder="Ваше имя" value="<?php echo isset($_SESSION['user']['first_name']) ? $_SESSION['user']['first_name'] : ''?>" <?php echo isset($_SESSION['user']['first_name']) ? "readonly" : ''?>>
+                                    </div>
+                                <?php } ?>
+                                <div class="popup__buy-body-form question input">
+                                    <div class="popup__bonus-form-input-email input-img">
+                                        <img src="../img/smallPlayer/email.svg" alt="">
+                                    </div>
+                                    <input name="email" type="email" placeholder="Ваш email" value="<?php echo isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : ''?>" readonly>
                                 </div>
-                                <input name="name" type="text" placeholder="Ваше имя" value="<?php echo isset($_SESSION['user']['first_name']) ? $_SESSION['user']['first_name'] : ''?>" <?php echo isset($_SESSION['user']['first_name']) ? "readonly" : ''?>>
-                            </div>
-                            <?php } ?>
-                            <div class="popup__buy-body-form question input">
-                                <div class="popup__bonus-form-input-email input-img">
-                                    <img src="../img/smallPlayer/email.svg" alt="">
+                                <div class="popup__buy-body-form question-textarea">
+                                    <div class="popup__bonus-form-input-email input-img">
+                                        <img src="../img/smallPlayer/question.svg" alt="">
+                                    </div>
+                                    <textarea name="question" placeholder="Ваш вопрос"></textarea>
                                 </div>
-                                <input name="email" type="email" placeholder="Ваш email" value="<?php echo isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : ''?>" readonly>
-                            </div>
-                            <div class="popup__buy-body-form question-textarea">
-                                <div class="popup__bonus-form-input-email input-img">
-                                    <img src="../img/smallPlayer/question.svg" alt="">
-                                </div>
-                                <textarea name="question" placeholder="Ваш вопрос"></textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="User-form-g">
-                        <div class=" userPopup__button questionBack backBtn">
-                            <button class="courseBackBtn">Назад</button>
+                            </form>
                         </div>
-                        <div class="Сourse-question userPopup__button">
-                            <button id="sendQuest" type="submit">Отправить</button>
+                        <div class="User-form-g">
+                            <div class=" userPopup__button questionBack backBtn">
+                                <button class="courseBackBtn">Назад</button>
+                            </div>
+                            <div class="Сourse-question userPopup__button">
+                                <button id="sendQuest" type="submit">Отправить</button>
+                            </div>
                         </div>
                     </div>
                 </div>
