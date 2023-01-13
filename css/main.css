@@ -859,7 +859,7 @@ a {
 
 /*-----------------------------------*/
 .UserProfile {
-  padding: 10px 5px 30px 14px;
+  padding: 0px 5px 30px 14px;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;

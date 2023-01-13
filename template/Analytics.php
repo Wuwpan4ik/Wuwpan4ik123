@@ -88,9 +88,7 @@
 
                                         <th><div class="th-title"><button class="order_button contact__button" value="achivment_date"><img class="table_ico" src="img/StickDown.svg"></button>Дата</div></th>
 
-                                        <th><div class="th-title">Функции</div></th>
-
-                                        <th><div class="th-title"> </div></th>
+                                        <th style="border-radius: 0px 8px 8px 0px;"><div class="th-title">Функции</div></th>
 									</tr>
 
                                 </thead>
@@ -166,9 +164,7 @@
 
                                     <th><div class="th-title"><button class="order_button order__button" value="achivment_date"><img class="table_ico" src="img/StickDown.svg"></button>Дата</div></th>
 
-                                    <th><div class="th-title">Функции</div></th>
-
-
+                                    <th style="border-radius: 0px 8px 8px 0px;"><div class="th-title">Функции</div></th>
                                 </tr>
 
                                 </thead>
