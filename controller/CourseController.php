@@ -119,9 +119,11 @@
                 $file_url = $this->url_dir . "course_files/" . $res[0]['id'] . "/" . $item_id . '-' . preg_replace("/[^а-яёa-z,.]/iu", '', $_FILES['file']['name']);;
 
                 move_uploaded_file($_FILES['file']['tmp_name'], $file_url);
+
+                $this->m->db->execute("UPDATE `course_content` SET `file_url` = '$file_url' WHERE `id` = '$item_id'");
             }
 
-            $this->m->db->execute("UPDATE `course_content` SET `name` = '$name', `description` = '$description', `price` = '$price', `file_url` = '$file_url' WHERE `id` = '$item_id'");
+            $this->m->db->execute("UPDATE `course_content` SET `name` = '$name', `description` = '$description', `price` = '$price' WHERE `id` = '$item_id'");
 
             $this->local_get_content();
 

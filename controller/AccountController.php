@@ -112,6 +112,9 @@ class AccountController extends ACoreCreator {
         }
 
         $query_to_update_urls = [];
+        if (count($this->m->db->query("SELECT * FROM `user_contacts` WHERE `user_id` = {$_SESSION['user']['id']}")) === 0) {
+            $this->m->db->execute("INSERT INTO `user_contacts` (`user_id`) VALUES ({$_SESSION['user']['id']})");
+        }
 
         if (strlen($_POST['vk']) != 0) {
             $query_to_update_urls['vk'] = $_POST['vk'];

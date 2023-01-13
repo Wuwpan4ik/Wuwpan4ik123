@@ -9,7 +9,8 @@ class SmallPlayer extends ACoreAdmin
 
     public function obr()
     {
-        if (!$this->db->GetTariff($_SESSION['item_id'])) {
+        $user_id = $this->db->db->query("SELECT * FROM funnel WHERE id = {$_SESSION['item_id']}");
+        if (!$this->db->GetTariff($user_id[0]['author_id'])) {
             header("Location: /Tariff-absent");
         }
     }

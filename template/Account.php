@@ -19,7 +19,7 @@
 
 
 <div class="SettingAccount">
-    <?php var_dump($_SESSION['error']) ?>
+<!--    --><?php //var_dump($_SESSION['error']) ?>
     <?php include 'default/sidebar.php';?>
 
     <div class="feed">
@@ -288,7 +288,7 @@
                                                 </div>
                                                 <div class="tariff-plan">
                                                     Стоимость тарифа:
-                                                    <div class="tariff-price"><?=($content[0][$_SESSION['user']['tariff'] - 1]['price'])?> <?=isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : ''?>/ мес</div>
+                                                    <div class="tariff-price"><?=($content[0][$_SESSION['user']['tariff'] - 1]['price'])?> ₽/ мес</div>
                                                 </div>
                                                 <div class="tariff-img">
                                                     <img src="<?=($content[0][$_SESSION['user']['tariff'] - 1]['image'])?>" alt="">
