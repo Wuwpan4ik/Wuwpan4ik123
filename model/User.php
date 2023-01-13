@@ -184,7 +184,7 @@ class User {
         return [$result, $videos];
     }
 
-    protected function dir_size($path) {
+    public function dir_size($path) {
         $path = ($path . '/');
         $size = 0;
         $dir = opendir($path);
@@ -207,10 +207,10 @@ class User {
 
     public function CheckInfoTariff()
     {
+        $file_size = $this->dir_size('./uploads/users/' . $_SESSION['user']['id']) / 1024 / 1024;
         $funnel_count = $this->db->query("SELECT * FROM `funnel` WHERE `author_id` = {$_SESSION['user']['id']}");
         $course_count = $this->db->query("SELECT * FROM `course` WHERE `author_id` = {$_SESSION['user']['id']}");
         $children_count = $this->db->query("SELECT * FROM `clients` WHERE `creator_id` = {$_SESSION['user']['id']}");
-        $file_size = $this->dir_size('./uploads/users/' . $_SESSION['user']['id']) / 1024 / 1024;
 
         return ['funnel_count' => $funnel_count, 'course_count' => $course_count, 'children_count' => $children_count, 'file_size' => $file_size];
     }
@@ -447,7 +447,12 @@ class User {
 
     public function GetTariff($user_id)
     {
-        return $this->db->query("SELECT * FROM `users_tariff` WHERE user_id = {$user_id}");
+        $result = $this->db->query("SELECT * FROM `users_tariff` WHERE user_id = {$user_id}");
+        if (count($result) == 1) {
+            return $result;
+        }
+        unset($_SESSION['user']['tariff']);
+        return $result;
     }
 
     public function BuyTariff($user_id, $tariff_id)

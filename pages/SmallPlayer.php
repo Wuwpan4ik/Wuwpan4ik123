@@ -9,7 +9,7 @@ class SmallPlayer extends ACoreAdmin
 
     public function obr()
     {
-        if (!$this->db->GetTariff($_SESSION['user']['id'])) {
+        if (!$this->db->GetTariff($_SESSION['item_id'])) {
             header("Location: /Tariff-absent");
         }
     }

@@ -16,10 +16,10 @@
 
 <body>
 
-<?php var_dump($_SESSION['user']['tariff']) ?>
+
 
 <div class="SettingAccount">
-
+    <?php var_dump($_SESSION['error']) ?>
     <?php include 'default/sidebar.php';?>
 
     <div class="feed">
@@ -279,6 +279,7 @@
                                         <h2>Данные вашего тарифа:</h2>
                                         <div class="field">
                                             <div class="tariff-card">
+                                                <?php if ($_SESSION['user']['tariff']) { ?>
 
                                                 <div class="tariff-name">
                                                     У вас выбран тариф:
@@ -292,6 +293,15 @@
                                                 <div class="tariff-img">
                                                     <img src="<?=($content[0][$_SESSION['user']['tariff'] - 1]['image'])?>" alt="">
                                                 </div>
+                                                <?php } else { ?>
+                                                    <div class="tariff-name">
+                                                        <p>Вы всё ещё не купили наш тариф</p>
+                                                        Но можете это исправить!
+                                                    </div>
+                                                    <div class="tariff-img">
+                                                        <img src="/img/Tarifs/beginner-tariff.jpg" alt="">
+                                                    </div>
+                                                <?php } ?>
                                                 <div  class="tariff-btn">
                                                     <a id="change-tariff">Сменить тариф</a>
                                                 </div>
@@ -299,24 +309,28 @@
                                             <div class="tariff-card">
                                                 <div class="tariff-current">
                                                     <div class="tariff-header">
+                                                        <?php if ($_SESSION['user']['tariff']) { ?>
                                                         <p>Тариф оплачен до:</p>
                                                         <div class="tariff-price"><?=($content[3])?></div>
+                                                        <?php } else { ?>
+                                                            <p>Тариф не куплен</p>
+                                                        <?php } ?>
                                                     </div>
 
                                                 </div>
                                                 <div class="tariff__active-user">
                                                     <p class="text">Активных пользователей:</p>
-                                                    <span>200 из 250</span>
+                                                    <span>0 из 250</span>
                                                 </div>
                                                 <div class="storage-rate">
                                                     <p class="text">Файловое хранилище:</p>
                                                     <div class="storage-rate-body">
                                                         <div class="progress-storage">
-                                                            <progress max="1000" value="<?php print_r(round($content[2]))?>">
+                                                            <progress max="1000" value="<?php print_r(round($content[1]))?>">
                                                             </progress>
                                                             <div class="progress-storage__info">
                                                                 <div class="progress-storage__current-value">
-                                                                    <?php print_r(round($content[2]))?> мб
+                                                                    <?php print_r(round($content[1]))?> мб
                                                                 </div>
                                                                 <div class="progress-storage__max-value">
                                                                     1000 мб
