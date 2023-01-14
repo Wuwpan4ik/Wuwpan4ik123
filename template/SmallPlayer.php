@@ -118,9 +118,9 @@
             <?php } ?>
         </div>
         <?php }?>
-        <?php if (isset($popup->first_do->list)) {
+        <?php
         include 'template/default/popup__templates/popup__buy.php';
-        } ?>
+         ?>
     </div>
 </div>
 
