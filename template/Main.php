@@ -105,15 +105,15 @@
 
 					<tr>
 
-						<th class="full_th">Имя<button class="order_button" value="first_name"><img class="table_ico" src="img/StickDown.svg"></button></th>
+						<th class="full_th" style="background: #F8F8F8;border-radius: 8px 0px 0px 8px;">Имя<button class="order_button" value="first_name"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
-						<th class="full_th">Email<button class="order_button" value="email"><img class="table_ico" src="img/StickDown.svg"></button></th>
+						<th class="full_th" style="background: #F8F8F8">Email<button class="order_button" value="email"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
-						<th class="full_th">Телефон<button class="order_button" value="tel"><img class="table_ico" src="img/StickDown.svg"></button></th>
+						<th class="full_th" style="background: #F8F8F8">Телефон<button class="order_button" value="tel"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
-						<th class="full_th">Продукт<button class="order_button" value="course_id"><img class="table_ico" src="img/StickDown.svg"></button></th>
+						<th class="full_th" style="background: #F8F8F8">Продукт<button class="order_button" value="course_id"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
-                        <th class="full_th">Сумма<button class="order_button" value="give_money"><img class="table_ico" src="img/StickDown.svg"></button></th>
+                        <th class="full_th" style="background: #F8F8F8;border-radius: 0px 8px 8px 0px;">Сумма<button class="order_button" value="give_money"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
                     </tr>
 

@@ -90,7 +90,7 @@ button {
 
 .slick-dots ul {
     position: absolute;
-    top: 22px;
+    top: 10px;
     width: 395px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -216,7 +216,7 @@ button {
 /*----------------------------------------*/
 .slider__header {
     position: absolute;
-    top: 6%;
+    top: 40px;
     left: 0;
     right: 0;
     display: -webkit-box;
