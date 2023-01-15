@@ -23,9 +23,7 @@
 
             chmod($path, 0777);
 
-            $count_view = rand(1000, 10000);
-
-            $this->m->db->execute("INSERT INTO funnel_content (`funnel_id`, `name`, `description`, `video`, `count_view`, `query_id`) VALUES ($item_id,NULL ,NULL, '$path', $count_view, $count_video)");
+            $this->m->db->execute("INSERT INTO funnel_content (`funnel_id`, `name`, `description`, `video`, `count_view`, `query_id`) VALUES ($item_id,NULL ,NULL, '$path', 0, $count_video)");
 
             $this->local_get_content();
 

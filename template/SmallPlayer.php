@@ -57,7 +57,7 @@
                             <img src="/img/smallPlayer/views.svg" alt="">
                         </div>
                         <div class="slider__header-views-count">
-                            <?=$item['count']?>
+                            <?php echo rand(100, 300)?>
                         </div>
                     </div>
                 </div>
@@ -138,6 +138,8 @@
 <!--На некст слайд-->
 <script>
     function NextSlide(count) {
+        document.querySelector('.slick-active button').style.background = `linear-gradient(to right,white 0%, white 100%,lightgrey 100% , lightgrey 0%)`;
+
         $('.slick-next').click();
         console.log($('.slider'))
 

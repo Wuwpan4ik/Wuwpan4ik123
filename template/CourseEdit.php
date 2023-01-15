@@ -219,13 +219,6 @@
             })
         })
         let notChangeVideo = document.querySelectorAll('#popup__not-change');
-
-        // notChangeVideo.onclick = function (event) {
-        //     if (event.target === notChangeVideo) {
-        //         reload.classList.remove('display-block');
-        //         toggleOverflow();
-        //     }
-        // }
         notChangeVideo.forEach(item => {
             item.onclick = function (event) {
                 if (event.target === item) {
@@ -337,22 +330,9 @@
     let buttonBell =  document.querySelector('.button-bell');
     let popupBell =  document.querySelector('.popupBell')
     let popupBellBody = document.querySelector('.popupBell-body')
-    function popupBellActive() {
-        popupBell.classList.add('active');
-    }
-    function popupBellDisable() {
-        setTimeout(function () {
-            if (!popupBellBody.onmouseover) {
-                popupBell.classList.remove('active');
-            }
-        }, 1000)
-    }
-    buttonBell.addEventListener('mouseover', popupBellActive)
-    buttonBell.addEventListener('mouseout', popupBellDisable)
+
     buttonBell.addEventListener('click', function () {
-        buttonBell.removeEventListener('mouseover', popupBellActive)
-        popupBellDisable();
-        buttonBell.removeEventListener('mouseout', popupBellDisable)
+        popupBell.classList.toggle('active');
         let request = new XMLHttpRequest();
         let url = "/NotificationsController/checkout";
         document.querySelector('#msg').innerHTML = '0';

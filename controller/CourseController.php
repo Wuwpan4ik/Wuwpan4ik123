@@ -49,12 +49,12 @@
                 $image = imagescale(imagecreatefromjpeg($frame_path), 288, 512);
 
                 imagejpeg($image, $frame_path);
+                $image->
 //            } catch (Exception $exept) {
 //                $_SESSION['error'] = $exept;
 //            }
-            $count = rand(1000, 10000);
 
-            $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `thubnails`, `count_view`, `query_id`) VALUES ($uid ,null , null , '$path', '$frame_path', $count, $count_video)");
+            $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `thubnails`, `count_view`, `query_id`) VALUES ($uid ,null , null , '$path', '$frame_path', 0, $count_video)");
 
             $this->local_get_content();
 

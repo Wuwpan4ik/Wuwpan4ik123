@@ -1,28 +1,30 @@
 // Количество уведомлений
 
-let requestCount = new XMLHttpRequest();
-document.querySelector('.popupBell-body').classList.add('display-none');
-let urlCount = "/getCountNotifications";
+function getCount() {
+    let requestCount = new XMLHttpRequest();
+    document.querySelector('.popupBell-body').classList.add('display-none');
+    let urlCount = "/getCountNotifications";
 
-requestCount.open('GET', urlCount);
+    requestCount.open('GET', urlCount);
 
-requestCount.setRequestHeader('Content-Type', 'application/x-www-form-url');
-requestCount.addEventListener("readystatechange", () => {
-    if (requestCount.readyState === 4 && requestCount.status === 200) {
-        document.getElementById('msg').innerHTML = JSON.parse(requestCount.responseText).length;
-        if (JSON.parse(requestCount.responseText).length >= 9) {
-            document.getElementById('msg').innerHTML = '9+';
+    requestCount.setRequestHeader('Content-Type', 'application/x-www-form-url');
+    requestCount.addEventListener("readystatechange", () => {
+        if (requestCount.readyState === 4 && requestCount.status === 200) {
+            document.getElementById('msg').innerHTML = JSON.parse(requestCount.responseText).length;
+            if (JSON.parse(requestCount.responseText).length >= 9) {
+                document.getElementById('msg').innerHTML = '9+';
+            }
+            if (JSON.parse(requestCount.responseText).length === 0) {
+                document.querySelector('.button-bell').addEventListener('click', GetAllNotif);
+                document.querySelector('#msg').style.backgroundColor = '#757D8A';
+            }  else {
+                document.querySelector('.popupBell-body').classList.remove('display-none');
+            }
         }
-        if (JSON.parse(requestCount.responseText).length === 0) {
-            document.querySelector('.button-bell').addEventListener('click', GetAllNotif);
-            document.querySelector('#msg').style.backgroundColor = '#757D8A';
-        }  else {
-            document.querySelector('.popupBell-body').classList.remove('display-none');
-        }
-    }
-})
-requestCount.send();
-
+    })
+    requestCount.send();
+}
+getCount();
 
 // Все непрочитанные уведомления
 let requestNot = new XMLHttpRequest();
@@ -56,9 +58,6 @@ function GetAllNotif() {
         if (request.readyState === 4 && request.status === 200) {
             if (document.querySelector('.popupBell-body')) {
                 document.querySelector('.popupBell-body').innerHTML = request.responseText;
-            }
-            if (!document.querySelector('.popupBell').classList.contains('active')) {
-                document.querySelector('.popupBell').classList.add('active')
             }
             document.querySelector('.popupBell-body').classList.remove('display-none');
             if (request.responseText.length < 4) {

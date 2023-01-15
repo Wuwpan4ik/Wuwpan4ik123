@@ -35,23 +35,14 @@
     let buttonBell =  document.body.querySelector('.button-bell');
     let popupBell =  document.body.querySelector('.popupBell')
     let popupBellBody = document.querySelector('.popupBell-body')
-    function popupBellActive() {
-        popupBell.classList.add('active');
-    }
-    function popupBellDisable() {
-        setTimeout(function () {
-            popupBell.classList.remove('active');
-        }, 3000)
-    }
-    buttonBell.addEventListener('mouseover', popupBellActive)
-    buttonBell.addEventListener('mouseout', popupBellDisable)
+
     buttonBell.addEventListener('click', function () {
-        buttonBell.removeEventListener('mouseover', popupBellActive)
-        popupBellDisable();
-        buttonBell.removeEventListener('mouseout', popupBellDisable)
+        popupBell.classList.toggle('active');
         let request = new XMLHttpRequest();
         let url = "/NotificationsController/checkout";
+        getCount();
         document.querySelector('#msg').innerHTML = '0';
+        document.querySelector('#msg').style = "background-color: rgb(117, 125, 138)";
 
         request.open('POST', url);
 
