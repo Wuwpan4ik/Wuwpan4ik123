@@ -203,7 +203,22 @@
                             <div class="profit__leftSide">
                                 <div class="profit__row">
                                     <div class="profit__item profit__month">
-                                        <div class="profit_header"><h3>Доход за месяц</h3></div>
+                                        <div class="profit_header"><h3>Доход за месяц</h3><span><?php $arr = [
+                                                    'Январь',
+                                                    'Февраль',
+                                                    'Март',
+                                                    'Апрель',
+                                                    'Май',
+                                                    'Июнь',
+                                                    'Июль',
+                                                    'Август',
+                                                    'Сентябрь',
+                                                    'Октябрь',
+                                                    'Ноябрь',
+                                                    'Декабрь'
+                                                ];
+                                                $month = date('n')-1;
+                                                echo $arr[$month].' '.date('d, Y'); ?></span></div>
                                         <div class="profit_sum"><span id="this_month"></span> <span class="month_procent"></span>
                                         </div>
                                         <div class="profit_footer">На  <span class="month_diff"></span> <span class="month_diff-text"></span></div>
@@ -385,6 +400,25 @@
           if (array.prev_month == null) {
               array.prev_month = 0;
           }
+
+          if (!array.get_count_application) {
+              array.get_count_application = 0;
+          }
+
+          document.querySelector('#forms_zayavki').innerHTML = array.get_count_application;
+
+          if (!array.get_count_order) {
+              array.get_count_order = 0;
+          }
+
+          document.querySelector('#forms_zakazi').innerHTML = array.get_count_order;
+
+          if (!array.get_count_view_funnel) {
+              array.get_count_view_funnel = 0;
+          }
+
+          document.querySelector('#views_funnels').innerHTML = array.get_count_view_funnel;
+
           let currency = document.getElementById('currency').innerHTML;
 
           if (array.month) {

@@ -25,11 +25,27 @@
             return $this->m->GetCountFirstBuy();
         }
 
+        function GetCountApplication() {
+            return $this->m->GetCountApplication();
+        }
+
+        function GetCountOrder() {
+            return $this->m->GetCountOrder();
+        }
+
+        function GetCountViewFunnel() {
+            return $this->m->GetCountViewFunnel();
+        }
+
+//        function GetCountViewCourse() {
+//            return $this->m->GetCountViewCourse();
+//        }
 
         public function GetAllStatistics() {
             $result = ["prev_week" => $this->GetPrevWeekStatistics(), "week" => $this->GetWeekStatistics(),
                 "prev_month" => $this->GetPrevMonthsStatistics(), "month" => $this->GetMonthsStatistics(), "full_value" => $this->m->GetFullValue(),
-                "one_user" => $this->GetOneUserValue(), "count_first_buy" => $this->GetCountFirstBuy()];
+                "one_user" => $this->GetOneUserValue(), "count_first_buy" => $this->GetCountFirstBuy(), "get_count_application" => $this->GetCountApplication(),
+                "get_count_order" => $this->GetCountOrder(), "get_count_view_funnel" => $this->GetCountViewFunnel()];
             if (empty($result)) {
                 echo '';
             }

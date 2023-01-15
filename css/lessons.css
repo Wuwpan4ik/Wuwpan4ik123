@@ -50,7 +50,7 @@ input[name="price"]{
 }
 
 .media-cart-img {
-    max-width: 300px;
+    width: 300px;
     height: 536px;
     border-radius: 16px;
     background-repeat: no-repeat !important;

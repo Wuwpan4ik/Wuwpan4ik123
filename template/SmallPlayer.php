@@ -137,21 +137,18 @@
 <script src="/js/sliders.js"></script>
 <!--На некст слайд-->
 <script>
+    let request = new XMLHttpRequest();
+    let url = "/Funnel/"+ <?php echo $_SESSION['item_id']?> +"/AddView";
+    request.open('POST', url);
+    request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+    request.addEventListener("readystatechange", () => {
+        if (request.readyState === 4 && request.status === 200) {
+        }
+    });
+    request.send();
     function NextSlide(count) {
         document.querySelector('.slick-active button').style.background = `linear-gradient(to right,white 0%, white 100%,lightgrey 100% , lightgrey 0%)`;
-
         $('.slick-next').click();
-        console.log($('.slider'))
-
-        let request = new XMLHttpRequest();
-        let url = "/Funnel/"+ count +"/AddView";
-        request.open('POST', url);
-        request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-        request.addEventListener("readystatechange", () => {
-            if (request.readyState === 4 && request.status === 200) {
-            }
-        });
-        request.send();
     }
 </script>
 

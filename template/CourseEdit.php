@@ -335,7 +335,9 @@
         popupBell.classList.toggle('active');
         let request = new XMLHttpRequest();
         let url = "/NotificationsController/checkout";
+        getCount();
         document.querySelector('#msg').innerHTML = '0';
+        document.querySelector('#msg').style = "background-color: rgb(117, 125, 138)";
 
         request.open('POST', url);
 

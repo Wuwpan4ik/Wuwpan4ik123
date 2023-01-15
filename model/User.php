@@ -316,6 +316,24 @@ class User {
         return $result;
     }
 
+    public function GetCountApplication() {
+        return count($this->db->query("SELECT * FROM `clients` WHERE `creator_id` = {$_SESSION['user']['id']} AND `buy_progress` = 0"));
+    }
+
+    public function GetCountOrder() {
+        return count($this->db->query("SELECT * FROM `orders` WHERE `creator_id` = {$_SESSION['user']['id']}"));
+    }
+
+    public function GetCountViewFunnel()
+    {
+        return (int) $this->db->query("SELECT SUM(`views`) as 'views' FROM `funnel` WHERE `author_id` = {$_SESSION['user']['id']}")[0]['views'];
+    }
+
+    public function GetCountViewCourse()
+    {
+
+    }
+
 //      /Statistic
 
     public function getVideosForPlayer()
@@ -337,7 +355,6 @@ class User {
                                                 content.name AS 'content_name',
                                                 content.description AS 'content_description',
                                                 content.popup,
-                                                content.count_view as 'count',
                                                 content.id as 'video_id',
                                                 content.video,
                                                 content.button_text,
@@ -421,29 +438,31 @@ class User {
 
     public function GetView($id)
     {
-        $count = $this->db->query("SELECT `count_view` FROM `funnel_content` WHERE id = '$id'")[0]['count_view'];
+        $count = $this->db->query("SELECT `views` FROM `funnel` WHERE id = '$id'")[0]['views'];
         return $count;
     }
 
     public function AddView($id, $count)
     {
         $count += 1;
-        $this->db->execute("UPDATE `funnel_content` SET `count_view`  = {$count} WHERE id = {$id}");
+        $this->db->execute("UPDATE `funnel` SET `views`  = {$count} WHERE id = {$id}");
         return true;
     }
 
-    public function GetCourseView($id)
-    {
-        $count = $this->db->query("SELECT `count_view` FROM `funnel_content` WHERE id = '$id'")[0]['count_view'];
-        return $count;
-    }
-
-    public function AddCourseView($id, $count)
-    {
-        $count += 1;
-        $this->db->execute("UPDATE `funnel_content` SET `count_view`  = {$count} WHERE id = {$id}");
-        return true;
-    }
+//    Course Add View
+//
+//    public function GetCourseView($id)
+//    {
+//        $count = $this->db->query("SELECT `count_view` FROM `funnel_content` WHERE id = '$id'")[0]['count_view'];
+//        return $count;
+//    }
+//
+//    public function AddCourseView($id, $count)
+//    {
+//        $count += 1;
+//        $this->db->execute("UPDATE `funnel_content` SET `count_view`  = {$count} WHERE id = {$id}");
+//        return true;
+//    }
 
     public function GetTariff($user_id)
     {

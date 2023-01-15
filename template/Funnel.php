@@ -330,12 +330,13 @@
                     let color__button = temp_data['number__color'];
                     let shadow__button = temp_data['number__style'];
                     document.querySelectorAll('.popup-styles-color')[color__button - 1].click();
-                    document.querySelectorAll('.popup-styles-button')[shadow__button - 1].classList.add('active');
+                    document.querySelectorAll('.popup-styles-button button')[shadow__button - 1].click();
                     changeStyleBtn(document.querySelector('.button-video'), color, shadow);
                     document.querySelector('textarea[name="head__settings"]').innerHTML = temp_data['head__settings'];
                 } else {
+                    console.log(document.querySelectorAll('.popup-styles-color')[0])
                     document.querySelectorAll('.popup-styles-color')[0].click();
-                    document.querySelectorAll('.popup-styles-button')[0].classList.add('active');
+                    document.querySelectorAll('.popup-styles-button')[0].click();
                     changeStyleBtn(document.querySelector('.button-video'), color, shadow);
                 }
             }
@@ -351,25 +352,23 @@
     generalSettings.forEach(item => {
         item.addEventListener('click', () => {
             document.querySelector('.popup__general').style.display = 'flex';
-            if (item.parentElement.parentElement.querySelector('.media-cart-img').querySelector('video')) {
-                let slider = item.parentElement.parentElement.querySelector('.media-cart-img').cloneNode(true);
+            let slider = item.parentElement.parentElement.querySelector('.media-cart-img').cloneNode(true);
 
-                if (slider.querySelector('.slider__item-title')) {
-                    slider.querySelector('.slider__item-title').classList.add('preview__title')
-                }
-
-                if (slider.querySelector('.slider__item-text')) {
-                    slider.querySelector('.slider__item-text').classList.add('preview__text')
-                }
-
-                document.querySelector('.popup-video').appendChild(slider);
-                if (document.querySelector('.popup-video').querySelector('.slider__item-info')) {
-                    document.querySelector('.popup-video').querySelector('.slider__item-info').style.bottom = "18%";
-                }
-                document.querySelector('#initButton').action = '/Funnel/' + item.dataset.funnel_id + '/main_settings';
-                document.querySelector('#id_item').value = item.dataset.funnel_id;
-                GetMainSettings(item.dataset.funnel_id);
+            if (slider.querySelector('.slider__item-title')) {
+                slider.querySelector('.slider__item-title').classList.add('preview__title')
             }
+
+            if (slider.querySelector('.slider__item-text')) {
+                slider.querySelector('.slider__item-text').classList.add('preview__text')
+            }
+
+            document.querySelector('.popup-video').appendChild(slider);
+            if (document.querySelector('.popup-video').querySelector('.slider__item-info')) {
+                document.querySelector('.popup-video').querySelector('.slider__item-info').style.bottom = "18%";
+            }
+            document.querySelector('#initButton').action = '/Funnel/' + item.dataset.funnel_id + '/main_settings';
+            document.querySelector('#id_item').value = item.dataset.funnel_id;
+            GetMainSettings(item.dataset.funnel_id);
         })
     })
 
