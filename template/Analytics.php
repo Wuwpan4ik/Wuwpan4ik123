@@ -377,6 +377,7 @@
   request1.addEventListener("readystatechange", () => {
       if (request1.readyState === 4 && request1.status === 200) {
           const array = JSON.parse(request1.responseText);
+          console.log(array)
           if (array.prev_week == null) {
               array.prev_week = 0;
           }
@@ -385,9 +386,6 @@
               array.prev_month = 0;
           }
           let currency = document.getElementById('currency').innerHTML;
-          if (array.full_value) {
-              document.getElementById('full_value').innerText = array.full_value + currency;
-          }
 
           if (array.month) {
               document.getElementById('this_month').innerHTML = array.month + currency;
