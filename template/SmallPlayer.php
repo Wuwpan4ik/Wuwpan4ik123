@@ -157,13 +157,6 @@
 
 <!--Закрытие AllLessons-->
 <script>
-    if (document.querySelector('.button-notBuy')) {
-        document.querySelector('.button-notBuy').addEventListener('click', function () {
-            document.querySelector('.overlay-allLessons').classList.remove('active');
-            document.querySelector('.popup').classList.remove('active');
-            document.querySelector('.popup-allLessons').classList.remove('active');
-        });
-    }
     function notBuy() {
         document.querySelectorAll('.overlay').forEach(item => {
             item.classList.remove('active');

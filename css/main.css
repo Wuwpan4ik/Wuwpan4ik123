@@ -202,6 +202,9 @@ code {
   justify-content: center;
   align-items: center;
   height:65vh;
+  background-color: #F8F8F8;
+  border-radius: 8px;
+  margin-top: 20px;
 }
 
 p {
@@ -980,6 +983,7 @@ a {
   -ms-flex-align: center;
   align-items: center;
   gap: 12px;
+  justify-content: space-between;
 }
 
 .text-info-name{

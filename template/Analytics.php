@@ -95,7 +95,7 @@
 
                                         <th><div class="th-title"><button class="order_button contact__button" value="course_id"><img class="table_ico" src="img/StickDown.svg"></button>Курс</div></th>
 
-                                        <th><div class="th-title"><button class="order_button contact__button" value="achivment_date"><img class="table_ico" src="img/StickDown.svg"></button>Дата</div></th>
+                                        <th style="border-radius: 0px 8px 8px 0px;"><div class="th-title"><button class="order_button contact__button" value="achivment_date"><img class="table_ico" src="img/StickDown.svg"></button>Дата</div></th>
 
 									</tr>
 
@@ -176,7 +176,7 @@
 
                                     <th><div class="th-title"><button class="order_button order__button" value="course_id"><img class="table_ico" src="img/StickDown.svg"></button>Курс</div></th>
 
-                                    <th><div class="th-title"><button class="order_button order__button" value="achivment_date"><img class="table_ico" src="img/StickDown.svg"></button>Дата</div></th>
+                                    <th style="border-radius: 0px 8px 8px 0px;"><div class="th-title"><button class="order_button order__button" value="achivment_date"><img class="table_ico" src="img/StickDown.svg"></button>Дата</div></th>
 
                                 </tr>
 
@@ -202,29 +202,8 @@
                         <div class="geo__profit">
                             <div class="profit__leftSide">
                                 <div class="profit__row">
-                                    <div class="profit__item profit__week">
-                                        <div class="profit_header"><h3>Доход за неделю</h3><span>Неделя</span></div>
-                                        <div class="profit_sum"><span class="full_week_value profit_sum"></span> <span class="week_procent">14.6%</span>
-                                        </div>
-                                        <div class="profit_footer">На  <span class="week_diff"></span> <span class="week_diff-text"></span></div>
-                                    </div>
-                                    <div class="profit__item profit_down profit__month">
-                                        <div class="profit_header"><h3>Доход за месяц</h3><span><?php $arr = [
-                                                    'Январь',
-                                                    'Февраль',
-                                                    'Март',
-                                                    'Апрель',
-                                                    'Май',
-                                                    'Июнь',
-                                                    'Июль',
-                                                    'Август',
-                                                    'Сентябрь',
-                                                    'Октябрь',
-                                                    'Ноябрь',
-                                                    'Декабрь'
-                                                ];
-                                                $month = date('n')-1;
-                                                echo $arr[$month].' '.date('d, Y'); ?></span></div>
+                                    <div class="profit__item profit__month">
+                                        <div class="profit_header"><h3>Доход за месяц</h3></div>
                                         <div class="profit_sum"><span id="this_month"></span> <span class="month_procent"></span>
                                         </div>
                                         <div class="profit_footer">На  <span class="month_diff"></span> <span class="month_diff-text"></span></div>
@@ -235,79 +214,30 @@
                                         <div class="profit_header"><h3>Доход на одного пользователя</h3></div>
                                         <div class="profit_sum"><span id="one__user"></span></div>
                                     </div>
-                                    <div class="profit__item profit_down profit__new-user">
+                                    <div class="profit__item profit__new-user">
                                         <div class="profit_header"><h3>Новые пользователи/мес</h3></div>
                                         <div class="profit_sum"><span id="first__buy-count"></span></div>
                                     </div>
                                 </div>
-                                <div class="allprofit">
-                                    <div class="profit_header"><h3>Общий доход</h3><div class="profit_header_dots"></div>
+                                <div class="profit__row">
+                                    <div class="profit__item profit__user">
+                                        <div class="profit_header"><h3>Кол-во заявок</h3></div>
+                                        <div class="profit_sum"><span id="forms_zayavki"></span></div>
                                     </div>
-                                    <div class="profit_sum"><span id="full_value"></span></div>
-                                    <div class="numbers">
-                                        <div class="numbers_item">0-30000<span class="color1"></span></div>
-                                        <div class="numbers_item">>30000<span class="color2"></span></div>
-                                        <div class="numbers_item">>50000<span class="color3"></span></div>
-                                    </div>
-                                    <div class="allprofit__devices">
-                                        <div class="allprofit__devices__name__item">
-                                            <div class="allprofit__devices__names">
-                                                <div class="allprofit__devices__name">Устройства</div>
-                                            </div>
-                                        </div>
-                                        <div class="allprofit__devices__item">
-                                            <div class="allprofit__devices__table">
-                                                <div class="allprofit__devices__item">
-                                                    <div class="allprofit__devices__slot"></div>
-                                                    <div class="allprofit__devices__name">ПН</div>
-                                                </div>
-                                                <div class="allprofit__devices__item">
-                                                    <div class="allprofit__devices__slot"></div>
-                                                    <div class="allprofit__devices__name">ВТ</div>
-                                                </div>
-                                                <div class="allprofit__devices__item">
-                                                    <div class="allprofit__devices__slot"></div>
-                                                    <div class="allprofit__devices__name">СР</div>
-                                                </div>
-                                                <div class="allprofit__devices__item">
-                                                    <div class="allprofit__devices__slot"></div>
-                                                    <div class="allprofit__devices__name">ЧТ</div>
-                                                </div>
-                                                <div class="allprofit__devices__item">
-                                                    <div class="allprofit__devices__slot"></div>
-                                                    <div class="allprofit__devices__name">ПТ</div>
-                                                </div>
-                                                <div class="allprofit__devices__item">
-                                                    <div class="allprofit__devices__slot"></div>
-                                                    <div class="allprofit__devices__name">СБ</div>
-                                                </div>
-                                                <div class="allprofit__devices__item">
-                                                    <div class="allprofit__devices__slot"></div>
-                                                    <div class="allprofit__devices__name">ВС</div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="profit__item profit__new-user">
+                                        <div class="profit_header"><h3>Кол-во заказов</h3></div>
+                                        <div class="profit_sum"><span id="forms_zakazi"></span></div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="profit_rightSide">
-                                <div class="rightSideFirst">
-                                    <div class="rightSideFirst_header">
-                                        <img src="/img/credit-card.svg" alt="">
-                                        <div class="rightSideFirstText1">
-                                            <h3 class="full_week_value profit_sum"></h3>
-                                            <span>Общая прибыль</span>
-                                        </div>
-                                        <div class="rightSideFirstText2">
-                                            <span>Неделя</span>
-                                            <span class="week_procent"></span>
-                                        </div>
+                                <div class="profit__row">
+                                    <div class="profit__item profit__user">
+                                        <div class="profit_header"><h3>Кол-во просмотров воронок</h3></div>
+                                        <div class="profit_sum"><span id="views_funnels"></span></div>
                                     </div>
-                                    <div class="Analytics-graphic__totalProfit">
-                                        <canvas width="264px" height="128px"  id="totalProfit"></canvas>
+                                    <div class="profit__item profit__new-user">
+                                        <div class="profit_header"><h3>Кол-во просмотров курсов</h3></div>
+                                        <div class="profit_sum"><span id="views_courses"></span></div>
                                     </div>
-                                    <div class="profit_footer">На  <span class="week_diff"></span> <span class="week_diff-text"></span></div>
-                                </div>
                                 </div>
                             </div>
                         </div>
@@ -457,16 +387,6 @@
           let currency = document.getElementById('currency').innerHTML;
           if (array.full_value) {
               document.getElementById('full_value').innerText = array.full_value + currency;
-          }
-
-          if (array.week) {
-              document.querySelectorAll('.full_week_value').forEach(item => {
-                  item.innerHTML = array.week + currency;
-              })
-          } else {
-              document.querySelector('.profit__week .profit_footer').classList.add('display-none');
-              document.querySelector('.profit__week .profit_sum').innerHTML = "Нет данных";
-              document.querySelector('.rightSideFirst').remove();
           }
 
           if (array.month) {

@@ -486,7 +486,8 @@ th {
 }
 
 .profit__item:hover {
-    transform: translateY(-5px);
+    border-color:#FCA549;
+    background: #FFF8F1;
     transition-duration: 0.5s;
     opacity: 1;
 }
@@ -556,6 +557,7 @@ span.green_text {
     font-size: 32px;
     font-weight: 700;
     line-height: 40px;
+    margin-top:8px;
 }
 
 .profit-price {

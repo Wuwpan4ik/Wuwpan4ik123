@@ -34,22 +34,6 @@ $('.slider').each(function() {
         })
     }
 
-    let whiteSpace = $('.overlay .whiteSpace');
-    let currVideo = $('.slider__video-item');
-    let overlays = $('.overlay');
-
-    for (let i = 0; i < whiteSpace.length; i++) {
-        whiteSpace[i].onclick = () => {
-            interval(currVideo[i]);
-            currVideo[i].play();
-            overlays[i].classList.remove('active');
-            Array.from(document.querySelectorAll('.popup')).forEach((elem) => {
-                elem.classList.remove('active');
-                pauseVideo[i].classList.remove('active');
-            });
-        }
-    }
-
     $(this).find('.slider__video-item').each(function () {
         // Закончил здесь
         this.addEventListener('click', function (){
