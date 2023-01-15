@@ -282,7 +282,7 @@
                                                 <?php if ($_SESSION['user']['tariff']) { ?>
 
                                                 <div class="tariff-name">
-                                                    У вас выбран тариф:
+                                                    Ваш тариф:
 
                                                     <p><?=($content[0][$_SESSION['user']['tariff'] - 1]['name'])?></p>
                                                 </div>
@@ -295,8 +295,13 @@
                                                 </div>
                                                 <?php } else { ?>
                                                     <div class="tariff-name">
-                                                        <p>Вы всё ещё не купили наш тариф</p>
-                                                        Но можете это исправить!
+                                                        Ваш тариф:
+
+                                                        <p>Free</p>
+                                                    </div>
+                                                    <div class="tariff-plan">
+                                                        Стоимость тарифа:
+                                                        <div class="tariff-price">0₽/ мес</div>
                                                     </div>
                                                     <div class="tariff-img">
                                                         <img src="/img/Tarifs/beginner-tariff.jpg" alt="">
@@ -306,14 +311,16 @@
                                                     <a id="change-tariff">Сменить тариф</a>
                                                 </div>
                                             </div>
-                                            <div class="tariff-card">
+                                            <div class="tariff-card" style="position:relative;">
                                                 <div class="tariff-current">
                                                     <div class="tariff-header">
                                                         <?php if ($_SESSION['user']['tariff']) { ?>
                                                         <p>Тариф оплачен до:</p>
                                                         <div class="tariff-price"><?=date('d.m.Y', strtotime($content[3]))?></div>
                                                         <?php } else { ?>
-                                                            <p>Тариф не куплен</p>
+                                                            <p>Тариф оплачен до:</p>
+                                                            <div class="tariff-price"></div>
+                                                            <div class="tarriff_blocked">Тариф не куплен</div>
                                                         <?php } ?>
                                                     </div>
 
