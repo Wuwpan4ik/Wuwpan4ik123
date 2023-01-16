@@ -316,7 +316,7 @@
                                                     <div class="tariff-header">
                                                         <?php if ($_SESSION['user']['tariff']) { ?>
                                                         <p>Тариф оплачен до:</p>
-                                                        <div class="tariff-price"><?=date('d.m.Y', strtotime($content[3]))?></div>
+                                                        <div class="tariff-price"><?=date('d.m.Y', strtotime($content[3][0]['date']))?></div>
                                                         <?php } else { ?>
                                                             <p>Тариф оплачен до:</p>
                                                             <div class="tariff-price"></div>
@@ -327,20 +327,20 @@
                                                 </div>
                                                 <div class="tariff__active-user">
                                                     <p class="text">Активных пользователей:</p>
-                                                    <span>0 из 250</span>
+                                                    <span><?php print_r($content[4])?> из <?php print_r($content[3][0]['children'])?></span>
                                                 </div>
                                                 <div class="storage-rate">
                                                     <p class="text">Файловое хранилище:</p>
                                                     <div class="storage-rate-body">
                                                         <div class="progress-storage">
-                                                            <progress max="1000" value="<?php print_r(round($content[1]))?>">
+                                                            <progress max="<?php print_r($content[3][0]['file_size'] * 1000)?>" value="<?php print_r(round($content[1]))?>">
                                                             </progress>
                                                             <div class="progress-storage__info">
                                                                 <div class="progress-storage__current-value">
                                                                     <?php print_r(round($content[1]))?> мб
                                                                 </div>
                                                                 <div class="progress-storage__max-value">
-                                                                    1000 мб
+                                                                    <?php print_r($content[3][0]['file_size'] * 1000)?> мб
                                                                 </div>
                                                             </div>
                                                         </div>

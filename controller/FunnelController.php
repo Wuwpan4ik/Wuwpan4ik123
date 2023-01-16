@@ -19,6 +19,14 @@
 
             $path = $this->url_dir . "/funnels/$item_id"."/$count_video"."_".$_FILES['video_uploader']['name'];
 
+            $max_file_size = $this->CheckTariff()[0]['file_size'] * 1000 * 1000 * 1000;
+
+            $files_size = $this->m->dir_size('./uploads/users/' . $_SESSION['user']['id']);
+
+            if ($_FILES['video_uploader']['size'] + $files_size > $max_file_size) {
+                return False;
+            }
+
             move_uploaded_file($_FILES['video_uploader']['tmp_name'], $path);
 
             chmod($path, 0777);
@@ -140,7 +148,7 @@
 
             $this->m->db->execute("DELETE FROM funnel WHERE id = '$item_id'");
 
-            rmdir($this->url_dir . "/funnels/$item_id");
+            rmdir($this->url_dir . "/funnels/$item_id/");
 
             $this->local_get_content();
 
