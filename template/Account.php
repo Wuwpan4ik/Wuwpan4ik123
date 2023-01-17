@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/aboutuser.css">
     <link rel="stylesheet" href="/css/main.css">
+    <link type="text/css" rel="stylesheet" href="/css/notifications.css">
 
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
@@ -158,7 +159,7 @@
                                                                 <div class="overSelect"></div>
                                                             </div>
                                                             <div class="mySelectOptions">
-                                                                <label class="item social__item">Вконтакте<input class="custom-checkbox social__input" type="radio" value="vk" /><label for="happy"></label></label>
+                                                                <label class="item active social__item">Вконтакте<input class="custom-checkbox social__input" type="radio" value="vk" /><label for="happy"></label></label>
                                                                 <label class="item social__item">WhatsApp<input class="custom-checkbox social__input" type="radio" value="whatsapp" /><label for="happy"></label></label>
                                                                 <label class="item social__item">Твиттер<input class="custom-checkbox social__input" type="radio" value="twitter" /><label for="happy"></label></label>
                                                                 <label class="item social__item">Фейсбук<input class="custom-checkbox social__input" type="radio" value="facebook" /><label for="happy"></label></label>
@@ -227,7 +228,7 @@
                                         </div>
 
                                         <div class="about-btn">
-                                            <button id="profile_send" type="submit">Сохранить</button>
+                                            <button class="save-btn" id="profile_send" type="submit">Сохранить</button>
                                         </div>
 
                                     </form>
@@ -503,6 +504,7 @@
             </div>
         </div>
     </div>
+    <?php include 'template/default/notificationsPopup.php' ?>
 </div>
 <form id="tariff-buy-form" action="/TariffController/Buy" method="POST">
     <input type="hidden" id="tariff_buy" name="tariff_id">
@@ -512,6 +514,7 @@
     <script src="/js/customInputs.js"></script>
     <script src="/js/customSelect.js"></script>
     <script src="/js/printFailName.js" ></script>
+    <script src="/js/notifications.js"></script>
 <script>
     /*Popups*/
     let changeTariff = document.querySelector('.change-tariff-popup');
@@ -548,12 +551,13 @@
             })
         })
     }
+
     checkInputsForUrl();
 
     // Проверка на количество и add social
     document.getElementById('social__submit').addEventListener('click', function (){
-        console.log(document.querySelectorAll('.social__block').length)
         if (document.querySelectorAll('.social__block').length === 8) {
+            document.getElementById('social__submit').remove();
             return;
         }
         let div = `<div class="social__block">
@@ -588,13 +592,15 @@
             </div>
         </div>`;
         document.querySelector('.social__blocks').innerHTML += div;
-        checkboxStatusChange();
+        $('.social__blocks:last #social__inpu').on('input', function (){
+            if (this.value.length > 0) {
+                this.parentElement.querySelector('.label_focus').classList.add('activeLabel');
+            } else {
+                this.parentElement.querySelector('.label_focus').classList.remove('activeLabel');
+            }
+        })
         checkInputsForUrl();
     })
-
-    const check_url = document.querySelector('#check_url');
-    const check_button = document.querySelector('#check_button');
-    const message = document.querySelector('#message');
 
 </script>
 
@@ -623,6 +629,15 @@
                     processData: false,
                     contentType: false
                 });
+                AddNotifications("Настройки сохранены", '');
+                let saveBtn = document.querySelector('.save-btn');
+                console.log(saveBtn)
+                saveBtn.classList.add("active");
+                saveBtn.innerHTML = 'Сохранено';
+                setTimeout(function () {
+                    saveBtn.classList.remove("active");
+                    saveBtn.innerHTML = 'Сохранить';
+                }, 3000)
             })
         });
     });

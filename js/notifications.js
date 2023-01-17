@@ -1,4 +1,4 @@
-function AddNotifications(title, description) {
+function AddNotifications(title, description = '') {
     document.querySelector('.popup__notifications').classList.add('active');
     document.querySelector('.popup__notifications__title').innerHTML = title;
     document.querySelector('.popup__notifications__desc').innerHTML = description;

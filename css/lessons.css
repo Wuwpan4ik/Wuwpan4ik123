@@ -1025,7 +1025,3 @@ textarea.videoname{
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }
-.save-btn.active{
-    background: linear-gradient(180deg, #08B395 0%, #0C977F 100%) !important;
-    box-shadow: 0px 3px 0px #0B705E, 0px 10px 30px rgba(12, 153, 128, 0.6) !important;
-}

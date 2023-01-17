@@ -265,6 +265,8 @@
             $this->m->db->execute("UPDATE course SET `price` = '$price' WHERE id = '$item_id'");
 
             $this->local_get_content();
+
+            return True;
         }
 
         function get_content()
@@ -273,7 +275,7 @@
 
         function local_get_content()
         {
-            return header('Location: ' . $_SERVER['HTTP_REFERER']);
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
 
         function obr()

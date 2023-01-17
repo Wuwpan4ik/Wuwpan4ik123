@@ -384,6 +384,6 @@
 
         function local_get_content()
         {
-            return header('Location: ' . $_SERVER['HTTP_REFERER']);
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
     }
