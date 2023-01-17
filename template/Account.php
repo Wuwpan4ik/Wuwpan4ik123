@@ -555,10 +555,6 @@
 
     // Проверка на количество и add social
     document.getElementById('social__submit').addEventListener('click', function (){
-        if (document.querySelectorAll('.social__block').length === 8) {
-            document.getElementById('social__submit').remove();
-            return;
-        }
         let div = `<div class="social__block">
             <div class="field">
                 <div class="select-account social-network">
@@ -598,6 +594,10 @@
                 this.parentElement.querySelector('.label_focus').classList.remove('activeLabel');
             }
         })
+        if (document.querySelectorAll('.social__block').length === 8) {
+            document.getElementById('social__submit').remove();
+            return;
+        }
         checkInputsForUrl();
     })
 
