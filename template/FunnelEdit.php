@@ -298,8 +298,8 @@
                         </div>
                     </div>
                     <div class="popup__form">
-                        <button class="popup__btn popup__white" id="popup__not-change" >Отменить</button>
-                        <button class="popup__btn popup__blue ">Заменить</button>
+                        <button type="button" class="popup__btn popup__white" id="popup__not-change" >Отменить</button>
+                        <button type="submit" class="popup__btn popup__blue ">Заменить</button>
                     </div>
                 </form>
             </div>

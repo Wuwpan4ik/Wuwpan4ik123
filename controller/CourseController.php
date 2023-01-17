@@ -25,21 +25,22 @@
 
             if (!$this->isUser($res[0]['author_id'])) return False;
 
-            $path = $this->url_dir . "courses/$uid"."/$count_video"."_".$_FILES['video_uploader']['name'];
+            $name_video = hash('md5', $_FILES['video_uploader']['name']);
+
+            $path = $this->url_dir . "courses/$uid/{$count_video}_{$name_video}.mp4";
 
             $max_file_size = $this->CheckTariff()[0]['file_size'] * 1000 * 1000 * 1000;
 
             $files_size = $this->m->dir_size($this->url_dir);
 
-//            if ($_FILES['video_uploader']['size'] + $files_size > $max_file_size) {
-//                return False;
-//            }
+            if ($_FILES['video_uploader']['size'] + $files_size > $max_file_size) {
+                return False;
+            }
 
             move_uploaded_file($_FILES['video_uploader']['tmp_name'], $path);
 
             chmod($path, 0777);
 
-//            try {
                 $ffmpeg = FFMpeg\FFMpeg::create([
                     'ffmpeg.binaries'  => './settings/ffmpeg.exe',
                     'ffprobe.binaries' => './settings/ffprobe.exe',
@@ -57,9 +58,6 @@
                 $image = imagescale(imagecreatefromjpeg($frame_path), 288, 512);
 
                 imagejpeg($image, $frame_path);
-//            } catch (Exception $exept) {
-//                $_SESSION['error'] = $exept;
-//            }
 
             $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `thubnails`, `query_id`) VALUES ($uid ,null , null , '$path', '$frame_path', $count_video)");
 
@@ -77,11 +75,15 @@
         public function DeleteVideo()
         {
             $item_id = $_SESSION['item_id'];
-            $path_in_files = $this->m->db->query("SELECT `video` FROM `course_content` WHERE id = '$item_id'");
-//            $author_id = $this->m->db->query("SELECT course.author_id FROM `course_content` AS content INNER JOIN `course` AS course ON (course.id = content.course_id) AND (content.id = '$item_id')");
-//            if (!$this->isUser($author_id)) return False;
+
+            $course = $this->m->db->query("SELECT course.author_id, course_content.video FROM `course_content` INNER JOIN `course` ON course.id = course_content.course_id WHERE course_content.id = $item_id");
+
+            if (!$this->isUser($course[0]['author_id'])) return False;
+
             $this->m->db->execute("DELETE FROM `course_content` WHERE `id` = '$item_id'");
-            unlink($path_in_files[0]['video']);
+
+            unlink($course[0]['video']);
+
             $this->local_get_content();
 
             return True;
@@ -89,8 +91,11 @@
 
         public function RenameVideo() {
             $item_id = $_SESSION['item_id'];
+
             $courseContent = $this->m->db->query("SELECT * FROM `course_content` WHERE id = '$item_id'");
-            $res = $this->m->db->query("SELECT * FROM `course` WHERE id = ".$courseContent[0]['course_id']);
+
+            $res = $this->m->db->query("SELECT * FROM `course` WHERE id = {$courseContent[0]['course_id']}");
+
             if (!$this->isUser($res[0]['author_id'])) return False;
 
             if (isset($_POST['name']) && strlen($_POST['name']) > 0) {
@@ -147,17 +152,16 @@
 //            }
 
             $uid = $_SESSION['item_id'];
+
             $res = $this->m->db->query("SELECT * FROM `course_content` WHERE id = '$uid'");
+
             $course = $this->m->db->query("SELECT * FROM `course` WHERE id = " . $res[0]['course_id']);
-            $count_video = $this->m->db->query("SELECT `query_id` FROM `course_content` WHERE id = ". $uid)[0]['query_id'];
 
             if (!$this->isUser($course[0]['author_id'])) return False;
 
             if (file_exists($res[0]['video'])) unlink($res[0]['video']);
 
-            $_SESSION['error'] = $_FILES['video_change'];
-
-            $path = $this->url_dir . "courses/{$res[0]['course_id']}"."/$count_video"."_".$_FILES['video_change']['name'];
+            $path = $this->url_dir . "courses/{$res[0]['course_id']}"."/{$res[0]['query_id']}"."_".$_FILES['video_change']['name'];
 
             move_uploaded_file($_FILES['video_change']['tmp_name'], $path);
 
@@ -171,7 +175,7 @@
 
             $frame = $video->frame(FFMpeg\Coordinate\TimeCode::fromSeconds(1));
 
-            $frame_path = $this->url_dir . "thumbnails/". $res[0]['course_id'] ."/" . $count_video ."_" . $_FILES['video_change']['name'] . ".jpg";
+            $frame_path = $this->url_dir . "thumbnails/{$res[0]['course_id']}/{$res[0]['query_id']}_{$_FILES['video_change']['name']}.jpg";
 
             $frame->save($frame_path);
 
@@ -251,6 +255,8 @@
 
             $res = $this->m->db->query("SELECT * FROM course WHERE id = '$item_id'");
 
+            if (!$this->isUser($res[0]['author_id'])) return False;
+
             if (isset($_POST['course_price']) && strlen($_POST['course_price']) > 0) {
                 $price = $_POST['course_price'];
             } else {
@@ -263,7 +269,6 @@
 
         function get_content()
         {
-//            return header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
 
         function local_get_content()

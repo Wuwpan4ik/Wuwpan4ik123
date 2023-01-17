@@ -12,12 +12,18 @@
                 return False;
             }
             $item_id = $_SESSION['item_id'];
+
             $res = $this->m->db->query("SELECT * FROM `funnel` WHERE id = '$item_id'");
+
             $count_video = count($this->m->db->query("SELECT * FROM `funnel_content` WHERE funnel_id = ". $res[0]['id'])) + 1;
 
-//            if (!$this->isUser($res[0]['author_id'])) return False;
+//          Проверка на юзера
+            if (!$this->isUser($res[0]['author_id'])) return False;
+//          Проверка на юзера
 
-            $path = $this->url_dir . "funnels/$item_id"."/$count_video"."_".$_FILES['video_uploader']['name'];
+            $name_video = hash('md5', $_FILES['video_uploader']['name']);
+
+            $path = $this->url_dir . "funnels/$item_id/{$count_video}_{$name_video}.mp4";
 
             $max_file_size = $this->CheckTariff()[0]['file_size'] * 1000 * 1000 * 1000;
 
@@ -47,13 +53,16 @@
         public function DeleteVideo()
         {
             $item_id = $_SESSION['item_id'];
-            $path_in_files = $this->m->db->query("SELECT `video` FROM `funnel_content` WHERE id = '$item_id'");
+//          Проверка на юзера
 
-//            $author_id = $this->m->db->query("SELECT funnel.author_id FROM `funnel_content` AS content WHERE INNER JOIN `funnel` AS funnel ON (funnel.id = content.funnel_id AND content.id = '$item_id')");
-//            if (!$this->isUser($author_id)) return False;
+            $funnel = $this->m->db->query("SELECT funnel.author_id, funnel_content.video FROM `funnel_content` INNER JOIN `funnel` ON funnel.id = funnel_content.funnel_id WHERE funnel_content.id = $item_id");
+
+            if (!$this->isUser($funnel[0]['author_id'])) return False;
+//          Проверка на юзера
 
             $this->m->db->execute("DELETE FROM `funnel_content` WHERE `id` = '$item_id'");
-            unlink($path_in_files[0]['video']);
+
+            unlink($funnel[0]['video']);
 
             $this->local_get_content();
 
@@ -62,9 +71,14 @@
 
         public function RenameVideo() {
             $item_id = $_SESSION['item_id'];
+
             $funnelContent = $this->m->db->query("SELECT * FROM `funnel_content` WHERE id = '$item_id'");
+
             $res = $this->m->db->query("SELECT * FROM `funnel` WHERE id = ".$funnelContent[0]['funnel_id']);
+
+//          Проверка на юзера
             if (!$this->isUser($res[0]['author_id'])) return False;
+//          Проверка на юзера
 
             if (isset($_POST['name']) && strlen($_POST['name']) > 0) {
                 $name = $_POST['name'];
@@ -105,14 +119,17 @@
 
             $uid = $_SESSION['item_id'];
 
-            $res = $this->m->db->query("SELECT * FROM `funnel_content` WHERE id = '$uid'");
+            $funnel = $this->m->db->query("SELECT funnel.author_id, funnel_content.funnel_id, funnel_content.video FROM `funnel_content` INNER JOIN `funnel` ON funnel.id = funnel_content.funnel_id WHERE funnel_content.id = '$uid'");
 
-            $funnel = $this->m->db->query("SELECT * FROM `funnel` WHERE id = " . $res[0]['funnel_id']);
+//          Проверка на юзера
             if (!$this->isUser($funnel[0]['author_id'])) return False;
+//          Проверка на юзера
 
-            $path = $this->url_dir . 'funnels/' . $res[0]['funnel_id']. "/{$res[0]['video']}";
+            $name_video = hash('md5', $_FILES['video_change']['name']);
 
-            unlink($res[0]['video']);
+            $path = $this->url_dir . 'funnels/' . $funnel[0]['funnel_id']. "/$name_video";
+
+            if (file_exists($funnel[0]['video'])) unlink($funnel[0]['video']);
 
             move_uploaded_file($_FILES['video_change']['tmp_name'], $path);
 
@@ -142,9 +159,11 @@
         public function DeleteFunnel () {
             $item_id = $_SESSION['item_id'];
 
+//          Проверка на юзера
             $project = $this->m->db->query("SELECT * FROM funnel WHERE id = '$item_id' LIMIT 1");
 
             if (!$this->isUser($project[0]['author_id'])) return False;
+//          Проверка на юзера
 
             $this->m->db->execute("DELETE FROM funnel WHERE id = '$item_id'");
 
@@ -177,10 +196,13 @@
 
         public function CreatePopupSettings()
         {
-            $id_video = (int) $_SESSION['item_id'];
-            $funnel_content = $this->m->db->query("SELECT * FROM funnel_content WHERE id = '$id_video'");
-            $funnel = $this->m->db->query("SELECT * FROM funnel WHERE id = ". $funnel_content[0]['funnel_id']);
-//            if (!$this->isUser($funnel[0]['author_id'])) return False;
+            $id_video = $_SESSION['item_id'];
+
+            $funnel_content = $this->m->db->query("SELECT * FROM `funnel_content` WHERE `id` = $id_video");
+
+            $funnel = $this->m->db->query("SELECT * FROM `funnel` WHERE `id` = {$funnel_content[0]['funnel_id']}");
+
+            if (!$this->isUser($funnel[0]['author_id'])) return False;
 
             $videoBtnHTML = [];
             $first_do = $_POST['first_do'];
@@ -315,9 +337,15 @@
 
         public function MainSettings()
         {
+            $check_user = $this->m->db->query("SELECT * FROM funnel WHERE id = {$_SESSION['item_id']}");
+
+            if (!$this->isUser($check_user[0]['author_id'])) return False;
+
             $main_settings = $this->CreateMainSettings();
+
             $main__settingsResult = json_encode($main_settings['json'], JSON_UNESCAPED_UNICODE);
-            $this->m->db->execute("UPDATE `funnel` SET `style_settings` = '$main__settingsResult' WHERE id = " . $_SESSION['item_id']);
+
+            $this->m->db->execute("UPDATE `funnel` SET `style_settings` = '$main__settingsResult' WHERE id = {$_SESSION['item_id']}");
 
             $this->local_get_content();
             return True;
@@ -331,25 +359,22 @@
         }
 
         public function PopupSettings() {
-            $popup_settings = $this->CreatePopupSettings();
-            $videoBtnHTMLResult = json_encode($popup_settings['json'], JSON_UNESCAPED_UNICODE);
-            $this->m->db->execute("UPDATE `funnel_content` SET `popup` = '$videoBtnHTMLResult', `button_text` = '". $popup_settings['button_standart'] ."' WHERE id = " . $_POST['item_id']);
+            $res = $this->m->db->query("SELECT * FROM `funnel_content` WHERE id = {$_SESSION['item_id']}");
 
-            $this->local_get_content();
-            return True;
-        }
+            $funnel = $this->m->db->query("SELECT * FROM `funnel` WHERE id = " . $res[0]['funnel_id']);
 
-        public function SelectCourse()
-        {
-            $id = $_SESSION['item_id'];
-            $course_id = $_POST['course_id'];
-            $course = $this->m->db->query("SELECT * from course WHERE `id` = '$course_id'");
-            $funnel = $this->m->db->query("SELECT * from funnel WHERE `id` = '$id'");
-            if (!$this->isUser($course[0]['author_id'])) return False;
+//          Проверка на юзера
             if (!$this->isUser($funnel[0]['author_id'])) return False;
-            $this->m->db->execute("UPDATE `funnel` SET `course_id` = '$course_id' WHERE `id` = '$id'");
+//          Проверка на юзера
+
+            $popup_settings = $this->CreatePopupSettings();
+
+            $videoBtnHTMLResult = json_encode($popup_settings['json'], JSON_UNESCAPED_UNICODE);
+
+            $this->m->db->execute("UPDATE `funnel_content` SET `popup` = '$videoBtnHTMLResult', `button_text` = '". $popup_settings['button_standart'] ."' WHERE id = {$_POST['item_id']}");
 
             $this->local_get_content();
+
             return True;
         }
 
@@ -360,9 +385,5 @@
         function local_get_content()
         {
             return header('Location: ' . $_SERVER['HTTP_REFERER']);
-        }
-
-        function obr()
-        {
         }
     }
