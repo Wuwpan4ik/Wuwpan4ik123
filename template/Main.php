@@ -48,7 +48,22 @@
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M5.82866 14C5.53666 14 5.24666 13.873 5.04866 13.627L0.22066 7.62698C-0.07734 7.25598 -0.07334 6.72598 0.23166 6.35998L5.23166 0.359984C5.58466 -0.0640163 6.21566 -0.121016 6.64066 0.231984C7.06466 0.584984 7.12166 1.21598 6.76766 1.63998L2.29266 7.01098L6.60766 12.373C6.95366 12.803 6.88566 13.433 6.45466 13.779C6.27066 13.928 6.04866 14 5.82866 14" fill="#757D8A"/>
                     </svg>
 
-                    <a style="padding:0px 17px;">Январь, 2022</a>
+                    <a style="padding:0px 17px;"><?php $arr = [
+                            'Январь',
+                            'Февраль',
+                            'Март',
+                            'Апрель',
+                            'Май',
+                            'Июнь',
+                            'Июль',
+                            'Август',
+                            'Сентябрь',
+                            'Октябрь',
+                            'Ноябрь',
+                            'Декабрь'
+                        ];
+                        $month = date('n')-1;
+                        echo $arr[$month] . date(', Y'); ?></a>
 
                     <svg style="margin-right: 31px" width="7" height="14" viewBox="0 0 7 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M0.999495 14.0001C0.773495 14.0001 0.546495 13.9241 0.359495 13.7681C-0.0645046 13.4151 -0.121505 12.7841 0.231495 12.3601L4.7075 6.98907L0.392495 1.62707C0.0464955 1.19707 0.114495 0.567073 0.544495 0.221073C0.975495 -0.124927 1.6045 -0.056927 1.9515 0.373073L6.7795 6.37307C7.0775 6.74407 7.0735 7.27407 6.7685 7.64007L1.7685 13.6401C1.5705 13.8771 1.2865 14.0001 0.999495 14.0001" fill="#757D8A"/>
@@ -105,15 +120,15 @@
 
 					<tr>
 
-						<th class="full_th">Имя<button class="order_button" value="first_name"><img class="table_ico" src="img/StickDown.svg"></button></th>
+						<th class="full_th" style="background: #F8F8F8;border-radius: 8px 0px 0px 8px;">Имя<button class="order_button" value="first_name"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
-						<th class="full_th">Email<button class="order_button" value="email"><img class="table_ico" src="img/StickDown.svg"></button></th>
+						<th class="full_th" style="background: #F8F8F8">Email<button class="order_button" value="email"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
-						<th class="full_th">Телефон<button class="order_button" value="tel"><img class="table_ico" src="img/StickDown.svg"></button></th>
+						<th class="full_th" style="background: #F8F8F8">Телефон<button class="order_button" value="tel"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
-						<th class="full_th">Продукт<button class="order_button" value="course_id"><img class="table_ico" src="img/StickDown.svg"></button></th>
+						<th class="full_th" style="background: #F8F8F8">Продукт<button class="order_button" value="course_id"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
-                        <th class="full_th">Сумма<button class="order_button" value="give_money"><img class="table_ico" src="img/StickDown.svg"></button></th>
+                        <th class="full_th" style="background: #F8F8F8;border-radius: 0px 8px 8px 0px;">Сумма<button class="order_button" value="give_money"><img class="table_ico" src="img/StickDown.svg"></button></th>
 
                     </tr>
 
@@ -125,6 +140,9 @@
                 </tbody>
 
             </table>
+            <div class="no-data" id="order__havent_data">
+                <p>Данных пока нет</p>
+            </div>
 
         </div>
         </div>
@@ -183,7 +201,11 @@
         request.setRequestHeader('Content-Type', 'application/x-www-form-url');
         request.addEventListener("readystatechange", () => {
             if (request.readyState === 4 && request.status === 200) {
-                tab.innerHTML = request.responseText;
+                if (request.responseText.length != 0) {
+                    document.querySelector('.no-data').remove();
+                    tab.innerHTML = request.responseText;
+                }
+
             }
         });
         request.send();
@@ -207,7 +229,9 @@
                 request.setRequestHeader('Content-Type', 'application/x-www-form-url');
                 request.addEventListener("readystatechange", () => {
                     if (request.readyState === 4 && request.status === 200) {
-                        tab.innerHTML = request.responseText;
+                        if (request.responseText.length != 0) {
+                            tab.innerHTML = request.responseText;
+                        }
                     }
                 });
                 request.send();

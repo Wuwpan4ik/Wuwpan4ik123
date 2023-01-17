@@ -326,15 +326,15 @@ wrapper.activeFullscreen{
     position: absolute;
     width:100%;
     height:100%;
-    display:none;
+    display:flex !important;
+    opacity: 0;
+    pointer-events: none;
     justify-content: center;
     align-items: center;
-
-
 }
 .firstPauseButton.active{
-    display: flex !important;
-
+    opacity: 1;
+    pointer-events: all;
 }
 
 .firstPlayButton.nonActive{

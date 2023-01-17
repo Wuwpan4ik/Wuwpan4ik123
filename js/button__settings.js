@@ -89,7 +89,6 @@ function clearPopup () {
     document.querySelectorAll('.second_do').forEach((elem) => {
         elem.classList.remove('display-block');
     })
-    document.querySelector('#popup__body-form-2').style.display = 'none';
     document.querySelector('input[name="form__title"]').value = '';
     document.querySelector('input[name="form__desc"]').value = '';
 }
@@ -106,10 +105,19 @@ function defaultPopup(parent_elem){
     parent_elem.parentElement.querySelectorAll('.form_id').forEach((elem) => {
         elem.remove();
     })
-    parent_elem.parentElement.querySelectorAll('.link_item').forEach((elem) => {
+    parent_elem.parentElement.querySelectorAll('.checkbox__wrapper').forEach((elem) => {
         elem.remove();
     })
     document.querySelector('#first_do-list').classList.remove('display-none');
+}
+
+function removeSelect(elem) {
+    let count = elem.parentElement.parentElement.querySelectorAll('.form-select__container').length;
+    elem.parentElement.remove();
+    if (count <= 3 ) {
+        document.querySelector('.addFormInput').classList.remove('display-none');
+        return false;
+    }
 }
 
 async function addFormSelect(elem, name) {
@@ -118,20 +126,33 @@ async function addFormSelect(elem, name) {
     if (elem.id === 'second_do-list') {
         count_id = elem.parentElement.querySelectorAll('.form_id').length + 4;
     }
+    let div_container = document.createElement('div');
+    div_container.style.position = 'relative';
+    div_container.classList.add("form-select__container");
     let div = document.createElement('select');
-    let inner = '';
+    let button =
+        `<button id="delete_selectForm" style="display: flex;justify-content: center;align-items: center;position: absolute; bottom: 6px; right: 10px; z-index: 100;" onclick="removeSelect(this)"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 14C8 14.55 7.55 15 7 15C6.45 15 6 14.55 6 14V10C6 9.45 6.45 9 7 9C7.55 9 8 9.45 8 10V14ZM14 14C14 14.55 13.55 15 13 15C12.45 15 12 14.55 12 14V10C12 9.45 12.45 9 13 9C13.55 9 14 9.45 14 10V14ZM16 17C16 17.551 15.552 18 15 18H5C4.448 18 4 17.551 4 17V6H16V17ZM8 2.328C8 2.173 8.214 2 8.5 2H11.5C11.786 2 12 2.173 12 2.328V4H8V2.328ZM19 4H18H14V2.328C14 1.044 12.879 0 11.5 0H8.5C7.121 0 6 1.044 6 2.328V4H2H1C0.45 4 0 4.45 0 5C0 5.55 0.45 6 1 6H2V17C2 18.654 3.346 20 5 20H15C16.654 20 18 18.654 18 17V6H19C19.55 6 20 5.55 20 5C20 4.45 19.55 4 19 4Z" fill="#757D8A"/>
+            </svg>
+        </button>`;
     div.classList.add('form_id');
     div.classList.add('input_selector');
     div.name = 'form_id-' + count_id;
     for (const [key, value] of Object.entries(names_option)) {
-        let selected;
+        let option = document.createElement('option');
+        option.value = key;
+        option.innerHTML = value;
+        option.style.position = 'relative';
         if (name === key) {
-            selected = "selected";
+            option.setAttribute('selected', true);
+
         }
-        inner += `<option ` + selected +` value="${key}">${value}</option>\n`;
+        console.log(option)
+        div.appendChild(option)
     }
-    div.innerHTML = inner;
-    elem.parentElement.children[count_block].after(div);
+    div_container.appendChild(div);
+    div_container.innerHTML += button;
+    elem.parentElement.children[count_block].after(div_container);
     document.querySelectorAll('.input_selector').forEach(function (){
         this.addEventListener('change', function (){
             addPopup('form');
@@ -141,7 +162,6 @@ async function addFormSelect(elem, name) {
 }
 
 function addFormLink(elem) {
-    let count = elem.parentElement.querySelectorAll('.link_item').length;
     let count_id = elem.id === 'second_do' ? 2 : 1;
     let div = document.createElement('input');
     div.placeholder = "Переход по ссылке";
@@ -150,12 +170,10 @@ function addFormLink(elem) {
     div.name = 'link-' + count_id;
     div.style.paddingLeft = '15px';
     div.style.marginTop = '20px';
-    if (count === 0) {
-        elem.parentElement.children[1].after(div);
-    }
+    addCheckbox(div, elem)
 }
 
-function addCheckbox(elem) {
+function addCheckbox(block, elem) {
     let checkbox = document.createElement('div');
     checkbox.classList.add("checkbox__wrapper")
     let switch_box = document.createElement('div');
@@ -169,6 +187,7 @@ function addCheckbox(elem) {
     input.value = 'open_new_window';
     switch_box.appendChild(input)
     checkbox.appendChild(switch_box)
+    checkbox.prepend(block);
     let text = document.createElement('div');
     text.innerHTML = 'Открывать в новом окне';
     switch_box.appendChild(text)
@@ -200,7 +219,9 @@ async function addFormItem (elem, name = null) {
     }
 
     if (count > 2) {
-        elem.parentElement.querySelector('.addFormInput').classList.add('display-none');
+        if (elem.parentElement.querySelector('.addFormInput')) {
+            elem.parentElement.querySelector('.addFormInput').classList.add('display-none');
+        }
         return false;
     }
 }
@@ -226,35 +247,36 @@ function enableAfterClickBlock() {
 function checkFirstSelect() {
     if (['list'].includes(first_select.value)) {
         addPopup('list');
-        defaultPopup(second_select);
-        document.querySelector('#popup__body-list-select').classList.remove('display-none');
         addSecondOptions([['pay_form', "Форма оплаты"], ['form', 'Форма заявки']]);
         enableAfterClickBlock();
         initListCourse();
     }
 
-    if (first_select.value === 'next_lesson') {
-        document.querySelector('#popup__body-list-select').classList.add('display-none');
+    if (document.querySelector('.checkbox__wrapper')) {
+        if (first_select.value !== 'link') {
+            document.querySelector('.checkbox__wrapper').remove();
+        }
     }
 
     switch (first_select.value) {
         case 'list':
         case 'next_lesson': {
+            defaultPopup(second_select);
+            defaultPopup(first_select);
             document.querySelector('#popup__body-form-1').style.display = 'none';
             first_select.parentElement.querySelectorAll('.link_item').forEach((elem) => {
                 elem.classList.add('display-none');
             })
-            defaultPopup(second_select);
-            defaultPopup(first_select);
+
             disableAfterClickBlock();
             break;
         }
 
         case 'link': {
-            document.querySelector('#popup__body-list-select').classList.add('display-none');
+            if (document.querySelectorAll('.checkbox__wrapper').length == 0) {
+                addFormLink(first_select);
+            }
             document.querySelector('#popup__body-form-1').style.display = 'none';
-            addFormLink(first_select);
-            defaultPopup(second_select);
             disableAfterClickBlock();
             checkSecondSelect();
             break;
@@ -268,13 +290,11 @@ function checkFirstSelect() {
                 addPopup('pay_form');
             }
             document.querySelector('#popup__body-form-1').style.display = 'flex';
-            first_select.parentElement.querySelector('.addFormInput').classList.remove('display-none');
-            document.querySelector('#popup__body-list-select').classList.add('display-none');
             first_select.parentElement.querySelectorAll('.link_item').forEach((elem) => {
                 elem.classList.add('display-none');
             })
-            defaultPopup(first_select);
-            addSecondOptions([['link', "Переход по ссылке"], ['next_lesson', 'Открыть следующее видео'], ['file', 'Отправка файла']]);
+            addSecondOptions([['', 'Выберите'], ['link', "Переход по ссылке"], ['next_lesson', 'Открыть следующее видео'], ['file', 'Отправка файла']]);
+            defaultPopup(second_select);
             enableAfterClickBlock();
             checkSecondSelect();
             let form__title = document.querySelector('input[name="form__title"]');
@@ -292,6 +312,7 @@ function checkFirstSelect() {
             break;
         }
     }
+
 }
 
 function checkFormInputs() {
@@ -307,24 +328,23 @@ function checkSecondSelect() {
         document.querySelector('#popup__body-file').classList.add('display-none');
     }
 
+    if (second_select.parentElement.querySelector('.checkbox__wrapper')) {
+        if (second_select.value !== 'link') {
+            second_select.parentElement.querySelector('.checkbox__wrapper').remove();
+        }
+    }
+
     if (!['form', 'pay_form', 'link'].includes(second_select.value)) {
-        document.querySelector('#popup__body-form-2').style.display = 'none';
+        // document.querySelector('#popup__body-form-2').style.display = 'none';
         second_select.parentElement.querySelectorAll('.link_item').forEach((elem) => {
             elem.classList.add('display-none');
         })
         defaultPopup(second_select);
     } else {
-        document.querySelector('#popup__body-form-2').style.display = 'flex';
-        second_select.parentElement.querySelector('.addFormInput').classList.remove('display-none');
-        second_select.parentElement.querySelectorAll('.link_item').forEach((elem) => {
-            elem.classList.add('display-none');
-        })
         defaultPopup(second_select);
         if (second_select.value === 'link') {
-            document.querySelector('#popup__body-form-2').style.display = 'none';
-            addFormLink(second_select);
-            if (document.querySelector('.checkbox__wrapper')) {
-                document.querySelector('.checkbox__wrapper').classList.remove('display-none');
+            if (second_select.parentElement.querySelectorAll('.checkbox__wrapper').length === 0) {
+                addFormLink(second_select);
             }
         }
     }

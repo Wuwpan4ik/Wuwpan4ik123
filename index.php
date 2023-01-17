@@ -1,6 +1,6 @@
 <?php
-    session_start();
     header("Content-Type:text/html;charset=UTF-8");
+    session_start();
     require_once './vendor/autoload.php';
     require_once './model/Routering.php';
     $item_id = 0;
@@ -69,37 +69,40 @@
     $router->addRoute("/Course/$item_id/rename", "CourseController.php", "RenameVideo");
     $router->addRoute("/Course/$item_id/change", "CourseController.php", "ChangeVideo");
     $router->addRoute("/Course/$item_id/setPrice", "CourseController.php", "SetPrice");
+    $router->addRoute("/Course/$item_id/AddView", "CourseController.php", "AddView");
 
     $router->addRoute("/Funnel", "Funnel.php");
     $router->addRoute("/Funnel/$item_id", "FunnelEdit.php");
     $router->addRoute("/Funnel/create", "FunnelController.php", "CreateFunnel", false);
     $router->addRoute("/Funnel-rename/$item_id", "FunnelController.php", "RenameFunnel");
     $router->addRoute("/Funnel-delete/$item_id", "FunnelController.php", "DeleteFunnel");
-    $router->addRoute("/Funnel-select/$item_id", "FunnelController.php", "SelectCourse");
     $router->addRoute("/Funnel/$item_id/create", "FunnelController.php", "AddVideo");
     $router->addRoute("/Funnel/$item_id/delete", "FunnelController.php", "DeleteVideo");
     $router->addRoute("/Funnel/$item_id/rename", "FunnelController.php", "RenameVideo");
     $router->addRoute("/Funnel/$item_id/change", "FunnelController.php", "ChangeVideo");
     $router->addRoute("/Funnel/$item_id/settings", "FunnelController.php", "PopupSettings");
+    $router->addRoute("/Funnel/$item_id/main_settings", "FunnelController.php", "MainSettings");
+    $router->addRoute("/Funnel/$item_id/GetMainSettings", "FunnelController.php", "GetMainSettings");
+    $router->addRoute("/Funnel/$item_id/AddView", "FunnelController.php", "AddView");
     $router->addRoute("/Funnel/$item_id/checkSettings", "CheckFunnelSettingsController.php", "CheckPopupSettings", false);
-    $router->addRoute("/Funnel/getCourseList", "UserController.php", "GetCourseList");
+    $router->addRoute("/Funnel/$item_id/checkMainSettings", "CheckFunnelSettingsController.php", "CheckMainSettings", false);
     $router->addRoute("/Funnel/$item_id/getFunnelPopup", "UserController.php", "GetFunnelPopup");
 
     $router->addRoute("/LoginController/login", "LoginController.php", 'login');
     $router->addRoute("/LoginController/reg", "LoginController.php", 'registration');
     $router->addRoute("/LoginController/recovery", "LoginController.php", 'recovery');
+    $router->addRoute("/LoginController/UserRecovery", "LoginController.php", 'UserRecovery');
     $router->addRoute("/LoginController/logout", "LoginController.php", 'logout');
 
     $router->addRoute("/ClientsController/application", "ClientsController.php", 'AddApplication');
     $router->addRoute("/ClientsController/CourseBuy", "ClientsController.php", 'BuyCourse');
-    $router->addRoute("/ClientsController/CourseVideo", "ClientsController.php", 'BuyVideo');
     $router->addRoute("/PopupController/get_popup", "PopupController.php", 'get_popup');
 
     $router->addRoute("/SortController/Clients", "SortController.php", "getClientsForMain");
     $router->addRoute("/SortController/AnalyticClients", "SortController.php", "getClientsForAnalytics");
     $router->addRoute("/SortController/AnalyticOrders", "SortController.php", "getOrdersForAnalytics");
-    $router->addRoute("/AnalyticController/$item_id/deleteOrder", "AnalyticController.php", 'DeleteOrder');
-    $router->addRoute("/AnalyticController/$item_id/deleteClient", "AnalyticController.php", 'DeleteClient');
+    $router->addRoute("/AnalyticController/DeleteAllClients", "AnalyticController.php", 'DeleteAllClients');
+    $router->addRoute("/AnalyticController/DeleteAllOrders", "AnalyticController.php", 'DeleteAllOrders');
 
     $router->addRoute("/StatisticsController/GetStatistics", "StatisticsController.php", 'GetAllStatistics');
     $router->addRoute("/StatisticsController/GetWeek", "StatisticsController.php", 'GetWeekGraph');
@@ -114,10 +117,13 @@
     $router->addRoute("/UserController/save", "LoginController.php", 'saveUserSettings');
 
     $router->addRoute("/ContactController/sendQuestions", "ContactController.php", "SendQuestion");
+    $router->addRoute("/getCheckedNotifications", "NotificationsController.php", "getCheckedNotifications");
     $router->addRoute("/getNotifications", "NotificationsController.php", "getNotifications");
     $router->addRoute("/getCountNotifications", "NotificationsController.php", "getCountNotifications");
     $router->addRoute("/NotificationsController/checkout", "NotificationsController.php", "checkNotifications");
 
+    $router->addRoute("/TariffController/Buy", "TariffController.php", "Buy");
+    $router->addRoute("/Tariff-absent", "tariff-absent.php");
 
     $router->route("/$url");
 

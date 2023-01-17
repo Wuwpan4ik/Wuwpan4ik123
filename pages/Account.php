@@ -2,10 +2,12 @@
 class Account extends ACoreCreator
 {
     public function get_content() {
-        $result = $this->m->getCurrentUser();
         $content = $this->m->getTariffs();
-        $files_size = $this->dir_size('./uploads/users/' . $_SESSION['user']['id']) / 1024 / 1024;
-        return [$result, $content, $files_size];
+        $user_info = $this->m->CheckInfoTariff();
+        $tariff_date = $this->m->GetTariff($_SESSION['user']['id']);
+        $urls = $this->m->TakeSocialUrls();
+        $count_users = $this->m->GetCountClients();
+        return [$content, (int) $user_info['file_size'], $urls, $tariff_date, $count_users];
     }
 
 }

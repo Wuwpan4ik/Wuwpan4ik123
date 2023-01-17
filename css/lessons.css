@@ -7,7 +7,7 @@ input.videoname{
 }
 
 input.video-desc{
-    padding: 12px 10px 0 10px !important;
+    padding: 12px 10px 0 15px !important
 }
 .media {
     display: -webkit-box;
@@ -17,7 +17,13 @@ input.video-desc{
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
 }
-
+input[name="price"]{
+    display:none;
+}
+.videoname.link_item{
+    padding: 0px 16px !important;
+    height: 48px !important;
+}
 .media-cart {
     position: relative;
     width: 300px;
@@ -44,9 +50,11 @@ input.video-desc{
 }
 
 .media-cart-img {
-    width: 100%;
+    width: 300px;
     height: 536px;
     border-radius: 16px;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
 }
 
 .media-cart #half_input {
@@ -139,8 +147,8 @@ input.video-desc{
     border-radius: 8px!important;
 }
 .media-cart__controller-delete:hover img{
- filter: invert(0%) sepia(100%) saturate(10%) hue-rotate(4deg) brightness(106%) contrast(1000%) ;
- }
+    filter: invert(0%) sepia(100%) saturate(10%) hue-rotate(4deg) brightness(106%) contrast(1000%) ;
+}
 
 .copy-button {
     border: 1px solid #E1E3E6;
@@ -322,18 +330,35 @@ input.video-desc{
     display: flex;
     gap: 24px;
 }
+.Lessons .media-cart .btn-upload .create-new{
+    padding: 10px 11px 10px 23px;
+    height: 82px;
+    transition: 0.3s all ease;
+}
+
+.Lessons .media-cart .btn-upload .create-new:hover{
+    background: white;
+}
 
 .create-new {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    background-color: #fff;
     border-radius: 20px;
-    padding: 11px 23px;
+    padding: 18px 25px;
     text-decoration: none;
     cursor: pointer;
+    gap:17px;
+    width:240px;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(10px);
 }
-
+.create-new p{
+    margin:0 !important;
+    line-height: 23px !important;
+}
 :active, :hover, :focus {
     outline: 0;
     outline-offset: 0;
@@ -370,7 +395,7 @@ input.video-desc{
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    margin: 0px;
+    margin-left: -12px;
     align-items: center;
 }
 
@@ -415,10 +440,15 @@ input:checked + label {
     height: 52px;
     border: 1px solid #E1E3E6;
     border-radius: 8px;
-    padding: 22px 16px 10px 16px!important;
+    padding: 24px 16px 10px 16px!important;
+}
+
+textarea.videoname{
+    max-height: 130px;
 }
 .video-desc{
-    padding: 12px 16px!important;
+    padding:20px 16px 10px 16px !important;
+    height:48px;
 }
 .funnel-input{
     display: flex;
@@ -504,9 +534,9 @@ input:checked + label {
     border: solid 1px #4E73F8 !important;;
     color: #4E73F8 !important;;
 }
-    /*------------------------------------------------------------------
-    @smallPlayer
-    */
+/*------------------------------------------------------------------
+@smallPlayer
+*/
 ._conatiner {
     max-width: 300px;
     height: 100%;
@@ -641,7 +671,7 @@ input:checked + label {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 7%;
+    bottom: 10px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -650,16 +680,17 @@ input:checked + label {
 }
 
 .slider__item-title {
+    font-family: 'TT Trailers', sans-serif;
     font-weight: 900;
-    font-size: 18px;
+    font-size:38px;
     line-height: 109.5%;
 }
 
 .slider__item-text {
+    font-family: 'Montserrat';
     margin: 12px 0 0 0;
     font-size: 12px;
     line-height: 17px;
-    word-break: break-all;
 }
 
 .slider__item-socialNetwork {
@@ -904,12 +935,6 @@ input:checked + label {
     position: relative;
 }
 
-
-
-
-
-
-
 .clear_input_val{
     position: absolute;
     pointer-events: none;
@@ -948,7 +973,7 @@ input:checked + label {
     border: 1px solid #E1E3E6;
     border-radius: 8px;
     width: 100%;
-    padding: 12px 16px 12px 16px;
+    padding: 13px 16px 12px 16px;
     color: #757D8A;
     height: 48px;
 }
@@ -999,8 +1024,4 @@ input:checked + label {
     width: 15%;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
-}
-.save-btn.active{
-    background: linear-gradient(180deg, #08B395 0%, #0C977F 100%) !important;
-    box-shadow: 0px 3px 0px #0B705E, 0px 10px 30px rgba(12, 153, 128, 0.6) !important;
 }

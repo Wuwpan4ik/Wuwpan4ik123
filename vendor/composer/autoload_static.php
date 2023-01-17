@@ -429,6 +429,7 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'Symfony\\Polyfill\\Php73\\Php73' => __DIR__ . '/..' . '/symfony/polyfill-php73/Php73.php',
         'Symfony\\Polyfill\\Php80\\Php80' => __DIR__ . '/..' . '/symfony/polyfill-php80/Php80.php',
         'Symfony\\Polyfill\\Php80\\PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/PhpToken.php',
+        'TariffController' => __DIR__ . '/../..' . '/controller/TariffController.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'UrlController' => __DIR__ . '/../..' . '/controller/UrlController.php',
         'UserAllContacts' => __DIR__ . '/../..' . '/pages/UserAllContacts.php',

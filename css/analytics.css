@@ -105,33 +105,36 @@ button {
     display: none;
 }
 
-.mytabs label {
-    width: 31.6%;
-    border: 1px #E1E3E6 solid;
-    border-width: 1px 0px 1px 0px;
-    padding: 4px;
-    text-align: center;
-    font-weight: 500;
-    line-height: 27px;
-    color: #757D8A;
-    background: #F8F8F8;
-    -webkit-transition: 0.2s ease-in;
-    -o-transition: 0.2s ease-in;
-    transition: 0.2s ease-in;
-}
 
-.mytabs label:nth-child(2) {
-    margin: 0 0 0 40px;
-}
 
 .mytabs label p {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 40px;
     padding: 10px 0;
-    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    background-color: #F8F8F8;
+    border-radius: 8px;
+    -webkit-transition: 0.2s ease-in;
+    -o-transition: 0.2s ease-in;
+    transition: 0.2s ease-in;
 }
-
+.menu-label{
+    width: 33.33%;
+    padding: 4px;
+    border: 1px #E1E3E6 solid;
+    border-width: 1px 0px 1px 0px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 27px;
+    background: #F8F8F8;
+    -webkit-transition: 0.2s ease-in;
+    -o-transition: 0.2s ease-in;
+    transition: 0.2s ease-in;
+    height: 48px;
+}
 .mytabs label p:hover{
     background-color: #f0f0f0;
 }
@@ -326,7 +329,7 @@ tbody input {
 }
 
 .table {
-    margin: 40px 0 0 0;
+    margin: 40px 0 20px 0;
 }
 
 .checked {
@@ -365,6 +368,8 @@ tr {
     -ms-flex-align: center;
     align-items: center;
     gap: 13px;
+    text-align: center;
+    justify-content: start;
 }
 
 th {
@@ -423,10 +428,12 @@ th {
     display: flex;
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
-    justify-content: space-between;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 20px 10px !important;
 }
 
 .iconed img {
@@ -479,7 +486,8 @@ th {
 }
 
 .profit__item:hover {
-    transform: translateY(-5px);
+    border-color:#FCA549;
+    background: #FFF8F1;
     transition-duration: 0.5s;
     opacity: 1;
 }
@@ -549,6 +557,7 @@ span.green_text {
     font-size: 32px;
     font-weight: 700;
     line-height: 40px;
+    margin-top:8px;
 }
 
 .profit-price {
@@ -725,10 +734,12 @@ span.red_text {
 .Analytics-graphic__totalProfit {
     margin: 34px 0 0 0;
 }
+
 .no-data{
     width: 100%;
     height: 65vh;
 }
+
 .no-data p{
     display: flex;
     justify-content: center;
@@ -841,4 +852,11 @@ span.red_text {
     height: 70px;
     background: rgba(78, 115, 248, 0.24);
     border-radius: 5px;
+}
+
+
+/* Brench: Styles */
+
+input.check_order{
+    margin-right: 20px;
 }

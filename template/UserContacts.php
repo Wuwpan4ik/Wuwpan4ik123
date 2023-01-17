@@ -20,7 +20,7 @@
                 <div class="user__logo-text">Course Creator</div>
             </div>
             <div class="header-main__burger">
-                <a href="/UserMenu">
+                <a href="/">
                     <div class="main__burger">
                         <span></span>
                     </div>
@@ -35,19 +35,25 @@
             </div>
             <div class=" UserContacts userPopup__body">
                 <div class="UserContacts-body ">
+                    <?php if ($content['contacts'][0]["telephone"]) { ?>
                     <div class="UserContacts-item UserContacts-body__telephone ">
-                        <div class="UserContacts-body__header">
+                        <div class="UserContacts-body__header" style="margin-bottom: 8px;">
                             <img src="../img/UserContacts/phone.svg" alt="">
                             <span>Телефон:</span>
                         </div>
-                        <input style="font-size: 16px;" type="tel" placeholder="<?=$content['contacts'][0]["telephone"]?>" maxlength="15" disabled>
+                        <a href="tel:<?=$content['contacts'][0]["telephone"]?>" style="font-size: 16px;">
+                            <?=$content['contacts'][0]["telephone"]?>
+                        </a>
                     </div>
+                    <?php } ?>
                     <div class="UserContacts-item UserContacts-body__telephone ">
-                        <div class="UserContacts-body__header">
+                        <div class="UserContacts-body__header" style="margin-bottom: 8px;">
                             <img src="../img/UserContacts/email.svg" alt="">
                             <span>Почта:</span>
                         </div>
-                        <input style="font-size: 16px;" type="tel" placeholder="<?=$content['contacts'][0]["email"]?>" maxlength="15" disabled>
+                        <a href="mailto:<?=$content['contacts'][0]["email"]?>" style="font-size: 16px;">
+                            <?=$content['contacts'][0]["email"]?>
+                        </a>
                     </div>
                     <?php
                     if ($content['is_contacts']) { ?>
@@ -56,10 +62,12 @@
                             <img src="../img/UserContacts/SocialNetworks.svg" alt="">
                             <span>Социальные сети:</span>
                             <ul class="UserContacts-list">
-                                <?php foreach (['instagram', 'whatsapp', 'telegram', 'facebook', 'youtube', 'twitter', 'skype', 'site'] as $item) {
+                                <?php foreach (['vk', 'instagram', 'whatsapp', 'telegram', 'facebook', 'youtube', 'twitter', 'site'] as $item) {
                                     if (!is_null($content['contacts'][0][$item])) {
                                 ?>
-                                <li><a href="<?php echo htmlspecialchars($content['contacts'][0][$item]) ?>"><img src="../img/UserContacts/SocialNetworcs/<?=$item?>.svg" alt=""></a></li>
+                                <li>
+                                    <a href="<?php echo htmlspecialchars($content['contacts'][0][$item]) ?>"><img src="../img/UserContacts/SocialNetworcs/<?=$item?>.svg" alt=""></a>
+                                </li>
                                 <?php } } ?>
                             </ul>
                         </div>
@@ -74,7 +82,7 @@
                         Есть вопросы?
                     </div>
                     <div class="UserContacts-footer__tarea">
-                        <textarea name="question" id=""  placeholder="Ваш вопрос"></textarea>
+                        <textarea name="question" id=""  placeholder="Ваш вопрос" maxlength="400" style="max-height: 160px;min-height: 100px"></textarea>
                         <span> <img src="../img/textarea.svg" alt=""></span>
                     </div>
                 </div>

@@ -9,8 +9,12 @@
                 <button type="button" onclick="save();" class="popup__edit-btn">Сохранить</button>
             </div>
         </div>
-        <form  id="initButton" action="/Funnel/$item_id/settings" method="POST" class="popup__body-container popup-wrapp"  enctype="multipart/form-data">
-            <input id="id_item" name="item_id" type="hidden" value="">
+        <form id="initButton" action="/Funnel/$item_id/main_settings" method="POST" class="popup__body-container popup-wrap">
+            <input id="button__style-color" name="button__style-color" type="hidden" value="">
+            <input id="button__style-style" name="button__style-style" type="hidden" value="">
+            <input id="id_item" name="id_item" type="hidden" value="">
+            <input id="number-style" name="number-style" type="hidden" value="">
+            <input id="number-color" name="number-color" type="hidden" value="">
             <div class="popup__body-block" style="width: 320px;">
                 <!--Прелоудер-->
                 <div class="slider__item">
@@ -25,90 +29,92 @@
             </div>
             <div class="popup__body-block editVideo">
                 <div class="popup__body-item">
-                    <label for="first_do">Шрифт для описания</label>
-                    <div class="select-account social-network">
+                    <label class="popup__subtitle" for="first_do">Шрифт для заголовоков</label>
+                    <div class="select-account social-network heading">
                         <div id="myMultiselect" class="multiselect">
                             <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
-                                <select class="form-select">
-                                    <option id="name">Выберите шрифт</option>
+                                <select name="title__font" class="form-select">
+                                    <option id="name" name="Roboto">Roboto</option>
                                 </select>
                                 <div class="overSelect"></div>
                             </div>
-                            <div class="mySelectOptions">
+                            <div class="mySelectOptions title__general">
                                 <label class="item">Roboto<input class="custom-checkbox" type="radio" value="Roboto" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                <label class="item">DIN Pro<input class="custom-checkbox" type="radio" value="DIN Pro" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                <label class="item">DIN Pro<input class="custom-checkbox" type="radio" value="DINPro" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                 <label class="item">Akrobat<input class="custom-checkbox" type="radio" value="Akrobat" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                <label class="item">TT Trailers<input class="custom-checkbox" type="radio" value="TT Trailers" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                <label class="item">TT Trailers<input class="custom-checkbox" type="radio" value="TTTrailers" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                 <label class="item">Montserrat<input class="custom-checkbox" type="radio" value="Montserrat" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                 <label class="item">Ubuntu<input class="custom-checkbox" type="radio" value="Ubuntu" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                <label class="item">American Captain<input class="custom-checkbox" type="radio" value="American Captain" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-
+                                <label class="item">American Captain<input class="custom-checkbox" type="radio" value="AmericanCaptain" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="popup__body-item">
-                    <label for="first_do">Шрифт для заголовоков</label>
+                    <label class="popup__subtitle" for="first_do">Шрифт для описания</label>
                     <div class="select-account social-network">
                         <div id="myMultiselect" class="multiselect">
                             <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
-                                <select class="form-select">
-                                    <option id="name">Выберите шрифт</option>
+                                <select name="desc__font" class="form-select">
+                                    <option id="name" name="Roboto">Roboto</option>
                                 </select>
                                 <div class="overSelect"></div>
                             </div>
-                            <div class="mySelectOptions">
+                            <div class="mySelectOptions description__general">
                                 <label class="item">Roboto<input class="custom-checkbox" type="radio" value="Roboto" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                <label class="item">DIN Pro<input class="custom-checkbox" type="radio" value="DIN Pro" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                <label class="item">DIN Pro<input class="custom-checkbox" type="radio" value="DINPro" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                 <label class="item">Akrobat<input class="custom-checkbox" type="radio" value="Akrobat" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                <label class="item">TT Trailers<input class="custom-checkbox" type="radio" value="TT Trailers" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                <label class="item">TT Trailers<input class="custom-checkbox" type="radio" value="TTTrailers" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                 <label class="item">Montserrat<input class="custom-checkbox" type="radio" value="Montserrat" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                 <label class="item">Ubuntu<input class="custom-checkbox" type="radio" value="Ubuntu" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                <label class="item">American Captain<input class="custom-checkbox" type="radio" value="American Captain" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-
+                                <label class="item">American Captain<input class="custom-checkbox" type="radio" value="AmericanCaptain" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="popup__body-item popup-styles">
-                    <label for="first_do">Цвет кнопки</label>
+                    <label class="popup__subtitle" for="first_do">Цвет кнопки</label>
                     <div class="popup-styles-colors">
-                        <div style="background: linear-gradient(180deg, #5CEAF3 0%, #4AA2C8 100%); color: #34909C;" class="popup-styles-color">
+                        <div data-id="1" style="background: linear-gradient(180deg, #5CEAF3 0%, #4AA2C8 100%); color: #34909C;" class="popup-styles-color">
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
-                        <div style="background: linear-gradient(180deg, #FF4B6E 0%, #EC234A 100%); color:  #AF1735;" class="popup-styles-color">
+                        <div data-id="2" style="background: linear-gradient(180deg, #FF4B6E 0%, #EC234A 100%); color:  #AF1735;" class="popup-styles-color">
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
-                        <div style="background: linear-gradient(180deg, #08B395 0%, #0C977F 100%); color:  #0B705E;" class="popup-styles-color">
+                        <div data-id="3" style="background: linear-gradient(180deg, #08B395 0%, #0C977F 100%); color:  #0B705E;" class="popup-styles-color">
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
-                        <div style="background: linear-gradient(180deg, #FCA549 0%, #F39531 100%); color:  #CA7A25;" class="popup-styles-color">
+                        <div data-id="4" style="background: linear-gradient(180deg, #FCA549 0%, #F39531 100%); color:  #CA7A25;" class="popup-styles-color">
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
-                        <div style="background: #5A6474; color: #374150;" class="popup-styles-color">
+                        <div data-id="5" style="background: #5A6474; color: #374150;" class="popup-styles-color">
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
-                        <div style="background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);color: #3D57B7" class="popup-styles-color">
+                        <div data-id="6" style="background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);color: #3D57B7" class="popup-styles-color">
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
-                        <div style="background: linear-gradient(180deg, #936DFF 0%, #8B23DD 100%); color: #62349C;" class="popup-styles-color">
+                        <div data-id="7" style="background: linear-gradient(180deg, #936DFF 0%, #8B23DD 100%); color: #62349C;" class="popup-styles-color">
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
-                        <div style="background: linear-gradient(180deg, #FFDB59 0%, #EFA12C 100%); 0%, #F39531 100%); color: #CA7A25" class="popup-styles-color">
+                        <div data-id="8" style="background: linear-gradient(180deg, #FFDB59 0%, #EFA12C 100%); 0%, #F39531 100%); color: #CA7A25" class="popup-styles-color">
                             <img src="../img/checkmark-circle.svg" alt="">
                         </div>
                     </div>
-                    
-                    <label class="popup-styles-buttons__title" for="first_do">Стиль кнопки</label>
+
+                    <label class=" popup__subtitle popup-styles-buttons__title" for="first_do">Стиль кнопки</label>
                     <div class="popup-styles-buttons">
-                        <div class="popup-styles-button button-shadow-down"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><a class="general-popup__button button-shadow-down">Получить подарок</a></div>
-                        <div class="popup-styles-button button-shadow-lite"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><a class="general-popup__button button-shadow-lite">Получить подарок</a></div>
-                        <div class="popup-styles-button button-shadow-none"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><a class="general-popup__button">Получить подарок</a></div>
+                        <div class="popup-styles-button button-shadow-down">
+                            <input class="custom-radio" name="color" type="radio" id="color-green" value="green">
+                            <label for="color-green"></label>
+                            <button type="button"    class="general-popup__button button-shadow-down">Получить подарок</button>
+                        </div>
+                        <div class="popup-styles-button button-shadow-lite"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><button type="button" class="general-popup__button button-shadow-lite">Получить подарок</button></div>
+                        <div class="popup-styles-button button-shadow-none"><input class="custom-radio" name="color" type="radio" id="color-green" value="green"><label for="color-green"></label><button type="button" class="general-popup__button">Получить подарок</button></div>
                     </div>
                 </div>
                 <div class="popup__body-item script">
-                    <label for="first_do">Скрипты для HEAD</label>
-                    <textarea type="text" placeholder="DEFAULT"></textarea>
+                    <label class="popup__subtitle" for="first_do">Скрипты для HEAD</label>
+                    <textarea name="head__settings" type="text" placeholder="DEFAULT"></textarea>
                 </div>
                 <button type="submit" hidden id="main__settings-button"></button>
             </div>

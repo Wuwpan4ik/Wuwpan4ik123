@@ -20,6 +20,8 @@
 
 <body>
 
+<?php print_r($_SESSION['error']) ?>
+
 <style>
     .popup__background {
         position: fixed;
@@ -85,10 +87,22 @@
 
             <div class="buttonsFeed">
 
-                <button class="ico_button button-bell"><img class="ico" src="/img/Bell.svg">  <div id="msg">5</div></button>
+                <button style="width:48px;" class="ico_button button-bell"><svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2.51436 14.0001L3.69436 12.8181C4.07236 12.4401 4.28036 11.9381 4.28036 11.4041V6.72708C4.28036 5.37008 4.87036 4.07308 5.90036 3.17108C6.93836 2.26108 8.26036 1.86108 9.63736 2.04208C11.9644 2.35108 13.7194 4.45508 13.7194 6.93708V11.4041C13.7194 11.9381 13.9274 12.4401 14.3044 12.8171L15.4854 14.0001H2.51436ZM10.9994 16.3411C10.9994 17.2401 10.0834 18.0001 8.99936 18.0001C7.91536 18.0001 6.99936 17.2401 6.99936 16.3411V16.0001H10.9994V16.3411ZM17.5204 13.2081L15.7194 11.4041V6.93708C15.7194 3.45608 13.2174 0.499077 9.89936 0.0600774C7.97736 -0.195923 6.03736 0.391077 4.58236 1.66708C3.11836 2.94908 2.28036 4.79308 2.28036 6.72708L2.27936 11.4041L0.478359 13.2081C0.00935877 13.6781 -0.129641 14.3771 0.124359 14.9901C0.379359 15.6041 0.972359 16.0001 1.63636 16.0001H4.99936V16.3411C4.99936 18.3591 6.79336 20.0001 8.99936 20.0001C11.2054 20.0001 12.9994 18.3591 12.9994 16.3411V16.0001H16.3624C17.0264 16.0001 17.6184 15.6041 17.8724 14.9911C18.1274 14.3771 17.9894 13.6771 17.5204 13.2081Z" fill="#757D8A"/>
+                    </svg>
+                    <div id="msg">0</div></button>
 
-                <button id="apps" class="ico_button" onclick="window.location.replace('/Analytics')">Заявки</button>
+                <button id="apps" class="ico_button" onclick="window.location.replace('Analytics')">Заявки</button>
 
+                <div class="popupBell">
+                    <div class="popupBell-body">
+                        <div class="popupBell-item not-bell">
+                            <div class="popupBell-item__info ">
+                                <p>У вас пока нет уведомлений</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -98,13 +112,14 @@
             <div class="media _container">
 
                 <?php
-                foreach($content[1] as $v){?>
+                $count = 1;
+                foreach($content[1] as $v){
+                    ?>
+
 
                     <?php include 'default/media-cart.php'; ?>
 
-                <?}
-
-                ?>
+                <? $count += 1;} ?>
                 <?php include 'default/add_new_video.php'?>
             </div>
 
@@ -132,52 +147,59 @@
     <div id="popup">
         <div class="popup__container">
             <div class="popup-body">
-                <div class="popup__title">Хотите изменить видео?</div>
-                <div class="avatar inCourse">
-                    <div class="avatar-body">
-                        <img src="../img/saveAvatar.svg" alt="">
-                        <div class="avatar-body__info">
-                            <span id="file-name" class="file-box">
-                                Название файла
-                            </span>
-                            <span id="file-size" class="file-box">
-                                0кб из 5мб
-                            </span>
+                <form method="POST" action="/Course/$item_id/rename" class="upload__form" id="change__video" enctype="multipart/form-data">
+                    <div class="popup__title">Хотите изменить видео?</div>
+                    <div class="avatar inCourse">
+                        <div class="avatar-body">
+                            <img src="../img/saveAvatar.svg" alt="">
+                            <div class="avatar-body__info">
+                                <span id="file-name" class="file-box">
+                                    Название файла
+                                </span>
+                                <span id="file-size" class="file-box">
+                                    0кб из 5мб
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <div class="input__wrapper">
+                            <input class="input input__file" id="video_change" name="video_change" type="file" onchange="uploadFile(this)"/>
+                            <label for="video_change" class="input__file-button" style="">
+                                <span class="input__file-icon-wrapper"><img class="input__file-icon" src="/img/plus.svg" width="25"></span>
+                                <span class="input__file-button-text">Добавить</span>
+                            </label>
                         </div>
 
                     </div>
-
-                    <div class="input__wrapper">
-                        <input name="file" type="file" id="input__file" class="input input__file" onchange="uploadFile(this)" multiple="">
-                        <label for="input__file" class="input__file-button" style="">
-                            <span class="input__file-icon-wrapper"><img class="input__file-icon" src="/img/plus.svg" width="25"></span>
-                            <span class="input__file-button-text">Добавить</span>
-                        </label>
+                    <div class="popup__form">
+                        <button type="button" class="popup__btn popup__white" id="popup__not-change" >Отменить</button>
+                        <button type="submit" class="popup__btn popup__blue ">Заменить</button>
                     </div>
-
-                </div>
-                <div class="popup__form">
-                    <button class="popup__btn popup__white" id="popup__not-change" >Отменить</button>
-                    <button class="popup__btn popup__blue ">Заменить</button>
-                </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
 
 <script src="/js/button__settings.js"></script>
-<script src="/js/printFailName.js"></script>
 <script>
-    let saveBtn = document.querySelector('.save-btn');
-
-
-    saveBtn.addEventListener('click', function(){
-        saveBtn.classList.add('active');
-        saveBtn.innerHTML = 'Сохранено';
+    function uploadFile(target) {
+        console.log(target.parentElement.parentElement)
+        target.parentElement.parentElement.querySelector("#file-name").innerHTML = (target.files[0].name);
+        target.parentElement.parentElement.querySelector("#file-size").innerHTML = Math.round(target.files[0].size / 1024) + "кБ из доступных 5мб" ;
+    }
+</script>
+<script>
+    let saveBtn = document.querySelectorAll('.save-btn');
+    saveBtn.forEach(item => {
+        item.addEventListener('click', function(){
+            item.classList.add('active');
+            item.innerHTML = 'Сохранено';
+        })
     })
 </script>
 <script>
-
 
 
     let entryDisplayDelete = document.querySelector('#delete__back');
@@ -192,17 +214,11 @@
         reload__video.forEach(item => {
             item.addEventListener('click', function () {
                 reload.classList.toggle('display-block');
-                _('change__video').action = '/Funnel/'+ item.dataset.id +'/change';
+                let file = document.getElementById("video_change").files[0];
+                _('change__video').action = '/Course/'+ item.dataset.id +'/change';
             })
         })
         let notChangeVideo = document.querySelectorAll('#popup__not-change');
-
-        // notChangeVideo.onclick = function (event) {
-        //     if (event.target === notChangeVideo) {
-        //         reload.classList.remove('display-block');
-        //         toggleOverflow();
-        //     }
-        // }
         notChangeVideo.forEach(item => {
             item.onclick = function (event) {
                 if (event.target === item) {
@@ -228,7 +244,7 @@
             }
         }
     }
-    let deletes = document.querySelector('#popup__delete');
+    let deletes = document.querySelector('.popup__delete');
 
     function toggleOverflow () {
         body.classList.toggle("overflow-hidden");
@@ -237,6 +253,7 @@
     function deleteDirectory(elem) {
         toggleOverflow();
         entryDisplayDelete.classList.add('display-block');
+        console.log(deletes)
         deletes.addEventListener('click',function () {
             window.location.href = '/Course/' + elem.parentElement.parentElement.parentElement.querySelector('.new_name').children[0].value + "/delete";
         });
@@ -261,7 +278,10 @@
             elem.style.display = 'none';
         })
         _("progressBar").classList.add('active');
-        _("progressText").classList.add('active');
+        _("progressTitle").classList.add('active');
+        _("progressSubTitle").classList.add('active');
+        _("progress-values").classList.add('active');
+        document.querySelector('.upload__form').classList.add('active');
         document.querySelector('.btn-upload').classList.add('active');
         var formdata = new FormData();
         formdata.append("video_uploader", file);
@@ -293,7 +313,7 @@
                 $.ajax({
                     url: $(this).attr("action"),
                     type: $(this).attr("method"),
-                    dataType: "JSON",
+
                     data: new FormData(this),
                     processData: false,
                     contentType: false,
@@ -304,6 +324,29 @@
 </script>
 <script src="../js/sidebar.js"></script>
 <script src="/js/customInputs.js"></script>
+
+
+<script src="/js/getNotifications.js"></script><script>
+    let buttonBell =  document.querySelector('.button-bell');
+    let popupBell =  document.querySelector('.popupBell')
+    let popupBellBody = document.querySelector('.popupBell-body')
+
+    buttonBell.addEventListener('click', function () {
+        popupBell.classList.toggle('active');
+        let request = new XMLHttpRequest();
+        let url = "/NotificationsController/checkout";
+        getCount();
+        document.querySelector('#msg').innerHTML = '0';
+        document.querySelector('#msg').style = "background-color: rgb(117, 125, 138)";
+
+        request.open('POST', url);
+
+        request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+        request.addEventListener("readystatechange", () => {
+        });
+        request.send();
+    })
+</script>
 </body>
 
 </html>

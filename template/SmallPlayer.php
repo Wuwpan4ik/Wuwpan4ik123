@@ -6,12 +6,19 @@
     <!--Выдаем вместо этой хуйни нормальный тайтл названия воронки / курса-->
     <title>Course Creator - Плеер</title>
     <link type="text/css" rel="stylesheet" href="/css/smallPlayer.css">
+    <link type="text/css" rel="stylesheet" href="/css/UserMain.css">
+    <link type="text/css" rel="stylesheet" href="/css/notifications.css">
     <!--Делаем так, чтобы страницы не индексировались в поиске-->
     <meta name="robots" content="noindex" />
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
+
 </head>
 <body class="body">
+<div class="display-none">
+    <?php print_r($_SESSION['error']) ?>
+</div>
+
 <div class="mirror_smallPlayer">
     <div class="mirrorWrap"></div>
     <video id="mirrorVideo" src="" playsinline muted></video>
@@ -50,7 +57,7 @@
                             <img src="/img/smallPlayer/views.svg" alt="">
                         </div>
                         <div class="slider__header-views-count">
-                            126
+                            <?php echo rand(100, 300)?>
                         </div>
                     </div>
                 </div>
@@ -61,24 +68,18 @@
                     <img src="/img/smallPlayer/pause.svg" alt="">
                 </div>
                 <div class="slider__item-info _conatiner-player">
-                    <div class="slider__item-title">
+                    <div class="slider__item-title <? echo (json_decode($content['main__settings'], true)['title__font'])?>">
                         <?=$item['content_name']?>
                     </div>
-                    <div class="slider__item-text">
+                    <div class="slider__item-text <? echo (json_decode($content['main__settings'], true)['desc__font'])?>">
                         <?=$item['content_description']?>
                     </div>
                     <?php
                     if (isset($item['button_text'])) { ?>
                             <div class="slider__item-button button-open">
-                                <button <?php echo (isset($popup->first_do->link)) ? "onClick=\"window.open('". $popup->first_do->link ."')\"": ''; ?> class="button"><?=$item['button_text']?></button>
+                                <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" <?php if ($popup->first_do->next_lesson) echo 'onclick="NextSlide('. $item["video_id"] .')"' ?> <?php if (isset($popup->first_do->link)) if ($popup->first_do->open_in_new == 'open_new_window') { echo "onClick=\"window.open('". $popup->first_do->link ."')\""; } else { echo "onclick=\"window.location = ('". $popup->first_do->link ."')\""; } ?> class="button"><?=$item['button_text']?></button>
                             </div>
                             <?php } else { ?>
-                        <script>
-                            document.querySelector('.video-<?=$item['video_id']?>').addEventListener('ended', function () {
-                                document.querySelector('.slick-next').click();
-                                console.log(1)
-                            })
-                        </script>
                     <?php } ?>
                         </div>
                         <?php
@@ -90,7 +91,7 @@
                                 $form = $popup->first_do->pay_form;
                             }
                             if (isset($popup->second_do->file)) {
-                                $first_file = $popup->second_do->file;
+                                $file = $popup->second_do->file;
                             }
                             // Первое или второе действие
                             $name = 'button';
@@ -101,7 +102,10 @@
                             $second_link = $popup->second_do->link;
                             $id = $item['id'];
                             $new_window = !is_null($popup->second_do->open_in_new);
+                            $new_window = !is_null($popup->first_do->open_in_new);
                             $author_id = $item['author_id'];
+                            $funnel_id = $content['course_content'][0]['funnel_id'];
+                            $slider_id = $item['count_slider'];
                             include 'template/default/popup__templates/popup__form.php';
                         } ?>
                         <?php if (isset($popup->first_do->list)) {
@@ -114,36 +118,55 @@
             <?php } ?>
         </div>
         <?php }?>
-        <?php if (isset($popup->second_do->list) || isset($popup->first_do->list)) {
+        <?php
         include 'template/default/popup__templates/popup__buy.php';
-        } ?>
+         ?>
     </div>
 </div>
+
+<?php include 'template/default/notificationsPopup.php' ?>
 
 <?php if (empty($content['course_content'])) { ?>
     <h1 style="font-size: 34px; color: white; display:flex; justify-content: center">Вы не добавили курс, к которому будет принадлежать воронка или внутри него нет видео!</h1>
 <?php } ?>
 
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
+<script src="/js/notifications.js"></script>
+<script src="/js/jquery-3.6.1.min.js" ></script>
 <script src="/js/script.js" ></script>
 <script src="/js/slick.min.js"></script>
 <script src="/js/sliders.js"></script>
+<!--На некст слайд-->
+<script>
+    let request = new XMLHttpRequest();
+    let url = "/Funnel/"+ <?php echo $_SESSION['item_id']?> +"/AddView";
+    request.open('POST', url);
+    request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+    request.addEventListener("readystatechange", () => {
+        if (request.readyState === 4 && request.status === 200) {
+        }
+    });
+    request.send();
+    function NextSlide(count) {
+        document.querySelector('.slick-active button').style.background = `linear-gradient(to right,white 0%, white 100%,lightgrey 100% , lightgrey 0%)`;
+        $('.slick-next').click();
+    }
+</script>
 
 <!--Закрытие AllLessons-->
 <script>
-    if (document.querySelector('.button-notBuy')) {
-        document.querySelector('.button-notBuy').addEventListener('click', function (){
-            document.querySelector('.overlay-allLessons').classList.remove('active');
-            document.querySelector('.popup-allLessons').classList.remove('active');
-        });
+    function notBuy() {
+        document.querySelectorAll('.overlay').forEach(item => {
+            item.classList.remove('active');
+        })
+        document.querySelectorAll('.popup').forEach(item => {
+            item.classList.remove('active');
+        })
     }
 </script>
 
 <script>
     let mirrorVideo = document.getElementById('mirrorVideo');
     let sourceVideo = document.querySelectorAll('#sourceVideo');
-
-
 
     document.addEventListener('DOMContentLoaded', function () {
         mirrorVideo.src = sourceVideo[0].src;
@@ -196,8 +219,14 @@
                 $.post(e.target.action, $(this).serialize());
                 try {
                     $(this)[0].querySelector('.next__lesson');
-                    $('.slick-next').click();
-                    alert("Форма успешно отправлена");
+                    NextSlide();
+                    notBuy()
+                    if ($(this).hasClass('popup__application')) {
+                        AddNotifications('Вы успешно оставили заявку', 'Сообщение отправлено на почту');
+                    } else {
+                        AddNotifications('Вы успешно купили курс', 'Аккаунт отправлен на почту');
+                    }
+
                 } catch {}
                 try {
                     if ($(this)[0].querySelector('.new_window')) {
@@ -209,6 +238,25 @@
             });
         })
     });
+</script>
+<script>
+    function startAccordion() {
+        let accordionButton = document.querySelectorAll(".accordion-button");
+        let accordionInner = document.querySelectorAll(".accordion .accordion-item .accordion-content");
+
+        for(let i = 0; i < accordionButton.length; i++){
+            accordionButton[i].onclick = () =>{
+                if(accordionInner[i].classList.contains('active')){
+                    accordionInner[i].classList.remove('active')
+                    accordionButton[i].classList.remove('active')
+                }else{
+                    accordionInner[i].classList.add('active')
+                    accordionButton[i].classList.add('active')
+                }
+            }
+        }
+    }
+    startAccordion()
 </script>
 </body>
 </html>

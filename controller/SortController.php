@@ -39,6 +39,8 @@ class SortController extends ACoreCreator {
 
             $tel = $client["tel"];
 
+            $date = date('d.m.Y', strtotime($client["achivment_date"]));
+
             if (strlen($tel) == 0) {
                 $tel = '—';
             }
@@ -46,28 +48,17 @@ class SortController extends ACoreCreator {
             echo
 
                 '<tr>
-
-						<td class="nick"> <input type="checkbox" class="check_user">' . mb_strimwidth($client["first_name"], 0, 8, '') . '</td>
+						<td class="nick"> <input type="checkbox" data-id="'. $client["id"] .'" class="check_user">' . mb_strimwidth($client["first_name"], 0, 8, '') . '</td>
 											
 						<td>' . $client["give_money"] . (isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : "₽") . '</td>
-
+						
 						<td>' . $client["email"] . '</td>
-
+						
 						<td>' . $tel  . '</td>
 						
 						<td><a href="/Course/' . $client["course_id"] . '">' . $client["course_name"] . '</td>
 											
-						<td>' . $client["achivment_date"] . '</td>
-
-						<td class="iconed">
-
-							<span>
-
-								<a href="/AnalyticController/' . $client['id'] . '/deleteClient"><img class="table_ico" src="img/Trash.svg"></a>
-
-							</span>
-
-						</td>
+						<td>' . $date . '</td>
 						
 					</tr>';
 
@@ -77,9 +68,11 @@ class SortController extends ACoreCreator {
     function getOrdersForAnalytics() {
         $get = $_GET["sort"];
         $result_course = $this->m->db->query("SELECT course.name as course_name, course.id as course_id, orders.achivment_date, orders.money, user.first_name, user.email, user.telephone, orders.id FROM orders JOIN course ON orders.course_id = course.id JOIN user ON orders.user_id = user.id WHERE creator_id = " . $_SESSION['user']['id']." ORDER BY " . $get);
-       $count = 1;
+        $count = 1;
         foreach($result_course as $order){
+
             $tel = $order["tel"];
+            $date = date('d.m.Y', strtotime($order["achivment_date"]));
 
             if (strlen($tel) == 0) {
                 $tel = '—';
@@ -88,27 +81,17 @@ class SortController extends ACoreCreator {
             echo
 
                 '<tr>
-                        <td> <input type="checkbox" class="check_order">' . $count . '</td>
+                        <td> <input type="checkbox" data-id="'. $order["id"] .'" class="check_order">' . $count . '</td>
 				
 						<td>' . $order["money"] . (isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : "₽") . '</td>
-
+						
 						<td>' . $order["email"] . '</td>
-
+						
 						<td>' . $tel  . '</td>
 						
 						<td><a href="/Course/' . $order["course_id"] . '">' . $order["course_name"] . '</td>
 											
-						<td>' . $order["achivment_date"] . '</td>
-
-						<td class="iconed">
-    
-							<span>
-
-								<a href="/AnalyticController/' . $order['id'] . '/deleteOrder"><img class="table_ico" src="img/Trash.svg"></a>
-
-							</span>
-
-						</td>
+						<td>' . $date . '</td>
 						
 					</tr>';
             $count += 1;

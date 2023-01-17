@@ -2,29 +2,29 @@
 
 class AnalyticController extends ACoreCreator
 {
-    public function DeleteClient() {
-        $item_id = $_SESSION['item_id'];
-        $query = $this->m->db->query("SELECT * FROM `clients` WHERE `creator_id` = " . $_SESSION['user']['id'] . " AND `id` = '$item_id'");
-        if (count($query) != 1) {
-            return false;
+
+    public function DeleteAllClients()
+    {
+        $items_id = explode(",", $_POST['items_id']);
+        $items_id_array = [];
+        foreach ($items_id as $item) {
+            array_push($items_id_array, $item);
         }
-        $this->m->db->execute("DELETE FROM `clients` WHERE `id` = '$item_id'");
-        return true;
+        $this->m->db->execute("DELETE FROM `clients` WHERE `id` IN (" . implode(',', $items_id_array) . ")");
     }
 
-    public function DeleteOrder() {
-        $item_id = $_SESSION['item_id'];
-        $query = $this->m->db->query("SELECT * FROM `orders` WHERE `creator_id` = " . $_SESSION['user']['id'] . " AND `id` = '$item_id'");
-        if (count($query) != 1) {
-            return false;
+    public function DeleteAllOrders()
+    {
+        $items_id = explode(",", $_POST['items_id']);
+        $items_id_array = [];
+        foreach ($items_id as $item) {
+            array_push($items_id_array, $item);
         }
-        $this->m->db->execute("DELETE FROM `orders` WHERE `id` = '$item_id'");
-        return true;
+        $this->m->db->execute("DELETE FROM `orders` WHERE `id` IN (" . implode(',', $items_id_array) . ")");
     }
 
     function get_content()
     {
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     function obr()

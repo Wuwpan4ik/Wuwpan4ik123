@@ -19,7 +19,7 @@
                 <div class="user__logo-text">Course Creator</div>
             </div>
             <div class="header-white__burger">
-                <a href="/UserMenu">
+                <a href="/">
                     <div class="main__burger">
                         <span></span>
                     </div>
@@ -32,7 +32,7 @@
             <div class="user-content">
                 <form method="POST" action="/Account/UserSettings" class="user_settings">
                     <div class="menu_first">
-                        <div class="settingsAccountUser-body__info userPopup__title">
+                        <div class="settingsAccountUser-body__info userPopup__title" style="padding:0px;color:black;">
                             Настройки аккаунта:
                         </div>
                         <div class="userPopup__body">

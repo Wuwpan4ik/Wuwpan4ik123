@@ -3,6 +3,7 @@
   <head>
 
     <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Creator - Статистика</title>
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/analytics.css">
@@ -10,6 +11,7 @@
 
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
+
   </head>
 
   <body>
@@ -25,13 +27,13 @@
                 include ('default/header.php');
                 ?>
 
-                <div class="mytabs">
+                <div class="mytabs  _container">
 
                     <input type="radio" id="About" name="mytabs" checked="checked"/>
 
-                    <label id="oplab" for="About"><p>Клиенты</p></label>
+                    <label class="menu-label" id="oplab" for="About"><p>Клиенты</p></label>
 
-                    <div class="tab _container">
+                    <div class="tab">
 
                         <div class="Tableusers">
 
@@ -40,7 +42,14 @@
 								    <h2>Список ваших клиентов</h2>
                                 </div>
                                 <div class="head_buttons">
+                                    <form id="DeleteAllClients" action="/AnalyticController/DeleteAllClients" method="POST">
+                                        <input type="text" name="items_id" id="DeleteAllClients_input">
+                                        <button type="submit" class="filter_button clients_id__delete-all display-none">
+                                            Удалить клиентов
+                                        </button>
+                                    </form>
                                     <div class="filters_btn">
+
                                         <button class="ico_button filterBtn" id="filterBtn"><svg style="margin:12px" width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M1 0H8C8.55 0 9 0.45 9 1C9 1.55 8.55 2 8 2H1C0.45 2 0 1.55 0 1C0 0.45 0.45 0 1 0ZM4 7H8C8.55 7 9 7.45 9 8C9 8.55 8.55 9 8 9H4C3.45 9 3 8.55 3 8C3 7.45 3.45 7 4 7ZM8 14H6C5.45 14 5 14.45 5 15C5 15.55 5.45 16 6 16H8C8.55 16 9 15.55 9 15C9 14.45 8.55 14 8 14ZM17.0002 12.6438L18.3052 11.3838C18.7032 11.0008 19.3362 11.0118 19.7192 11.4088C20.1032 11.8068 20.0922 12.4398 19.6952 12.8228L16.6952 15.7198C16.5002 15.9058 16.2502 15.9998 16.0002 15.9998C15.7442 15.9998 15.4882 15.9028 15.2932 15.7068L12.2932 12.7068C11.9022 12.3168 11.9022 11.6838 12.2932 11.2928C12.6832 10.9028 13.3162 10.9028 13.7072 11.2928L15.0002 12.5858V3.3568L13.6952 4.6158C13.2982 4.9998 12.6652 4.9878 12.2812 4.5908C11.8972 4.1938 11.9082 3.5608 12.3052 3.1768L15.3052 0.2798C15.6992 -0.0962 16.3222 -0.0942 16.7072 0.2928L19.7072 3.2928C20.0972 3.6838 20.0972 4.3168 19.7072 4.7068C19.5122 4.9028 19.2562 4.9998 19.0002 4.9998C18.7442 4.9998 18.4882 4.9028 18.2932 4.7068L17.0002 3.4138V12.6438Z" fill="#757D8A"/>
                                             </svg>
@@ -86,11 +95,8 @@
 
                                         <th><div class="th-title"><button class="order_button contact__button" value="course_id"><img class="table_ico" src="img/StickDown.svg"></button>Курс</div></th>
 
-                                        <th><div class="th-title"><button class="order_button contact__button" value="achivment_date"><img class="table_ico" src="img/StickDown.svg"></button>Дата</div></th>
+                                        <th style="border-radius: 0px 8px 8px 0px;"><div class="th-title"><button class="order_button contact__button" value="achivment_date"><img class="table_ico" src="img/StickDown.svg"></button>Дата</div></th>
 
-                                        <th><div class="th-title">Функции</div></th>
-
-                                        <th><div class="th-title"> </div></th>
 									</tr>
 
                                 </thead>
@@ -110,16 +116,22 @@
 
                     <input type="radio" id="Orders" name="mytabs"/>
 
-                    <label id="ordlab" for="Orders"><p>Заказы</p></label>
-                    <div class="tab _container">
+                    <label class="menu-label" id="ordlab" for="Orders"><p>Заказы</p></label>
+                    <div class="tab">
 
                         <div class="Tableusers" style="overflow: hidden">
 
                             <div class="header">
                                 <div class="header__title">
-                                    <h2>Список ваших клиентов</h2>
+                                    <h2>Список ваших заказов</h2>
                                 </div>
                                 <div class="head_buttons">
+                                    <form id="DeleteAllOrders" action="/AnalyticController/DeleteAllOrders" method="POST">
+                                        <input type="text" name="items_id" id="DeleteAllOrders_input">
+                                        <button type="submit" class="filter_button orders_id__delete-all display-none">
+                                            Удалить заказы
+                                        </button>
+                                    </form>
                                     <div class="filters_btn">
                                         <button class="ico_button filterBtn" id="filterBtn"><svg style="margin:12px" width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M1 0H8C8.55 0 9 0.45 9 1C9 1.55 8.55 2 8 2H1C0.45 2 0 1.55 0 1C0 0.45 0.45 0 1 0ZM4 7H8C8.55 7 9 7.45 9 8C9 8.55 8.55 9 8 9H4C3.45 9 3 8.55 3 8C3 7.45 3.45 7 4 7ZM8 14H6C5.45 14 5 14.45 5 15C5 15.55 5.45 16 6 16H8C8.55 16 9 15.55 9 15C9 14.45 8.55 14 8 14ZM17.0002 12.6438L18.3052 11.3838C18.7032 11.0008 19.3362 11.0118 19.7192 11.4088C20.1032 11.8068 20.0922 12.4398 19.6952 12.8228L16.6952 15.7198C16.5002 15.9058 16.2502 15.9998 16.0002 15.9998C15.7442 15.9998 15.4882 15.9028 15.2932 15.7068L12.2932 12.7068C11.9022 12.3168 11.9022 11.6838 12.2932 11.2928C12.6832 10.9028 13.3162 10.9028 13.7072 11.2928L15.0002 12.5858V3.3568L13.6952 4.6158C13.2982 4.9998 12.6652 4.9878 12.2812 4.5908C11.8972 4.1938 11.9082 3.5608 12.3052 3.1768L15.3052 0.2798C15.6992 -0.0962 16.3222 -0.0942 16.7072 0.2928L19.7072 3.2928C20.0972 3.6838 20.0972 4.3168 19.7072 4.7068C19.5122 4.9028 19.2562 4.9998 19.0002 4.9998C18.7442 4.9998 18.4882 4.9028 18.2932 4.7068L17.0002 3.4138V12.6438Z" fill="#757D8A"/>
@@ -164,10 +176,7 @@
 
                                     <th><div class="th-title"><button class="order_button order__button" value="course_id"><img class="table_ico" src="img/StickDown.svg"></button>Курс</div></th>
 
-                                    <th><div class="th-title"><button class="order_button order__button" value="achivment_date"><img class="table_ico" src="img/StickDown.svg"></button>Дата</div></th>
-
-                                    <th><div class="th-title">Функции</div></th>
-
+                                    <th style="border-radius: 0px 8px 8px 0px;"><div class="th-title"><button class="order_button order__button" value="achivment_date"><img class="table_ico" src="img/StickDown.svg"></button>Дата</div></th>
 
                                 </tr>
 
@@ -187,22 +196,29 @@
 
                     <input type="radio" id="Tarif" name="mytabs"/>
 
-                    <label class="statistic__button" id="cllab" for="Tarif"><p>Статистика</p></label>
+                    <label class="statistic__button menu-label" id="cllab" for="Tarif"><p>Статистика</p></label>
 
                     <div class="tab">
-
-                        <div class="_container">
                         <div class="geo__profit">
                             <div class="profit__leftSide">
                                 <div class="profit__row">
-                                    <div class="profit__item profit__week">
-                                        <div class="profit_header"><h3>Доход за неделю</h3><span>Неделя</span></div>
-                                        <div class="profit_sum"><span class="full_week_value profit_sum"></span> <span class="week_procent">14.6%</span>
-                                        </div>
-                                        <div class="profit_footer">На  <span class="week_diff"></span> <span class="week_diff-text"></span></div>
-                                    </div>
-                                    <div class="profit__item profit_down profit__month">
-                                        <div class="profit_header"><h3>Доход за месяц</h3><span>Месяц</span></div>
+                                    <div class="profit__item profit__month">
+                                        <div class="profit_header"><h3>Доход за месяц</h3><span><?php $arr = [
+                                                    'Январь',
+                                                    'Февраль',
+                                                    'Март',
+                                                    'Апрель',
+                                                    'Май',
+                                                    'Июнь',
+                                                    'Июль',
+                                                    'Август',
+                                                    'Сентябрь',
+                                                    'Октябрь',
+                                                    'Ноябрь',
+                                                    'Декабрь'
+                                                ];
+                                                $month = date('n')-1;
+                                                echo $arr[$month].' '.date('d, Y'); ?></span></div>
                                         <div class="profit_sum"><span id="this_month"></span> <span class="month_procent"></span>
                                         </div>
                                         <div class="profit_footer">На  <span class="month_diff"></span> <span class="month_diff-text"></span></div>
@@ -213,138 +229,139 @@
                                         <div class="profit_header"><h3>Доход на одного пользователя</h3></div>
                                         <div class="profit_sum"><span id="one__user"></span></div>
                                     </div>
-                                    <div class="profit__item profit_down profit__new-user">
+                                    <div class="profit__item profit__new-user">
                                         <div class="profit_header"><h3>Новые пользователи/мес</h3></div>
                                         <div class="profit_sum"><span id="first__buy-count"></span></div>
                                     </div>
                                 </div>
-                                <div class="allprofit">
-                                    <div class="profit_header"><h3>Общий доход</h3><div class="profit_header_dots"></div>
+                                <div class="profit__row">
+                                    <div class="profit__item profit__user">
+                                        <div class="profit_header"><h3>Кол-во заявок</h3></div>
+                                        <div class="profit_sum"><span id="forms_zayavki"></span></div>
                                     </div>
-                                    <div class="profit_sum"><span id="full_value"></span></div>
-                                    <div class="numbers">
-                                        <div class="numbers_item">0-30000<span class="color1"></span></div>
-                                        <div class="numbers_item">>30000<span class="color2"></span></div>
-                                        <div class="numbers_item">>50000<span class="color3"></span></div>
-                                    </div>
-                                    <div class="allprofit__devices">
-                                        <div class="allprofit__devices__name__item">
-                                            <div class="allprofit__devices__names">
-                                                <div class="allprofit__devices__name">Устройства</div>
-                                            </div>
-                                        </div>
-                                        <div class="allprofit__devices__item">
-                                            <div class="allprofit__devices__table">
-                                                <div class="allprofit__devices__item">
-                                                    <div class="allprofit__devices__slot"></div>
-                                                    <div class="allprofit__devices__name">ПН</div>
-                                                </div>
-                                                <div class="allprofit__devices__item">
-                                                    <div class="allprofit__devices__slot"></div>
-                                                    <div class="allprofit__devices__name">ВТ</div>
-                                                </div>
-                                                <div class="allprofit__devices__item">
-                                                    <div class="allprofit__devices__slot"></div>
-                                                    <div class="allprofit__devices__name">СР</div>
-                                                </div>
-                                                <div class="allprofit__devices__item">
-                                                    <div class="allprofit__devices__slot"></div>
-                                                    <div class="allprofit__devices__name">ЧТ</div>
-                                                </div>
-                                                <div class="allprofit__devices__item">
-                                                    <div class="allprofit__devices__slot"></div>
-                                                    <div class="allprofit__devices__name">ПТ</div>
-                                                </div>
-                                                <div class="allprofit__devices__item">
-                                                    <div class="allprofit__devices__slot"></div>
-                                                    <div class="allprofit__devices__name">СБ</div>
-                                                </div>
-                                                <div class="allprofit__devices__item">
-                                                    <div class="allprofit__devices__slot"></div>
-                                                    <div class="allprofit__devices__name">ВС</div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="profit__item profit__new-user">
+                                        <div class="profit_header"><h3>Кол-во заказов</h3></div>
+                                        <div class="profit_sum"><span id="forms_zakazi"></span></div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="profit_rightSide">
-                                <div class="rightSideFirst">
-                                    <div class="rightSideFirst_header">
-                                        <img src="/img/credit-card.svg" alt="">
-                                        <div class="rightSideFirstText1">
-                                            <h3 class="full_week_value profit_sum"></h3>
-                                            <span>Общая прибыль</span>
-                                        </div>
-                                        <div class="rightSideFirstText2">
-                                            <span>Неделя</span>
-                                            <span class="week_procent"></span>
-                                        </div>
+                                <div class="profit__row">
+                                    <div class="profit__item profit__user">
+                                        <div class="profit_header"><h3>Кол-во просмотров воронок</h3></div>
+                                        <div class="profit_sum"><span id="views_funnels"></span></div>
                                     </div>
-                                    <div class="Analytics-graphic__totalProfit">
-                                        <canvas width="264px" height="128px"  id="totalProfit"></canvas>
+                                    <div class="profit__item profit__new-user">
+                                        <div class="profit_header"><h3>Кол-во просмотров курсов</h3></div>
+                                        <div class="profit_sum"><span id="views_courses"></span></div>
                                     </div>
-                                    <div class="profit_footer">На  <span class="week_diff"></span> <span class="week_diff-text"></span></div>
-                                </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                </div>
 
             </div>
 
         </div>
   <div class="display-none" id="currency"><?php echo isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></div>
 </body>
-  <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
-  <script src="../js/script.js" ></script>
-
-<!--Проверка Clients-->
+<script src="/js/jquery-3.6.1.min.js"></script>
+<script src="../js/script.js" ></script>
+<!--Удаление элементов-->
 <script>
-  const main_check = document.querySelector('#main_check');
-  main_check.addEventListener('click', function (e) {
-      let check_user = document.querySelectorAll('.check_user');
-      Array.prototype.forEach.call(check_user, function(cb){
-          cb.checked = e.target.checked;
-      });
-  });
+    function checkEmptyAnalyticsArray(arrayTemp, name) {
+        // name = "." + name + "__delete-all"
+        // if (arrayTemp.length > 0) {
+        //     document.querySelector(name).classList.remove('display-none')
+        // } else {
+        //     document.querySelector(name).classList.add('display-none')
+        // }
+    }
+
+    const main_check = document.querySelector('#main_check');
+    main_check.addEventListener('click', function (e) {
+        let check_user = document.querySelectorAll('.check_user');
+        Array.prototype.forEach.call(check_user, function(cb){
+            cb.checked = e.target.checked;
+        });
+    });
+
+    const order_check = document.querySelector('#order_check');
+    order_check.addEventListener('click', function (e) {
+        let check_user = document.querySelectorAll('.check_order');
+        Array.prototype.forEach.call(check_user, function(cb){
+            cb.checked = e.target.checked;
+        });
+    })
 </script>
 
-<!--Проверка Orders-->
+<!--AJAX Загрузка данных для таблиц-->
 <script>
-      const order_check = document.querySelector('#order_check');
-      order_check.addEventListener('click', function (e) {
-          let check_user = document.querySelectorAll('.check_order');
-          Array.prototype.forEach.call(check_user, function(cb){
-              cb.checked = e.target.checked;
-          });
-      });
-  </script>
-<!--OrderList-->
-<script>
+
     let order_button = document.querySelectorAll('.order__button');
     let tab = document.querySelector('#orderTab');
-    let request = new XMLHttpRequest();
+    let client_buttons = document.querySelectorAll('.contact__button');
+    let client_tab = document.querySelector('#conTab');
 
-    let url = "SortController/AnalyticOrders?sort=id";
+    function GetOrders(url, request) {
+        request.open('GET', url);
 
-    request.open('GET', url);
-
-    request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-    request.addEventListener("readystatechange", () => {
-        if (request.readyState === 4 && request.status === 200) {
-            if (request.responseText) {
-                tab.innerHTML = request.responseText;
-                document.querySelector('#order__havent_data').classList.add('display-none');
+        request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+        request.addEventListener("readystatechange", () => {
+            if (request.readyState === 4 && request.status === 200) {
+                if (request.responseText) {
+                    tab.innerHTML = request.responseText;
+                    document.querySelector('#order__havent_data').classList.add('display-none');
+                }
             }
-        }
+        });
+        request.send();
+    }
+
+    function GetClients(client_url, client_request) {
+        client_request.open('GET', client_url);
+
+        client_request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+        client_request.addEventListener("readystatechange", () => {
+            if (client_request.readyState === 4 && client_request.status === 200) {
+                if (client_request.responseText) {
+                    client_tab.innerHTML = client_request.responseText;
+                    document.querySelector('#contact__havent_data').classList.add('display-none');
+                }
+            }
+        });
+        client_request.send();
+    }
+
+    // Прогрузка Заказов
+    let request = new XMLHttpRequest();
+    let url = "SortController/AnalyticOrders?sort=id";
+    GetOrders(url, request)
+
+    // Прогрузка Клиентов
+    let client_request = new XMLHttpRequest();
+    let client_url = "SortController/AnalyticClients?sort=id";
+    GetClients(client_url, client_request);
+
+    client_buttons.forEach((elem) => {
+        elem.addEventListener('click', function(e) {
+            let param;
+            if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){
+                this.innerHTML = '<img class="table_ico" src="img/StickUp.svg">';
+                param = this.value;
+            }else{
+                this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
+                param = this.value + " DESC";
+            }
+            let client_request = new XMLHttpRequest();
+
+            let client_url = "SortController/AnalyticClients?sort=" + param;
+
+            GetClients(client_url, client_request);
+        });
     });
-    request.send();
 
     order_button.forEach((elem) => {
         elem.addEventListener('click', function(e) {
+
             if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){
                 this.innerHTML = '<img class="table_ico" src="img/StickUp.svg">';
                 var param = this.value;
@@ -352,26 +369,17 @@
                 this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
                 param = this.value + " DESC";
             }
+
             let request = new XMLHttpRequest();
 
             let url = "SortController/AnalyticOrders?sort=" + param;
 
-            request.open('GET', url);
-
-            request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-            request.addEventListener("readystatechange", () => {
-                if (request.readyState === 4 && request.status === 200) {
-                    if (request.responseText) {
-                        tab.innerHTML = request.responseText;
-                        document.querySelector('#order__havent_data').classList.add('display-none');
-                    }
-                }
-            });
-            request.send();
+            GetOrders(url, request);
         });
     });
 </script>
 
+<!--Статистика-->
 <script>
 
   let request1 = new XMLHttpRequest();
@@ -384,6 +392,7 @@
   request1.addEventListener("readystatechange", () => {
       if (request1.readyState === 4 && request1.status === 200) {
           const array = JSON.parse(request1.responseText);
+          console.log(array)
           if (array.prev_week == null) {
               array.prev_week = 0;
           }
@@ -391,20 +400,26 @@
           if (array.prev_month == null) {
               array.prev_month = 0;
           }
-          let currency = document.getElementById('currency').innerHTML;
-          if (array.full_value) {
-              document.getElementById('full_value').innerText = array.full_value + currency;
+
+          if (!array.get_count_application) {
+              array.get_count_application = 0;
           }
 
-          if (array.week) {
-              document.querySelectorAll('.full_week_value').forEach(item => {
-                  item.innerHTML = array.week + currency;
-              })
-          } else {
-              document.querySelector('.profit__week .profit_footer').classList.add('display-none');
-              document.querySelector('.profit__week .profit_sum').innerHTML = "Нет данных";
-              document.querySelector('.rightSideFirst').remove();
+          document.querySelector('#forms_zayavki').innerHTML = array.get_count_application;
+
+          if (!array.get_count_order) {
+              array.get_count_order = 0;
           }
+
+          document.querySelector('#forms_zakazi').innerHTML = array.get_count_order;
+
+          if (!array.get_count_view_funnel) {
+              array.get_count_view_funnel = 0;
+          }
+
+          document.querySelector('#views_funnels').innerHTML = array.get_count_view_funnel;
+
+          let currency = document.getElementById('currency').innerHTML;
 
           if (array.month) {
               document.getElementById('this_month').innerHTML = array.month + currency;
@@ -499,8 +514,37 @@
       }
       })
   request1.send();
+
+  document.addEventListener('DOMContentLoaded', function () {
+      let request2 = new XMLHttpRequest();
+      let url2 = "/StatisticsController/GetWeekDays";
+      request2.open('GET', url2);
+
+      request2.setRequestHeader('Content-Type', 'application/x-www-form-url');
+      request2.addEventListener("readystatechange", () => {
+          if (request2.readyState === 4 && request2.status === 200) {
+              let arrays = JSON.parse(request2.responseText);
+              let array_money = [0, 0, 0, 0, 0, 0, 0];
+              let week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+              arrays.forEach(item => {
+                  array_money[week.indexOf((item.day).trim())] = parseInt(item.money);
+              })
+              let count = 0;
+              document.querySelectorAll('.allprofit__devices__slot').forEach(item => {
+                  if (array_money[count] >= 30000 && array_money[count] < 50000) {
+                      item.classList.add('color2');
+                  }
+                  if (array_money[count] >= 50000) {
+                      item.classList.add('color3');
+                  }
+                  count++;
+              })
+          }
+      });
+      request2.send();
+  });
 </script>
-  <script>
+<script>
       let filtersBtns = document.querySelectorAll('button.filter_button');
       let filters = document.querySelectorAll('.filters_sort');
       let filterBtn = document.querySelectorAll('.ico_button.filterBtn');
@@ -535,86 +579,9 @@
       }
   </script>
 
-<script>
-    let client_buttons = document.querySelectorAll('.contact__button');
-    let client_tab = document.querySelector('#conTab');
-    let client_request = new XMLHttpRequest();
 
-    let client_url = "SortController/AnalyticClients?sort=id";
-
-    client_request.open('GET', client_url);
-
-    client_request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-    client_request.addEventListener("readystatechange", () => {
-        if (client_request.readyState === 4 && client_request.status === 200) {
-            if (client_request.responseText) {
-                client_tab.innerHTML = client_request.responseText;
-                document.querySelector('#contact__havent_data').classList.add('display-none');
-            }
-        }
-    });
-    client_request.send();
-
-    client_buttons.forEach((elem) => {
-        elem.addEventListener('click', function(e) {
-            let param;
-            if(this.innerHTML == '<img class="table_ico" src="img/StickDown.svg">'){
-                this.innerHTML = '<img class="table_ico" src="img/StickUp.svg">';
-                param = this.value;
-            }else{
-                this.innerHTML = '<img class="table_ico" src="img/StickDown.svg">';
-                param = this.value + " DESC";
-            }
-            let request = new XMLHttpRequest();
-
-            let url = "SortController/AnalyticClients?sort=" + param;
-
-            request.open('GET', url);
-
-            request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-            request.addEventListener("readystatechange", () => {
-                if (request.readyState === 4 && request.status === 200) {
-                    if (request.responseText) {
-                        client_tab.innerHTML = request.responseText;
-                        document.querySelector('#contact__havent_data').classList.add('display-none');
-                    }
-                }
-            });
-            request.send();
-        });
-    });
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        let request2 = new XMLHttpRequest();
-        let url2 = "/StatisticsController/GetWeekDays";
-        request2.open('GET', url2);
-
-        request2.setRequestHeader('Content-Type', 'application/x-www-form-url');
-        request2.addEventListener("readystatechange", () => {
-            if (request2.readyState === 4 && request2.status === 200) {
-                let arrays = JSON.parse(request2.responseText);
-                let array_money = [0, 0, 0, 0, 0, 0, 0];
-                let week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-                arrays.forEach(item => {
-                    array_money[week.indexOf((item.day).trim())] = parseInt(item.money);
-                })
-                let count = 0;
-                document.querySelectorAll('.allprofit__devices__slot').forEach(item => {
-                    if (array_money[count] >= 30000 && array_money[count] < 50000) {
-                        item.classList.add('color2');
-                    }
-                    if (array_money[count] >= 50000) {
-                        item.classList.add('color3');
-                    }
-                    count++;
-                })
-            }
-        });
-        request2.send();
-    });
-</script>
+<script src="../js/sidebar.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
 <script src="../js/charts.js"></script>
-  <script src="/js/getNotifications.js"></script>
+<script src="/js/getNotifications.js"></script>
 </html>

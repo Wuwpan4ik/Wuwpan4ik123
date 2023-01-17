@@ -11,7 +11,6 @@ function RemoveInput(i) {
 
 function CheckInputs() {
 
-
     for (let i = 0; i < inputs.length; i++) {
         if (inputs[i].value.length > 0) {
             inputsLabel[i].classList.add('activeLabel');

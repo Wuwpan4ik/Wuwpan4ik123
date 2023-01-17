@@ -9,9 +9,9 @@
                 <button type="button" onclick="save();" class="popup__edit-btn">Сохранить</button>
             </div>
         </div>
-        <form id="initButton" action="/Funnel/$item_id/settings" method="POST" class="popup__body-container"  enctype="multipart/form-data">
+        <form id="initButton" action="/Funnel/$item_id/settings" method="POST" class="popup__body-container popup-wrap"  enctype="multipart/form-data">
             <input id="id_item" name="item_id" type="hidden" value="">
-            <div class="popup__body-block" style="width: 320px;">
+            <div class="popup__body-block">
                 <!--Прелоудер-->
                 <div class="slider__item">
                     <div class="slider__video popup-video">
@@ -19,7 +19,7 @@
                     <div class="slider__header _conatiner-player ">
                         <div class="slider__header-logo">
                             <div class="slider__header-logo-img">
-                                <img width="48px" src="<? echo ($_SESSION["user"]['avatar']) ? $_SESSION["user"]['avatar'] : '/uploads/ava/userAvatar.jpg' ?>" alt="">
+                                <img width="48px" src="/<? echo (isset($_SESSION['user']['avatar'])  ? $_SESSION['user']['avatar'] : "uploads/ava/userAvatar.jpg") ?>" alt="">
                             </div>
                             <div class="slider__header-logo-text">
                                 <?=$_SESSION["user"]["first_name"]?>
@@ -30,7 +30,7 @@
                                 <img src="/img/smallPlayer/views.svg" alt="">
                             </div>
                             <div class="slider__header-views-count">
-                                126
+                                0
                             </div>
                         </div>
                     </div>
@@ -47,9 +47,8 @@
                     </div>
                 </div>
             </div>
-            <div class="popup__body-block editVideo">
+            <div class="popup__body-block editVideo" style="color: black">
                 <div class="popup__body-item">
-
                     <label for="first_do">Действие после нажатия:</label>
                     <select name="first_do" id="first_do">
                         <option value="list">Список уроков</option>
@@ -58,21 +57,13 @@
                         <option value="link" id="first_do_link">Переход по ссылке</option>
                         <option value="next_lesson" id="first_do_next_lesson">Открыть следующее видео</option>
                     </select>
-                    <div class="popup__body-item popup__margin" id="popup__body-list-select">
-                        <div class="popup__body-item">
-                            <label for="course_list">Выбрать курс:</label>
-                            <select name="course_list" id="course_list">
-
-                            </select>
-                        </div>
-                    </div>
                     <div class="popup__body-item popup__margin" id="popup__body-form-1">
                         <div class="popup__body-item">
                             <label for="form_id">Данные для формы:</label>
                             <input class="popup__body__input" type="text" name="form__title" placeholder="Укажите заголовок">
                             <input class="popup__body__input" type="text" name="form__desc" placeholder="Укажите описание">
                         </div>
-                        <div class="popup__body-item popup__margin">
+                        <div class="popup__body-item popup__margin form__input">
                             <label for="form_id display-none">Составляющие формы:</label>
                             <button class="addFormInput" id="first_do-list" onclick="addFormItem(this)" type="button"><img src="../../img/add.png"> Добавить поле</button>
                         </div>
@@ -93,12 +84,6 @@
                         <option value="next_lesson" id="second_do_next_lesson">Открыть следующее видео</option>
                         <option value="file" id="second_do_file">Отправка файла</option>
                     </select>
-                    <div class="popup__body-item popup__margin" id="popup__body-form-2">
-                        <div>
-                            <label for="form_id">Составляющие формы:</label>
-                            <button class="addFormInput" id="second_do-list" onclick="addFormItem(this)" type="button"><img src="/img/add.png"> Добавить поле</button>
-                        </div>
-                    </div>
                     <div class="popup__body-item display-none popup__margin" id="popup__body-file">
                         <label for="second_do-list">Файл:</label>
                         <div class="avatar" style="margin: 0">

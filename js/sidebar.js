@@ -1,5 +1,6 @@
-let sidebar = document.querySelector('.nav')
+let sidebar = document.querySelector('.nav');
+let openSidebar = document.querySelector('.open-sidebar');
 
-sidebar.addEventListener('click', ()=>{
+openSidebar.addEventListener('click', ()=>{
     sidebar.classList.toggle('active')
 })

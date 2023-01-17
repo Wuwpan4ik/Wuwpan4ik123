@@ -4,7 +4,9 @@
 
 <head>
     <meta charset="utf-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Course Creator - Редактирование воронки</title>
 
     <link rel="stylesheet" href="/css/nullCss.css">
@@ -18,6 +20,8 @@
     <link rel="stylesheet" href="/css/aboutuser.css">
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
+
+    <link rel="stylesheet" href="">
 </head>
 
 <body>
@@ -182,7 +186,7 @@
 
                     <h2 id="display_name"><?=$content[0][0]['name']?></h2>
 
-                    <button class="none"><img id="name_change" src="/img/Pen.svg" class="ico" onclick="changeName()"></button>
+                    <button class="none" type="submit"><img id="name_change" src="/img/Pen.svg" class="ico" onclick="changeName()"></button>
 
                 </form>
 
@@ -190,7 +194,7 @@
 
                     function changeName(){
 
-                        document.getElementById("insert").innerHTML = '<input class="proj_name" name="title" placeholder="Введите новое название" requiredutton type="submit" class="none"><img id="name_change" src="/img/Pen.svg" class="ico"></button>';
+                        document.getElementById("insert").innerHTML = '<input class="proj_name" name="title" placeholder="Введите новое название" required type="text" class="none"><button type="submit"><img id="name_change" src="/img/Pen.svg" class="ico"></button>';
 
                     }
 
@@ -199,10 +203,23 @@
             </div>
 
             <div class="buttonsFeed">
-                <button class="ico_button button-bell"><img class="ico" src="/img/Bell.svg">  <div id="msg">5</div></button>
 
-                <button id="apps" class="ico_button">Заявки</button>
+                <button style="width:48px;" class="ico_button button-bell"><svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2.51436 14.0001L3.69436 12.8181C4.07236 12.4401 4.28036 11.9381 4.28036 11.4041V6.72708C4.28036 5.37008 4.87036 4.07308 5.90036 3.17108C6.93836 2.26108 8.26036 1.86108 9.63736 2.04208C11.9644 2.35108 13.7194 4.45508 13.7194 6.93708V11.4041C13.7194 11.9381 13.9274 12.4401 14.3044 12.8171L15.4854 14.0001H2.51436ZM10.9994 16.3411C10.9994 17.2401 10.0834 18.0001 8.99936 18.0001C7.91536 18.0001 6.99936 17.2401 6.99936 16.3411V16.0001H10.9994V16.3411ZM17.5204 13.2081L15.7194 11.4041V6.93708C15.7194 3.45608 13.2174 0.499077 9.89936 0.0600774C7.97736 -0.195923 6.03736 0.391077 4.58236 1.66708C3.11836 2.94908 2.28036 4.79308 2.28036 6.72708L2.27936 11.4041L0.478359 13.2081C0.00935877 13.6781 -0.129641 14.3771 0.124359 14.9901C0.379359 15.6041 0.972359 16.0001 1.63636 16.0001H4.99936V16.3411C4.99936 18.3591 6.79336 20.0001 8.99936 20.0001C11.2054 20.0001 12.9994 18.3591 12.9994 16.3411V16.0001H16.3624C17.0264 16.0001 17.6184 15.6041 17.8724 14.9911C18.1274 14.3771 17.9894 13.6771 17.5204 13.2081Z" fill="#757D8A"/>
+                    </svg>
+                    <div id="msg">0</div></button>
 
+                <button id="apps" class="ico_button" onclick="window.location.replace('Analytics')">Заявки</button>
+
+                <div class="popupBell">
+                    <div class="popupBell-body">
+                        <div class="popupBell-item not-bell">
+                            <div class="popupBell-item__info ">
+                                <p>У вас пока нет уведомлений</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -256,33 +273,35 @@
     <div id="popup">
         <div class="popup__container">
             <div class="popup-body">
-                <div class="popup__title">Хотите изменить видео?</div>
-                <div class="avatar inCourse">
-                    <div class="avatar-body">
-                        <img src="../img/saveAvatar.svg" alt="">
-                        <div class="avatar-body__info">
-                            <span id="file-name" class="file-box">
-                                Название файла
-                            </span>
-                            <span id="file-size" class="file-box">
-                                0кб из 5мб
-                            </span>
+                <form method="POST" action="" class="upload__form" id="change__video" enctype="multipart/form-data">
+                    <div class="popup__title">Хотите изменить видео?</div>
+                    <div class="avatar inCourse">
+                        <div class="avatar-body">
+                            <img src="../img/saveAvatar.svg" alt="">
+                            <div class="avatar-body__info">
+                                <span id="file-name" class="file-box">
+                                    Название файла
+                                </span>
+                                <span id="file-size" class="file-box">
+                                    0кб из 5мб
+                                </span>
+                            </div>
+
                         </div>
 
+                        <div class="input__wrapper">
+                            <input name="video_change" type="file" id="input__file" class="input input__file" onchange="uploadFile(this)" multiple="">
+                            <label for="input__file" class="input__file-button" style="">
+                                <span class="input__file-icon-wrapper"><img class="input__file-icon" src="/img/plus.svg" width="25"></span>
+                                <span class="input__file-button-text">Добавить</span>
+                            </label>
+                        </div>
                     </div>
-
-                    <div class="input__wrapper">
-                        <input name="file" type="file" id="input__file" class="input input__file" onchange="uploadFile(this)" multiple="">
-                        <label for="input__file" class="input__file-button" style="">
-                            <span class="input__file-icon-wrapper"><img class="input__file-icon" src="/img/plus.svg" width="25"></span>
-                            <span class="input__file-button-text">Добавить</span>
-                        </label>
+                    <div class="popup__form">
+                        <button type="button" class="popup__btn popup__white" id="popup__not-change" >Отменить</button>
+                        <button type="submit" class="popup__btn popup__blue ">Заменить</button>
                     </div>
-                </div>
-                <div class="popup__form">
-                    <button class="popup__btn popup__white" id="popup__not-change" >Отменить</button>
-                    <button class="popup__btn popup__blue ">Заменить</button>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -292,8 +311,155 @@
 
 <?php include 'default/popupEditVideo.php';?>
 <script src="/js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="../js/button__settings.js"></script>
+<script src="../js/sidebar.js"></script>
+<script src="/js/getNotifications.js"></script>
+
+<!--Уведомления-->
+<script src="/js/customInputs.js"></script>
+<script src="../js/customSelect.js"> </script>
+<!--Уведомления-->
+<!-- Получить popup funnel_content -->
+<script>
+    function getFunnelPopup(funnel_content_id) {
+        let request = new XMLHttpRequest();
+
+        let url = "/Funnel/"+ funnel_content_id +"/getFunnelPopup";
+
+        request.open('GET', url);
+
+        request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+        request.addEventListener("readystatechange", () => {
+            if (request.readyState === 4 && request.status === 200) {
+                let popup = JSON.parse(JSON.parse(request.responseText))
+                if (popup) {
+                    let first_do = document.getElementById('first_do');
+
+                    // first_do
+                    let option_1 = Object.keys(popup['first_do'])[0];
+                    let option_item_1 = first_do.querySelector('option[value="' + option_1 + '"]')
+                    option_item_1.selected = true;
+                    option_item_1.setAttribute('selected', 'selected')
+
+                    switch (option_1) {
+                        case 'pay_form':
+                        case 'form':
+                            if (popup['form__title']) {
+                                document.querySelector('input[name="form__title"]').value = popup['form__title'];
+                            }
+                            if (popup['form__desc']) {
+                                document.querySelector('input[name="form__desc"]').value = popup['form__desc'];
+                            }
+                            if (popup['button_text']) {
+                                document.querySelector('input[name="button__send"]').value = popup['button_text'];
+                            }
+                            let div = document.querySelector('#first_do-list');
+                            if (option_1 === 'form') {
+                                for (let item of popup['first_do']['form']) {
+                                    addFormItem(div, item);
+                                }
+                            } else if (option_1 === 'pay_form') {
+                                for (let item of popup['first_do']['pay_form']) {
+                                    addFormItem(div, item);
+                                }
+                            }
+
+                            break;
+                        case 'link':
+                            addFormLink(document.querySelector('#first_do'))
+                            if (popup['first_do']['open_in_new']) {
+                                document.querySelector('input[name="open_new_window"]').checked = true;
+                            }
+                            break;
+                    }
+
+                    if (popup['first_do']['link']) {
+                        document.querySelector('input[name="link-1"]').value = popup['first_do']['link']
+                    }
+
+                    checkFirstSelect()
+
+                    // second_do
+
+                    let option_2;
+                    let second_do;
+                    let option_item_2;
+
+                    if (popup['second_do'] != null) {
+                        second_do = document.getElementById('second_do');
+                        option_2 = Object.keys(popup['second_do'])[0];
+                    } else {
+                        second_do = document.getElementById('second_do');
+                        option_2 = second_do.value;
+                    }
+                    option_item_2 = second_do.querySelector('option[value="' + option_2 + '"]')
+                    option_item_2.selected = true;
+                    option_item_2.setAttribute('selected', 'selected')
+                    switch (option_2) {
+                        case 'link':
+                            addFormLink(document.querySelector('#second_do'))
+                            document.querySelector('input[name="link-2"]').value = popup['second_do']['link'];
+                            if (popup['second_do']['open_in_new']) {
+                                document.querySelector('input[name="open_new_window"]').checked = true;
+                            }
+                            break;
+                        case 'file':
+                            document.querySelector('#file-name').innerHTML = popup['second_do']['file'].toString().match(/.*\/(.+?)\./)[1];
+                            break;
+                    }
+                    // /second_do
+                    checkSecondSelect()
+                    let elem = document.querySelector('#first_do-list')
+                    let count = document.querySelectorAll('.form-select__container').length;
+                    if (count > 2) {
+                        if (elem.parentElement.querySelector('.addFormInput')) {
+                            elem.parentElement.querySelector('.addFormInput').classList.add('display-none');
+                        }
+                        return false;
+                    }
+
+                    setTimeout(function (){
+                        if (popup['form__title']) {
+                            let form__title = document.querySelector('.popup-title');
+                            form__title.innerHTML = popup['form__title'];
+                        }
+                        if (popup['form__desc']) {
+                            let form__desc = document.querySelector('.popup-text');
+                            form__desc.innerHTML = popup['form__desc'];
+                        }
+                    }, 400)
+                }
+            }
+        })
+        request.send();
+    }
+
+</script>
 
 <script>
+    let buttonBell =  document.body.querySelector('.button-bell');
+    let popupBell =  document.body.querySelector('.popupBell')
+    buttonBell.addEventListener('click', function () {
+        popupBell.classList.toggle('active');
+        let request = new XMLHttpRequest();
+        let url = "/NotificationsController/checkout";
+        getCount();
+        document.querySelector('#msg').innerHTML = '0';
+        document.querySelector('#msg').style = "background-color: rgb(117, 125, 138)";
+
+        request.open('POST', url);
+
+        request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+        request.addEventListener("readystatechange", () => {
+        });
+        request.send();
+    })
+</script>
+<script>
+    function uploadFile(target) {
+        document.getElementById("file-name").innerHTML = (target.files[0].name);
+        document.getElementById("file-size").innerHTML = Math.round(target.files[0].size / 1024) + "кБ" + " из доступных 5Мб" ;
+    }
     let form__submit = $(function() {
         $('.media__form').each(function (){
             $(this).submit(function(e) {
@@ -311,14 +477,16 @@
     });
 </script>
 <script>
-    function click_settings(elem) {
-        getCourseList(elem);
-    }
-</script>
-<script>
     function CloseFunnelPopup() {
-        document.querySelector('.popup__bonus').classList.remove('active');
-        document.querySelector('.exit-funnel-edit').classList.remove('display-flex');
+        if (document.querySelector('.popup__bonus')) {
+            document.querySelector('.popup__bonus').classList.remove('active');
+        }
+        if (document.querySelector('.exit-funnel-edit')) {
+            document.querySelector('.exit-funnel-edit').classList.remove('display-flex');
+        }
+        if (document.querySelector('.checkbox__wrapper')) {
+            document.querySelector('.checkbox__wrapper').remove();
+        }
         toggleOverflow();
         closePopup();
         clearPopup();
@@ -429,8 +597,6 @@
         }
     }
 </script>
-<script type="text/javascript" src="../js/button__settings.js"></script>
-<script src="../js/jquery-3.6.1.min.js"></script>
 <script>
     let entryDisplayDelete = document.querySelector('#delete__back');
     //  Замена видео
@@ -486,10 +652,6 @@
         });
     }
 
-    function uploadFile(target) {
-        document.getElementById("file-name").innerHTML = (target.files[0].name);
-        document.getElementById("file-size").innerHTML = Math.round(target.files[0].size / 1024) + "кБ" + " из доступных 5Мб" ;
-    }
     function _(abc) {
         return document.getElementById(abc);
     }
@@ -502,7 +664,10 @@
             elem.style.display = 'none';
         })
         _("progressBar").classList.add('active');
-        _("progressText").classList.add('active');
+        _("progressTitle").classList.add('active');
+        _("progressSubTitle").classList.add('active');
+        _("progress-values").classList.add('active');
+        document.querySelector('.upload__form').classList.add('active');
         document.querySelector('.btn-upload').classList.add('active');
         var formdata = new FormData();
         formdata.append("video_uploader", file);
@@ -512,12 +677,14 @@
         ajax.open("POST", "/Funnel/<?=$content[0][0]['id']?>/create");
         ajax.send(formdata);
     }
+
     function progressHandler(event) {
         var loaded = new Number((event.loaded / 1048576));//Make loaded a "number" and divide bytes to get Megabytes
         var total = new Number((event.total / 1048576));//Make total file size a "number" and divide bytes to get Megabytes
         var percent = (event.loaded / event.total) * 100;//Get percentage of upload progress
         _("progressBar").value = Math.round(percent);//Round value to solid
     }
+
     function completeHandler(event) {
         _("progressBar").value = 0;//Set progress bar to 0
         document.getElementById('progressDiv').style.display = 'none';//Hide progress bar
@@ -543,148 +710,6 @@
     })
 </script>
 
-<!--Подсос курсов для воронки-->
-<script>
-    function getCourseList(elem) {
-        let requestDisable = new XMLHttpRequest();
-
-        let urlDisable = "/Funnel/getCourseList";
-
-        requestDisable.open('GET', urlDisable);
-
-        requestDisable.setRequestHeader('Content-Type', 'application/x-www-form-url');
-        requestDisable.addEventListener("readystatechange", () => {
-            if (requestDisable.readyState === 4 && requestDisable.status === 200) {
-                let block = document.getElementById('course_list');
-                block.replaceChildren();
-                let course_list = JSON.parse(requestDisable.responseText);
-                for (let course_item of course_list) {
-                    let option = document.createElement('option');
-                    option.value = course_item['id'];
-                    option.innerHTML = course_item['name'];
-                    block.appendChild(option);
-                }
-            }
-        })
-        requestDisable.send();
-        getFunnelPopup(elem.parentElement.querySelector('.funnel__content-id').value);
-    }
-</script>
-
-<!-- Получить popup funnel_content -->
-<script>
-    function getFunnelPopup(funnel_content_id) {
-        let request = new XMLHttpRequest();
-
-        let url = "/Funnel/"+ funnel_content_id +"/getFunnelPopup";
-
-        request.open('GET', url);
-
-        request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-        request.addEventListener("readystatechange", () => {
-            if (request.readyState === 4 && request.status === 200) {
-                let popup = JSON.parse(JSON.parse(request.responseText))
-                if (popup) {
-                    let first_do = document.getElementById('first_do');
-
-                    // first_do
-                    let option_1 = Object.keys(popup['first_do'])[0];
-                    let option_item_1 = first_do.querySelector('option[value="' + option_1 + '"]')
-                    option_item_1.selected = true;
-                    option_item_1.setAttribute('selected', 'selected')
-
-                    // /first_do
-
-                    checkBothSelect();
-
-                    // second_do
-
-                    let option_2;
-                    let second_do;
-                    let option_item_2;
-
-                    if (popup['second_do']) {
-                        second_do = document.getElementById('second_do');
-                        option_2 = Object.keys(popup['second_do'])[0];
-                        option_item_2 = second_do.querySelector('option[value="' + option_2 + '"]')
-                        option_item_2.selected = true;
-                        option_item_2.setAttribute('selected', 'selected')
-                    }
-
-                    // /second_do
-
-                    checkSecondSelect();
-
-                    switch (option_1) {
-                        case 'list':
-                            let a = document.getElementById('course_list');
-                            let option_list_1 = a.querySelector('option[value="'+ popup['first_do']['course_id'] +'"]');
-                            option_list_1.selected = true;
-                            option_list_1.setAttribute('selected', 'selected')
-                            break;
-                        case 'pay_form':
-                        case 'form':
-                            if (popup['form__title']) {
-                                document.querySelector('input[name="form__title"]').value = popup['form__title'];
-                            }
-                            if (popup['form__desc']) {
-                                document.querySelector('input[name="form__desc"]').value = popup['form__desc'];
-                            }
-                            if (popup['button_text']) {
-                                document.querySelector('input[name="button__send"]').value = popup['button_text'];
-                            }
-                            let div = document.querySelector('.addFormInput');
-                            if (option_1 === 'form') {
-                                for (let item of popup['first_do']['form']) {
-                                    addFormItem(div, item);
-                                }
-                            } else if(option_1 === 'pay_form') {
-                                for (let item of popup['first_do']['pay_form']) {
-                                    addFormItem(div, item);
-                                }
-                            }
-                            break;
-                        case 'link':
-                            document.querySelector('.link_item').value = popup['first_do']['link']
-                            break;
-                    }
-                    setTimeout(function (){
-                        if (popup['form__title']) {
-                            let form__title = document.querySelector('.popup-title');
-                            form__title.innerHTML = popup['form__title'];
-                        }
-                        if (popup['form__desc']) {
-                            let form__desc = document.querySelector('.popup-text');
-                            form__desc.innerHTML = popup['form__desc'];
-                        }
-                    }, 400)
-
-
-                    switch (option_2) {
-                        case 'link':
-                            if ((document.querySelectorAll('.checkbox__wrapper')).length === 1) {
-                                document.querySelectorAll('.checkbox__wrapper').forEach(item => {
-                                    item.remove();
-                                })
-                            }
-                            document.querySelector('input[name="link-2"]').value = popup['second_do']['link'];
-                            addCheckbox(second_do);
-                            if (popup['second_do']['open_in_new']) {
-                                document.querySelector('input[name="open_new_window"]').checked = true;
-                            }
-                            break;
-                        case 'file':
-                            document.querySelector('#file-name').innerHTML = popup['second_do']['file'].toString().match(/.*\/(.+?)\./)[1];
-                            break;
-                    }
-                }
-            }
-        })
-        request.send();
-    }
-
-</script>
-
 <!-- Форма списков курса -->
 <script>
     function initListCourse(){
@@ -699,10 +724,7 @@
         }, 500)
     }
 </script>
-<script src="../js/sidebar.js"></script>
-<script src="/js/getNotifications.js"></script>
-<script src="/js/customInputs.js"></script>
-<script src="/js/customSelect.js"></script>
+
 </body>
 
 </html>

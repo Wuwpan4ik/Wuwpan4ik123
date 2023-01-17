@@ -1,10 +1,11 @@
 <?php
 class Project extends ACoreCreator {
     public function get_content() {
-        $funnel = $this->m->getContentForFunnelPage()[0];
-        $count_funnel = count($funnel);
-        $course = $this->m->getContentForCoursePage()[0];
-        $count_course = count($course);
-        return ['count_funnel' => $count_funnel, 'count_course' => $count_course];
+        $result = $this->m->CheckInfoTariff();
+        $tariff = $this->CheckTariff();
+        $funnel_count = is_null($tariff[0]['funnel_count']) ? 0 : $tariff[0]['funnel_count'];
+        $course_count = is_null($tariff[0]['course_count']) ? 0 : $tariff[0]['course_count'];
+        return ['count_funnel' => count($result['funnel_count']), 'count_course' => count($result['course_count']),
+            'max_count_funnel' => $funnel_count, 'max_count_course' => $course_count];
     }
 }

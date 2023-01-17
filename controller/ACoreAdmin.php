@@ -4,10 +4,10 @@ abstract class ACoreAdmin {
     protected $m;
     protected $ourEmail = "envelope@course-creator.io";
     protected $ourPassword = "1u*V90z*29pP";
-    protected $ourNickName = "course-creator.io";
+    protected $ourNickName = "Course Creator IO";
     protected $email;
 
-    protected function SendEmail ($title, $body) {
+    protected function SendEmail ($title, $body, $email) {
 
         $mail = new PHPMailer\PHPMailer\PHPMailer(true);
 
@@ -35,9 +35,9 @@ abstract class ACoreAdmin {
             $mail->setFrom($this->ourEmail, $this->ourNickName); // Адрес самой почты и имя отправителя
 
             // Получатель письма
-            $mail->addAddress($this->email);
+            $mail->addAddress($email);
 
-            $mail->isHTML(true);
+            $mail->isHTML();
             $mail->Subject = $title;
             $mail->Body = $body;
 

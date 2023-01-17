@@ -28,10 +28,16 @@ class Router
             $class = substr($path, 0, -4);
             if (class_exists($class)) {
                 $obj = new $class;
+
+//              Middleware
                 if (method_exists($obj, "obr")) {
                     $obj->obr();
                 }
+
+//              Загрузка классов из pages - преждевременная подгрузка из базы данных
                 $content = $obj->get_content();
+
+//                sleep(0.5);
                 require $template_url;
             }
         } else if (file_exists($template_url)) {

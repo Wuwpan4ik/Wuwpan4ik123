@@ -149,10 +149,10 @@
                                     </div>
                                 </div>
                                 <div class="secondRow">
-                                    <button type="button" onclick="get_file_url('<?=$content[0]['file_url'] ?>')" class="download_file">
-                                        Скачать файл
-                                    </button>
-                                </div>
+                                    <?php $url = include "settings/site_url.php"; ?>
+                                    <button type="button" onclick="get_file_url('<?php echo "{$url}/{$content[0]['file_url']}"?>')" class="download_file">
+                                    Скачать файл
+                                    </button></div>
                             </div>
                         </div>
                         <?php } ?>
@@ -160,67 +160,102 @@
                 </div>
             </div>
         </div>
+    </div>
+        <div class="questionBackground" style="margin:0px !important;border-radius: 0px">
+
+        </div>
+        <div class="question userPopup " style="z-index:10">
+            <div class="youPick userPopup__title button__questions">
+                Есть вопросы?
+            </div>
+            <div class="question  userPopup__body">
+                <div class=" question ">
+                    <div class="popup__buy-register">
+                        <form id="formQuest" method="POST" action="/ContactController/sendQuestions">
+                            <input type="hidden" value="<?=$content[0]['user_id'] ?>" name="author_id" id="question_author-id">
+                            <?php if (!isset($_SESSION['user']['first_name'])) { ?>
+                                <div class="popup__buy-body-form question input">
+                                    <div class="popup__bonus-form-input-account input-img">
+                                        <img src="../img/smallPlayer/account.svg" alt="">
+                                    </div>
+                                    <input name="name" type="text" <?php echo isset($_SESSION['user']['first_name']) ? "value='" . $_SESSION['user']['first_name'] . "'" : 'placeholder="Введите имя" '?> <?php echo isset($_SESSION['user']['first_name']) ? "readonly" : ''?>>
+                                </div>
+                            <?php } ?>
+                            <div class="popup__buy-body-form question input">
+                                <div class="popup__bonus-form-input-email input-img">
+                                    <img src="../img/smallPlayer/email.svg" alt="">
+                                </div>
+                                <input name="email" type="email" value="<?php echo isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : 'Введите имя '?>" readonly>
+                            </div>
+                            <div class="popup__buy-body-form question-textarea">
+                                <div class="popup__bonus-form-input-email input-img">
+                                    <img src="../img/smallPlayer/email.svg" alt="">
+                                </div>
+                                <textarea name="question" placeholder="Ваш вопрос"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="question-form">
+                        <div class="userPopup__button questionBack backBtn">
+                            <button id="close__question" class="courseBackBtn">Назад</button>
+                        </div>
+                        <div class="Сourse-question userPopup__button">
+                            <button id="sendQuest" type="submit">Отправить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="file_name-download display-none">
+        <?=$content[0]['content_name']?>
     </div>
 </div>
-    <div class="question userPopup ">
-        <div class="youPick userPopup__title button__questions">
-            Есть вопросы?
-        </div>
-        <div class="question  userPopup__body">
-            <div class=" question ">
-                <div class="popup__buy-register">
-                    <form id="formQuest" method="POST" action="/ContactController/sendQuestions">
-                        <input type="hidden" value="<?=$content[0]['user_id'] ?>" name="author_id" id="question_author-id">
-                        <?php if (!isset($_SESSION['user']['first_name'])) { ?>
-                            <div class="popup__buy-body-form question input">
-                                <div class="popup__bonus-form-input-account input-img">
-                                    <img src="../img/smallPlayer/account.svg" alt="">
-                                </div>
-                                <input name="name" type="text" <?php echo isset($_SESSION['user']['first_name']) ? "value='" . $_SESSION['user']['first_name'] . "'" : 'placeholder="Введите имя" '?> <?php echo isset($_SESSION['user']['first_name']) ? "readonly" : ''?>>
-                            </div>
-                        <?php } ?>
-                        <div class="popup__buy-body-form question input">
-                            <div class="popup__bonus-form-input-email input-img">
-                                <img src="../img/smallPlayer/email.svg" alt="">
-                            </div>
-                            <input name="email" type="email" value="<?php echo isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : 'Введите имя '?>" readonly>
-                        </div>
-                        <div class="popup__buy-body-form question-textarea">
-                            <div class="popup__bonus-form-input-email input-img">
-                                <img src="../img/smallPlayer/email.svg" alt="">
-                            </div>
-                            <textarea name="question" placeholder="Ваш вопрос"></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="question-form">
-                    <div class="userPopup__button questionBack backBtn">
-                        <button id="close__question" class="courseBackBtn">Назад</button>
-                    </div>
-                    <div class="Сourse-question userPopup__button">
-                        <button id="sendQuest" type="submit">Отправить</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <script>
         function get_file_url(url) {
-
-            var link_url = document.createElement("a");
-
-            link_url.download = url.substring((url.lastIndexOf("/") + 1), url.length);
-            link_url.href = url;
-            document.body.appendChild(link_url);
-            link_url.click();
-            document.body.removeChild(link_url);
-            delete link_url;
+            const a = document.createElement('a')
+            a.href = url
+            a.download = document.querySelector('.file_name-download').innerHTML.trim()
+            document.body.appendChild(a)
+            a.click()
+            document.body.removeChild(a)
 
         }
     </script>
     <script>
-        let mirrorVideo = document.getElementById('mirrorVideo');
-        let sourceVideo = document.querySelectorAll('#UserPlayerVideo');
+        const sourceVideo = document.querySelectorAll('#UserPlayerVideo'),
+            questionOpen = document.getElementById('send__questions'),
+            buttonBack = document.getElementById('close__question'),
+            questionBacks = document.querySelector('.questionBackground'),
+            pauseBtn = document.querySelector('.firstPauseButton');
+
+        questionOpen.onclick = ()=>{
+            sourceVideo[0].pause();
+            questionBacks.classList.add('active');
+            pauseBtn.classList.add('active')
+        }
+        buttonBack.onclick = () =>{
+            if(document.querySelector('.youWatching').classList.contains('active')){
+
+            }else{
+                sourceVideo[0].play();
+                pauseBtn.classList.remove('active');
+            }
+            questionBacks.classList.remove('active');
+        }
+
+
+        if (sourceVideo.ended) {
+            let request = new XMLHttpRequest();
+            let url = "/Course/"+ <?php $content[0]['count'] ?> +"/AddView";
+            request.open('POST', url);
+            request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+            request.addEventListener("readystatechange", () => {
+                if (request.readyState === 4 && request.status === 200) {
+                }
+            });
+            request.send();
+        }
 
         mirrorVideo.src = sourceVideo[0].src;
     </script>
@@ -228,9 +263,6 @@
 <!--Открытие попапа Вопроса-->
     <script>
         function toggleQuestions() {
-            document.querySelector('.mirror_smallPlayer').classList.toggle('display-none');
-            document.querySelector('.userVideoContainer').classList.toggle('display-none');
-            document.querySelector('.userVideoContainer').classList.toggle('active');
             document.querySelector('.question').classList.toggle('active');
         }
         document.getElementById('send__questions').addEventListener('click', function (){

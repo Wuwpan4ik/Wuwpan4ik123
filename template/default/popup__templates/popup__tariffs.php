@@ -5,7 +5,7 @@
         </div>
 
         <div class="popup-tariff__cards">
-            <?php foreach ($content[1] as $item) { ?>
+            <?php foreach ($content[0] as $item) { ?>
             <div class="popup-tariff__card">
                 <div class="popup-tariff__card-body">
                     <div class="popup-tariff__subtitle">
@@ -26,11 +26,11 @@
                     </div>
                     <div class="popup-tariff__price">
                         Стоимость
-                        <div class="tariff-price"><?php echo htmlspecialchars($item['price'])?> ₽/ мес </div>
+                        <div class="tariff-price__popup "><?php echo htmlspecialchars($item['price'])?> ₽/ мес </div>
                     </div>
-                    <div class="popup-tariff-button ">
-                        <button <?php if ($_SESSION['user']['tariff'] == $item['id']) echo 'class="selected"'?>>
-                            Выбран сейчас
+                    <div class="popup-tariff-button">
+                        <button class="tariff__button-buy <?php if ($_SESSION['user']['tariff'] == $item['id']) echo 'selected' ?>" data-id="<?=$item['id']?>" type="button" >
+                            <?php echo ($_SESSION['user']['tariff'] == $item['id']) ? 'Выбран сейчас' : 'Выбрать'?>
                         </button>
                     </div>
                 </div>

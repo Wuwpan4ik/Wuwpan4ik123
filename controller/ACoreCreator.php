@@ -11,13 +11,15 @@ if (!class_exists('PHPMailer\PHPMailer\Exception'))
         protected $m;
         protected $ourEmail = "envelope@course-creator.io";
         protected $ourPassword = "1u*V90z*29pP";
-        protected $ourNickName = "course-creator.io";
+        protected $ourNickName = "Course Creator IO";
         protected $email;
+        protected $date;
 
         protected $url_dir;
 
         public function __construct() {
             date_default_timezone_set('Europe/Moscow');
+            $this->date = date("Y-m-d");
             $this->m = new User();
             $this->url_dir = "./uploads/users/" . $_SESSION['user']['id'] . '/';
         }
@@ -37,26 +39,11 @@ if (!class_exists('PHPMailer\PHPMailer\Exception'))
             return $this->m->db->execute("INSERT INTO `notifications` (`user_id`, `class`, `body`, `image`, `date`, `time`, `is_checked`) VALUES ('$user_id', '$class', '$message', '$image', '$date', '$time', 0)");
         }
 
-        protected function dir_size($path) {
-            $path = ($path . '/');
-            $size = 0;
-            $dir = opendir($path);
-            if (!$dir) {
-                return 0;
-            }
-
-            while (false !== ($file = readdir($dir))) {
-                if ($file == '.' || $file == '..') {
-                    continue;
-                } elseif (is_dir($path . $file)) {
-                    $size += $this->dir_size($path . '//' . $file);
-                } else {
-                    $size += filesize($path . '//' . $file);
-                }
-            }
-            closedir($dir);
-            return $size;
+        public function CheckTariff()
+        {
+            return $this->m->db->query("SELECT users_tariff.tariff_id, tariffs.funnel_count, tariffs.course_count, tariffs.file_size, tariffs.children_count FROM `users_tariff` INNER JOIN `tariffs` ON tariffs.id = users_tariff.tariff_id WHERE users_tariff.user_id = {$_SESSION['user']['id']}");
         }
+
 
         public function SendEmail ($title, $body, $email, $file = null, $file_name = null) {
 
@@ -88,7 +75,7 @@ if (!class_exists('PHPMailer\PHPMailer\Exception'))
                 // Получатель письма
                 $mail->addAddress($email);
 
-                $mail->isHTML(true);
+                $mail->isHTML();
                 $mail->Subject = $title;
                 $mail->Body = $body;
                 if (!is_null($file)) {

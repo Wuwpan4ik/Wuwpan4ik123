@@ -33,7 +33,7 @@
 
                 $k = 1;
 
-                foreach($content[0] as $p){?>
+                foreach($content['content'][0] as $p){?>
 
                     <div class="media-cart">
 
@@ -48,7 +48,7 @@
 
                                         $i=1;
 
-                                        foreach($content[1] as $v){
+                                        foreach($content['content'][1] as $v){
                                             if ($v['course_id'] == $p['id']) {?>
 
                                                 <div class="slider__item ">
@@ -74,7 +74,7 @@
                                                                 <img src="../img/smallPlayer/views.svg" alt="">
                                                             </div>
                                                             <div class="slider__header-views-count">
-                                                                126
+                                                                <?=$v['count_view']?>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -118,6 +118,8 @@
 
                     <?$k++;}?>
 
+                <?php if ($k <= $content['limit_course']) {?>
+
                 <div class="media-cart placeholder">
 
                     <div class="btn-upload" style="width: auto;">
@@ -133,6 +135,7 @@
                     </div>
 
                 </div>
+                <?php } ?>
 
             </div>
 
@@ -144,10 +147,12 @@
 <div id="popup__background">
     <div id="popup">
         <div class="popup__container">
-            <div class="popup__title">Вы действительно хотите удалить проект?</div>
-            <div class="popup__form">
-                <button class="popup__btn popup__not-delete">Не удалять</button>
-                <button class="popup__btn popup__delete">Удалить</button>
+            <div class="popup-body">
+                <div class="popup__title">Вы действительно хотите удалить проект?</div>
+                <div class="popup__form">
+                    <button class="popup__btn popup__delete popup__white">Удалить</button>
+                    <button class="popup__btn popup__not-delete popup__blue">Не удалять</button>
+                </div>
             </div>
         </div>
     </div>

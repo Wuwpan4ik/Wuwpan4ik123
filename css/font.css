@@ -1,31 +1,112 @@
 @font-face{
     font-family: 'TT Trailers';
-    src: url(/fonts/TTtrailes/TTTrailers-Black.ttf) format('truetype'),
-    url(/fonts/TTtrailes/TTTrailers-Black.otf) format('opentype');
+    src: url("/fonts/TTtrailes/TTTrailers-Black.ttf") format('truetype'),
+    url("/fonts/TTtrailes/TTTrailers-Black.otf") format('opentype');
     font-weight: 900;
     font-style: normal;
 }
 @font-face{
     font-family: 'DM Sans';
-    src:url(/fonts/DMsans/DMSans-Regular.ttf) format('truetype');
+    src:url("/fonts/DMsans/DMSans-Regular.ttf") format('truetype');
     font-weight: 400;
     font-style: normal;
 }
 @font-face{
     font-family: 'DM Sans';
-    src:url(/fonts/DMsans/DMSans-Bold.ttf) format('truetype');
+    src:url("/fonts/DMsans/DMSans-Bold.ttf") format('truetype');
     font-weight: 700;
     font-style: normal;
 }
 @font-face{
     font-family: 'Montserrat';
-    src:url(/fonts/Montserrat/Montserrat-Regular.ttf) format('truetype');
+    src:url("/fonts/Montserrat/Montserrat-Regular.ttf") format('truetype');
     font-weight: 400;
     font-style: normal;
 }
 @font-face{
     font-family: 'Montserrat';
-    src:url(/fonts/Montserrat/Montserrat-Medium.ttf) format('truetype');
+    src:url("/fonts/Montserrat/Montserrat-Medium.ttf") format('truetype');
     font-weight: 500;
     font-style: normal;
+}
+@font-face{
+    font-family: 'DIN Pro';
+    src:url("/fonts/DINPro/dinpro_condensedregular.otf") format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face{
+    font-family: 'DIN Pro';
+    src:url("/fonts/DINPro/dinpro_black.otf") format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+@font-face{
+    font-family: 'Akrobat';
+    src:url("/fonts/Akrobat/Akrobat-Regular.otf") format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face{
+    font-family: 'Akrobat';
+    src:url("/fonts/Akrobat/Akrobat-Black.otf") format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+@font-face{
+    font-family: 'American Captain';
+    src:url("/fonts/AmericanCaptain/AmericanCaptain.otf") format('opentype'),
+    url("/fonts/AmericanCaptain/AmericanCaptain.ttf") format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+@font-face{
+    font-family: 'Ubuntu';
+    src:url("/fonts/Ubuntu/Ubuntu-Regular.ttf") format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face{
+    font-family: 'Ubuntu';
+    src:url("/fonts/Ubuntu/Ubuntu-Bold.ttf") format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+@font-face{
+    font-family: 'Roboto';
+    src:url("/fonts/Roboto/Roboto-Regular.ttf") format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face{
+    font-family: 'Roboto';
+    src:url("/fonts/Roboto/Roboto-Black.ttf") format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+.Roboto {
+    font-family: "Roboto", sans-serif;
+}
+
+.DINPro {
+    font-family: "DIN Pro", sans-serif;
+}
+
+.Akrobat {
+    font-family: "Akrobat", sans-serif;
+}
+
+.TTTrailers {
+    font-family: "TT Trailers", sans-serif;
+}
+.Montserrat {
+    font-family: "Montserrat", sans-serif;
+}
+.Ubuntu {
+    font-family: "Ubuntu", sans-serif;
+}
+
+.AmericanCaptain {
+    font-family: "American Captain", sans-serif;
 }
