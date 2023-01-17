@@ -29,11 +29,11 @@
 
             $max_file_size = $this->CheckTariff()[0]['file_size'] * 1000 * 1000 * 1000;
 
-            $files_size = $this->m->dir_size('./uploads/users/' . $_SESSION['user']['id']);
+            $files_size = $this->m->dir_size($this->url_dir);
 
-            if ($_FILES['video_uploader']['size'] + $files_size > $max_file_size) {
-                return False;
-            }
+//            if ($_FILES['video_uploader']['size'] + $files_size > $max_file_size) {
+//                return False;
+//            }
 
             move_uploaded_file($_FILES['video_uploader']['tmp_name'], $path);
 
@@ -61,7 +61,7 @@
 //                $_SESSION['error'] = $exept;
 //            }
 
-            $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `thubnails`, `count_view`, `query_id`) VALUES ($uid ,null , null , '$path', '$frame_path', 0, $count_video)");
+            $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `thubnails`, `query_id`) VALUES ($uid ,null , null , '$path', '$frame_path', $count_video)");
 
             $this->local_get_content();
 

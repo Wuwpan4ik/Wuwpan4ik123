@@ -545,6 +545,7 @@
 
     // Проверка на количество и add social
     document.getElementById('social__submit').addEventListener('click', function (){
+        console.log(document.querySelectorAll('.social__block').length)
         if (document.querySelectorAll('.social__block').length === 8) {
             return;
         }
@@ -573,7 +574,7 @@
                 </div>
                 <div class="input_focus ">
                     <label for="username" class="label_focus">Укажите ссылку</label>
-                    <input type="text" id="social__inpu" minlength="3">
+                    <input min="3" type="text" id="social__inpu" minlength="3">
                     <span class="clear_input_val">
                      <img src="/img/clear_input.svg" alt="">
                 </span>
@@ -611,7 +612,6 @@
         $('.account__form').each(function () {
             $(this).submit(function (e) {
                 e.preventDefault();
-                console.log(new FormData(this))
                 $.ajax({
                     url: $(this).attr("action"),
                     type: $(this).attr("method"),

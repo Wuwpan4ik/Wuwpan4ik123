@@ -15,13 +15,13 @@
             $res = $this->m->db->query("SELECT * FROM `funnel` WHERE id = '$item_id'");
             $count_video = count($this->m->db->query("SELECT * FROM `funnel_content` WHERE funnel_id = ". $res[0]['id'])) + 1;
 
-    //        if (!$this->isUser($res[0]['author_id'])) return False;
+//            if (!$this->isUser($res[0]['author_id'])) return False;
 
-            $path = $this->url_dir . "/funnels/$item_id"."/$count_video"."_".$_FILES['video_uploader']['name'];
+            $path = $this->url_dir . "funnels/$item_id"."/$count_video"."_".$_FILES['video_uploader']['name'];
 
             $max_file_size = $this->CheckTariff()[0]['file_size'] * 1000 * 1000 * 1000;
 
-            $files_size = $this->m->dir_size('./uploads/users/' . $_SESSION['user']['id']);
+            $files_size = $this->m->dir_size($this->url_dir);
 
             if ($_FILES['video_uploader']['size'] + $files_size > $max_file_size) {
                 return False;
@@ -31,7 +31,7 @@
 
             chmod($path, 0777);
 
-            $this->m->db->execute("INSERT INTO funnel_content (`funnel_id`, `name`, `description`, `video`, `count_view`, `query_id`) VALUES ($item_id,NULL ,NULL, '$path', 0, $count_video)");
+            $this->m->db->execute("INSERT INTO funnel_content (`funnel_id`, `name`, `description`, `video`, `query_id`) VALUES ($item_id,NULL ,NULL, '$path', $count_video)");
 
             $this->local_get_content();
 
@@ -104,15 +104,15 @@
             }
 
             $uid = $_SESSION['item_id'];
-            $res = $this->m->db->query("SELECT * FROM `funnel_content` WHERE id = '$uid'");
-            $funnel = $this->m->db->query("SELECT * FROM `funnel` WHERE id = " . $res[0]['funnel_id']);
-            $count_video = $this->m->db->query("SELECT `query_id` FROM `funnel_content` WHERE id = ". $uid)[0]['query_id'];
 
+            $res = $this->m->db->query("SELECT * FROM `funnel_content` WHERE id = '$uid'");
+
+            $funnel = $this->m->db->query("SELECT * FROM `funnel` WHERE id = " . $res[0]['funnel_id']);
             if (!$this->isUser($funnel[0]['author_id'])) return False;
 
-            unlink($res[0]['video']);
+            $path = $this->url_dir . 'funnels/' . $res[0]['funnel_id']. "/{$res[0]['video']}";
 
-            $path = $this->url_dir . 'funnels/' . $res[0]['funnel_id']. "/$count_video" ."_" . $_FILES['video_change']['name'];
+            unlink($res[0]['video']);
 
             move_uploaded_file($_FILES['video_change']['tmp_name'], $path);
 
