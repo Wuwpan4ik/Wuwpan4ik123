@@ -586,7 +586,9 @@
                 </div>
             </div>
         </div>`;
+
         document.querySelector('.social__blocks').innerHTML += div;
+
         $('.social__blocks:last #social__inpu').on('input', function (){
             if (this.value.length > 0) {
                 this.parentElement.querySelector('.label_focus').classList.add('activeLabel');
@@ -594,10 +596,12 @@
                 this.parentElement.querySelector('.label_focus').classList.remove('activeLabel');
             }
         })
+
         if (document.querySelectorAll('.social__block').length === 8) {
             document.getElementById('social__submit').remove();
             return;
         }
+
         checkInputsForUrl();
     })
 
