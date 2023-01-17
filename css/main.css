@@ -576,7 +576,6 @@ span.button__back {
 
 #progressBar::-webkit-progress-bar {
   height: 10px;
-  width: 100%;
   margin: 0 auto;
   background: #81A4FF;
   border-radius: 20px;

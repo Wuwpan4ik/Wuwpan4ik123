@@ -318,15 +318,12 @@
             url: '/Funnel/'+ count +'/GetMainSettings',
             type: "POST",
             success: function (data) {
-                console.log(data)
+                let title;
+                let description;
                 if (data){
                     let temp_data = JSON.parse(data);
-                    let description = temp_data['desc__font'];
-                    let title = temp_data['title__font'];
-                    let title__block = document.querySelector('.title__general').querySelector('input[value="'+ title +'"]');
-                    let description__block = document.querySelector('.description__general').querySelector('input[value="'+ description +'"]');
-                    title__block.click();
-                    description__block.click();
+                    description = temp_data['desc__font'];
+                    title = temp_data['title__font'];
                     let color__button = temp_data['number__color'];
                     let shadow__button = temp_data['number__style'];
                     document.querySelectorAll('.popup-styles-color')[color__button - 1].click();
@@ -334,11 +331,19 @@
                     changeStyleBtn(document.querySelector('.button-video'), color, shadow);
                     document.querySelector('textarea[name="head__settings"]').innerHTML = temp_data['head__settings'];
                 } else {
-                    console.log(document.querySelectorAll('.popup-styles-color')[0])
+                    title = 'Roboto';
+                    description = 'Roboto';
                     document.querySelectorAll('.popup-styles-color')[0].click();
                     document.querySelectorAll('.popup-styles-button')[0].click();
                     changeStyleBtn(document.querySelector('.button-video'), color, shadow);
                 }
+
+                let title__block = document.querySelector('.title__general').querySelector('input[value="'+ title +'"]');
+                let description__block = document.querySelector('.description__general').querySelector('input[value="'+ description +'"]');
+                title__block.click();
+                title__block.classList.add('active')
+                description__block.click();
+                description__block.classList.add('active')
             }
         });
     }
@@ -422,8 +427,8 @@
             data: $("#initButton").serialize(),     /* Параметры передаваемые в запросе. */
             success: function(data){   /* функция которая будет выполнена после успешного запроса.  */
                 if (data == 0) {
-                    document.querySelector('.exit-funnel-edit').classList.add('display-flex');
-                    document.querySelector('.exit-funnel-edit').style.zIndex = '1000';
+                        document.querySelector('.exit-funnel-edit').classList.add('display-flex');
+                        document.querySelector('.exit-funnel-edit').style.zIndex = '1000';
                     promise();
                 } else {
                     document.querySelector('.exit-funnel-edit').classList.remove('display-flex');
