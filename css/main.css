@@ -1930,7 +1930,7 @@ td:nth-child(1){
 
 .popup__edit {
   max-width: 820px !important;
-  max-height: 100% !important;
+  max-height: 92% !important;
   border-radius: 20px;
   padding: 20px 20px 20px;
   margin: auto;
@@ -2320,7 +2320,6 @@ td:nth-child(1){
   position: absolute;
   left: 16px;
   top: 10px;
-  font-size: 10px;
   color: #757D8A;
 }
 /*.textarea-info:focus ~ .placeholder-textarea,*/
@@ -2613,10 +2612,10 @@ td:nth-child(1){
 }
 .popup-styles-buttons button{
   font-family: 'Inter';
-  font-size: 20px;
+  font-size: 14px;
   color: white;
   width: 100%;
-  padding: 10px 0;
+  padding: 20px 0;
   border-radius: 10px;
 }
 .popup-styles-button{

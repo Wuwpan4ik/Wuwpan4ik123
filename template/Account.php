@@ -140,13 +140,14 @@
 
                                         </div>
                                         <div class="social__blocks">
+                                            <h2>Укажите соц сети для клиентов</h2>
                                             <?php
                                             $options = ["vk", "whatsapp", "twitter", "facebook", "instagram", "youtube", "telegram", "site"];
                                             for($i = 0; $i<8; $i++){
                                                 if (is_null($content[2][0][$options[$i]])) continue;
                                                 ?>
                                             <div class="social__block">
-                                                <h2>Укажите соц сети для клиентов</h2>
+
                                                 <div class="field">
                                                     <div class="select-account social-network">
                                                         <div id="myMultiselect" class="multiselect">
@@ -168,6 +169,8 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
+
                                                     <div class="input_focus ">
                                                         <label for="username" class="label_focus">Укажите ссылку</label>
                                                         <input type="text" id="social__inpu" minlength="3" name="<?=$options[$i]?>" value="<?=$content[2][0][$options[$i]] ?>">
@@ -505,6 +508,10 @@
     <input type="hidden" id="tariff_buy" name="tariff_id">
 </form>
 <script src="/js/jquery-3.6.1.min.js"></script>
+    <script src="/js/getNotifications.js"></script>
+    <script src="/js/customInputs.js"></script>
+    <script src="/js/customSelect.js"></script>
+    <script src="/js/printFailName.js" ></script>
 <script>
     /*Popups*/
     let changeTariff = document.querySelector('.change-tariff-popup');
@@ -550,7 +557,6 @@
             return;
         }
         let div = `<div class="social__block">
-            <h2>Укажите соц сети для клиентов</h2>
             <div class="field">
                 <div class="select-account social-network">
                     <div id="myMultiselect" class="multiselect">
@@ -603,10 +609,7 @@
         })
     })
 </script>
-<script src="/js/getNotifications.js"></script>
-<script src="/js/customInputs.js"></script>
-<script src="/js/customSelect.js"></script>
-<script src="/js/printFailName.js" ></script>
+
 <script>
     let account_submit = $(function() {
         $('.account__form').each(function () {
