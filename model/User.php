@@ -53,7 +53,13 @@ class User {
 
     public function UserHaveAContacts()
     {
-        return $this->db->query("SELECT id FROM user_contacts WHERE user_id = " . $_SESSION['item_id']);
+        $flag = false;
+        foreach ($this->db->query("SELECT us.vk, us.instagram, us.whatsapp, us.telegram, us.facebook, us.youtube, us.twitter, us.site FROM user_contacts `us` WHERE user_id = {$_SESSION['item_id']}")[0] as $item) {
+            if (!is_null($item)) {
+                $flag = true;
+            }
+        }
+        return $flag;
     }
 
     public function getCheckedNotifications($user_id) {
@@ -78,6 +84,7 @@ class User {
                                                 content.count_view as 'count',
                                                 user_info.id as 'user_id',
                                                 user_info.avatar,
+                                                user_info.email,
                                                 user_info.first_name,
                                                 content.file_url
                                                 FROM `course_content` AS content

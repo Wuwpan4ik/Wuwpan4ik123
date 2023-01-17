@@ -145,7 +145,6 @@
                         $_SESSION['user']['first_name'] = $res[0]['first_name'];
                     }
                 } else {
-
                     $response = "Вам не разрешён доступ";
                     echo $response;
                     die(header("HTTP/1.0 404 Not Found"));

@@ -44,6 +44,9 @@
                                 <img src="/img/clear_input.svg" alt="">
                             </span>
                         </div>
+
+                        <div class="display-flex error" style="color: red; justify-content: center; text-align: center"></div>
+
 						<div class="button-send ">
 							<input type="submit" id="apps" value="Вход">
 						</div>

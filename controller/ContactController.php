@@ -42,9 +42,9 @@ class ContactController extends ACoreCreator {
                                                     '. $this->email .'
                                                 </span>
                                             </div>
-                                            <div class="qiestion" style="display:flex; justify-content: space-between">
+                                            <div class="qiestion" style="margin-bottom:20px;display:flex; justify-content: space-between">
                                                 <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
-                                                    Когда пришло:
+                                                    Вопрос:
                                                 </span>
                                                 <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
                                                     '. $question .'
@@ -88,24 +88,11 @@ class ContactController extends ACoreCreator {
         $body = $this->GetQuestionHTML($course[0]['name'], $user[0]['email'], date('Y-m-d H:i:s'), $question);
         $this->SendEmail($title, $body, $author_user[0]['email']);
         $this->addNotifications("item-like", 'Вам задали вопрос по курсу ' . $course[0]['name'], '/img/Notification/message.png', $author_id);
+        header("Location: /");
     }
 
     function get_content()
     {
-			echo '<!DOCTYPE html>
-					<html lang="en">
-					<head>
-					<meta charset="UTF-8">
-					<meta http-equiv="X-UA-Compatible" content="IE=edge">
-					<meta name="viewport" content="width=device-width, initial-scale=1.0">
-					<title>Document</title>
-					</head>
-					<body>
-						<script>
-							window.location.replace("/");
-						</script>
-					</body>
-					</html>';
     }
 
     function obr()

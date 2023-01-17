@@ -158,13 +158,15 @@ class AccountController extends ACoreCreator {
             $avatar = $user[0]['avatar'];
         }
 
-        foreach (array_keys($query_to_update_urls) as $item) {
-            $query_string .= "$item = '{$query_to_update_urls[$item]}',";
+        if ($query_to_update_urls) {
+            $query_string = '';
+            foreach (array_keys($query_to_update_urls) as $item) {
+                $query_string .= "$item = '{$query_to_update_urls[$item]}',";
+                $query_string = mb_substr($query_string, 0, -1);
+                $this->m->db->execute("UPDATE `user_contacts` SET $query_string WHERE user_id = {$user[0]['id']}");
+            }
         }
-        $query_string = mb_substr($query_string, 0, -1);
-        $_SESSION['error'] = "UPDATE `user_contacts` SET $query_string WHERE user_id = {$user[0]['id']}";
 
-        $this->m->db->execute("UPDATE `user_contacts` SET $query_string WHERE user_id = {$user[0]['id']}");
         $this->m->db->execute("UPDATE `user` SET `email` = '$email', `birthday` = '$birthday', `first_name` = '$first_name', `second_name` = '$second_name', `telephone` = '$phone', `currency` = '$currency', `city` = '$city', `country` = '$country' WHERE id = {$user[0]['id']}");
         $this->m->db->execute("UPDATE `user` SET `avatar` = '$avatar' WHERE id = {$user[0]['id']}");
 

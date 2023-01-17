@@ -7,13 +7,14 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <title><?php echo htmlspecialchars($content[0]['name'])?></title>
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/UserMain.css">
     <link rel="stylesheet" href="/css/smallPlayer.css">
     <link rel="stylesheet" href="/css/courseplayer.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/notifications.css">
 
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
@@ -171,7 +172,7 @@
             <div class="question  userPopup__body">
                 <div class=" question ">
                     <div class="popup__buy-register">
-                        <form id="formQuest" method="POST" action="/ContactController/sendQuestions">
+                        <form class="question__form" id="formQuest" method="POST" action="/ContactController/sendQuestions">
                             <input type="hidden" value="<?=$content[0]['user_id'] ?>" name="author_id" id="question_author-id">
                             <?php if (!isset($_SESSION['user']['first_name'])) { ?>
                                 <div class="popup__buy-body-form question input">
@@ -185,7 +186,7 @@
                                 <div class="popup__bonus-form-input-email input-img">
                                     <img src="../img/smallPlayer/email.svg" alt="">
                                 </div>
-                                <input name="email" type="email" value="<?php echo isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : 'Введите имя '?>" readonly>
+                                <input name="email" type="email" value="<?=$content[0]['email']?>" readonly>
                             </div>
                             <div class="popup__buy-body-form question-textarea">
                                 <div class="popup__bonus-form-input-email input-img">
@@ -193,15 +194,15 @@
                                 </div>
                                 <textarea name="question" placeholder="Ваш вопрос"></textarea>
                             </div>
+                            <div class="question-form">
+                                <div class="userPopup__button questionBack backBtn">
+                                    <button type="button" id="close__question" class="courseBackBtn">Назад</button>
+                                </div>
+                                <div class="Сourse-question userPopup__button">
+                                    <button id="sendQuest" type="submit">Отправить</button>
+                                </div>
+                            </div>
                         </form>
-                    </div>
-                    <div class="question-form">
-                        <div class="userPopup__button questionBack backBtn">
-                            <button id="close__question" class="courseBackBtn">Назад</button>
-                        </div>
-                        <div class="Сourse-question userPopup__button">
-                            <button id="sendQuest" type="submit">Отправить</button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -211,100 +212,115 @@
         <?=$content[0]['content_name']?>
     </div>
 </div>
-    <script>
-        function get_file_url(url) {
-            const a = document.createElement('a')
-            a.href = url
-            a.download = document.querySelector('.file_name-download').innerHTML.trim()
-            document.body.appendChild(a)
-            a.click()
-            document.body.removeChild(a)
 
-        }
-    </script>
-    <script>
-        const sourceVideo = document.querySelectorAll('#UserPlayerVideo'),
-            questionOpen = document.getElementById('send__questions'),
-            buttonBack = document.getElementById('close__question'),
-            questionBacks = document.querySelector('.questionBackground'),
-            pauseBtn = document.querySelector('.firstPauseButton');
-
-        questionOpen.onclick = ()=>{
-            sourceVideo[0].pause();
-            questionBacks.classList.add('active');
-            pauseBtn.classList.add('active')
-        }
-        buttonBack.onclick = () =>{
-            if(document.querySelector('.youWatching').classList.contains('active')){
-
-            }else{
-                sourceVideo[0].play();
-                pauseBtn.classList.remove('active');
-            }
-            questionBacks.classList.remove('active');
-        }
-
-
-        if (sourceVideo.ended) {
-            let request = new XMLHttpRequest();
-            let url = "/Course/"+ <?php $content[0]['count'] ?> +"/AddView";
-            request.open('POST', url);
-            request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-            request.addEventListener("readystatechange", () => {
-                if (request.readyState === 4 && request.status === 200) {
-                }
+<script src="/js/jquery-3.6.1.min.js"></script>
+<script src="/js/notifications.js"></script>
+<script>
+    $(function() {
+        $('.question__form').each(function (){
+            $(this).submit(function(e) {
+                e.preventDefault();
+                $.post(e.target.action, $(this).serialize());
+                AddNotifications("Вопрос успешно отправлен");
             });
-            request.send();
-        }
+        })
+    });
+</script>
+<script>
+    function get_file_url(url) {
+        const a = document.createElement('a')
+        a.href = url
+        a.download = document.querySelector('.file_name-download').innerHTML.trim()
+        document.body.appendChild(a)
+        a.click()
+        document.body.removeChild(a)
 
-        mirrorVideo.src = sourceVideo[0].src;
-    </script>
+    }
+</script>
+<script>
+    const sourceVideo = document.querySelectorAll('#UserPlayerVideo'),
+        questionOpen = document.getElementById('send__questions'),
+        buttonBack = document.getElementById('close__question'),
+        questionBacks = document.querySelector('.questionBackground'),
+        pauseBtn = document.querySelector('.firstPauseButton');
+
+    questionOpen.onclick = ()=>{
+        sourceVideo[0].pause();
+        questionBacks.classList.add('active');
+        pauseBtn.classList.add('active')
+    }
+    buttonBack.onclick = () =>{
+        if(document.querySelector('.youWatching').classList.contains('active')){
+
+        }else{
+            sourceVideo[0].play();
+            pauseBtn.classList.remove('active');
+        }
+        questionBacks.classList.remove('active');
+    }
+
+
+    if (sourceVideo.ended) {
+        let request = new XMLHttpRequest();
+        let url = "/Course/"+ <?php $content[0]['count'] ?> +"/AddView";
+        request.open('POST', url);
+        request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+        request.addEventListener("readystatechange", () => {
+            if (request.readyState === 4 && request.status === 200) {
+            }
+        });
+        request.send();
+    }
+
+    mirrorVideo.src = sourceVideo[0].src;
+</script>
 
 <!--Открытие попапа Вопроса-->
-    <script>
-        function toggleQuestions() {
-            document.querySelector('.question').classList.toggle('active');
-        }
-        document.getElementById('send__questions').addEventListener('click', function (){
-            toggleQuestions();
-        })
-        document.querySelector('#close__question').addEventListener('click', function (){
-            toggleQuestions();
-        })
-    </script>
+<script>
+    function toggleQuestions() {
+        document.querySelector('.question').classList.toggle('active');
+    }
+    document.getElementById('send__questions').addEventListener('click', function (){
+        toggleQuestions();
+    })
+    document.querySelector('#close__question').addEventListener('click', function (){
+        toggleQuestions();
+    })
+</script>
 
-    <script>
-    function startAccordion() {
-        let accordionButton = document.querySelectorAll(".accordion-button");
-        accordionButton.forEach( item => {
+<script>
+function startAccordion() {
+    let accordionButton = document.querySelectorAll(".accordion-button");
+    accordionButton.forEach( item => {
 
 
-            item.onclick = function () {
+        item.onclick = function () {
 
-                item.classList.toggle('active');
-                item.parentElement.querySelectorAll(".accordion-content").forEach( el => {
-                    el.classList.toggle('active');
-                })
-                if(item.classList.contains('active')){
-                    accordionButton.forEach(el => {
+            item.classList.toggle('active');
+            item.parentElement.querySelectorAll(".accordion-content").forEach( el => {
+                el.classList.toggle('active');
+            })
+            if(item.classList.contains('active')){
+                accordionButton.forEach(el => {
+                    el.classList.remove('active');
+                    el.parentElement.querySelectorAll(".accordion-content").forEach( el => {
                         el.classList.remove('active');
-                        el.parentElement.querySelectorAll(".accordion-content").forEach( el => {
-                            el.classList.remove('active');
-                        })
-                        item.classList.add('active');
-                        item.parentElement.querySelectorAll(".accordion-content").forEach( el => {
-                            el.classList.add('active');
-                        })
                     })
-                }
-
-
+                    item.classList.add('active');
+                    item.parentElement.querySelectorAll(".accordion-content").forEach( el => {
+                        el.classList.add('active');
+                    })
+                })
             }
 
-        })
-    }
-    startAccordion()
+
+        }
+
+    })
+}
+startAccordion()
 </script>
 <script src="/js/playerCourse.js"></script>
+    <?php include 'template/default/notificationsPopup.php' ?>
 </body>
 </html>
