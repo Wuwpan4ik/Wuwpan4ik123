@@ -9,9 +9,19 @@
             <button onclick="deleteDirectory(this)"><img src="/img/Delete.svg" alt=""></button>
         </div>
     </div>
-    <video id="123" class="media-cart-img" style=" object-fit: cover;">
-        <source class="video" src=".<?=$v['video']?>"/>
-    </video>
+        <div class="video-container">
+            <video id="123" class="media-cart-img" style=" object-fit: cover;">
+                <source class="video" src=".<?=$v['video']?>"/>
+            </video>
+            <div class="slider__darkness">
+
+            </div>
+        </div>
+
+
+
+
+
     <img src="<?=$v['thubnails'] ?>" alt="">
 
     <form method="POST" class="new_name media__form" enctype="multipart/form-data" action="/<?php if(strstr($_SERVER['REQUEST_URI'], 'Course')) {echo 'Course';} else {echo 'Funnel';} ?>/<?=$v['id']?>/rename">

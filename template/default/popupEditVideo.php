@@ -14,8 +14,14 @@
             <div class="popup__body-block">
                 <!--Прелоудер-->
                 <div class="slider__item">
-                    <div class="slider__video popup-video">
+                    <div class="video-container">
+                        <div class="slider__video popup-video">
+                        </div>
+                        <div class="slider__darkness">
+
+                        </div>
                     </div>
+
                     <div class="slider__header _conatiner-player ">
                         <div class="slider__header-logo">
                             <div class="slider__header-logo-img">
