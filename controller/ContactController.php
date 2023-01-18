@@ -29,7 +29,7 @@ class ContactController extends ACoreCreator {
                                     </h2>
                                     <div style="color: rgba(0, 0, 0, 0.6);font-size:16px;font-weight:400;background:#EFF3F6; padding-top:12px;padding-bottom: 12px;padding-left: 20px;padding-right: 20px;">
                                         <!--Здесь выводим само обращение, которое написал юзер-->
-                                        Спасибо, что вы зарегистрировались в Сourse Сreator! Ниже важная информация о вашем аккаунте. Пожалуйста, сохраните это письмо, чтобы можно было обратиться к нему позже.
+                                        '. $question .'
                                     </div>
                                     <div class="info_account" style="margin-top: 20px;">
                                         <table style="width:100%;padding-top: 30px;border-top: 1px dashed rgba(0, 0, 0, 0.2);margin-bottom: 0px;">
@@ -50,15 +50,6 @@ class ContactController extends ACoreCreator {
                                                     <th></th>
                                                     <th style="text-align:end;">
                                                         '. $email .'
-                                                    </th>
-                                                </tr>
-                                                <tr>
-                                                    <th style="text-align:start;">
-                                                        Текст вопроса:
-                                                    </th>
-                                                    <th></th>
-                                                    <th style="text-align:end;">
-                                                        '. $question .'
                                                     </th>
                                                 </tr>
                                                 <tr>
