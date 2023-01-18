@@ -112,12 +112,12 @@
                             </div>
                             <form action="/Funnel-select/<?=$p['id']?>" method="POST">
                                 <input type="text" name="id" hidden="hidden" value="<?=$p['id']?>">
-                                <select onfocusout="course__send(this)" name="course_id" class="select__course">
+                                <select onfocusout="course__send(this)" <?php if (is_null($content[1][0])) echo 'disabled="disabled"'?> name="course_id" class="select__course">
                                     <?php if (!is_null($content[1][0]) && isset($content[1][0])) {
                                         foreach ($content[1] as $course) { ?>
                                             <option <?php if ($p['course_id'] == $course['id']) echo "selected";?> value="<?=$course['id']?>"><?=$course['name']?> </option>
                                         <?php } } else { ?>
-                                        <option>Нет курсов для выбора</option>
+                                        <option selected="true" disabled="disabled">Нет курсов для выбора</option>
                                     <?php } ?>
                                 </select>
                             </form>

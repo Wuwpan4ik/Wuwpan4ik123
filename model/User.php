@@ -1,10 +1,12 @@
 <?php
 class User {
     public $db;
+    protected $date;
 
     public function __construct() {
         require_once 'connect.php';
         date_default_timezone_set('Europe/Moscow');
+        $this->date = date("Y-m-d");
         $this->db = $db;
     }
 
@@ -461,19 +463,18 @@ class User {
     }
 
 //    Course Add View
-//
-//    public function GetCourseView($id)
-//    {
-//        $count = $this->db->query("SELECT `count_view` FROM `funnel_content` WHERE id = '$id'")[0]['count_view'];
-//        return $count;
-//    }
-//
-//    public function AddCourseView($id, $count)
-//    {
-//        $count += 1;
-//        $this->db->execute("UPDATE `funnel_content` SET `count_view`  = {$count} WHERE id = {$id}");
-//        return true;
-//    }
+    public function GetCourseView($id)
+    {
+        $count = $this->db->query("SELECT `count_view` FROM `funnel_content` WHERE id = '$id'")[0]['count_view'];
+        return $count;
+    }
+
+    public function AddCourseView($id, $count)
+    {
+        $count += 1;
+        $this->db->execute("UPDATE `funnel_content` SET `count_view`  = {$count} WHERE id = {$id}");
+        return true;
+    }
 
     public function GetTariff($user_id)
     {

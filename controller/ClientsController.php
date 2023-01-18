@@ -7,90 +7,100 @@
 
         private function GetApplicationHtml ($email, $phone = null, $name = null, $name_funnel = null, $number_slide = null) {
             $result = '<html lang="RU">
-                        <head>
-                            <meta charset="UTF-8">
-                            <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        </head>
-                        <body style="padding:0px;margin:0px;max-width: 800px;font-family: Verdana, Geneva, Tahoma, sans-serif;background: #EFEFEF;">
-                            <div class="envelope-body" style="background:white;">
-                                <div class="first_row">
-                                    <img style="width:100%;" src="https://course-creator.io/envelope-images/envelope-zayavka.jpg" alt="Добро пожаловать в Course Creator!">
-                                </div>
-                                <div class="second_row" style="padding:40px;">
-                                    <h2 style="font-size:24px;font-weight: 400;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;">
-                                        Вам пришла заявка!
-                                    </h2>
-                                    <span style="color: rgba(0, 0, 0, 0.6);font-size:16px;font-weight:400;">
-                                        Спасибо, что вы зарегистрировались в Сourse Сreator! Ниже важная информация о вашем аккаунте. Пожалуйста, сохраните это письмо, чтобы можно было обратиться к нему позже.
-                                    </span>
-                                    <div class="info_account" style="display:-webkit-box;
-                                    display:-ms-flexbox;
-                                    display:flex;-webkit-box-pack: justify;-ms-flex-pack: justify;justify-content: space-between;gap: 20px;margin-top: 40px;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;">
-                                        <div class="whereFrom" style="border-bottom: 1px dashed rgba(0, 0, 0, 0.2);border-top: 1px dashed rgba(0, 0, 0, 0.2);width:100%;padding-top:30px;padding-bottom: 30px;">
-                                            <div class="from" style="margin-bottom: 20px;display:-webkit-box;
-                                            display:-ms-flexbox;
-                                            display:flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between">
-                                                <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
-                                                    Откуда заявка:
-                                                </span>
-                                                <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
-                                                    '. $name_funnel .'
-                                                </span>
-                                            </div>
-                                            <div class="where" style="display:-webkit-box;
-                                            display:-ms-flexbox;
-                                            display:flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between">
-                                                <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
-                                                    На каком слайде:
-                                                </span>
-                                                <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
-                                                    Слайд №'. $number_slide .'
-                                                </span>
-                                            </div>
+                            <head>
+                                <meta charset="UTF-8">
+                                <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+                                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                            </head>
+                            <body style="padding:0px;margin:0px;max-width: 800px;font-family: Verdana, Geneva, Tahoma, sans-serif;background: #EFEFEF;">
+                                <style>
+                                    td, th{
+                                        font-size: 16px;
+                            font-weight: 400;
+                            color: #666666;
+                                        padding:10px 0px;
+                                    }
+                                </style>
+                                <div class="envelope-container" style="max-width: 500px;width:100%;margin:0 auto;">
+                                    <div class="envelope-body" style="background:white;">
+                                        <div class="first_row">
+                                            <img style="width:100%;" src="https://course-creator.io/envelope-images/envelope-zayavka.jpg" alt="Добро пожаловать в Course Creator!">
                                         </div>
-                                        <div class="whom" style="padding-bottom: 30px;border-bottom: 1px dashed rgba(0, 0, 0, 0.2);margin-bottom: 30px;">
-                                            <div class="email" style="margin-bottom:20px;display:-webkit-box;
-                                            display:-ms-flexbox;
-                                            display:flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between">
-                                                <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
-                                                    Email:
-                                                </span>
-                                                <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
-                                                    '. $email .'
-                                                </span>
-                                            </div>';
+                                        <div class="second_row" style="padding:40px;">
+                                            <h2 style="font-size:24px;font-weight: 400;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;">
+                                                Вам пришла заявка!
+                                            </h2>
+                                            <span style="color: rgba(0, 0, 0, 0.6);font-size:16px;font-weight:400;">
+                                                Спасибо, что вы зарегистрировались в Сourse Сreator! Ниже важная информация о вашем аккаунте. Пожалуйста, сохраните это письмо, чтобы можно было обратиться к нему позже.
+                                            </span>
+                                            <table style="width:100%;margin-top: 40px;border-bottom: 1px dashed rgba(0, 0, 0, 0.2);border-top: 1px dashed rgba(0, 0, 0, 0.2);width:100%;padding-top:30px;padding-bottom: 30px;">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="text-align:start;">
+                                                            Откуда заявка:
+                                                        </th>
+                                                        <th style="text-align: end;">
+                                                            '. $name_funnel .'
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="text-align:start;">
+                                                            На каком слайде:
+                                                        </th>
+                                                        <th>
+                            
+                                                        </th>
+                                                        <th style="text-align: end;">
+                                                            Слайд №'. $number_slide .'
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        <table style="width:100%;padding-bottom:20px;padding-top:20px;border-bottom: 1px dashed rgba(0, 0, 0, 0.2);margin-bottom:30px;">
+                                            <thead>
+                                                <tr>
+                                                    <th style="text-align:start;">
+                                                        Email:
+                                                    </th>
+                                                    <th>
+                                
+                                                    </th>
+                                                    <th style="text-align: end;">
+                                                        '. $email .'
+                                                    </th>
+                                                </tr>';
             if (!is_null($name)) {
                 $result .= '
-                                            <div class="person" style="margin-bottom:20px;display:-webkit-box;
-                                            display:-ms-flexbox;
-                                            display:flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between">
-                                                <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
+                                            <tr>
+                                                <th style="text-align:start;">
                                                     Имя:
-                                                </span>
-                                                <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
+                                                </th>
+                                                <th>
+                                                </th>
+                                                <th style="text-align: end;">
                                                     '. $name .'
-                                                </span>
-                                            </div>
+                                                </th>
+                                            </tr>
                                             ';
             }
             if (!is_null($phone)) {
                 $result .= '
-                <div class="phone" style="display:-webkit-box;
-                                            display:-ms-flexbox;
-                                            display:flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between">
-                                                <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
+                                            <tr>
+                                                <th style="text-align:start;">
                                                     Телефон:
-                                                </span>
-                                                <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
+                                                </th>
+                                                <th>
+                    
+                                                </th>
+                                                <th style="text-align: end;">
                                                     '. $phone .'
-                                                </span>
-                                            </div>';
+                                                </th>
+                                            </tr>';
             }
 
             $result .= '
-                                        </div>
-                                    </div>
+                                        </thead>
+                                    </table>
                                     <div class="link_account">
                                         <div class="first_row" style="width:100%">
                                             <p style="font-weight:700;font-size:14px;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;color: rgba(0, 0, 0, 0.9);">
@@ -106,69 +116,74 @@
                                 </div>
                             </div>
                             <div class="envelope_info_bottom" style="text-align: center;margin-top:20px;margin-bottom: 20px;">
-                                <div>
+                                <div style="font-size:12px;">
                                     Если у вас есть вопросы, пожалуйста, напишите <br> в службу поддержки: <a href="mailto:support@course-creator.io">support@course-creator.io</a>
                                 </div>
                             </div>
-                        </body>
-                        </html>';
+                        </div>
+                    </body>';
+
+            return $result;
         }
 
         private function GetRegistrationUserHtml ($email, $password) {
             return '<html lang="RU">
-                    <head>
-                        <meta charset="UTF-8">
-                        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    </head>
-                    <body style="padding:0px;margin:0px;max-width: 800px;font-family: Verdana, Geneva, Tahoma, sans-serif;background: #EFEFEF;">
-                        <div class="envelope-body" style="background:white;">
-                            <div class="first_row">
-                                <img style="width:100%;" src="https://course-creator.io/envelope-images/envelope-welcome.jpg" alt="Добро пожаловать в Course Creator!">
-                            </div>
-                            <div class="second_row" style="padding:40px;">
-                                <h2 style="font-size:24px;font-weight: 400;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;">
-                                    Вы приобрели курс!
-                                </h2>
-                                <span style="color: rgba(0, 0, 0, 0.6);font-size:16px;font-weight:400;">
-                                    Спасибо, что вы зарегистрировались в Сourse Сreator! Ниже важная информация о вашем аккаунте. Пожалуйста, сохраните это письмо, чтобы можно было обратиться к нему позже.
-                                </span>
-                                <div class="info_account" style="display:-webkit-box;
-                                display:-ms-flexbox;
-                                display:flex;-webkit-box-pack: justify;-ms-flex-pack: justify;justify-content: space-between;gap: 20px;margin-top: 40px;">
-                                    <div class="first_row" style="width:50%">
-                                        <p style="font-weight:700;font-size:14px;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;color: rgba(0, 0, 0, 0.9);">
-                                            Ваша почта:
-                                        </p>
-                                        <div style="color: #8098AB;background: #EFF3F6;border-radius: 3px;padding-top: 15px;padding-bottom: 15px;padding-right: 20px;padding-left: 20px;">
-                                            ' . $email . '
-                                        </div>
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        </head>
+                        <body style="padding:0px;margin:0px;max-width: 800px;font-family: Verdana, Geneva, Tahoma, sans-serif;background: #EFEFEF;">
+                            <div class="envelope-container" style="max-width: 500px;
+                            width: 100%;
+                            margin: 0 auto;">
+                                <div class="envelope-body" style="background:white;">
+                                    <div class="first_row">
+                                        <img style="width:100%;" src="https://course-creator.io/envelope-images/envelope-welcome.jpg" alt="Добро пожаловать в Course Creator!">
                                     </div>
-                                    <div class="second_row" style="width:50%">
-                                        <p style="font-weight:700;font-size:14px;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;color: rgba(0, 0, 0, 0.9);">
-                                            Ваш пароль:
-                                        </p>
-                                        <div style="color: #8098AB;background: #EFF3F6;border-radius: 3px;padding-top: 15px;padding-bottom: 15px;padding-right: 20px;padding-left: 20px;">
-                                            ' . $password . '
+                                    <div class="second_row" style="padding:40px;">
+                                        <h2 style="font-size:24px;font-weight: 400;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;">
+                                            Вы приобрели курс!
+                                        </h2>
+                                        <span style="color: rgba(0, 0, 0, 0.6);font-size:16px;font-weight:400;">
+                                            Спасибо, что вы зарегистрировались в Сourse Сreator! Ниже важная информация о вашем аккаунте. Пожалуйста, сохраните это письмо, чтобы можно было обратиться к нему позже.
+                                        </span>
+                                        <div class="info_account" style="margin-top: 40px;">
+                                            <div class="first_row" style="width:100%">
+                                                <p style="font-weight:700;font-size:14px;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;color: rgba(0, 0, 0, 0.9);">
+                                                    Ваша почта:
+                                                </p>
+                                                <div style="color: #8098AB;background: #EFF3F6;border-radius: 3px;padding-top: 15px;padding-bottom: 15px;padding-right: 20px;padding-left: 20px;">
+                                                    '. $email .'
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="second_row" style="width:100%">
+                                                <p style="font-weight:700;font-size:14px;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;color: rgba(0, 0, 0, 0.9);">
+                                                    Ваш пароль:
+                                                </p>
+                                                <div style="color: #8098AB;background: #EFF3F6;border-radius: 3px;padding-top: 15px;padding-bottom: 15px;padding-right: 20px;padding-left: 20px;">
+                                                    '. $password .'
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="link_account" style="margin-top: 20px;">
+                                            <a href="https://course-creator.io/UserLogin" target="_blank">
+                                                <button style="width:100%; height:48px;border:none;font-size:16px;border-radius: 10px;background: linear-gradient(299.36deg, rgba(55, 101, 223, 0.93) 0%, rgba(100, 162, 255, 0.96) 100%);color:white;cursor: pointer;">
+                                                    Перейти в аккаунт
+                                                </button>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="link_account" style="margin-top: 20px;">
-                                    <a href="https://course-creator.io/UserLogin" target="_blank">
-                                        <button style="width:100%; height:48px;border:none;font-size:16px;border-radius: 10px;background: linear-gradient(299.36deg, rgba(55, 101, 223, 0.93) 0%, rgba(100, 162, 255, 0.96) 100%);color:white;cursor: pointer;">
-                                            Перейти в аккаунт
-                                        </button>
-                                    </a>
+                                <div class="envelope_info_bottom" style="text-align: center;margin-top:20px;margin-bottom: 20px;">
+                                    <div style="font-size:12px;">
+                                        Если у вас есть вопросы, пожалуйста, напишите <br> в службу поддержки: <a href="mailto:support@course-creator.io">support@course-creator.io</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="envelope_info_bottom" style="text-align: center;margin-top:20px;margin-bottom: 20px;">
-                            <div>
-                                Если у вас есть вопросы, пожалуйста, напишите <br> в службу поддержки: <a href="mailto:support@course-creator.io">support@course-creator.io</a>
-                            </div>
-                        </div>
-                    </body>
-                    </html>';
+                        </body>
+                        </html>';
         }
 
         private function GetRegistrationClientHtml($name, $cost, $email, $course_count, $phone = null, $user_name = null, $number_funnel = null, $number_slide = null)
@@ -181,140 +196,171 @@
                             <meta name="viewport" content="width=device-width, initial-scale=1.0">
                         </head>
                         <body style="padding:0px;margin:0px;max-width: 800px;font-family: Verdana, Geneva, Tahoma, sans-serif;background: #EFEFEF;">
-                            <div class="envelope-body" style="background:white;">
-                                <div class="first_row">
-                                    <img style="width:100%;" src="https://course-creator.io/envelope-images/envelope-zayavka.jpg" alt="Добро пожаловать в Course Creator!">
-                                </div>
-                                <div class="second_row" style="padding:40px;">
-                                    <h2 style="font-size:24px;font-weight: 400;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;">
-                                        Поздравляем, у вас купили курс!
-                                    </h2>
-                                    <span style="color: rgba(0, 0, 0, 0.6);font-size:16px;font-weight:400;">
-                                        Спасибо, что вы зарегистрировались в Сourse Сreator! Ниже важная информация о вашем аккаунте. Пожалуйста, сохраните это письмо, чтобы можно было обратиться к нему позже.
-                                    </span>
-                                    <div class="info_account" style="display:-webkit-box;
-                                    display:-ms-flexbox;
-                                    display:flex;-webkit-box-pack: justify;-ms-flex-pack: justify;justify-content: space-between;gap: 20px;margin-top: 40px;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;">
-                                        <div class="whereFrom" style="border-bottom: 1px dashed rgba(0, 0, 0, 0.2);border-top: 1px dashed rgba(0, 0, 0, 0.2);width:100%;padding-top:30px;padding-bottom: 30px;">
-                                            
-                                            <div class="courseInfo" style="margin-bottom: 30px;background: #EFF3F6;border-radius: 10px;padding:10px;">
-                                                <div class="infoCourse" style="display:-webkit-box;
-                                                display:-ms-flexbox;
-                                                display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack: justify;-ms-flex-pack: justify;justify-content: space-between;">
-                                                    <div class="innerCS" style="display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-align: center;-ms-flex-align: center;align-items: center;">
-                                                        <div class="imageCourse" style="width:76px;height:100px;">
-                                                            <!--Выводим превью курса-->
-                                                            <img src="https://course-creator.io/envelope-images/envelope-zayavka.jpg" alt="Название курса" width="76px" height="100px" style="object-fit: cover;object-position:center;border-radius:6px">
-                                                        </div>
-                                                        <div class="aboutCourse" style="margin-left:20px;">
-                                                            <div class="infoUrk">
-                                                                <span style="text-align:center;background: #4DAA21;color:white;font-size:10px;font-weight:500;padding-top:4px;padding-bottom:4px;padding-right:6px;padding-left:6px;text-align: center;border-radius: 10px;">
+                            <style>
+                                td, th{
+                                    font-size: 16px;
+                        font-weight: 400;
+                        color: #666666;
+                                    padding:10px 0px;
+                                }
+                            </style>
+                            <div class="envelope-container" style="max-width: 500px;
+                            width: 100%;
+                            margin: 0 auto;">
+                                <div class="envelope-body" style="background:white;">
+                                    <div class="first_row">
+                                        <img style="width:100%;" src="https://course-creator.io/envelope-images/envelope-zayavka.jpg" alt="Добро пожаловать в Course Creator!">
+                                    </div>
+                                    <div class="second_row" style="padding:40px;">
+                                        <h2 style="font-size:24px;font-weight: 400;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;">
+                                            Поздравляем, у вас купили курс!
+                                        </h2>
+                                        <span style="color: #666666;font-size:16px;font-weight:400;">
+                                            Спасибо, что вы зарегистрировались в Сourse Сreator! Ниже важная информация о вашем аккаунте. Пожалуйста, сохраните это письмо, чтобы можно было обратиться к нему позже.
+                                        </span>
+                                        <div class="info_account" style="display:-webkit-box;
+                                        display:-ms-flexbox;
+                                        display:flex;-webkit-box-pack: justify;-ms-flex-pack: justify;justify-content: space-between;gap: 20px;margin-top: 40px;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;">
+                                            <div class="whereFrom" style="border-bottom: 1px dashed rgba(0, 0, 0, 0.2);border-top: 1px dashed rgba(0, 0, 0, 0.2);width:100%;padding-top:30px;padding-bottom: 30px;">
+                                                
+                                                <table style="width:100%;margin-bottom: 30px;
+                                                background: #EFF3F6;
+                                                border-radius: 10px;
+                                                padding: 10px;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="text-align:start;width:76px;">
+                                                                <img src="https://course-creator.io/envelope-images/envelope-zayavka.jpg" alt="Название курса" width="76px" height="100px" style="object-fit: cover;object-position:center;border-radius:6px">
+                                                            </th>
+                                                            <th style="width:10px;"></th>
+                                                            <th style="text-align:start;">
+                                                                <span style="width:20px;height:20px;text-align:center;background: #4DAA21;color:white;font-size:10px;font-weight:500;padding-top:4px;padding-bottom:4px;padding-right:6px;padding-left:6px;text-align: center;border-radius: 10px;">
                                                                     Курс
                                                                 </span>
-                                                                <span style="font-size:10px;font-weight:300;color: rgba(0, 0, 0, 0.6);margin-left:9px;">
-                                                                    <!--Выводим кол-во уроков-->
+                                                                <span style="font-size:10px;font-weight:300;margin-left:9px;">
                                                                     '. $course_count .' урока
                                                                 </span>
-                                                            </div>
-                                                            <div class="nameCourse" style="font-size:14px;color: rgba(0, 0, 0, 0.6);margin-top:11px;">
-                                                                <!--Выводим название курса-->
-                                                                '. $name .'
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="priceCourse" style="display: -webkit-box;
-                                                    display: -ms-flexbox;
-                                                    display: flex;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;text-align: end;">
-                                                        <span style="font-size:10px;font-weight:300;color: rgba(0, 0, 0, 0.6);">
-                                                            Стоимость заказа
-                                                        </span>
-                                                        <span style="font-size:14px;font-weight:500;color: rgba(0, 0, 0, 0.6);margin-top:11px;">
-                                                            '. $cost .' ₽
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>';
+                                                                <br>
+                                                                <p style="font-size: 14px;
+                                                                color: #666666;
+                                                                margin-top: 11px;">
+                                                                    '. $name .'
+                                                                </p>
+                                                            </th>
+                                                            <th style="text-align: end;width:70px;">
+                                                                <p style="font-size:10px;font-weight:300;color: #666666;">
+                                                                    Стоимость заказа
+                                                                </p>
+                                                                <span style="font-size:14px;font-weight:500;color: #666666;margin-top:11px;">
+                                                                    '. $cost .' ₽
+                                                                </span>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                                <table>';
             if (!is_null($number_funnel)) {
                 $result .= '
-                                        <div class="from" style="margin-bottom: 20px;display:-webkit-box;display:-ms-flexbox;display:flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between">
-                                            <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
-                                                Откуда заявка:
-                                            </span>
-                                            <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
-                                                '. $number_funnel .'
-                                            </span>
-                                        </div>';
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align:start;width:50%">
+                                                    Откуда заявка:
+                                                </th>
+                                                <th style="width:100px"></th>
+                                                <th style="text-align:end;width:50%">
+                                                    Воронка №'. $number_funnel .'
+                                                </th>
+                                            </tr>
+                                        </thead>';
             }
             if (!is_null($number_slide)) {
                 $result .= '
-                                        <div class="where" style="display:-webkit-box;display:-ms-flexbox;display:flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between">
-                                            <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
-                                                На каком слайде:
-                                            </span>
-                                            <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
-                                                Слайд №'. $number_slide .'
-                                            </span>
-                                        </div>';
+                                        <tbody>
+                                            <tr>
+                                                <th style="text-align:start" scope="row">
+                                                    На каком слайде:
+                                                </th>
+                                                <td style="width:100px">
+                                                    
+                                                </td>
+                                                <td style="text-align:end">
+                                                    Слайд №'. $number_slide .'
+                                                </td>
+                                            </tr>
+                                        </tbody>';
             }
             $result .= '
-                                    </div>
-                                    <div class="whom" style="padding-top:30px;padding-bottom: 10px;border-bottom: 1px dashed rgba(0, 0, 0, 0.2);margin-bottom: 30px;">
-                  ';
+                                    </table>
+                                    <table>';
             if (!is_null($user_name)) {
             $result .= '
-                                        <div class="person" style="margin-bottom:20px;display:-webkit-box;display:-ms-flexbox;display:flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between">
-                                            <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
-                                                Имя:
-                                            </span>
-                                            <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
-                                                '. $user_name .'
-                                            </span>
-                                        </div>';
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align:start">
+                                                    Имя:
+                                                </th>
+                                                <td style="width:100px">
+                                                    
+                                                </td>
+                                                <td style="text-align:end">
+                                                    '. $user_name .'
+                                                </td>
+                                            </tr>
+                                        </thead>';
             };
+            $result .= '<tbody>';
             if (!is_null($phone)) {
                 $result .= '
-                                        <div class="phone" style="display:-webkit-box;display:-ms-flexbox;display:flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between">
-                                            <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
+                                        <tr>
+                                            <th style="text-align:start" scope="row">
                                                 Телефон:
-                                            </span>
-                                            <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
+                                            </th>
+                                            <td style="width:100px">
+            
+                                            </td>
+                                            <td style="text-align:end">
                                                 '. $phone .'
-                                            </span>
-                                        </div>';
+                                            </td>
+                                        </tr>';
             };
             $result .= '
-                                        <div class="email" style="margin-bottom:20px;display:-webkit-box;display:-ms-flexbox;display:flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between">
-                                            <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
+                                        <tr>
+                                            <th style="text-align:start" scope="row">
                                                 Email:
-                                            </span>
-                                            <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
+                                            </th>
+                                            <td style="width:100px">
+                                                
+                                            </td>
+                                            <td style="text-align:end">
                                                 '. $email .'
-                                            </span>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                <div class="link_account">
-                                    <div class="first_row" style="width:100%">
-                                        <p style="font-weight:700;font-size:14px;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;color: rgba(0, 0, 0, 0.9);">
-                                            Смотрите другие заявки на сайте:
-                                        </p>
-                                        <div style="background: #EFF3F6;border-radius: 3px;padding-top: 15px;padding-bottom: 15px;padding-right: 20px;padding-left: 20px;">
-                                            <a href="https://course-creator.io/" target="_blank" style="color: #8098AB;">
-                                                https://course-creator.io/
-                                            </a>
-                                        </div>
-                                    </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="link_account" style="margin-top:30px;">
+                            <div class="first_row" style="width:100%">
+                                <p style="font-weight:700;font-size:14px;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;color: rgba(0, 0, 0, 0.9);">
+                                    Смотрите другие заявки на сайте:
+                                </p>
+                                <div style="background: #EFF3F6;border-radius: 3px;padding-top: 15px;padding-bottom: 15px;padding-right: 20px;padding-left: 20px;">
+                                    <a href="https://course-creator.io/" target="_blank" style="color: #8098AB;">
+                                        https://course-creator.io/
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="envelope_info_bottom" style="text-align: center;margin-top:20px;margin-bottom: 20px;">
-                            <div>
-                                Если у вас есть вопросы, пожалуйста, напишите <br> в службу поддержки: <a href="mailto:support@course-creator.io">support@course-creator.io</a>
-                            </div>
-                        </div>
-                    </body>
-                    </html>';
+                    </div>
+                </div>
+                <div class="envelope_info_bottom" style="text-align: center;margin-top:20px;margin-bottom: 20px;">
+                    <div style="font-size:12px;">
+                        Если у вас есть вопросы, пожалуйста, напишите <br> в службу поддержки: <a href="mailto:support@course-creator.io">support@course-creator.io</a>
+                    </div>
+                </div>
+            </div>
+        </body>
+        </html>';
             return $result;
         }
 

@@ -147,7 +147,6 @@ async function addFormSelect(elem, name) {
             option.setAttribute('selected', true);
 
         }
-        console.log(option)
         div.appendChild(option)
     }
     div_container.appendChild(div);

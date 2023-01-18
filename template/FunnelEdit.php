@@ -395,20 +395,27 @@
                     option_item_2 = second_do.querySelector('option[value="' + option_2 + '"]')
                     option_item_2.selected = true;
                     option_item_2.setAttribute('selected', 'selected')
+
+
+                    switch (option_2) {
+                        case 'file':
+                            document.querySelector('#file-name').innerHTML = popup['second_do']['file'].toString().match(/.*\/(.+?)\./)[1];
+                            break;
+                    }
+
+                    defaultPopup(second_do)
+
                     switch (option_2) {
                         case 'link':
+                            console.log(1)
                             addFormLink(document.querySelector('#second_do'))
                             document.querySelector('input[name="link-2"]').value = popup['second_do']['link'];
                             if (popup['second_do']['open_in_new']) {
                                 document.querySelector('input[name="open_new_window"]').checked = true;
                             }
                             break;
-                        case 'file':
-                            document.querySelector('#file-name').innerHTML = popup['second_do']['file'].toString().match(/.*\/(.+?)\./)[1];
-                            break;
                     }
                     // /second_do
-                    checkSecondSelect()
                     let elem = document.querySelector('#first_do-list')
                     let count = document.querySelectorAll('.form-select__container').length;
                     if (count > 2) {

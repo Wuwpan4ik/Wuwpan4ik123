@@ -13,6 +13,7 @@
 </head>
 
 <body>
+<?php print_r($_SESSION['error']) ?>
 <div class="userLogin">
     <div class="userLogin-body _container">
         <div class="user__logo">
