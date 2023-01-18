@@ -428,6 +428,7 @@ span.button__back {
 }
 .upload__form.active {
   background: none !important;
+  box-shadow: none !important;
 }
 .media-cart .btn-upload #upload_form{
   background: rgba(255, 255, 255, 0.6);
@@ -577,7 +578,7 @@ span.button__back {
 #progressBar::-webkit-progress-bar {
   height: 10px;
   margin: 0 auto;
-  background: #81A4FF;
+  background: none !important;
   border-radius: 20px;
 }
 
@@ -586,8 +587,7 @@ span.button__back {
   width: 80%;
   float: left;
   height: 10px;
-  margin: 0 -10px 0 0;
-  padding-left: 50px; /* Rounded corners requires a padding */
+  margin: 0 -10px 0 0; /* Rounded corners requires a padding */
   background: #81A4FF;
   border-radius: 20px;
 }
