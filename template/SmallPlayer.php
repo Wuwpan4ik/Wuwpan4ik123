@@ -36,7 +36,7 @@
             ?>
             <div class="slider__item">
                 <div class="slider__video">
-                    <video playsinline id="123" class="slider__video-item video-<?=$item['video_id']?>" data-player="playing" autoplay="false">
+                    <video playsinline class="slider__video-item video-<?=$item['video_id']?>" data-player="playing" autoplay="false">
                         <source class="video" src="/<?=$item['video']?>" id="sourceVideo"  />
                     </video>
                 </div>
@@ -177,6 +177,20 @@
                     return;
                 }else{
                     mirrorVideo.src = item.parentElement.querySelector('source').src;
+                }
+            })
+
+            // События при конце видео
+            item.addEventListener('ended', function (){
+
+                // Каталог курса
+                if (item.parentElement.parentElement.querySelector('.overlay-allLessons')) {
+                    $('.slick-next').click();
+                }
+
+                //
+                if (item.parentElement.parentElement.querySelector('.popup__bonus')) {
+                    OpenPopup(item.parentElement.parentElement.querySelector('.button').parentElement);
                 }
             })
         })

@@ -128,7 +128,7 @@
 
             $name_video = hash('md5', $_FILES['video_change']['name']);
 
-            $path = $this->url_dir . 'funnels/' . $funnel[0]['funnel_id']. "/$name_video";
+            $path = $this->url_dir . 'funnels/' . $funnel[0]['funnel_id']. "/$name_video.mp4";
 
             if (file_exists($funnel[0]['video'])) unlink($funnel[0]['video']);
 
@@ -380,6 +380,20 @@
 
             $this->local_get_content();
 
+            return True;
+        }
+
+        public function SelectCourse()
+        {
+            $id = $_SESSION['item_id'];
+            $course_id = $_POST['course_id'];
+            $course = $this->m->db->query("SELECT * from course WHERE `id` = '$course_id'");
+            $funnel = $this->m->db->query("SELECT * from funnel WHERE `id` = '$id'");
+            if (!$this->isUser($course[0]['author_id'])) return False;
+            if (!$this->isUser($funnel[0]['author_id'])) return False;
+            $this->m->db->execute("UPDATE `funnel` SET `course_id` = '$course_id' WHERE `id` = '$id'");
+
+            $this->local_get_content();
             return True;
         }
 
