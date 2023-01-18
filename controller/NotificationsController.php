@@ -8,7 +8,7 @@ class NotificationsController extends ACoreCreator
         foreach ($notifications as $item) {
             $div .= '
                 <div class="popupBell-item not-bell">
-                    <img style="width: 32px;" src="'. $item['image'] .'">
+                    <img src="'. $item['image'] .'">
                     <div class="popupBell-item__info ">
                         <span>'. $item['class'] . '</span>
                         <p>'. $item['body'] . '</p>
@@ -23,7 +23,7 @@ class NotificationsController extends ACoreCreator
         foreach ($notifications as $item) {
             $div .= '
                 <div class="popupBell-item not-bell">
-                    <img style="width: 32px;" src="'. $item['image'] .'">
+                    <img src="'. $item['image'] .'">
                     <div class="popupBell-item__info ">
                         <span>'. $item['class'] . '</span>
                         <p>'. $item['body'] . '</p>
