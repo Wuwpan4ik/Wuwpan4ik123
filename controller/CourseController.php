@@ -23,7 +23,10 @@
 
             $count_video = count($this->m->db->query("SELECT * FROM `course_content` WHERE course_id = ". $res[0]['id'])) + 1;
 
+//          Проверка юзера
             if (!$this->isUser($res[0]['author_id'])) return False;
+            if (!$this->m->GetTariff($res[0]['author_id'])) return False;
+//          Проверка юзера
 
             $name_video = hash('md5', $_FILES['video_uploader']['name']);
 
@@ -194,6 +197,8 @@
             $uid = $_SESSION['user']['id'];
 
             $code = uniqid(true);
+
+            if (!$this->m->GetTariff($uid)) return False;
 
             $this->m->db->execute("INSERT INTO course (`author_id`, `name`, `description`, `price`, `uniqu_code`) VALUES ('$uid', 'Новый курс', 'Описание' , 0, '$code')");
 

@@ -5,7 +5,7 @@
         private $name;
         private $phone;
 
-        private function GetApplicationHtml ($email, $phone = null, $name = null, $name_funnel = null, $number_slide = null) {
+        private function GetApplicationHtml ($email, $name_funnel = null, $number_slide = null, $phone = null, $name = null) {
             $result = '<html lang="RU">
                             <head>
                                 <meta charset="UTF-8">
@@ -38,6 +38,9 @@
                                                     <tr>
                                                         <th style="text-align:start;">
                                                             Откуда заявка:
+                                                        </th>
+                                                        <th>
+                            
                                                         </th>
                                                         <th style="text-align: end;">
                                                             '. $name_funnel .'
@@ -280,7 +283,7 @@
                                                 <th style="text-align:start" scope="row">
                                                     На каком слайде:
                                                 </th>
-                                                <td style="width:100px">
+                                                <td style="width:100%">
                                                     
                                                 </td>
                                                 <td style="text-align:end">
@@ -299,7 +302,7 @@
                                                 <th style="text-align:start">
                                                     Имя:
                                                 </th>
-                                                <td style="width:100px">
+                                                <td style="width:100%">
                                                     
                                                 </td>
                                                 <td style="text-align:end">
@@ -315,7 +318,7 @@
                                             <th style="text-align:start" scope="row">
                                                 Телефон:
                                             </th>
-                                            <td style="width:100px">
+                                            <td style="width:100%">
             
                                             </td>
                                             <td style="text-align:end">
@@ -328,7 +331,7 @@
                                             <th style="text-align:start" scope="row">
                                                 Email:
                                             </th>
-                                            <td style="width:100px">
+                                            <td style="width:100%">
                                                 
                                             </td>
                                             <td style="text-align:end">
@@ -385,10 +388,6 @@
             return $this->m->db->query("SELECT * FROM `course` WHERE id = '$course_id'");
         }
 
-        private function GetPriceOfVideo($video_id) {
-            return $this->m->db->query("SELECT * FROM `course_content` WHERE id = '$video_id'");
-        }
-
         public function InsertToTable($creator_id, $course_id, $buy_progress, $course_price) {
             $current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
             $this->m->db->execute("INSERT INTO `clients` (`first_name`, `email`, `tel`, `creator_id`, `course_id`, `give_money`, `buy_progress`, `achivment_date`) VALUES ('$this->name', '$this->email', '$this->phone', '$creator_id', '$course_id', '$course_price', '$buy_progress', '$current_date')");
@@ -400,10 +399,12 @@
             $this->email = $_POST['email'];
             if (isset($_POST['first_name'])) {
                 $this->name = $_POST['first_name'];
+            } else {
+                $this->name = null;
+            }
 //                if (!preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$this->name)) {
 //                    return false;
 //                }
-            }
 //            if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
 //                return false;
 //            }
@@ -440,15 +441,8 @@
                 }
             } else {
                 $title = "Оставили заявку";
-//                if (isset($_POST['file'])) {
-//                    $file = $_POST['second_file'];
-//                    $file_name = "Прикреплённый файл";
-//                    $body = $this->GetApplicationHtml();
-//                    $this->SendEmail($title, $body, $_POST['email'], $file, $file_name);
-//                } else {
-                    $course_name = $this->m->db->query("SELECT name FROM course WHERE id = {$course_id}")[0]['name'];
-                    $course_info = $this->m->db->query("SELECT course.name, course.price, user.email, count(course_content.id) as 'count' FROM course INNER JOIN user ON user.id = course.author_id INNER JOIN course_content on course_content.course_id = course.id WHERE course.id = $course_id")[0];
-                    $body = $this->GetApplicationHtml($this->email, $phone = null, $name = null, $name_funnel, $number_slide);
+
+                    $body = $this->GetApplicationHtml($this->email, $name_funnel, $number_slide, $this->phone, $this->name);
                     $this->SendEmail($title, $body, $creator_email);
 //                }
                 $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], 0);

@@ -19,6 +19,7 @@
 
 //          Проверка на юзера
             if (!$this->isUser($res[0]['author_id'])) return False;
+            if (!$this->m->GetTariff($res[0]['author_id'])) return False;
 //          Проверка на юзера
 
             $name_video = hash('md5', $_FILES['video_uploader']['name']);
@@ -143,6 +144,8 @@
         public function CreateFunnel () {
             $uid = $_SESSION['user']['id'];
 
+            if (!$this->m->GetTariff($uid)) return False;
+
             $this->m->db->execute("INSERT INTO funnel (`author_id`, `name`, `description`, `price`) VALUES ('$uid', 'Новая воронка', 'Описание' , 0)");
 
             $funnel = $this->m->db->query("SELECT * FROM funnel WHERE author_id = '$uid'  ORDER BY ID DESC LIMIT 1");
@@ -158,6 +161,8 @@
 
         public function DeleteFunnel () {
             $item_id = $_SESSION['item_id'];
+
+            if (!$this->m->GetTariff($_SESSION['user']['id'])) return False;
 
 //          Проверка на юзера
             $project = $this->m->db->query("SELECT * FROM funnel WHERE id = '$item_id' LIMIT 1");
