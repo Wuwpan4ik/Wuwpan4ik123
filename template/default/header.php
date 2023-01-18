@@ -24,6 +24,7 @@
             <div class="popupBell-body">
                 <div class="popupBell-item not-bell">
                 <div class="popupBell-item__info ">
+                    <span>Тариф “Премиум” подключен</span>
                     <p>У вас пока нет уведомлений</p>
                 </div>
             </div>
