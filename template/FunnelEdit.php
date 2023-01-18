@@ -47,11 +47,14 @@
     /* Switch 1 Specific Styles Start */
 
     input[type="checkbox"].switch_1{
+        display: flex;
+        justify-content: center;
+        align-items: center;
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
-        width: 3.5em;
-        height: 1.5em;
+        width: 48px;
+        height: 24px;
         background: #ddd;
         border-radius: 3em;
         position: relative;
@@ -62,14 +65,14 @@
     }
 
     input[type="checkbox"].switch_1:checked{
-        background: #0ebeff;
+        background: #4E73F8;
     }
 
     input[type="checkbox"].switch_1:after{
         position: absolute;
         content: "";
-        width: 1.5em;
-        height: 1.5em;
+        width: 24px;
+        height: 24px;
         border-radius: 50%;
         background: #fff;
         -webkit-box-shadow: 0 0 .25em rgba(0,0,0,.3);
@@ -82,7 +85,7 @@
     }
 
     input[type="checkbox"].switch_1:checked:after{
-        left: calc(100% - 1.5em);
+        left: calc(100% - 24px);
     }
 
     /* Switch 1 Specific Style End */
