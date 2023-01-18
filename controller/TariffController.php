@@ -7,7 +7,9 @@ class TariffController extends ACoreCreator
         $user_id = $_SESSION['user']['id'];
         $tariff_id = $_POST['tariff_id'];
         if ($this->m->BuyTariff($user_id, $tariff_id)) {
-            $this->addNotifications("item-like", 'Вы успешно оформили тариф', '/img/Notification/message.png', $user_id);
+            $tariff_name = $this->m->GetTariff($user_id);
+            $date = date("d.m.Y", strtotime($tariff_name[0]['date']));
+            $this->addNotifications("Тариф “{$tariff_name[0]['name']}” подключен", "Теперь ваш аккаунт получил все доступные функции до $date", '/img/Notification/cart.svg', $user_id);
         }
 
         $_SESSION['user']['tariff'] = $tariff_id;

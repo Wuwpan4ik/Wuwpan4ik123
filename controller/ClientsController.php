@@ -446,7 +446,7 @@
                     $this->SendEmail($title, $body, $creator_email);
 //                }
                 $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], 0);
-                $this->addNotifications("item-like", 'Вам оставил заявку ' . $creator_email, '/img/Notification/message.png', $creator_id);
+                $this->addNotifications("У вас новая заявка", "В вашей воронке $name_funnel оставленна заявка на слайде #$number_slide от {$this->email}", '/img/Notification/message.svg', $creator_id);
             }
             return true;
         }
@@ -517,8 +517,8 @@
                 $course_info = $this->m->db->query("SELECT course.name, course.price, user.email, count(course_content.id) as 'count' FROM course INNER JOIN user ON user.id = course.author_id INNER JOIN course_content on course_content.course_id = course.id WHERE course.id = $course_id")[0];
 
 //              Добавление уведомлений
-                $this->addNotifications("item-like", 'Вы купили курс ' . $course_info[0]['name'], '/img/Notification/message.png', $res['id']);
-                $this->addNotifications("item-like", 'Ваш курс ' . $course_info[0]['name'] . ' купил пользователь' . $this->name, '/img/Notification/message.png', $creator_id);
+                $this->addNotifications("Вы купили курс", "Доступный курс - {$course_info[0]['name']}", '/img/Notification/star.svg', $res['id']);
+                $this->addNotifications("У вас купили курс", "Ваш курс - “{$course_info[0]['name']}”, купил {$this->email}", '/img/Notification/star.svg', $creator_id);
                 $title = "У вас купили курс!";
                 $phone = ($this->phone) ? $this->phone : null;
                 $name = ($this->name) ? $this->name : null;
