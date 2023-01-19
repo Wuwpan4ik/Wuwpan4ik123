@@ -129,8 +129,8 @@
             return $result;
         }
 
-        private function GetRegistrationUserHtml ($email, $password) {
-            return '<html lang="RU">
+        private function GetRegistrationUserHtml ($email, $password = null) {
+            $result = '<html lang="RU">
                         <head>
                             <meta charset="UTF-8">
                             <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -160,7 +160,9 @@
                                                     '. $email .'
                                                 </div>
                                             </div>
-                                            <br>
+                                            <br>';
+            if (!is_null($password)) {
+                $result .= '
                                             <div class="second_row" style="width:100%">
                                                 <p style="font-weight:700;font-size:14px;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;color: rgba(0, 0, 0, 0.9);">
                                                     Ваш пароль:
@@ -169,7 +171,9 @@
                                                     '. $password .'
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>';
+                                        }
+               $result .= '
                                         <div class="link_account" style="margin-top: 20px;">
                                             <a href="https://course-creator.io/UserLogin" target="_blank">
                                                 <button style="width:100%; height:48px;border:none;font-size:16px;border-radius: 10px;background: linear-gradient(299.36deg, rgba(55, 101, 223, 0.93) 0%, rgba(100, 162, 255, 0.96) 100%);color:white;cursor: pointer;">
@@ -187,6 +191,7 @@
                             </div>
                         </body>
                         </html>';
+                        return $result;
         }
 
         private function GetRegistrationClientHtml($name, $cost, $email, $course_count, $phone = null, $user_name = null, $number_funnel = null, $number_slide = null)
@@ -470,6 +475,9 @@
 //          Добавление User
             if (count($this->m->getUserByEmail($this->email)) != 1) {
                 $this->password = $this->GenerateRandomPassword(12);
+                $title = "Покупка курса";
+                $body = $this->GetRegistrationUserHtml($this->email, $this->password);
+                $this->SendEmail($title, $body, $this->email);
 
                 $this->m->db->execute("INSERT INTO `user` (`email`, `password`, `is_creator`) VALUES ('$this->email', '$this->password', 0)");
 
@@ -480,11 +488,12 @@
                 if (isset($this->phone)) {
                     $this->m->db->execute("UPDATE `user` SET `telephone` = '$this->phone' WHERE `email` = '$this->email'");
                 }
+            } else {
+                $title = "Покупка курса";
+                $body = $this->GetRegistrationUserHtml($this->email, null);
+                $this->SendEmail($title, $body, $this->email);
             }
             $res = $this->m->getUserByEmail($this->email)[0];
-            $title = "Покупка курса";
-            $body = $this->GetRegistrationUserHtml($this->email, $this->password);
-            $this->SendEmail($title, $body, $this->email);
 
             if (isset($client) && ($client[0]['buy_progress'] < $buy_progress[$comment])) {
 
