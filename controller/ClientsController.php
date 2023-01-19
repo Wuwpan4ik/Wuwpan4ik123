@@ -469,11 +469,7 @@
 
 //          Добавление User
             if (count($this->m->getUserByEmail($this->email)) != 1) {
-
-                $title = "Регистрация аккаунта";
                 $this->password = $this->GenerateRandomPassword(12);
-                $body = $this->GetRegistrationUserHtml($this->email, $this->password);
-                $this->SendEmail($title, $body, $this->email);
 
                 $this->m->db->execute("INSERT INTO `user` (`email`, `password`, `is_creator`) VALUES ('$this->email', '$this->password', 0)");
 
@@ -486,6 +482,9 @@
                 }
             }
             $res = $this->m->getUserByEmail($this->email)[0];
+            $title = "Покупка курса";
+            $body = $this->GetRegistrationUserHtml($this->email, $this->password);
+            $this->SendEmail($title, $body, $this->email);
 
             if (isset($client) && ($client[0]['buy_progress'] < $buy_progress[$comment])) {
 
