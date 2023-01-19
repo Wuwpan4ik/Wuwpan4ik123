@@ -78,7 +78,7 @@
                                                                         <img src="../img/smallPlayer/views.svg" alt="">
                                                                     </div>
                                                                     <div class="slider__header-views-count">
-                                                                            <?=$v['count_view']?>
+                                                                            <?=$p['views']?>
                                                                     </div>
                                                                 </div>
                                                             </div>

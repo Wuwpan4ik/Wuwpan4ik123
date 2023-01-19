@@ -64,7 +64,7 @@
                                             <?php if(isset($_SESSION['error']['email_message'])) echo $_SESSION['error']['email_message'] ?>
                                             <div class="input_focus ">
                                                 <label for="username" class="label_focus">Телефон</label>
-                                                <input class="half" id="phone" name="phone" value="<?php print(htmlspecialchars(isset($_SESSION['user']['phone']) ? $_SESSION['user']['phone'] : '')) ?>">
+                                                <input class="half" type="number" id="phone" name="phone" value="<?php print(htmlspecialchars(isset($_SESSION['user']['phone']) ? $_SESSION['user']['phone'] : '')) ?>">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
@@ -510,11 +510,11 @@
     <input type="hidden" id="tariff_buy" name="tariff_id">
 </form>
 <script src="/js/jquery-3.6.1.min.js"></script>
-    <script src="/js/getNotifications.js"></script>
-    <script src="/js/customInputs.js"></script>
-    <script src="/js/customSelect.js"></script>
-    <script src="/js/printFailName.js" ></script>
-    <script src="/js/notifications.js"></script>
+<script src="/js/getNotifications.js"></script>
+<script src="/js/customInputs.js"></script>
+<script src="/js/customSelect.js"></script>
+<script src="/js/printFailName.js" ></script>
+<script src="/js/notifications.js"></script>
 <script>
     /*Popups*/
     let changeTariff = document.querySelector('.change-tariff-popup');
@@ -535,6 +535,12 @@
     improvementTariffOpen.addEventListener('click', function(){
         improvementTariff.classList.add('active');
     })
+
+    improvementTariff.onclick = async function (event){
+        if (event.target === improvementTariff) {
+            improvementTariff.classList.remove('active');
+        }
+    }
 
     changeTariff.onclick = async function (event) {
         if (event.target === changeTariff) {
@@ -632,15 +638,15 @@
                     processData: false,
                     contentType: false
                 });
-                AddNotifications("Настройки сохранены", '');
                 let saveBtn = document.querySelector('.save-btn');
-                console.log(saveBtn)
                 saveBtn.classList.add("active");
                 saveBtn.innerHTML = 'Сохранено';
                 setTimeout(function () {
                     saveBtn.classList.remove("active");
                     saveBtn.innerHTML = 'Сохранить';
-                }, 3000)
+                    window.location.reload()
+                }, 2000)
+                AddNotifications("Настройки сохранены", '');
             })
         });
     });

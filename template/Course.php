@@ -74,7 +74,7 @@
                                                                 <img src="../img/smallPlayer/views.svg" alt="">
                                                             </div>
                                                             <div class="slider__header-views-count">
-                                                                <?=$v['count_view']?>
+                                                                <?php if (!$p['views']) echo '0'?>
                                                             </div>
                                                         </div>
                                                     </div>
