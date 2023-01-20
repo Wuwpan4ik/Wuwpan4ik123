@@ -326,23 +326,25 @@
 
         public function recovery()
         {
-            $this->email = $_POST['email'];
-            $user = $this->db->getUserByEmail($this->email);
-            if (count($user) == 1) {
+            unset($_SESSION['user']);
+            $username = $_POST['username'];
+            $user = $this->db->db->query("SELECT * FROM `user` WHERE `username` = '$username'");
+//            if (count($user) == 1) {
                 $title = "Восстановление пароля";
                 $this->password = $this->GenerateRandomPassword(12);
-                $this->db->db->execute("UPDATE `user` SET `password` = '$this->password' WHERE email = '$this->email'");
-                $body = $this->GetRecoveryHtml($user[0]['login'], $this->password);
-                $this->SendEmail($title, $body, $this->email);
+                $this->db->db->execute("UPDATE `user` SET `password` = '$this->password' WHERE `username` = '$username'");
+                $body = $this->GetRecoveryHtml($user[0]['username'], $this->password);
+                $this->SendEmail($title, $body, $user[0]['email']);
                 header('Location: /login');
                 return true;
-            }
-            header('Location: /');
-            return false;
+//            }
+//            header('Location: /');
+//            return false;
         }
 
         public function UserRecovery()
         {
+            unset($_SESSION['user']);
             $this->email = $_POST['email'];
             $user = $this->db->getUserByEmail($this->email);
             if (count($user) == 1) {

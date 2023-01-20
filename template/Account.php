@@ -562,6 +562,10 @@
 
     // Проверка на количество и add social
     document.getElementById('social__submit').addEventListener('click', function (){
+        console.log(document.querySelectorAll('#social__inpu')[document.querySelectorAll('#social__inpu').length - 1].value)
+        if (document.querySelectorAll('#social__inpu')[document.querySelectorAll('#social__inpu').length - 1].value < 3) {
+            return;
+        }
         let div = `<div class="social__block">
             <div class="field">
                 <div class="select-account social-network">

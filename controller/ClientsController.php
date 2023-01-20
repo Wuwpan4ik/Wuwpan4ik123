@@ -5,7 +5,7 @@
         private $name;
         private $phone;
 
-        private function GetApplicationHtml ($email, $name_funnel = null, $number_slide = null, $phone = null, $name = null) {
+        private function GetApplicationHtml ($email, $url, $name_funnel = null, $number_slide = null, $phone = null, $name = null) {
             $result = '<html lang="RU">
                             <head>
                                 <meta charset="UTF-8">
@@ -24,7 +24,7 @@
                                 <div class="envelope-container" style="max-width: 500px;width:100%;margin:0 auto;">
                                     <div class="envelope-body" style="background:white;">
                                         <div class="first_row">
-                                            <img style="width:100%;" src="https://course-creator.io/envelope-images/envelope-zayavka.jpg" alt="Добро пожаловать в Course Creator!">
+                                            <img style="width:100%;" src="'. $url .'" alt="Добро пожаловать в Course Creator!">
                                         </div>
                                         <div class="second_row" style="padding:40px;">
                                             <h2 style="font-size:24px;font-weight: 400;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;">
@@ -274,7 +274,7 @@
                                                 <th style="text-align:start;width:50%">
                                                     Откуда заявка:
                                                 </th>
-                                                <th style="width:100px"></th>
+                                                <th style="width:100%"></th>
                                                 <th style="text-align:end;width:50%">
                                                     Воронка №'. $number_funnel .'
                                                 </th>
@@ -427,10 +427,12 @@
             if (!$this->RequestValidate()) return false;
 
             $buy_progress = include './settings/buy_progress.php';
+            $url = include "settings/site_url.php";
             $creator_id = $_POST['creator_id'];
             $course_id = $_POST['course_id'];
+            $funnel = $this->m->getFunnelById($_POST['funnel_id']);
             if (isset($_POST['funnel_id'])) {
-                $name_funnel = $this->m->getFunnelById($_POST['funnel_id'])[0]['name'];
+                $name_funnel = $funnel[0]['name'];
             }
             if (isset($_POST['slide_id'])) {
                 $number_slide = $_POST['slide_id'];
@@ -447,7 +449,7 @@
             } else {
                 $title = "Оставили заявку";
 
-                    $body = $this->GetApplicationHtml($this->email, $name_funnel, $number_slide, $this->phone, $this->name);
+                    $body = $this->GetApplicationHtml($this->email,"{$url}/{$funnel[0]['file_url']}" , $name_funnel, $number_slide, $this->phone, $this->name);
                     $this->SendEmail($title, $body, $creator_email);
 //                }
                 $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], 0);

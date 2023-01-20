@@ -26,8 +26,8 @@
         </div>
         <h3>Восстановление пароля</h3>
         <div class="input_focus">
-            <label for="email" class="label_focus">Ваша почта</label>
-            <input type="email" name="email">
+            <label for="username" class="label_focus">Логин</label>
+            <input type="text" name="username">
             <span class="clear_input_val">
                 <img src="/img/clear_input.svg" alt="">
             </span>
