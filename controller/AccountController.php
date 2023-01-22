@@ -178,9 +178,9 @@ class AccountController extends ACoreCreator {
             $query_string = '';
             foreach (array_keys($query_to_update_urls) as $item) {
                 $query_string .= "$item = '{$query_to_update_urls[$item]}',";
-                $query_string = mb_substr($query_string, 0, -1);
-                $this->m->db->execute("UPDATE `user_contacts` SET $query_string WHERE user_id = {$user[0]['id']}");
             }
+            $query_string = mb_substr($query_string, 0, -1);
+            $this->m->db->execute("UPDATE `user_contacts` SET $query_string WHERE user_id = {$user[0]['id']}");
         }
 
         $this->m->db->execute("UPDATE `user` SET `email` = '$email', `birthday` = '$birthday', `first_name` = '$first_name', `second_name` = '$second_name', `telephone` = '$phone', `currency` = '$currency', `city` = '$city', `country` = '$country' WHERE id = {$user[0]['id']}");
@@ -195,6 +195,40 @@ class AccountController extends ACoreCreator {
         $_SESSION["user"]['country'] = $country;
         $_SESSION['user']['avatar'] = $avatar;
         $_SESSION['user']['birthday'] = $birthday;
+
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
+
+    public function SaveIntegrationsSettings()
+    {
+        if (strlen($_POST['prodamus_key']) != 0) {
+            $query_to_update_urls['prodamus_key'] = $_POST['prodamus_key'];
+        } else {
+            $query_to_update_urls['prodamus_key'] = null;
+        }
+
+        if (strlen($_POST['albato_key']) != 0) {
+            $query_to_update_urls['albato_key'] = $_POST['albato_key'];
+        } else {
+            $query_to_update_urls['albato_key'] = null;
+        }
+
+        if (count($this->m->db->query("SELECT * FROM `user_integrations` WHERE `user_id` = {$_SESSION['user']['id']}")) === 0) {
+            $this->m->db->execute("INSERT INTO `user_integrations` (`user_id`) VALUES ({$_SESSION['user']['id']})");
+        }
+
+        if ($query_to_update_urls) {
+            $query_string = '';
+            foreach (array_keys($query_to_update_urls) as $item) {
+                $query_string .= "$item = '{$query_to_update_urls[$item]}',";
+            }
+            $query_string = mb_substr($query_string, 0, -1);
+            $this->m->db->execute("UPDATE `user_integrations` SET $query_string WHERE user_id = {$_SESSION['user']['id']}");
+
+        }
+
+        $_SESSION['user']['prodamus_key'] = $query_to_update_urls['prodamus_key'];
+        $_SESSION['user']['albato_key'] = $query_to_update_urls['albato_key'];
 
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }

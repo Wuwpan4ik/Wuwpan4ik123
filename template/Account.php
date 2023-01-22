@@ -443,53 +443,53 @@
                             <label class="menu-label" for="Tarif" id="cllab"><p>Дополнительно</p></label>
 
                             <div class="tab">
-                        <div class="prodamus-input col">
-                            <div class="inner_row">
-                                <h2>Подключение Prodamus:  </h2>
-                                <div class="row">
-                                    <div class="input_focus ">
-                                        <label for="username" class="label_focus">API Ключ</label>
-                                        <input class="inf" type="text"  name="prodamus_api" value="">
-                                        <span class="clear_input_val">
-                                                     <img src="/img/clear_input.svg" alt="">
-                                                </span>
-                                    </div>
+                                <div class="prodamus-input col">
+                                    <form action="/Account/SaveIntegrationsSettings" method="POST">
+                                        <div class="inner_row">
+                                            <h2>Подключение Prodamus:  </h2>
+                                            <div class="row">
+                                                <div class="input_focus ">
+                                                    <label for="username" class="label_focus">API Ключ</label>
+                                                    <input class="inf" type="text"  name="prodamus_key" value="<?php echo $_SESSION['user']['prodamus_key']?>">
+                                                    <span class="clear_input_val">
+                                                                 <img src="/img/clear_input.svg" alt="">
+                                                            </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="inner_row">
+                                            <h2>Подключение Albato:  </h2>
+                                            <div class="row">
+                                                <div class="input_focus ">
+                                                    <label for="username" class="label_focus">API Ключ</label>
+                                                    <input class="inf" type="text"  name="albato_key" value="<?php echo $_SESSION['user']['albato_key']?>">
+                                                    <span class="clear_input_val">
+                                                                 <img src="/img/clear_input.svg" alt="">
+                                                            </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="inner_row scripts">
+                                            <div class="script">
+                                                <h2>Скрипты для HEAD:  </h2>
+                                                <div class="row">
+                                                    <textarea class="additionally" placeholder="Default" name="head_additional"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="script">
+                                                <h2>Скрипты для Body:  </h2>
+                                                <div class="row">
+                                                    <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="about-btn">
+                                            <button id="profile_send" type="submit">Сохранить</button>
+                                        </div>
+                                    </form>
                                 </div>
-                            </div>
-                            <div class="inner_row">
-                                <h2>Подключение Albato:  </h2>
-                                <div class="row">
-                                    <div class="input_focus ">
-                                        <label for="username" class="label_focus">API Ключ</label>
-                                        <input class="inf" type="text"  name="albato_api" value="">
-                                        <span class="clear_input_val">
-                                                     <img src="/img/clear_input.svg" alt="">
-                                                </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="inner_row scripts">
-                                <div class="script">
-                                    <h2>Скрипты для HEAD:  </h2>
-                                    <div class="row">
-                                        <textarea class="additionally" placeholder="Default" name="head_additional"></textarea>
-                                    </div>
-                                </div>
-                                <div class="script">
-                                    <h2>Скрипты для Body:  </h2>
-                                    <div class="row">
-                                        <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="about-btn">
-                                <button id="profile_send" type="submit">Сохранить</button>
                             </div>
                         </div>
-                    </div>
-                </div>
                 <div class="exit-settings popup-tariff">
                     <div class="popup-tariff-body">
                         <div class="popup__title">

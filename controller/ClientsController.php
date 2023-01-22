@@ -444,14 +444,13 @@
                 if ($client[0]['buy_progress'] < $buy_progress[$comment]) {
                     $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]' WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
                 } else {
-                    return False;
+                    echo 'error';
+                    die(header("HTTP/1.0 404 Not Found"));
                 }
             } else {
                 $title = "Оставили заявку";
-
-                    $body = $this->GetApplicationHtml($this->email,"{$url}/{$funnel[0]['file_url']}" , $name_funnel, $number_slide, $this->phone, $this->name);
-                    $this->SendEmail($title, $body, $creator_email);
-//                }
+                $body = $this->GetApplicationHtml($this->email,"{$url}/{$funnel[0]['file_url']}" , $name_funnel, $number_slide, $this->phone, $this->name);
+                $this->SendEmail($title, $body, $creator_email);
                 $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], 0);
                 $this->addNotifications("У вас новая заявка", "В вашей воронке $name_funnel оставленна заявка на слайде #$number_slide от {$this->email}", '/img/Notification/message.svg', $creator_id);
             }

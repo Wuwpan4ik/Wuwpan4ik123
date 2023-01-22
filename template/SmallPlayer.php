@@ -18,7 +18,7 @@
 <div class="display-none">
     <?php print_r($_SESSION['error']) ?>
 </div>
-
+<?php if (!empty($content['course_content'])) { ?>
 <div class="mirror_smallPlayer">
     <div class="mirrorWrap"></div>
     <video id="mirrorVideo" src="" playsinline muted></video>
@@ -28,7 +28,6 @@
         <div class="slider__pagination _conatiner-player">
             <div class="slick-dots"></div>
         </div>
-        <?php if (!empty($content['course_content'])) { ?>
         <div class="slider">
             <?php
                 foreach ($content['funnel_content'] as $item) {
@@ -117,17 +116,38 @@
             </div>
             <?php } ?>
         </div>
-        <?php }?>
+
         <?php
         include 'template/default/popup__templates/popup__buy.php';
-         ?>
+        ?>
     </div>
 </div>
-
+<input type="hidden" id="albato_key" value="<?php echo $_SESSION['user']['albato_key'] ?>">
+<?php }?>
 <?php include 'template/default/notificationsPopup.php' ?>
 
 <?php if (empty($content['course_content'])) { ?>
-    <h1 style="font-size: 34px; color: white; display:flex; justify-content: center">Вы не добавили курс, к которому будет принадлежать воронка или внутри него нет видео!</h1>
+    <style>
+        body {
+            height: 100vh;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            text-align: center;
+            background: -o-linear-gradient(285.58deg, #3E8AFB 2.4%, #7024C4 97.34%);
+            background: linear-gradient(164.42deg, #3E8AFB 2.4%, #7024C4 97.34%);
+        }
+    </style>
+        <div class="block">
+            <h1 style="font-size: 34px; color: white; display:flex; justify-content: center; z-index: 10;">Автор не добавил курс, к которому будет принадлежать воронка, или в нём нет видео!</h1>
+        </div>
 <?php } ?>
 
 <script src="/js/notifications.js"></script>
@@ -230,18 +250,46 @@
         $('.popup__form').each(function (){
             $(this).submit(function(e) {
                 e.preventDefault();
-                $.post(e.target.action, $(this).serialize());
-                try {
-                    $(this)[0].querySelector('.next__lesson');
-                    NextSlide();
-                    notBuy()
-                    if ($(this).hasClass('popup__application')) {
-                        AddNotifications('Вы успешно оставили заявку', 'Сообщение отправлено на почту');
-                    } else {
-                        AddNotifications('Вы успешно купили курс', 'Аккаунт отправлен на почту');
+                let form = $(this);
+                let form_data = $(this).serialize();
+                let albato_key;
+                if (document.getElementById('albato_key').value.length > 0) {
+                    albato_key = document.getElementById('albato_key').value;
+                } else {
+                    albato_key = null;
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: $(this).attr("action"),
+                    data: form_data,
+                    success: function (data) {
+                        if (albato_key !== null) {
+                            $.ajax({
+                                url: albato_key,
+                                type: "POST",
+                                data: JSON.stringify(form_data),
+                                dataType: 'JSON',
+                                success: function(response) {
+                                    alert(response);
+                                }
+                            });
+                        }
+                        form[0].querySelector('.next__lesson');
+                        NextSlide();
+                        notBuy()
+                        if (form.hasClass('popup__application')) {
+                            AddNotifications('Вы успешно оставили заявку', 'Сообщение отправлено на почту');
+                        } else {
+                            AddNotifications('Вы успешно купили курс', 'Аккаунт отправлен на почту');
+                        }
+                    },
+                    error: function(data) {
+                        form[0].querySelector('.next__lesson');
+                        NextSlide();
+                        notBuy()
+                        AddNotifications('Произошла ошибка', 'Вы уже получали заявку');
                     }
-
-                } catch {}
+                });
                 try {
                     if ($(this)[0].querySelector('.new_window')) {
                         window.open($(this)[0].querySelector('.second_link').value);
