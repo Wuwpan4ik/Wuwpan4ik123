@@ -13,11 +13,12 @@
                             <meta name="viewport" content="width=device-width, initial-scale=1.0">
                         </head>
                         <body style="padding:0px;margin:0px;max-width: 800px;font-family: Verdana, Geneva, Tahoma, sans-serif;background: #EFEFEF;">
+                        <div class="envelope-container" style="max-width:500px;margin:0 auto;width:100%;">
                             <div class="envelope-body" style="background:white;">
                                 <div class="first_row">
                                     <img style="width:100%;" src="https://course-creator.io/envelope-images/envelope-zayavka.jpg" alt="Добро пожаловать в Course Creator!">
                                 </div>
-                                <div class="second_row" style="padding:40px;">
+                                <div class="second_row" style="padding:40px 20px;">
                                     <h2 style="font-size:24px;font-weight: 400;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;">
                                         Вам пришла заявка!
                                     </h2>
@@ -106,9 +107,10 @@
                                 </div>
                             </div>
                             <div class="envelope_info_bottom" style="text-align: center;margin-top:20px;margin-bottom: 20px;">
-                                <div>
+                                <div style="font-size:12px;">
                                     Если у вас есть вопросы, пожалуйста, напишите <br> в службу поддержки: <a href="mailto:support@course-creator.io">support@course-creator.io</a>
                                 </div>
+                            </div>
                             </div>
                         </body>
                         </html>';
@@ -122,6 +124,7 @@
                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
                     </head>
                     <body style="padding:0px;margin:0px;max-width: 800px;font-family: Verdana, Geneva, Tahoma, sans-serif;background: #EFEFEF;">
+                    <div class="envelope-container" style="max-width:500px;margin:0 auto;width:100%;">
                         <div class="envelope-body" style="background:white;">
                             <div class="first_row">
                                 <img style="width:100%;" src="https://course-creator.io/envelope-images/envelope-welcome.jpg" alt="Добро пожаловать в Course Creator!">
@@ -163,9 +166,10 @@
                             </div>
                         </div>
                         <div class="envelope_info_bottom" style="text-align: center;margin-top:20px;margin-bottom: 20px;">
-                            <div>
+                            <div style="font-size:12px;">
                                 Если у вас есть вопросы, пожалуйста, напишите <br> в службу поддержки: <a href="mailto:support@course-creator.io">support@course-creator.io</a>
                             </div>
+                        </div>
                         </div>
                     </body>
                     </html>';
@@ -181,6 +185,7 @@
                             <meta name="viewport" content="width=device-width, initial-scale=1.0">
                         </head>
                         <body style="padding:0px;margin:0px;max-width: 800px;font-family: Verdana, Geneva, Tahoma, sans-serif;background: #EFEFEF;">
+                        <div class="envelope-container" style="max-width:500px;margin:0 auto;width:100%;">
                             <div class="envelope-body" style="background:white;">
                                 <div class="first_row">
                                     <img style="width:100%;" src="https://course-creator.io/envelope-images/envelope-zayavka.jpg" alt="Добро пожаловать в Course Creator!">
@@ -312,6 +317,7 @@
                             <div>
                                 Если у вас есть вопросы, пожалуйста, напишите <br> в службу поддержки: <a href="mailto:support@course-creator.io">support@course-creator.io</a>
                             </div>
+                        </div>
                         </div>
                     </body>
                     </html>';

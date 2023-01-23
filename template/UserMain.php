@@ -377,7 +377,7 @@
                                     <div class="popup__bonus-form-input-email input-img">
                                         <img src="../img/smallPlayer/question.svg" alt="">
                                     </div>
-                                    <textarea name="question" placeholder="Ваш вопрос"></textarea>
+                                    <textarea name="question" id="userQuestion" placeholder="Ваш вопрос"></textarea>
                                 </div>
                             </form>
                         </div>
@@ -415,8 +415,21 @@ unset($_SESSION['course_id']);
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
 <script src="../js/script.js" ></script>
 <script>
+    let questInput = document.getElementById('userQuestion')
     document.querySelector('#sendQuest').addEventListener('click', function () {
-        document.querySelector('#formQuest').submit();
+        if(questInput.value === ""){
+            return
+        }else{
+            document.querySelector('#formQuest').submit();
+            document.querySelector('.question.userPopup').classList.remove('active')
+            document.querySelector('.questionBackground').classList.remove('active')
+        }
+    });
+    document.querySelector('.questionBackground').addEventListener('click', function(){
+        if(document.querySelector('.question.userPopup').classList.contains('active')){
+            document.querySelector('.question.userPopup').classList.remove('active')
+            document.querySelector('.questionBackground').classList.remove('active')
+        }
     })
 </script>
 <script>
