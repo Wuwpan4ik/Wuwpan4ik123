@@ -452,6 +452,7 @@
             }
         }
     </script>
+
     <script>
 
         //   Удалить все кнопки
@@ -510,6 +511,7 @@
             })
         });
     </script>
+
     <script src="../js/sidebar.js"></script>
     <script src="../js/getNotifications.js"></script>
 </body>

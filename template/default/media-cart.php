@@ -35,7 +35,7 @@
         <img src="/img/clear_input.svg" alt="">
         </span>
         </div>
-        <div>
+        <div class="textarea_focus">
             <textarea name="description" class="videoname video-desc textarea-info " maxlength="100"><?=$v['description']?></textarea>
             <span class="placeholder-textarea">Укажите описание</span>
         </div>
@@ -60,8 +60,8 @@
             </span>
             </div>
 
-            <div>
-                <textarea name="description" class="videoname video-desc textarea-info " maxlength="100"><?=$v['description']?></textarea>
+            <div class="textarea_focus">
+                <textarea name="description" class="videoname video-desc  " maxlength="100"><?=$v['description']?></textarea>
                 <span class="placeholder-textarea">Укажите описание</span>
             </div>
 

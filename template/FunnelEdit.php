@@ -583,7 +583,7 @@
     closeBtn();
 
     window.onload = () => {
-        let inputs = document.querySelectorAll('.input_focus input, textarea');
+        let inputs = document.querySelectorAll('.input_focus input');
         let inputsLabel = document.querySelectorAll('.input_focus label');
         let inputClear = document.querySelectorAll('.input_focus span');
 
@@ -722,6 +722,14 @@
 
 <!-- Форма списков курса -->
 <script>
+    let textArea = document.querySelector('.textarea_focus textarea');
+    console.log(textArea.value.length)
+
+    if (textArea.value.length > 42){
+        document.querySelector('.textarea_focus').classList.add('active');
+        document.querySelector('.textarea_focus span').style.display = 'none';
+        document.querySelector('.textarea_focus .video-desc').style.padding = '10px 16px 10px 16px';
+    }
     function initListCourse(){
         setTimeout(function (){
             document.querySelector('.button-buy').addEventListener('click', function (){

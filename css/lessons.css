@@ -449,7 +449,7 @@ textarea.videoname{
     max-height: 130px;
 }
 .video-desc{
-    padding:20px 16px 10px 16px !important;
+    padding:20px 16px 10px 16px;
     height:48px;
 }
 .funnel-input{
