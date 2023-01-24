@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/aboutuser.css">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/lessons.css">
     <link type="text/css" rel="stylesheet" href="/css/notifications.css">
 
     <!--Favicon-->
@@ -214,12 +215,26 @@
 
 
                                                     <div class="input__wrapper">
-                                                        <input name="avatar" type="file" id="input__file" class="input input__file" onchange='uploadFile(this)' multiple>
-                                                        <label for="input__file" class="input__file-button">
 
-                                                            <span class="input__file-icon-wrapper"><img class="input__file-icon" src="./img/plus.svg"  width="25"></span>
-                                                            <span class="input__file-button-text">Добавить</span>
-                                                        </label>
+                                                        <div class="avatar-replace">
+                                                            <input name="avatar" type="file" id="input__file" class="input input__file" onchange='uploadFile(this)' multiple>
+                                                            <label for="input__file" class="input-replace input__file-button ">
+
+                                                                <span class="input__file-icon-wrapper"><img class="input__file-icon input__file-replace" src="/img/changeVideo.svg"  width="25"></span>
+                                                                <span class="input__file-button-text">Заменить</span>
+                                                            </label>
+                                                        </div>
+                                                        <button class="blue-button save-btn" type="submit">
+                                                            <img src="/img/save-file.svg" alt="">
+                                                            Сохранить
+                                                        </button>
+
+<!--                                                        <input name="avatar" type="file" id="input__file" class="input input__file" onchange='uploadFile(this)' multiple>-->
+<!--                                                        <label for="input__file" class="input__file-button">-->
+<!---->
+<!--                                                            <span class="input__file-icon-wrapper"><img class="input__file-icon" src="./img/plus.svg"  width="25"></span>-->
+<!--                                                            <span class="input__file-button-text">Добавить</span>-->
+<!--                                                        </label>-->
                                                     </div>
 
                                                 </div>
