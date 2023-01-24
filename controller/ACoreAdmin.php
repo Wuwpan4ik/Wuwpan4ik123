@@ -1,28 +1,32 @@
 <?php
 abstract class ACoreAdmin {
 
+    public $db;
     protected $m;
-    protected $ourEmail = "envelope@course-creator.io";
-    protected $ourPassword = "1u*V90z*29pP";
-    protected $ourNickName = "Course Creator IO";
+    protected $ourEmail;
+    protected $ourPassword;
+    protected $ourNickName;
     protected $email;
 
-    protected function SendEmail ($title, $body, $email) {
+    protected function SendEmail ($title, $body, $email)
+    {
 
         $mail = new PHPMailer\PHPMailer\PHPMailer(true);
 
         try {
             $mail->isSMTP();
             $mail->CharSet = "UTF-8";
-            $mail->SMTPAuth   = true;
-            $mail->Debugoutput = function($str, $level) {$GLOBALS['status'][] = $str;};
+            $mail->SMTPAuth = true;
+            $mail->Debugoutput = function ($str, $level) {
+                $GLOBALS['status'][] = $str;
+            };
 
             // Настройки вашей почты
-            $mail->Host       = 'smtp.yandex.ru'; // SMTP сервера вашей почты
-            $mail->Username   = $this->ourEmail; // Логин на почте
-            $mail->Password   = $this->ourPassword; // Пароль на почте
+            $mail->Host = 'smtp.yandex.ru'; // SMTP сервера вашей почты
+            $mail->Username = $this->ourEmail; // Логин на почте
+            $mail->Password = $this->ourPassword; // Пароль на почте
             $mail->SMTPSecure = 'ssl';
-            $mail->Port       = 465;
+            $mail->Port = 465;
             $mail->smtpConnect(
                 array(
                     "ssl" => array(
@@ -41,8 +45,11 @@ abstract class ACoreAdmin {
             $mail->Subject = $title;
             $mail->Body = $body;
 
-            if ($mail->send()) {$result = "success";}
-            else {$result = "allGood";}
+            if ($mail->send()) {
+                $result = "success";
+            } else {
+                $result = "allGood";
+            }
 
         } catch (Exception $e) {
             $result = $mail->ErrorInfo;
@@ -52,10 +59,12 @@ abstract class ACoreAdmin {
         echo $result;
     }
 
-    public $db;
-
     public function __construct() {
         $this->db = new User();
+        $email_account = $this->db->GetEmailAccount();
+        $this->ourEmail = $email_account['email'];
+        $this->ourPassword = $email_account['password'];
+        $this->ourNickName = $email_account['name'];
     }
 
     public function get_body($tpl) {

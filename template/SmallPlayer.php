@@ -122,7 +122,7 @@
         ?>
     </div>
 </div>
-<input type="hidden" id="albato_key" value="<?php echo $_SESSION['user']['albato_key'] ?>">
+<input type="hidden" id="albato_key" value="<?php echo $content['user_info']['albato_key'] ?>">
 <?php }?>
 <?php include 'template/default/notificationsPopup.php' ?>
 

@@ -272,7 +272,6 @@
         request.send();
     }
 
-    mirrorVideo.src = sourceVideo[0].src;
 </script>
 
 <!--Открытие попапа Вопроса-->

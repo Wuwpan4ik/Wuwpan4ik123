@@ -3,6 +3,7 @@ class UserMain extends ACoreGuess
 {
     public function get_content() {
         $author_page = $this->m->getContentForUserAuthorPage();
-        return ['author_page' => $author_page];
+        $get_API = $this->m->getAPIByUвser($author_page[0]['id']);
+        return ['author_page' => $author_page, ''];
     }
 }

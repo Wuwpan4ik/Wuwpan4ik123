@@ -182,9 +182,15 @@
                     'second_name' => $res[0]['second_name'],
                     'email' => $res[0]['email'],
                     'site_url' => $res[0]['site_url'],
-                    'is_creator' => 1,
+                    'is_creator' => 1
 
                 ];
+                $integrations = $this->db->db->query("SELECT * FROM `user_integrations` WHERE user_id = {$_SESSION['user']['id']}");
+                if (count($integrations) != 0) {
+                    $_SESSION['user']['albato_key'] = $integrations[0]['albato_key'];
+                    $_SESSION['user']['prodamus_key'] = $integrations[0]['prodamus_key'];
+                }
+
                 $tariff_id = $this->db->db->query("SELECT * FROM `users_tariff` WHERE `user_id` = {$_SESSION['user']['id']}")[0]['tariff_id'];
                 if (count($tariff_id) != 0) $_SESSION['user']['tariff'] = $tariff_id;
                 $this->get_content();

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/UserMain.css">
     <link rel="stylesheet" href="/css/smallPlayer.css">
+    <link rel="stylesheet" href="/css/notifications.css">
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 </head>
@@ -313,7 +314,7 @@
                         Стоимость <span class="course__buy-text"></span>
                         <span><span class="course__price video__price-buy"></span> <?php echo isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></span>
                     </div>
-                    <form class="form__buy-course-video" method="POST" action="/ClientsController/CourseBuy">
+                    <form class="form__buy-course-video popup__form" method="POST" action="/ClientsController/CourseBuy">
                         <input hidden="hidden" type="text" name="creator_id" value="" id="creator_id">
                         <input hidden="hidden" type="text" name="course_id" value="" id="course_id">
                         <div class="youChosen popup__buy-register">
@@ -321,7 +322,7 @@
                                 <div class="popup__bonus-form-input-account input-img">
                                     <img src="../img/smallPlayer/account.svg" alt="">
                                 </div>
-                                <input type="text" name="name" placeholder="Ваше имя">
+                                <input type="text" name="first_name" placeholder="Ваше имя">
                             </div>
                             <div class="popup__buy-body-form youChosen-input input">
                                 <div class="popup__bonus-form-input-email input-img">
@@ -395,6 +396,8 @@
         </div>
     </div>
 </div>
+<input type="hidden" id="albato_key" value="https://h.albato.com/wh/38/1lfvved/LO_LVmbDN6HLLwaYyYWu-id9UzcYfVWt7KY4BtC3RPo/">
+<?php include 'template/default/notificationsPopup.php' ?>
 <?php
 unset($_SESSION['course_price']);
 unset($_SESSION['course_id']);
@@ -414,6 +417,7 @@ unset($_SESSION['course_id']);
 </script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
 <script src="../js/script.js" ></script>
+<script src="/js/notifications.js"></script>
 <script>
     document.querySelector('#sendQuest').addEventListener('click', function () {
         document.querySelector('#formQuest').submit();
@@ -487,6 +491,46 @@ unset($_SESSION['course_id']);
         });
         request.send();
     }
+
+    $(function() {
+        $('.popup__form').each(function (){
+            $(this).submit(function(e) {
+                e.preventDefault();
+                let form = $(this);
+                let form_data = $(this).serialize();
+                let albato_key;
+                if (document.getElementById('albato_key').value.length > 0) {
+                    albato_key = document.getElementById('albato_key').value;
+                } else {
+                    albato_key = null;
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: $(this).attr("action"),
+                    data: form_data,
+                    success: function (data) {
+                        if (albato_key !== null) {
+                            $.ajax({
+                                url: albato_key,
+                                type: "POST",
+                                data: JSON.stringify(form_data),
+                                dataType: 'JSON',
+                                success: function(response) {
+                                    alert(response);
+                                }
+                            });
+                        }
+                        form[0].querySelector('.next__lesson');
+                        AddNotifications('Вы успешно купили курс', 'Аккаунт отправлен на почту');
+                    },
+                    error: function(data) {
+                        AddNotifications('Произошла ошибка', 'Вы уже получали покупали этот курс');
+                    }
+                });
+                location.reload()
+            });
+        })
+    });
 
     function getVideoInfo(number) {
         let request = new XMLHttpRequest();

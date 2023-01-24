@@ -9,9 +9,9 @@ if (!class_exists('PHPMailer\PHPMailer\Exception'))
     abstract class  ACoreCreator {
 
         protected $m;
-        protected $ourEmail = "envelope@course-creator.io";
-        protected $ourPassword = "1u*V90z*29pP";
-        protected $ourNickName = "Course Creator IO";
+        protected $ourEmail;
+        protected $ourPassword;
+        protected $ourNickName;
         protected $email;
         protected $date;
 
@@ -21,6 +21,12 @@ if (!class_exists('PHPMailer\PHPMailer\Exception'))
             date_default_timezone_set('Europe/Moscow');
             $this->date = date("Y-m-d");
             $this->m = new User();
+
+            $email_account = $this->m->GetEmailAccount();
+            $this->ourEmail = $email_account['email'];
+            $this->ourPassword = $email_account['password'];
+            $this->ourNickName = $email_account['name'];
+
             $this->url_dir = "./uploads/users/" . $_SESSION['user']['id'] . '/';
         }
 

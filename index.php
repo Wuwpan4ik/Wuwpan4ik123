@@ -2,7 +2,7 @@
     header("Content-Type:text/html;charset=UTF-8");
     session_start();
     require_once './vendor/autoload.php';
-    require_once './model/Routering.php';
+    require_once './connect/Routering.php';
     $item_id = 0;
     $url = key($_GET);
     $url_array = explode('/', $url);

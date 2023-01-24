@@ -59,7 +59,6 @@ videoTimeline.addEventListener("mousemove", e => {
 
 playBtnFirst.onclick = () =>{
     playBtnFirst.classList.add('nonActive');
-    videoContainer.play();
 }
 
 videoTimeline.addEventListener("click", e => {

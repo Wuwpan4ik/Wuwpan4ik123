@@ -4,10 +4,14 @@ class User {
     protected $date;
 
     public function __construct() {
-        require_once 'connect.php';
+        require_once './connect/connect.php';
         date_default_timezone_set('Europe/Moscow');
         $this->date = date("Y-m-d");
         $this->db = $db;
+    }
+
+    public function GetEmailAccount() {
+        return $this->db->query("SELECT * FROM `email_account` LIMIT 1")[0];
     }
 
     protected function GetMoneyForWeekInterval($prev = false) {
@@ -91,7 +95,15 @@ class User {
                                                 content.file_url
                                                 FROM `course_content` AS content
                                                 INNER JOIN `course` AS course ON content.course_id = course.id
-                                                INNER JOIN `user` AS user_info ON course.author_id = user_info.id WHERE content.id = '$id'");
+                                                INNER JOIN `user` AS user_info ON course.author_id = user_info.id
+                                                INNER JOIN `user_integraions` ON user_info.id = user_integraions.user_id WHERE content.id = '$id'");
+        return $result;
+    }
+
+    public function getIntegrationsByUser($id = null)
+    {
+        $result = $this->db->query("SELECT user_integraions.albato_key,
+                                                FROM `user_integraions` ON user_info.id = user_integraions.user_id WHERE content.id = '$id'");
         return $result;
     }
 
@@ -121,7 +133,6 @@ class User {
             }
             array_shift($purchases_array);
         }
-        $_SESSION['error'] = $course_query;
         $courses = $this->db->query($course_query);
         return $courses;
     }
@@ -398,7 +409,8 @@ class User {
                                                 INNER JOIN `course` ON course.id = course_content.course_id LIMIT 1");
         $main__settings = $this->db->query("SELECT style_settings
                                                 FROM `funnel` WHERE id = '$id'");
-        return ['funnel_content' => $funnel_content, 'course_content' => $course_content, 'course_id' => $course, 'main__settings' => $main__settings[0]['style_settings']];
+        $user_info = $this->db->query("SELECT * FROM `user_integrations` WHERE user_id = '$author_id'");
+        return ['funnel_content' => $funnel_content, 'course_content' => $course_content, 'course_id' => $course, 'main__settings' => $main__settings[0]['style_settings'], 'user_info' => $user_info[0]];
 
     }
 
