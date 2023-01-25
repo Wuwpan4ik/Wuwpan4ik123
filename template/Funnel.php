@@ -91,7 +91,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <?$i++;}}?>
+                                                    <?$i++;}}?>
                                             </div>
                                         </div>
                                     </div>
@@ -329,7 +329,9 @@
                         document.querySelectorAll('.popup-styles-color')[color__button - 1].click();
                         document.querySelectorAll('.popup-styles-button button')[shadow__button - 1].click();
                         changeStyleBtn(document.querySelector('.button-video'), color, shadow);
-                        document.querySelector('textarea[name="head__settings"]').innerHTML = temp_data['head__settings'];
+                        if (temp_data['head__settings']) {
+                            document.querySelector('textarea[name="head__settings"]').value = '1';
+                        }
                     } else {
                         title = 'Roboto';
                         description = 'Roboto';

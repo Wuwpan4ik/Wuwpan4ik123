@@ -132,10 +132,10 @@
                                                         <div class="overSelect"></div>
                                                     </div>
                                                     <div class="mySelectOptions">
-                                                        <label class="item">$<input class="custom-checkbox" type="radio" value="$" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                                        <label class="item">€<input class="custom-checkbox" type="radio" value="€" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                                        <label class="item">₴<input class="custom-checkbox" type="radio" value="₴" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                                        <label class="item">₽<input class="custom-checkbox" type="radio" value="₽" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                        <label class="item">$<input class="custom-checkbox" type="radio" data-value="$" value="$" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                        <label class="item">€<input class="custom-checkbox" type="radio" data-value="€" value="€" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                        <label class="item">₴<input class="custom-checkbox" type="radio" data-value="₴" value="₴" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                        <label class="item">₽<input class="custom-checkbox" type="radio" data-value="₽" value="₽" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -160,14 +160,14 @@
                                                                 <div class="overSelect"></div>
                                                             </div>
                                                             <div class="mySelectOptions">
-                                                                <label class="item active social__item">Вконтакте<input class="custom-checkbox social__input" type="radio" value="vk" /><label for="happy"></label></label>
-                                                                <label class="item social__item">WhatsApp<input class="custom-checkbox social__input" type="radio" value="whatsapp" /><label for="happy"></label></label>
-                                                                <label class="item social__item">Твиттер<input class="custom-checkbox social__input" type="radio" value="twitter" /><label for="happy"></label></label>
-                                                                <label class="item social__item">Фейсбук<input class="custom-checkbox social__input" type="radio" value="facebook" /><label for="happy"></label></label>
-                                                                <label class="item social__item">Инстаграм<input class="custom-checkbox social__input" type="radio" value="instagram" /><label for="happy"></label></label>
-                                                                <label class="item social__item">Ютуб<input class="custom-checkbox social__input" type="radio" value="youtube" /><label for="happy"></label></label>
-                                                                <label class="item social__item">Телеграм<input class="custom-checkbox social__input" type="radio" value="telegram" /><label for="happy"></label></label>
-                                                                <label class="item social__item">Сайт<input class="custom-checkbox social__input" type="radio" value="site" /><label for="happy"></label></label>
+                                                                <label class="item active social__item">Вконтакте<input class="custom-checkbox social__input" type="radio" data-value="Вконтакте" value="vk" /><label for="happy"></label></label>
+                                                                <label class="item social__item">WhatsApp<input class="custom-checkbox social__input" type="radio" data-value="WhatsApp" value="whatsapp" /><label for="happy"></label></label>
+                                                                <label class="item social__item">Твиттер<input class="custom-checkbox social__input" type="radio" data-value="Твиттер" value="twitter" /><label for="happy"></label></label>
+                                                                <label class="item social__item">Фейсбук<input class="custom-checkbox social__input" type="radio" data-value="Фейсбук" value="facebook" /><label for="happy"></label></label>
+                                                                <label class="item social__item">Инстаграм<input class="custom-checkbox social__input" type="radio" data-value="Инстаграм" value="instagram" /><label for="happy"></label></label>
+                                                                <label class="item social__item">Ютуб<input class="custom-checkbox social__input" type="radio" data-value="Ютуб" value="youtube" /><label for="happy"></label></label>
+                                                                <label class="item social__item">Телеграм<input class="custom-checkbox social__input" type="radio" data-value="Телеграм" value="telegram" /><label for="happy"></label></label>
+                                                                <label class="item social__item">Сайт<input class="custom-checkbox social__input" type="radio" data-value="Сайт" value="site" /><label for="happy"></label></label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -283,7 +283,7 @@
                                                         <?php
                                                         $options = ["Изотерика", "Обучение", "Дизайн", "Политика", "Спорт", "Игры", "Животные"];
                                                         for($i = 0; $i<7; $i++){?>
-                                                          <label class="item"><?=$options[$i]?><input class="custom-checkbox" type="radio" value="<?=$options[$i]?>" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                          <label class="item"><?=$options[$i]?><input class="custom-checkbox" data-value="<?=$options[$i]?>" type="radio" value="<?=$options[$i]?>" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                                         <?php } ?>
                                                     </div>
                                                 </div>
@@ -592,14 +592,14 @@
                             <div class="overSelect"></div>
                         </div>
                         <div class="mySelectOptions">
-                            <label class="item social__item">Вконтакте<input class="custom-checkbox social__input" type="radio" value="vk" /><label for="happy"></label></label>
-                            <label class="item social__item">WhatsApp<input class="custom-checkbox social__input" type="radio" value="whatsapp" /><label for="happy"></label></label>
-                            <label class="item social__item">Твиттер<input class="custom-checkbox social__input" type="radio" value="twitter" /><label for="happy"></label></label>
-                            <label class="item social__item">Фейсбук<input class="custom-checkbox social__input" type="radio" value="facebook" /><label for="happy"></label></label>
-                            <label class="item social__item">Инстаграм<input class="custom-checkbox social__input" type="radio" value="instagram" /><label for="happy"></label></label>
-                            <label class="item social__item">Ютуб<input class="custom-checkbox social__input" type="radio" value="youtube" /><label for="happy"></label></label>
-                            <label class="item social__item">Телеграм<input class="custom-checkbox social__input" type="radio" value="telegram" /><label for="happy"></label></label>
-                            <label class="item social__item">Сайт<input class="custom-checkbox social__input" type="radio" value="site" /><label for="happy"></label></label>
+                            <label class="item active social__item">Вконтакте<input class="custom-checkbox social__input" type="radio" data-value="Вконтакте" value="vk" /><label for="happy"></label></label>
+                            <label class="item social__item">WhatsApp<input class="custom-checkbox social__input" type="radio" data-value="WhatsApp" value="whatsapp" /><label for="happy"></label></label>
+                            <label class="item social__item">Твиттер<input class="custom-checkbox social__input" type="radio" data-value="Твиттер" value="twitter" /><label for="happy"></label></label>
+                            <label class="item social__item">Фейсбук<input class="custom-checkbox social__input" type="radio" data-value="Фейсбук" value="facebook" /><label for="happy"></label></label>
+                            <label class="item social__item">Инстаграм<input class="custom-checkbox social__input" type="radio" data-value="Инстаграм" value="instagram" /><label for="happy"></label></label>
+                            <label class="item social__item">Ютуб<input class="custom-checkbox social__input" type="radio" data-value="Ютуб" value="youtube" /><label for="happy"></label></label>
+                            <label class="item social__item">Телеграм<input class="custom-checkbox social__input" type="radio" data-value="Телеграм" value="telegram" /><label for="happy"></label></label>
+                            <label class="item social__item">Сайт<input class="custom-checkbox social__input" type="radio" data-value="Сайт" value="site" /><label for="happy"></label></label>
                         </div>
                     </div>
                 </div>

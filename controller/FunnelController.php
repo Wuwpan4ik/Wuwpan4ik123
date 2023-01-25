@@ -336,6 +336,7 @@
             $funnelSettings['button__style-style'] = (string) $_POST['button__style-style'];
             $funnelSettings['number__style'] = (string) $_POST['number-style'];
             $funnelSettings['number__color'] = (string) $_POST['number-color'];
+            $funnelSettings['head__settings'] = $_POST['head__settings'];
 
             return ['json' => $funnelSettings];
         }

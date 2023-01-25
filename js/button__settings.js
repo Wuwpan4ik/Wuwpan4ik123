@@ -190,7 +190,7 @@ function addCheckbox(block, elem) {
     let text = document.createElement('div');
     text.innerHTML = 'Открывать в новом окне';
     switch_box.appendChild(text)
-    elem.parentElement.children[2].after(checkbox);
+    elem.parentElement.children[1].after(checkbox);
 }
 
 //Добавление option
@@ -246,7 +246,6 @@ function enableAfterClickBlock() {
 function checkFirstSelect() {
     if (['list'].includes(first_select.value)) {
         addPopup('list');
-        addSecondOptions([['pay_form', "Форма оплаты"], ['form', 'Форма заявки']]);
         enableAfterClickBlock();
         initListCourse();
     }
@@ -266,7 +265,6 @@ function checkFirstSelect() {
             first_select.parentElement.querySelectorAll('.link_item').forEach((elem) => {
                 elem.classList.add('display-none');
             })
-
             disableAfterClickBlock();
             break;
         }
@@ -292,7 +290,6 @@ function checkFirstSelect() {
             first_select.parentElement.querySelectorAll('.link_item').forEach((elem) => {
                 elem.classList.add('display-none');
             })
-            addSecondOptions([['', 'Выберите'], ['link', "Переход по ссылке"], ['next_lesson', 'Открыть следующее видео'], ['file', 'Отправка файла']]);
             defaultPopup(second_select);
             enableAfterClickBlock();
             checkSecondSelect();
@@ -362,14 +359,6 @@ function checkBothSelect() {
 
 document.addEventListener('DOMContentLoaded', function () {
     checkBothSelect();
-
-    first_select.addEventListener('change', function () {
-        checkFirstSelect();
-    });
-
-    second_select.addEventListener('change', function () {
-        checkSecondSelect();
-    });
 
     // Убрать После нажатия на кнопку
 

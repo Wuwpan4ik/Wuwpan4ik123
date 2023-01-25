@@ -15,6 +15,7 @@ function checkboxStatusChange() {
             let text = document.querySelectorAll('.slider__item-text');
 
             let values = [];
+            let data_info;
             item.addEventListener('click', function(){
                 if(item.checked = true){
                     checkedCheckboxes.forEach(el =>{
@@ -30,11 +31,19 @@ function checkboxStatusChange() {
                     })
                     item.parentElement.classList.add('active')
                     values = (item.getAttribute('value'));
+                    data_info = item.dataset.value;
 
                 }
-                multiselectOption.innerText = values;
+                multiselectOption.innerText = data_info;
                 multiselectOption.value = values;
                 multiselectOption.selected = true;
+                if (item.parentElement.parentElement.classList.contains('first_do_list')) {
+                    checkFirstSelect()
+                }
+
+                if (item.parentElement.parentElement.classList.contains('second_do_list')) {
+                    checkSecondSelect()
+                }
             })
         })
     })

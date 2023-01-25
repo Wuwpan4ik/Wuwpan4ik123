@@ -61,27 +61,19 @@
                         <div id="myMultiselect" class="multiselect">
                             <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
                                 <select name="first_do" id="first_do" class="form-select">
-                                    <option id="name" selected><?php echo ($_SESSION['user']['niche']) ?? "Выберите вашу нишу"?></option>
+                                    <option id="name" value="list" selected>Список уроков</option>
                                 </select>
                                 <div class="overSelect"></div>
                             </div>
-                            <div class="mySelectOptions">
-                                <label class="item">Список уроков<input class="custom-checkbox" type="radio" value="list" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                <label class="item">Форма заявки<input class="custom-checkbox" type="radio" value="form" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                <label class="item">Форма оплаты<input class="custom-checkbox" type="radio" value="pay_form" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                <label class="item">Переход по ссылке<input class="custom-checkbox" type="radio" value="link" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                <label class="item">Открыть следующее видео<input class="custom-checkbox" type="radio" value="next_lesson" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-
+                            <div class="mySelectOptions first_do_list">
+                                <label class="item">Список уроков<input class="custom-checkbox" type="radio" data-value="Список уроков" value="list" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                <label class="item">Форма заявки<input class="custom-checkbox" type="radio" data-value="Форма заявки" value="form" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                <label class="item">Форма оплаты<input class="custom-checkbox" type="radio" data-value="Форма оплаты" value="pay_form" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                <label class="item">Переход по ссылке<input class="custom-checkbox" type="radio" data-value="Переход по ссылке" value="link" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                <label class="item">Открыть следующее видео<input class="custom-checkbox" type="radio" data-value="Открыть следующее видео" value="next_lesson" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                             </div>
                         </div>
                     </div>
-<!--                    <select >-->
-<!--                        <option value="list"></option>-->
-<!--                        <option value="form" id="first_do_form" selected>Форма заявки</option>-->
-<!--                        <option value="pay_form" id="first_do_pay_form">Форма оплаты</option>-->
-<!--                        <option value="link" id="first_do_link">Переход по ссылке</option>-->
-<!--                        <option value="next_lesson" id="first_do_next_lesson">Открыть следующее видео</option>-->
-<!--                    </select>-->
                     <div class="popup__body-item popup__margin" id="popup__body-form-1">
                         <div class="popup__body-item">
                             <label for="form_id">Данные для формы:</label>
@@ -108,23 +100,17 @@
                         <div id="myMultiselect" class="multiselect">
                             <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
                                 <select name="second_do" id="second_do" class="form-select">
-                                    <option id="name" selected><?php echo ($_SESSION['user']['niche']) ?? "Выберите вашу нишу"?></option>
+                                    <option value="next_lesson" id="name" selected>Открыть следующее видео</option>
                                 </select>
                                 <div class="overSelect"></div>
                             </div>
-                            <div class="mySelectOptions">
-                                <label class="item">Переход по ссылке<input class="custom-checkbox" type="radio" value="link" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                <label class="item">Открыть следующее видео<input class="custom-checkbox" type="radio" value="next_lesson" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                <label class="item">Отправка файла<input class="custom-checkbox" type="radio" value="file" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                            <div class="mySelectOptions second_do_list">
+                                <label class="item">Переход по ссылке<input class="custom-checkbox" type="radio" data-value="Переход по ссылке" value="link" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                <label class="item">Открыть следующее видео<input class="custom-checkbox" type="radio" data-value="Открыть следующее видео" value="next_lesson" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                <label class="item">Отправка файла<input class="custom-checkbox" type="radio" data-value="Отправка файла" value="file" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                             </div>
                         </div>
                     </div>
-
-<!--                    <select name="second_do" id="second_do">-->
-<!--                        <option value="link" id="second_do_link">Переход по ссылке</option>-->
-<!--                        <option value="next_lesson" id="second_do_next_lesson">Открыть следующее видео</option>-->
-<!--                        <option value="file" id="second_do_file">Отправка файла</option>-->
-<!--                    </select>-->
                     <div class="popup__body-item display-none popup__margin" id="popup__body-file">
                         <label for="second_do-list">Файл:</label>
                         <div class="avatar" style="margin: 0">

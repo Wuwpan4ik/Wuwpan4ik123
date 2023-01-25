@@ -20,11 +20,104 @@
     <link rel="stylesheet" href="/css/aboutuser.css">
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
-
-    <link rel="stylesheet" href="">
 </head>
 
 <body>
+
+<style>
+    .itc-select {
+        position: relative;
+        width: 100%;
+    }
+
+    .itc-select__toggle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-style: italic;
+        line-height: 1.4;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 0.3125rem;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .itc-select__toggle::after {
+        flex-shrink: 0;
+        width: 0.75rem;
+        height: 0.75rem;
+        margin-left: 1rem;
+        background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" height="100" width="100"%3E%3Cpath d="M97.625 25.3l-4.813-4.89c-1.668-1.606-3.616-2.41-5.84-2.41-2.27 0-4.194.804-5.777 2.41L50 52.087 18.806 20.412C17.223 18.805 15.298 18 13.03 18c-2.225 0-4.172.804-5.84 2.41l-4.75 4.89C.813 26.95 0 28.927 0 31.23c0 2.346.814 4.301 2.439 5.865l41.784 42.428C45.764 81.174 47.689 82 50 82c2.268 0 4.215-.826 5.84-2.476l41.784-42.428c1.584-1.608 2.376-3.563 2.376-5.865 0-2.26-.792-4.236-2.375-5.932z"/%3E%3C/svg%3E');
+        background-size: cover;
+        content: "";
+    }
+
+    .itc-select__toggle:focus {
+        outline: none;
+    }
+
+    .itc-select_show .itc-select__toggle::after {
+        transform: rotate(180deg);
+    }
+
+    .itc-select__dropdown {
+        position: absolute;
+        top: 2.5rem;
+        right: 0;
+        left: 0;
+        z-index: 2;
+        display: none;
+        max-height: 10rem;
+        overflow-y: auto;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 0.3125rem;
+    }
+
+    .itc-select_show .itc-select__dropdown {
+        display: block;
+    }
+
+    .itc-select_show .itc-select__backdrop {
+        display: block;
+    }
+
+    .itc-select__options {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .itc-select__option {
+        padding: 0.375rem 0.75rem;
+    }
+
+    .itc-select__option_selected {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #e1f5fe;
+    }
+
+    .itc-select__option_selected::after {
+        width: 0.75rem;
+        height: 0.75rem;
+        color: #0277bd;
+        background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" height="100" width="100" class="svg-inline--fa fa-check fa-w-16" data-icon="check" data-prefix="fas" aria-hidden="true"%3E%3Cpath d="M33.964 85.547l-32.5-32.251a4.935 4.935 0 010-7.017l7.071-7.017a5.027 5.027 0 017.071 0L37.5 60.987l46.894-46.534a5.028 5.028 0 017.07 0l7.072 7.017a4.935 4.935 0 010 7.017l-57.5 57.06a5.027 5.027 0 01-7.072 0z" fill="%230277bd"/%3E%3C/svg%3E');
+        background-size: cover;
+        content: "";
+    }
+
+    .itc-select__option:hover {
+        background-color: #f5f5f5;
+        cursor: pointer;
+        transition: 0.2s background-color ease-in-out;
+    }
+</style>
 
 <style>
 
@@ -318,133 +411,9 @@
 <script src="../js/sidebar.js"></script>
 <script src="/js/getNotifications.js"></script>
 
-<!--Уведомления-->
 <script src="/js/customInputs.js"></script>
 <script src="../js/customSelect.js"> </script>
-<!--Уведомления-->
-<!-- Получить popup funnel_content -->
-<script>
-    function getFunnelPopup(funnel_content_id) {
-        let request = new XMLHttpRequest();
-
-        let url = "/Funnel/"+ funnel_content_id +"/getFunnelPopup";
-
-        request.open('GET', url);
-
-        request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-        request.addEventListener("readystatechange", () => {
-            if (request.readyState === 4 && request.status === 200) {
-                let popup = JSON.parse(JSON.parse(request.responseText))
-                if (popup) {
-                    let first_do = document.getElementById('first_do');
-
-                    // first_do
-                    let option_1 = Object.keys(popup['first_do'])[0];
-                    let option_item_1 = first_do.querySelector('option[value="' + option_1 + '"]')
-                    option_item_1.selected = true;
-                    option_item_1.setAttribute('selected', 'selected')
-
-                    switch (option_1) {
-                        case 'pay_form':
-                        case 'form':
-                            if (popup['form__title']) {
-                                document.querySelector('input[name="form__title"]').value = popup['form__title'];
-                            }
-                            if (popup['form__desc']) {
-                                document.querySelector('input[name="form__desc"]').value = popup['form__desc'];
-                            }
-                            if (popup['button_text']) {
-                                document.querySelector('input[name="button__send"]').value = popup['button_text'];
-                            }
-                            let div = document.querySelector('#first_do-list');
-                            if (option_1 === 'form') {
-                                for (let item of popup['first_do']['form']) {
-                                    addFormItem(div, item);
-                                }
-                            } else if (option_1 === 'pay_form') {
-                                for (let item of popup['first_do']['pay_form']) {
-                                    addFormItem(div, item);
-                                }
-                            }
-
-                            break;
-                        case 'link':
-                            addFormLink(document.querySelector('#first_do'))
-                            if (popup['first_do']['open_in_new']) {
-                                document.querySelector('input[name="open_new_window"]').checked = true;
-                            }
-                            break;
-                    }
-
-                    if (popup['first_do']['link']) {
-                        document.querySelector('input[name="link-1"]').value = popup['first_do']['link']
-                    }
-
-                    checkFirstSelect()
-
-                    // second_do
-
-                    let option_2;
-                    let second_do;
-                    let option_item_2;
-
-                    if (popup['second_do'] != null) {
-                        second_do = document.getElementById('second_do');
-                        option_2 = Object.keys(popup['second_do'])[0];
-                    } else {
-                        second_do = document.getElementById('second_do');
-                        option_2 = second_do.value;
-                    }
-                    option_item_2 = second_do.querySelector('option[value="' + option_2 + '"]')
-                    option_item_2.selected = true;
-                    option_item_2.setAttribute('selected', 'selected')
-
-
-                    switch (option_2) {
-                        case 'file':
-                            document.querySelector('#file-name').innerHTML = popup['second_do']['file'].toString().match(/.*\/(.+?)\./)[1];
-                            break;
-                    }
-
-                    defaultPopup(second_do)
-
-                    switch (option_2) {
-                        case 'link':
-                            console.log(1)
-                            addFormLink(document.querySelector('#second_do'))
-                            document.querySelector('input[name="link-2"]').value = popup['second_do']['link'];
-                            if (popup['second_do']['open_in_new']) {
-                                document.querySelector('input[name="open_new_window"]').checked = true;
-                            }
-                            break;
-                    }
-                    // /second_do
-                    let elem = document.querySelector('#first_do-list')
-                    let count = document.querySelectorAll('.form-select__container').length;
-                    if (count > 2) {
-                        if (elem.parentElement.querySelector('.addFormInput')) {
-                            elem.parentElement.querySelector('.addFormInput').classList.add('display-none');
-                        }
-                        return false;
-                    }
-
-                    setTimeout(function (){
-                        if (popup['form__title']) {
-                            let form__title = document.querySelector('.popup-title');
-                            form__title.innerHTML = popup['form__title'];
-                        }
-                        if (popup['form__desc']) {
-                            let form__desc = document.querySelector('.popup-text');
-                            form__desc.innerHTML = popup['form__desc'];
-                        }
-                    }, 400)
-                }
-            }
-        })
-        request.send();
-    }
-
-</script>
+<script src="/js/FunnelSettings/CheckSaveVersion.js"></script>
 
 <script>
     let buttonBell =  document.body.querySelector('.button-bell');
@@ -470,6 +439,7 @@
         document.getElementById("file-name").innerHTML = (target.files[0].name);
         document.getElementById("file-size").innerHTML = Math.round(target.files[0].size / 1024) + "кБ" + " из доступных 5Мб" ;
     }
+
     let form__submit = $(function() {
         $('.media__form').each(function (){
             $(this).submit(function(e) {
@@ -723,7 +693,6 @@
 <!-- Форма списков курса -->
 <script>
     let textArea = document.querySelector('.textarea_focus textarea');
-    console.log(textArea.value.length)
 
     if (textArea.value.length > 42){
         document.querySelector('.textarea_focus').classList.add('active');
