@@ -431,6 +431,9 @@
     }
 
     .question-form {
+        position: absolute;
+        width: 88%;
+        bottom:0;
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;

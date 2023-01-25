@@ -10,7 +10,6 @@ const container = document.querySelector(".container"),
     sliderDarkness = document.querySelector('.slider__darkness'),
     videoContainerS = document.querySelector('.contaierPlayer .wrapper'),
     buttonsBack = document.querySelector('.UserPlayer.Сourse-form'),
-    playBtnFirst = document.querySelector('#playBtn'),
     pauseBtnFirst = document.querySelector('#pauseBtn'),
     videoContainer = document.getElementById('UserPlayerVideo');
 
@@ -57,10 +56,13 @@ videoTimeline.addEventListener("mousemove", e => {
     progressTime.innerText = formatTime(percent);
 });
 
+<<<<<<< HEAD
 playBtnFirst.onclick = () =>{
     playBtnFirst.classList.add('nonActive');
 }
 
+=======
+>>>>>>> styles
 videoTimeline.addEventListener("click", e => {
     let timelineWidth = videoTimeline.clientWidth;
     mainVideo.currentTime = (e.offsetX / timelineWidth) * mainVideo.duration;

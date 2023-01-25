@@ -34,7 +34,7 @@
         <img src=".<?php echo $content[0]['thubnails'] ?>" alt="">
     </div>
 
-<div class=" userVideoContainer UserPlayer">
+<div class=" userVideoContainer UserPlayer active">
     <div class="UserPlayer User-header">
         <div class="User-logo user__logo">
             <div class="user__logo-img"><img src="../<?=$content[0]['avatar']?>" alt=""></div>
@@ -48,7 +48,7 @@
             </a>
         </div>
     </div>
-    <div class="UserPlayer Сourse-form">
+    <div class="UserPlayer Сourse-form active">
         <div class="userPopup__button courseBackBtn backBtn">
             <button onclick="window.location.replace('/UserMain?course_id=' + <?=$content[0]['id'] ?> + '&author_id=' + <?=$content[0]['user_id'] ?>)">Назад</button>
         </div>
@@ -56,14 +56,9 @@
             <button id="send__questions">Есть вопросы?</button>
         </div>
     </div>
-    <div class="firstPauseButton" id="pauseBtn">
+    <div class="firstPauseButton active" id="pauseBtn">
         <div class="pauseBtn">
             <img src="../img/pausePlayer.svg" alt="">
-        </div>
-    </div>
-    <div class="firstPlayButton" id="playBtn">
-        <div class="playBtn">
-            <img src="/img/smallPlayer/play.svg">
         </div>
     </div>
 
@@ -99,12 +94,12 @@
         </video>
 
     </div>
-    <div class="slider__darkness">
+    <div class="slider__darkness active activePlayer">
 
     </div>
     <?php if(isset($content[0]['file_url'])) { ?>
-    <div class="youWatching has__file"><?}  else {?>
-    <div class="youWatching non__file">
+    <div class="youWatching has__file active"><?}  else {?>
+    <div class="youWatching non__file active">
     <? } ?>
         <div class="userPopup__title">
             Вы смотрите:

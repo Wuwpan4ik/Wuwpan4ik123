@@ -4,6 +4,7 @@ class ContactController extends ACoreCreator {
     private function GetQuestionHTML($name, $email, $time, $question)
     {
         return '<html lang="RU">
+<<<<<<< HEAD
                     <head>
                         <meta charset="UTF-8">
                         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -19,6 +20,15 @@ class ContactController extends ACoreCreator {
                             }
                         </style>
                         <div class="envelope-container" style="max-width: 500px; width:100%; margin:0 auto;">
+=======
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        </head>
+                        <body style="padding:0px;margin:0px;max-width: 800px;font-family: Verdana, Geneva, Tahoma, sans-serif;background: #EFEFEF;">
+                        <div class="envelope-container" style="max-width:500px;margin:0 auto;width:100%;">
+>>>>>>> styles
                             <div class="envelope-body" style="background:white;">
                                 <div class="first_row">
                                     <img style="width:100%;" src="https://course-creator.io/envelope-images/envelope-zayavka.jpg" alt="Добро пожаловать в Course Creator!">
@@ -72,8 +82,13 @@ class ContactController extends ACoreCreator {
                                 </div>
                             </div>
                         </div>
+<<<<<<< HEAD
                     </body>
                     </html>';
+=======
+                        </body>
+                        </html>';
+>>>>>>> styles
     }
 	
 	public function SendQuestion() {

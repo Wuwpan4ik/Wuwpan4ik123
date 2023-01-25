@@ -155,6 +155,14 @@
 <script src="/js/script.js" ></script>
 <script src="/js/slick.min.js"></script>
 <script src="/js/sliders.js"></script>
+<!-- Adaptive Fix -->
+<script>
+    let actualHeight = window.innerHeight;
+    let slider = document.querySelectorAll('.slider__item');
+    slider.forEach((item)=>{
+        item.style.height = actualHeight + 'px';
+    })
+</script>
 <!--На некст слайд-->
 <script>
     let request = new XMLHttpRequest();
