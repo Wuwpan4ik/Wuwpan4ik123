@@ -615,6 +615,7 @@
             </div>
         </div>`;
         document.querySelector('.social__blocks').innerHTML += div;
+        checkboxStatusChange(document.querySelector('.social__blocks'));
 
         $('.social__blocks:last #social__inpu').on('input', function (){
             if (this.value.length > 0) {

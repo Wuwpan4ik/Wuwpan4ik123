@@ -1,7 +1,7 @@
 /*Select*/
-function checkboxStatusChange() {
+function checkboxStatusChange(block = document) {
 
-    let multiselect = document.querySelectorAll(".multiselect");
+    let multiselect = block.querySelectorAll(".multiselect");
 
     multiselect.forEach(element =>{
         let checkboxes = element.querySelector(".mySelectOptions");
@@ -11,8 +11,8 @@ function checkboxStatusChange() {
 
 
         checkedCheckboxes.forEach(item =>{
-            let title = document.querySelectorAll('.slider__item-title');
-            let text = document.querySelectorAll('.slider__item-text');
+            let title = block.querySelectorAll('.slider__item-title');
+            let text = block.querySelectorAll('.slider__item-text');
 
             let values = [];
             let data_info;
