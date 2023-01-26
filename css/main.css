@@ -1835,6 +1835,7 @@ option {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
+  overflow-y: hidden;
   margin: 24px 0 0 0;
   font-size: 17px;
 }
