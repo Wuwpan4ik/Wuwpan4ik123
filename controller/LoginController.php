@@ -258,6 +258,11 @@
                 die(header("HTTP/1.0 404 Not Found"));
             }
 
+//            foreach (['', '/funnels', '/courses', '/files', '/course_files', '/thumbnails'] as $item) {
+//                mkdir("./uploads/users/" . $_SESSION['user']['id'] . $item);
+//                chmod("./uploads/users/" . $_SESSION['user']['id'] . $item, 0777);
+//            }
+
             mkdir("./uploads/users/" . $_SESSION['user']['id']);
             mkdir("./uploads/users/". $_SESSION['user']['id'] . "/funnels");
             mkdir("./uploads/users/". $_SESSION['user']['id'] . "/courses");

@@ -144,7 +144,10 @@
         public function CreateFunnel () {
             $uid = $_SESSION['user']['id'];
 
-            if (!$this->m->GetTariff($uid)) return False;
+            if (!$this->m->GetTariff($uid)) {
+                header('Location: /Tariff-absent');
+                return false;
+            };
 
             $this->m->db->execute("INSERT INTO funnel (`author_id`, `name`, `description`, `price`) VALUES ('$uid', 'Новая воронка', 'Описание' , 0)");
 

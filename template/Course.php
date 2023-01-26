@@ -93,7 +93,7 @@
                         <div class="course-price">
                             <form action="/Course/<?=$p['id']?>/setPrice" class="media__form" method="POST">
                                 <div class="course__prices" style="position:relative;">
-                                    <input type="number" name="course_price" min="100" placeholder="<? echo isset($p['price']) ? $p['price'] : "Укажите стоимость курса" ?>">
+                                    <input type="number" name="course_price" min="100" placeholder="<? echo isset($p['price']) ? $p['price'] : "Укажите стоимость курса" ?>" <?php if (empty($_SESSION['user']['albato_key'])) echo 'disabled' ?>>
                                     <span class="course_currency">
                                         <?php echo isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?>
                                     </span>

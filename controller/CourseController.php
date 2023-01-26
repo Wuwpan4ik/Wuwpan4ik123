@@ -198,7 +198,12 @@
 
             $code = uniqid(true);
 
-            if (!$this->m->GetTariff($uid)) return False;
+            if (!$this->m->GetTariff($uid)) {
+                header('Location: /Tariff-absent');
+                return false;
+            }
+
+
 
             $this->m->db->execute("INSERT INTO course (`author_id`, `name`, `description`, `price`, `uniqu_code`) VALUES ('$uid', 'Новый курс', 'Описание' , 0, '$code')");
 
