@@ -333,8 +333,8 @@
                             document.querySelector('textarea[name="head__settings"]').value = '1';
                         }
                     } else {
-                        title = 'Roboto';
-                        description = 'Roboto';
+                        title = 'TTTrailers';
+                        description = 'Montserrat';
                         document.querySelectorAll('.popup-styles-color')[0].click();
                         document.querySelectorAll('.popup-styles-button')[0].click();
                         changeStyleBtn(document.querySelector('.button-video'), color, shadow);

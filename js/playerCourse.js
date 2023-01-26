@@ -56,13 +56,10 @@ videoTimeline.addEventListener("mousemove", e => {
     progressTime.innerText = formatTime(percent);
 });
 
-<<<<<<< HEAD
 playBtnFirst.onclick = () =>{
     playBtnFirst.classList.add('nonActive');
 }
 
-=======
->>>>>>> styles
 videoTimeline.addEventListener("click", e => {
     let timelineWidth = videoTimeline.clientWidth;
     mainVideo.currentTime = (e.offsetX / timelineWidth) * mainVideo.duration;
