@@ -12,7 +12,6 @@
         <div class="Cases ">
             <?php include 'default/sidebar.php';?>
             <div class="feed">
-
                 <?php
                 $title = "Кейсы";
                 include ('default/header.php');
