@@ -10,6 +10,7 @@
     <link type="text/css" rel="stylesheet" href="/css/notifications.css">
     <!--Делаем так, чтобы страницы не индексировались в поиске-->
     <meta name="robots" content="noindex" />
+<!--    --><?php //if (!empty($content['course_content']['head'])) echo htmlspecialchars($content['course_content']['head'])?>
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 

@@ -1,21 +1,21 @@
 <!DOCTYPE HTML>
 <html lang="ru">
     <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <title><?php echo htmlspecialchars($content[0]['name'])?></title>
-    <link rel="stylesheet" href="/css/nullCss.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/UserMain.css">
-    <link rel="stylesheet" href="/css/smallPlayer.css">
-    <link rel="stylesheet" href="/css/courseplayer.css">
-    <link rel="stylesheet" href="/css/notifications.css">
-    <!--Favicon-->
-    <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
-</head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <title><?php echo htmlspecialchars($content[0]['name'])?></title>
+        <link rel="stylesheet" href="/css/nullCss.css">
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/UserMain.css">
+        <link rel="stylesheet" href="/css/smallPlayer.css">
+        <link rel="stylesheet" href="/css/courseplayer.css">
+        <link rel="stylesheet" href="/css/notifications.css">
+        <!--Favicon-->
+        <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
+    </head>
 <style>
     .accordion-button {
         position: absolute;
