@@ -679,9 +679,6 @@ unset($_SESSION['course_id']);
                         getVideoInfo(item.querySelector('.item__list-id').dataset.id);
                     }
                 })
-                document.querySelectorAll('.course__back-btn').forEach(item => {
-                    item.dataset.author_id = number;
-                })
                 startAccordion();
             }
         });

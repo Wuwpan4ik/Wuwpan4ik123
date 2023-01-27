@@ -302,7 +302,6 @@ function startAccordion() {
     let accordionButton = document.querySelectorAll(".accordion-button");
     accordionButton.forEach( item => {
 
-
         item.onclick = function () {
 
             item.classList.toggle('active');
