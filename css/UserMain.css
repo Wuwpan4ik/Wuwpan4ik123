@@ -1161,6 +1161,11 @@
         background-color: #fff;
         color: #000;
         overflow: hidden;
+        /*transition: 0.6s;*/
+        /*transform: translateY(200%);*/
+    }
+    .userPopup.active{
+        /*transition: 0.6s;*/
     }
     .userPopup__title {
         font-family: "TT Trailers", sans-serif;
