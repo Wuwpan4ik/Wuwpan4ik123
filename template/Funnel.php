@@ -198,15 +198,19 @@
     <script>
         document.querySelectorAll(".title__general .item").forEach(item => {
             item.addEventListener('click', () => {
-                document.querySelector('.preview__title').className  = "slider__item-title preview__title";
-                document.querySelector('.preview__title').classList.add(item.querySelector('input').value)
+                if (document.querySelector('.preview__title')) {
+                    document.querySelector('.preview__title').className  = "slider__item-title preview__title";
+                    document.querySelector('.preview__title').classList.add(item.querySelector('input').value)
+                }
             })
         })
 
         document.querySelectorAll(".description__general .item").forEach(item => {
             item.addEventListener('click', () => {
-                document.querySelector('.preview__text').className  = "slider__item-text preview__text";
-                document.querySelector('.preview__text').classList.add(item.querySelector('input').value)
+                if (document.querySelector('.preview__text')) {
+                    document.querySelector('.preview__text').className  = "slider__item-text preview__text";
+                    document.querySelector('.preview__text').classList.add(item.querySelector('input').value)
+                }
             })
         })
     </script>
@@ -330,7 +334,7 @@
                         document.querySelectorAll('.popup-styles-button button')[shadow__button - 1].click();
                         changeStyleBtn(document.querySelector('.button-video'), color, shadow);
                         if (temp_data['head__settings']) {
-                            document.querySelector('textarea[name="head__settings"]').value = '1';
+                            document.querySelector('textarea[name="head__settings"]').value = temp_data['head__settings'];
                         }
                     } else {
                         title = 'TTTrailers';
@@ -429,8 +433,8 @@
                 data: $("#initButton").serialize(),     /* Параметры передаваемые в запросе. */
                 success: function(data){   /* функция которая будет выполнена после успешного запроса.  */
                     if (data == 0) {
-                            document.querySelector('.exit-funnel-edit').classList.add('display-flex');
-                            document.querySelector('.exit-funnel-edit').style.zIndex = '1000';
+                        document.querySelector('.exit-funnel-edit').classList.add('display-flex');
+                        document.querySelector('.exit-funnel-edit').style.zIndex = '1000';
                         promise();
                     } else {
                         document.querySelector('.exit-funnel-edit').classList.remove('display-flex');

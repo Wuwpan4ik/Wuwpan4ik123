@@ -34,7 +34,7 @@
                         <div id="myMultiselect" class="multiselect">
                             <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
                                 <select name="title__font" class="form-select">
-                                    <option id="name" value="TTTrailers">TT Trailers</option>
+                                    <option id="name" value="TTTrailers" selected>TT Trailers</option>
                                 </select>
                                 <div class="overSelect"></div>
                             </div>
@@ -56,7 +56,7 @@
                         <div id="myMultiselect" class="multiselect">
                             <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
                                 <select name="desc__font" class="form-select">
-                                    <option id="name" name="Montserrat">Montserrat</option>
+                                    <option id="name" value="Montserrat" selected>Montserrat</option>
                                 </select>
                                 <div class="overSelect"></div>
                             </div>
@@ -114,7 +114,7 @@
                 </div>
                 <div class="popup__body-item script">
                     <label class="popup__subtitle" for="head">Скрипты для HEAD</label>
-                    <textarea name="head__settings" type="text" placeholder="DEFAULT"></textarea>
+                    <textarea name="head__settings" id="head" type="text" placeholder="DEFAULT"></textarea>
                 </div>
                 <button type="submit" hidden id="main__settings-button"></button>
             </div>
