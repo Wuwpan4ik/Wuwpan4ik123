@@ -146,7 +146,7 @@
                                             <?php
                                             $options = ["vk", "whatsapp", "twitter", "facebook", "instagram", "youtube", "telegram", "site"];
                                             for($i = 0; $i<8; $i++){
-                                                if (is_null($content[2][0][$options[$i]])) continue;
+                                                if (empty($content[2][0][$options[$i]])) continue;
                                                 ?>
                                             <div class="social__block">
 

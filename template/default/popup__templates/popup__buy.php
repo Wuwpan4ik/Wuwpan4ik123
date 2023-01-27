@@ -46,7 +46,7 @@
                         <div class="popup__bonus-form-input-email input-img">
                             <img src="/img/smallPlayer/email.svg" alt="">
                         </div>
-                        <input name="email" type="email" placeholder="Ваш email" required>
+                        <input name="email" type="email" placeholder="Ваша почта" required>
                     </div>
                     <div class="popup__buy-body-form  input">
                         <div class="popup__bonus-form-input-phone input-img">

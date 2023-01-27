@@ -328,7 +328,7 @@
                                 <div class="popup__bonus-form-input-email input-img">
                                     <img src="../img/smallPlayer/email.svg" alt="">
                                 </div>
-                                <input type="text" value="<?=$_SESSION['user']['email']?>" name="email" placeholder="Ваш email" readonly>
+                                <input type="text" value="<?=$_SESSION['user']['email']?>" name="email" placeholder="Ваша почта" readonly>
                             </div>
                             <div class="popup__buy-body-form youChosen-input input">
                                 <div class="popup__bonus-form-input-email input-img">
@@ -372,7 +372,7 @@
                                     <div class="popup__bonus-form-input-email input-img">
                                         <img src="../img/smallPlayer/email.svg" alt="">
                                     </div>
-                                    <input name="email" type="email" placeholder="Ваш email" value="<?php echo isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : ''?>" readonly>
+                                    <input name="email" type="email" placeholder="Ваша почта" value="<?php echo isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : ''?>" readonly>
                                 </div>
                                 <div class="popup__buy-body-form question-textarea">
                                     <div class="popup__bonus-form-input-email input-img">

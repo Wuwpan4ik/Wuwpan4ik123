@@ -118,50 +118,34 @@ class AccountController extends ACoreCreator {
 
         if (strlen($_POST['vk']) != 0) {
             $query_to_update_urls['vk'] = $_POST['vk'];
-        } else {
-            $query_to_update_urls['vk'] = null;
         }
 
         if (strlen($_POST['instagram']) != 0) {
             $query_to_update_urls['instagram'] = $_POST['instagram'];
-        } else {
-            $query_to_update_urls['instagram'] = null;
         }
 
         if (strlen($_POST['whatsapp']) != 0) {
             $query_to_update_urls['whatsapp'] = $_POST['whatsapp'];
-        } else {
-            $query_to_update_urls['whatsapp'] = null;
         }
 
         if (strlen($_POST['telegram']) != 0) {
             $query_to_update_urls['telegram'] = $_POST['telegram'];
-        } else {
-            $query_to_update_urls['telegram'] = null;
         }
 
         if (strlen($_POST['facebook']) != 0) {
             $query_to_update_urls['facebook'] = $_POST['facebook'];
-        } else {
-            $query_to_update_urls['facebook'] = null;
         }
 
         if (strlen($_POST['youtube']) != 0) {
             $query_to_update_urls['youtube'] = $_POST['youtube'];
-        } else {
-            $query_to_update_urls['youtube'] = null;
         }
 
         if (strlen($_POST['twitter']) != 0) {
             $query_to_update_urls['twitter'] = $_POST['twitter'];
-        } else {
-            $query_to_update_urls['twitter'] = null;
         }
 
         if (strlen($_POST['site']) != 0) {
             $query_to_update_urls['site'] = $_POST['site'];
-        } else {
-            $query_to_update_urls['site'] = null;
         }
 
         if($_FILES['avatar']['size'] != 0) {
