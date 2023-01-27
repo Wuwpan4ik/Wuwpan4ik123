@@ -614,8 +614,9 @@
                 </div>
             </div>
         </div>`;
-        document.querySelector('.social__blocks').innerHTML += div;
-        checkboxStatusChange(document.querySelector('.social__blocks'));
+        // console.log(new DOMParser().parseFromString(div, "text/xml"))
+        document.querySelector('.social__blocks').insertAdjacentHTML('beforeend', div);
+        checkboxStatusChange();
 
         $('.social__blocks:last #social__inpu').on('input', function (){
             if (this.value.length > 0) {
