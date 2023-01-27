@@ -273,8 +273,8 @@
             chmod("./uploads/users/". $_SESSION['user']['id'] . "/files", 0777);
             chmod("./uploads/users/". $_SESSION['user']['id'] . "/course_files", 0777);
             chmod("./uploads/users/". $_SESSION['user']['id'] . "/thumbnails", 0777);
-            echo "success";
-            return True;
+            echo true;
+            return true;
         }
 
         public function saveUserSettings() {
