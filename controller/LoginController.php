@@ -105,9 +105,7 @@
                                     <span style="color: rgba(0, 0, 0, 0.6);font-size:16px;font-weight:400;">
                                         Спасибо, что вы зарегистрировались в Сourse Сreator! Ниже важная информация о вашем аккаунте. Пожалуйста, сохраните это письмо, чтобы можно было обратиться к нему позже.
                                     </span>
-                                    <div class="info_account" style="display:-webkit-box;
-                                    display:-ms-flexbox;flex-direction:column;
-                                    display:flex;-webkit-box-pack: justify;-ms-flex-pack: justify;justify-content: space-between;margin-top: 40px;">
+                                    <div class="info_account" style="margin-top: 40px;">
                                         <div class="first_row" style="width:100%">
                                             <p style="font-weight:700;font-size:14px;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;color: rgba(0, 0, 0, 0.9);">
                                                 Ваш логин:
@@ -340,7 +338,7 @@
             unset($_SESSION['user']);
             $username = $_POST['username'];
             $user = $this->db->db->query("SELECT * FROM `user` WHERE `username` = '$username'");
-//            if (count($user) == 1) {
+            if (count($user) == 1) {
                 $title = "Восстановление пароля";
                 $this->password = $this->GenerateRandomPassword(12);
                 $this->db->db->execute("UPDATE `user` SET `password` = '$this->password' WHERE `username` = '$username'");
@@ -348,9 +346,9 @@
                 $this->SendEmail($title, $body, $user[0]['email']);
                 header('Location: /login');
                 return true;
-//            }
-//            header('Location: /');
-//            return false;
+            }
+            header('Location: /');
+            return false;
         }
 
         public function UserRecovery()

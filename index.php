@@ -126,7 +126,16 @@
 
     $router->addRoute("/TariffController/Buy", "TariffController.php", "Buy");
     $router->addRoute("/Tariff-absent", "tariff-absent.php");
+    $router->addRoute("/error", "404.php");
 
-    $router->route("/$url");
+    if (array_key_exists("/$url", $router->getRoute())) {
+        $router->route("/$url");
+    } else {
+        $router->route("/error");
+    }
+
+
+
+
 
 ?>

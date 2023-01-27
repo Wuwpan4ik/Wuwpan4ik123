@@ -12,6 +12,10 @@ class Router
         }
     }
 
+    function getRoute() {
+        return $this->pages;
+    }
+
     function route($url) {
         $path = $this->pages[$url];
 

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/lessons.css">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/tooltips.css">
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 </head>
@@ -90,7 +91,7 @@
 
                         <h3><?=$p['name']?></h3>
 
-                        <div class="course-price">
+                        <div class="course-price" data-tip="Добавьте url на Albato">
                             <form action="/Course/<?=$p['id']?>/setPrice" class="media__form" method="POST">
                                 <div class="course__prices" style="position:relative;">
                                     <input type="number" name="course_price" min="100" placeholder="<? echo isset($p['price']) ? $p['price'] : "Укажите стоимость курса" ?>" <?php if (empty($_SESSION['user']['albato_key'])) echo 'disabled' ?>>
@@ -162,6 +163,7 @@
 <script src="../js/slick.min.js"></script>
 <script src="../js/sliders.js"></script>
 <script>
+    $("input[name='course_price']").attr('title', 'This is the hover-over text');
     let form__submit = $(function() {
         $('.media__form').each(function (){
             $(this).submit(function(e) {
