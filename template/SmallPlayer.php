@@ -129,10 +129,11 @@
 <?php if (empty($content['course_content'])) { ?>
     <style>
         body {
-            height: 100vh;
+            position: relative !important;
+            height: 100vh !important;
             display: -webkit-box;
             display: -ms-flexbox;
-            display: flex;
+            display: flex !important;
             -webkit-box-orient: vertical;
             -webkit-box-direction: normal;
             -ms-flex-direction: column;

@@ -215,7 +215,6 @@
                 $.post(e.target.action, $(this).serialize());
                 AddNotifications("Вопрос успешно отправлен");
             });
-<<<<<<< HEAD
         })
     });
 </script>
@@ -279,42 +278,24 @@
         toggleQuestions();
     })
 </script>
-=======
-            request.send();
-        }
-    </script>
-
 <!--Открытие попапа Вопроса-->
-    <script>
-        function toggleQuestions() {
-            document.querySelector('.question').classList.toggle('active');
+
+<script>
+    let questInput = document.getElementById('userQuestion')
+    document.querySelector('#sendQuest').addEventListener('click', function () {
+        if(questInput.value !== ""){
+            document.querySelector('#formQuest').submit();
+            document.querySelector('.question.userPopup').classList.remove('active')
+            document.querySelector('.questionBackground').classList.remove('active')
         }
-        document.getElementById('send__questions').addEventListener('click', function (){
-            toggleQuestions();
-        })
-        document.querySelector('#close__question').addEventListener('click', function (){
-            toggleQuestions();
-        })
-    </script>
-    <script>
-        let questInput = document.getElementById('userQuestion')
-        document.querySelector('#sendQuest').addEventListener('click', function () {
-            if(questInput.value === ""){
-                return
-            }else{
-                document.querySelector('#formQuest').submit();
-                document.querySelector('.question.userPopup').classList.remove('active')
-                document.querySelector('.questionBackground').classList.remove('active')
-            }
-        });
-        document.querySelector('.questionBackground').addEventListener('click', function(){
-            if(document.querySelector('.question.userPopup').classList.contains('active')){
-                document.querySelector('.question.userPopup').classList.remove('active')
-                document.querySelector('.questionBackground').classList.remove('active')
-            }
-        })
-    </script>
->>>>>>> styles
+    });
+    document.querySelector('.questionBackground').addEventListener('click', function(){
+        if(document.querySelector('.question.userPopup').classList.contains('active')){
+            document.querySelector('.question.userPopup').classList.remove('active')
+            document.querySelector('.questionBackground').classList.remove('active')
+        }
+    })
+</script>
 
 <script>
 function startAccordion() {

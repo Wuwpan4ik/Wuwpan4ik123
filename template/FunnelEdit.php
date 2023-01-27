@@ -386,7 +386,7 @@
                         </div>
 
                         <div class="input__wrapper">
-                            <input name="video_change" type="file" id="input__file" class="input input__file" onchange="uploadFile(this)" multiple="">
+                            <input name="video_change" accept="video/mp4" type="file" id="input__file" class="input input__file" onchange="uploadFile(this)" multiple="">
                             <label for="input__file" class="input__file-button" style="">
                                 <span class="input__file-icon-wrapper"><img class="input__file-icon" src="/img/plus.svg" width="25"></span>
                                 <span class="input__file-button-text">Добавить</span>
