@@ -93,6 +93,16 @@ volumeBtn.addEventListener("click", () => {
     }
 });
 
+document.addEventListener('DOMContentLoaded', function(){
+    if(youWatching.classList.contains('non__file')){
+        videoContainerS.classList.remove('nonActivePlayer');
+        videoContainerS.classList.add('non__file');
+    }else{
+        videoContainerS.classList.remove('nonActivePlayer');
+        videoContainerS.classList.add('has__file');
+    }
+})
+
 videoContainer.onclick = function () {
     if (videoContainer.paused){
         youWatching.classList.remove('active');

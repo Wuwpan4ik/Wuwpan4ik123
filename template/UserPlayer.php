@@ -1,10 +1,8 @@
 <!DOCTYPE HTML>
 <html lang="ru">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-<head>
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -15,7 +13,6 @@
     <link rel="stylesheet" href="/css/smallPlayer.css">
     <link rel="stylesheet" href="/css/courseplayer.css">
     <link rel="stylesheet" href="/css/notifications.css">
-
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 </head>
@@ -187,7 +184,7 @@
                                 <div class="popup__bonus-form-input-email input-img">
                                     <img src="../img/smallPlayer/email.svg" alt="">
                                 </div>
-                                <textarea name="question" placeholder="Ваш вопрос"></textarea>
+                                <textarea name="question" id="userQuestion" placeholder="Ваш вопрос"></textarea>
                             </div>
                             <div class="question-form">
                                 <div class="userPopup__button questionBack backBtn">
@@ -218,6 +215,7 @@
                 $.post(e.target.action, $(this).serialize());
                 AddNotifications("Вопрос успешно отправлен");
             });
+<<<<<<< HEAD
         })
     });
 </script>
@@ -281,6 +279,42 @@
         toggleQuestions();
     })
 </script>
+=======
+            request.send();
+        }
+    </script>
+
+<!--Открытие попапа Вопроса-->
+    <script>
+        function toggleQuestions() {
+            document.querySelector('.question').classList.toggle('active');
+        }
+        document.getElementById('send__questions').addEventListener('click', function (){
+            toggleQuestions();
+        })
+        document.querySelector('#close__question').addEventListener('click', function (){
+            toggleQuestions();
+        })
+    </script>
+    <script>
+        let questInput = document.getElementById('userQuestion')
+        document.querySelector('#sendQuest').addEventListener('click', function () {
+            if(questInput.value === ""){
+                return
+            }else{
+                document.querySelector('#formQuest').submit();
+                document.querySelector('.question.userPopup').classList.remove('active')
+                document.querySelector('.questionBackground').classList.remove('active')
+            }
+        });
+        document.querySelector('.questionBackground').addEventListener('click', function(){
+            if(document.querySelector('.question.userPopup').classList.contains('active')){
+                document.querySelector('.question.userPopup').classList.remove('active')
+                document.querySelector('.questionBackground').classList.remove('active')
+            }
+        })
+    </script>
+>>>>>>> styles
 
 <script>
 function startAccordion() {
