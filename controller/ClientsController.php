@@ -154,6 +154,7 @@
         }
 
         private function GetRegistrationUserHtml ($email, $password) {
+            $width = (is_null($password)) ? 100 : 50;
             $result = '<html lang="RU">
                     <head>
                         <meta charset="UTF-8">
@@ -176,7 +177,7 @@
                                 <div class="info_account" style="display:-webkit-box;
                                 display:-ms-flexbox;
                                 display:flex;-webkit-box-pack: justify;-ms-flex-pack: justify;justify-content: space-between;gap: 20px;margin-top: 40px;">
-                                    <div class="first_row" style="width:50%">
+                                    <div class="first_row" style="width:'. $width .'%">
                                         <p style="font-weight:700;font-size:14px;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;color: rgba(0, 0, 0, 0.9);">
                                             Ваша почта:
                                         </p>
