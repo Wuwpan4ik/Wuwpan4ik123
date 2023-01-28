@@ -212,6 +212,7 @@
                         </div>
                     </body>
                     </html>';
+            return $result;
         }
 
         private function GetRegistrationClientHtml($name, $cost, $email, $course_count, $phone = null, $user_name = null, $number_funnel = null, $number_slide = null)
