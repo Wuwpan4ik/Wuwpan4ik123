@@ -532,8 +532,8 @@
                 $course_info = $this->m->db->query("SELECT course.name, course.price, user.email, count(course_content.id) as 'count' FROM course INNER JOIN user ON user.id = course.author_id INNER JOIN course_content on course_content.course_id = course.id WHERE course.id = $course_id")[0];
 
 //              Добавление уведомлений
-                $this->addNotifications("Вы купили курс", "Доступный курс - {$course_info[0]['name']}", '/img/Notification/star.svg', $res['id']);
-                $this->addNotifications("У вас купили курс", "Ваш курс - “{$course_info[0]['name']}”, купил {$this->email}", '/img/Notification/star.svg', $creator_id);
+                $this->addNotifications("Вы купили курс", "Доступный курс - {$course_info['name']}", '/img/Notification/star.svg', $res['id']);
+                $this->addNotifications("У вас купили курс", "Ваш курс - “{$course_info['name']}”, купил {$this->email}", '/img/Notification/star.svg', $creator_id);
                 $title = "У вас купили курс!";
                 $phone = ($this->phone) ? $this->phone : null;
                 $name = ($this->name) ? $this->name : null;

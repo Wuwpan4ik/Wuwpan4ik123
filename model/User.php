@@ -74,7 +74,7 @@ class User {
     }
 
     public function getNotifications($user_id) {
-        $result = $this->db->query("SELECT * FROM notifications WHERE `user_id` = '$user_id' LIMIT 5");
+        $result = $this->db->query("SELECT * FROM notifications WHERE `user_id` = '$user_id' ORDER BY id desc LIMIT 10");
         return $result;
     }
 
