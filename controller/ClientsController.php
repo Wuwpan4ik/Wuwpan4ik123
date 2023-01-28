@@ -154,7 +154,7 @@
         }
 
         private function GetRegistrationUserHtml ($email, $password) {
-            return '<html lang="RU">
+            $result = '<html lang="RU">
                     <head>
                         <meta charset="UTF-8">
                         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -183,7 +183,8 @@
                                         <div style="color: #8098AB;background: #EFF3F6;border-radius: 3px;padding-top: 15px;padding-bottom: 15px;padding-right: 20px;padding-left: 20px;">
                                             ' . $email . '
                                         </div>
-                                    </div>
+                                    </div>';
+            if (!is_null($password)) $result .= '
                                     <div class="second_row" style="width:50%">
                                         <p style="font-weight:700;font-size:14px;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;color: rgba(0, 0, 0, 0.9);">
                                             Ваш пароль:
@@ -191,7 +192,8 @@
                                         <div style="color: #8098AB;background: #EFF3F6;border-radius: 3px;padding-top: 15px;padding-bottom: 15px;padding-right: 20px;padding-left: 20px;">
                                             ' . $password . '
                                         </div>
-                                    </div>
+                                    </div>';
+            $result .= '
                                 </div>
                                 <div class="link_account" style="margin-top: 20px;">
                                     <a href="https://course-creator.io/UserLogin" target="_blank">
@@ -481,7 +483,6 @@
 
 //          Добавление User
             if (count($this->m->getUserByEmail($this->email)) != 1) {
-                $this->password = $this->GenerateRandomPassword(12);
 
                 $this->m->db->execute("INSERT INTO `user` (`email`, `password`, `is_creator`) VALUES ('$this->email', '$this->password', 0)");
 
@@ -492,10 +493,10 @@
                 if (isset($this->phone)) {
                     $this->m->db->execute("UPDATE `user` SET `telephone` = '$this->phone' WHERE `email` = '$this->email'");
                 }
+
+                $this->password = $this->GenerateRandomPassword(12);
             } else {
-                $title = "Покупка курса";
-                $body = $this->GetRegistrationUserHtml($this->email, null);
-                $this->SendEmail($title, $body, $this->email);
+                $this->password = null;
             }
             $title = "Покупка курса";
             $body = $this->GetRegistrationUserHtml($this->email, $this->password);

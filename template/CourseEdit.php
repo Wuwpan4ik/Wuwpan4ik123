@@ -20,7 +20,7 @@
 
 <body>
 
-<?php print_r($_SESSION['error']) ?>
+<?php //print_r($_SESSION['error']) ?>
 
 <style>
     .popup__background {
