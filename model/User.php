@@ -92,11 +92,12 @@ class User {
                                                 user_info.avatar,
                                                 user_info.email,
                                                 user_info.first_name,
-                                                content.file_url
+                                                content.file_url,
+                                                user_integrations.albato_key
                                                 FROM `course_content` AS content
                                                 INNER JOIN `course` AS course ON content.course_id = course.id
                                                 INNER JOIN `user` AS user_info ON course.author_id = user_info.id
-                                                INNER JOIN `user_integraions` ON user_info.id = user_integraions.user_id WHERE content.id = '$id'");
+                                                INNER JOIN `user_integrations` ON user_info.id = user_integrations.user_id WHERE content.id = '$id'");
         return $result;
     }
 
@@ -154,6 +155,11 @@ class User {
         $courses = $this->db->query($course_query);
         $_SESSION['error'] = $course_query;
         return $courses;
+    }
+
+    public function getAPIByUser($id)
+    {
+        return $this->db->query("SELECT * FROM `user_integrations` WHERE user_id = $id");
     }
 
     public function getDisableContentForUserCoursePage($author_id)

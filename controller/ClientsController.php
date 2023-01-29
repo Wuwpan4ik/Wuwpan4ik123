@@ -511,7 +511,6 @@
                 if (count($client) == 1){
                     $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]', `give_money` = '$give_money', `first_buy` = 0 WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
                 } else {
-                    $_SESSION['error'] = 100;
                     $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], $give_money);
                 }
 

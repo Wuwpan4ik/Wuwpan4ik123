@@ -396,7 +396,7 @@
         </div>
     </div>
 </div>
-<input type="hidden" id="albato_key" value="https://h.albato.com/wh/38/1lfvved/LO_LVmbDN6HLLwaYyYWu-id9UzcYfVWt7KY4BtC3RPo/">
+<input type="hidden" id="albato_key" value="<?php print_r($content['get_API'][0]['albato_key'])?>">
 <?php include 'template/default/notificationsPopup.php' ?>
 <?php
 unset($_SESSION['course_price']);
@@ -509,14 +509,17 @@ unset($_SESSION['course_id']);
         $('.popup__form').each(function (){
             $(this).submit(function(e) {
                 e.preventDefault();
+
                 let form = $(this);
                 let form_data = $(this).serialize();
                 let albato_key;
+
                 if (document.getElementById('albato_key').value.length > 0) {
                     albato_key = document.getElementById('albato_key').value;
                 } else {
                     albato_key = null;
                 }
+
                 $.ajax({
                     type: 'POST',
                     url: $(this).attr("action"),
