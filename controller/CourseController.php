@@ -24,8 +24,10 @@
             $count_video = count($this->m->db->query("SELECT * FROM `course_content` WHERE course_id = ". $res[0]['id'])) + 1;
 
 //          Проверка юзера
+
             if (!$this->isUser($res[0]['author_id'])) return False;
             if (!$this->m->GetTariff($res[0]['author_id'])) return False;
+
 //          Проверка юзера
 
             $name_video = hash('md5', $_FILES['video_uploader']['name']);

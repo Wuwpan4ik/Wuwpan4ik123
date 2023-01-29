@@ -495,7 +495,11 @@ unset($_SESSION['course_id']);
                     elem.innerHTML = course.price;
                 })
                 document.querySelectorAll('.course__currency').forEach(item => {
-                    item.innerHTML = course.currency;
+                    if (course.currency) {
+                        item.innerHTML = course.currency;
+                    } else {
+                        item.innerHTML = '₽';
+                    }
                 });
                 document.querySelector('.form__buy-course-video').action = "/ClientsController/CourseBuy";
                 document.querySelector('.course__buy-title').innerHTML = course['name'];

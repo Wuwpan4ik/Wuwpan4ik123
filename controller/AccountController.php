@@ -243,7 +243,7 @@ class AccountController extends ACoreCreator {
                 if ($_POST['new_pass'] == $_POST['new_pass_repeat']) {
                     $password = $_POST['new_pass'];
                     $this->m->db->execute("UPDATE user SET `password` = '$password' WHERE id = " . $_SESSION['user']['id']);
-                    $this->addNotifications("Пароль изменён", "Вы изменили пароль в {$this->date}", "/img/Notification/message.svg", $_SESSION['user']['id']);
+                    $this->addNotifications("Пароль изменён", "Вы изменили пароль в {$this->date}", "/img/Notification/message.svg",'item-lite' ,$_SESSION['user']['id']);
                 }
             } else {
                 $request = "Неверный пароль";

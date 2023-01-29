@@ -229,12 +229,6 @@
                                                             Сохранить
                                                         </button>
 
-<!--                                                        <input name="avatar" type="file" id="input__file" class="input input__file" onchange='uploadFile(this)' multiple>-->
-<!--                                                        <label for="input__file" class="input__file-button">-->
-<!---->
-<!--                                                            <span class="input__file-icon-wrapper"><img class="input__file-icon" src="./img/plus.svg"  width="25"></span>-->
-<!--                                                            <span class="input__file-button-text">Добавить</span>-->
-<!--                                                        </label>-->
                                                     </div>
 
                                                 </div>

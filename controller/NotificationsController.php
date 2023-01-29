@@ -7,10 +7,10 @@ class NotificationsController extends ACoreCreator
         $notifications = $this->m->getCheckedNotifications($_SESSION['user']['id']);
         foreach ($notifications as $item) {
             $div .= '
-                <div class="popupBell-item not-bell">
+                <div class="popupBell-item not-bell '. $item['class'] .'">
                     <img src="'. $item['image'] .'">
                     <div class="popupBell-item__info ">
-                        <span>'. $item['class'] . '</span>
+                        <span>'. $item['title'] . '</span>
                         <p>'. $item['body'] . '</p>
                     </div>
                 </div>';
@@ -22,10 +22,10 @@ class NotificationsController extends ACoreCreator
         $notifications = $this->m->getNotifications($_SESSION['user']['id']);
         foreach ($notifications as $item) {
             $div .= '
-                <div class="popupBell-item not-bell">
+                <div class="popupBell-item not-bell '. $item['class'] .'">
                     <img src="'. $item['image'] .'">
                     <div class="popupBell-item__info ">
-                        <span>'. $item['class'] . '</span>
+                        <span>'. $item['title'] . '</span>
                         <p>'. $item['body'] . '</p>
                     </div>
                 </div>';

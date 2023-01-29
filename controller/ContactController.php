@@ -80,7 +80,7 @@ class ContactController extends ACoreCreator {
         $course = $this->m->db->query("SELECT name FROM course WHERE id = " . $course_id);
 
         $this->m->db->execute("INSERT INTO contact (`user_id`, `author_id`, `body`) VALUES ('$uid', '$author_id', '$question')");
-        $this->addNotifications("Вам пришел вопрос от клиента",  "Пользователь {$user[0]['first_name']} оставил вопрос, для ответа свяжитесь с ним по {$user[0]['email']}", '/img/Notification/question.svg', $author_id);
+        $this->addNotifications("Вам пришел вопрос от клиента",  "Пользователь {$user[0]['first_name']} оставил вопрос, для ответа свяжитесь с ним по {$user[0]['email']}", '/img/Notification/question.svg','item-lite', $author_id);
 
 
         $title = "Вопрос от пользователя " . $user[0]['email'];
