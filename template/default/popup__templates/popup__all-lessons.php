@@ -22,7 +22,7 @@
                                                 Урок <?=$count?>
                                             </div>
                                             <div class="duration_time">
-                                                0:05
+                                                <?=$item['duration']?>
                                             </div>
                                         </div>
                                         <div class="second_row_video" style="width:100%;">

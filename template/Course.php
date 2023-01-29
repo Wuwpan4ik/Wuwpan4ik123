@@ -91,7 +91,7 @@
 
                         <h3><?=$p['name']?></h3>
 
-                        <div class="course-price" data-tip="Добавьте url на Albato">
+                        <div class="course-price"<?php if (is_null($_SESSION['user']['albato_key'])) { ?> data-tip="Добавьте url на Albato" <?php } ?>>
                             <form action="/Course/<?=$p['id']?>/setPrice" class="media__form" method="POST">
                                 <div class="course__prices" style="position:relative;">
                                     <input type="number" name="course_price" min="100" placeholder="<? echo isset($p['price']) ? $p['price'] : "Укажите стоимость курса" ?>" <?php if (empty($_SESSION['user']['albato_key'])) echo 'disabled' ?>>
