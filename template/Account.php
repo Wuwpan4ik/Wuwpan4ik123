@@ -258,7 +258,7 @@
                             <div class="tab">
 
                                 <div class="prodamus-input">
-                                    <form action="/Account/SaveSchoolSettings" method="POST">
+                                    <form action="/Account/SaveSchoolSettings" class="account__form" method="POST">
                                         <h2>Основные данные о школе</h2>
 
                                         <div class="field">
@@ -459,7 +459,7 @@
 
                             <div class="tab">
                                 <div class="prodamus-input col">
-                                    <form action="/Account/SaveIntegrationsSettings" method="POST">
+                                    <form action="/Account/SaveIntegrationsSettings" class="account__form" method="POST">
                                         <div class="inner_row">
                                             <h2>Подключение Prodamus:  </h2>
                                             <div class="row">

@@ -92,12 +92,10 @@ class User {
                                                 user_info.avatar,
                                                 user_info.email,
                                                 user_info.first_name,
-                                                content.file_url,
-                                                user_integrations.albato_key
+                                                content.file_url
                                                 FROM `course_content` AS content
                                                 INNER JOIN `course` AS course ON content.course_id = course.id
-                                                INNER JOIN `user` AS user_info ON course.author_id = user_info.id
-                                                INNER JOIN `user_integrations` ON user_info.id = user_integrations.user_id WHERE content.id = '$id'");
+                                                INNER JOIN `user` AS user_info ON course.author_id = user_info.id WHERE content.id = '$id'");
         return $result;
     }
 
