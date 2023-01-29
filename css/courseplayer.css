@@ -243,7 +243,7 @@ wrapper.activeFullscreen{
 }
 .aboutTheAuthor-name{
     margin:0 0 0 15px;
-    color:black;
+    color: rgba(0, 0, 0, 0.6);
 }
 .popup__allLessons-item-info{
     width:100%;
@@ -254,7 +254,7 @@ wrapper.activeFullscreen{
     height:46% !important;
 }
 .youWatching.non__file{
-    height:36.5% !important;
+    height:38% !important;
 }
 .UserPlayer.Сourse-form{
     transition: 0.6s all ease;

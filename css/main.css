@@ -83,7 +83,9 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
-
+.statistics tr th{
+  margin:  16px 20px 40px  20px;
+}
 ._container {
   width: 95% !important;
   margin: 0 auto;
