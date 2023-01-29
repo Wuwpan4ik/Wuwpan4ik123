@@ -207,8 +207,8 @@
                                                     <div class="avatar-body">
                                                         <img src="../img/saveAvatar.svg" alt="">
                                                         <div class="avatar-body__info">
-                                                            <span id="file-name" class="file-box">Название файла</span>
-                                                            <span id="file-size" class="file-box">0 кб из доступных 5 мб</span>
+                                                            <span id="file-name" class="file-box"><?php if (isset($_SESSION['user']['avatar'])) {print_r(substr(basename($_SESSION['user']['avatar']), 0, 10));} else {echo 'Название файла';}?></span>
+                                                            <span id="file-size" class="file-box"><?php if (isset($_SESSION['user']['avatar'])) {print_r(round(filesize($_SESSION['user']['avatar']) / 1024));} else {echo '0';} ?> кб из доступных 5 мб</span>
                                                         </div>
 
                                                     </div>
@@ -528,9 +528,12 @@
 <script src="/js/getNotifications.js"></script>
 <script src="/js/customInputs.js"></script>
 <script src="/js/customSelect.js"></script>
-<script src="/js/printFailName.js" ></script>
 <script src="/js/notifications.js"></script>
 <script>
+    function uploadFile(target) {
+        target.parentElement.parentElement.parentElement.querySelector("#file-name").innerHTML = (target.files[0].name);
+        target.parentElement.parentElement.parentElement.querySelector("#file-size").innerHTML = Math.round(target.files[0].size / 1024) + "кБ из доступных 5мб" ;
+    }
     /*Popups*/
     let changeTariff = document.querySelector('.change-tariff-popup');
     let improvementTariff = document.querySelector('.improvement-tariff-popup');
