@@ -16,7 +16,7 @@
 </head>
 <body class="body">
 <div class="display-none">
-    <?php print_r($content['course_content']) ?>
+<!--    --><?php //print_r($content['course_content']) ?>
 </div>
 <?php if (!empty($content['course_content'])) { ?>
 <div class="mirror_smallPlayer">

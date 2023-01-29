@@ -53,7 +53,7 @@
         </div>
         <div class="popup__allLessons-form">
             <div class="popup__allLessons-form-buy button-open" >
-                <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" data-price="<?=$content['course_id'][0]['price']?>" data-course="<?=$content['course_id'][0]['id']?>" data-author="<?=$content['course_id'][0]['author_id']?>" type="button" class="button button-buy">Купить весь курс за <?php print_r($content['course_id'][0]['price']) ?> <?=isset($content['funnel_content'][0]['currency']) ? $content['funnel_content'][0]['currency'] : '₽'?></button>
+                <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" data-price="<?=$content['course_id'][0]['price']?>" data-course="<?=$content['course_id'][0]['id']?>" data-author="<?=$content['course_id'][0]['author_id']?>" type="button" class="button button-buy">Купить весь курс за <?php print_r($content['course_id'][0]['price']) ?> <?=(isset($content['funnel_content'][0]['currency']) && !empty($content['funnel_content'][0]['currency'])) ? $content['funnel_content'][0]['currency'] : '₽'?></button>
             </div>
             <div class="popup__allLessons-form-notBuy">
                 <button type="button" class="button button-notBuy" onclick="notBuy()">Пока не хочу покупать</button>
