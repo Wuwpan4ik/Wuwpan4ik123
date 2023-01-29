@@ -242,7 +242,7 @@
             function getBuyCourse()
             {
                 $course_id = $_GET['course_id'];
-                $course = $this->m->db->query("SELECT course.name, course.description, course.author_id, course.price, count(course_content.id) as 'count' FROM course_content INNER JOIN course ON course_content.course_id = course.id WHERE course.id = $course_id");
+                $course = $this->m->db->query("SELECT course.name, course.description, course.author_id, course.price, count(course_content.id) as 'count', user.currency FROM course_content INNER JOIN course ON course_content.course_id = course.id JOIN user ON user.id = course.author_id WHERE course.id = $course_id");
                 echo json_encode($course);
             }
 

@@ -13,8 +13,6 @@
 
   <body>
 
-  <?php print_r($_SESSION['error']) ?>
-
   <div class="Project app">
 
       <?php include 'default/sidebar.php'; ?>

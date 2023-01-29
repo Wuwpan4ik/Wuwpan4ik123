@@ -122,7 +122,7 @@ class User {
     public function getContentForUserAuthorPage()
     {
         $purchases = $this->db->query("SELECT `purchase` FROM `purchase` WHERE user_id = " . $_SESSION['user']['id'])[0]['purchase'];
-        $course_query = "SELECT user.id, user.email, course.name, user.avatar, user.school_name, course.description, user.first_name, user.second_name, count(course.id) as 'count', course.author_id FROM course AS course INNER JOIN user ON user.id = course.author_id WHERE";
+        $course_query = "SELECT user.id, user.email, course.name, user.avatar, user.school_name, user.school_desc, course.description, user.first_name, user.second_name, count(course.id) as 'count', course.author_id FROM course AS course INNER JOIN user ON user.id = course.author_id WHERE";
         $purchases_array = json_decode($purchases, true)['course_id'];
         foreach ($purchases_array as $course_id) {
             $course_query .= " course.id = $course_id ";
@@ -391,7 +391,8 @@ class User {
                                                 content.query_id as 'count_slider',
                                                 user_info.id as 'author_id',
                                                 user_info.avatar,
-                                                user_info.first_name
+                                                user_info.first_name,
+                                                user_info.currency
                                                 FROM `course` AS course
                                                 INNER JOIN `funnel` AS funnel ON course.id = '$course_id' AND funnel.id = '$id'
                                                 INNER JOIN `user` AS user_info ON funnel.author_id = user_info.id
@@ -418,6 +419,11 @@ class User {
         $user_info = $this->db->query("SELECT * FROM `user_integrations` WHERE user_id = '$author_id'");
         return ['funnel_content' => $funnel_content, 'course_content' => $course_content, 'course_id' => $course, 'main__settings' => $main__settings[0]['style_settings'], 'user_info' => $user_info[0]];
 
+    }
+
+    public function getCurrency($id)
+    {
+        return $this->db->query("SELECT currency FROM user WHERE id = $id")[0]['currency'];
     }
 
     public function getPopupForPreloader($id)

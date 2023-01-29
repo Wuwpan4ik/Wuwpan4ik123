@@ -264,7 +264,7 @@
                                         <div class="field">
 
                                             <div class="input_focus ">
-                                                <label for="username" class="label_focus">Страна</label>
+                                                <label for="username" class="label_focus">Название школы</label>
                                                 <input class="inf" type="text" name="school_name" value="<? echo (htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : '')) ?>">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">

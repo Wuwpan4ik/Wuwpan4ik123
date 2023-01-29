@@ -32,7 +32,7 @@
                     <div class="popup__buy-price-title">
                         Стоимость курса:
                     </div><div class="popup__buy-price-cost">
-                        <span id="price">1000</span> ₽
+                        <span id="price">1000</span> <?=isset($content['funnel_content'][0]['currency']) ? $content['funnel_content'][0]['currency'] : '₽'?>
                     </div>
                 </div>
                 <div class="popup__buy-register">

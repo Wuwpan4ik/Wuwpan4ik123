@@ -63,7 +63,7 @@
                                         <?php echo htmlspecialchars(isset($item['school_name']) ? $item['school_name'] : $item['name'] )?>
                                     </div>
                                     <div class="aboutTheAuthor__info-text hide-content">
-                                        <?=$item['description'] ?></div>
+                                        <?php echo htmlspecialchars(isset($item['school_desc']) ? $item['school_desc'] : $item['description'] )?></div>
                                 </div>
                             </div>
                             <div class="aboutTheAuthor-button availableСoursesBtn">
@@ -145,7 +145,7 @@
             </div>
             <div class="User-form-v">
                 <div class="userPopup__button buy__course-btn">
-                    <button type="button" class="button__buy-course">Купить весь курс за <span class="course__price"></span> ₽</button>
+                    <button type="button" class="button__buy-course">Купить весь курс за <span class="course__price"></span> <span class="course__currency"></span></button>
                 </div>
                 <div class=" AllLessons userPopup__button">
                     <button type="button" class="course__back-btn" onclick="backToAuthor(this)">Пока не хочу покупать</button>
@@ -312,7 +312,7 @@
                     </div>
                     <div class="youChosen-info">
                         Стоимость <span class="course__buy-text"></span>
-                        <span><span class="course__price video__price-buy"></span> <?php echo isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></span>
+                        <span><span class="course__price video__price-buy"></span><span class="course__currency"></span></span>
                     </div>
                     <form class="form__buy-course-video popup__form" method="POST" action="/ClientsController/CourseBuy">
                         <input hidden="hidden" type="text" name="creator_id" value="" id="creator_id">
@@ -494,6 +494,9 @@ unset($_SESSION['course_id']);
                 document.querySelectorAll('.course__price').forEach((elem) => {
                     elem.innerHTML = course.price;
                 })
+                document.querySelectorAll('.course__currency').forEach(item => {
+                    item.innerHTML = course.currency;
+                });
                 document.querySelector('.form__buy-course-video').action = "/ClientsController/CourseBuy";
                 document.querySelector('.course__buy-title').innerHTML = course['name'];
                 document.querySelector('.course__buy-count').innerHTML = course['count'] + ' урока';
@@ -644,7 +647,6 @@ unset($_SESSION['course_id']);
         request1.addEventListener("readystatechange", () => {
             if (request1.readyState === 4 && request1.status === 200) {
                 document.querySelector('.lesson__list').innerHTML = request1.responseText;
-                console.log(request1.responseText)
                 getCourseName(number);
                 document.getElementById('question_course-id').value = number;
                 let choiceVideo = document.body.querySelectorAll('.choice-video');
