@@ -220,7 +220,7 @@ wrapper.activeFullscreen{
 .wrapper.non__file{
     opacity: 1 !important;
     pointer-events: all;
-    bottom: 36.5% !important;
+    bottom: 38% !important;
     z-index: 4;
 }
 .popup__allLessons-item-video__img img{
