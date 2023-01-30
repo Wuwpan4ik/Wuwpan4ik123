@@ -116,7 +116,7 @@
 
             <table cellSpacing="0">
 
-                <thead class="fixedHeader">
+                <thead class="fixedHeader statistics">
 
 					<tr>
 

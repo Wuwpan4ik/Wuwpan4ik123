@@ -121,6 +121,7 @@
                                 <div class="popup__allLessons-item-info-title" style="font-size: 14px;margin-top:10px;">
                                     <?php echo htmlspecialchars($content[0]['content_name'])?>
                                 </div>
+
                                 <div class="infoLesson">
                                     <p><?=$content[0]['content_description'] ?></p>
                                 </div>
