@@ -127,7 +127,7 @@
                                                 <div id="myMultiselect" class=" multiselect">
                                                     <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
                                                         <select name="currency" class="form-select">
-                                                            <option id="name" value="<?php echo ($_SESSION['user']['currency']) ?? ""; ?>"><?php echo ($_SESSION['user']['currency']) ?? "Выберите валюту"; ?></option>
+                                                            <option id="name" value="<?php echo ($_SESSION['user']['currency']) ? $_SESSION['user']['currency'] : "₽"; ?>"><?php echo ($_SESSION['user']['currency']) ? $_SESSION['user']['currency'] : "₽"; ?></option>
                                                         </select>
                                                         <div class="overSelect"></div>
                                                     </div>
@@ -135,7 +135,7 @@
                                                         <label class="item">$<input class="custom-checkbox" type="radio" data-value="$" value="$" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                                         <label class="item">€<input class="custom-checkbox" type="radio" data-value="€" value="€" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                                         <label class="item">₴<input class="custom-checkbox" type="radio" data-value="₴" value="₴" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                                        <label class="item">₽<input class="custom-checkbox" type="radio" data-value="₽" value="₽" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                        <label class="item <?php echo ($_SESSION['user']['currency']) ?? "active"; ?>">₽<input class="custom-checkbox" type="radio" data-value="₽" value="₽" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                                     </div>
                                                 </div>
                                             </div>
