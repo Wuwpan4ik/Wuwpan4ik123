@@ -224,11 +224,6 @@
                                                                 <span class="input__file-button-text">Заменить</span>
                                                             </label>
                                                         </div>
-                                                        <button class="blue-button save-btn" type="submit">
-                                                            <img src="/img/save-file.svg" alt="">
-                                                            Сохранить
-                                                        </button>
-
                                                     </div>
 
                                                 </div>
@@ -440,7 +435,7 @@
                                             </div>
                                         </div>
                                         <div class="about-btn">
-                                            <button id="profile_send" type="submit">Сохранить</button>
+                                            <button class="save-btn" id="profile_send" type="submit">Сохранить</button>
                                         </div>
                                     </form>
 
@@ -493,7 +488,7 @@
                                             </div>
                                         </div>
                                         <div class="about-btn">
-                                            <button id="profile_send" type="submit">Сохранить</button>
+                                            <button class="save-btn" id="profile_send" type="submit">Сохранить</button>
                                         </div>
                                     </form>
                                 </div>
@@ -658,11 +653,12 @@
                     processData: false,
                     contentType: false
                 });
-                let saveBtn = document.querySelector('.save-btn');
-                saveBtn.classList.add("active");
+                let saveBtn = $(this).find('#profile_send');
+                console.log(saveBtn)
+                saveBtn.addClass("active");
                 saveBtn.innerHTML = 'Сохранено';
                 setTimeout(function () {
-                    saveBtn.classList.remove("active");
+                    saveBtn.removeClass("active");
                     saveBtn.innerHTML = 'Сохранить';
                     window.location.reload()
                 }, 2000)
