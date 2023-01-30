@@ -406,7 +406,8 @@
     /*question*/
     .question.userPopup {
         display: none;
-        height: 355px;
+        height: auto;
+        padding-bottom: 75px;
     }
 
     .question .popup__buy-register {
