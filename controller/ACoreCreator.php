@@ -11,6 +11,11 @@
         use addNotifications;
         use SendEmail;
 
+        protected $email_class;
+        protected $statistic_class;
+        protected $tariff_class;
+        protected $notifications_class;
+
         protected $m;
         protected $ourEmail;
         protected $ourPassword;
@@ -23,9 +28,14 @@
         public function __construct() {
             date_default_timezone_set('Europe/Moscow');
             $this->date = date("Y-m-d");
-            $this->m = new User();
 
-            $email_account = $this->m->GetEmailAccount();
+            $this->m = new User();
+            $this->email_class = new Email();
+            $this->statistic_class = new Statistic();
+            $this->tariff_class = new Tariff();
+            $this->notifications_class = new Notifications();
+
+            $email_account = $this->email_class->GetEmailAccount();
             $this->ourEmail = $email_account['email'];
             $this->ourPassword = $email_account['password'];
             $this->ourNickName = $email_account['name'];
@@ -35,7 +45,7 @@
 
         public function CheckTariff()
         {
-            return $this->m->db->query("SELECT users_tariff.tariff_id, tariffs.funnel_count, tariffs.course_count, tariffs.file_size, tariffs.children_count FROM `users_tariff` INNER JOIN `tariffs` ON tariffs.id = users_tariff.tariff_id WHERE users_tariff.user_id = {$_SESSION['user']['id']}");
+            return $this->tariff_class->Get();
         }
 
         public function obr() {

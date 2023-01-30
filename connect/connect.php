@@ -1,5 +1,6 @@
 <?php
 class Database {
+    protected $db;
     public $link;
 
     public function __construct() {
@@ -33,7 +34,6 @@ class Database {
 
         return $result;
     }
-};
+}
 global $db;
 $db = new Database();
-?>

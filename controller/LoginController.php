@@ -4,7 +4,7 @@
             if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                 $_SESSION['error']['email_message'] = 'Неверный email';
             }
-            if (count($this->db->db->query("SELECT * FROM user WHERE email = '$email'")) != 0) {
+            if (count($this->user->getUserByEmail($email)) != 0) {
                 $_SESSION['error']['email_message'] = 'Почта либо занята, либо это ваша';
             }
             if (preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$name)) {
@@ -138,7 +138,7 @@
             $email = $_POST['email'];
             $password = $_POST['pass'];
 
-            $res = $this->db->db->query("SELECT * FROM user WHERE email = '$email' AND password = '$password'");
+            $res = $this->user->getAuthorizationUserByEmail($email, $password);
             if(count($res) != 0) {
                 unset($_SESSION["user"]);
                 if ($res[0]['is_creator'] == 0) {
@@ -165,10 +165,10 @@
         }
 
         public function login () {
-            $login = $_POST['login'];
+            $username = $_POST['login'];
             $password = $_POST['pass'];
 
-            $res = $this->db->db->query("SELECT * FROM user WHERE username = '$login' AND password = '$password'");
+            $res = $res = $this->user->getAuthorizationUserByUsername($username, $password);
             if(count($res) != 0) {
                 unset($_SESSION["user"]);
                 $_SESSION["user"] = [
@@ -183,13 +183,13 @@
                     'is_creator' => 1
 
                 ];
-                $integrations = $this->db->db->query("SELECT * FROM `user_integrations` WHERE user_id = {$_SESSION['user']['id']}");
+                $integrations = $this->user->getUserIntegrations();
                 if (count($integrations) != 0) {
                     $_SESSION['user']['albato_key'] = $integrations[0]['albato_key'];
                     $_SESSION['user']['prodamus_key'] = $integrations[0]['prodamus_key'];
                 }
 
-                $tariff_id = $this->db->db->query("SELECT * FROM `users_tariff` WHERE `user_id` = {$_SESSION['user']['id']}")[0]['tariff_id'];
+                $tariff_id = $this->tariff_class->GetUserTariff()['tariff_id'];
                 if (count($tariff_id) != 0) $_SESSION['user']['tariff'] = $tariff_id;
                 $this->get_content();
             } else {
@@ -222,7 +222,7 @@
 
             move_uploaded_file($_FILES['avatar']['tmp_name'], "./".$ava);
 
-            $res = $this->db->db->query("SELECT * FROM user WHERE email = '$email'");
+            $res = $this->user->getUserByEmail($email);
             if(count($res) != 0){
                 $response = "На этот адрес электронной почты уже был зарегистрирован аккаунт";
                 echo $response;
@@ -230,9 +230,20 @@
             }
 
             $this->validate_data($email, $first_name);
+            $data = [
+                'niche' => $niche,
+                'avatar' => $ava,
+                'username' => $username,
+                'first_name' => $first_name,
+                'second_name' => $second_name,
+                'email' => $email,
+                'password' => $password,
+                'is_creator' => 1
+            ];
 
-            $this->db->db->execute("INSERT INTO `user` (`niche`, `avatar`,`username`, `first_name`, `second_name`, `email`, `password`, `is_creator`) VALUES ('$niche', '$ava', '$username', '$first_name', '$second_name', '$email', '$password', 1)");
-            $res = $this->db->db->query("SELECT * FROM user WHERE username = '$username' AND password = '$password'");
+            $this->user->InsertQuery('user', $data);
+
+            $res = $this->user->getAuthorizationUserByUsername($username, $password);
             if(count($res) != 0) {
                 if ($res[0]['is_creator'] != 0) {
                     $_SESSION["user"] = [
@@ -250,16 +261,7 @@
                     $body = $this->GetRegistrationHtml($username);
                     $this->SendEmail($title, $body, $email);
                 }
-            } else {
-                $response = "Неверный логин или пароль";
-                echo $response;
-                die(header("HTTP/1.0 404 Not Found"));
             }
-
-//            foreach (['', '/funnels', '/courses', '/files', '/course_files', '/thumbnails'] as $item) {
-//                mkdir("./uploads/users/" . $_SESSION['user']['id'] . $item);
-//                chmod("./uploads/users/" . $_SESSION['user']['id'] . $item, 0777);
-//            }
 
             mkdir("./uploads/users/" . $_SESSION['user']['id']);
             mkdir("./uploads/users/". $_SESSION['user']['id'] . "/funnels");
@@ -279,7 +281,7 @@
 
         public function saveUserSettings() {
 
-            $user = $this->db->db->query("SELECT * FROM user WHERE `id` = ". $_SESSION['user']['id']);
+            $user = $this->user->getCurrentUser();
 
             if (strlen($_POST['first_name']) == 0) {
                 $first_name = $_SESSION['user']['first_name'];
@@ -301,7 +303,12 @@
                 $second_name = $_POST['second_name'];
             }
 
-            $this->db->db->execute("UPDATE user SET `first_name` = '$first_name', `second_name` = '$second_name' WHERE id = " . $_SESSION['user']['id']);
+            $data = [
+                "first_name" => $first_name,
+                "second_name" => $second_name
+            ];
+
+            $this->user->UpdateQuery('user', $data, "WHERE id = " . $_SESSION['user']['id']);
 
             $_SESSION["user"]['first_name'] = $first_name;
             $_SESSION["user"]['second_name'] = $second_name;
@@ -324,9 +331,21 @@
                 $date = date("d.m.Y");
                 $time = date("H:i");
 
-                $this->db->db->execute("INSERT INTO `notifications`(`id`, `user_id`, `class`, `body`, `date`, `time`, `is_checked`) VALUES (NULL,'$user_id','$class','$message','$date','$time','0')");
+                $data = [
+                    "user_id" => $user_id,
+                    "class" => $class,
+                    "body" => $message,
+                    "date" => $date,
+                    "time" => $time,
+                    "is_checked" => 0
+                ];
 
-                $this->db->db->execute("UPDATE user SET `password` = '$npass' WHERE id = " . $_SESSION['user']['id']);
+                $this->notifications_class->InsertQuery('notifications', $data);
+
+                $data = [
+                    'password' => $npass
+                ];
+                $this->user->UpdateQuery('user', $data, "WHERE id = " . $_SESSION['user']['id']);
                 unset($_SESSION['error']['pass_message']);
             }
             header('Location: /');
@@ -337,11 +356,15 @@
         {
             unset($_SESSION['user']);
             $username = $_POST['username'];
-            $user = $this->db->db->query("SELECT * FROM `user` WHERE `username` = '$username'");
+            $user = $this->user->getUserByUsername($username);
             if (count($user) == 1) {
                 $title = "Восстановление пароля";
                 $this->password = $this->GenerateRandomPassword(12);
-                $this->db->db->execute("UPDATE `user` SET `password` = '$this->password' WHERE `username` = '$username'");
+                $data = [
+                    "password" => $this->password,
+                    "username" => $username
+                ];
+                $this->user->UpdateQuery("user", $data);
                 $body = $this->GetRecoveryHtml($user[0]['username'], $this->password);
                 $this->SendEmail($title, $body, $user[0]['email']);
                 header('Location: /login');
@@ -355,11 +378,14 @@
         {
             unset($_SESSION['user']);
             $this->email = $_POST['email'];
-            $user = $this->db->getUserByEmail($this->email);
+            $user = $this->user->getUserByEmail($this->email);
             if (count($user) == 1) {
                 $title = "Восстановление пароля";
                 $this->password = $this->GenerateRandomPassword(12);
-                $this->db->db->execute("UPDATE `user` SET `password` = '$this->password' WHERE email = '$this->email'");
+                $data = [
+                    "password" => $this->password
+                ];
+                $this->user->UpdateQuery("user", $data, "WHERE email = {$this->email}");
                 $body = $this->GetRecoveryHtml($user[0]['email'], $this->password);
                 $this->SendEmail($title, $body, $user[0]['email']);
                 header('Location: /UserLogin');

@@ -2,10 +2,8 @@
     "autoload": {
         "classmap": [
             "./controller/",
-            "./pages/"
-        ],
-        "files": [
-            "./model/User.php"
+            "./pages/",
+            "./model/"
         ]
     },
   "require": {
@@ -13,6 +11,7 @@
         "phpmailer/phpmailer": "^6.6",
         "james-heinrich/getid3": "^1.9",
         "php-ffmpeg/php-ffmpeg": "^0.19.0",
-    "ext-gd": "*"
+    "ext-gd": "*",
+    "ext-pdo": "*"
   }
 }

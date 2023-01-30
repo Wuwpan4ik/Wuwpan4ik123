@@ -485,7 +485,12 @@
 
 //          Добавление User
             if (count($this->m->getUserByEmail($this->email)) != 1) {
+                $this->password = $this->GenerateRandomPassword(12);
+            } else {
+                $this->password = null;
+            }
 
+            if (count($this->m->getUserByEmail($this->email)) != 1) {
                 $this->m->db->execute("INSERT INTO `user` (`email`, `password`, `is_creator`) VALUES ('$this->email', '$this->password', 0)");
 
                 if (isset($this->name)) {
@@ -495,10 +500,6 @@
                 if (isset($this->phone)) {
                     $this->m->db->execute("UPDATE `user` SET `telephone` = '$this->phone' WHERE `email` = '$this->email'");
                 }
-
-                $this->password = $this->GenerateRandomPassword(12);
-            } else {
-                $this->password = null;
             }
             $title = "Покупка курса";
             $body = $this->GetRegistrationUserHtml($this->email, $this->password);
