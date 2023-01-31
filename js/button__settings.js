@@ -99,6 +99,7 @@ function toggleOverflow () {
 
 function closePopup() {
     entryDisplay.classList.toggle('display-flex');
+    defaultPopup();
 }
 
 function defaultPopup(parent_elem){
@@ -190,7 +191,7 @@ function addCheckbox(block, elem) {
     let text = document.createElement('div');
     text.innerHTML = 'Открывать в новом окне';
     switch_box.appendChild(text)
-    elem.parentElement.children[1].after(checkbox);
+    elem.parentElement.parentElement.children[1].after(checkbox);
 }
 
 //Добавление option
@@ -378,6 +379,8 @@ document.addEventListener('DOMContentLoaded', function () {
             if (button_text.length === 0) {
                 button_text = 'Клик';
             }
+            $(".first_do_list .item:nth-child(1)").click();
+            checkFirstSelect();
             document.querySelector('.popup-video').appendChild(videos);
             document.querySelector('.slider__item-title').innerHTML = title;
             document.querySelector('.slider__item-text').innerHTML = desc;
@@ -389,7 +392,6 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelector('#initButton').action = "/Funnel/"+ item.parentElement.querySelector('input[type="hidden"]').value +"/settings"
             entryDisplay.classList.toggle('display-flex');
             toggleOverflow();
-
         });
     });
 

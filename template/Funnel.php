@@ -83,7 +83,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="slider__item-info _conatiner-player">
-                                                                <div class="slider__item-title">
+                                                                <div class="slider__item-title" style="font-weight: 900">
                                                                     <?=$v['name']?>
                                                                 </div>
                                                                 <div class="slider__item-text">
@@ -226,8 +226,6 @@
 
         let title = document.querySelector('.slider__item-title');
         let text = document.querySelector('.slider__item-text');
-
-        title.style.fontWeight = '900';
 
 
         function changeStyleBtn (item, color, shadow = null) {

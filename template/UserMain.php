@@ -14,6 +14,8 @@
 </head>
 <body class="body">
 
+<div class="error display-none"><?php print_r($_SESSION['error']) ?></div>
+
 <div class="UserMain bcg">
     <div class="_container" style="height: 9%;">
         <div class="User-header">

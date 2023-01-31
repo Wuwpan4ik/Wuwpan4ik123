@@ -34,6 +34,7 @@
                 }
                 array_shift($purchases_array);
             }
+            $_SESSION['error'] = $course_query;
             $courses = $this->db->query($course_query);
             return $courses;
         }

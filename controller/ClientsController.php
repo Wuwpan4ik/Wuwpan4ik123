@@ -475,7 +475,7 @@
                     "password" => $this->password,
                     "is_creator" => 0
                 ];
-                $this->user->InsertQuery("data", $data);
+                $this->user->InsertQuery("user", $data);
 
                 $query = [];
                 if (isset($this->name)) {
@@ -522,7 +522,7 @@
                 $this->orders->InsertQuery("orders", $data);
 
 //              Добавление Purchase
-                $purchase = $this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $res['id']);
+                $purchase = $this->purchase->GetQuery("purchase", ["user_id" => $res['id']]);
                 if (isset($purchase) && count($purchase) == 1) {
                     $purchase_info = json_decode($purchase[0]['purchase'], true);
                     if (!in_array($course_id, $purchase_info['course_id'])) {
