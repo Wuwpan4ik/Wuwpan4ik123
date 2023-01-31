@@ -15,8 +15,20 @@
         protected $statistic_class;
         protected $tariff_class;
         protected $notifications_class;
+        protected $user;
+        protected $user_integrations;
+        protected $user_contacts;
+        protected $clients;
+        protected $orders;
+        protected $analytic;
+        protected $funnel;
+        protected $funnel_content;
+        protected $course;
+        protected $course_content;
+        protected $purchase;
+        protected $contact;
+        protected $user_class;
 
-        protected $m;
         protected $ourEmail;
         protected $ourPassword;
         protected $ourNickName;
@@ -29,11 +41,23 @@
             date_default_timezone_set('Europe/Moscow');
             $this->date = date("Y-m-d");
 
-            $this->m = new User();
+            $this->user = new User();
             $this->email_class = new Email();
             $this->statistic_class = new Statistic();
             $this->tariff_class = new Tariff();
             $this->notifications_class = new Notifications();
+            $this->user_contacts = new UserContactsModel();
+            $this->user_integrations = new UserIntegrations();
+            $this->clients = new ClientsModel();
+            $this->orders = new OrdersModel();
+            $this->analytic = new AnalyticModel();
+            $this->funnel = new FunnelModel();
+            $this->funnel_content = new FunnelContentModel();
+            $this->course = new CourseModel();
+            $this->course_content = new CourseContentModel();
+            $this->purchase = new PurchaseModel();
+            $this->contact = new ContactModel();
+            $this->user_class = new UserModel();
 
             $email_account = $this->email_class->GetEmailAccount();
             $this->ourEmail = $email_account['email'];

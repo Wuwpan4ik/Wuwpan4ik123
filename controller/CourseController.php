@@ -19,14 +19,14 @@
 
             $uid = $_SESSION['item_id'];
 
-            $res = $this->m->db->query("SELECT * FROM `course` WHERE id = '$uid' ORDER BY `id` DESC LIMIT 1");
+            $res = $this->course->Get($uid);
 
-            $count_video = count($this->m->db->query("SELECT * FROM `course_content` WHERE course_id = ". $res[0]['id'])) + 1;
+            $count_video = count($this->course_content->Get($res[0]['id'])) + 1;
 
 //          Проверка юзера
 
             if (!$this->isUser($res[0]['author_id'])) return False;
-            if (!$this->m->GetTariff($res[0]['author_id'])) return False;
+            if (!$this->tariff_class->GetTariff($res[0]['author_id'])) return False;
 
 //          Проверка юзера
 
@@ -36,7 +36,7 @@
 
             $max_file_size = $this->CheckTariff()[0]['file_size'] * 1000 * 1000 * 1000;
 
-            $files_size = $this->m->dir_size($this->url_dir);
+            $files_size = $this->course->dir_size($this->url_dir);
 
             if ($_FILES['video_uploader']['size'] + $files_size > $max_file_size) {
                 return False;
@@ -46,25 +46,34 @@
 
             chmod($path, 0777);
 
-                $ffmpeg = FFMpeg\FFMpeg::create([
-                    'ffmpeg.binaries'  => './settings/ffmpeg.exe',
-                    'ffprobe.binaries' => './settings/ffprobe.exe',
-                    'ffplay.binaries' => './settings/ffplay.exe',
-                ]);
+            $ffmpeg = FFMpeg\FFMpeg::create([
+                'ffmpeg.binaries'  => './settings/ffmpeg.exe',
+                'ffprobe.binaries' => './settings/ffprobe.exe',
+                'ffplay.binaries' => './settings/ffplay.exe',
+            ]);
 
-                $video = $ffmpeg->open($path);
+            $video = $ffmpeg->open($path);
 
-                $frame = $video->frame(FFMpeg\Coordinate\TimeCode::fromSeconds(1));
+            $frame = $video->frame(FFMpeg\Coordinate\TimeCode::fromSeconds(1));
 
-                $frame_path = $this->url_dir . "thumbnails/$uid/" . $count_video ."_" . $_FILES['video_uploader']['name'] . ".jpg";
+            $frame_path = $this->url_dir . "thumbnails/$uid/" . $count_video ."_" . $_FILES['video_uploader']['name'] . ".jpg";
 
-                $frame->save($frame_path);
+            $frame->save($frame_path);
 
-                $image = imagescale(imagecreatefromjpeg($frame_path), 288, 512);
+            $image = imagescale(imagecreatefromjpeg($frame_path), 288, 512);
 
-                imagejpeg($image, $frame_path);
+            imagejpeg($image, $frame_path);
 
-            $this->m->db->execute("INSERT INTO course_content (`course_id`, `name`, `description`, `video`, `thubnails`, `query_id`) VALUES ($uid ,null , null , '$path', '$frame_path', $count_video)");
+            $data = [
+                "course_id" => $uid,
+                "name" => NULL,
+                "description" => NULl,
+                "video" => $path,
+                "thubnails" => $frame_path,
+                "query_id" => $count_video
+            ];
+
+            $this->course_content->InsertQuery("course_content", $data);
 
             $this->local_get_content();
 
@@ -73,7 +82,7 @@
 
         public function AddView()
         {
-            $this->m->AddCourseView($_SESSION['item_id'], $this->m->GetView($_SESSION['item_id']));
+            $this->course_content->AddView($_SESSION['item_id'], $this->course_content->GetView($_SESSION['item_id']));
             return true;
         }
 
@@ -81,13 +90,13 @@
         {
             $item_id = $_SESSION['item_id'];
 
-            $course = $this->m->db->query("SELECT course.author_id, course_content.video FROM `course_content` INNER JOIN `course` ON course.id = course_content.course_id WHERE course_content.id = $item_id");
+            $course = $this->course_content->GetVideoAndAuthorId($item_id);
 
             if (!$this->isUser($course[0]['author_id'])) return False;
 
-            $this->m->db->execute("DELETE FROM `course_content` WHERE `id` = '$item_id'");
-
             unlink($course[0]['video']);
+
+            $this->course_content->DeleteQuery("course_content", [$item_id]);
 
             $this->local_get_content();
 
@@ -97,9 +106,9 @@
         public function RenameVideo() {
             $item_id = $_SESSION['item_id'];
 
-            $courseContent = $this->m->db->query("SELECT * FROM `course_content` WHERE id = '$item_id'");
+            $courseContent = $this->course_content->Get($item_id);
 
-            $res = $this->m->db->query("SELECT * FROM `course` WHERE id = {$courseContent[0]['course_id']}");
+            $res = $this->course->Get($courseContent[0]['course_id']);
 
             if (!$this->isUser($res[0]['author_id'])) return False;
 
@@ -130,6 +139,12 @@
                 mkdir($this->url_dir . "course_files/" . $res[0]['id']);
             }
 
+            $data = [
+                "name" => $name,
+                "description" => $description,
+                "price" => $price
+            ];
+
             if ($_FILES['file']['size'] != 0) {
                 unlink($courseContent[0]['file_url']);
 
@@ -137,13 +152,12 @@
 
                 move_uploaded_file($_FILES['file']['tmp_name'], $file_url);
 
-                $this->m->db->execute("UPDATE `course_content` SET `file_url` = '$file_url' WHERE `id` = '$item_id'");
+                $data["file_url"] = $file_url;
             }
 
-            $this->m->db->execute("UPDATE `course_content` SET `name` = '$name', `description` = '$description', `price` = '$price' WHERE `id` = '$item_id'");
+            $this->course_content->UpdateQuery("course_content", $data, "WHERE `id` = '$item_id'");
 
             $this->local_get_content();
-
             return True;
         }
 
@@ -158,9 +172,9 @@
 
             $uid = $_SESSION['item_id'];
 
-            $res = $this->m->db->query("SELECT * FROM `course_content` WHERE id = '$uid'");
+            $res = $this->course_content->Get($uid);
 
-            $course = $this->m->db->query("SELECT * FROM `course` WHERE id = " . $res[0]['course_id']);
+            $course = $this->course->Get($res[0]['course_id']);
 
             if (!$this->isUser($course[0]['author_id'])) return False;
 
@@ -188,7 +202,12 @@
 
             imagejpeg($image, $frame_path);
 
-            $this->m->db->execute("UPDATE course_content SET `video` = '$path', `thubnails` = '$frame_path' WHERE id = " . $uid);
+            $data = [
+                "video" => $path,
+                "thubnails" => $frame_path
+            ];
+
+            $this->course_content->UpdateQuery("course_content", $data, "WHERE id = " . $uid);
 
             $this->local_get_content();
 
@@ -200,16 +219,23 @@
 
             $code = uniqid(true);
 
-            if (!$this->m->GetTariff($uid)) {
+            if (!$this->tariff_class->GetTariff($uid)) {
                 header('Location: /Tariff-absent');
                 return false;
             }
 
+            $data = [
+                "author_id" => $uid,
+                "name" => "Новый курс",
+                "description" => "Описание",
+                "price" => 0,
+                "uniqu_code" => $code
+            ];
+
+            $this->course->InsertQuery("course", $data);
 
 
-            $this->m->db->execute("INSERT INTO course (`author_id`, `name`, `description`, `price`, `uniqu_code`) VALUES ('$uid', 'Новый курс', 'Описание' , 0, '$code')");
-
-            $directory = $this->m->db->query("SELECT * FROM course WHERE author_id = '$uid'  ORDER BY ID DESC LIMIT 1");
+            $directory = $this->course->GetLast($uid);
 
             mkdir($this->url_dir ."courses/" . $directory[0]['id']);
 
@@ -227,11 +253,11 @@
         public function DeleteCourse () {
             $item_id = $_SESSION['item_id'];
 
-            $project = $this->m->db->query("SELECT * FROM course WHERE id = '$item_id' LIMIT 1");
+            $project = $this->course->Get($item_id);
 
             if (!$this->isUser($project[0]['author_id'])) return False;
 
-            $this->m->db->execute("DELETE FROM course WHERE id = '$item_id'");
+            $this->course->DeleteQuery("course", [$item_id]);
 
             rmdir($this->url_dir . "courses/$item_id/");
             rmdir($this->url_dir . "thumbnails/$item_id/");
@@ -245,7 +271,7 @@
         {
             $item_id = $_SESSION['item_id'];
 
-            $res = $this->m->db->query("SELECT * FROM course WHERE id = '$item_id'");
+            $res = $this->course->Get($item_id);
 
             if (!$this->isUser($res[0]['author_id'])) return False;
 
@@ -254,7 +280,7 @@
             } else {
                 $name = $res[0]['title'];
             }
-            $this->m->db->execute("UPDATE course SET `name` = '$name' WHERE id = '$item_id'");
+            $this->course->UpdateQuery("course", ["name" => $name], "WHERE id = '$item_id'");
 
             $this->local_get_content();
 
@@ -265,7 +291,7 @@
         {
             $item_id = $_SESSION['item_id'];
 
-            $res = $this->m->db->query("SELECT * FROM course WHERE id = '$item_id'");
+            $res = $this->course->Get($item_id);
 
             if (!$this->isUser($res[0]['author_id'])) return False;
 
@@ -274,7 +300,8 @@
             } else {
                 $price = $res[0]['price'];
             }
-            $this->m->db->execute("UPDATE course SET `price` = '$price' WHERE id = '$item_id'");
+
+            $this->course->UpdateQuery("course", ["price" => $price], "WHERE id = '$item_id'");
 
             $this->local_get_content();
 

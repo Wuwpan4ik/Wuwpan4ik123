@@ -7,7 +7,7 @@
                 echo '<div style="color: orangered;">Поле не заполнено</div>';
                 return False;
             }
-            $count = (int)($this->m->db->query("SELECT * FROM user WHERE `site_url` = '$site_url'"));
+            $count = (int)($this->user->getCurrentUser(["site_url" => $site_url]));
             if ($count == 0) {
                 echo '<div style="color: #37ea8c;">Такой Url не занят</div>';
             } else {

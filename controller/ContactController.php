@@ -75,11 +75,11 @@ class ContactController extends ACoreCreator {
         $course_id = $_POST['course_id'];
         $question = $_POST["question"];
 
-        $user = $this->m->db->query("SELECT * FROM user WHERE id = " . $uid);
-        $author_user = $this->m->db->query("SELECT * FROM user WHERE id = " . $author_id);
-        $course = $this->m->db->query("SELECT name FROM course WHERE id = " . $course_id);
+        $user = $this->user->getUserById();
+        $author_user = $this->user->getUserById($author_id);
+        $course = $this->course->Get($course_id);
 
-        $this->m->db->execute("INSERT INTO contact (`user_id`, `author_id`, `body`) VALUES ('$uid', '$author_id', '$question')");
+        $this->contact->InsertQuery("contact", ["user_id" => $uid, "author_id" => $author_id, "body" => $question]);
         $this->addNotifications("Вам пришел вопрос от клиента",  "Пользователь {$user[0]['first_name']} оставил вопрос, для ответа свяжитесь с ним по {$user[0]['email']}", '/img/Notification/question.svg','item-lite', $author_id);
 
 

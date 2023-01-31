@@ -1,9 +1,13 @@
 <?php
 class User extends ConnectDatabase{
 
-    public function getCurrentUser() {
-        $result = $this->db->query("SELECT * FROM user WHERE id = " . $_SESSION['user']['id']);
-        return $result;
+    public function getCurrentUser($where = null) {
+        if (is_null($where)) {
+            return $this->db->query("SELECT * FROM user WHERE id = {$_SESSION['user']['id']}");
+        } else {
+            return $this->db->query("SELECT * FROM user WHERE " . array_keys($where)[0] . " = " . $where[array_keys($where)[0]]);
+
+        }
     }
 
     public function getUserByEmail($email) {
@@ -27,46 +31,13 @@ class User extends ConnectDatabase{
         return $this->db->query("SELECT * FROM `user_integrations` WHERE user_id = {$_SESSION['user']['id']}");
     }
 
-    public function getContactsByUser()
+    public function getUserById($id = null)
     {
-        return $this->db->query("SELECT user.id, user.telephone, user.email, contact.vk, contact.instagram, contact.whatsapp, contact.telegram, contact.facebook, contact.youtube, contact.twitter, contact.site FROM user LEFT JOIN user_contacts as contact ON contact.user_id = user.id WHERE user.id = " . $_SESSION['item_id']);
-    }
-
-    public function getFunnelById($id) {
-        $result = $this->db->query("SELECT * FROM funnel WHERE id = $id");
-        return $result;
-    }
-
-    public function UserHaveAContacts()
-    {
-        $flag = false;
-        foreach ($this->db->query("SELECT us.vk, us.instagram, us.whatsapp, us.telegram, us.facebook, us.youtube, us.twitter, us.site FROM user_contacts `us` WHERE user_id = {$_SESSION['item_id']}")[0] as $item) {
-            if (!is_null($item)) {
-                $flag = true;
-            }
+        if (is_null($id)) {
+            $id = $_SESSION['user']['id'];
         }
-        return $flag;
-    }
+        return $this->db->query("SELECT * FROM user WHERE id = {$id}");
 
-    public function getCourseVideo($id) {
-        $result = $this->db->query("SELECT  
-                                                content.name AS 'content_name',
-                                                content.description AS 'content_description',
-                                                content.video,
-                                                course.id,
-                                                course.name,
-                                                content.thubnails,
-                                                content.query_id,   
-                                                content.count_view as 'count',
-                                                user_info.id as 'user_id',
-                                                user_info.avatar,
-                                                user_info.email,
-                                                user_info.first_name,
-                                                content.file_url
-                                                FROM `course_content` AS content
-                                                INNER JOIN `course` AS course ON content.course_id = course.id
-                                                INNER JOIN `user` AS user_info ON course.author_id = user_info.id WHERE content.id = '$id'");
-        return $result;
     }
 
     public function getIntegrationsByUser($id = null)
@@ -76,148 +47,14 @@ class User extends ConnectDatabase{
         return $result;
     }
 
-    public function getTariffs () {
-        $result = $this->db->query("SELECT * FROM tariffs");
-        return $result;
-    }
-
-    public function getContentForFunnelEdit() {
-        $result = $this->db->query("SELECT * FROM funnel WHERE id = ".$_SESSION['item_id']);
-        $videos = $this->db->query("SELECT * FROM funnel_content WHERE funnel_id = ".$result[0]['id']);
-        return [$result, $videos];
-    }
-
-    public function getContentForUserAuthorPage()
-    {
-        $purchases = $this->db->query("SELECT `purchase` FROM `purchase` WHERE user_id = " . $_SESSION['user']['id'])[0]['purchase'];
-        $course_query = "SELECT user.id, user.email, course.name, user.avatar, user.school_name, user.school_desc, course.description, user.first_name, user.second_name, count(course.id) as 'count', course.author_id FROM course AS course INNER JOIN user ON user.id = course.author_id WHERE";
-        $purchases_array = json_decode($purchases, true)['course_id'];
-        foreach ($purchases_array as $course_id) {
-            $course_query .= " course.id = $course_id ";
-            if (count($purchases_array) != 1) {
-                $course_query .= " OR ";
-            } else {
-                $course_query .= " GROUP BY user.id ";
-                break;
-            }
-            array_shift($purchases_array);
-        }
-        $courses = $this->db->query($course_query);
-        return $courses;
-    }
-
-    public function getContentForUserCoursePage($author_id)
-    {
-        $purchases = $this->db->query("SELECT `purchase` FROM `purchase` WHERE user_id = " . $_SESSION['user']['id'])[0]['purchase'];
-        $purchases_array = json_decode($purchases, true)['course_id'];
-        $course_query = "SELECT course.id, course.name, course_content.thubnails as 'preview', count(course_content.id) as 'count', course.description, course.author_id FROM course INNER JOIN course_content on course_content.course_id = course.id WHERE (";
-        foreach ($purchases_array as $course_id) {
-            $course_query .= " course.id = $course_id ";
-            if (count($purchases_array) != 1) {
-                $course_query .= " OR ";
-            } else {
-                $course_query .= ") AND course.author_id = {$author_id} GROUP BY course.id";
-            }
-            array_shift($purchases_array);
-        }
-        $courses = $this->db->query($course_query);
-        $_SESSION['error'] = $course_query;
-        return $courses;
-    }
-
     public function getAPIByUser($id)
     {
         return $this->db->query("SELECT * FROM `user_integrations` WHERE user_id = $id");
     }
 
-    public function getDisableContentForUserCoursePage($author_id)
-    {
-        $purchases = $this->db->query("SELECT `purchase` FROM `purchase` WHERE user_id = " . $_SESSION['user']['id'])[0]['purchase'];
-        $purchases_array = json_decode($purchases, true)['course_id'];
-        foreach (json_decode($purchases, true)['video_id'] as $item) {
-            $video_course_id = $this->db->query("SELECT `course_id` FROM `course_content` WHERE id = $item")[0]['course_id'];
-            if (!in_array($video_course_id, $purchases_array)) {
-                array_push($purchases_array, $video_course_id);
-            }
-        }
-        $course_query = "SELECT course.id, course.name, (course_content.thubnails) as 'preview', count(course_content.id) as 'count', course.description, course.author_id FROM course INNER JOIN course_content on course_content.course_id = course.id AND course.author_id = {$author_id} WHERE NOT (";
-        foreach ($purchases_array as $course_id) {
-            $course_query .= " course.id = $course_id ";
-            if (count($purchases_array) != 1) {
-                $course_query .= " OR ";
-            } else {
-                $course_query .= ") AND course.author_id = {$author_id} GROUP BY course.id";
-            }
-            array_shift($purchases_array);
-        }
-        $courses = $this->db->query($course_query);
-        return $courses;
-    }
-
-    public function getContentForCourseListPage($course_id){
-        $course_query = "SELECT course_content.id, course_content.description, course_content.thubnails, course_content.name, course_content.description, course_content.video, course_content.course_id FROM course_content WHERE ($course_id = course_content.course_id)";
-        $courses = $this->db->query($course_query);
-        return $courses;
-    }
-
-    public function getContentPriceForCourseListPage($course_id) {
-        $course_query = "SELECT price FROM course WHERE ($course_id = course.id)";
-        $price = $this->db->query($course_query);
-        return $price;
-    }
-
-    public function getContentForCourseEdit() {
-        $result = $this->db->query("SELECT * FROM course WHERE id = ".$_SESSION['item_id']);
-        $videos = $this->db->query("SELECT * FROM course_content WHERE course_id = ".$result[0]['id']);
-        return [$result, $videos];
-    }
-
-    public function getContentForFunnelPage() {
-        $result = $this->db->query("SELECT * FROM funnel WHERE author_id = " . $_SESSION['user']['id'] . " GROUP BY id");
-        $videos = $this->db->query("SELECT * FROM funnel_content");
-        return [$result, $videos];
-    }
-
-    public function dir_size($path) {
-        $path = ($path . '/');
-        $size = 0;
-        $dir = opendir($path);
-        if (!$dir) {
-            return 0;
-        }
-
-        while (false !== ($file = readdir($dir))) {
-            if ($file == '.' || $file == '..') {
-                continue;
-            } elseif (is_dir($path . $file)) {
-                $size += $this->dir_size($path . '//' . $file);
-            } else {
-                $size += filesize($path . '//' . $file);
-            }
-        }
-        closedir($dir);
-        return $size;
-    }
-
-    public function CheckInfoTariff()
-    {
-        $file_size = $this->dir_size('./uploads/users/' . $_SESSION['user']['id']) / 1024 / 1024;
-        $funnel_count = $this->db->query("SELECT * FROM `funnel` WHERE `author_id` = {$_SESSION['user']['id']}");
-        $course_count = $this->db->query("SELECT * FROM `course` WHERE `author_id` = {$_SESSION['user']['id']}");
-        $children_count = $this->db->query("SELECT * FROM `clients` WHERE `creator_id` = {$_SESSION['user']['id']}");
-
-        return ['funnel_count' => $funnel_count, 'course_count' => $course_count, 'children_count' => $children_count, 'file_size' => $file_size];
-    }
-
     public function getCourseUser() {
         $result = $this->db->query("SELECT * FROM course WHERE author_id = " . $_SESSION['user']['id'] . " GROUP BY id");
         return $result;
-    }
-
-    public function getContentForCoursePage() {
-        $result = $this->db->query("SELECT * FROM course WHERE author_id = " . $_SESSION['user']['id'] . " GROUP BY id");
-        $videos = $this->db->query("SELECT * FROM course_content");
-        return [$result, $videos];
     }
 
     public function getUserMessengers() {
@@ -328,72 +165,6 @@ class User extends ConnectDatabase{
     public function getPopupJson($id) {
         $json = $this->db->query("SELECT * FROM `funnel_content` WHERE `id` = '$id'");
         return $json;
-    }
-
-    public function isUserSocials()
-    {
-        return count($this->db->query("SELECT * FROM `user_contacts` WHERE `user_id` = " . $_SESSION['user']['id'])) == 1;
-    }
-
-    public function TakeSocialUrls()
-    {
-        return $this->db->query("SELECT * FROM `user_contacts` WHERE `user_id` = " . $_SESSION['user']['id']);
-    }
-
-    public function GetView($id)
-    {
-        $count = $this->db->query("SELECT `views` FROM `funnel` WHERE id = '$id'")[0]['views'];
-        return $count;
-    }
-
-    public function AddView($id, $count)
-    {
-        $count += 1;
-        $this->db->execute("UPDATE `funnel` SET `views`  = {$count} WHERE id = {$id}");
-        return true;
-    }
-
-//    Course Add View
-    public function GetCourseView($id)
-    {
-        $count = $this->db->query("SELECT `count_view` FROM `funnel_content` WHERE id = '$id'")[0]['count_view'];
-        return $count;
-    }
-
-    public function AddCourseView($id, $count)
-    {
-        $count += 1;
-        $this->db->execute("UPDATE `funnel_content` SET `count_view`  = {$count} WHERE id = {$id}");
-        return true;
-    }
-
-    public function GetTariff($user_id)
-    {
-        $result = $this->db->query("SELECT users_tariff.user_id, users_tariff.tariff_id, users_tariff.date, tariffs.file_size, tariffs.children_count as 'children', tariffs.name FROM `users_tariff` INNER JOIN `tariffs` ON tariffs.id = users_tariff.tariff_id WHERE users_tariff.user_id = {$user_id}");
-        if (count($result) == 1) {
-            return $result;
-        }
-        unset($_SESSION['user']['tariff']);
-        return false;
-    }
-
-    public function BuyTariff($user_id, $tariff_id)
-    {
-        $duration = $this->db->query("SELECT duration FROM `tariffs` WHERE `id` = {$tariff_id}")[0]['duration'];
-
-        if (in_array($duration, ['MONTH', 'WEEK', 'YEAR'])) {
-            $date_end =  date("Y-m-d", strtotime("+1 $duration", mktime(0, 0, 0, date('m'), date('d'), date('Y'))));
-            if (!$this->GetTariff($user_id)) {
-                $this->db->execute("INSERT INTO `users_tariff` (`user_id`, `tariff_id`, `date`) VALUES ('$user_id', '$tariff_id', '$date_end')");
-            } else {
-                $this->db->execute("UPDATE `users_tariff` SET `tariff_id` = '$tariff_id', `date` = '$date_end' WHERE `user_id` = '$user_id'");
-            }
-        } else {
-            $request = 'Невалидное значение даты';
-            return false;
-        }
-
-        return true;
     }
 }
 ?>

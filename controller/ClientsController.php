@@ -1,6 +1,9 @@
 <?php
 
     class ClientsController extends ACoreCreator {
+        use GenerateRandomPassword;
+        use RequestValidate;
+
         private $password;
         private $name;
         private $phone;
@@ -382,55 +385,29 @@
             return $result;
         }
 
-        private function GenerateRandomPassword ($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') {
-            $str = '';
-            $max = strlen($keyspace) - 1;
-            if ($max < 1) {
-                throw new Exception('$keyspace must be at least two characters long');
-            }
-            for ($i = 0; $i < $length; ++$i) {
-                $str .= $keyspace[rand(0, $max)];
-            }
-            return $str;
-        }
-
-
         private function GetClient($course_id) {
-            return $this->m->db->query("SELECT * FROM `clients` WHERE `course_id` = '$course_id' AND `email` = '$this->email'");
+            return $this->clients->GetClientByIdAndEmail($course_id, $this->email);
         }
 
         private function GetPriceOfCourse($course_id) {
-            return $this->m->db->query("SELECT * FROM `course` WHERE id = '$course_id'");
+            return $this->course->Get($course_id);
         }
 
         public function InsertToTable($creator_id, $course_id, $buy_progress, $course_price) {
             $current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
-            $this->m->db->execute("INSERT INTO `clients` (`first_name`, `email`, `tel`, `creator_id`, `course_id`, `give_money`, `buy_progress`, `achivment_date`) VALUES ('$this->name', '$this->email', '$this->phone', '$creator_id', '$course_id', '$course_price', '$buy_progress', '$current_date')");
+            $data = [
+                "first_name" => $this->name,
+                "email" => $this->email,
+                "tel" => $this->phone,
+                "creator_id" => $creator_id,
+                "course_id" => $course_id,
+                "give_money" => $course_price,
+                "buy_progress" => $buy_progress,
+                "achivment_date" => $current_date
+            ];
+            $this->clients->InsertQuery("clients", $data);
+
             return true;
-        }
-
-        public function RequestValidate()
-        {
-            $this->email = $_POST['email'];
-            if (isset($_POST['first_name'])) {
-                $this->name = $_POST['first_name'];
-            } else {
-                $this->name = null;
-            }
-//                if (!preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$this->name)) {
-//                    return false;
-//                }
-//            if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-//                return false;
-//            }
-
-            if (isset($_POST['phone'])) {
-                $this->phone = $_POST['phone'];
-            } else {
-                $this->phone = null;
-            }
-
-            return True;
         }
 
         public function AddApplication() {
@@ -440,19 +417,21 @@
             $url = include "settings/site_url.php";
             $creator_id = $_POST['creator_id'];
             $course_id = $_POST['course_id'];
-            $funnel = $this->m->getFunnelById($_POST['funnel_id']);
+            $funnel = $this->funnel->Get($_POST['funnel_id']);
+
             if (isset($_POST['funnel_id'])) {
                 $name_funnel = $funnel[0]['name'];
             }
+
             if (isset($_POST['slide_id'])) {
                 $number_slide = $_POST['slide_id'];
             }
-            $creator_email = $this->m->db->query("SELECT email FROM user WHERE id = {$creator_id}")[0]['email'];
+            $creator_email = $this->user->getUserById($creator_id)[0]['email'];
             $comment = 'Заявка';
             $client = $this->GetClient($course_id);
             if (count($client) == 1){
                 if ($client[0]['buy_progress'] < $buy_progress[$comment]) {
-                    $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]' WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
+                    $this->clients->UpdateQuery("clients", ["buy_progress" => $buy_progress[$comment]], "WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
                 } else {
                     echo 'error';
                     die(header("HTTP/1.0 404 Not Found"));
@@ -474,7 +453,7 @@
             $creator_id = $_POST['creator_id'];
             $course_id = $_POST['course_id'];
             if (isset($_POST['funnel_id'])) {
-                $name_funnel = $this->m->getFunnelById($_POST['funnel_id'])[0]['name'];
+                $name_funnel = $this->funnel_content->Get($_POST['funnel_id'])[0]['name'];
             }
             if (isset($_POST['slide_id'])) {
                 $number_slide = $_POST['slide_id'];
@@ -484,41 +463,63 @@
             $give_money = $client[0]['give_money'] + $this->GetPriceOfCourse($course_id)[0]['price'];
 
 //          Добавление User
-            if (count($this->m->getUserByEmail($this->email)) != 1) {
+            if (count($this->user->getUserByEmail($this->email)) != 1) {
                 $this->password = $this->GenerateRandomPassword(12);
             } else {
                 $this->password = null;
             }
 
-            if (count($this->m->getUserByEmail($this->email)) != 1) {
-                $this->m->db->execute("INSERT INTO `user` (`email`, `password`, `is_creator`) VALUES ('$this->email', '$this->password', 0)");
+            if (count($this->user->getUserByEmail($this->email)) != 1) {
+                $data = [
+                    "email" => $this->email,
+                    "password" => $this->password,
+                    "is_creator" => 0
+                ];
+                $this->user->InsertQuery("data", $data);
 
+                $query = [];
                 if (isset($this->name)) {
-                    $this->m->db->execute("UPDATE `user` SET `first_name` = '$this->name' WHERE `email` = '$this->email'");
+                    $query["first_name"] = $this->name;
                 }
 
                 if (isset($this->phone)) {
-                    $this->m->db->execute("UPDATE `user` SET `telephone` = '$this->phone' WHERE `email` = '$this->email'");
+                    $query["telephone"] = $this->phone;
+                }
+
+                if (!empty($query)) {
+                    $this->user->UpdateQuery("data", $query, "WHERE `email` = '$this->email'");
+
                 }
             }
             $title = "Покупка курса";
             $body = $this->GetRegistrationUserHtml($this->email, $this->password);
             $this->SendEmail($title, $body, $this->email);
-            $res = $this->m->getUserByEmail($this->email)[0];
+            $res = $this->user->getUserByEmail($this->email)[0];
 
             if (isset($client) && ($client[0]['buy_progress'] < $buy_progress[$comment])) {
 
 //          Добавление Clients
                 if (count($client) == 1){
-                    $this->m->db->execute("UPDATE `clients` SET `buy_progress` = '$buy_progress[$comment]', `give_money` = '$give_money', `first_buy` = 0 WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
+                    $data = [
+                        "buy_progress" => $buy_progress[$comment],
+                        "give_money" => $give_money,
+                        "first_buy" => 0
+                    ];
+                    $this->clients->UpdateQuery("clients", $data, "WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
                 } else {
                     $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], $give_money);
                 }
 
 //          Добавление Order
                 $current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
-                $this->m->db->execute("INSERT INTO `orders` (`user_id`, `course_id`, `creator_id`, `money`, `achivment_date`) VALUES ('". $res['id'] ."', '$course_id', '$creator_id', '$give_money', '$current_date')");
-
+                $data = [
+                    "user_id" => $res['id'],
+                    "course_id" => $course_id,
+                    "creator_id" => $creator_id,
+                    "money" => $give_money,
+                    "achivment_date" => $current_date
+                ];
+                $this->orders->InsertQuery("orders", $data);
 
 //              Добавление Purchase
                 $purchase = $this->m->db->query("SELECT purchase FROM purchase WHERE user_id = ". $res['id']);
@@ -526,13 +527,13 @@
                     $purchase_info = json_decode($purchase[0]['purchase'], true);
                     if (!in_array($course_id, $purchase_info['course_id'])) {
                         array_push($purchase_info['course_id'], $course_id);
-                        $this->m->db->execute("UPDATE `purchase` SET purchase = '" . json_encode($purchase_info) . "' WHERE user_id = " . $res['id']);
+                        $this->purchase->UpdateQuery("purchase", ["purchase" => json_encode($purchase_info)], "WHERE user_id = " . $res['id']);
                     }
                 } else {
                     $purchase_text = '{"course_id":["'.$course_id.'"], "video_id":[]}';
-                    $this->m->db->execute("INSERT INTO `purchase` (`user_id`, `purchase`) VALUES ('{$res['id']}', '$purchase_text')");
+                    $this->purchase->InsertQuery("purchase", ["user_id" => $res['id'], "purchase" => $purchase_text]);
                 }
-                $course_info = $this->m->db->query("SELECT course.name, course.price, user.email, count(course_content.id) as 'count' FROM course INNER JOIN user ON user.id = course.author_id INNER JOIN course_content on course_content.course_id = course.id WHERE course.id = $course_id")[0];
+                $course_info = $this->course->GetCourseInfoForNotifications($course_id);
 
 //              Добавление уведомлений
                 $this->addNotifications("Вы купили курс", "Доступный курс - {$course_info['name']}", '/img/Notification/star.svg','item-like', $res['id']);

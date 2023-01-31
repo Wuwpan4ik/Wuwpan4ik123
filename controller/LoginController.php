@@ -1,5 +1,7 @@
 <?php
     class LoginController extends ACoreAdmin {
+        use GenerateRandomPassword;
+
         private function validate_data ($email, $name) {
             if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                 $_SESSION['error']['email_message'] = 'Неверный email';
@@ -10,18 +12,6 @@
             if (preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$name)) {
                 $_SESSION['error']['first_name_message'] = 'Имя содержит запрещенные знаки';
             }
-        }
-
-        private function GenerateRandomPassword ($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') {
-            $str = '';
-            $max = strlen($keyspace) - 1;
-            if ($max < 1) {
-                throw new Exception('$keyspace must be at least two characters long');
-            }
-            for ($i = 0; $i < $length; ++$i) {
-                $str .= $keyspace[rand(0, $max)];
-            }
-            return $str;
         }
 
         private function GetRecoveryHtml($login, $password) {
@@ -364,7 +354,7 @@
                     "password" => $this->password,
                     "username" => $username
                 ];
-                $this->user->UpdateQuery("user", $data);
+                $this->user->UpdateQuery("user", $data, "WHERE id = {$user[0]['id']}");
                 $body = $this->GetRecoveryHtml($user[0]['username'], $this->password);
                 $this->SendEmail($title, $body, $user[0]['email']);
                 header('Location: /login');

@@ -1,7 +1,7 @@
 <?php
 class Project extends ACoreCreator {
     public function get_content() {
-        $result = $this->m->CheckInfoTariff();
+        $result = $this->tariff_class->CheckInfoTariff();
         $tariff = $this->CheckTariff();
         $funnel_count = is_null($tariff[0]['funnel_count']) ? 0 : $tariff[0]['funnel_count'];
         $course_count = is_null($tariff[0]['course_count']) ? 0 : $tariff[0]['course_count'];

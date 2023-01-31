@@ -21,7 +21,9 @@
 
 
 <div class="SettingAccount">
-<!--    --><?php //var_dump($_SESSION['error']) ?>
+    <div class="error display-none">
+        <?php print_r($_SESSION['error']) ?>
+    </div>
     <?php include 'default/sidebar.php';?>
 
     <div class="feed">
