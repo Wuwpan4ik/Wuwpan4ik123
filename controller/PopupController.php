@@ -9,7 +9,7 @@ class PopupController extends ACoreCreator {
         switch ($category) {
             case 'list':
             {
-                $content = $this->m->getPopupForPreloader($_GET['id']);
+                $content = $this->user->getPopupForPreloader($_GET['id']);
                 $div = include './template/default/popup__templates/popup__all-lessons.php';
                 $div .= include './template/default/popup__templates/popup__buy.php';
                 echo $div;

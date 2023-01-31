@@ -2,7 +2,7 @@
     header("Content-Type:text/html;charset=UTF-8");
     session_start();
     require_once './vendor/autoload.php';
-    require_once './model/Routering.php';
+    require_once './connect/Routering.php';
     $item_id = 0;
     $url = key($_GET);
     $url_array = explode('/', $url);
@@ -41,6 +41,7 @@
     $router->addRoute("/Account/UserSettings", "AccountController.php", "SaveUserSettings");
     $router->addRoute("/Account/SaveSchoolSettings", "AccountController.php", "SaveSchoolSettings");
     $router->addRoute("/Account/SaveSocialSettings", "AccountController.php", "SaveSocialSettings");
+    $router->addRoute("/Account/SaveIntegrationsSettings", "AccountController.php", "SaveIntegrationsSettings");
 
     $router->addRoute("/UserMain", "UserMain.php");
     $router->addRoute("/UserLogin", "UserLogin.php");
@@ -76,6 +77,7 @@
     $router->addRoute("/Funnel/create", "FunnelController.php", "CreateFunnel", false);
     $router->addRoute("/Funnel-rename/$item_id", "FunnelController.php", "RenameFunnel");
     $router->addRoute("/Funnel-delete/$item_id", "FunnelController.php", "DeleteFunnel");
+    $router->addRoute("/Funnel-select/$item_id", "FunnelController.php", "SelectCourse");
     $router->addRoute("/Funnel/$item_id/create", "FunnelController.php", "AddVideo");
     $router->addRoute("/Funnel/$item_id/delete", "FunnelController.php", "DeleteVideo");
     $router->addRoute("/Funnel/$item_id/rename", "FunnelController.php", "RenameVideo");
@@ -124,7 +126,16 @@
 
     $router->addRoute("/TariffController/Buy", "TariffController.php", "Buy");
     $router->addRoute("/Tariff-absent", "tariff-absent.php");
+    $router->addRoute("/error", "404.php");
 
-    $router->route("/$url");
+    if (array_key_exists("/$url", $router->getRoute())) {
+        $router->route("/$url");
+    } else {
+        $router->route("/error");
+    }
+
+
+
+
 
 ?>

@@ -44,14 +44,14 @@
                             <div class="settingsAccountUser-body__infAbU">
                                 <div class="input_focus inputLog">
                                     <label for="first_name" class="label_focus">Ваше имя</label>
-                                    <input type="text" name="first_name">
+                                    <input type="text" name="first_name" value="<?=$_SESSION['user']['first_name']?>">
                                     <span class="clear_input_val">
                                         <img src="/img/clear_input.svg" alt="">
                                     </span>
                                 </div>
                                 <div class="input_focus inputLog">
                                     <label for="second_name" class="label_focus">Ваша фамилия</label>
-                                    <input type="text" name="second_name">
+                                    <input type="text" name="second_name" value="<?=$_SESSION['user']['second_name']?>">
                                     <span class="clear_input_val">
                                         <img src="/img/clear_input.svg" alt="">
                                     </span>
@@ -70,7 +70,7 @@
                                     </span>
                                 </div>
                                 <div class="input_focus inputLog">
-                                    <label for="new_pass" class="label_focus">Введите старый пароль</label>
+                                    <label for="new_pass" class="label_focus">Введите новый пароль</label>
                                     <input type="password" name="new_pass">
                                     <span class="clear_input_val">
                                         <img src="/img/clear_input.svg" alt="">
@@ -101,32 +101,6 @@
 </div>
 <!--For Input Holders-->
 <script src="/js/jquery-3.6.1.min.js"></script>
-<script>
-    window.onload = () =>{
-        let inputs = document.querySelectorAll('.input_focus input');
-        let inputsLabel = document.querySelectorAll('.input_focus label');
-        let inputClear = document.querySelectorAll('.input_focus span');
-
-
-        for(let i =0; i < inputs.length; i++){
-            inputs[i].addEventListener('input', function(){
-                if(inputs[i].value != ""){
-                    inputsLabel[i].classList.add('activeLabel');
-                    inputClear[i].classList.add('has_content');
-                }
-                else {
-                    inputsLabel[i].classList.remove('activeLabel');
-                    inputClear[i].classList.remove('has_content');
-                }
-            });
-
-            inputClear[i].onclick = () =>{
-                inputsLabel[i].classList.remove('activeLabel')
-                inputs[i].value = "";
-                inputClear[i].classList.remove('has_content')
-            }
-        }
-    }
-</script>
+<script src="/js/customInputs.js"></script>
 </body>
 </html>

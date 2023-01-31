@@ -7,7 +7,7 @@ class CheckFunnelSettingsController extends FunnelController
     {
         $popup_settings = $this->CreatePopupSettings();
         $videoBtnHTMLResult = str_replace('\/', '/', json_encode($popup_settings['json'], JSON_UNESCAPED_UNICODE));
-        $saveVersion = $this->m->db->query("SELECT * FROM funnel_content WHERE id = {$_SESSION['item_id']}")[0]['popup'];
+        $saveVersion = $this->funnel_content->Get()[0]['popup'];
         if ($videoBtnHTMLResult == $saveVersion) {
             echo $saveVersion;
         } else {
@@ -19,7 +19,7 @@ class CheckFunnelSettingsController extends FunnelController
     {
         $popup_settings = $this->CreateMainSettings();
         $videoBtnHTMLResult = str_replace('\/', '/', json_encode($popup_settings['json'], JSON_UNESCAPED_UNICODE));
-        $saveVersion = $this->m->db->query("SELECT * FROM funnel WHERE id = {$_SESSION['item_id']}")[0]['style_settings'];
+        $saveVersion = $this->funnel->Get()[0]['style_settings'];
         if (!is_null($saveVersion) && ($videoBtnHTMLResult == $saveVersion)) {
             echo $saveVersion;
         } else {

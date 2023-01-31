@@ -1,6 +1,7 @@
 <?php
-class Analytics extends ACoreCreator
-{
-    public function get_content() {
+    class Analytics extends ACoreCreator {
+        function get_content()
+        {
+
+        }
     }
-}

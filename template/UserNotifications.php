@@ -39,7 +39,7 @@
 				<?php foreach($content as $nt){?>
                 <div class="UserNotifications-item <?=$nt["class"]?>">
                     <div class="UserNotifications-item__img">
-                        <img src="../img/UserNotifications/like.svg" alt="">
+                        <img src="../img/UserNotifications/<?=$nt["class"]?>.svg" alt="">
                     </div>
                     <div class="UserNotifications-item__text">
                         <?=$nt["body"]?>

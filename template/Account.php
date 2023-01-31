@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/aboutuser.css">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/lessons.css">
     <link type="text/css" rel="stylesheet" href="/css/notifications.css">
 
     <!--Favicon-->
@@ -20,7 +21,9 @@
 
 
 <div class="SettingAccount">
-<!--    --><?php //var_dump($_SESSION['error']) ?>
+    <div class="error display-none">
+        <?php print_r($_SESSION['error']) ?>
+    </div>
     <?php include 'default/sidebar.php';?>
 
     <div class="feed">
@@ -64,7 +67,7 @@
                                             <?php if(isset($_SESSION['error']['email_message'])) echo $_SESSION['error']['email_message'] ?>
                                             <div class="input_focus ">
                                                 <label for="username" class="label_focus">Телефон</label>
-                                                <input class="half" id="phone" name="phone" value="<?php print(htmlspecialchars(isset($_SESSION['user']['phone']) ? $_SESSION['user']['phone'] : '')) ?>">
+                                                <input class="half" type="number" id="tel" name="phone" value="<?php print(htmlspecialchars(isset($_SESSION['user']['phone']) ? $_SESSION['user']['phone'] : '')) ?>">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
@@ -125,15 +128,15 @@
                                                 <div id="myMultiselect" class=" multiselect">
                                                     <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
                                                         <select name="currency" class="form-select">
-                                                            <option id="name" value="<?php echo ($_SESSION['user']['currency']) ?? ""; ?>"><?php echo ($_SESSION['user']['currency']) ?? "Выберите валюту"; ?></option>
+                                                            <option id="name" value="<?php echo ($_SESSION['user']['currency']) ? $_SESSION['user']['currency'] : "₽"; ?>"><?php echo ($_SESSION['user']['currency']) ? $_SESSION['user']['currency'] : "₽"; ?></option>
                                                         </select>
                                                         <div class="overSelect"></div>
                                                     </div>
                                                     <div class="mySelectOptions">
-                                                        <label class="item">$<input class="custom-checkbox" type="radio" value="$" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                                        <label class="item">€<input class="custom-checkbox" type="radio" value="€" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                                        <label class="item">₴<input class="custom-checkbox" type="radio" value="₴" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
-                                                        <label class="item">₽<input class="custom-checkbox" type="radio" value="₽" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                        <label class="item">$<input class="custom-checkbox" type="radio" data-value="$" value="$" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                        <label class="item">€<input class="custom-checkbox" type="radio" data-value="€" value="€" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                        <label class="item">₴<input class="custom-checkbox" type="radio" data-value="₴" value="₴" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                        <label class="item <?php echo ($_SESSION['user']['currency']) ?? "active"; ?>">₽<input class="custom-checkbox" type="radio" data-value="₽" value="₽" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -144,7 +147,7 @@
                                             <?php
                                             $options = ["vk", "whatsapp", "twitter", "facebook", "instagram", "youtube", "telegram", "site"];
                                             for($i = 0; $i<8; $i++){
-                                                if (is_null($content[2][0][$options[$i]])) continue;
+                                                if (empty($content[2][0][$options[$i]])) continue;
                                                 ?>
                                             <div class="social__block">
 
@@ -158,14 +161,14 @@
                                                                 <div class="overSelect"></div>
                                                             </div>
                                                             <div class="mySelectOptions">
-                                                                <label class="item active social__item">Вконтакте<input class="custom-checkbox social__input" type="radio" value="vk" /><label for="happy"></label></label>
-                                                                <label class="item social__item">WhatsApp<input class="custom-checkbox social__input" type="radio" value="whatsapp" /><label for="happy"></label></label>
-                                                                <label class="item social__item">Твиттер<input class="custom-checkbox social__input" type="radio" value="twitter" /><label for="happy"></label></label>
-                                                                <label class="item social__item">Фейсбук<input class="custom-checkbox social__input" type="radio" value="facebook" /><label for="happy"></label></label>
-                                                                <label class="item social__item">Инстаграм<input class="custom-checkbox social__input" type="radio" value="instagram" /><label for="happy"></label></label>
-                                                                <label class="item social__item">Ютуб<input class="custom-checkbox social__input" type="radio" value="youtube" /><label for="happy"></label></label>
-                                                                <label class="item social__item">Телеграм<input class="custom-checkbox social__input" type="radio" value="telegram" /><label for="happy"></label></label>
-                                                                <label class="item social__item">Сайт<input class="custom-checkbox social__input" type="radio" value="site" /><label for="happy"></label></label>
+                                                                <label class="item active social__item">Вконтакте<input class="custom-checkbox social__input" type="radio" data-value="Вконтакте" value="vk" /><label for="happy"></label></label>
+                                                                <label class="item social__item">WhatsApp<input class="custom-checkbox social__input" type="radio" data-value="WhatsApp" value="whatsapp" /><label for="happy"></label></label>
+                                                                <label class="item social__item">Твиттер<input class="custom-checkbox social__input" type="radio" data-value="Твиттер" value="twitter" /><label for="happy"></label></label>
+                                                                <label class="item social__item">Фейсбук<input class="custom-checkbox social__input" type="radio" data-value="Фейсбук" value="facebook" /><label for="happy"></label></label>
+                                                                <label class="item social__item">Инстаграм<input class="custom-checkbox social__input" type="radio" data-value="Инстаграм" value="instagram" /><label for="happy"></label></label>
+                                                                <label class="item social__item">Ютуб<input class="custom-checkbox social__input" type="radio" data-value="Ютуб" value="youtube" /><label for="happy"></label></label>
+                                                                <label class="item social__item">Телеграм<input class="custom-checkbox social__input" type="radio" data-value="Телеграм" value="telegram" /><label for="happy"></label></label>
+                                                                <label class="item social__item">Сайт<input class="custom-checkbox social__input" type="radio" data-value="Сайт" value="site" /><label for="happy"></label></label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -205,20 +208,23 @@
                                                     <div class="avatar-body">
                                                         <img src="../img/saveAvatar.svg" alt="">
                                                         <div class="avatar-body__info">
-                                                            <span id="file-name" class="file-box">Название файла</span>
-                                                            <span id="file-size" class="file-box">0 кб из доступных 5 мб</span>
+                                                            <span id="file-name" class="file-box"><?php if (isset($_SESSION['user']['avatar'])) {print_r(substr(basename($_SESSION['user']['avatar']), 0, 10));} else {echo 'Название файла';}?></span>
+                                                            <span id="file-size" class="file-box"><?php if (isset($_SESSION['user']['avatar'])) {print_r(round(filesize($_SESSION['user']['avatar']) / 1024));} else {echo '0';} ?> кб из доступных 5 мб</span>
                                                         </div>
 
                                                     </div>
 
 
                                                     <div class="input__wrapper">
-                                                        <input name="avatar" type="file" id="input__file" class="input input__file" onchange='uploadFile(this)' multiple>
-                                                        <label for="input__file" class="input__file-button">
 
-                                                            <span class="input__file-icon-wrapper"><img class="input__file-icon" src="./img/plus.svg"  width="25"></span>
-                                                            <span class="input__file-button-text">Добавить</span>
-                                                        </label>
+                                                        <div class="avatar-replace">
+                                                            <input name="avatar" type="file" id="input__file" class="input input__file" onchange='uploadFile(this)' multiple>
+                                                            <label for="input__file" class="input-replace input__file-button ">
+
+                                                                <span class="input__file-icon-wrapper"><img class="input__file-icon input__file-replace" src="/img/changeVideo.svg"  width="25"></span>
+                                                                <span class="input__file-button-text">Заменить</span>
+                                                            </label>
+                                                        </div>
                                                     </div>
 
                                                 </div>
@@ -242,13 +248,13 @@
                             <div class="tab">
 
                                 <div class="prodamus-input">
-                                    <form action="/Account/SaveSchoolSettings" method="POST">
+                                    <form action="/Account/SaveSchoolSettings" class="account__form" method="POST">
                                         <h2>Основные данные о школе</h2>
 
                                         <div class="field">
 
                                             <div class="input_focus ">
-                                                <label for="username" class="label_focus">Страна</label>
+                                                <label for="username" class="label_focus">Название школы</label>
                                                 <input class="inf" type="text" name="school_name" value="<? echo (htmlspecialchars(isset($_SESSION['user']['school_name']) ? $_SESSION['user']['school_name'] : '')) ?>">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
@@ -267,7 +273,7 @@
                                                         <?php
                                                         $options = ["Изотерика", "Обучение", "Дизайн", "Политика", "Спорт", "Игры", "Животные"];
                                                         for($i = 0; $i<7; $i++){?>
-                                                          <label class="item"><?=$options[$i]?><input class="custom-checkbox" type="radio" value="<?=$options[$i]?>" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                                                          <label class="item"><?=$options[$i]?><input class="custom-checkbox" data-value="<?=$options[$i]?>" type="radio" value="<?=$options[$i]?>" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                                         <?php } ?>
                                                     </div>
                                                 </div>
@@ -430,7 +436,7 @@
                                             </div>
                                         </div>
                                         <div class="about-btn">
-                                            <button id="profile_send" type="submit">Сохранить</button>
+                                            <button class="save-btn" id="profile_send" type="submit">Сохранить</button>
                                         </div>
                                     </form>
 
@@ -442,53 +448,53 @@
                             <label class="menu-label" for="Tarif" id="cllab"><p>Дополнительно</p></label>
 
                             <div class="tab">
-                        <div class="prodamus-input col">
-                            <div class="inner_row">
-                                <h2>Подключение Prodamus:  </h2>
-                                <div class="row">
-                                    <div class="input_focus ">
-                                        <label for="username" class="label_focus">API Ключ</label>
-                                        <input class="inf" type="text"  name="prodamus_api" value="">
-                                        <span class="clear_input_val">
-                                                     <img src="/img/clear_input.svg" alt="">
-                                                </span>
-                                    </div>
+                                <div class="prodamus-input col">
+                                    <form action="/Account/SaveIntegrationsSettings" class="account__form" method="POST">
+                                        <div class="inner_row">
+                                            <h2>Подключение Prodamus:  </h2>
+                                            <div class="row">
+                                                <div class="input_focus ">
+                                                    <label for="username" class="label_focus">API Ключ</label>
+                                                    <input class="inf" type="text"  name="prodamus_key" value="<?php echo $_SESSION['user']['prodamus_key']?>">
+                                                    <span class="clear_input_val">
+                                                                 <img src="/img/clear_input.svg" alt="">
+                                                            </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="inner_row">
+                                            <h2>Подключение Albato:  </h2>
+                                            <div class="row">
+                                                <div class="input_focus ">
+                                                    <label for="username" class="label_focus">API Ключ</label>
+                                                    <input class="inf" type="text"  name="albato_key" value="<?php echo $_SESSION['user']['albato_key']?>">
+                                                    <span class="clear_input_val">
+                                                                 <img src="/img/clear_input.svg" alt="">
+                                                            </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="inner_row scripts">
+                                            <div class="script">
+                                                <h2>Скрипты для HEAD:  </h2>
+                                                <div class="row">
+                                                    <textarea class="additionally" placeholder="Default" name="head_additional"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="script">
+                                                <h2>Скрипты для Body:  </h2>
+                                                <div class="row">
+                                                    <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="about-btn">
+                                            <button class="save-btn" id="profile_send" type="submit">Сохранить</button>
+                                        </div>
+                                    </form>
                                 </div>
-                            </div>
-                            <div class="inner_row">
-                                <h2>Подключение Albato:  </h2>
-                                <div class="row">
-                                    <div class="input_focus ">
-                                        <label for="username" class="label_focus">API Ключ</label>
-                                        <input class="inf" type="text"  name="albato_api" value="">
-                                        <span class="clear_input_val">
-                                                     <img src="/img/clear_input.svg" alt="">
-                                                </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="inner_row scripts">
-                                <div class="script">
-                                    <h2>Скрипты для HEAD:  </h2>
-                                    <div class="row">
-                                        <textarea class="additionally" placeholder="Default" name="head_additional"></textarea>
-                                    </div>
-                                </div>
-                                <div class="script">
-                                    <h2>Скрипты для Body:  </h2>
-                                    <div class="row">
-                                        <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="about-btn">
-                                <button id="profile_send" type="submit">Сохранить</button>
                             </div>
                         </div>
-                    </div>
-                </div>
                 <div class="exit-settings popup-tariff">
                     <div class="popup-tariff-body">
                         <div class="popup__title">
@@ -509,12 +515,15 @@
     <input type="hidden" id="tariff_buy" name="tariff_id">
 </form>
 <script src="/js/jquery-3.6.1.min.js"></script>
-    <script src="/js/getNotifications.js"></script>
-    <script src="/js/customInputs.js"></script>
-    <script src="/js/customSelect.js"></script>
-    <script src="/js/printFailName.js" ></script>
-    <script src="/js/notifications.js"></script>
+<script src="/js/getNotifications.js"></script>
+<script src="/js/customInputs.js"></script>
+<script src="/js/customSelect.js"></script>
+<script src="/js/notifications.js"></script>
 <script>
+    function uploadFile(target) {
+        target.parentElement.parentElement.parentElement.querySelector("#file-name").innerHTML = (target.files[0].name);
+        target.parentElement.parentElement.parentElement.querySelector("#file-size").innerHTML = Math.round(target.files[0].size / 1024) + "кБ из доступных 5мб" ;
+    }
     /*Popups*/
     let changeTariff = document.querySelector('.change-tariff-popup');
     let improvementTariff = document.querySelector('.improvement-tariff-popup');
@@ -534,6 +543,12 @@
     improvementTariffOpen.addEventListener('click', function(){
         improvementTariff.classList.add('active');
     })
+
+    improvementTariff.onclick = async function (event){
+        if (event.target === improvementTariff) {
+            improvementTariff.classList.remove('active');
+        }
+    }
 
     changeTariff.onclick = async function (event) {
         if (event.target === changeTariff) {
@@ -555,6 +570,11 @@
 
     // Проверка на количество и add social
     document.getElementById('social__submit').addEventListener('click', function (){
+        if (document.querySelectorAll('#social__inpu').length > 0) {
+            if (document.querySelectorAll('#social__inpu')[document.querySelectorAll('#social__inpu').length - 1].value < 3) {
+                return;
+            }
+        }
         let div = `<div class="social__block">
             <div class="field">
                 <div class="select-account social-network">
@@ -566,14 +586,14 @@
                             <div class="overSelect"></div>
                         </div>
                         <div class="mySelectOptions">
-                            <label class="item social__item">Вконтакте<input class="custom-checkbox social__input" type="radio" value="vk" /><label for="happy"></label></label>
-                            <label class="item social__item">WhatsApp<input class="custom-checkbox social__input" type="radio" value="whatsapp" /><label for="happy"></label></label>
-                            <label class="item social__item">Твиттер<input class="custom-checkbox social__input" type="radio" value="twitter" /><label for="happy"></label></label>
-                            <label class="item social__item">Фейсбук<input class="custom-checkbox social__input" type="radio" value="facebook" /><label for="happy"></label></label>
-                            <label class="item social__item">Инстаграм<input class="custom-checkbox social__input" type="radio" value="instagram" /><label for="happy"></label></label>
-                            <label class="item social__item">Ютуб<input class="custom-checkbox social__input" type="radio" value="youtube" /><label for="happy"></label></label>
-                            <label class="item social__item">Телеграм<input class="custom-checkbox social__input" type="radio" value="telegram" /><label for="happy"></label></label>
-                            <label class="item social__item">Сайт<input class="custom-checkbox social__input" type="radio" value="site" /><label for="happy"></label></label>
+                            <label class="item active social__item">Вконтакте<input class="custom-checkbox social__input" type="radio" data-value="Вконтакте" value="vk" /><label for="happy"></label></label>
+                            <label class="item social__item">WhatsApp<input class="custom-checkbox social__input" type="radio" data-value="WhatsApp" value="whatsapp" /><label for="happy"></label></label>
+                            <label class="item social__item">Твиттер<input class="custom-checkbox social__input" type="radio" data-value="Твиттер" value="twitter" /><label for="happy"></label></label>
+                            <label class="item social__item">Фейсбук<input class="custom-checkbox social__input" type="radio" data-value="Фейсбук" value="facebook" /><label for="happy"></label></label>
+                            <label class="item social__item">Инстаграм<input class="custom-checkbox social__input" type="radio" data-value="Инстаграм" value="instagram" /><label for="happy"></label></label>
+                            <label class="item social__item">Ютуб<input class="custom-checkbox social__input" type="radio" data-value="Ютуб" value="youtube" /><label for="happy"></label></label>
+                            <label class="item social__item">Телеграм<input class="custom-checkbox social__input" type="radio" data-value="Телеграм" value="telegram" /><label for="happy"></label></label>
+                            <label class="item social__item">Сайт<input class="custom-checkbox social__input" type="radio" data-value="Сайт" value="site" /><label for="happy"></label></label>
                         </div>
                     </div>
                 </div>
@@ -586,8 +606,9 @@
                 </div>
             </div>
         </div>`;
-
-        document.querySelector('.social__blocks').innerHTML += div;
+        // console.log(new DOMParser().parseFromString(div, "text/xml"))
+        document.querySelector('.social__blocks').insertAdjacentHTML('beforeend', div);
+        checkboxStatusChange();
 
         $('.social__blocks:last #social__inpu').on('input', function (){
             if (this.value.length > 0) {
@@ -632,15 +653,16 @@
                     processData: false,
                     contentType: false
                 });
-                AddNotifications("Настройки сохранены", '');
-                let saveBtn = document.querySelector('.save-btn');
+                let saveBtn = $(this).find('#profile_send');
                 console.log(saveBtn)
-                saveBtn.classList.add("active");
+                saveBtn.addClass("active");
                 saveBtn.innerHTML = 'Сохранено';
                 setTimeout(function () {
-                    saveBtn.classList.remove("active");
+                    saveBtn.removeClass("active");
                     saveBtn.innerHTML = 'Сохранить';
-                }, 3000)
+                    window.location.reload()
+                }, 2000)
+                AddNotifications("Настройки сохранены", '');
             })
         });
     });

@@ -36,17 +36,23 @@
                                 $value = '';
                                 if ($input == 'email') {
                                     $value = 'email';
+                                    $type = 'email';
                                     $input_name = 'email';
+                                    $text = 'Ваша почта';
                                 } elseif ($input == 'name') {
                                     $value = 'account';
+                                    $type = 'text';
                                     $input_name = 'first_name';
+                                    $text = 'Ваше имя';
                                 } elseif ($input == 'tel') {
                                     $value = 'phone';
+                                    $type = 'tel';
                                     $input_name = 'phone';
+                                    $text = 'Ваш номер телефона';
                                 }?>
                                 <img src="/img/smallPlayer/<?=$value?>.svg" alt="">
                             </div>
-                            <input name="<?=$input_name?>" type="text" placeholder="Ваш <?=$input?>" required>
+                            <input name="<?=$input_name?>" type="<?=$type?>" placeholder="<?=$text?>" required>
                         </div>
                     <?php } ?>
                     <?php if (isset($popup__do->form)) { ?>

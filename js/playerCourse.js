@@ -10,7 +10,6 @@ const container = document.querySelector(".container"),
     sliderDarkness = document.querySelector('.slider__darkness'),
     videoContainerS = document.querySelector('.contaierPlayer .wrapper'),
     buttonsBack = document.querySelector('.UserPlayer.Сourse-form'),
-    playBtnFirst = document.querySelector('#playBtn'),
     pauseBtnFirst = document.querySelector('#pauseBtn'),
     videoContainer = document.getElementById('UserPlayerVideo');
 
@@ -57,10 +56,9 @@ videoTimeline.addEventListener("mousemove", e => {
     progressTime.innerText = formatTime(percent);
 });
 
-playBtnFirst.onclick = () =>{
-    playBtnFirst.classList.add('nonActive');
-    videoContainer.play();
-}
+// playBtnFirst.onclick = () =>{
+//     playBtnFirst.classList.add('nonActive');
+// }
 
 videoTimeline.addEventListener("click", e => {
     let timelineWidth = videoTimeline.clientWidth;
@@ -94,6 +92,16 @@ volumeBtn.addEventListener("click", () => {
         volumeBtn.classList.replace("fa-volume-high", "fa-volume-xmark");
     }
 });
+
+document.addEventListener('DOMContentLoaded', function(){
+    if(youWatching.classList.contains('non__file')){
+        videoContainerS.classList.remove('nonActivePlayer');
+        videoContainerS.classList.add('non__file');
+    }else{
+        videoContainerS.classList.remove('nonActivePlayer');
+        videoContainerS.classList.add('has__file');
+    }
+})
 
 videoContainer.onclick = function () {
     if (videoContainer.paused){

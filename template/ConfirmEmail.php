@@ -23,8 +23,8 @@
         <div class="reg-logo">
             <img src="../img/regLogo.jpg" alt="">
         </div>
-        <h3 class="confirm-email__title">Подтвердите Email</h3>
-        <div class="subtitle">Введите код который пришел на ваш email</div>
+        <h3 class="confirm-email__title">Подтвердите почту</h3>
+        <div class="subtitle">Введите код который пришел на вашу почту</div>
 
             <input placeholder="Код из сообщения" type="text">
 

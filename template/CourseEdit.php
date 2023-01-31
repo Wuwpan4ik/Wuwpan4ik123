@@ -20,7 +20,7 @@
 
 <body>
 
-<?php print_r($_SESSION['error']) ?>
+<?php //print_r($_SESSION['error']) ?>
 
 <style>
     .popup__background {
@@ -292,10 +292,12 @@
         ajax.send(formdata);
     }
     function progressHandler(event) {
+
         var loaded = new Number((event.loaded / 1048576));//Make loaded a "number" and divide bytes to get Megabytes
         var total = new Number((event.total / 1048576));//Make total file size a "number" and divide bytes to get Megabytes
         var percent = (event.loaded / event.total) * 100;//Get percentage of upload progress
         _("progressBar").value = Math.round(percent);//Round value to solid
+
     }
     function completeHandler(event) {
         _("progressBar").value = 0;//Set progress bar to 0

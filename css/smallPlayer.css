@@ -204,7 +204,7 @@ button {
 }
 
 .slider__item-button button {
-    margin: 30px 0 0 0;
+    margin: 30px 0;
     padding: 19px 42px;
     background: #3E8AFB;
     box-shadow: 0px 3px 0px #3168BB, 0px 10px 30px rgba(62, 138, 251, 0.6);
@@ -576,10 +576,11 @@ button {
 .popup__allLessons-item-info-title {
     width: 90%;
     margin: 15px 0 0 0;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 14px;
     line-height: 17px;
     color: rgba(0, 0, 0, 0.6);
+    word-break: break-word;
 }
 
 /*----------------------------------------*/

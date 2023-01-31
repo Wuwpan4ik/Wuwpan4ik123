@@ -1,61 +1,31 @@
 <?php
 abstract class ACoreAdmin {
 
-    protected $m;
-    protected $ourEmail = "envelope@course-creator.io";
-    protected $ourPassword = "1u*V90z*29pP";
-    protected $ourNickName = "Course Creator IO";
+    use SendEmail;
+
+    protected $user;
+    protected $email_class;
+    protected $tariff_class;
+    protected $notifications_class;
+    protected $funnel;
+
+
+    protected $ourEmail;
+    protected $ourPassword;
+    protected $ourNickName;
     protected $email;
 
-    protected function SendEmail ($title, $body, $email) {
-
-        $mail = new PHPMailer\PHPMailer\PHPMailer(true);
-
-        try {
-            $mail->isSMTP();
-            $mail->CharSet = "UTF-8";
-            $mail->SMTPAuth   = true;
-            $mail->Debugoutput = function($str, $level) {$GLOBALS['status'][] = $str;};
-
-            // Настройки вашей почты
-            $mail->Host       = 'smtp.yandex.ru'; // SMTP сервера вашей почты
-            $mail->Username   = $this->ourEmail; // Логин на почте
-            $mail->Password   = $this->ourPassword; // Пароль на почте
-            $mail->SMTPSecure = 'ssl';
-            $mail->Port       = 465;
-            $mail->smtpConnect(
-                array(
-                    "ssl" => array(
-                        "verify_peer" => false,
-                        "verify_peer_name" => false,
-                        "allow_self_signed" => true
-                    )
-                )
-            );
-            $mail->setFrom($this->ourEmail, $this->ourNickName); // Адрес самой почты и имя отправителя
-
-            // Получатель письма
-            $mail->addAddress($email);
-
-            $mail->isHTML();
-            $mail->Subject = $title;
-            $mail->Body = $body;
-
-            if ($mail->send()) {$result = "success";}
-            else {$result = "allGood";}
-
-        } catch (Exception $e) {
-            $result = $mail->ErrorInfo;
-            $status = "Сообщение не было отправлено. Причина ошибки: {$mail->ErrorInfo}";
-        }
-        $_SESSION['status'] = $status;
-        echo $result;
-    }
-
-    public $db;
-
     public function __construct() {
-        $this->db = new User();
+        $this->user = new User();
+        $this->email_class = new Email();
+        $this->tariff_class = new Tariff();
+        $this->notifications_class = new Notifications();
+        $this->funnel = new FunnelModel();
+
+        $email_account = $this->email_class->GetEmailAccount();
+        $this->ourEmail = $email_account['email'];
+        $this->ourPassword = $email_account['password'];
+        $this->ourNickName = $email_account['name'];
     }
 
     public function get_body($tpl) {

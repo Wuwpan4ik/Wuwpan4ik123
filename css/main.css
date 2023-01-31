@@ -83,7 +83,9 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
-
+.statistics tr th{
+  margin:  16px 20px 40px  20px;
+}
 ._container {
   width: 95% !important;
   margin: 0 auto;
@@ -110,6 +112,7 @@ code {
 .switch_box.box_1{
   background: #F8F8F8;
   padding: 12px 16px;
+  border-radius: 8px;
 }
 .switch_box.box_1 div{
   color: #5A6474;
@@ -428,6 +431,7 @@ span.button__back {
 }
 .upload__form.active {
   background: none !important;
+  box-shadow: none !important;
 }
 .media-cart .btn-upload #upload_form{
   background: rgba(255, 255, 255, 0.6);
@@ -490,6 +494,9 @@ span.button__back {
   }
   .avatar.inCourse .input__wrapper .input__file-button{
     width: 172px !important;
+  }
+  .input__wrapper{
+    flex-wrap: wrap;
   }
 }
 @media (max-width: 465px) {
@@ -576,9 +583,8 @@ span.button__back {
 
 #progressBar::-webkit-progress-bar {
   height: 10px;
-  width: 100%;
   margin: 0 auto;
-  background: #81A4FF;
+  background: none !important;
   border-radius: 20px;
 }
 
@@ -587,8 +593,7 @@ span.button__back {
   width: 80%;
   float: left;
   height: 10px;
-  margin: 0 -10px 0 0;
-  padding-left: 50px; /* Rounded corners requires a padding */
+  margin: 0 -10px 0 0; /* Rounded corners requires a padding */
   background: #81A4FF;
   border-radius: 20px;
 }
@@ -714,7 +719,7 @@ span.button__back {
 }
 .not-bell{
   display: flex;
-  justify-content: center;
+  align-items: center;
   text-align: center;
 }
 
@@ -751,6 +756,7 @@ span.button__back {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  text-align: left;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
@@ -1092,6 +1098,9 @@ a {
   background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);
 }
 
+.box:hover.active img{
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(281deg) brightness(101%) contrast(10000%);
+}
 
 .box:hover.active p {
   color: #fff;
@@ -1575,6 +1584,13 @@ span.name {
 }
 
 #file-name {
+  margin: 0; /* Убираем внешний отступ */
+  -webkit-line-clamp: 1; /* Число отображаемых строк */
+  display: -webkit-box; /* Включаем флексбоксы */
+  -webkit-box-orient: vertical; /* Вертикальная ориентация */
+  overflow: hidden; /* Обрезаем всё за пределами блока */
+  line-height: 20px;
+  width: 150px;
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
@@ -1589,13 +1605,14 @@ span.name {
 }
 .file-box {
   display: flex;
+  align-items: center;
   width: 100%;
-  padding: 5px 0px 5px 5px;
   -webkit-box-sizing: border-box;
   align-items: start;
   box-sizing: border-box;
-  color: #000;
-  height: calc(2rem - 2px);
+  font-weight: 500;
+  line-height: 16px;
+  color: rgba(64, 77, 97, 0.4);
 }
 .input__file {
   display: none;
@@ -1820,6 +1837,7 @@ option {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
+  overflow-y: hidden;
   margin: 24px 0 0 0;
   font-size: 17px;
 }
@@ -1903,11 +1921,12 @@ td:nth-child(1){
   position: absolute;
   top: 12px;
   left: 10px;
-  font-size: 13px;
+  font-size: 14px;
+  z-index: 5;
 }
 
 .new_name div textarea {
-  padding-top: 20px !important;
+  padding-top: 25px !important;
   padding-left: 15px;
   font-size: 16px;
   height: 60px;
@@ -1974,6 +1993,7 @@ td:nth-child(1){
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  align-items: center;
 }
 
 .display_name {
@@ -2095,6 +2115,7 @@ td:nth-child(1){
   -ms-flex-pack: justify;
   justify-content: space-between;
   margin: 24px 0 0 0;
+  font-size: 14px !important;
 }
 
 .popup__body-item {
@@ -2111,6 +2132,9 @@ td:nth-child(1){
   width: 100%;
 }
 .popup__body-item label{
+  font-size: 18px;
+  font-weight: 500;
+  color: #404D61;
   text-align:left !important;
 }
 .popup__margin {
@@ -2275,6 +2299,7 @@ td:nth-child(1){
   -webkit-box-orient: vertical; /* Вертикальная ориентация */
   overflow: hidden; /* Обрезаем всё за пределами блока */
   line-height: 20px;
+  width: 100px;
 }
 
 /* Input Holders */
@@ -2622,6 +2647,7 @@ td:nth-child(1){
   background: linear-gradient(180deg, #08B395 0%, #0C977F 100%) !important;
   box-shadow: 0px 3px 0px #0B705E, 0px 10px 30px rgba(12, 153, 128, 0.6) !important;
 }
+
 .popup-styles-button{
   display: flex;
   align-items: center;
@@ -2659,4 +2685,10 @@ td:nth-child(1){
 }
 #DeleteAllOrders{
   display: none;
+}
+.textarea_focus{
+  font-size: 14px !important;
+}
+.textarea_focus.active .videoname{
+  padding: 10px 16px 10px 16px!important;
 }

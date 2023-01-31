@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/UserMain.css">
     <link rel="stylesheet" href="/css/smallPlayer.css">
+    <link rel="stylesheet" href="/css/notifications.css">
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 </head>
@@ -62,7 +63,7 @@
                                         <?php echo htmlspecialchars(isset($item['school_name']) ? $item['school_name'] : $item['name'] )?>
                                     </div>
                                     <div class="aboutTheAuthor__info-text hide-content">
-                                        <?=$item['description'] ?></div>
+                                        <?php echo htmlspecialchars(isset($item['school_desc']) ? $item['school_desc'] : $item['description'] )?></div>
                                 </div>
                             </div>
                             <div class="aboutTheAuthor-button availableСoursesBtn">
@@ -144,7 +145,7 @@
             </div>
             <div class="User-form-v">
                 <div class="userPopup__button buy__course-btn">
-                    <button type="button" class="button__buy-course">Купить весь курс за <span class="course__price"></span> ₽</button>
+                    <button type="button" class="button__buy-course">Купить весь курс за <span class="course__price"></span> <span class="course__currency"></span></button>
                 </div>
                 <div class=" AllLessons userPopup__button">
                     <button type="button" class="course__back-btn" onclick="backToAuthor(this)">Пока не хочу покупать</button>
@@ -310,10 +311,10 @@
                         </div>
                     </div>
                     <div class="youChosen-info">
-                        Стоимость <span class="course__buy-text"></span>
-                        <span><span class="course__price video__price-buy"></span> <?php echo isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : '₽'?></span>
+                        Стоимость урока: <span class="course__buy-text"></span>
+                        <span><span class="course__price video__price-buy"></span><span class="course__currency"></span></span>
                     </div>
-                    <form class="form__buy-course-video" method="POST" action="/ClientsController/CourseBuy">
+                    <form class="form__buy-course-video popup__form" method="POST" action="/ClientsController/CourseBuy">
                         <input hidden="hidden" type="text" name="creator_id" value="" id="creator_id">
                         <input hidden="hidden" type="text" name="course_id" value="" id="course_id">
                         <div class="youChosen popup__buy-register">
@@ -321,13 +322,13 @@
                                 <div class="popup__bonus-form-input-account input-img">
                                     <img src="../img/smallPlayer/account.svg" alt="">
                                 </div>
-                                <input type="text" name="name" placeholder="Ваше имя">
+                                <input type="text" name="first_name" placeholder="Ваше имя">
                             </div>
                             <div class="popup__buy-body-form youChosen-input input">
                                 <div class="popup__bonus-form-input-email input-img">
                                     <img src="../img/smallPlayer/email.svg" alt="">
                                 </div>
-                                <input type="text" value="<?=$_SESSION['user']['email']?>" name="email" placeholder="Ваш email" readonly>
+                                <input type="text" value="<?=$_SESSION['user']['email']?>" name="email" placeholder="Ваша почта" readonly>
                             </div>
                             <div class="popup__buy-body-form youChosen-input input">
                                 <div class="popup__bonus-form-input-email input-img">
@@ -371,13 +372,13 @@
                                     <div class="popup__bonus-form-input-email input-img">
                                         <img src="../img/smallPlayer/email.svg" alt="">
                                     </div>
-                                    <input name="email" type="email" placeholder="Ваш email" value="<?php echo isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : ''?>" readonly>
+                                    <input name="email" type="email" placeholder="Ваша почта" value="<?php echo isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : ''?>" readonly>
                                 </div>
                                 <div class="popup__buy-body-form question-textarea">
                                     <div class="popup__bonus-form-input-email input-img">
                                         <img src="../img/smallPlayer/question.svg" alt="">
                                     </div>
-                                    <textarea name="question" placeholder="Ваш вопрос"></textarea>
+                                    <textarea name="question" id="userQuestion" placeholder="Ваш вопрос"></textarea>
                                 </div>
                             </form>
                         </div>
@@ -395,6 +396,8 @@
         </div>
     </div>
 </div>
+<input type="hidden" id="albato_key" value="<?php print_r($content['get_API'][0]['albato_key'])?>">
+<?php include 'template/default/notificationsPopup.php' ?>
 <?php
 unset($_SESSION['course_price']);
 unset($_SESSION['course_id']);
@@ -414,9 +417,23 @@ unset($_SESSION['course_id']);
 </script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
 <script src="../js/script.js" ></script>
+<script src="/js/notifications.js"></script>
 <script>
+    let questInput = document.getElementById('userQuestion')
     document.querySelector('#sendQuest').addEventListener('click', function () {
-        document.querySelector('#formQuest').submit();
+        if(questInput.value === ""){
+            return
+        }else{
+            document.querySelector('#formQuest').submit();
+            document.querySelector('.question.userPopup').classList.remove('active')
+            document.querySelector('.questionBackground').classList.remove('active')
+        }
+    });
+    document.querySelector('.questionBackground').addEventListener('click', function(){
+        if(document.querySelector('.question.userPopup').classList.contains('active')){
+            document.querySelector('.question.userPopup').classList.remove('active')
+            document.querySelector('.questionBackground').classList.remove('active')
+        }
     })
 </script>
 <script>
@@ -477,6 +494,13 @@ unset($_SESSION['course_id']);
                 document.querySelectorAll('.course__price').forEach((elem) => {
                     elem.innerHTML = course.price;
                 })
+                document.querySelectorAll('.course__currency').forEach(item => {
+                    if (course.currency) {
+                        item.innerHTML = course.currency;
+                    } else {
+                        item.innerHTML = '₽';
+                    }
+                });
                 document.querySelector('.form__buy-course-video').action = "/ClientsController/CourseBuy";
                 document.querySelector('.course__buy-title').innerHTML = course['name'];
                 document.querySelector('.course__buy-count').innerHTML = course['count'] + ' урока';
@@ -487,6 +511,49 @@ unset($_SESSION['course_id']);
         });
         request.send();
     }
+
+    $(function() {
+        $('.popup__form').each(function (){
+            $(this).submit(function(e) {
+                e.preventDefault();
+
+                let form = $(this);
+                let form_data = $(this).serialize();
+                let albato_key;
+
+                if (document.getElementById('albato_key').value.length > 0) {
+                    albato_key = document.getElementById('albato_key').value;
+                } else {
+                    albato_key = null;
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: $(this).attr("action"),
+                    data: form_data,
+                    success: function (data) {
+                        if (albato_key !== null) {
+                            $.ajax({
+                                url: albato_key,
+                                type: "POST",
+                                data: JSON.stringify(form_data),
+                                dataType: 'JSON',
+                                success: function(response) {
+                                    alert(response);
+                                }
+                            });
+                        }
+                        form[0].querySelector('.next__lesson');
+                        AddNotifications('Вы успешно купили курс', 'Аккаунт отправлен на почту');
+                    },
+                    error: function(data) {
+                        AddNotifications('Произошла ошибка', 'Вы уже получали покупали этот курс');
+                    }
+                });
+                location.reload()
+            });
+        })
+    });
 
     function getVideoInfo(number) {
         let request = new XMLHttpRequest();
@@ -584,7 +651,6 @@ unset($_SESSION['course_id']);
         request1.addEventListener("readystatechange", () => {
             if (request1.readyState === 4 && request1.status === 200) {
                 document.querySelector('.lesson__list').innerHTML = request1.responseText;
-                console.log(request1.responseText)
                 getCourseName(number);
                 document.getElementById('question_course-id').value = number;
                 let choiceVideo = document.body.querySelectorAll('.choice-video');
@@ -621,9 +687,6 @@ unset($_SESSION['course_id']);
                         youChosen.classList.add('active');
                         getVideoInfo(item.querySelector('.item__list-id').dataset.id);
                     }
-                })
-                document.querySelectorAll('.course__back-btn').forEach(item => {
-                    item.dataset.author_id = number;
                 })
                 startAccordion();
             }

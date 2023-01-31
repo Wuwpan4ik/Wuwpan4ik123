@@ -1,12 +1,19 @@
 <?php
-
 abstract class ACoreGuess
 {
-    protected $m;
+    protected $user;
+    protected $user_contacts;
+    protected $user_class;
+    protected $notifications;
+    protected $course_content;
 
     public function __construct() {
         date_default_timezone_set('Europe/Moscow');
-        $this->m = new User();
+        $this->user = new User();
+        $this->user_contacts = new UserContactsModel();
+        $this->user_class = new UserModel();
+        $this->notifications = new Notifications();
+        $this->course_content = new CourseContentModel();
     }
 
     public function obr() {
@@ -15,12 +22,5 @@ abstract class ACoreGuess
         } else if (!isset($_SESSION['user']['id'])) {
             header("Location: /UserLogin");
         }
-    }
-
-    public function addNotifications($class, $message, $image, $user_id = null) {
-        if (is_null($user_id)) $user_id = $_SESSION['user']['id'];
-        $date = date("Y-m-d");
-        $time = date("H:i:s");
-        return $this->m->db->execute("INSERT INTO `notifications` (`user_id`, `class`, `body`, `image`, `date`, `time`, `is_checked`) VALUES ('$user_id', '$class', '$message', '$image', '$date', '$time', 0)");
     }
 }

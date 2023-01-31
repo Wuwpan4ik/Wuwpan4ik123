@@ -258,6 +258,7 @@
     }
 
     .aboutTheAuthor-name {
+        color: rgba(0, 0, 0, 0.6);
         margin: 0 0 0 7px;
         font-size: 10px;
         opacity: 0.6;
@@ -405,7 +406,8 @@
     /*question*/
     .question.userPopup {
         display: none;
-        height: 435px;
+        height: auto;
+        padding-bottom: 75px;
     }
 
     .question .popup__buy-register {
@@ -431,6 +433,9 @@
     }
 
     .question-form {
+        position: absolute;
+        width: 88%;
+        bottom:0;
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
@@ -476,7 +481,7 @@
     /*youChosen*/
     .youChosen.userPopup {
         display: none;
-        height: 575px;
+        height: 590px;
     }
 
     .youChosen.availableToYou__body {
@@ -540,6 +545,7 @@
     }
 
     .youChosen .popup__buy-register{
+        width: 100%;
         margin: 0 0 20px 0;
     }
 
@@ -1158,6 +1164,11 @@
         background-color: #fff;
         color: #000;
         overflow: hidden;
+        /*transition: 0.6s;*/
+        /*transform: translateY(200%);*/
+    }
+    .userPopup.active{
+        /*transition: 0.6s;*/
     }
     .userPopup__title {
         font-family: "TT Trailers", sans-serif;
@@ -1885,6 +1896,7 @@
     margin:11px 0 0 0 !important;
 }
 .infoLesson{
+    word-break: break-word;
     margin-top:6px;
 }
 .infoLesson p{

@@ -5,22 +5,12 @@ class AnalyticController extends ACoreCreator
 
     public function DeleteAllClients()
     {
-        $items_id = explode(",", $_POST['items_id']);
-        $items_id_array = [];
-        foreach ($items_id as $item) {
-            array_push($items_id_array, $item);
-        }
-        $this->m->db->execute("DELETE FROM `clients` WHERE `id` IN (" . implode(',', $items_id_array) . ")");
+        $this->clients->DeleteQuery("clients", $_POST['items_id']);
     }
 
     public function DeleteAllOrders()
     {
-        $items_id = explode(",", $_POST['items_id']);
-        $items_id_array = [];
-        foreach ($items_id as $item) {
-            array_push($items_id_array, $item);
-        }
-        $this->m->db->execute("DELETE FROM `orders` WHERE `id` IN (" . implode(',', $items_id_array) . ")");
+        $this->orders->DeleteQuery("orders", $_POST['items_id']);
     }
 
     function get_content()

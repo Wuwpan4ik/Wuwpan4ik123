@@ -1,7 +1,7 @@
 /*Select*/
-function checkboxStatusChange() {
+function checkboxStatusChange(block = document) {
 
-    let multiselect = document.querySelectorAll(".multiselect");
+    let multiselect = block.querySelectorAll(".multiselect");
 
     multiselect.forEach(element =>{
         let checkboxes = element.querySelector(".mySelectOptions");
@@ -11,10 +11,11 @@ function checkboxStatusChange() {
 
 
         checkedCheckboxes.forEach(item =>{
-            let title = document.querySelectorAll('.slider__item-title');
-            let text = document.querySelectorAll('.slider__item-text');
+            let title = block.querySelectorAll('.slider__item-title');
+            let text = block.querySelectorAll('.slider__item-text');
 
             let values = [];
+            let data_info;
             item.addEventListener('click', function(){
                 if(item.checked = true){
                     checkedCheckboxes.forEach(el =>{
@@ -30,11 +31,19 @@ function checkboxStatusChange() {
                     })
                     item.parentElement.classList.add('active')
                     values = (item.getAttribute('value'));
+                    data_info = item.dataset.value;
 
                 }
-                multiselectOption.innerText = values;
+                multiselectOption.innerText = data_info;
                 multiselectOption.value = values;
                 multiselectOption.selected = true;
+                if (item.parentElement.parentElement.classList.contains('first_do_list')) {
+                    checkFirstSelect()
+                }
+
+                if (item.parentElement.parentElement.classList.contains('second_do_list')) {
+                    checkSecondSelect()
+                }
             })
         })
     })
