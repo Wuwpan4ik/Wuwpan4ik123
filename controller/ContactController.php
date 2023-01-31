@@ -80,8 +80,7 @@ class ContactController extends ACoreCreator {
         $course = $this->course->Get($course_id);
 
         $this->contact->InsertQuery("contact", ["user_id" => $uid, "author_id" => $author_id, "body" => $question]);
-        $this->addNotifications("Вам пришел вопрос от клиента",  "Пользователь {$user[0]['first_name']} оставил вопрос, для ответа свяжитесь с ним по {$user[0]['email']}", '/img/Notification/question.svg','item-lite', $author_id);
-
+        $this->notifications_class->addNotifications("Вам пришел вопрос от клиента",  "Пользователь {$user[0]['first_name']} оставил вопрос, для ответа свяжитесь с ним по {$user[0]['email']}", '/img/Notification/question.svg','item-lite', $author_id);
 
         $title = "Вопрос от пользователя " . $user[0]['email'];
         $body = $this->GetQuestionHTML($course[0]['name'], $user[0]['email'], date('Y-m-d H:i:s'), $question);

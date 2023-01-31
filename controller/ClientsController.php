@@ -441,7 +441,7 @@
                 $body = $this->GetApplicationHtml($this->email,"{$url}/{$funnel[0]['file_url']}" , $name_funnel, $number_slide, $this->phone, $this->name);
                 $this->SendEmail($title, $body, $creator_email);
                 $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], 0);
-                $this->addNotifications("У вас новая заявка", "В вашей воронке $name_funnel оставленна заявка на слайде #$number_slide от {$this->email}", '/img/Notification/message.svg','item-like', $creator_id);
+                $this->notifications_class->addNotifications("У вас новая заявка", "В вашей воронке $name_funnel оставленна заявка на слайде #$number_slide от {$this->email}", '/img/Notification/message.svg','item-like', $creator_id);
             }
             return true;
         }
@@ -536,8 +536,8 @@
                 $course_info = $this->course->GetCourseInfoForNotifications($course_id);
 
 //              Добавление уведомлений
-                $this->addNotifications("Вы купили курс", "Доступный курс - {$course_info['name']}", '/img/Notification/star.svg','item-like', $res['id']);
-                $this->addNotifications("У вас купили курс", "Ваш курс - “{$course_info['name']}”, купил {$this->email}", '/img/Notification/star.svg','item-like', $creator_id);
+                $this->notifications_class->addNotifications("Вы купили курс", "Доступный курс - {$course_info['name']}", '/img/Notification/star.svg','item-like', $res['id']);
+                $this->notifications_class->addNotifications("У вас купили курс", "Ваш курс - “{$course_info['name']}”, купил {$this->email}", '/img/Notification/star.svg','item-like', $creator_id);
                 $title = "У вас купили курс!";
                 $phone = ($this->phone) ? $this->phone : null;
                 $name = ($this->name) ? $this->name : null;

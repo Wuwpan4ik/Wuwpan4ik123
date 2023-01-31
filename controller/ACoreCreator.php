@@ -7,8 +7,6 @@
     }
 
     abstract class ACoreCreator {
-
-        use addNotifications;
         use SendEmail;
 
         protected $email_class;

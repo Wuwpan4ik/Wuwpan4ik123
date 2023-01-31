@@ -1,7 +1,6 @@
 <?php
 abstract class ACoreGuess
 {
-    use addNotifications;
     protected $user;
     protected $user_contacts;
     protected $user_class;
