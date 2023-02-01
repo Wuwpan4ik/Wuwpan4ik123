@@ -390,7 +390,7 @@
         }
 
         private function GetPriceOfCourse($course_id) {
-            return $this->course->Get($course_id);
+            return $this->course->Get(["id" => $course_id]);
         }
 
         public function InsertToTable($creator_id, $course_id, $buy_progress, $course_price) {
@@ -417,7 +417,7 @@
             $url = include "settings/site_url.php";
             $creator_id = $_POST['creator_id'];
             $course_id = $_POST['course_id'];
-            $funnel = $this->funnel->Get($_POST['funnel_id']);
+            $funnel = $this->funnel->Get(["id" => $_POST['funnel_id']]);
 
             if (isset($_POST['funnel_id'])) {
                 $name_funnel = $funnel[0]['name'];
@@ -453,7 +453,7 @@
             $creator_id = $_POST['creator_id'];
             $course_id = $_POST['course_id'];
             if (isset($_POST['funnel_id'])) {
-                $name_funnel = $this->funnel_content->Get($_POST['funnel_id'])[0]['name'];
+                $name_funnel = $this->funnel_content->Get(["id" => $_POST['funnel_id']])[0]['name'];
             }
             if (isset($_POST['slide_id'])) {
                 $number_slide = $_POST['slide_id'];
