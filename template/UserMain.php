@@ -549,10 +549,12 @@ unset($_SESSION['course_id']);
                         AddNotifications('Вы успешно купили курс', 'Аккаунт отправлен на почту');
                     },
                     error: function(data) {
-                        AddNotifications('Произошла ошибка', 'Вы уже получали покупали этот курс');
+                        AddNotifications('Произошла ошибка', 'Вы уже покупали этот курс');
                     }
                 });
-                location.reload()
+                setTimeout(function (){
+                    location.reload()
+                }, 500)
             });
         })
     });

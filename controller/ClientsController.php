@@ -426,6 +426,7 @@
             if (isset($_POST['slide_id'])) {
                 $number_slide = $_POST['slide_id'];
             }
+
             $creator_email = $this->user->getUserById($creator_id)[0]['email'];
             $comment = 'Заявка';
             $client = $this->GetClient($course_id);
@@ -452,12 +453,16 @@
             $buy_progress = include './settings/buy_progress.php';
             $creator_id = $_POST['creator_id'];
             $course_id = $_POST['course_id'];
+
+//          Проверка на покупку того же курса
+
             if (isset($_POST['funnel_id'])) {
                 $name_funnel = $this->funnel_content->Get(["id" => $_POST['funnel_id']])[0]['name'];
             }
             if (isset($_POST['slide_id'])) {
                 $number_slide = $_POST['slide_id'];
             }
+
             $comment = 'Купил курс';
             $client = $this->GetClient($course_id);
             $give_money = $client[0]['give_money'] + $this->GetPriceOfCourse($course_id)[0]['price'];
@@ -492,6 +497,7 @@
             }
 
             $res = $this->user->getUserByEmail($this->email)[0];
+            $purchase = $this->purchase->GetQuery("purchase", ["user_id" => $res['id']]);
 
             if (isset($client) && ($client[0]['buy_progress'] < $buy_progress[$comment])) {
 
@@ -519,12 +525,14 @@
                 $this->orders->InsertQuery("orders", $data);
 
 //              Добавление Purchase
-                $purchase = $this->purchase->GetQuery("purchase", ["user_id" => $res['id']]);
                 if (isset($purchase) && count($purchase) == 1) {
                     $purchase_info = json_decode($purchase[0]['purchase'], true);
                     if (!in_array($course_id, $purchase_info['course_id'])) {
                         array_push($purchase_info['course_id'], $course_id);
                         $this->purchase->UpdateQuery("purchase", ["purchase" => json_encode($purchase_info)], "WHERE user_id = " . $res['id']);
+                    } else {
+                        return false;
+//                      Тут ошибка если уже покупал курс
                     }
                 } else {
                     $purchase_text = '{"course_id":["' . $course_id . '"], "video_id":[]}';
