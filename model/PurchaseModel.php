@@ -1,6 +1,5 @@
 <?php
+    class PurchaseModel extends ConnectDatabase
+    {
 
-class PurchaseModel extends ConnectDatabase
-{
-
-}
+    }

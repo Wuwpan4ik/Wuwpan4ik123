@@ -488,27 +488,24 @@
 
                 if (!empty($query)) {
                     $this->user->UpdateQuery("data", $query, "WHERE `email` = '$this->email'");
-
                 }
             }
-            $title = "Покупка курса";
-            $body = $this->GetRegistrationUserHtml($this->email, $this->password);
-            $this->SendEmail($title, $body, $this->email);
+
             $res = $this->user->getUserByEmail($this->email)[0];
 
             if (isset($client) && ($client[0]['buy_progress'] < $buy_progress[$comment])) {
 
 //          Добавление Clients
-                if (count($client) == 1){
-                    $data = [
-                        "buy_progress" => $buy_progress[$comment],
-                        "give_money" => $give_money,
-                        "first_buy" => 0
-                    ];
-                    $this->clients->UpdateQuery("clients", $data, "WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
-                } else {
-                    $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], $give_money);
-                }
+            if (count($client) == 1) {
+                $data = [
+                    "buy_progress" => $buy_progress[$comment],
+                    "give_money" => $give_money,
+                    "first_buy" => 0
+                ];
+                $this->clients->UpdateQuery("clients", $data, "WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '$this->email'");
+            } else {
+                $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], $give_money);
+            }
 
 //          Добавление Order
                 $current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
@@ -530,19 +527,23 @@
                         $this->purchase->UpdateQuery("purchase", ["purchase" => json_encode($purchase_info)], "WHERE user_id = " . $res['id']);
                     }
                 } else {
-                    $purchase_text = '{"course_id":["'.$course_id.'"], "video_id":[]}';
+                    $purchase_text = '{"course_id":["' . $course_id . '"], "video_id":[]}';
                     $this->purchase->InsertQuery("purchase", ["user_id" => $res['id'], "purchase" => $purchase_text]);
                 }
                 $course_info = $this->course->GetCourseInfoForNotifications($course_id);
 
 //              Добавление уведомлений
-                $this->notifications_class->addNotifications("Вы купили курс", "Доступный курс - {$course_info['name']}", '/img/Notification/star.svg','item-like', $res['id']);
-                $this->notifications_class->addNotifications("У вас купили курс", "Ваш курс - “{$course_info['name']}”, купил {$this->email}", '/img/Notification/star.svg','item-like', $creator_id);
-                $title = "У вас купили курс!";
+                $this->notifications_class->addNotifications("Вы купили курс", "Доступный курс - {$course_info['name']}", '/img/Notification/star.svg', 'item-like', $res['id']);
+                $this->notifications_class->addNotifications("У вас купили курс", "Ваш курс - “{$course_info['name']}”, купил {$this->email}", '/img/Notification/star.svg', 'item-like', $creator_id);
+
+                $body = $this->GetRegistrationUserHtml($this->email, $this->password);
+                $this->SendEmail("Покупка курса", $body, $this->email);
+
                 $phone = ($this->phone) ? $this->phone : null;
                 $name = ($this->name) ? $this->name : null;
+
                 $body = $this->GetRegistrationClientHtml($course_info['name'], $course_info['price'], $this->email, $course_info['count'], $phone, $name, $name_funnel, $number_slide);
-                $this->SendEmail($title, $body, $course_info['email']);
+                $this->SendEmail("У вас купили курс!", $body, $course_info['email']);
                 $this->get_content();
             }
             return true;

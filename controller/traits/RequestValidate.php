@@ -8,6 +8,8 @@
                 //                if (!preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/",$this->name)) {
                 //                    return false;
                 //                }
+//              Через header пусть ошибку выводит
+
             }
 
             if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
