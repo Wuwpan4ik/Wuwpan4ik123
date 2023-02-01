@@ -19,7 +19,7 @@
 
             $uid = $_SESSION['item_id'];
 
-            $res = $this->course->Get($uid);
+            $res = $this->course->Get(["id" => $uid]);
 
             $count_video = count($this->course_content->Get($res[0]['id'])) + 1;
 
