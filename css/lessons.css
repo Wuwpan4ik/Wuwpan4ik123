@@ -1027,3 +1027,28 @@ textarea.videoname{
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }
+
+/* Branch: Styles 30.01.2023 */
+
+.popup__edit .slider__item-info{
+    bottom:0px !important;
+}
+
+.popup__edit .popup__allLessons-form{
+    bottom:20px !important;
+}
+.popup__edit .popup-title{
+    margin-top:20px;
+}
+.popup__edit .slider__header{
+    top:30px;
+}
+.popup__edit ._conatiner-player{
+    max-width:300px !important;
+}
+.popup__edit .popup{
+    padding: 0 10px !important;
+}
+.popup__edit .button-form button{
+    margin: 16px 0 30px 0 !important;
+}

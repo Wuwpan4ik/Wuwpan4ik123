@@ -35,7 +35,7 @@
             ?>
             <div class="slider__item">
                 <div class="slider__video">
-                    <video playsinline class="slider__video-item video-<?=$item['video_id']?>" data-player="playing" autoplay="false">
+                    <video playsinline class="slider__video-item video-<?=$item['video_id']?>" data-player="playing">
                         <source class="video" src="/<?=$item['video']?>" id="sourceVideo"  />
                     </video>
                 </div>
@@ -147,7 +147,21 @@
         }
     </style>
         <div class="block">
-            <h1 style="font-size: 34px; color: white; display:flex; justify-content: center; z-index: 10;">Автор не добавил курс, к которому будет принадлежать воронка, или в нём нет видео!</h1>
+            <div class="site_logo" style="display:flex;justify-content: center; align-items: center">
+                <img src="/img/Logo.svg" alt="" style="border-radius: 50%">
+                <span style="color:white;font-weight: 700;margin-left:10px;">
+                    Course Creator
+                </span>
+            </div>
+            <div class="site_additional" style="padding: 30px 24px;
+margin: 25px auto;background-color: #fff;width:320px;border-radius: 20px;font-weight: 500">
+                Автор не добавил курс, к которому будет принадлежать воронка, или в нём нет видео!
+            </div>
+            <div class="site_link">
+                <a href="/" style="color: #fff;
+opacity: 0.6;
+cursor: pointer;text-decoration: none;">Вернуться на сайт</a>
+            </div>
         </div>
 <?php } ?>
 

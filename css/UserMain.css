@@ -818,7 +818,7 @@
         -webkit-box-direction: normal;
         -ms-flex-direction: column;
         flex-direction: column;
-        height: 83%;
+        height: 93%;
         margin: 38px 0 0 0;
     }
 
@@ -1159,7 +1159,7 @@
         max-height: 892px;
         width: 100%;
         border-radius: 30px 30px 0px 0px;
-        padding: 0 26px;
+        padding: 0 15px;
         margin: 34px 0 0 0;
         background-color: #fff;
         color: #000;
@@ -1309,6 +1309,7 @@
     }
     .UserNotifications-item__text {
         width: 90%;
+        line-height: 20px;
         margin: 11px 0 0 0;
         font-size:18px;
     }
