@@ -61,7 +61,7 @@
                                             <?php echo htmlspecialchars(isset($item['school_name']) ? $item['school_name'] : $item['first_name'] . " " . $item['second_name'] )?>
                                         </div>
                                         <div class="aboutTheAuthor__info-text hide-content">
-                                            <?=$item['description'] ?>
+                                            <?php echo htmlspecialchars(isset($item['school_desc']) ? $item['school_desc'] : $item['description'])?>
                                         </div>
                                     </div>
                                 </div>
