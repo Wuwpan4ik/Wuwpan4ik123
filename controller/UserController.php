@@ -246,7 +246,7 @@
             public function GetFunnelPopup()
             {
                 $funnel_id = $_SESSION['item_id'];
-                echo json_encode($this->funnel_content->Get(["id" => $funnel_id])[0]['popup']);
+                echo json_encode($this->funnel_content->Get()[0]['popup']);
             }
 
             function get_content()
