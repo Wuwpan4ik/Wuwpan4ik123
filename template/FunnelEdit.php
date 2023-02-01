@@ -526,7 +526,8 @@
             dataType: 'html',          /* Тип данных в ответе (xml, json, script, html). */
             data: $("#initButton").serialize(),     /* Параметры передаваемые в запросе. */
             success: function(data){   /* функция которая будет выполнена после успешного запроса.  */
-                if (data == 0) {
+                console.log(data)
+                if (data == 1) {
                     document.querySelector('.exit-funnel-edit').classList.add('display-flex');
                     document.querySelector('.exit-funnel-edit').style.zIndex = '1000';
                     promise();
