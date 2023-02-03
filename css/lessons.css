@@ -7,7 +7,7 @@ input.videoname{
 }
 
 input.video-desc{
-    padding: 12px 10px 0 15px !important
+    padding: 9px 10px 0 15px !important
 }
 .media {
     display: -webkit-box;
@@ -392,6 +392,12 @@ input[name="price"]{
     border: none;
     color: #404D61;
 }
+
+.proj_name:focus{
+    border:none !important;
+    box-shadow: none !important;
+}
+
 
 #insert {
     display: -webkit-box;
@@ -1030,10 +1036,6 @@ textarea.videoname{
 
 /* Branch: Styles 30.01.2023 */
 
-.popup__edit .slider__item-info{
-    bottom:0px !important;
-}
-
 .popup__edit .popup__allLessons-form{
     bottom:20px !important;
 }
@@ -1041,10 +1043,10 @@ textarea.videoname{
     margin-top:20px;
 }
 .popup__edit .slider__header{
-    top:30px;
+    top:40px;
 }
 .popup__edit ._conatiner-player{
-    max-width:300px !important;
+    max-width:280px !important;
 }
 .popup__edit .popup{
     padding: 0 10px !important;
