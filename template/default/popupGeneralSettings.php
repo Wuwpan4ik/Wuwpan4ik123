@@ -51,6 +51,22 @@
                     </div>
                 </div>
                 <div class="popup__body-item">
+                    <label class="popup__subtitle" for="first_do">Размер шрифта для заголовка</label>
+                    <div class="font-size">
+                        <input type="range" min="0" max="40" value="0"  oninput="rangevalue.value=value">
+
+                        <div class="font-size__info">
+                            <div class="font-size__current-value">
+                                <output id="rangevalue">0</output>
+                            </div>
+                            <div class="font-size__max-value">
+                                40
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="popup__body-item">
                     <label class="popup__subtitle" for="first_do">Шрифт для описания</label>
                     <div class="select-account social-network">
                         <div id="myMultiselect" class="multiselect">
@@ -68,6 +84,22 @@
                                 <label class="item">Montserrat<input class="custom-checkbox" type="radio" data-value="Montserrat" value="Montserrat" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                 <label class="item">Ubuntu<input class="custom-checkbox" type="radio" data-value="Ubuntu" value="Ubuntu" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
                                 <label class="item">American Captain<input class="custom-checkbox" type="radio" data-value="American Captain" value="AmericanCaptain" /><img class="checkMark" src="../img/checkMark.svg" alt=""></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="popup__body-item">
+                    <label class="popup__subtitle" for="first_do">Размер шрифта для описания</label>
+                    <div class="font-size">
+                        <input type="range" min="0" max="40" value="0"  oninput="rangevalueTitle.value=value">
+
+                        <div class="font-size__info">
+                            <div class="font-size__current-value">
+                                <output id="rangevalueTitle">0</output>
+                            </div>
+                            <div class="font-size__max-value">
+                                40
                             </div>
                         </div>
                     </div>

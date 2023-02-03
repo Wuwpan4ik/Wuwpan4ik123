@@ -36,8 +36,8 @@
         </span>
         </div>
         <div class="textarea_focus">
-            <textarea name="description" class="videoname video-desc textarea-info " maxlength="100"><?=$v['description']?></textarea>
-            <span class="placeholder-textarea">Укажите описание</span>
+            <textarea name="description" class="videoname video-desc textarea-info " placeholder="Укажите описание:" maxlength="100"><?=$v['description']?></textarea>
+
         </div>
         <div class="button__do-block <?php if (!isset($v['button_text']) || is_null($v['button_text'])) { ?> display-none <?php } ?>" >
             <div class="funnel-input input_focus">
@@ -61,8 +61,7 @@
             </div>
 
             <div class="textarea_focus">
-                <textarea name="description" class="videoname video-desc  " maxlength="100"><?=$v['description']?></textarea>
-                <span class="placeholder-textarea">Укажите описание</span>
+                <textarea name="description" class="videoname video-desc  " maxlength="100" placeholder="Укажите описание:"><?=$v['description']?></textarea>
             </div>
 
             <div class="file_input">

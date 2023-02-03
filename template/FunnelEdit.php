@@ -410,7 +410,7 @@
 <script type="text/javascript" src="../js/button__settings.js"></script>
 <script src="../js/sidebar.js"></script>
 <script src="/js/getNotifications.js"></script>
-
+<script src="/js/autoTextArea.js"></script>
 <script src="/js/customInputs.js"></script>
 <script src="../js/customSelect.js"> </script>
 <script src="/js/FunnelSettings/CheckSaveVersion.js"></script>

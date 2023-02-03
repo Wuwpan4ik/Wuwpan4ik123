@@ -13,7 +13,7 @@ input.video-desc{
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    gap: 30px;
+    gap: 40px;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
 }
@@ -1026,4 +1026,7 @@ textarea.videoname{
     width: 15%;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+}
+.new_name button{
+    margin: 6px 0 0 0 !important;
 }
