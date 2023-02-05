@@ -53,7 +53,7 @@
                     </div>
                 </div>
             </div>
-            <div class="popup__body-block editVideo" style="color: black">
+            <div id="editVideo" class="popup__body-block editVideo" style="color: black">
 
                 <div class="popup__body-item">
                     <label for="first_do">Действие после нажатия:</label>

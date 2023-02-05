@@ -307,6 +307,8 @@
 </script>
 <script src="/js/getNotifications.js"></script>
 <script src="../js/jquery-3.6.1.min.js"></script>
+<script src="/js/autoTextArea.js"></script>
+
 <script>
     let form__submit = $(function() {
         $('.media__form').each(function () {

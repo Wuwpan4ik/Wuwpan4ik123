@@ -13,7 +13,7 @@ input.video-desc{
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    gap: 30px;
+    gap: 40px;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
 }
@@ -1028,8 +1028,6 @@ textarea.videoname{
     border-bottom-right-radius: 10px;
 }
 
-/* Branch: Styles 30.01.2023 */
-
 .popup__edit .popup__allLessons-form{
     bottom:20px !important;
 }
@@ -1043,6 +1041,9 @@ textarea.videoname{
 .popup__edit .popup{
     padding: 0 10px !important;
 }
-.popup__edit .button-form button{
+.popup__edit .button-form button {
     margin: 16px 0 30px 0 !important;
+}
+.new_name button {
+    margin: 6px 0 0 0 !important;
 }
