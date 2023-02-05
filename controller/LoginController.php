@@ -36,7 +36,8 @@
                     echo $response;
                     die(header("HTTP/1.0 404 Not Found"));
                 }
-            } else {
+            }
+            else {
                 $response = "Неверный пароль или логин";
                 echo $response;
                 die(header("HTTP/1.0 404 Not Found"));
