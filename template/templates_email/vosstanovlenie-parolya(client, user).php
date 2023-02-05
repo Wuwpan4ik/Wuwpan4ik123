@@ -1,5 +1,5 @@
 <?php
-    $first_row = isset($_GET['email']) ? ['value' => $_GET['email'], 'key' => 'Ваша почта:'] : ['value' => $_GET['username'], 'key' => 'Ваш логин:'];
+    $first_row = isset($email) ? ['value' => $email, 'key' => 'Ваша почта:'] : ['value' => $username, 'key' => 'Ваш логин:'];
     $result = '
         <html lang="RU">
         <head>
@@ -37,7 +37,7 @@
                                 Ваш пароль:
                             </p>
                             <div style="color: #8098AB;background: #EFF3F6;border-radius: 3px;padding-top: 15px;padding-bottom: 15px;padding-right: 20px;padding-left: 20px;">
-                                '. $_GET['password'] .'
+                                '. $password .'
                             </div>
                         </div>
                     </div>

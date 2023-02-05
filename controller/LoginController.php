@@ -82,6 +82,7 @@
         }
 
         public function registration () {
+
             $username = $_POST['username'];
 
             $first_name = $_POST['first_name'];
@@ -109,6 +110,14 @@
                 die(header("HTTP/1.0 404 Not Found"));
             }
 
+            $resUsername = $this->user->getUserByUsername($username);
+
+            if(count($resUsername) != 0){
+                $response = "На этот логин уже был зарегистрирован аккаунт";
+                echo $response;
+                die(header("HTTP/1.0 404 Not Found"));
+            }
+
             $this->validate_data($email, $first_name);
             $data = [
                 'niche' => $niche,
@@ -121,26 +130,28 @@
                 'is_creator' => 1
             ];
 
+            unset($_SESSION['user']);
+
             $this->user->InsertQuery('user', $data);
+
+            sleep(0.5);
 
             $res = $this->user->getAuthorizationUserByUsername($username, $password);
             if(count($res) != 0) {
-                if ($res[0]['is_creator'] != 0) {
-                    $_SESSION["user"] = [
-                        'id' => $res[0]['id'],
-                        'niche' => $res[0]['niche'],
-                        'avatar' => $res[0]['avatar'],
-                        'username' => $res[0]['username'],
-                        'first_name' => $res[0]['first_name'],
-                        'second_name' => $res[0]['second_name'],
-                        'email' => $res[0]['email'],
-                        'site_url' => $res[0]['site_url'],
-                        'is_creator' => 1
-                    ];
-                    $title = "Спасибо за регистрацию";
-                    $body = include "./template/templates_email/dobro-pozhalovat(client).php?login={$res[0]['username']}";
-                    $this->SendEmail($title, $body, $email);
-                }
+                $_SESSION["user"] = [
+                    'id' => $res[0]['id'],
+                    'niche' => $res[0]['niche'],
+                    'avatar' => $res[0]['avatar'],
+                    'username' => $res[0]['username'],
+                    'first_name' => $res[0]['first_name'],
+                    'second_name' => $res[0]['second_name'],
+                    'email' => $res[0]['email'],
+                    'site_url' => $res[0]['site_url'],
+                    'is_creator' => 1
+                ];
+                $title = "Спасибо за регистрацию";
+                $body = include './template/templates_email/WelcomeClient.php';
+                $this->SendEmail($title, $body, $email);
             }
 
             mkdir("./uploads/users/" . $_SESSION['user']['id']);
@@ -245,7 +256,7 @@
                     "username" => $username
                 ];
                 $this->user->UpdateQuery("user", $data, "WHERE id = {$user[0]['id']}");
-                $body = include "./template/templates_email/vosstanovlenie-parolya(client, user).php?username={$user[0]['username']}&password={$this->password}";
+                $body = include "./template/templates_email/vosstanovlenie-parolya(client, user).php";
                 $this->SendEmail($title, $body, $user[0]['email']);
                 header('Location: /login');
                 return true;
@@ -266,7 +277,7 @@
                     "password" => $this->password
                 ];
                 $this->user->UpdateQuery("user", $data, "WHERE email = {$this->email}");
-                $body = include "./template/templates_email/vosstanovlenie-parolya(client, user).php?email={$user[0]['email']}&password={$this->password}";
+                $body = include "./template/templates_email/vosstanovlenie-parolya(client, user).php";
                 $this->SendEmail($title, $body, $user[0]['email']);
                 header('Location: /UserLogin');
                 return true;

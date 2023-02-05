@@ -9,41 +9,11 @@ $result = '<html lang="RU">
     <div class="envelope-container" style="max-width:500px;margin:0 auto;width:100%;">
         <div class="envelope-body" style="background:white;">
             <div class="first_row">
-                <img style="width:100%;" src="'. $_GET['url'] .'" alt="Добро пожаловать в Course Creator!">
+                <img style="width:100%;" src="'. $url .'" alt="Добро пожаловать в Course Creator! '. $url .'">
             </div>
             <div class="second_row" style="padding:40px 20px;">
-                <h2 style="font-size:24px;font-weight: 400;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;">
-                    Вам пришла заявка!
-                </h2>
-                <span style="color: rgba(0, 0, 0, 0.6);font-size:16px;font-weight:400;">
-                                            Спасибо, что вы зарегистрировались в Сourse Сreator! Ниже важная информация о вашем аккаунте. Пожалуйста, сохраните это письмо, чтобы можно было обратиться к нему позже.
-                                        </span>
-                <div class="info_account" style="display:-webkit-box;
-                                        display:-ms-flexbox;
-                                        display:flex;-webkit-box-pack: justify;-ms-flex-pack: justify;justify-content: space-between;gap: 20px;margin-top: 40px;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;">
-                    <div class="whereFrom" style="border-bottom: 1px dashed rgba(0, 0, 0, 0.2);border-top: 1px dashed rgba(0, 0, 0, 0.2);width:100%;padding-top:30px;padding-bottom: 30px;">
-                        <div class="from" style="margin-bottom: 20px;display:-webkit-box;
-                                                display:-ms-flexbox;
-                                                display:flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between">
-                                                    <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
-                                                        Откуда заявка:
-                                                    </span>
-                            <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
-                                                        '. $_GET['name_funnel'] .'
-                                                    </span>
-                        </div>
-                        <div class="where" style="display:-webkit-box;
-                                                display:-ms-flexbox;
-                                                display:flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between">
-                                                    <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
-                                                        На каком слайде:
-                                                    </span>
-                            <span style="font-size:16px;font-weight:400;color: rgba(0, 0, 0, 0.6);">
-                                                        Слайд №'. $_GET['number_slide'] .'
-                                                    </span>
-                        </div>
-                    </div>
-                    <div class="second_row" style="padding:40px;">
+                <div class="info_account" style="margin-top: 40px;">
+                    <div class="second_row">
                         <h2 style="font-size:24px;font-weight: 400;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;">
                             Вам пришла заявка!
                         </h2>
@@ -60,7 +30,7 @@ $result = '<html lang="RU">
 
                                 </th>
                                 <th style="text-align: end;">
-                                    '. $_GET['name_funnel'] .'
+                                    '. $name_funnel .'
                                 </th>
                             </tr>
                             <tr>
@@ -71,7 +41,7 @@ $result = '<html lang="RU">
 
                                 </th>
                                 <th style="text-align: end;">
-                                    Слайд №'. $_GET['number_slide'] .'
+                                    Слайд №'. $number_slide .'
                                 </th>
                             </tr>
                             </thead>
@@ -86,10 +56,10 @@ $result = '<html lang="RU">
 
                                 </th>
                                 <th style="text-align: end;">
-                                    '. $_GET['email'] .'
+                                    '. $email .'
                                 </th>
                             </tr>';
-                            if (!is_null($_GET['name'])) {
+                            if (!is_null($name)) {
                             $result .= '
                             <tr>
                                 <th style="text-align:start;">
@@ -98,12 +68,12 @@ $result = '<html lang="RU">
                                 <th>
                                 </th>
                                 <th style="text-align: end;">
-                                    '. $_GET['name'] .'
+                                    '. $name .'
                                 </th>
                             </tr>
                             ';
                             }
-                            if (!is_null($_GET['phone'])) {
+                            if (!is_null($phone)) {
                             $result .= '
                             <tr>
                                 <th style="text-align:start;">
@@ -113,7 +83,7 @@ $result = '<html lang="RU">
 
                                 </th>
                                 <th style="text-align: end;">
-                                    '. $_GET['phone'] .'
+                                    '. $phone .'
                                 </th>
                             </tr>';
                             }

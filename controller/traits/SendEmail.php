@@ -44,6 +44,5 @@
                 $result = $mail->ErrorInfo;
                 $status = "Сообщение не было отправлено. Причина ошибки: {$mail->ErrorInfo}";
             }
-            echo $result;
         }
     }

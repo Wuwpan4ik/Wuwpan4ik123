@@ -9,172 +9,12 @@
         private $phone;
 
         private function GetApplicationHtml ($email, $url, $name_funnel = null, $number_slide = null, $phone = null, $name = null) {
-            return include "./template/templates_email/zayavka-s-saita(client).php?url={$url}&email={$email}&name_funnel={$name_funnel}&number_slide={$number_slide}&phone={$phone}&name={$name}";
+            return include "./template/templates_email/zayavka-s-saita(client).php";
         }
 
         private function GetRegistrationClientHtml($name, $cost, $email, $course_count, $currency = '₽', $phone = null, $user_name = null, $number_funnel = null, $number_slide = null)
         {
-            $result = '
-                    <html lang="RU">
-                        <head>
-                            <meta charset="UTF-8">
-                            <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        </head>
-                        <body style="padding:0px;margin:0px;max-width: 800px;font-family: Verdana, Geneva, Tahoma, sans-serif;background: #EFEFEF;">
-                        <div class="envelope-container" style="max-width:500px;margin:0 auto;width:100%;">
-                            <div class="envelope-body" style="background:white;">
-                                <div class="first_row">
-                                    <img style="width:100%;" src="https://course-creator.io/envelope-images/envelope-zayavka.jpg" alt="Добро пожаловать в Course Creator!">
-                                </div>
-                                <div class="second_row" style="padding:40px;">
-                                    <h2 style="font-size:24px;font-weight: 400;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;">
-                                        Поздравляем, у вас купили курс!
-                                    </h2>
-                                    <span style="color: rgba(0, 0, 0, 0.6);font-size:16px;font-weight:400;">
-                                        Спасибо, что вы зарегистрировались в Сourse Сreator! Ниже важная информация о вашем аккаунте. Пожалуйста, сохраните это письмо, чтобы можно было обратиться к нему позже.
-                                    </span>
-                                    <div class="info_account" style="display:-webkit-box;
-                                    display:-ms-flexbox;
-                                    display:flex;-webkit-box-pack: justify;-ms-flex-pack: justify;justify-content: space-between;gap: 20px;margin-top: 40px;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;">
-                                        <div class="whereFrom" style="border-bottom: 1px dashed rgba(0, 0, 0, 0.2);border-top: 1px dashed rgba(0, 0, 0, 0.2);width:100%;padding-top:30px;padding-bottom: 30px;">
-                                            
-                                            <div class="courseInfo" style="margin-bottom: 30px;background: #EFF3F6;border-radius: 10px;padding:10px;">
-                                                <div class="infoCourse" style="display:-webkit-box;
-                                                display:-ms-flexbox;
-                                                display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack: justify;-ms-flex-pack: justify;justify-content: space-between;">
-                                                    <div class="innerCS" style="display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-align: center;-ms-flex-align: center;align-items: center;">
-                                                        <div class="imageCourse" style="width:76px;height:100px;">
-                                                            <!--Выводим превью курса-->
-                                                            <img src="https://course-creator.io/envelope-images/envelope-zayavka.jpg" alt="Название курса" width="76px" height="100px" style="object-fit: cover;object-position:center;border-radius:6px">
-                                                        </div>
-                                                        <div class="aboutCourse" style="margin-left:20px;">
-                                                            <div class="infoUrk">
-                                                                <span style="text-align:center;background: #4DAA21;color:white;font-size:10px;font-weight:500;padding-top:4px;padding-bottom:4px;padding-right:6px;padding-left:6px;text-align: center;border-radius: 10px;">
-                                                                    Курс
-                                                                </span>
-                                                                <span style="font-size:10px;font-weight:300;margin-left:9px;">
-                                                                    '. $course_count .' урока
-                                                                </span>
-                                                                <br>
-                                                                <p style="font-size: 14px;
-                                                                color: #666666;
-                                                                margin-top: 11px;">
-                                                                    '. $name .'
-                                                                </p>
-                                                            </th>
-                                                            <th style="text-align: end;width:70px;">
-                                                                <p style="font-size:10px;font-weight:300;color: #666666;">
-                                                                    Стоимость заказа
-                                                                </p>
-                                                                <span style="font-size:14px;font-weight:500;color: #666666;margin-top:11px;">
-                                                                    '. $cost .' ₽
-                                                                </span>
-                                                            </th>
-                                                        </tr>
-                                                    </thead>
-                                                </table>
-                                                <table>';
-            if (!is_null($number_funnel)) {
-                $result .= '
-                                        <thead>
-                                            <tr>
-                                                <th style="text-align:start;width:50%">
-                                                    Откуда заявка:
-                                                </th>
-                                                <th style="width:100%"></th>
-                                                <th style="text-align:end;width:50%">
-                                                    Воронка №'. $number_funnel .'
-                                                </th>
-                                            </tr>
-                                        </thead>';
-            }
-            if (!is_null($number_slide)) {
-                $result .= '
-                                        <tbody>
-                                            <tr>
-                                                <th style="text-align:start" scope="row">
-                                                    На каком слайде:
-                                                </th>
-                                                <td style="width:100%">
-                                                    
-                                                </td>
-                                                <td style="text-align:end">
-                                                    Слайд №'. $number_slide .'
-                                                </td>
-                                            </tr>
-                                        </tbody>';
-            }
-            $result .= '
-                                    </table>
-                                    <table>';
-            if (!is_null($user_name)) {
-            $result .= '
-                                        <thead>
-                                            <tr>
-                                                <th style="text-align:start">
-                                                    Имя:
-                                                </th>
-                                                <td style="width:100%">
-                                                    
-                                                </td>
-                                                <td style="text-align:end">
-                                                    '. $user_name .'
-                                                </td>
-                                            </tr>
-                                        </thead>';
-            };
-            $result .= '<tbody>';
-            if (!is_null($phone)) {
-                $result .= '
-                                        <tr>
-                                            <th style="text-align:start" scope="row">
-                                                Телефон:
-                                            </th>
-                                            <td style="width:100%">
-            
-                                            </td>
-                                            <td style="text-align:end">
-                                                '. $phone .'
-                                            </td>
-                                        </tr>';
-            };
-            $result .= '
-                                        <tr>
-                                            <th style="text-align:start" scope="row">
-                                                Email:
-                                            </th>
-                                            <td style="width:100%">
-                                                
-                                            </td>
-                                            <td style="text-align:end">
-                                                '. $email .'
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="link_account" style="margin-top:30px;">
-                            <div class="first_row" style="width:100%">
-                                <p style="font-weight:700;font-size:14px;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;color: rgba(0, 0, 0, 0.9);">
-                                    Смотрите другие заявки на сайте:
-                                </p>
-                                <div style="background: #EFF3F6;border-radius: 3px;padding-top: 15px;padding-bottom: 15px;padding-right: 20px;padding-left: 20px;">
-                                    <a href="https://course-creator.io/" target="_blank" style="color: #8098AB;">
-                                        https://course-creator.io/
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="envelope_info_bottom" style="text-align: center;margin-top:20px;margin-bottom: 20px;">
-                            <div>
-                                Если у вас есть вопросы, пожалуйста, напишите <br> в службу поддержки: <a href="mailto:support@course-creator.io">support@course-creator.io</a>
-                            </div>
-                        </div>
-                        </div>
-                    </body>
-                    </html>';
+            $result = include "./template/templates_email/u-vas-kupili-kurs(client).php";
             return $result;
         }
 
@@ -207,7 +47,7 @@
             if (!$this->RequestValidate()) return false;
 
             $buy_progress = include './settings/buy_progress.php';
-            $url = include "settings/site_url.php";
+            $url = include "./settings/site_url.php";
             $creator_id = $_POST['creator_id'];
             $course_id = $_POST['course_id'];
             $funnel = $this->funnel->Get(["id" => $_POST['funnel_id']]);
@@ -232,7 +72,8 @@
                 }
             } else {
                 $title = "Оставили заявку";
-                $body = $this->GetApplicationHtml($this->email,"{$url}/{$funnel[0]['file_url']}" , $name_funnel, $number_slide, $this->phone, $this->name);
+                $thubn_url = $this->course_content->Get(["course_id" => $course_id])[0]['thubnails'];
+                $body = $this->GetApplicationHtml($this->email,"{$url}/$thubn_url}" , $name_funnel, $number_slide, $this->phone, $this->name);
                 $this->SendEmail($title, $body, $creator_email);
                 $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], 0);
                 $this->notifications_class->addNotifications("У вас новая заявка", "В вашей воронке $name_funnel оставленна заявка на слайде #$number_slide от {$this->email}", '/img/Notification/message.svg','item-like', $creator_id);
@@ -337,13 +178,13 @@
                 $this->notifications_class->addNotifications("Вы купили курс", "Доступный курс - {$course_info['name']}", '/img/Notification/star.svg', 'item-like', $res['id']);
                 $this->notifications_class->addNotifications("У вас купили курс", "Ваш курс - “{$course_info['name']}”, купил {$this->email}", '/img/Notification/star.svg', 'item-like', $creator_id);
 
-                $body = include "./template/templates_email/registracia-usera(user).php?email={$this->email}&password={$this->password}";
+                $body = include "./template/templates_email/registracia-usera(user).php";
                 $this->SendEmail("Покупка курса", $body, $this->email);
 
                 $phone = ($this->phone) ? $this->phone : null;
                 $name = ($this->name) ? $this->name : null;
 
-                $body = $this->GetRegistrationClientHtml($course_info['name'], $course_info['price'], $this->email, $course_info['count'], $phone, $name, $name_funnel, $number_slide);
+                $body = $this->GetRegistrationClientHtml($course_info['name'], $course_info['price'], $this->email, $course_info['count'], $res['currency'], $phone, $name, $name_funnel, $number_slide);
                 $this->SendEmail("У вас купили курс!", $body, $course_info['email']);
                 $this->get_content();
             }

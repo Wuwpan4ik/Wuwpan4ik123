@@ -22,10 +22,10 @@
                     </div>
                     <div class="second_row" style="padding:40px;">
                         <h2 style="font-size:24px;font-weight: 400;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;">
-                            Вам пришло письмо от '. $_GET["email"] .'
+                            Вам пришло письмо от '. $email .'
                         </h2>
                         <div style="color: rgba(0, 0, 0, 0.6);font-size:16px;font-weight:400;background:#EFF3F6; padding-top:12px;padding-bottom: 12px;padding-left: 20px;padding-right: 20px;">
-                            '. $_GET["question"] .'
+                            '. $question .'
                         </div>
                         <div class="info_account" style="margin-top: 20px;">
                             <table style="width:100%;padding-top: 30px;border-top: 1px dashed rgba(0, 0, 0, 0.2);margin-bottom: 0px;">
@@ -36,7 +36,7 @@
                                         </th>
                                         <th></th>
                                         <th style="text-align:end;">
-                                            '. $_GET["name"] .'
+                                            '. $name .'
                                         </th>
                                     </tr>
                                     <tr>
@@ -45,7 +45,7 @@
                                         </th>
                                         <th></th>
                                         <th style="text-align:end;">
-                                            '. $_GET["email"] .'
+                                            '. $email .'
                                         </th>
                                     </tr>
                                     <tr>
@@ -54,7 +54,7 @@
                                         </th>
                                         <th></th>
                                         <th style="text-align:end;">
-                                            '. $_GET["time"] .'
+                                            '. $time .'
                                         </th>
                                     </tr>
                                 </thead>

@@ -3,7 +3,7 @@ class ContactController extends ACoreCreator {
 
     private function GetQuestionHTML($name, $email, $time, $question)
     {
-        return include_once "./template/templates_email/est-vopros(client).php?name=$name&email=$email&time=$time&question=$question";
+        return include_once "./template/templates_email/est-vopros(client).php";
     }
 	
 	public function SendQuestion() {

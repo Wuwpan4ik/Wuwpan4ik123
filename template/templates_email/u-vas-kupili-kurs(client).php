@@ -49,13 +49,13 @@
                                                     Курс
                                                 </span>
                                                 <span style="font-size:10px;font-weight:300;margin-left:9px;">
-                                                    '. $_GET['course_count'] .' урока
+                                                    '. $course_count .' урока
                                                 </span>
                                                 <br>
                                                 <p style="font-size: 14px;
                                                 color: #666666;
                                                 margin-top: 11px;">
-                                                    '. $_GET['name'] .'
+                                                    '. $name .'
                                                 </p>
                                             </th>
                                             <th style="text-align: end;width:70px;">
@@ -63,20 +63,20 @@
                                                     Стоимость заказа
                                                 </p>
                                                 <span style="font-size:14px;font-weight:500;color: #666666;margin-top:11px;">
-                                                    '. "{$_GET['cost']}  {$_GET['currency']}" . '
+                                                    '. "{$cost}  {$currency}" . '
                                                 </span>';
-                                            if ($_GET['number_funnel']) { $result .= '
+                                            if ($number_funnel) { $result .= '
                                                 Откуда заявка:
                                             </th >
                                             <th style = "width:100px" ></th >
                                             <th style = "text-align:end;width:50%" >
-                                                    Воронка №' . $_GET['number_funnel'];
+                                                    Воронка №' . $number_funnel;
                                                 }
                         $result .='
                                             </th>
                                         </tr>
                                     </thead>';
-                        if (!is_null($_GET['number_slide'])) {
+                        if (!is_null($number_slide)) {
                             $result .= '
                                         <tbody>
                                             <tr>
@@ -87,7 +87,7 @@
                                                     
                                                 </td>
                                                 <td style="text-align:end">
-                                                    Слайд №'. $_GET['number_slide'] .'
+                                                    Слайд №'. $number_slide .'
                                                 </td>
                                             </tr>
                                         </tbody>';
@@ -96,7 +96,7 @@
                                     </table>
                                     <table style="width:100%;border-top:1px dashed rgba(0, 0, 0, 0.2);margin-top:30px;padding-top: 20px;padding-bottom: 0px;">
                                     ';
-                        if (!is_null($_GET['user_name'])) {
+                        if (!is_null($user_name)) {
                             $result .= '
                                         <thead>
                                         <tr>
@@ -107,13 +107,13 @@
                                                 
                                             </td>
                                             <td style="text-align:end">
-                                                '. $_GET['user_name'] .'
+                                                '. $user_name .'
                                             </td>
                                         </tr>
                                     </thead>';
                         };
                         $result .= '<tbody>';
-                        if (!is_null($_GET['phone'])) {
+                        if (!is_null($phone)) {
                             $result .= '
                                                                 <tr>
                                                                     <th style="text-align:start" scope="row">
@@ -123,7 +123,7 @@
                                     
                                                                     </td>
                                                                     <td style="text-align:end">
-                                                                        '. $_GET['phone'] .'
+                                                                        '. $phone .'
                                                                     </td>
                                                                 </tr>';
                         };
@@ -136,7 +136,7 @@
                                                                         
                                                                     </td>
                                                                     <td style="text-align:end">
-                                                                        '. $_GET['email'] .'
+                                                                        '. $email .'
                                                                     </td>
                                                                 </tr>
                                                             </tbody>

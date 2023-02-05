@@ -27,7 +27,7 @@
                                     Ваша почта:
                                 </p>
                                 <div style="color: #8098AB;background: #EFF3F6;border-radius: 3px;padding-top: 15px;padding-bottom: 15px;padding-right: 20px;padding-left: 20px;">
-                                    '. $_GET['email'] .'
+                                    '. $this->email .'
                                 </div>
                             </div>
                             <br>
@@ -36,7 +36,7 @@
                                     Ваш пароль:
                                 </p>
                                 <div style="color: #8098AB;background: #EFF3F6;border-radius: 3px;padding-top: 15px;padding-bottom: 15px;padding-right: 20px;padding-left: 20px;">
-                                    '. $_GET['password'] .'
+                                    '. $this->password .'
                                 </div>
                             </div>
                         </div>
