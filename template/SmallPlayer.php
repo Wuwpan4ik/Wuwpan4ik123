@@ -67,10 +67,10 @@
                     <img src="/img/smallPlayer/pause.svg" alt="">
                 </div>
                 <div class="slider__item-info _conatiner-player">
-                    <div class="slider__item-title <? echo (json_decode($content['main__settings'], true)['title__font'])?>">
+                    <div class="slider__item-title <? echo (json_decode($content['main__settings'], true)['title__font'])?>" style="<? echo "font-size:" . (json_decode($content['main__settings'], true)['title__size']) . 'px'?>">
                         <?=$item['content_name']?>
                     </div>
-                    <div class="slider__item-text <? echo (json_decode($content['main__settings'], true)['desc__font'])?>">
+                    <div class="slider__item-text <? echo (json_decode($content['main__settings'], true)['desc__font'])?>" style="<? echo "font-size:" . (json_decode($content['main__settings'], true)['desc__size']) . 'px'?>">
                         <?=$item['content_description']?>
                     </div>
                     <?php
