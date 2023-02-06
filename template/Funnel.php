@@ -200,6 +200,7 @@
             item.addEventListener('click', () => {
                 if (document.querySelector('.preview__title')) {
                     document.querySelector('.preview__title').className  = "slider__item-title preview__title";
+                    document.querySelector('.preview__title').id = "title__size";
                     document.querySelector('.preview__title').classList.add(item.querySelector('input').value)
                 }
             })
@@ -209,6 +210,7 @@
             item.addEventListener('click', () => {
                 if (document.querySelector('.preview__text')) {
                     document.querySelector('.preview__text').className  = "slider__item-text preview__text";
+                    document.querySelector('.preview__text').id = "desc__size";
                     document.querySelector('.preview__text').classList.add(item.querySelector('input').value)
                 }
             })
@@ -330,6 +332,8 @@
                         let shadow__button = temp_data['number__style'];
                         document.querySelectorAll('.popup-styles-color')[color__button - 1].click();
                         document.querySelectorAll('.popup-styles-button button')[shadow__button - 1].click();
+                        document.querySelector('input[name="title__size"]').value =  parseInt(temp_data['title__size'])
+                        document.querySelector('input[name="desc__size"]').value = parseInt(temp_data['desc__size'])
                         changeStyleBtn(document.querySelector('.button-video'), color, shadow);
                         if (temp_data['head__settings']) {
                             document.querySelector('textarea[name="head__settings"]').value = temp_data['head__settings'];
@@ -348,6 +352,9 @@
                     title__block.classList.add('active')
                     description__block.click();
                     description__block.classList.add('active')
+                    rangeInputs.forEach(input => {
+                        input.dispatchEvent(new Event("input"));
+                    })
                 }
             });
         }
@@ -519,7 +526,6 @@
         //input range
         const rangeInputs = document.querySelectorAll('input[type="range"]')
 
-
         function handleInputChange(e) {
             let target = e.target
             if (e.target.type !== 'range') {
@@ -528,13 +534,16 @@
             const min = target.min
             const max = target.max
             const val = target.value
+            const name = target.name
 
             target.style.backgroundSize = (val - min) * 100 / (max - min) + '% 100%'
+            target.val = val - min;
+            document.querySelector(`#${name}`).style.fontSize = (val);
         }
-
         rangeInputs.forEach(input => {
             input.addEventListener('input', handleInputChange)
         })
+
     </script>
     <script src="../js/sidebar.js"></script>
     <script src="../js/getNotifications.js"></script>

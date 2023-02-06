@@ -376,6 +376,8 @@
             $funnelSettings = [];
             $funnelSettings['desc__font'] = $_POST['desc__font'];
             $funnelSettings['title__font'] = $_POST['title__font'];
+            $funnelSettings['desc__size'] = $_POST['desc__size'];
+            $funnelSettings['title__size'] = $_POST['title__size'];
             $funnelSettings['button__style-color'] = (string) $_POST['button__style-color'];
             $funnelSettings['button__style-style'] = (string) $_POST['button__style-style'];
             $funnelSettings['number__style'] = (string) $_POST['number-style'];

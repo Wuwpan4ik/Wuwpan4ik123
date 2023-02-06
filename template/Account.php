@@ -157,7 +157,7 @@
                                                         <div id="myMultiselect" class="multiselect">
                                                             <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
                                                                 <select class="form-select">
-                                                                    <option class="form-select__social-name" id="name"><?=$options[$i] ?></option>
+                                                                    <option class="form-select__social-name" value="<?=$options[$i] ?>" id="name"><?=$options[$i] ?></option>
                                                                 </select>
                                                                 <div class="overSelect"></div>
                                                             </div>
@@ -608,7 +608,6 @@
                 </div>
             </div>
         </div>`;
-        // console.log(new DOMParser().parseFromString(div, "text/xml"))
         document.querySelector('.social__blocks').insertAdjacentHTML('beforeend', div);
         checkboxStatusChange();
 
@@ -644,9 +643,21 @@
 
 <script>
     let account_submit = $(function() {
+        let stop;
         $('.account__form').each(function () {
             $(this).submit(function (e) {
                 e.preventDefault();
+                $(".form-select__social-name").each(function (){
+                    let text = $(this).val();
+                    if ($(".form-select__social-name" + `[value='${text}']`).length !== 1) {
+                        stop = true;
+                    }
+                })
+                if (stop) {
+                    AddNotifications("Ошибка", 'У вас содержатся одинаковые соц.сети');
+                    stop = false;
+                    return false;
+                }
                 $.ajax({
                     url: $(this).attr("action"),
                     type: $(this).attr("method"),
@@ -656,13 +667,12 @@
                     contentType: false
                 });
                 let saveBtn = $(this).find('#profile_send');
-                console.log(saveBtn)
                 saveBtn.addClass("active");
                 saveBtn.innerHTML = 'Сохранено';
                 setTimeout(function () {
                     saveBtn.removeClass("active");
                     saveBtn.innerHTML = 'Сохранить';
-                    window.location.reload()
+                    window.location.reload();
                 }, 2000)
                 AddNotifications("Настройки сохранены", '');
             })
