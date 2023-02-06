@@ -12,9 +12,9 @@
 
             }
 
-            if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-                return false;
-            }
+//            if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+//                return false;
+//            }
 
             if (isset($_POST['phone'])) {
                 $this->phone = $_POST['phone'];

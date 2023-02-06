@@ -15,12 +15,12 @@
         }
 
         public function UserLogin() {
+            unset($_SESSION["user"]);
             $email = $_POST['email'];
             $password = $_POST['pass'];
 
             $res = $this->user->getAuthorizationUserByEmail($email, $password);
             if(count($res) != 0) {
-                unset($_SESSION["user"]);
                 if ($res[0]['is_creator'] == 0) {
                     $_SESSION["user"] = [
                         'id' => $res[0]['id'],
@@ -28,9 +28,8 @@
                         'avatar' => $res[0]['avatar'],
                         'is_creator' => 0
                     ];
-                    if (!is_null($res[0]['first_name'])) {
-                        $_SESSION['user']['first_name'] = $res[0]['first_name'];
-                    }
+                    if (!is_null($res[0]['first_name'])) $_SESSION['user']['first_name'] = $res[0]['first_name'];
+                    if (!is_null($res[0]['telephone'])) $_SESSION['user']['telephone'] = $res[0]['telephone'];
                 } else {
                     $response = "Вам не разрешён доступ";
                     echo $response;

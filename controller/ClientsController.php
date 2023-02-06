@@ -91,7 +91,7 @@
 //          Проверка на покупку того же курса
 
             if (isset($_POST['funnel_id'])) {
-                $name_funnel = $this->funnel_content->Get(["id" => $_POST['funnel_id']])[0]['name'];
+                $name_funnel = $this->funnel->Get(["id" => $_POST['funnel_id']])[0]['name'];
             }
             if (isset($_POST['slide_id'])) {
                 $number_slide = $_POST['slide_id'];
@@ -102,13 +102,9 @@
             $give_money = $client[0]['give_money'] + $this->GetPriceOfCourse($course_id)[0]['price'];
 
 //          Добавление User
-            if (count($this->user->getUserByEmail($this->email)) != 1) {
-                $this->password = $this->GenerateRandomPassword(12);
-            } else {
-                $this->password = null;
-            }
 
             if (count($this->user->getUserByEmail($this->email)) != 1) {
+                $this->password = $this->GenerateRandomPassword(12);
                 $data = [
                     "email" => $this->email,
                     "password" => $this->password,
