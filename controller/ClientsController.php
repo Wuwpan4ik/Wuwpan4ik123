@@ -122,7 +122,7 @@
                 }
 
                 if (!empty($query)) {
-                    $this->user->UpdateQuery("data", $query, "WHERE `email` = '$this->email'");
+                    $this->user->UpdateQuery("user", $query, "WHERE `email` = '$this->email'");
                 }
             }
 
