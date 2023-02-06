@@ -74,7 +74,7 @@
                         <?=$item['content_description']?>
                     </div>
                     <?php
-                    if (isset($item['button_text'])) { ?>
+                    if (isset($item['button_text']) && !empty($item['button_text'])) { ?>
                             <div class="slider__item-button button-open">
                                 <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" <?php if ($popup->first_do->next_lesson) echo 'onclick="NextSlide('. $item["video_id"] .')"' ?> <?php if (isset($popup->first_do->link)) if ($popup->first_do->open_in_new == 'open_new_window') { echo "onClick=\"window.open('". $popup->first_do->link ."')\""; } else { echo "onclick=\"window.location = ('". $popup->first_do->link ."')\""; } ?> class="button"><?=$item['button_text']?></button>
                             </div>
@@ -310,7 +310,12 @@ cursor: pointer;text-decoration: none;">Вернуться на сайт</a>
                         form[0].querySelector('.next__lesson');
                         NextSlide();
                         notBuy()
-                        AddNotifications('Произошла ошибка', 'Вы уже получали заявку');
+                        if (form.hasClass('popup__application')) {
+                            AddNotifications('Произошла ошибка', 'Вы уже получали заявку');
+                        } else {
+                            AddNotifications('Произошла ошибка', 'Вы уже покупали этот курс');
+                        }
+
                     }
                 });
                 try {

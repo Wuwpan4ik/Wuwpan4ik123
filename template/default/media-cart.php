@@ -18,10 +18,6 @@
             </div>
         </div>
 
-
-
-
-
     <img src="<?=$v['thubnails'] ?>" alt="">
 
     <form method="POST" class="new_name media__form" enctype="multipart/form-data" action="/<?php if(strstr($_SERVER['REQUEST_URI'], 'Course')) {echo 'Course';} else {echo 'Funnel';} ?>/<?=$v['id']?>/rename">
@@ -39,7 +35,7 @@
             <textarea name="description" class="videoname video-desc textarea-info " placeholder="Укажите описание:" maxlength="100"><?=$v['description']?></textarea>
 
         </div>
-        <div class="button__do-block <?php if (!isset($v['button_text']) || is_null($v['button_text'])) { ?> display-none <?php } ?>" >
+        <div class="button__do-block <?php if (!isset($v['button_text']) || empty($v['button_text'])) { ?> display-none <?php } ?>" >
             <div class="funnel-input input_focus">
                 <label for="name" class="label_focus">Текст для кнопки:</label>
                 <input name="button_text" maxlength="15" class="videoname video-desc" type="text" value="<?=$v['button_text']?>">
@@ -49,8 +45,8 @@
             </div>
 
         </div>
-         <button onclick="getFunnelPopup(<?=$v['id']?>)" type="button" class="button__edit button__do-block <?php if (!isset($v['button_text'])) { ?> display-none <?php } ?>" style="background: #757D8A;text-align: center"><img style="width: 25px; transform: translate(0, 0)" src="/img/actions.svg">Действия</button>
-            <?php if (!isset($v['button_text'])) { ?> <button type="button" class="button-add-button-edit"><img src="../img/addSocialNetwork.svg" alt="">Добавить кнопку</button><?php } ?>
+         <button onclick="getFunnelPopup(<?=$v['id']?>)" type="button" class="button__edit button__do-block <?php if (!isset($v['button_text']) || empty($v['button_text'])) { ?> display-none <?php } ?>" style="background: #757D8A;text-align: center"><img style="width: 25px; transform: translate(0, 0)" src="/img/actions.svg">Действия</button>
+        <?php if (!isset($v['button_text']) || empty($v['button_text'])) { ?> <button type="button" class="button-add-button-edit"><img src="../img/addSocialNetwork.svg" alt="">Добавить кнопку</button><?php } ?>
         <?php } else { ?>
             <div class="funnel-input input_focus">
                 <label for="name" class="label_focus">Укажите заголовок:</label>

@@ -87,8 +87,8 @@
             $buy_progress = include './settings/buy_progress.php';
             $creator_id = $_POST['creator_id'];
             $course_id = $_POST['course_id'];
-
-//          Проверка на покупку того же курса
+            $client = $this->GetClient($course_id);
+            $comment = 'Купил курс';
 
             if (isset($_POST['funnel_id'])) {
                 $name_funnel = $this->funnel->Get(["id" => $_POST['funnel_id']])[0]['name'];
@@ -97,8 +97,12 @@
                 $number_slide = $_POST['slide_id'];
             }
 
-            $comment = 'Купил курс';
-            $client = $this->GetClient($course_id);
+            //          Проверка на покупку того же курса
+            if (isset($client) && ($client[0]['buy_progress'] == $buy_progress[$comment])) {
+                die(header("HTTP/1.0 404 Not Found"));
+            }
+
+
             $give_money = $client[0]['give_money'] + $this->GetPriceOfCourse($course_id)[0]['price'];
 
 //          Добавление User
