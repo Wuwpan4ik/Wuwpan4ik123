@@ -100,6 +100,7 @@ code {
   display: flex;
 }
 .popup__edit {
+  position: relative;
   width: 900px;
   overflow: auto;
 }
@@ -2080,8 +2081,12 @@ td:nth-child(1){
 }
 
 .popup__header-container {
+  position: absolute;
+  width: 780px;
+  background: #fff;
   padding: 10px 40px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  z-index: 111;
 }
 
 .popup__edit-btn {
@@ -2111,6 +2116,7 @@ td:nth-child(1){
   -ms-flex-pack: distribute;
   justify-content: space-around;
   padding: 24px 40px;
+  margin: 50px 0 0 0;
   gap: 40px;
 }
 #editVideo .mySelectOptions{
