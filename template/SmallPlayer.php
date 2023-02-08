@@ -53,7 +53,7 @@
                     </div>
                     <div class="slider__header-views">
                         <div class="slider__header-views-img">
-                            <img src="/img/smallPlayer/views.svg" alt="">
+                            <span>Сейчас смотрят:</span><img src="/img/smallPlayer/views.svg" alt="">
                         </div>
                         <div class="slider__header-views-count">
                         </div>

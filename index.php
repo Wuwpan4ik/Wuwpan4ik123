@@ -56,10 +56,7 @@
     $router->addRoute('/UserAllContacts', 'UserAllContacts.php');
     $router->addRoute("/Project", "Project.php");
 
-
-    $router->addRoute("/Article", "Article.php");
     $router->addRoute("/Article/$item_id", "Article.php");
-
 
     $router->addRoute("/Course", "Course.php");
     $router->addRoute("/Course/$item_id", "CourseEdit.php");
@@ -129,11 +126,11 @@
     $router->addRoute("/Tariff-absent", "tariff-absent.php");
     $router->addRoute("/error", "404.php");
 
-    if (array_key_exists("/$url", $router->getRoute())) {
+//    if (array_key_exists("/$url", $router->getRoute())) {
         $router->route("/$url");
-    } else {
-        $router->route("/error");
-    }
+//    } else {
+//        $router->route("/error");
+//    }
 
 
 
