@@ -26,6 +26,7 @@
         protected $purchase;
         protected $contact;
         protected $user_class;
+        protected $article;
 
         protected $ourEmail;
         protected $ourPassword;
@@ -56,6 +57,7 @@
             $this->purchase = new PurchaseModel();
             $this->contact = new ContactModel();
             $this->user_class = new UserModel();
+            $this->article = new ArticleModel();
 
             $email_account = $this->email_class->GetEmailAccount();
             $this->ourEmail = $email_account['email'];

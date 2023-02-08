@@ -58,6 +58,7 @@
 
 
     $router->addRoute("/Article", "Article.php");
+    $router->addRoute("/Article/$item_id", "Article.php");
 
 
     $router->addRoute("/Course", "Course.php");

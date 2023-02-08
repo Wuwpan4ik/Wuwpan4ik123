@@ -160,6 +160,8 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'AnalyticModel' => __DIR__ . '/../..' . '/model/AnalyticModel.php',
         'Analytics' => __DIR__ . '/../..' . '/pages/Analytics.php',
         'Article' => __DIR__ . '/../..' . '/pages/Article.php',
+        'ArticleController' => __DIR__ . '/../..' . '/controller/ArticleController.php',
+        'ArticleModel' => __DIR__ . '/../..' . '/model/ArticleModel.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Cases' => __DIR__ . '/../..' . '/pages/Cases.php',
         'CheckDirSize' => __DIR__ . '/../..' . '/model/traits/CheckDirSize.php',

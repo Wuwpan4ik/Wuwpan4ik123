@@ -8,6 +8,8 @@ abstract class ACoreAdmin {
     protected $tariff_class;
     protected $notifications_class;
     protected $funnel;
+    protected $clients;
+    protected $course;
 
 
     protected $ourEmail;
@@ -21,6 +23,8 @@ abstract class ACoreAdmin {
         $this->tariff_class = new Tariff();
         $this->notifications_class = new Notifications();
         $this->funnel = new FunnelModel();
+        $this->clients = new ClientsModel();
+        $this->course = new CourseModel();
 
         $email_account = $this->email_class->GetEmailAccount();
         $this->ourEmail = $email_account['email'];

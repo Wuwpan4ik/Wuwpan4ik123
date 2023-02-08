@@ -1,8 +1,7 @@
 <?php
-class Article extends ACoreCreator {
-
-    function get_content()
-    {
-
+    class Article extends ACoreCreator {
+        public function get_content() {
+            $article = $this->article->Get()[0];
+            return ["article" => $article];
+        }
     }
-}

@@ -56,7 +56,6 @@
                             <img src="/img/smallPlayer/views.svg" alt="">
                         </div>
                         <div class="slider__header-views-count">
-                            <?php echo rand(100, 300)?>
                         </div>
                     </div>
                 </div>
@@ -193,6 +192,30 @@ cursor: pointer;text-decoration: none;">Вернуться на сайт</a>
         document.querySelector('.slick-active button').style.background = `linear-gradient(to right,white 0%, white 100%,lightgrey 100% , lightgrey 0%)`;
         $('.slick-next').click();
     }
+</script>
+<!---->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let randomNumber = Math.floor(Math.random() * (92 - 20 + 1) + 20);
+        let counter = 0;
+        let increase = false;
+
+        document.querySelector(".slider__header-views-count").innerHTML = randomNumber;
+
+        setInterval(function() {
+            if (!increase && counter < 4) {
+                randomNumber--;
+                counter++;
+            } else if (increase && counter < 10) {
+                randomNumber++;
+                counter++;
+            } else {
+                increase = !increase;
+                counter = 0;
+            }
+            document.querySelector(".slider__header-views-count").innerHTML = randomNumber;
+        }, 1500);
+    })
 </script>
 
 <!--Закрытие AllLessons-->
