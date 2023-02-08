@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/css/Article.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/lessons.css">
-    <title>Кейс - <?php print_r($content['article']['cases_name'])?></title>
+    <title>Кейс - <?php echo $content['article']['cases_name'] ?></title>
 
 </head>
 
