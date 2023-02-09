@@ -1,29 +1,21 @@
 <!DOCTYPE html>
-
-<html lang="en">
-
+<html lang="ru">
 <head>
-
     <meta charset="UTF-8">
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
     <link rel="stylesheet" href="/css/nullCss.css">
-
     <link rel="stylesheet" href="/css/Article.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/lessons.css">
     <title>Кейс - <?php echo $content['article']['cases_name'] ?></title>
-
+    <!--Favicon-->
+    <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 </head>
-
 <body>
 <div class="Article">
     <?php include 'default/sidebar.php';?>
     <div class="feed">
-
         <?php
         $title = "Доступные проекты";
         $back = "Project";
@@ -32,53 +24,42 @@
         <div class="_container">
             <div class="Article-body">
                 <div class="Article-header-img">
-                    <img src="../img/Article/header-img.jpg" alt="">
+                    <img src="<?php echo $content['article']['cases_banner']; ?>" alt="">
                 </div>
-
-
-
                     <div class="Article-post">
-                        <p>Этот кейс – это история о том, как прокачать языковую онлайн школу для детей, запустив проект с нуля с начала пандемии, и увеличить количество преподавателей в 7 раз, получив 3061 заявку из таргета Инстаграм. Об этом кейсе мы и рассказываем в этой статье.</p>
-                        <p>Этот кейс – это история о том, как прокачать языковую онлайн школу для детей, запустив проект с нуля с начала пандемии, и увеличить количество преподавателей в 7 раз, получив 3061 заявку из таргета Инстаграм. Об этом кейсе мы и рассказываем в этой статье.</p>
-                        <div class="Article-post-quotation">
-                            <img src="../img/Article/post-quotation-marks.svg" alt="">
-                            <p>Этот кейс – это история о том, как прокачать языковую онлайн школу для детей, запустив проект с нуля с начала пандемии, и увеличить количество преподавателей в 7 раз, получив 3061 заявку из таргета Инстаграм. Об этом кейсе мы и рассказываем в этой статье.</p>
-                        </div>
-                        <div class="Article-post-img">
-                            <img src="../img/Article/post-img.jpg" alt="">
-                        </div>
-                        <p>Этот кейс – это история о том, как прокачать языковую онлайн школу для детей, запустив проект с нуля с начала пандемии, и увеличить количество преподавателей в 7 раз, получив 3061 заявку из таргета Инстаграм. Об этом кейсе мы и рассказываем в этой статье.</p>
-                        <p>Этот кейс – это история о том, как прокачать языковую онлайн школу для детей, запустив проект с нуля с начала пандемии, и увеличить количество преподавателей в 7 раз, получив 3061 заявку из таргета Инстаграм. Об этом кейсе мы и рассказываем в этой статье.</p>
+                        <?php echo $content['article']['cases_inner']; ?>
                         <div class="Article-post-container">
                             <div class="Article-post-item active">
                                 <div class="Article-post-item-img">
-                                    <img src="../img/Article/cart-img.jpg" alt="">
+                                    <img src="<?php echo $content['article']['cases_avatar']; ?>" alt="">
                                 </div>
 
                                 <div class="Article-post-item__title">
-                                    Курс менеджер инстаграмм
+                                    <?php echo $content['article']['cases_name']; ?>
                                 </div>
                                 <div class="Article-post-item__main">
-                                    <p>Instakilogram</p>
+                                    <p><?php echo $content['article']['cases_author']; ?></p>
                                     <div class="Article-post-item__rating">
                                         <img src="../img/Article/rating.svg" alt="">
-                                        <span>4.3</span>
+                                        <span><?php echo $content['article']['cases_rating']; ?></span>
                                     </div>
                                 </div>
                                 <div class="Article-post-item__price">
-                                    109 100 ₽ - 160000 ₽ в месяц
+                                    <?php echo $content['article']['cases_price']; ?>
                                 </div>
                                 <div class="Article-post-item__time">
                                     <img src="../img/Article/time.svg" alt="">
-                                    недавно
+                                    <?php
+                                    $new_date = strtotime($content['article']['cases_date']);
+                                    $visible_date = date("d.m.Y", $new_date);
+                                    echo $visible_date;
+                                    ?>
                                 </div>
                                 <div class="Article-post-item__button">
                                     <form action="">
                                         <button type="button" class="regForCourse">Хочу так же</button>
                                     </form>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
@@ -109,7 +90,6 @@
             </div>
         </div>
     </div>
-
 </div>
 <script src="../js/sidebar.js"></script>
 <script src="/js/getNotifications.js"></script>
@@ -130,12 +110,8 @@
 </script>
 <script>
     let feed = document.querySelector('.feed');
-
-
-
     feed.addEventListener("scroll", (event) => {
         let scroll = feed.scrollTop;
-
             let postItem = document.querySelector('.Article-post-item')
             if(scroll >= 270){
                 postItem.classList.remove('active');
@@ -149,13 +125,7 @@
                 postItem.style.left = '';
                 postItem.style.top = '';
             }
-
-
-
         });
-
-
-
 </script>
 </body>
 

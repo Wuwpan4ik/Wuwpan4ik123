@@ -15,8 +15,10 @@
                 <?php
                 $title = "Кейсы";
                 include ('default/header.php');
+                foreach($content as $case){
+                    echo $case['article']['cases_name'];
+                }
                 ?>
-
                 <div class="Case _container">
                     <div class="cart inst">
                         <div class="service-price">
