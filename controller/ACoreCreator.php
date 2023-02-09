@@ -7,11 +7,27 @@
     }
 
     abstract class ACoreCreator {
-
-        use addNotifications;
         use SendEmail;
 
-        protected $m;
+        protected $email_class;
+        protected $statistic_class;
+        protected $tariff_class;
+        protected $notifications_class;
+        protected $user;
+        protected $user_integrations;
+        protected $user_contacts;
+        protected $clients;
+        protected $orders;
+        protected $analytic;
+        protected $funnel;
+        protected $funnel_content;
+        protected $course;
+        protected $course_content;
+        protected $purchase;
+        protected $contact;
+        protected $user_class;
+        protected $article;
+
         protected $ourEmail;
         protected $ourPassword;
         protected $ourNickName;
@@ -23,9 +39,27 @@
         public function __construct() {
             date_default_timezone_set('Europe/Moscow');
             $this->date = date("Y-m-d");
-            $this->m = new User();
 
-            $email_account = $this->m->GetEmailAccount();
+            $this->user = new User();
+            $this->email_class = new Email();
+            $this->statistic_class = new Statistic();
+            $this->tariff_class = new Tariff();
+            $this->notifications_class = new Notifications();
+            $this->user_contacts = new UserContactsModel();
+            $this->user_integrations = new UserIntegrations();
+            $this->clients = new ClientsModel();
+            $this->orders = new OrdersModel();
+            $this->analytic = new AnalyticModel();
+            $this->funnel = new FunnelModel();
+            $this->funnel_content = new FunnelContentModel();
+            $this->course = new CourseModel();
+            $this->course_content = new CourseContentModel();
+            $this->purchase = new PurchaseModel();
+            $this->contact = new ContactModel();
+            $this->user_class = new UserModel();
+            $this->article = new ArticleModel();
+
+            $email_account = $this->email_class->GetEmailAccount();
             $this->ourEmail = $email_account['email'];
             $this->ourPassword = $email_account['password'];
             $this->ourNickName = $email_account['name'];
@@ -35,7 +69,7 @@
 
         public function CheckTariff()
         {
-            return $this->m->db->query("SELECT users_tariff.tariff_id, tariffs.funnel_count, tariffs.course_count, tariffs.file_size, tariffs.children_count FROM `users_tariff` INNER JOIN `tariffs` ON tariffs.id = users_tariff.tariff_id WHERE users_tariff.user_id = {$_SESSION['user']['id']}");
+            return $this->tariff_class->Get();
         }
 
         public function obr() {

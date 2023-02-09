@@ -1,20 +1,9 @@
 <?php
 class AccountController extends ACoreCreator {
 
-    public function IsFreedomSiteName () {
-        $site_url = $_GET['site_url'];
-
-        if ((int)$this->m->db->query("SELECT count(*) FROM user WHERE `site_url` = " . $site_url) > 0) {
-            header('Location: ' . $_SERVER['HTTP_REFERER']);
-            return False;
-        }
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-        return True;
-    }
-
     public function SaveSchoolSettings()
     {
-        $user = $this->m->db->query("SELECT * FROM user WHERE `id` = ". $_SESSION['user']['id']);
+        $user = $this->user->getCurrentUser();
 
         if (strlen($_POST['school_name']) == 0) {
             $school_name = $user[0]['school_name'];
@@ -33,7 +22,15 @@ class AccountController extends ACoreCreator {
         } else {
             $school_desc = $_POST['school_desc'];
         }
-        $this->m->db->execute("UPDATE user SET `school_name` = '$school_name', `school_desc` = '$school_desc', `niche` = '$niche' WHERE id = " . $_SESSION['user']['id']);
+
+        $data = [
+            "school_name" => $school_name,
+            "school_desc" => $school_desc,
+            "niche" => $niche
+        ];
+
+        $this->user->UpdateQuery("user", $data, "WHERE id = " . $_SESSION['user']['id']);
+
         $_SESSION["user"]['school_name'] = $school_name;
         $_SESSION["user"]['school_desc'] = $school_desc;
         $_SESSION["user"]['niche'] = $niche;
@@ -42,7 +39,7 @@ class AccountController extends ACoreCreator {
     }
 
     public function SaveSettings() {
-        $user = $this->m->db->query("SELECT * FROM user WHERE `id` = ". $_SESSION['user']['id']);
+        $user = $this->user->getCurrentUser();
 
         if (strlen($_POST['email']) == 0) {
             $email = $user[0]['email'];
@@ -55,7 +52,7 @@ class AccountController extends ACoreCreator {
                     return False;
                 }
 
-                if (count($this->m->db->query("SELECT * FROM user WHERE email = '$email'")) != 0 && $email != $_SESSION['user']['email']) {
+                if (count($this->user->getUserByEmail($email)) != 0 && $email != $_SESSION['user']['email']) {
                     $_SESSION['error']['email_message'] = 'Такой email уже зарегистрирован';
                     header('Location: ' . $_SERVER['HTTP_REFERER']);
                     return False;
@@ -112,8 +109,9 @@ class AccountController extends ACoreCreator {
         }
 
         $query_to_update_urls = [];
-        if (count($this->m->db->query("SELECT * FROM `user_contacts` WHERE `user_id` = {$_SESSION['user']['id']}")) === 0) {
-            $this->m->db->execute("INSERT INTO `user_contacts` (`user_id`) VALUES ({$_SESSION['user']['id']})");
+        if (count($this->user_contacts->getCurrentUserContacts()) === 0) {
+            $data = ['user_id' => $_SESSION['user']['id']];
+            $this->user->InsertQuery("user_contacts", $data);
         }
 
         if (strlen($_POST['vk']) != 0) {
@@ -159,16 +157,25 @@ class AccountController extends ACoreCreator {
         }
 
         if ($query_to_update_urls) {
-            $query_string = '';
-            foreach (array_keys($query_to_update_urls) as $item) {
-                $query_string .= "$item = '{$query_to_update_urls[$item]}',";
-            }
-            $query_string = mb_substr($query_string, 0, -1);
-            $this->m->db->execute("UPDATE `user_contacts` SET $query_string WHERE user_id = {$user[0]['id']}");
+            $this->user_contacts->UpdateQuery("user_contacts", $query_to_update_urls, "WHERE user_id = {$user[0]['id']}");
         }
 
-        $this->m->db->execute("UPDATE `user` SET `email` = '$email', `birthday` = '$birthday', `first_name` = '$first_name', `second_name` = '$second_name', `telephone` = '$phone', `currency` = '$currency', `city` = '$city', `country` = '$country' WHERE id = {$user[0]['id']}");
-        $this->m->db->execute("UPDATE `user` SET `avatar` = '$avatar' WHERE id = {$user[0]['id']}");
+        $data = [
+            "email" => $email,
+            "birthday" => $birthday,
+            "first_name" => $first_name,
+            "second_name" => $second_name,
+            "telephone" => $phone,
+            "currency" => $currency,
+            "country" => $country,
+            "city" => $city
+        ];
+        $this->user->UpdateQuery("user", $data, "WHERE id = {$user[0]['id']}");
+
+        $data = [
+            "avatar" => $avatar
+        ];
+        $this->user->UpdateQuery("user", $data, "WHERE id = {$user[0]['id']}");
 
         $_SESSION["user"]['first_name'] = $first_name;
         $_SESSION["user"]['second_name'] = $second_name;
@@ -181,6 +188,7 @@ class AccountController extends ACoreCreator {
         $_SESSION['user']['birthday'] = $birthday;
 
         header('Location: ' . $_SERVER['HTTP_REFERER']);
+        return true;
     }
 
     public function SaveIntegrationsSettings()
@@ -197,19 +205,11 @@ class AccountController extends ACoreCreator {
             $query_to_update_urls['albato_key'] = null;
         }
 
-        if (count($this->m->db->query("SELECT * FROM `user_integrations` WHERE `user_id` = {$_SESSION['user']['id']}")) === 0) {
-            $this->m->db->execute("INSERT INTO `user_integrations` (`user_id`) VALUES ({$_SESSION['user']['id']})");
+        if (count($this->user->getIntegrationsByUser()) === 0) {
+            $this->user->InsertQuery("user_integrations", ["user_id" => $_SESSION['user']['id']]);
         }
 
-        if ($query_to_update_urls) {
-            $query_string = '';
-            foreach (array_keys($query_to_update_urls) as $item) {
-                $query_string .= "$item = '{$query_to_update_urls[$item]}',";
-            }
-            $query_string = mb_substr($query_string, 0, -1);
-            $this->m->db->execute("UPDATE `user_integrations` SET $query_string WHERE user_id = {$_SESSION['user']['id']}");
-
-        }
+        $this->user_integrations->UpdateQuery("user_integrations", $query_to_update_urls);
 
         $_SESSION['user']['prodamus_key'] = $query_to_update_urls['prodamus_key'];
         $_SESSION['user']['albato_key'] = $query_to_update_urls['albato_key'];
@@ -218,7 +218,8 @@ class AccountController extends ACoreCreator {
     }
 
     function SaveUserSettings() {
-        $user = $this->m->db->query("SELECT * FROM user WHERE `id` = ". $_SESSION['user']['id']);
+        $user = $this->user->getCurrentUser();
+
 
         if (strlen($_POST['first_name']) == 0) {
             $first_name = $user[0]['first_name'];
@@ -242,14 +243,20 @@ class AccountController extends ACoreCreator {
             if ($user[0]['password'] == $_POST['old_pass']) {
                 if ($_POST['new_pass'] == $_POST['new_pass_repeat']) {
                     $password = $_POST['new_pass'];
-                    $this->m->db->execute("UPDATE user SET `password` = '$password' WHERE id = " . $_SESSION['user']['id']);
-                    $this->addNotifications("Пароль изменён", "Вы изменили пароль в {$this->date}", "/img/Notification/message.svg",'item-lite' ,$_SESSION['user']['id']);
+                    $this->user->UpdateQuery("user", ["password" => $password], "WHERE id = " . $_SESSION['user']['id']);
+                    $this->notifications_class->addNotifications("Пароль изменён", "Вы изменили пароль в {$this->date}", "/img/Notification/message.svg",'item-lite' ,$_SESSION['user']['id']);
                 }
             } else {
                 $request = "Неверный пароль";
             }
         }
-        $this->m->db->execute("UPDATE user SET `first_name` = '$first_name', `second_name` = '$second_name' WHERE id = " . $_SESSION['user']['id']);
+
+        $data = [
+            "first_name" => $first_name,
+            "second_name" => $second_name
+        ];
+        $this->user->UpdateQuery("user", $data, "WHERE id = " . $_SESSION['user']['id']);
+
         $_SESSION["user"]['first_name'] = $first_name;
 
         $_SESSION["user"]['second_name'] = $second_name;
@@ -260,16 +267,18 @@ class AccountController extends ACoreCreator {
     function SaveSocialSettings() {
         $social = $_POST['social'];
         $link = $_POST['link'];
-        if ($this->m->isUserSocials()) {
-            $this->m->db->execute("UPDATE `user_contacts` SET `". $social ."` = '". $link ."' WHERE user_id = " . $_SESSION['user']['id']);
+
+        if ($this->user_contacts->isUserSocials()) {
+            $this->user_contacts->UpdateQuery("user_contacts", ["$social" => $link], "WHERE user_id = " . $_SESSION['user']['id']);
         } else {
-            $this->m->db->execute("INSERT INTO `user_contacts` (`". $social ."`, `user_id`) VALUES ('". $link ."', ". $_SESSION['user']['id'] .")");
+            $this->user_contacts->InsertQuery("user_contacts", ["$social" => $link, "user_id" => $_SESSION['user']['id']]);
         }
+
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     function TakeSocialUrls() {
-        echo json_encode($this->m->TakeSocialUrls());
+        echo json_encode($this->user_contacts->TakeSocialUrls());
         return true;
     }
 

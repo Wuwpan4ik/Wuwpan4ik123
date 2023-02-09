@@ -21,7 +21,9 @@
 
 
 <div class="SettingAccount">
-<!--    --><?php //var_dump($_SESSION['error']) ?>
+    <div class="error display-none">
+        <?php print_r($_SESSION['error']) ?>
+    </div>
     <?php include 'default/sidebar.php';?>
 
     <div class="feed">
@@ -65,7 +67,7 @@
                                             <?php if(isset($_SESSION['error']['email_message'])) echo $_SESSION['error']['email_message'] ?>
                                             <div class="input_focus ">
                                                 <label for="username" class="label_focus">Телефон</label>
-                                                <input class="half" type="number" id="phone" name="phone" value="<?php print(htmlspecialchars(isset($_SESSION['user']['phone']) ? $_SESSION['user']['phone'] : '')) ?>">
+                                                <input class="half" type="number" id="tel" name="phone" value="<?php print(htmlspecialchars(isset($_SESSION['user']['phone']) ? $_SESSION['user']['phone'] : '')) ?>">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
@@ -155,7 +157,7 @@
                                                         <div id="myMultiselect" class="multiselect">
                                                             <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
                                                                 <select class="form-select">
-                                                                    <option class="form-select__social-name" id="name"><?=$options[$i] ?></option>
+                                                                    <option class="form-select__social-name" value="<?=$options[$i] ?>" id="name"><?=$options[$i] ?></option>
                                                                 </select>
                                                                 <div class="overSelect"></div>
                                                             </div>
@@ -606,7 +608,6 @@
                 </div>
             </div>
         </div>`;
-        // console.log(new DOMParser().parseFromString(div, "text/xml"))
         document.querySelector('.social__blocks').insertAdjacentHTML('beforeend', div);
         checkboxStatusChange();
 
@@ -642,9 +643,21 @@
 
 <script>
     let account_submit = $(function() {
+        let stop;
         $('.account__form').each(function () {
             $(this).submit(function (e) {
                 e.preventDefault();
+                $(".form-select__social-name").each(function (){
+                    let text = $(this).val();
+                    if ($(".form-select__social-name" + `[value='${text}']`).length !== 1) {
+                        stop = true;
+                    }
+                })
+                if (stop) {
+                    AddNotifications("Ошибка", 'У вас содержатся одинаковые соц.сети');
+                    stop = false;
+                    return false;
+                }
                 $.ajax({
                     url: $(this).attr("action"),
                     type: $(this).attr("method"),
@@ -654,13 +667,12 @@
                     contentType: false
                 });
                 let saveBtn = $(this).find('#profile_send');
-                console.log(saveBtn)
                 saveBtn.addClass("active");
                 saveBtn.innerHTML = 'Сохранено';
                 setTimeout(function () {
                     saveBtn.removeClass("active");
                     saveBtn.innerHTML = 'Сохранить';
-                    window.location.reload()
+                    window.location.reload();
                 }, 2000)
                 AddNotifications("Настройки сохранены", '');
             })
@@ -669,5 +681,4 @@
 </script>
 <script src="../js/sidebar.js"></script>
 </body>
-
 </html>

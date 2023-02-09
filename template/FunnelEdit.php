@@ -410,7 +410,7 @@
 <script type="text/javascript" src="../js/button__settings.js"></script>
 <script src="../js/sidebar.js"></script>
 <script src="/js/getNotifications.js"></script>
-
+<script src="/js/autoTextArea.js"></script>
 <script src="/js/customInputs.js"></script>
 <script src="../js/customSelect.js"> </script>
 <script src="/js/FunnelSettings/CheckSaveVersion.js"></script>
@@ -526,7 +526,8 @@
             dataType: 'html',          /* Тип данных в ответе (xml, json, script, html). */
             data: $("#initButton").serialize(),     /* Параметры передаваемые в запросе. */
             success: function(data){   /* функция которая будет выполнена после успешного запроса.  */
-                if (data == 0) {
+                console.log(data)
+                if (data == 1) {
                     document.querySelector('.exit-funnel-edit').classList.add('display-flex');
                     document.querySelector('.exit-funnel-edit').style.zIndex = '1000';
                     promise();

@@ -186,6 +186,7 @@ button {
     color: #fff;
     background: #3E8AFB;
 }
+
 .button{
     -webkit-box-shadow: 0px 3px 0px #3168BB, 0px 10px 30px rgba(62, 138, 251, 0.6);
     box-shadow: 0px 3px 0px #3168BB, 0px 10px 30px rgba(62, 138, 251, 0.6);
@@ -194,6 +195,7 @@ button {
     color: #fff;
     background: #3E8AFB;
 }
+
 .slider__item-socialNetwork {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -386,9 +388,11 @@ button {
 .popup__bonus-text span {
     color: #EA2323;
 }
+
 .popup__bonus-form{
     margin: 20px 0 0 0;
 }
+
 .popup__bonus-form-input {
     position: relative;
     margin: 15px 0 0 0;
@@ -491,10 +495,12 @@ button {
     display: flex;
 
 }
+
 .video__img{
     width: 160px;
 
 }
+
 .popup__allLessons-text {
     font-weight: 300;
     font-size: 14px;

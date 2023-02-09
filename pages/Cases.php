@@ -1,8 +1,7 @@
 <?php
+    class Cases extends ACoreCreator {
+        function get_content()
+        {
 
-class Cases extends ACoreCreator
-{
-    public function get_content()
-    {
+        }
     }
-}

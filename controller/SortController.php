@@ -2,15 +2,10 @@
 class SortController extends ACoreCreator {
     protected $m;
 
-    public function __construct()
-    {
-        $this->m = new User();
-    }
-
     function getClientsForMain(){
         $get = $_GET["order"];
 
-        $content = $this->m->db->query("SELECT clients.email, clients.first_name, clients.give_money, clients.tel, course.id as 'course_id', course.name FROM clients, course WHERE course.id = clients.course_id AND `creator_id` = ". $_SESSION['user']['id'] ." ORDER BY $get");
+        $content = $this->analytic->GetClientsForMain($get);
 
         $i = 1;
 
@@ -34,7 +29,7 @@ class SortController extends ACoreCreator {
 
     function getClientsForAnalytics() {
         $get = $_GET["sort"];
-        $result = $this->m->db->query("SELECT clients.id, course.name as course_name, course.id as course_id, clients.comment, clients.achivment_date, clients.give_money, first_name, email, tel FROM clients JOIN course ON clients.course_id = course.id WHERE creator_id = " . $_SESSION['user']['id']." ORDER BY " . $get);
+        $result = $this->analytic->GetClientsForAnalytics($get);
         foreach($result as $client){
 
             $tel = $client["tel"];
@@ -67,7 +62,7 @@ class SortController extends ACoreCreator {
 
     function getOrdersForAnalytics() {
         $get = $_GET["sort"];
-        $result_course = $this->m->db->query("SELECT course.name as course_name, course.id as course_id, orders.achivment_date, orders.money, user.first_name, user.email, user.telephone, orders.id FROM orders JOIN course ON orders.course_id = course.id JOIN user ON orders.user_id = user.id WHERE creator_id = " . $_SESSION['user']['id']." ORDER BY " . $get);
+        $result_course = $this->analytic->GetOrdersForAnalytics($get);
         $count = 1;
         foreach($result_course as $order){
 
@@ -81,7 +76,7 @@ class SortController extends ACoreCreator {
             echo
 
                 '<tr>
-                        <td> <input type="checkbox" data-id="'. $order["id"] .'" class="check_order">' . $count . '</td>
+                        <td> <input type="checkbox" data-id="'. $order["id"] .'" class="check_order">№' . $count . '</td>
 				
 						<td>' . $order["money"] . (isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : "₽") . '</td>
 						

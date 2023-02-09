@@ -38,7 +38,7 @@
             <div class="user__logo-text"><?=$content[0]['first_name']?></div>
         </div>
         <div class="header-main__burger">
-            <a href="/UserMenu">
+            <a href="/">
                 <div class="main__burger">
                     <span></span>
                 </div>

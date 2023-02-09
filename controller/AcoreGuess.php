@@ -1,12 +1,19 @@
 <?php
 abstract class ACoreGuess
 {
-    use addNotifications;
-    protected $m;
+    protected $user;
+    protected $user_contacts;
+    protected $user_class;
+    protected $notifications;
+    protected $course_content;
 
     public function __construct() {
         date_default_timezone_set('Europe/Moscow');
-        $this->m = new User();
+        $this->user = new User();
+        $this->user_contacts = new UserContactsModel();
+        $this->user_class = new UserModel();
+        $this->notifications = new Notifications();
+        $this->course_content = new CourseContentModel();
     }
 
     public function obr() {
