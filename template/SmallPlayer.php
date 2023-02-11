@@ -53,10 +53,11 @@
                     </div>
                     <div class="slider__header-views">
                         <div class="slider__header-views-img">
-                            <span>Сейчас смотрят:</span><img src="/img/smallPlayer/views.svg" alt="">
+                            <span>Сейчас смотрят:</span>
                         </div>
                         <div class="slider__header-views-count">
                         </div>
+                        <img style="margin-left: 5px" src="/img/smallPlayer/views.svg" alt="">
                     </div>
                 </div>
                 <div class="play__video active">
