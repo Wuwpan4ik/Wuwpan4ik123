@@ -712,7 +712,27 @@
         }, 500)
     }
 </script>
+<script>
+    let feed = document.querySelector('.popup__edit');
 
+    feed.addEventListener("scroll", (event) => {
+        let scroll = feed.scrollTop;
+        console.log(scroll)
+        let postItem = document.querySelector('.popup__header-container')
+        if(scroll >= 56){
+            postItem.classList.remove('active');
+            postItem.style.position = 'fixed';
+            postItem.style.top = '23px';
+            postItem.style.bottom = 'null';
+        }
+        else if(scroll <= 56){
+            postItem.classList.add('active');
+            postItem.style.position = 'absolute'
+            postItem.style.left = '';
+            postItem.style.top = '';
+        }
+    });
+</script>
 </body>
 
 </html>
