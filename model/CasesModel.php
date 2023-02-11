@@ -1,5 +1,5 @@
 <?php
-    class ArticleModel extends ConnectDatabase {
+    class CasesModel extends ConnectDatabase {
         public function Get($where = null)
         {
             if (is_null($where)) {
@@ -7,5 +7,10 @@
             } else {
                 return $this->db->query("SELECT * FROM cases WHERE " . array_keys($where)[0] . " = " . $where[array_keys($where)[0]]);
             }
+        }
+
+        public function GetAll()
+        {
+            return $this->GetQuery("cases");
         }
     }

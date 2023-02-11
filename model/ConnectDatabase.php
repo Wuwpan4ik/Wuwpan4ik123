@@ -34,16 +34,21 @@
             $this->db->execute($sql);
         }
 
-        public function GetQuery(string $database, $data, $where = '')
+        public function GetQuery(string $database, $data = [], $where = '')
         {
-            $sql_main = [];
+            if (!empty($data)) {
+                $sql_main = [];
 
-            foreach (array_keys($data) as $colum) {
-                array_push($sql_main, "{$colum} = '{$data[$colum]}'");
+                foreach (array_keys($data) as $colum) {
+                    array_push($sql_main, "{$colum} = '{$data[$colum]}'");
+                }
+                $sql_query = implode(" AND ", $sql_main);
+
+                $sql = "SELECT * FROM $database WHERE $sql_query $where";
+            } else {
+                $sql = "SELECT * FROM $database";
             }
-            $sql_query = implode(" AND ", $sql_main);
 
-            $sql = "SELECT * FROM $database WHERE $sql_query $where";
             return $this->db->query($sql);
         }
 

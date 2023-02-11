@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/Article.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/lessons.css">
-    <title>Кейс - <?php echo $content['article']['cases_name'] ?></title>
+    <title>Кейс - <?php echo $content['article']['name'] ?></title>
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 </head>
@@ -18,52 +18,47 @@
     <div class="feed">
         <?php
         $title = "Доступные проекты";
-        $back = "Project";
+        $back = "Cases";
         include ('default/header.php');
         ?>
         <div class="_container">
             <div class="Article-body">
                 <div class="Article-header-img">
-                    <img src="<?php echo $content['article']['cases_banner']; ?>" alt="">
+                    <img src="<?php echo $content['article']['banner']; ?>" alt="">
                 </div>
                     <div class="Article-post">
-                        <?php echo $content['article']['cases_inner']; ?>
+                        <?php echo $content['article']['inner']; ?>
                         <div class="Article-post-container">
                             <div class="Article-post-item active">
                                 <div class="Article-post-item-img">
-                                    <img src="<?php echo $content['article']['cases_avatar']; ?>" alt="">
+                                    <img src="<?php echo $content['article']['avatar']; ?>" alt="">
                                 </div>
 
                                 <div class="Article-post-item__title">
-                                    <?php echo $content['article']['cases_name']; ?>
+                                    <?php echo $content['article']['name']; ?>
                                 </div>
                                 <div class="Article-post-item__main">
-                                    <p><?php echo $content['article']['cases_author']; ?></p>
+                                    <p><?php echo $content['article']['author']; ?></p>
                                     <div class="Article-post-item__rating">
                                         <img src="../img/Article/rating.svg" alt="">
-                                        <span><?php echo $content['article']['cases_rating']; ?></span>
+                                        <span><?php echo $content['article']['rating']; ?></span>
                                     </div>
                                 </div>
                                 <div class="Article-post-item__price">
-                                    <?php echo $content['article']['cases_price']; ?>
+                                    <?php echo $content['article']['price']; ?>
                                 </div>
                                 <div class="Article-post-item__time">
                                     <img src="../img/Article/time.svg" alt="">
-                                    <?php
-                                    $new_date = strtotime($content['article']['cases_date']);
-                                    $visible_date = date("d.m.Y", $new_date);
-                                    echo $visible_date;
-                                    ?>
+                                    <?php $new_date = date("d.m.Y",strtotime($content['article']['date'])); ?>
                                 </div>
                                 <div class="Article-post-item__button">
-                                    <form action="">
+                                    <form>
                                         <button type="button" class="regForCourse">Хочу так же</button>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-
             </div>
         </div>
     </div>
