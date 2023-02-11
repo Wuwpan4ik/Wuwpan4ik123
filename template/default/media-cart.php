@@ -35,8 +35,22 @@
         <img src="/img/clear_input.svg" alt="">
         </span>
         </div>
-        <div class="textarea_focus">
-            <textarea name="description" class="videoname video-desc textarea-info " placeholder="Укажите описание:" maxlength="100"><?=$v['description']?></textarea>
+
+
+        <div class="funnel-input input_focus">
+            <label for="description" class="label_focus ">Укажите описание:</label>
+            <textarea name="description" class="videoname video-desc"><?=$v['description']?></textarea>
+            <span class="clear_input_val">
+            <img src="/img/clear_input.svg" alt="">
+        </span>
+        </div>
+
+        <div class="button__do-block <?php if (!isset($v['button_text']) || is_null($v['button_text'])) { ?> display-none <?php } ?>" >
+            <label>Текст для кнопки:</label>
+            <input name="button_text" class="videoname video-desc" value="<?=$v['button_text']?>">
+        </div>
+         <button onclick="getCourseList()" type="button" class="button__edit button__do-block <?php if (!isset($v['button_text'])) { ?> display-none <?php } ?>" style="background: #757D8A;text-align: center"><img style="width: 25px; transform: translate(0, 0)" src="/img/actions.svg">Действия</button>
+
 
         </div>
         <div class="button__do-block <?php if (!isset($v['button_text']) || is_null($v['button_text'])) { ?> display-none <?php } ?>" >
