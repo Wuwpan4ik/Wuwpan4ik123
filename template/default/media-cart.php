@@ -9,14 +9,14 @@
             <button onclick="deleteDirectory(this)"><img src="/img/Delete.svg" alt=""></button>
         </div>
     </div>
-        <div class="video-container">
-            <video id="123" class="media-cart-img" style=" object-fit: cover;">
-                <source class="video" src=".<?=$v['video']?>"/>
-            </video>
-            <div class="slider__darkness">
+    <div class="video-container">
+        <video id="123" class="media-cart-img" style=" object-fit: cover;">
+            <source class="video" src=".<?=$v['video']?>"/>
+        </video>
+        <div class="slider__darkness">
 
-            </div>
         </div>
+    </div>
 
 
 
@@ -28,42 +28,28 @@
 
         <input class="funnel__content-id" type="hidden" value="<?=$v['id']?>">
         <?php if (strstr($_SERVER['REQUEST_URI'], 'Funnel' )) {?>
-        <div class="funnel-input input_focus">
-            <label for="name" class="label_focus activeLabel">Укажите заголовок:</label>
-            <input name="name" maxlength="30" class="videoname video-desc" type="text" value="<?=$v['name']?>">
-            <span class="clear_input_val">
+            <div class="funnel-input input_focus">
+                <label for="name" class="label_focus activeLabel">Укажите заголовок:</label>
+                <input name="name" maxlength="30" class="videoname video-desc" type="text" value="<?=$v['name']?>">
+                <span class="clear_input_val">
         <img src="/img/clear_input.svg" alt="">
         </span>
-        </div>
+            </div>
+            <div class="textarea_focus">
+                <textarea name="description" class="videoname video-desc textarea-info " placeholder="Укажите описание:" maxlength="100"><?=$v['description']?></textarea>
 
-
-        <div class="funnel-input input_focus">
-            <label for="description" class="label_focus ">Укажите описание:</label>
-            <textarea name="description" class="videoname video-desc"><?=$v['description']?></textarea>
-            <span class="clear_input_val">
-            <img src="/img/clear_input.svg" alt="">
-        </span>
-        </div>
-
-        <div class="button__do-block <?php if (!isset($v['button_text']) || is_null($v['button_text'])) { ?> display-none <?php } ?>" >
-            <label>Текст для кнопки:</label>
-            <input name="button_text" class="videoname video-desc" value="<?=$v['button_text']?>">
-        </div>
-         <button onclick="getCourseList()" type="button" class="button__edit button__do-block <?php if (!isset($v['button_text'])) { ?> display-none <?php } ?>" style="background: #757D8A;text-align: center"><img style="width: 25px; transform: translate(0, 0)" src="/img/actions.svg">Действия</button>
-
-
-        </div>
-        <div class="button__do-block <?php if (!isset($v['button_text']) || is_null($v['button_text'])) { ?> display-none <?php } ?>" >
-            <div class="funnel-input input_focus">
-                <label for="name" class="label_focus">Текст для кнопки:</label>
-                <input name="button_text" maxlength="15" class="videoname video-desc" type="text" value="<?=$v['button_text']?>">
-                <span class="clear_input_val">
+            </div>
+            <div class="button__do-block <?php if (!isset($v['button_text']) || is_null($v['button_text'])) { ?> display-none <?php } ?>" >
+                <div class="funnel-input input_focus">
+                    <label for="name" class="label_focus">Текст для кнопки:</label>
+                    <input name="button_text" maxlength="15" class="videoname video-desc" type="text" value="<?=$v['button_text']?>">
+                    <span class="clear_input_val">
             <img src="/img/clear_input.svg" alt="">
             </span>
-            </div>
+                </div>
 
-        </div>
-         <button onclick="getFunnelPopup(<?=$v['id']?>)" type="button" class="button__edit button__do-block <?php if (!isset($v['button_text'])) { ?> display-none <?php } ?>" style="background: #757D8A;text-align: center"><img style="width: 25px; transform: translate(0, 0)" src="/img/actions.svg">Действия</button>
+            </div>
+            <button onclick="getFunnelPopup(<?=$v['id']?>)" type="button" class="button__edit button__do-block <?php if (!isset($v['button_text'])) { ?> display-none <?php } ?>" style="background: #757D8A;text-align: center"><img style="width: 25px; transform: translate(0, 0)" src="/img/actions.svg">Действия</button>
             <?php if (!isset($v['button_text'])) { ?> <button type="button" class="button-add-button-edit"><img src="../img/addSocialNetwork.svg" alt="">Добавить кнопку</button><?php } ?>
         <?php } else { ?>
             <div class="funnel-input input_focus">
