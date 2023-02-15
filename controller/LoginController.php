@@ -163,8 +163,8 @@
                             "from" => $this->ourEmail,
                             "to" => $email,
                             "sender" => $this->ourEmail,
-                            "subject" => "Just testing",
-                            "content" => "This is just an email to test Emailqueue"
+                            "subject" => $title,
+                            "content" => $body
                         ]
                     ]
                 );
