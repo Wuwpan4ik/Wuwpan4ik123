@@ -161,10 +161,10 @@
                     [
                         [
                             "from" => $this->ourEmail,
+                            "to" => $email,
                             "sender" => $this->ourEmail,
-                            "to" => $this->email,
-                            "content" => '1',
-                            "subject" => "dwdwdwd"
+                            "subject" => "Just testing",
+                            "content" => "This is just an email to test Emailqueue"
                         ]
                     ]
                 );
