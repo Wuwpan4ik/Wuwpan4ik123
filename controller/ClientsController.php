@@ -74,7 +74,25 @@
                 $title = "Оставили заявку";
                 $thubn_url = $this->course_content->Get(["course_id" => $course_id])[0]['thubnails'];
                 $body = $this->GetApplicationHtml($this->email,"{$url}/$thubn_url}" , $name_funnel, $number_slide, $this->phone, $this->name);
-                $this->SendEmail($title, $body, $creator_email);
+
+                $f = $this->clients->GetApi();
+                $this->api_key = $f['api_key'];
+                $this->api_endpoint = $f['endpoint'];
+                $this->EmailQueueApiCall(
+                    $this->api_endpoint,
+                    $this->api_key,
+                    [
+                        [
+                            "from" => "{$this->ourEmail}",
+                            "to" => "{$creator_email}",
+                            "sender" => "{$this->ourEmail}",
+                            "subject" => "{$title}",
+                            "content" => "$body",
+                            "is_send_now" => 1
+                        ]
+                    ]
+                );
+
                 $this->InsertToTable($creator_id, $course_id, $buy_progress[$comment], 0);
                 $this->notifications_class->addNotifications("У вас новая заявка", "В вашей воронке $name_funnel оставленна заявка на слайде #$number_slide от {$this->email}", '/img/Notification/message.svg','item-like', $creator_id);
             }
@@ -179,13 +197,45 @@
                 $this->notifications_class->addNotifications("У вас купили курс", "Ваш курс - “{$course_info['name']}”, купил {$this->email}", '/img/Notification/star.svg', 'item-like', $creator_id);
 
                 $body = include "./template/templates_email/registracia-usera(user).php";
-                $this->SendEmail("Покупка курса", $body, $this->email);
+                $f = $this->clients->GetApi();
+                $this->api_key = $f['api_key'];
+                $this->api_endpoint = $f['endpoint'];
+                $this->EmailQueueApiCall(
+                    $this->api_endpoint,
+                    $this->api_key,
+                    [
+                        [
+                            "from" => "{$this->ourEmail}",
+                            "to" => "{$this->email}",
+                            "sender" => "{$this->ourEmail}",
+                            "subject" => "Покупка курса",
+                            "content" => "$body",
+                            "is_send_now" => 1
+                        ]
+                    ]
+                );
 
                 $phone = ($this->phone) ? $this->phone : null;
                 $name = ($this->name) ? $this->name : null;
 
                 $body = $this->GetRegistrationClientHtml($course_info['name'], $course_info['price'], $this->email, $course_info['count'], $res['currency'], $phone, $name, $name_funnel, $number_slide);
-                $this->SendEmail("У вас купили курс!", $body, $course_info['email']);
+                $f = $this->clients->GetApi();
+                $this->api_key = $f['api_key'];
+                $this->api_endpoint = $f['endpoint'];
+                $this->EmailQueueApiCall(
+                    $this->api_endpoint,
+                    $this->api_key,
+                    [
+                        [
+                            "from" => "{$this->ourEmail}",
+                            "to" => "{$course_info['email']}",
+                            "sender" => "{$this->ourEmail}",
+                            "subject" => "У вас к упили курс",
+                            "content" => "$body",
+                            "is_send_now" => 1
+                        ]
+                    ]
+                );
                 $this->get_content();
             }
             return true;
