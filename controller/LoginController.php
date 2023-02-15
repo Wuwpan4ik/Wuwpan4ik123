@@ -151,9 +151,6 @@
                 ];
                 $title = "Спасибо за регистрацию";
                 $body = include './template/templates_email/WelcomeClient.php';
-                $data = [
-
-                ];
 
                 $f = $this->user->GetApi();
                 $this->api_key = $f['api_key'];
@@ -166,7 +163,7 @@
                             "from" => $this->ourEmail,
                             "sender" => $this->ourEmail,
                             "to" => $this->email,
-                            "content" => $body,
+                            "content" => '1',
                             "subject" => "dwdwdwd"
                         ]
                     ]
