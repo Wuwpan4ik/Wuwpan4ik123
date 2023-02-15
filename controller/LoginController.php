@@ -164,12 +164,9 @@
                     [
                         [
                             "from" => $this->ourEmail,
-                            "from_name" => $this->ourNickName,
                             "sender" => $this->ourEmail,
                             "to" => $this->email,
                             "content" => $body,
-                            "is_send_now" => 1,
-                            "is_html" => 1,
                             "subject" => "dwdwdwd"
                         ]
                     ]
