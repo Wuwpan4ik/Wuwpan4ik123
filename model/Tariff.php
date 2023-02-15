@@ -4,7 +4,7 @@
 
         public function Get()
         {
-            return $this->db->query("SELECT users_tariff.tariff_id, tariffs.funnel_count, tariffs.course_count, tariffs.file_size, tariffs.children_count FROM `users_tariff` INNER JOIN `tariffs` ON tariffs.id = users_tariff.tariff_id WHERE users_tariff.user_id = {$_SESSION['user']['id']}");
+            return $this->db->query("SELECT users_tariff.tariff_id, users_tariff.memory_add, users_tariff.clients_add, tariffs.funnel_count, tariffs.course_count, tariffs.file_size, tariffs.children_count FROM `users_tariff` INNER JOIN `tariffs` ON tariffs.id = users_tariff.tariff_id WHERE users_tariff.user_id = {$_SESSION['user']['id']}");
         }
 
         public function GetUserTariff()
@@ -29,7 +29,7 @@
 
         public function GetTariff($user_id)
         {
-            $result = $this->db->query("SELECT users_tariff.user_id, users_tariff.tariff_id, users_tariff.date, tariffs.file_size, tariffs.children_count as 'children', tariffs.name FROM `users_tariff` INNER JOIN `tariffs` ON tariffs.id = users_tariff.tariff_id WHERE users_tariff.user_id = {$user_id}");
+            $result = $this->db->query("SELECT users_tariff.user_id, users_tariff.tariff_id, users_tariff.date, users_tariff.clients_add, users_tariff.memory_add, tariffs.file_size, tariffs.children_count as 'children', tariffs.name FROM `users_tariff` INNER JOIN `tariffs` ON tariffs.id = users_tariff.tariff_id WHERE users_tariff.user_id = {$user_id}");
             if (count($result) == 1) {
                 return $result;
             }

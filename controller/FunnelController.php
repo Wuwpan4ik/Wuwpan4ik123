@@ -29,7 +29,7 @@
 
             $files_size = $this->funnel_content->dir_size($this->url_dir);
 
-            if ($_FILES['video_uploader']['size'] + $files_size > $max_file_size) {
+            if ($_FILES['video_uploader']['size'] + $files_size > $max_file_size + $this->CheckTariff()[0]['memory_add']) {
                 return False;
             }
 

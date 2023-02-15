@@ -269,7 +269,7 @@ class AccountController extends ACoreCreator {
         $link = $_POST['link'];
 
         if ($this->user_contacts->isUserSocials()) {
-            $this->user_contacts->UpdateQuery("user_contacts", ["$social" => $link], "WHERE user_id = " . $_SESSION['user']['id']);
+            $this->user_contacts->UpdateQuery("user_contacts", ["$social" => $link], "WHERE user_id = {$_SESSION['user']['id']}");
         } else {
             $this->user_contacts->InsertQuery("user_contacts", ["$social" => $link, "user_id" => $_SESSION['user']['id']]);
         }
@@ -280,6 +280,11 @@ class AccountController extends ACoreCreator {
     function TakeSocialUrls() {
         echo json_encode($this->user_contacts->TakeSocialUrls());
         return true;
+    }
+
+    function AddAdditionally() {
+        $this->user_tariff->UpdateQuery("users_tariff", ["clients_add" => $_POST['additionally_user'], "memory_add" => $_POST["additionally_memory"]], "WHERE user_id = {$_SESSION['user']['id']}");
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 
     function get_content()

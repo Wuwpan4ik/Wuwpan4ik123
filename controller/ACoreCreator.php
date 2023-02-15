@@ -27,6 +27,7 @@
         protected $contact;
         protected $user_class;
         protected $article;
+        protected $user_tariff;
 
         protected $ourEmail;
         protected $ourPassword;
@@ -61,6 +62,7 @@
             $this->contact = new ContactModel();
             $this->user_class = new UserModel();
             $this->article = new ArticleModel();
+            $this->user_tariff = new Tariff();
 
             $email_account = $this->email_class->GetEmailAccount();
             $this->ourEmail = $email_account['email'];

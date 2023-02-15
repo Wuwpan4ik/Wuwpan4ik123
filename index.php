@@ -42,6 +42,7 @@
     $router->addRoute("/Account/SaveSchoolSettings", "AccountController.php", "SaveSchoolSettings");
     $router->addRoute("/Account/SaveSocialSettings", "AccountController.php", "SaveSocialSettings");
     $router->addRoute("/Account/SaveIntegrationsSettings", "AccountController.php", "SaveIntegrationsSettings");
+    $router->addRoute("/AccountController/AddAdditionally", "AccountController.php", "AddAdditionally");
 
     $router->addRoute("/UserMain", "UserMain.php");
     $router->addRoute("/UserLogin", "UserLogin.php");

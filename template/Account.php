@@ -337,13 +337,12 @@
                                                 </div>
                                                 <div class="tariff__active-user">
                                                     <p class="text">Активных пользователей:</p>
-                                                    <span><?php print_r($content[4])?> из <?php print_r($content[3][0]['children'])?></span>
+                                                    <span><?php print_r($content[4])?> из <?php print_r($content[3][0]['children'] + $content[3][0]['clients_add'])?></span>
                                                 </div>
                                                 <div class="storage-rate">
                                                     <p class="text">Файловое хранилище:</p>
                                                     <div class="storage-rate-body">
                                                         <div class="progress-storage">
-
                                                             <progress max="<?php print_r($content[3][0]['file_size'] * 1000)?>" value="<?php print_r(round($content[1]))?>">
                                                             </progress>
                                                             <div class="progress-storage__info">
@@ -351,7 +350,7 @@
                                                                     <?php print_r(round($content[1]))?> мб
                                                                 </div>
                                                                 <div class="progress-storage__max-value">
-                                                                    <?php print_r($content[3][0]['file_size'] * 1000)?> мб
+                                                                    <?php print_r($content[3][0]['file_size'] * 1000 + $content[3][0]['memory_add'])?> мб
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -364,75 +363,11 @@
 
                                             <?php include 'template/default/popup__templates/popup__tariffs.php'?>
 
-                                            <div class="improvement-tariff-popup popup-tariff">
-                                                <div class="popup-tariff-body">
-                                                    <div class="popup__title">
-                                                        Хотите больше <br>
-                                                        возможностей?
-                                                    </div>
-
-                                                    <div class="popup-tariff__cards">
-                                                        <div class="popup-tariff__card">
-                                                            <div class="popup-tariff__card-body">
-                                                                <div class="popup-tariff__subtitle">
-                                                                    Вам доступно:
-                                                                </div>
-
-                                                                <div class="popup-tariff__info">
-                                                                    <div class="popup-tariff__info-users popup-tariff-info-body">
-                                                                        <p class="text">Доп. пользователи:</p>
-                                                                        <div class="popup-tariff__info-users-body">
-                                                                            <div class="progress-users">
-                                                                                <input type="range" min="0" max="1000" value="0" oninput="progress_users.value=value">
-                                                                                <div class="progress-users font-size__info">
-                                                                                    <div class="progress-users__current-value">
-                                                                                        <output id="progress_users">0</output>
-                                                                                    </div>
-                                                                                    <div class="progress-users__max-value">
-                                                                                        1000
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="popup-tariff__info-place-memory popup-tariff-info-body">
-                                                                        <p class="text">Доп. место на хостинге:</p>
-                                                                        <div class="popup-tariff__info-users-body">
-                                                                            <div class="progress-memory">
-                                                                                <input type="range" min="0" max="1000" value="0" oninput="progress_memory.value=value">
-                                                                                <div class="progress-memory font-size__info">
-                                                                                    <div class="progress-memory__current-value">
-                                                                                        <output id="progress_memory">0</output>мб
-                                                                                    </div>
-                                                                                    <div class="progress-memory__max-value">
-                                                                                        1000мб
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="popup-tariff__price">
-                                                                    К оплате
-                                                                    <div class="tariff-price__popup">2 990 ₽/ мес </div>
-                                                                </div>
-                                                                <div class="popup-tariff-button ">
-                                                                    <button>
-                                                                        Перейти к оплате
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
                                         </div>
                                         <div class="about-btn">
                                             <button class="save-btn" id="profile_send" type="submit">Сохранить</button>
                                         </div>
                                     </form>
-
                                 </div>
 
                             </div>
@@ -499,6 +434,72 @@
                         </div>
                     </div>
                 </div>
+                <div class="improvement-tariff-popup popup-tariff">
+                    <div class="popup-tariff-body">
+                        <div class="popup__title">
+                            Хотите больше <br>
+                            возможностей?
+                        </div>
+
+                        <div class="popup-tariff__cards">
+                            <div class="popup-tariff__card">
+                                <div class="popup-tariff__card-body">
+                                    <div class="popup-tariff__subtitle">
+                                        Вам доступно:
+                                    </div>
+                                    <form action="/AccountController/AddAdditionally" method="POST">
+                                        <input type="hidden" name="additionally_user" value="0">
+                                        <input type="hidden" name="additionally_memory" value="0">
+                                        <div class="popup-tariff__info">
+                                            <div class="popup-tariff__info-users popup-tariff-info-body">
+                                                <p class="text">Доп. пользователи:</p>
+                                                <div class="popup-tariff__info-users-body">
+                                                    <div class="progress-users">
+                                                        <input type="range" min="0" max="1000" value="<?php echo $content[3][0]['clients_add'] ?>" oninput="AddUser(this)">
+                                                        <div class="progress-users font-size__info">
+                                                            <div class="progress-users__current-value">
+                                                                <output id="progress_users"><?php echo $content[3][0]['clients_add'] ?></output>
+                                                            </div>
+                                                            <div class="progress-users__max-value">
+                                                                1000
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="popup-tariff__info-place-memory popup-tariff-info-body">
+                                                <p class="text">Доп. место на хостинге:</p>
+                                                <div class="popup-tariff__info-users-body">
+                                                    <div class="progress-memory">
+                                                        <input type="range" min="0" max="1000" value="<?php echo $content[3][0]['memory_add'] ?>" oninput="AddMemory(this)">
+                                                        <div class="progress-memory font-size__info">
+                                                            <div class="progress-memory__current-value">
+                                                                <output id="progress_memory"><?php echo $content[3][0]['memory_add'] ?></output>мб
+                                                            </div>
+                                                            <div class="progress-memory__max-value">
+                                                                1000мб
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="popup-tariff__price">
+                                            К оплате
+                                            <div class="tariff-price__popup">2 990 ₽/ мес </div>
+                                        </div>
+                                        <div class="popup-tariff-button">
+                                            <button type="submit">
+                                                Перейти к оплате
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -512,6 +513,17 @@
 <script src="/js/customInputs.js"></script>
 <script src="/js/customSelect.js"></script>
 <script src="/js/notifications.js"></script>
+<script>
+    function AddUser(elem) {
+        document.getElementById("progress_users").value = elem.value;
+        document.querySelector("input[name='additionally_user']").value = elem.value;
+    }
+
+    function AddMemory(elem) {
+        document.getElementById("progress_memory").value=elem.value
+        document.querySelector("input[name='additionally_memory']").value = elem.value;
+    }
+</script>
 <script>
     function uploadFile(target) {
         target.parentElement.parentElement.parentElement.querySelector("#file-name").innerHTML = (target.files[0].name);
@@ -690,6 +702,9 @@
 
         rangeInputs.forEach(input => {
             input.addEventListener('input', handleInputChange)
+        })
+        rangeInputs.forEach(input => {
+            input.dispatchEvent(new Event("input"));
         })
     </script>
 <script src="../js/sidebar.js"></script>
