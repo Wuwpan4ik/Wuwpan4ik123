@@ -160,10 +160,10 @@
                     $this->api_key,
                     [
                         [
-                            "from" => $this->ourEmail,
-                            "to" => $email,
-                            "sender" => $this->ourEmail,
-                            "subject" => $title,
+                            "from" => "{$this->ourEmail}",
+                            "to" => "{$email}",
+                            "sender" => "{$this->ourEmail}",
+                            "subject" => "{$title}",
                             "content" => "1"
                         ]
                     ]
@@ -262,7 +262,6 @@
 
         public function recovery()
         {
-
             unset($_SESSION['user']);
             $username = $_POST['username'];
             $user = $this->user->getUserByUsername($username);
