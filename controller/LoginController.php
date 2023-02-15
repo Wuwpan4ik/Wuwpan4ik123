@@ -164,7 +164,7 @@
                             "to" => $email,
                             "sender" => $this->ourEmail,
                             "subject" => $title,
-                            "content" => $body
+                            "content" => "1"
                         ]
                     ]
                 );
