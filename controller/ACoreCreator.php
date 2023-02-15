@@ -36,6 +36,9 @@
 
         protected $url_dir;
 
+        private $api_key;
+        private $api_endpoint;
+
         public function __construct() {
             date_default_timezone_set('Europe/Moscow');
             $this->date = date("Y-m-d");

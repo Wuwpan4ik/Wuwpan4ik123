@@ -1,5 +1,30 @@
 <?php
     trait SendEmail {
+        public $result =
+        [
+        "from" => "info@litmind.com",
+        "to" => "lorenzo@tin.cat",
+        "sender" => "lorenzo@litmind.com",
+        "subject" => "Just testing",
+        "content" => "This is just an email to test Emailqueue"
+        ];
+
+        function EmailQueueApiCall($endpoint, $key, $messages = false) {
+            $curl = curl_init();
+
+            $request = [
+                "key" => $key,
+                "messages" => $messages
+            ];
+
+            curl_setopt($curl, CURLOPT_URL, $endpoint);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, ["q" => json_encode($request)]);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+            $result = curl_exec($curl);
+            curl_close($curl);
+            return json_decode($result, true);
+        }
         public function SendEmail ($title, $body, $email, $file = null, $file_name = null) {
 
             $mail = new PHPMailer\PHPMailer\PHPMailer(true);
