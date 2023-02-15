@@ -15,6 +15,9 @@ abstract class ACoreAdmin {
     protected $ourNickName;
     protected $email;
 
+    protected $api_key;
+    protected $api_endpoint;
+
     public function __construct() {
         $this->user = new User();
         $this->email_class = new Email();

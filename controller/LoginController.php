@@ -151,7 +151,22 @@
                 ];
                 $title = "Спасибо за регистрацию";
                 $body = include './template/templates_email/WelcomeClient.php';
-                $this->SendEmail($title, $body, $email);
+                $data = [
+                    "from" => $this->ourEmail,
+                    "from_name" => $this->ourNickName,
+                    "sender" => $this->ourEmail,
+                    "to" => $this->email,
+                    "content" => $body,
+                    "is_send_now" => 1,
+                    "is_html" => 1,
+                    "subject" => "dwdwdwd"
+                ];
+
+                $f = $this->user->GetApi();
+                $this->api_key = $f['api_key'];
+                $this->api_endpoint = $f['endpoint'];
+                $this->EmailQueueApiCall($data);
+//                $this->SendEmail($title, $body, $email);
             }
 
             mkdir("./uploads/users/" . $_SESSION['user']['id']);
@@ -245,6 +260,7 @@
 
         public function recovery()
         {
+
             unset($_SESSION['user']);
             $username = $_POST['username'];
             $user = $this->user->getUserByUsername($username);
@@ -268,7 +284,10 @@
         public function UserRecovery()
         {
             unset($_SESSION['user']);
+
             $this->email = $_POST['email'];
+            $this->user->GetApi();
+
             $user = $this->user->getUserByEmail($this->email);
             if (count($user) == 1) {
                 $title = "Восстановление пароля";

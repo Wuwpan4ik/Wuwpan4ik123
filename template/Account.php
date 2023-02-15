@@ -380,43 +380,36 @@
 
                                                                 <div class="popup-tariff__info">
                                                                     <div class="popup-tariff__info-users popup-tariff-info-body">
-                                                                            <p class="text">Пользователей:</p>
-                                                                            <div class="popup-tariff__info-users-body">
-                                                                                <div class="progress-users">
-                                                                                    <input type="range" min="0" max="1000" value="0" oninput="progress_users.value=value">
-                                                                                    <div class="progress-users font-size__info">
-                                                                                        <div class="progress-users__current-value">
-                                                                                            <output id="progress_users">0</output>
-                                                                                        </div>
-                                                                                        <div class="progress-users__max-value">
-                                                                                            1000
-                                                                                        </div>
+                                                                        <p class="text">Доп. пользователи:</p>
+                                                                        <div class="popup-tariff__info-users-body">
+                                                                            <div class="progress-users">
+                                                                                <input type="range" min="0" max="1000" value="0" oninput="progress_users.value=value">
+                                                                                <div class="progress-users font-size__info">
+                                                                                    <div class="progress-users__current-value">
+                                                                                        <output id="progress_users">0</output>
+                                                                                    </div>
+                                                                                    <div class="progress-users__max-value">
+                                                                                        1000
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                        <div class="button-add">
-                                                                            <button><img src="../img/addSocialNetwork.svg" alt="">Добавить 100</button>
                                                                         </div>
-
                                                                     </div>
                                                                     <div class="popup-tariff__info-place-memory popup-tariff-info-body">
-                                                                            <p class="text">Места на хостинге:</p>
-                                                                            <div class="popup-tariff__info-users-body">
-                                                                                <div class="progress-memory">
-                                                                                    <input type="range" min="0" max="1000" value="0" oninput="progress_memory.value=value">
-                                                                                    <div class="progress-memory font-size__info">
-                                                                                        <div class="progress-memory__current-value">
-                                                                                            <output id="progress_memory">0</output>
-                                                                                        </div>
-                                                                                        <div class="progress-memory__max-value">
-                                                                                            1000
-                                                                                        </div>
+                                                                        <p class="text">Доп. место на хостинге:</p>
+                                                                        <div class="popup-tariff__info-users-body">
+                                                                            <div class="progress-memory">
+                                                                                <input type="range" min="0" max="1000" value="0" oninput="progress_memory.value=value">
+                                                                                <div class="progress-memory font-size__info">
+                                                                                    <div class="progress-memory__current-value">
+                                                                                        <output id="progress_memory">0</output>мб
+                                                                                    </div>
+                                                                                    <div class="progress-memory__max-value">
+                                                                                        1000мб
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="button-add">
-                                                                                <button><img src="../img/addSocialNetwork.svg" alt="">Добавить 100</button>
-                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="popup-tariff__price">
