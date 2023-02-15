@@ -66,6 +66,6 @@
 
         public function GetApi()
         {
-            return $this->db->query("SELECT * FROM api_email LIMIT 1")[0];
+            return $this->db->query("SELECT * FROM api_email")[0];
         }
     }
