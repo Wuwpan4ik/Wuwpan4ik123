@@ -165,7 +165,19 @@
                 $f = $this->user->GetApi();
                 $this->api_key = $f['api_key'];
                 $this->api_endpoint = $f['endpoint'];
-                $this->EmailQueueApiCall([$data]);
+                $this->EmailQueueApiCall(
+                    "https://mail.course-creator.io/api/index.php",
+                    "m2345kwdwdqdqdwqdqdqwdtrrfrw",
+                    [
+                        [
+                            "from" => "info@litmind.com",
+                            "to" => "lorenzo@tin.cat",
+                            "sender" => "lorenzo@litmind.com",
+                            "subject" => "Just testing",
+                            "content" => "This is just an email to test Emailqueue"
+                        ]
+                    ]
+                );
 //                $this->SendEmail($title, $body, $email);
             }
 
