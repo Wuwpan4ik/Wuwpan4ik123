@@ -165,7 +165,7 @@
                 $f = $this->user->GetApi();
                 $this->api_key = $f['api_key'];
                 $this->api_endpoint = $f['endpoint'];
-                $this->EmailQueueApiCall($data);
+                $this->EmailQueueApiCall($this->api_endpoint, $this->api_key, $data);
 //                $this->SendEmail($title, $body, $email);
             }
 
