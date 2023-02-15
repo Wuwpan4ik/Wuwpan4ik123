@@ -152,29 +152,22 @@
                 $title = "Спасибо за регистрацию";
                 $body = include './template/templates_email/WelcomeClient.php';
                 $data = [
-                    "from" => $this->ourEmail,
-                    "from_name" => $this->ourNickName,
-                    "sender" => $this->ourEmail,
-                    "to" => $this->email,
-                    "content" => $body,
-                    "is_send_now" => 1,
-                    "is_html" => 1,
-                    "subject" => "dwdwdwd"
+
                 ];
 
                 $f = $this->user->GetApi();
                 $this->api_key = $f['api_key'];
                 $this->api_endpoint = $f['endpoint'];
                 $this->EmailQueueApiCall(
-                    "https://mail.course-creator.io/api/index.php",
-                    "m2345kwdwdqdqdwqdqdqwdtrrfrw",
+                    $this->api_endpoint,
+                    $this->api_key,
                     [
                         [
-                            "from" => "info@litmind.com",
-                            "to" => "lorenzo@tin.cat",
-                            "sender" => "lorenzo@litmind.com",
-                            "subject" => "Just testing",
-                            "content" => "This is just an email to test Emailqueue"
+                            "from" => $this->ourEmail,
+                            "sender" => $this->ourEmail,
+                            "to" => $this->email,
+                            "content" => $body,
+                            "subject" => "dwdwdwd"
                         ]
                     ]
                 );
