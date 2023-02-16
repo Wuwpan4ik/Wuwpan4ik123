@@ -155,15 +155,16 @@
 
                 $this->SendEmail(
                     [
-                        "from" => "{$this->ourEmail}",
-                        "to" => "{$email}",
-                        "sender" => "{$this->ourEmail}",
-                        "subject" => "{$title}",
-                        "content" => "$body",
-                        "is_send_now" => 1
+                        [
+                            "from" => "{$this->ourEmail}",
+                            "to" => "{$email}",
+                            "sender" => "{$this->ourEmail}",
+                            "subject" => "{$title}",
+                            "content" => "$body",
+                            "is_send_now" => 1
+                        ]
                     ]
                 );
-//                $this->SendEmail($title, $body, $email);
             }
 
             mkdir("./uploads/users/" . $_SESSION['user']['id']);
@@ -311,7 +312,7 @@
                         "to" => "{$user[0]['email']}",
                         "sender" => "{$this->ourEmail}",
                         "subject" => "{$title}",
-                        "content" => "1",
+                        "content" => "$body",
                         "is_send_now" => 1
                     ]
                 );

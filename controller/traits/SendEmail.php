@@ -1,7 +1,7 @@
 <?php
     trait SendEmail {
         function SendEmail($message) {
-            $this->EmailQueueApiCall($this->api_endpoint, $this->api_key, [$message]);
+            $this->EmailQueueApiCall($this->api_endpoint, $this->api_key, $message);
         }
 
         function EmailQueueApiCall($endpoint, $key, $messages = false) {
