@@ -249,8 +249,9 @@ cursor: pointer;text-decoration: none;">Вернуться на сайт</a>
             // События при конце видео
             item.addEventListener('ended', function (){
 
-                // Каталог курса
-                if (item.parentElement.parentElement.querySelector('.overlay-allLessons')) {
+                // Каталог
+                let lessons = item.parentElement.parentElement.querySelector('.overlay-allLessons');
+                if (lessons && !lessons.classList.contains("disable-skip")) {
                     $('.slick-next').click();
                 }
 

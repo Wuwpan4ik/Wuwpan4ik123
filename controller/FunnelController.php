@@ -110,10 +110,17 @@
                 }
             }
 
+            if (isset($_POST['disabled__transition'])) {
+                $disabled__transition = 1;
+            } else {
+                $disabled__transition = 0;
+            }
+
             $data = [
                 "name" => $name,
                 "description" => $description,
-                "button_text" => $change__button
+                "button_text" => $change__button,
+                "disabled__transition" => $disabled__transition
             ];
 
             $this->funnel_content->UpdateQuery("funnel_content", $data, "WHERE id = {$item_id}");
