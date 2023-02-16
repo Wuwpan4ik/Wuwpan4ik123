@@ -152,21 +152,15 @@
                 $title = "Спасибо за регистрацию";
                 $body = include './template/templates_email/WelcomeClient.php';
 
-                $f = $this->user->GetApi();
-                $this->api_key = $f['api_key'];
-                $this->api_endpoint = $f['endpoint'];
-                $this->EmailQueueApiCall(
-                    $this->api_endpoint,
-                    $this->api_key,
+
+                $this->SendEmail(
                     [
-                        [
-                            "from" => "{$this->ourEmail}",
-                            "to" => "{$email}",
-                            "sender" => "{$this->ourEmail}",
-                            "subject" => "{$title}",
-                            "content" => "$body",
-                            "is_send_now" => 1
-                        ]
+                        "from" => "{$this->ourEmail}",
+                        "to" => "{$email}",
+                        "sender" => "{$this->ourEmail}",
+                        "subject" => "{$title}",
+                        "content" => "$body",
+                        "is_send_now" => 1
                     ]
                 );
 //                $this->SendEmail($title, $body, $email);
@@ -276,21 +270,14 @@
                 $this->user->UpdateQuery("user", $data, "WHERE id = {$user[0]['id']}");
                 $body = include "./template/templates_email/vosstanovlenie-parolya(client, user).php";
 
-                $f = $this->user->GetApi();
-                $this->api_key = $f['api_key'];
-                $this->api_endpoint = $f['endpoint'];
-                $this->EmailQueueApiCall(
-                    $this->api_endpoint,
-                    $this->api_key,
+                $this->SendEmail(
                     [
-                        [
-                            "from" => "{$this->ourEmail}",
-                            "to" => "{$user[0]['email']}",
-                            "sender" => "{$this->ourEmail}",
-                            "subject" => "{$title}",
-                            "content" => "$body",
-                            "is_send_now" => 1
-                        ]
+                        "from" => "{$this->ourEmail}",
+                        "to" => "{$user[0]['email']}",
+                        "sender" => "{$this->ourEmail}",
+                        "subject" => "{$title}",
+                        "content" => "$body",
+                        "is_send_now" => 1
                     ]
                 );
 
@@ -318,21 +305,14 @@
                 $this->user->UpdateQuery("user", $data, "WHERE email = {$this->email}");
                 $body = include "./template/templates_email/vosstanovlenie-parolya(client, user).php";
 
-                $f = $this->user->GetApi();
-                $this->api_key = $f['api_key'];
-                $this->api_endpoint = $f['endpoint'];
-                $this->EmailQueueApiCall(
-                    $this->api_endpoint,
-                    $this->api_key,
+                $this->SendEmail(
                     [
-                        [
-                            "from" => "{$this->ourEmail}",
-                            "to" => "{$user[0]['email']}",
-                            "sender" => "{$this->ourEmail}",
-                            "subject" => "{$title}",
-                            "content" => "1",
-                            "is_send_now" => 1
-                        ]
+                        "from" => "{$this->ourEmail}",
+                        "to" => "{$user[0]['email']}",
+                        "sender" => "{$this->ourEmail}",
+                        "subject" => "{$title}",
+                        "content" => "1",
+                        "is_send_now" => 1
                     ]
                 );
 

@@ -22,21 +22,14 @@ class ContactController extends ACoreCreator {
 
         $title = "Вопрос от пользователя " . $user[0]['email'];
         $body = $this->GetQuestionHTML($course[0]['name'], $user[0]['email'], date('Y-m-d H:i:s'), $question);
-        $f = $this->user->GetApi();
-        $this->api_key = $f['api_key'];
-        $this->api_endpoint = $f['endpoint'];
-        $this->EmailQueueApiCall(
-            $this->api_endpoint,
-            $this->api_key,
+        $this->SendEmail(
             [
-                [
-                    "from" => "{$this->ourEmail}",
-                    "to" => "{$author_user[0]['email']}",
-                    "sender" => "{$this->ourEmail}",
-                    "subject" => "{$title}",
-                    "content" => "$body",
-                    "is_send_now" => 1
-                ]
+                "from" => "{$this->ourEmail}",
+                "to" => "{$author_user[0]['email']}",
+                "sender" => "{$this->ourEmail}",
+                "subject" => "{$title}",
+                "content" => "$body",
+                "is_send_now" => 1
             ]
         );
         header("Location: /");
