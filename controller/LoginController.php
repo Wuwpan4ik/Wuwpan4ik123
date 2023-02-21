@@ -61,7 +61,6 @@
                     'email' => $res[0]['email'],
                     'site_url' => $res[0]['site_url'],
                     'is_creator' => 1
-
                 ];
                 $integrations = $this->user->getUserIntegrations();
                 if (count($integrations) != 0) {
@@ -179,6 +178,7 @@
             chmod("./uploads/users/". $_SESSION['user']['id'] . "/files", 0777);
             chmod("./uploads/users/". $_SESSION['user']['id'] . "/course_files", 0777);
             chmod("./uploads/users/". $_SESSION['user']['id'] . "/thumbnails", 0777);
+            shell_exec("ln -s /var/www/www-root/data/www/course-creator.io/subdomains /var/www/www-root/data/www/course-creator.io/" . strtolower($res[0]['username']));
             echo true;
             return true;
         }

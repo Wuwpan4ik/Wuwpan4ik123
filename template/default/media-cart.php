@@ -32,7 +32,6 @@
             </span>
         </div>
         <div class="textarea_focus">
-            <label for="name" class="label_focus activeLabel">Укажите заголовок:</label>
             <textarea name="description" class="videoname video-desc textarea-info " placeholder="Укажите описание:" maxlength="100"><?=$v['description']?></textarea>
         </div>
         <div class="block__button-add <?php if (!isset($v['button_text']) || empty($v['button_text'])) { ?> display-none <?php } ?>" >
