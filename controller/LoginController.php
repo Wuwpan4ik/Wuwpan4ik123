@@ -15,12 +15,12 @@
         }
 
         public function UserLogin() {
+            unset($_SESSION["user"]);
             $email = $_POST['email'];
             $password = $_POST['pass'];
 
             $res = $this->user->getAuthorizationUserByEmail($email, $password);
             if(count($res) != 0) {
-                unset($_SESSION["user"]);
                 if ($res[0]['is_creator'] == 0) {
                     $_SESSION["user"] = [
                         'id' => $res[0]['id'],
@@ -28,15 +28,15 @@
                         'avatar' => $res[0]['avatar'],
                         'is_creator' => 0
                     ];
-                    if (!is_null($res[0]['first_name'])) {
-                        $_SESSION['user']['first_name'] = $res[0]['first_name'];
-                    }
+                    if (!is_null($res[0]['first_name'])) $_SESSION['user']['first_name'] = $res[0]['first_name'];
+                    if (!is_null($res[0]['telephone'])) $_SESSION['user']['telephone'] = $res[0]['telephone'];
                 } else {
                     $response = "Вам не разрешён доступ";
                     echo $response;
                     die(header("HTTP/1.0 404 Not Found"));
                 }
-            } else {
+            }
+            else {
                 $response = "Неверный пароль или логин";
                 echo $response;
                 die(header("HTTP/1.0 404 Not Found"));
@@ -61,7 +61,6 @@
                     'email' => $res[0]['email'],
                     'site_url' => $res[0]['site_url'],
                     'is_creator' => 1
-
                 ];
                 $integrations = $this->user->getUserIntegrations();
                 if (count($integrations) != 0) {
@@ -151,7 +150,20 @@
                 ];
                 $title = "Спасибо за регистрацию";
                 $body = include './template/templates_email/WelcomeClient.php';
-                $this->SendEmail($title, $body, $email);
+
+
+                $this->SendEmail(
+                    [
+                        [
+                            "from" => "{$this->ourEmail}",
+                            "to" => "{$email}",
+                            "sender" => "{$this->ourEmail}",
+                            "subject" => "{$title}",
+                            "content" => "$body",
+                            "is_send_now" => 1
+                        ]
+                    ]
+                );
             }
 
             mkdir("./uploads/users/" . $_SESSION['user']['id']);
@@ -166,6 +178,7 @@
             chmod("./uploads/users/". $_SESSION['user']['id'] . "/files", 0777);
             chmod("./uploads/users/". $_SESSION['user']['id'] . "/course_files", 0777);
             chmod("./uploads/users/". $_SESSION['user']['id'] . "/thumbnails", 0777);
+            shell_exec("ln -s /var/www/www-root/data/www/course-creator.io/subdomains /var/www/www-root/data/www/course-creator.io/" . strtolower($res[0]['username']));
             echo true;
             return true;
         }
@@ -257,7 +270,18 @@
                 ];
                 $this->user->UpdateQuery("user", $data, "WHERE id = {$user[0]['id']}");
                 $body = include "./template/templates_email/vosstanovlenie-parolya(client, user).php";
-                $this->SendEmail($title, $body, $user[0]['email']);
+
+                $this->SendEmail(
+                    [
+                        "from" => "{$this->ourEmail}",
+                        "to" => "{$user[0]['email']}",
+                        "sender" => "{$this->ourEmail}",
+                        "subject" => "{$title}",
+                        "content" => "$body",
+                        "is_send_now" => 1
+                    ]
+                );
+
                 header('Location: /login');
                 return true;
             }
@@ -268,7 +292,10 @@
         public function UserRecovery()
         {
             unset($_SESSION['user']);
+
             $this->email = $_POST['email'];
+            $this->user->GetApi();
+
             $user = $this->user->getUserByEmail($this->email);
             if (count($user) == 1) {
                 $title = "Восстановление пароля";
@@ -278,7 +305,18 @@
                 ];
                 $this->user->UpdateQuery("user", $data, "WHERE email = {$this->email}");
                 $body = include "./template/templates_email/vosstanovlenie-parolya(client, user).php";
-                $this->SendEmail($title, $body, $user[0]['email']);
+
+                $this->SendEmail(
+                    [
+                        "from" => "{$this->ourEmail}",
+                        "to" => "{$user[0]['email']}",
+                        "sender" => "{$this->ourEmail}",
+                        "subject" => "{$title}",
+                        "content" => "$body",
+                        "is_send_now" => 1
+                    ]
+                );
+
                 header('Location: /UserLogin');
                 return true;
             }

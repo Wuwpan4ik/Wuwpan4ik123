@@ -22,7 +22,16 @@ class ContactController extends ACoreCreator {
 
         $title = "Вопрос от пользователя " . $user[0]['email'];
         $body = $this->GetQuestionHTML($course[0]['name'], $user[0]['email'], date('Y-m-d H:i:s'), $question);
-        $this->SendEmail($title, $body, $author_user[0]['email']);
+        $this->SendEmail(
+            [
+                "from" => "{$this->ourEmail}",
+                "to" => "{$author_user[0]['email']}",
+                "sender" => "{$this->ourEmail}",
+                "subject" => "{$title}",
+                "content" => "$body",
+                "is_send_now" => 1
+            ]
+        );
         header("Location: /");
     }
 

@@ -173,12 +173,17 @@
         -webkit-transform: scale(.7);
         transform: scale(.7);
         left: 0;
+        top: 0px;
         -webkit-transition: all .2s ease-in-out;
         transition: all .2s ease-in-out;
     }
 
     input[type="checkbox"].switch_1:checked:after{
         left: calc(100% - 24px);
+    }
+
+    input[type="checkbox"].switch_1:focus:after {
+        top: -1px;
     }
 
     /* Switch 1 Specific Style End */

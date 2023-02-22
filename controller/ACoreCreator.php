@@ -26,6 +26,8 @@
         protected $purchase;
         protected $contact;
         protected $user_class;
+        protected $article;
+        protected $user_tariff;
 
         protected $ourEmail;
         protected $ourPassword;
@@ -34,6 +36,9 @@
         protected $date;
 
         protected $url_dir;
+
+        private $api_key;
+        private $api_endpoint;
 
         public function __construct() {
             date_default_timezone_set('Europe/Moscow');
@@ -56,11 +61,16 @@
             $this->purchase = new PurchaseModel();
             $this->contact = new ContactModel();
             $this->user_class = new UserModel();
+            $this->article = new ArticleModel();
+            $this->user_tariff = new Tariff();
 
             $email_account = $this->email_class->GetEmailAccount();
             $this->ourEmail = $email_account['email'];
             $this->ourPassword = $email_account['password'];
             $this->ourNickName = $email_account['name'];
+            $f = $this->user->GetApi();
+            $this->api_key = $f['api_key'];
+            $this->api_endpoint = $f['endpoint'];
 
             $this->url_dir = "./uploads/users/" . $_SESSION['user']['id'] . '/';
         }

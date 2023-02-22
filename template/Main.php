@@ -17,6 +17,10 @@
 
 <body>
 
+<div class="error display-none">
+    <?php print_r($_SESSION['error']) ?>
+</div>
+
 <div class="app">
 
     <?php include 'default/sidebar.php';?>

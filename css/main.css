@@ -74,6 +74,7 @@ body {
 
 * input{
   font-family: "Inter";
+  font-weight: 400;
 }
 
 * button{
@@ -1635,7 +1636,6 @@ span.name {
   display: -ms-flexbox;
   display: flex;
   gap: 10px;
-
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -1955,13 +1955,8 @@ td, th {
 td:nth-child(1){
   display:flex;
   align-items:center;
-  width:100%;
   padding: 16px 20px !important;
   margin-top:8px;
-}
-
-#grey {
-  background-color: #F8F8F8;
 }
 
 .status {
@@ -2331,10 +2326,6 @@ td:nth-child(1){
   max-height:100px;
 }
 
-.full_th {
-  text-transform: uppercase;
-}
-
 /* Brench: Styles */
 
 #delete__back .popup__title{
@@ -2356,7 +2347,6 @@ td:nth-child(1){
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  margin: 20px 0 0 0;
 }
 
 .avatar-body {
@@ -2528,8 +2518,7 @@ td:nth-child(1){
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.25);
   border: 1px solid #E1E3E6;
   border-radius: 5px;
-  max-height: 222px;
-  overflow-y: scroll;
+  overflow-y: auto;
   padding: 16px 13px;
   margin: 12px 0 0 0;
   z-index: 110;

@@ -53,10 +53,9 @@
                     </div>
                     <div class="slider__header-views">
                         <div class="slider__header-views-img">
-                            <img src="/img/smallPlayer/views.svg" alt="">
+                            <span>Сейчас смотрят:</span><img src="/img/smallPlayer/views.svg" alt="">
                         </div>
                         <div class="slider__header-views-count">
-                            <?php echo rand(100, 300)?>
                         </div>
                     </div>
                 </div>
@@ -67,14 +66,14 @@
                     <img src="/img/smallPlayer/pause.svg" alt="">
                 </div>
                 <div class="slider__item-info _conatiner-player">
-                    <div class="slider__item-title <? echo (json_decode($content['main__settings'], true)['title__font'])?>">
+                    <div class="slider__item-title <? echo (json_decode($content['main__settings'], true)['title__font'])?>" style="<? echo "font-size:" . (json_decode($content['main__settings'], true)['title__size']) . 'px'?>">
                         <?=$item['content_name']?>
                     </div>
-                    <div class="slider__item-text <? echo (json_decode($content['main__settings'], true)['desc__font'])?>">
+                    <div class="slider__item-text <? echo (json_decode($content['main__settings'], true)['desc__font'])?>" style="<? echo "font-size:" . (json_decode($content['main__settings'], true)['desc__size']) . 'px'?>">
                         <?=$item['content_description']?>
                     </div>
                     <?php
-                    if (isset($item['button_text'])) { ?>
+                    if (isset($item['button_text']) && !empty($item['button_text'])) { ?>
                             <div class="slider__item-button button-open">
                                 <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" <?php if ($popup->first_do->next_lesson) echo 'onclick="NextSlide('. $item["video_id"] .')"' ?> <?php if (isset($popup->first_do->link)) if ($popup->first_do->open_in_new == 'open_new_window') { echo "onClick=\"window.open('". $popup->first_do->link ."')\""; } else { echo "onclick=\"window.location = ('". $popup->first_do->link ."')\""; } ?> class="button"><?=$item['button_text']?></button>
                             </div>
@@ -194,6 +193,30 @@ cursor: pointer;text-decoration: none;">Вернуться на сайт</a>
         $('.slick-next').click();
     }
 </script>
+<!---->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let randomNumber = Math.floor(Math.random() * (92 - 20 + 1) + 20);
+        let counter = 0;
+        let increase = false;
+
+        document.querySelector(".slider__header-views-count").innerHTML = randomNumber;
+
+        setInterval(function() {
+            if (!increase && counter < 4) {
+                randomNumber--;
+                counter++;
+            } else if (increase && counter < 10) {
+                randomNumber++;
+                counter++;
+            } else {
+                increase = !increase;
+                counter = 0;
+            }
+            document.querySelector(".slider__header-views-count").innerHTML = randomNumber;
+        }, 1500);
+    })
+</script>
 
 <!--Закрытие AllLessons-->
 <script>
@@ -226,8 +249,9 @@ cursor: pointer;text-decoration: none;">Вернуться на сайт</a>
             // События при конце видео
             item.addEventListener('ended', function (){
 
-                // Каталог курса
-                if (item.parentElement.parentElement.querySelector('.overlay-allLessons')) {
+                // Каталог
+                let lessons = item.parentElement.parentElement.querySelector('.overlay-allLessons');
+                if (lessons && !lessons.classList.contains("disable-skip")) {
                     $('.slick-next').click();
                 }
 
@@ -310,7 +334,12 @@ cursor: pointer;text-decoration: none;">Вернуться на сайт</a>
                         form[0].querySelector('.next__lesson');
                         NextSlide();
                         notBuy()
-                        AddNotifications('Произошла ошибка', 'Вы уже получали заявку');
+                        if (form.hasClass('popup__application')) {
+                            AddNotifications('Произошла ошибка', 'Вы уже получали заявку');
+                        } else {
+                            AddNotifications('Произошла ошибка', 'Вы уже покупали этот курс');
+                        }
+
                     }
                 });
                 try {
