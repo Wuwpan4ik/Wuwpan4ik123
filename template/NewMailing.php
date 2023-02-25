@@ -101,7 +101,8 @@
                             <input type="radio" id="Audience" name="mytabs" checked="checked"/>
                             <label class="menu-label" for="Audience" id="oplab"><p>Выбрать аудиторию</p></label>
                             <div class="tab">
-                                <div class="new-mailing__block">
+                                <div class="send">
+                                    <div class="send__block">
                                         <label class="new-mailing__subtitle" for="">Выберите продукт</label>
                                         <div class="select-account social-network">
                                             <div id="myMultiselect" class="multiselect">
@@ -112,12 +113,15 @@
                                                     <div class="overSelect"></div>
                                                 </div>
                                                 <div class="mySelectOptions">
-                                                    <label class="item active social__item">Все<input class="custom-checkbox social__input" type="radio" data-value="Все" value="vk" /><label for="happy"></label></label>
-                                                    <label class="item social__item">Кто оплатил<input class="custom-checkbox social__input" type="radio" data-value="Кто оплатил" value="whatsapp" /><label for="happy"></label></label>
-                                                    <label class="item social__item">Кто не оплатил<input class="custom-checkbox social__input" type="radio" data-value="Кто не оплатил" value="twitter" /><label for="happy"></label></label>
+                                                    <label class="item active social__item"><span><img src="/img/Mailings/people.svg" alt="">Все</span><input class="custom-radio_two custom-checkbox social__input" type="radio" data-value="Все" value="vk" /><label for="happy"></label></label>
+                                                    <label class="item social__item"><span><img src="/img/Mailings/people.svg" alt="">Кто оплатил</span><input class="custom-radio_two custom-checkbox social__input" type="radio" data-value="Кто оплатил" value="whatsapp" /><label for="happy"></label></label>
+                                                    <label class="item social__item"><span><img src="/img/Mailings/people.svg" alt="">Кто не оплатил</span><input class="custom-radio_two custom-checkbox social__input" type="radio" data-value="Кто не оплатил" value="twitter" /><label for="happy"></label></label>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="send__recipient"></div>
+                                    </div>
+                                    <div class="send__block">
                                         <label class="new-mailing__subtitle" for="">Выберите продукт</label>
                                         <div class="select-account social-network">
                                             <div id="myMultiselect" class="multiselect">
@@ -128,15 +132,16 @@
                                                     <div class="overSelect"></div>
                                                 </div>
                                                 <div class="mySelectOptions">
-                                                    <label class="item active social__item">Все<input class="custom-checkbox social__input" type="radio" data-value="Все" value="vk" /><label for="happy"></label></label>
-                                                    <label class="item social__item">Кто оплатил<input class="custom-checkbox social__input" type="radio" data-value="Кто оплатил" value="whatsapp" /><label for="happy"></label></label>
-                                                    <label class="item social__item">Кто не оплатил<input class="custom-checkbox social__input" type="radio" data-value="Кто не оплатил" value="twitter" /><label for="happy"></label></label>
+                                                    <label class="item active social__item"><span><img src="/img/Mailings/people.svg" alt="">Все</span><input class="custom-radio_two custom-checkbox social__input" type="radio" data-value="Все" value="vk" /><label for="happy"></label></label>
+                                                    <label class="item social__item"><span><img src="/img/Mailings/people.svg" alt="">Кто оплатил</span><input class="custom-radio_two custom-checkbox social__input" type="radio" data-value="Кто оплатил" value="whatsapp" /><label for="happy"></label></label>
+                                                    <label class="item social__item"><span><img src="/img/Mailings/people.svg" alt="">Кто не оплатил</span><input class="custom-radio_two custom-checkbox social__input" type="radio" data-value="Кто не оплатил" value="twitter" /><label for="happy"></label></label>
                                                 </div>
                                             </div>
                                         </div>
-
-
+                                        <div class="send__recipient"></div>
+                                    </div>
                                 </div>
+
                                 <div class="about-btn">
                                     <button class="save-btn" id="profile_send" type="submit">Сохранить</button>
                                 </div>
@@ -158,9 +163,84 @@
     </div>
 </div>
 
-<script src="/js/customSelect.js"></script>
 <script src="/js/customInputs.js"></script>
 <script src="../js/sidebar.js"></script>
 <script src="/js/getNotifications.js"></script>
+<script>
+    /*Select*/
+    function checkboxStatusChange(block = document) {
+
+        let multiselect = block.querySelectorAll(".multiselect");
+
+
+        multiselect.forEach(element =>{
+            let checkboxes = element.querySelector(".mySelectOptions");
+            let checkedCheckboxes = checkboxes.querySelectorAll('.custom-checkbox');
+            let multiselectOption =  element.querySelector("#name");
+            let container = element.parentElement.parentElement.querySelector('.send__recipient')
+
+            checkedCheckboxes.forEach(item =>{
+                let title = block.querySelectorAll('.slider__item-title');
+                let text = block.querySelectorAll('.slider__item-text');
+
+                let values = [];
+                let data_info;
+                item.addEventListener('click', function(){
+                    if(item.checked = true){
+                        checkedCheckboxes.forEach(el =>{
+                            el.checked = false
+                            el.parentElement.classList.remove('active')
+                            item.parentElement.parentElement.classList.remove('display-flex');
+
+                        })
+                        item.checked = true
+                        title.forEach(t=>{
+                            t.style.fontFamily = item.parentElement.style.fontFamily;
+                            t.style.fontWeight = '900px';
+                        })
+                        item.parentElement.classList.add('active')
+                        values = (item.getAttribute('value'));
+                        data_info = item.dataset.value;
+
+                    }
+                    multiselectOption.innerText = data_info;
+                    container.innerHTML = `
+                            <div class="ot-mailing__recipient">
+                                            ${data_info} <img src="/img/x.svg" alt="">
+                            </div>
+                        `
+
+                    multiselectOption.value = values;
+                    multiselectOption.selected = true;
+                    if (item.parentElement.parentElement.classList.contains('first_do_list')) {
+                        checkFirstSelect()
+                    }
+
+                    if (item.parentElement.parentElement.classList.contains('second_do_list')) {
+                        checkSecondSelect()
+                    }
+                })
+            })
+        })
+    }
+
+    checkboxStatusChange()
+
+    function deleteFlex() {
+        document.querySelectorAll('.mySelectOptions').forEach(item => {
+            item.classList.remove('display-flex')
+        })
+    }
+
+    function toggleCheckboxArea(select) {
+        if (!select.parentElement.querySelector('.mySelectOptions').classList.contains('display-flex')) {
+            deleteFlex();
+        }
+        let option = select.parentElement.querySelector('.mySelectOptions');
+        option.classList.toggle("display-flex");
+        option.style.flexDirection = "column";
+    }
+
+</script>
 </body>
 </html>

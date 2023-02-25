@@ -555,7 +555,7 @@
             if(scroll >= 56){
                 postItem.classList.remove('active');
                 postItem.style.position = 'fixed';
-                postItem.style.top = '23px';
+                postItem.style.top = '4%';
                 postItem.style.bottom = 'null';
             }
             else if(scroll <= 56){

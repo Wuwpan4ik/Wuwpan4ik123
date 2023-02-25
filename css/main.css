@@ -2123,6 +2123,13 @@ td:nth-child(1){
 #editVideo .mySelectOptions{
   max-height: max-content !important;
 }
+
+.mySelectOptions span{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 #editVideo .popup__body-item label{
   font-size: 14px;
   font-weight: 400;
@@ -2568,19 +2575,27 @@ td:nth-child(1){
 .mySelectOptions .item:hover {
   background: rgba(78, 115, 248, 0.08);
   color: #4E73F8 !important;
-
 }
+.mySelectOptions .item:hover img{
+  filter: invert(36%) sepia(82%) saturate(3008%) hue-rotate(204deg) brightness(100%) contrast(100%);
+}
+
 .mySelectOptions .item:hover .checkMark{
   filter: invert(42%) sepia(69%) saturate(4297%) hue-rotate(217deg) brightness(104%) contrast(150%);
 }
 .mySelectOptions .item.active .checkMark{
   filter: invert(42%) sepia(69%) saturate(4297%) hue-rotate(217deg) brightness(104%) contrast(150%);
 }
+
 .mySelectOptions .item.active {
   background: rgba(78, 115, 248, 0.08);
   color: #4E73F8 !important;
-
 }
+
+.mySelectOptions .item.active img{
+  filter: invert(36%) sepia(82%) saturate(3008%) hue-rotate(204deg) brightness(100%) contrast(100%);
+}
+
 .mySelectOptions input {
   display: block !important;
   width: 15px ;
@@ -2892,7 +2907,7 @@ td:nth-child(1){
 
 .mailing__create, .ot-mailing{
   width: 320.33px !important;
-  height: 488px;
+  min-height: 488px;
   border: 1px solid #E1E3E6;
   border-radius: 8px;
 }
@@ -3013,7 +3028,8 @@ td:nth-child(1){
 }
 
 .new-mailing__card{
-  height: 320px;
+ height: 320px;
+  min-height: auto;
 }
 
 .new-mailing__title{
@@ -3086,8 +3102,13 @@ input[type=date]:invalid::-webkit-datetime-edit, input[type=time]:invalid::-webk
   color: #404D61;
 }
 
-.new-mailing__menu input +label{
+.new-mailing__menu{
+  margin: 0!important;
+}
+
+.new-mailing__menu .menu-label{
   width: 50%;
+  margin: 0 0 34px 0;
 }
 
 .custom-radio_two {
@@ -3111,24 +3132,25 @@ input[type=date]:invalid::-webkit-datetime-edit, input[type=time]:invalid::-webk
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   flex-shrink: 0;
   flex-grow: 0;
   border-radius: 50%;
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 60% 100%;
+  background-size: 100% 100% !important;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e") !important;
   transition: 0.3s;
-  border: 3px solid #E1E3E6;
-  border-radius: 50%;
+  border-radius: 50% !important;
 }
 /* стили при наведении курсора на радио */
 .custom-radio_two:not(:disabled):not(:checked)+label:hover::before {
-  border-color: #b3d7ff;
+  border-color: #b3d7ff !important;
 }
 /* стили для активной радиокнопки (при нажатии на неё) */
 .custom-radio_two:not(:disabled):active+label::before {
-  background-color: #b3d7ff;
-  border-color: #b3d7ff;
+  background-color: #b3d7ff !important;
+  border-color: #b3d7ff !important;
 }
 /* стили для радиокнопки, находящейся в фокусе */
 .custom-radio_two:focus+label::before {
@@ -3140,12 +3162,26 @@ input[type=date]:invalid::-webkit-datetime-edit, input[type=time]:invalid::-webk
   border-color: #80bdff;
 }
 /* стили для радиокнопки, находящейся в состоянии checked */
-.popup-styles-button.active .custom-radio_two +label::before {
-  border-color: #6989FE;
-  background-color: #6989FE;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+.item.active .custom-radio_two +label::before {
+  border-color: #6989FE !important;
+  background-color: #6989FE !important;
+  background-size: 50% 80% !important;
+  background-position: center!important;
 }
 /* стили для радиокнопки, находящейся в состоянии disabled */
 .custom-radio_two:disabled+label::before {
-  border: 1px solid #C3C7CE;
+  border: 1px solid #C3C7CE !important;
+}
+
+.send{
+  display: flex;
+  gap: 30px;
+  width: 100%;
+}
+
+.send__block{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 14px;
 }
