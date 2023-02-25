@@ -2,7 +2,7 @@
     class BuyHandler extends ACoreCreator {
         public function BuyHandlerCheck()
         {
-            $secret_key = '29ce766bfdce5c0d8cb5d0451ae3d565b9169cdcc53437b084c2f4946579a3cb';
+            $secret_key = $this->tariff_class->ClearQuery("SELECT prodamus_key FROM secret_prodamus_key")[0]['prodamus_key'];
             $headers = apache_request_headers();
 
             try {

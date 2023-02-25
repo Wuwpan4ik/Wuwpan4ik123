@@ -64,7 +64,7 @@
         public function MakeLinkForBuyInProdamus()
         {
             $linktoform = 'https://course-creator.payform.ru/';
-            $secret_key = '29ce766bfdce5c0d8cb5d0451ae3d565b9169cdcc53437b084c2f4946579a3cb';
+            $secret_key = $this->ClearQuery("SELECT prodamus_key FROM secret_prodamus_key")[0]['prodamus_key'];
 
             if ($_SESSION['user']['email']) {$email = $_SESSION['user']['email'];} else {$email = 'dimalim110@gmail.com';};
 
