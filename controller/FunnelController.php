@@ -422,15 +422,15 @@
             $id = $_SESSION['item_id'];
             $course_id = $_POST['course_id'];
 
-            $course = $this->course->Get();
-            $funnel = $this->funnel->Get(["id" => $course_id]);
+            $funnel = $this->funnel->Get();
+            $course = $this->course->Get(["id" => $course_id]);
 
             if (!$this->isUser($course[0]['author_id'])) return False;
             if (!$this->isUser($funnel[0]['author_id'])) return False;
 
             $this->funnel->UpdateQuery("funnel", ["course_id" => $course_id], "WHERE `id` = $id");
 
-            $this->local_get_content();
+            header("Location: /Funnel");
 
             return True;
         }

@@ -185,7 +185,7 @@
 
         public function saveUserSettings() {
 
-            $user = $this->user->getCurrentUser();
+            $user = $this->user->getCurёrentUser();
 
             if (strlen($_POST['first_name']) == 0) {
                 $first_name = $_SESSION['user']['first_name'];

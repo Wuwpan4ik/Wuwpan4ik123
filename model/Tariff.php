@@ -17,6 +17,11 @@
             return $result;
         }
 
+        public function GetPriceTariff($tariff_id)
+        {
+            return $this->GetQuery('tariffs', ["id" => $tariff_id])[0]['price'];
+        }
+
         public function CheckInfoTariff()
         {
             $file_size = $this->dir_size('./uploads/users/' . $_SESSION['user']['id']) / 1024 / 1024;
@@ -51,7 +56,51 @@
             } else {
                 return false;
             }
-
+            $this->db->execute("UPDATE `users_tariff` SET `tariff_id` = '$tariff_id', `date` = '$date_end' WHERE `user_id` = '$user_id'");
+            $this->InsertQuery('tariff_buy_log', ["user_id" => $user_id, "money" => $this->GetPriceTariff($tariff_id), "date" => date("Y-m-d", strtotime(mktime(0, 0, 0, date('m'), date('d'), date('Y'))))]);
             return true;
+        }
+
+        public function MakeLinkForBuyInProdamus()
+        {
+            $linktoform = 'https://course-creator.payform.ru/';
+            $secret_key = '29ce766bfdce5c0d8cb5d0451ae3d565b9169cdcc53437b084c2f4946579a3cb';
+
+            if ($_SESSION['user']['email']) {$email = $_SESSION['user']['email'];} else {$email = 'dimalim110@gmail.com';};
+
+            $product = $this->getTariffs()[$_SESSION['product_key'] - 1];
+
+            $data = [
+                'customer_extra' => 'Текст, который отобразится в поле "Дополнительные данные"',
+
+                'do' => 'pay',
+
+                'products' => [
+                [
+                    'name' => (string)$product['name'],
+
+                    'price' => (string)$product['price'],
+
+                    'quantity' => "1",
+
+                    'sku' => (string)$product['id']
+                    ],
+                ],
+
+                'urlReturn' => 'https://course-creator.io/Account',
+
+                'urlSuccess' => 'https://course-creator.io/Account',
+
+                'urlNotification' => 'https://demo.payform.ru/demo-notification',
+
+                'paid_content' => 'Приятного пользования сервисов Course Creator!'
+            ];
+
+            $data['customer_email'] = $email;
+
+
+            $data['signature'] = Hmac::create($data, $secret_key);
+
+            return  utf8_encode($linktoform . '?' . http_build_query($data));
         }
     }

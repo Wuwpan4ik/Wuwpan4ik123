@@ -258,6 +258,15 @@ button {
     align-items:center;
 }
 
+.slider__header-views-img {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    opacity: 0.5;
+}
+
 .slider__header-views-count {
     margin: 0 0 0 5px;
     font-size: 12px;
