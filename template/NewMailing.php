@@ -5,6 +5,7 @@
     <title>Course Creator - Кейсы</title>
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/aboutuser.css">
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 </head>
@@ -72,7 +73,7 @@
                         </div>
                     </div>
 
-                    <div class="new-mailing__block">
+                    <div class="new-mailing__block new-mailing__planning">
                         <label class="new-mailing__subtitle" for="">Запланировать отправку</label>
 
                         <div class="new-mailing__block_two">
@@ -92,11 +93,72 @@
                             </div>
                         </div>
                     </div>
+
+                    <h2 class="chapter__title">Куму отправить</h2>
+
+                    <div class="new-mailing__block">
+                        <div class="mytabs new-mailing__menu">
+                            <input type="radio" id="Audience" name="mytabs" checked="checked"/>
+                            <label class="menu-label" for="Audience" id="oplab"><p>Выбрать аудиторию</p></label>
+                            <div class="tab">
+                                <div class="new-mailing__block">
+                                        <label class="new-mailing__subtitle" for="">Выберите продукт</label>
+                                        <div class="select-account social-network">
+                                            <div id="myMultiselect" class="multiselect">
+                                                <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
+                                                    <select class="form-select">
+                                                        <option class="form-select__social-name" value="<?=$options[$i] ?>" id="name"><?=$options[$i] ?></option>
+                                                    </select>
+                                                    <div class="overSelect"></div>
+                                                </div>
+                                                <div class="mySelectOptions">
+                                                    <label class="item active social__item">Все<input class="custom-checkbox social__input" type="radio" data-value="Все" value="vk" /><label for="happy"></label></label>
+                                                    <label class="item social__item">Кто оплатил<input class="custom-checkbox social__input" type="radio" data-value="Кто оплатил" value="whatsapp" /><label for="happy"></label></label>
+                                                    <label class="item social__item">Кто не оплатил<input class="custom-checkbox social__input" type="radio" data-value="Кто не оплатил" value="twitter" /><label for="happy"></label></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <label class="new-mailing__subtitle" for="">Выберите продукт</label>
+                                        <div class="select-account social-network">
+                                            <div id="myMultiselect" class="multiselect">
+                                                <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
+                                                    <select class="form-select">
+                                                        <option class="form-select__social-name" value="<?=$options[$i] ?>" id="name"><?=$options[$i] ?></option>
+                                                    </select>
+                                                    <div class="overSelect"></div>
+                                                </div>
+                                                <div class="mySelectOptions">
+                                                    <label class="item active social__item">Все<input class="custom-checkbox social__input" type="radio" data-value="Все" value="vk" /><label for="happy"></label></label>
+                                                    <label class="item social__item">Кто оплатил<input class="custom-checkbox social__input" type="radio" data-value="Кто оплатил" value="whatsapp" /><label for="happy"></label></label>
+                                                    <label class="item social__item">Кто не оплатил<input class="custom-checkbox social__input" type="radio" data-value="Кто не оплатил" value="twitter" /><label for="happy"></label></label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                </div>
+                                <div class="about-btn">
+                                    <button class="save-btn" id="profile_send" type="submit">Сохранить</button>
+                                </div>
+                            </div>
+
+                            <input type="radio" id="EnterEmail" name="mytabs"/>
+                            <label class="menu-label" for="EnterEmail" id="cllab"><p>Ввести email вручную</p></label>
+                            <div class="tab">
+                                <div class="about-btn">
+                                    <button class="save-btn" id="profile_send" type="submit">Сохранить</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script src="/js/customSelect.js"></script>
 <script src="/js/customInputs.js"></script>
 <script src="../js/sidebar.js"></script>
 <script src="/js/getNotifications.js"></script>

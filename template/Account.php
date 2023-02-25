@@ -507,6 +507,7 @@
     <?php include 'template/default/notificationsPopup.php' ?>
 </div>
 <form id="tariff-buy-form" action="/TariffController/Buy" method="POST">
+<form id="tariff-buy-form" action="/TariffController/Buy" method="POST">
     <input type="hidden" id="tariff_buy" name="tariff_id">
 </form>
 <script src="/js/jquery-3.6.1.min.js"></script>
