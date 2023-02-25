@@ -1,4 +1,4 @@
-<div class="overlay-allLessons overlay overlay-<?=$name?>">
+<div class="overlay-allLessons overlay overlay-<?=$name?> <?php if($item['dis_trans'] == 1) echo 'disable-skip' ?>">
     <div class="whiteSpace" style="position: absolute;top: 0;width: 100%;">
 
     </div>

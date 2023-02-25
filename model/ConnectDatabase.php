@@ -63,4 +63,9 @@
         {
             return $this->db->query($sql);
         }
+
+        public function GetApi()
+        {
+            return $this->db->query("SELECT * FROM api_email")[0];
+        }
     }

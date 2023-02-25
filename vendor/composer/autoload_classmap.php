@@ -38,6 +38,8 @@ return array(
     'AnalyticModel' => $baseDir . '/model/AnalyticModel.php',
     'Analytics' => $baseDir . '/pages/Analytics.php',
     'Article' => $baseDir . '/pages/Article.php',
+    'ArticleController' => $baseDir . '/controller/ArticleController.php',
+    'ArticleModel' => $baseDir . '/model/ArticleModel.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
     'Cases' => $baseDir . '/pages/Cases.php',
     'CheckDirSize' => $baseDir . '/model/traits/CheckDirSize.php',

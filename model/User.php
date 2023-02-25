@@ -93,6 +93,7 @@ class User extends ConnectDatabase{
                                                 content.video,
                                                 content.button_text,
                                                 content.query_id as 'count_slider',
+                                                content.disabled__transition as 'dis_trans',
                                                 user_info.id as 'author_id',
                                                 user_info.avatar,
                                                 user_info.first_name,

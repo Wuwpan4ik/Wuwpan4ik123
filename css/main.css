@@ -74,6 +74,7 @@ body {
 
 * input{
   font-family: "Inter";
+  font-weight: 400;
 }
 
 * button{
@@ -1222,7 +1223,7 @@ a {
   gap: 16px;
 }
 
-.Cases {
+.Cases, .Mailings, .ot-mailings, .new-mailing{
   height: 100%;
   width: 100%;
   display: -webkit-box;
@@ -1635,7 +1636,6 @@ span.name {
   display: -ms-flexbox;
   display: flex;
   gap: 10px;
-
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -1666,7 +1666,7 @@ span.name {
   overflow: hidden; /* Обрезаем всё за пределами блока */
   line-height: 20px;
   width: 150px;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 14px;
   line-height: 18px;
   color: #404D61;
@@ -1678,6 +1678,7 @@ span.name {
   -webkit-box-orient: vertical; /* Вертикальная ориентация */
   overflow: hidden; /* Обрезаем всё за пределами блока */
 }
+
 .file-box {
   display: flex;
   align-items: center;
@@ -1689,6 +1690,11 @@ span.name {
   line-height: 16px;
   color: rgba(64, 77, 97, 0.4);
 }
+
+#file-size{
+  font-size: 12px;
+}
+
 .input__file {
   display: none;
 }
@@ -1955,13 +1961,8 @@ td, th {
 td:nth-child(1){
   display:flex;
   align-items:center;
-  width:100%;
   padding: 16px 20px !important;
   margin-top:8px;
-}
-
-#grey {
-  background-color: #F8F8F8;
 }
 
 .status {
@@ -2331,10 +2332,6 @@ td:nth-child(1){
   max-height:100px;
 }
 
-.full_th {
-  text-transform: uppercase;
-}
-
 /* Brench: Styles */
 
 #delete__back .popup__title{
@@ -2356,7 +2353,6 @@ td:nth-child(1){
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  margin: 20px 0 0 0;
 }
 
 .avatar-body {
@@ -2528,8 +2524,7 @@ td:nth-child(1){
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.25);
   border: 1px solid #E1E3E6;
   border-radius: 5px;
-  max-height: 222px;
-  overflow-y: scroll;
+  overflow-y: auto;
   padding: 16px 13px;
   margin: 12px 0 0 0;
   z-index: 110;
@@ -2833,4 +2828,249 @@ td:nth-child(1){
 }
 #article-reg .popup__form{
   margin: 20px 0 0 0;
+}
+
+/*Mailings*/
+.Mailings__item{
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  border: 1px solid rgb(225,227,230);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.Mailings__types{
+  display: flex;
+  gap: 24px;
+}
+
+.Mailings__image img, .ot-mailing__image img{
+  display: flex;
+  width: 100%;
+  object-fit: cover;
+}
+
+.Mailings__title{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+  font-size: 24px;
+  color: #404D61;
+}
+
+.Mailings__status{
+  font-size: 14px;
+  color: #3E8AFB;
+}
+
+.Mailings__btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  background: #F2F2FC;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+  font-size: 16px;
+  color: #404D61;
+}
+
+.Mailings__btn:hover, .ot-mailing__btn:hover{
+  background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);
+  border-radius: 8px;
+  color: #fff;
+}
+
+.Mailings__btn:hover img{
+  filter: invert(29%) sepia(15%) saturate(1022%) hue-rotate(177deg) brightness(300%) contrast(400%);
+}
+
+.mailing__create, .ot-mailing{
+  width: 320.33px !important;
+  height: 488px;
+  border: 1px solid #E1E3E6;
+  border-radius: 8px;
+}
+.mailing__create{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  align-items: center;
+  background: #F1F4FF;
+}
+.mailing_new{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.mailing_new img{
+  width: 40px;
+}
+
+.mailing_new p{
+  margin-top: 20px;
+  text-align: center;
+}
+/**/
+.ot-mailings__body, .ot-mailing{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.ot-mailing{
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px;
+}
+
+.ot-mailing__header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ot-mailing__date{
+  background: rgba(7, 162, 135, 0.08);
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-weight: 500;
+  font-size: 12px;
+  color: #07A287;
+}
+
+.delete_btn{
+  background: #F8F8F8;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.ot-mailing__limit{
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.ot-mailing__info{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ot-mailing__image img{
+  height: 200px;
+  border-radius: 8px;
+}
+
+.ot-mailing__recipient{
+  display: inline-block;
+  padding: 6px 8px;
+  background: rgba(85, 82, 217, 0.08);
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+.ot-mailing__recipient_all{
+  color: #5552D9;
+}
+
+.ot-mailing__recipient_didnt-pay{
+  background: rgba(252, 165, 73, 0.08);
+  color: #FCA549;
+}
+
+.ot-mailing__recipient_didnt-pay img{
+  filter: invert(20%) sepia(23%) saturate(1465%) hue-rotate(329deg) brightness(98%) contrast(101%);
+}
+.ot-mailing__btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  background: #F2F2FC;
+  border-radius: 8px;
+  padding: 14px 0;
+  font-size: 14px;
+  color: #404D61;
+}
+
+.ot-mailing__btn:hover img{
+  filter: invert(29%) sepia(15%) saturate(1022%) hue-rotate(177deg) brightness(1002%) contrast(400%);
+}
+
+/*new-mailings*/
+.new-mailing__body{
+  display: flex;
+  gap: 24px;
+}
+
+.new-mailing__card{
+  height: 320px;
+}
+
+.new-mailing__title{
+  font-weight: 700;
+  font-size: 18px;
+  color: #404D61;
+}
+
+.new-mailing__subtitle {
+  font-size: 16px;
+  color: #404D61;
+}
+
+.new-mailing__settings{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+}
+
+.new-mailing__block_two{
+  display: flex;
+  gap: 16px;
+}
+
+.new-mailing__block{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.new-mailing__settings input {
+  width: 100%;
+  height: 48px;
+  border: 1px solid #E1E3E6;
+  border-radius: 8px;
+  padding: 16px 16px 12px 16px;
+  font-size: 15px !important;
+}
+
+.add-picture{
+  background: #F8F8F8;
+  border-radius: 8px;
+}
+
+.add-picture__body{
+  display: flex;
+  align-items: center;
+}
+
+.add-picture__info{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+input[type=date]:invalid::-webkit-datetime-edit, input[type=time]:invalid::-webkit-datetime-edit{
+  color: #757D8A;
 }

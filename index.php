@@ -34,6 +34,9 @@
     $router->addRoute("/Analytics", "Analytics.php");
     $router->addRoute("/ConfirmEmail", "ConfirmEmail.php");
     $router->addRoute("/PasswordRecovery", "PasswordRecovery.php");
+    $router->addRoute("/Mailings", "Mailings.php");
+    $router->addRoute("/OneTimeMailings", "OneTimeMailings.php");
+    $router->addRoute("/NewMailing", "NewMailing.php");
     $router->addRoute("/Cases", "Cases.php");
     $router->addRoute("/Account", "Account.php");
     $router->addRoute("/Account/SocialUrls", "AccountController.php", "TakeSocialUrls", false);
@@ -42,6 +45,7 @@
     $router->addRoute("/Account/SaveSchoolSettings", "AccountController.php", "SaveSchoolSettings");
     $router->addRoute("/Account/SaveSocialSettings", "AccountController.php", "SaveSocialSettings");
     $router->addRoute("/Account/SaveIntegrationsSettings", "AccountController.php", "SaveIntegrationsSettings");
+    $router->addRoute("/AccountController/AddAdditionally", "AccountController.php", "AddAdditionally");
 
     $router->addRoute("/UserMain", "UserMain.php");
     $router->addRoute("/UserLogin", "UserLogin.php");
@@ -56,9 +60,7 @@
     $router->addRoute('/UserAllContacts', 'UserAllContacts.php');
     $router->addRoute("/Project", "Project.php");
 
-
-    $router->addRoute("/Article", "Article.php");
-
+    $router->addRoute("/Article/$item_id", "Article.php");
 
     $router->addRoute("/Course", "Course.php");
     $router->addRoute("/Course/$item_id", "CourseEdit.php");
@@ -128,11 +130,11 @@
     $router->addRoute("/Tariff-absent", "tariff-absent.php");
     $router->addRoute("/error", "404.php");
 
-    if (array_key_exists("/$url", $router->getRoute())) {
+//    if (array_key_exists("/$url", $router->getRoute())) {
         $router->route("/$url");
-    } else {
-        $router->route("/error");
-    }
+//    } else {
+//        $router->route("/error");
+//    }
 
 
 

@@ -381,7 +381,7 @@ document.addEventListener('DOMContentLoaded', function () {
     buttonChanges.forEach((item) => {
         item.addEventListener('click', function () {
             document.querySelector('.popup-video').removeChild(document.querySelector('.popup-video').firstChild);
-            let videos = item.parentElement.parentElement.querySelector('.media-cart-img').cloneNode(true);
+            let videos = item.parentElement.parentElement.parentElement.querySelector('.media-cart-img').cloneNode(true);
             let title = item.parentElement.parentElement.querySelector('input[name="name"]').value;
             let desc = item.parentElement.parentElement.querySelector('textarea[name="description"]').value;
             let button_text = item.parentElement.parentElement.querySelector('input[name="button_text"]').value;
@@ -403,8 +403,8 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelector('#button_text').value = button_text;
             document.querySelector('.button-click').innerHTML = button_text;
 
-            id_item.value = item.parentElement.querySelector('input[type="hidden"]').value;
-            document.querySelector('#initButton').action = "/Funnel/"+ item.parentElement.querySelector('input[type="hidden"]').value +"/settings"
+            id_item.value = item.parentElement.parentElement.parentElement.querySelector('input[type="hidden"]').value;
+            document.querySelector('#initButton').action = "/Funnel/"+ id_item.value +"/settings"
             entryDisplay.classList.toggle('display-flex');
             toggleOverflow();
         });
@@ -413,7 +413,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.button-add-button-edit').forEach((elem) => {
         elem.addEventListener('click', function () {
             elem.classList.add('display-none');
-            elem.parentElement.querySelectorAll('.button__do-block').forEach((elem) => {
+            elem.parentElement.querySelectorAll('.block__button-add').forEach((elem) => {
                 elem.classList.toggle('display-none');
             })
             document.querySelector('.popup__edit-button').classList.remove('display-none');

@@ -7,7 +7,7 @@ input.videoname{
 }
 
 input.video-desc{
-    padding: 12px 10px 0 15px !important
+    padding: 9px 10px 0 15px !important
 }
 .media {
     display: -webkit-box;
@@ -393,6 +393,12 @@ input[name="price"]{
     color: #404D61;
 }
 
+.proj_name:focus{
+    border:none !important;
+    box-shadow: none !important;
+}
+
+
 #insert {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -495,7 +501,7 @@ textarea.videoname{
 .settingsBtn:hover {
     background: linear-gradient(180deg, #5B78E3 0%, #2A4BC5 100%)!important;
 }
-.button-add{
+.button-add button{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -513,11 +519,12 @@ textarea.videoname{
     transform: none !important;
     filter: invert(54%) sepia(6%) saturate(767%) hue-rotate(178deg) brightness(88%) contrast(84%);
 }
-.button-add:hover{
+.button-add:hover button{
     background: linear-gradient(180deg, #079E84 0%, #097B67 100%);
     color: #fff;
-}.button-add:hover img{
-     filter: invert(0%) sepia(4%) saturate(15%) hue-rotate(108deg) brightness(94%) contrast(106%); !important;
+}
+.button-add:hover img{
+     filter: invert(0%) sepia(4%) saturate(15%) hue-rotate(108deg) brightness(10000%) contrast(106%); !important;
  }
 .button__edit{
     display: flex;
@@ -1035,7 +1042,10 @@ textarea.videoname{
     margin-top:20px;
 }
 .popup__edit .slider__header{
-    top:45px;
+    top:40px;
+}
+.popup__edit ._conatiner-player{
+    max-width:280px !important;
 }
 
 .popup__edit .popup{
