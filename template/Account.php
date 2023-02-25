@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/aboutuser.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/lessons.css">
+
     <link type="text/css" rel="stylesheet" href="/css/notifications.css">
 
     <!--Favicon-->

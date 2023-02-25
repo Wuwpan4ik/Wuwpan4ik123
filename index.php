@@ -36,6 +36,7 @@
     $router->addRoute("/PasswordRecovery", "PasswordRecovery.php");
     $router->addRoute("/Mailings", "Mailings.php");
     $router->addRoute("/OneTimeMailings", "OneTimeMailings.php");
+    $router->addRoute("/NewMailing", "NewMailing.php");
     $router->addRoute("/Cases", "Cases.php");
     $router->addRoute("/Account", "Account.php");
     $router->addRoute("/Account/SocialUrls", "AccountController.php", "TakeSocialUrls", false);
