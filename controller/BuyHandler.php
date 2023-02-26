@@ -19,7 +19,7 @@
                 http_response_code(200);
 
 //              Покупка тарифа
-                if (in_array($headers['products']['sku'], [1, 2, 3])) {
+                if (in_array($headers['products'][0]['sku'], [1, 2, 3])) {
                     $user_id = $this->user->getUserByEmail($headers['customer_email']);
                     $tariff_id = $headers['products']['sku'];
                     if ($this->tariff_class->BuyTariff($user_id, $tariff_id)) {
