@@ -24,7 +24,7 @@
                         Разовые рассылки
                     </div>
 
-                    <a class="Mailings__btn" href="#">Открыть</a>
+                    <a class="Mailings__btn" href="/OneTimeMailings">Открыть</a>
 
                 </div>
                 <div class="Mailings__item">
