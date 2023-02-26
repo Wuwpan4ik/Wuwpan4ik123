@@ -14,123 +14,13 @@
             }
         }
 
-        private function GetRecoveryHtml($login, $password) {
-            return '<html lang="RU">
-                        <head>
-                            <meta charset="UTF-8">
-                            <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        </head>
-                        <body style="padding:0px;margin:0px;max-width: 800px;font-family: Verdana, Geneva, Tahoma, sans-serif;background: #EFEFEF;">
-                        <div class="envelope-container">
-                            <div class="envelope-body" style="background:white;">
-                                <div class="first_row">
-                                    <img style="width:100%;" src="https://course-creator.io/envelope-images/envelope-welcome.jpg" alt="Добро пожаловать в Course Creator!">
-                                </div>
-                                <div class="second_row" style="padding:40px 20px;">
-                                    <h2 style="font-size:24px;font-weight: 400;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;">
-                                        Ваш пароль был изменён
-                                    </h2>
-                                    <span style="color: rgba(0, 0, 0, 0.6);font-size:16px;font-weight:400;">
-                                        Если вы не отправляли запрос и это письмо пришло к вам по ошибке, свяжитесь с нами в телеграмм: <a href="https://t.me/CourseCreatorBot" target="_blank">@CourseCreatorBot</a>
-                                    </span>
-                                    <div class="info_account" style="display:-webkit-box;
-                                    display:-ms-flexbox;flex-direction:column;
-                                    display:flex;-webkit-box-pack: justify;-ms-flex-pack: justify;justify-content: space-between;gap: 20px;margin-top: 40px;">
-                                        <div class="first_row" style="width:50%">
-                                            <p style="font-weight:700;font-size:14px;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;color: rgba(0, 0, 0, 0.9);">
-                                                Ваш логин:
-                                            </p>
-                                            <div style="color: #8098AB;background: #EFF3F6;border-radius: 3px;padding-top: 15px;padding-bottom: 15px;padding-right: 20px;padding-left: 20px;">
-                                                '. $login .'
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="second_row" style="width:100%">
-                                            <p style="font-weight:700;font-size:14px;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;color: rgba(0, 0, 0, 0.9);">
-                                                Ваш пароль:
-                                            </p>
-                                            <div style="color: #8098AB;background: #EFF3F6;border-radius: 3px;padding-top: 15px;padding-bottom: 15px;padding-right: 20px;padding-left: 20px;">
-                                                '. $password .'
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="link_account" style="margin-top: 20px;">
-                                        <a href="https://course-creator.io/UserLogin" target="_blank">
-                                            <button style="width:100%; height:48px;border:none;font-size:16px;border-radius: 10px;background: linear-gradient(299.36deg, rgba(55, 101, 223, 0.93) 0%, rgba(100, 162, 255, 0.96) 100%);color:white;cursor: pointer;">
-                                                Перейти в аккаунт
-                                            </button>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="envelope_info_bottom" style="text-align: center;margin-top:20px;margin-bottom: 20px;">
-                                <div style="font-size:12px;">
-                                    Если у вас есть вопросы, пожалуйста, напишите <br> в службу поддержки: <a href="mailto:support@course-creator.io">support@course-creator.io</a>
-                                </div>
-                            </div>
-                            </div>
-                        </body>
-                        </html>';
-        }
-
-        private function GetRegistrationHtml($login)
-        {
-            return '<html lang="RU">
-                        <head>
-                            <meta charset="UTF-8">
-                            <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        </head>
-                        <body style="padding:0px;margin:0px;max-width: 800px;font-family: Verdana, Geneva, Tahoma, sans-serif;background: #EFEFEF;">
-                        <div class="envelope-container">
-                            <div class="envelope-body" style="background:white;">
-                                <div class="first_row">
-                                    <img style="width:100%;" src="https://course-creator.io/envelope-images/envelope-welcome.jpg" alt="Добро пожаловать в Course Creator!">
-                                </div>
-                                <div class="second_row" style="padding:20px 40px;">
-                                    <h2 style="font-size:24px;font-weight: 400;margin:0px 0px 20px 0px;">
-                                        Добро пожаловать в Сourse Сreator
-                                    </h2>
-                                    <span style="color: rgba(0, 0, 0, 0.6);font-size:16px;font-weight:400;">
-                                        Спасибо, что вы зарегистрировались в Сourse Сreator! Ниже важная информация о вашем аккаунте. Пожалуйста, сохраните это письмо, чтобы можно было обратиться к нему позже.
-                                    </span>
-                                    <div class="info_account" style="margin-top: 40px;">
-                                        <div class="first_row" style="width:100%">
-                                            <p style="font-weight:700;font-size:14px;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;color: rgba(0, 0, 0, 0.9);">
-                                                Ваш логин:
-                                            </p>
-                                            <div style="color: #8098AB;background: #EFF3F6;border-radius: 3px;padding-top: 15px;padding-bottom: 15px;padding-right: 20px;padding-left: 20px;">
-                                                '.$login.'
-                                            </div>
-                                        </div>
-                                        <div class="link_account" style="margin-top: 20px;">
-                                            <a href="https://course-creator.io/UserLogin" target="_blank">
-                                                <button style="width:100%; height:48px;border:none;font-size:16px;border-radius: 10px;background: linear-gradient(299.36deg, rgba(55, 101, 223, 0.93) 0%, rgba(100, 162, 255, 0.96) 100%);color:white;cursor: pointer;">
-                                                    Перейти в аккаунт
-                                                </button>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="envelope_info_bottom" style="text-align: center;margin-top:20px;margin-bottom: 20px;">
-                                <div style="font-size:12px;">
-                                    Если у вас есть вопросы, пожалуйста, напишите <br> в службу поддержки: <a href="mailto:support@course-creator.io">support@course-creator.io</a>
-                                </div>
-                            </div>
-                        </div>
-                        </body>
-                        </html>';
-        }
-
         public function UserLogin() {
+            unset($_SESSION["user"]);
             $email = $_POST['email'];
             $password = $_POST['pass'];
 
             $res = $this->user->getAuthorizationUserByEmail($email, $password);
             if(count($res) != 0) {
-                unset($_SESSION["user"]);
                 if ($res[0]['is_creator'] == 0) {
                     $_SESSION["user"] = [
                         'id' => $res[0]['id'],
@@ -138,15 +28,15 @@
                         'avatar' => $res[0]['avatar'],
                         'is_creator' => 0
                     ];
-                    if (!is_null($res[0]['first_name'])) {
-                        $_SESSION['user']['first_name'] = $res[0]['first_name'];
-                    }
+                    if (!is_null($res[0]['first_name'])) $_SESSION['user']['first_name'] = $res[0]['first_name'];
+                    if (!is_null($res[0]['telephone'])) $_SESSION['user']['telephone'] = $res[0]['telephone'];
                 } else {
                     $response = "Вам не разрешён доступ";
                     echo $response;
                     die(header("HTTP/1.0 404 Not Found"));
                 }
-            } else {
+            }
+            else {
                 $response = "Неверный пароль или логин";
                 echo $response;
                 die(header("HTTP/1.0 404 Not Found"));
@@ -171,7 +61,6 @@
                     'email' => $res[0]['email'],
                     'site_url' => $res[0]['site_url'],
                     'is_creator' => 1
-
                 ];
                 $integrations = $this->user->getUserIntegrations();
                 if (count($integrations) != 0) {
@@ -192,6 +81,7 @@
         }
 
         public function registration () {
+
             $username = $_POST['username'];
 
             $first_name = $_POST['first_name'];
@@ -219,6 +109,14 @@
                 die(header("HTTP/1.0 404 Not Found"));
             }
 
+            $resUsername = $this->user->getUserByUsername($username);
+
+            if(count($resUsername) != 0){
+                $response = "На этот логин уже был зарегистрирован аккаунт";
+                echo $response;
+                die(header("HTTP/1.0 404 Not Found"));
+            }
+
             $this->validate_data($email, $first_name);
             $data = [
                 'niche' => $niche,
@@ -231,26 +129,41 @@
                 'is_creator' => 1
             ];
 
+            unset($_SESSION['user']);
+
             $this->user->InsertQuery('user', $data);
+
+            sleep(0.5);
 
             $res = $this->user->getAuthorizationUserByUsername($username, $password);
             if(count($res) != 0) {
-                if ($res[0]['is_creator'] != 0) {
-                    $_SESSION["user"] = [
-                        'id' => $res[0]['id'],
-                        'niche' => $res[0]['niche'],
-                        'avatar' => $res[0]['avatar'],
-                        'username' => $res[0]['username'],
-                        'first_name' => $res[0]['first_name'],
-                        'second_name' => $res[0]['second_name'],
-                        'email' => $res[0]['email'],
-                        'site_url' => $res[0]['site_url'],
-                        'is_creator' => 1
-                    ];
-                    $title = "Спасибо за регистрацию";
-                    $body = $this->GetRegistrationHtml($username);
-                    $this->SendEmail($title, $body, $email);
-                }
+                $_SESSION["user"] = [
+                    'id' => $res[0]['id'],
+                    'niche' => $res[0]['niche'],
+                    'avatar' => $res[0]['avatar'],
+                    'username' => $res[0]['username'],
+                    'first_name' => $res[0]['first_name'],
+                    'second_name' => $res[0]['second_name'],
+                    'email' => $res[0]['email'],
+                    'site_url' => $res[0]['site_url'],
+                    'is_creator' => 1
+                ];
+                $title = "Спасибо за регистрацию";
+                $body = include './template/templates_email/WelcomeClient.php';
+
+
+                $this->SendEmail(
+                    [
+                        [
+                            "from" => "{$this->ourEmail}",
+                            "to" => "{$email}",
+                            "sender" => "{$this->ourEmail}",
+                            "subject" => "{$title}",
+                            "content" => "$body",
+                            "is_send_now" => 1
+                        ]
+                    ]
+                );
             }
 
             mkdir("./uploads/users/" . $_SESSION['user']['id']);
@@ -265,13 +178,14 @@
             chmod("./uploads/users/". $_SESSION['user']['id'] . "/files", 0777);
             chmod("./uploads/users/". $_SESSION['user']['id'] . "/course_files", 0777);
             chmod("./uploads/users/". $_SESSION['user']['id'] . "/thumbnails", 0777);
+            shell_exec("ln -s /var/www/www-root/data/www/course-creator.io/subdomains /var/www/www-root/data/www/course-creator.io/" . strtolower($res[0]['username']));
             echo true;
             return true;
         }
 
         public function saveUserSettings() {
 
-            $user = $this->user->getCurrentUser();
+            $user = $this->user->getCurёrentUser();
 
             if (strlen($_POST['first_name']) == 0) {
                 $first_name = $_SESSION['user']['first_name'];
@@ -355,8 +269,19 @@
                     "username" => $username
                 ];
                 $this->user->UpdateQuery("user", $data, "WHERE id = {$user[0]['id']}");
-                $body = $this->GetRecoveryHtml($user[0]['username'], $this->password);
-                $this->SendEmail($title, $body, $user[0]['email']);
+                $body = include "./template/templates_email/vosstanovlenie-parolya(client, user).php";
+
+                $this->SendEmail(
+                    [
+                        "from" => "{$this->ourEmail}",
+                        "to" => "{$user[0]['email']}",
+                        "sender" => "{$this->ourEmail}",
+                        "subject" => "{$title}",
+                        "content" => "$body",
+                        "is_send_now" => 1
+                    ]
+                );
+
                 header('Location: /login');
                 return true;
             }
@@ -367,7 +292,10 @@
         public function UserRecovery()
         {
             unset($_SESSION['user']);
+
             $this->email = $_POST['email'];
+            $this->user->GetApi();
+
             $user = $this->user->getUserByEmail($this->email);
             if (count($user) == 1) {
                 $title = "Восстановление пароля";
@@ -376,8 +304,19 @@
                     "password" => $this->password
                 ];
                 $this->user->UpdateQuery("user", $data, "WHERE email = {$this->email}");
-                $body = $this->GetRecoveryHtml($user[0]['email'], $this->password);
-                $this->SendEmail($title, $body, $user[0]['email']);
+                $body = include "./template/templates_email/vosstanovlenie-parolya(client, user).php";
+
+                $this->SendEmail(
+                    [
+                        "from" => "{$this->ourEmail}",
+                        "to" => "{$user[0]['email']}",
+                        "sender" => "{$this->ourEmail}",
+                        "subject" => "{$title}",
+                        "content" => "$body",
+                        "is_send_now" => 1
+                    ]
+                );
+
                 header('Location: /UserLogin');
                 return true;
             }

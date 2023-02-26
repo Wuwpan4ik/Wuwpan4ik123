@@ -99,6 +99,7 @@ function toggleOverflow () {
 
 function closePopup() {
     entryDisplay.classList.toggle('display-flex');
+    defaultPopup();
 }
 
 function defaultPopup(parent_elem){
@@ -190,7 +191,7 @@ function addCheckbox(block, elem) {
     let text = document.createElement('div');
     text.innerHTML = 'Открывать в новом окне';
     switch_box.appendChild(text)
-    elem.parentElement.children[1].after(checkbox);
+    elem.parentElement.parentElement.children[1].after(checkbox);
 }
 
 //Добавление option
@@ -365,7 +366,7 @@ document.addEventListener('DOMContentLoaded', function () {
     buttonChanges.forEach((item) => {
         item.addEventListener('click', function () {
             document.querySelector('.popup-video').removeChild(document.querySelector('.popup-video').firstChild);
-            let videos = item.parentElement.parentElement.querySelector('.media-cart-img').cloneNode(true);
+            let videos = item.parentElement.parentElement.parentElement.querySelector('.media-cart-img').cloneNode(true);
             let title = item.parentElement.parentElement.querySelector('input[name="name"]').value;
             let desc = item.parentElement.parentElement.querySelector('textarea[name="description"]').value;
             let button_text = item.parentElement.parentElement.querySelector('input[name="button_text"]').value;
@@ -378,6 +379,8 @@ document.addEventListener('DOMContentLoaded', function () {
             if (button_text.length === 0) {
                 button_text = 'Клик';
             }
+            $(".first_do_list .item:nth-child(1)").click();
+            checkFirstSelect();
             document.querySelector('.popup-video').appendChild(videos);
             document.querySelector('.slider__item-title').innerHTML = title;
             document.querySelector('.slider__item-text').innerHTML = desc;
@@ -385,18 +388,17 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelector('#button_text').value = button_text;
             document.querySelector('.button-click').innerHTML = button_text;
 
-            id_item.value = item.parentElement.querySelector('input[type="hidden"]').value;
-            document.querySelector('#initButton').action = "/Funnel/"+ item.parentElement.querySelector('input[type="hidden"]').value +"/settings"
+            id_item.value = item.parentElement.parentElement.parentElement.querySelector('input[type="hidden"]').value;
+            document.querySelector('#initButton').action = "/Funnel/"+ id_item.value +"/settings"
             entryDisplay.classList.toggle('display-flex');
             toggleOverflow();
-
         });
     });
 
     document.querySelectorAll('.button-add-button-edit').forEach((elem) => {
         elem.addEventListener('click', function () {
             elem.classList.add('display-none');
-            elem.parentElement.querySelectorAll('.button__do-block').forEach((elem) => {
+            elem.parentElement.querySelectorAll('.block__button-add').forEach((elem) => {
                 elem.classList.toggle('display-none');
             })
             document.querySelector('.popup__edit-button').classList.remove('display-none');

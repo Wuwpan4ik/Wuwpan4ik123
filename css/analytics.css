@@ -4,6 +4,12 @@
     background-color: white;
 }
 
+/* Скрываем чекбоксы */
+
+* input[type="checkbox"]{
+    display:none !important;
+}
+
 .Components {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -329,7 +335,7 @@ tbody input {
 }
 
 .table {
-    margin: 40px 0 20px 0;
+    margin: 40px 0 0px 0;
 }
 
 .checked {

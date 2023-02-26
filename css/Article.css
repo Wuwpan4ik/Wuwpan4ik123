@@ -5,6 +5,7 @@
     display: flex;
     color: #404D61;
 }
+
 .Article-header-img{
     width: 100%;
 }
@@ -53,7 +54,9 @@
     gap: 25px;
     margin: 40px 0 0 0;
 }
-
+.Article-post:last-child{
+    margin-bottom:100px ;
+}
 .Article-post p{
     font-size: 18px;
     line-height: 26px;
@@ -162,5 +165,7 @@
     /*.Article-post-container{*/
     /*    left: 0 !important;*/
     /*}*/
-
+    .Article-post:last-child{
+        margin-bottom: 0px ;
+    }
 }

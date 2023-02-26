@@ -76,7 +76,7 @@ class SortController extends ACoreCreator {
             echo
 
                 '<tr>
-                        <td> <input type="checkbox" data-id="'. $order["id"] .'" class="check_order">' . $count . '</td>
+                        <td> <input type="checkbox" data-id="'. $order["id"] .'" class="check_order">№' . $count . '</td>
 				
 						<td>' . $order["money"] . (isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : "₽") . '</td>
 						

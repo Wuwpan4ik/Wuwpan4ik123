@@ -35,7 +35,7 @@
             ?>
             <div class="slider__item">
                 <div class="slider__video">
-                    <video playsinline class="slider__video-item video-<?=$item['video_id']?>" data-player="playing" autoplay="false">
+                    <video playsinline class="slider__video-item video-<?=$item['video_id']?>" data-player="playing">
                         <source class="video" src="/<?=$item['video']?>" id="sourceVideo"  />
                     </video>
                 </div>
@@ -53,10 +53,9 @@
                     </div>
                     <div class="slider__header-views">
                         <div class="slider__header-views-img">
-                            <img src="/img/smallPlayer/views.svg" alt="">
+                            <span>Сейчас смотрят:</span><img src="/img/smallPlayer/views.svg" alt="">
                         </div>
                         <div class="slider__header-views-count">
-                            <?php echo rand(100, 300)?>
                         </div>
                     </div>
                 </div>
@@ -67,14 +66,14 @@
                     <img src="/img/smallPlayer/pause.svg" alt="">
                 </div>
                 <div class="slider__item-info _conatiner-player">
-                    <div class="slider__item-title <? echo (json_decode($content['main__settings'], true)['title__font'])?>">
+                    <div class="slider__item-title <? echo (json_decode($content['main__settings'], true)['title__font'])?>" style="<? echo "font-size:" . (json_decode($content['main__settings'], true)['title__size']) . 'px'?>">
                         <?=$item['content_name']?>
                     </div>
-                    <div class="slider__item-text <? echo (json_decode($content['main__settings'], true)['desc__font'])?>">
+                    <div class="slider__item-text <? echo (json_decode($content['main__settings'], true)['desc__font'])?>" style="<? echo "font-size:" . (json_decode($content['main__settings'], true)['desc__size']) . 'px'?>">
                         <?=$item['content_description']?>
                     </div>
                     <?php
-                    if (isset($item['button_text'])) { ?>
+                    if (isset($item['button_text']) && !empty($item['button_text'])) { ?>
                             <div class="slider__item-button button-open">
                                 <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" <?php if ($popup->first_do->next_lesson) echo 'onclick="NextSlide('. $item["video_id"] .')"' ?> <?php if (isset($popup->first_do->link)) if ($popup->first_do->open_in_new == 'open_new_window') { echo "onClick=\"window.open('". $popup->first_do->link ."')\""; } else { echo "onclick=\"window.location = ('". $popup->first_do->link ."')\""; } ?> class="button"><?=$item['button_text']?></button>
                             </div>
@@ -147,7 +146,21 @@
         }
     </style>
         <div class="block">
-            <h1 style="font-size: 34px; color: white; display:flex; justify-content: center; z-index: 10;">Автор не добавил курс, к которому будет принадлежать воронка, или в нём нет видео!</h1>
+            <div class="site_logo" style="display:flex;justify-content: center; align-items: center">
+                <img src="/img/Logo.svg" alt="" style="border-radius: 50%">
+                <span style="color:white;font-weight: 700;margin-left:10px;">
+                    Course Creator
+                </span>
+            </div>
+            <div class="site_additional" style="padding: 30px 24px;
+margin: 25px auto;background-color: #fff;width:320px;border-radius: 20px;font-weight: 500">
+                Автор не добавил курс, к которому будет принадлежать воронка, или в нём нет видео!
+            </div>
+            <div class="site_link">
+                <a href="/" style="color: #fff;
+opacity: 0.6;
+cursor: pointer;text-decoration: none;">Вернуться на сайт</a>
+            </div>
         </div>
 <?php } ?>
 
@@ -179,6 +192,30 @@
         document.querySelector('.slick-active button').style.background = `linear-gradient(to right,white 0%, white 100%,lightgrey 100% , lightgrey 0%)`;
         $('.slick-next').click();
     }
+</script>
+<!---->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let randomNumber = Math.floor(Math.random() * (92 - 20 + 1) + 20);
+        let counter = 0;
+        let increase = false;
+
+        document.querySelector(".slider__header-views-count").innerHTML = randomNumber;
+
+        setInterval(function() {
+            if (!increase && counter < 4) {
+                randomNumber--;
+                counter++;
+            } else if (increase && counter < 10) {
+                randomNumber++;
+                counter++;
+            } else {
+                increase = !increase;
+                counter = 0;
+            }
+            document.querySelector(".slider__header-views-count").innerHTML = randomNumber;
+        }, 1500);
+    })
 </script>
 
 <!--Закрытие AllLessons-->
@@ -212,8 +249,9 @@
             // События при конце видео
             item.addEventListener('ended', function (){
 
-                // Каталог курса
-                if (item.parentElement.parentElement.querySelector('.overlay-allLessons')) {
+                // Каталог
+                let lessons = item.parentElement.parentElement.querySelector('.overlay-allLessons');
+                if (lessons && !lessons.classList.contains("disable-skip")) {
                     $('.slick-next').click();
                 }
 
@@ -296,7 +334,12 @@
                         form[0].querySelector('.next__lesson');
                         NextSlide();
                         notBuy()
-                        AddNotifications('Произошла ошибка', 'Вы уже получали заявку');
+                        if (form.hasClass('popup__application')) {
+                            AddNotifications('Произошла ошибка', 'Вы уже получали заявку');
+                        } else {
+                            AddNotifications('Произошла ошибка', 'Вы уже покупали этот курс');
+                        }
+
                     }
                 });
                 try {

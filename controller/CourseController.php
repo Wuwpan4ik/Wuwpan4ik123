@@ -19,9 +19,9 @@
 
             $uid = $_SESSION['item_id'];
 
-            $res = $this->course->Get($uid);
+            $res = $this->course->Get();
 
-            $count_video = count($this->course_content->Get($res[0]['id'])) + 1;
+            $count_video = count($this->course_content->Get(["id" => $res[0]['id']])) + 1;
 
 //          Проверка юзера
 
@@ -38,7 +38,7 @@
 
             $files_size = $this->course->dir_size($this->url_dir);
 
-            if ($_FILES['video_uploader']['size'] + $files_size > $max_file_size) {
+            if ($_FILES['video_uploader']['size'] + $files_size > $max_file_size + $this->CheckTariff()[0]['memory_add']) {
                 return False;
             }
 
@@ -106,9 +106,9 @@
         public function RenameVideo() {
             $item_id = $_SESSION['item_id'];
 
-            $courseContent = $this->course_content->Get($item_id);
+            $courseContent = $this->course_content->Get();
 
-            $res = $this->course->Get($courseContent[0]['course_id']);
+            $res = $this->course->Get(["id" => $courseContent[0]['course_id']]);
 
             if (!$this->isUser($res[0]['author_id'])) return False;
 
@@ -172,9 +172,9 @@
 
             $uid = $_SESSION['item_id'];
 
-            $res = $this->course_content->Get($uid);
+            $res = $this->course_content->Get();
 
-            $course = $this->course->Get($res[0]['course_id']);
+            $course = $this->course->Get(["id" => $res[0]['course_id']]);
 
             if (!$this->isUser($course[0]['author_id'])) return False;
 
@@ -253,7 +253,7 @@
         public function DeleteCourse () {
             $item_id = $_SESSION['item_id'];
 
-            $project = $this->course->Get($item_id);
+            $project = $this->course->Get();
 
             if (!$this->isUser($project[0]['author_id'])) return False;
 
@@ -271,7 +271,7 @@
         {
             $item_id = $_SESSION['item_id'];
 
-            $res = $this->course->Get($item_id);
+            $res = $this->course->Get();
 
             if (!$this->isUser($res[0]['author_id'])) return False;
 
@@ -291,7 +291,7 @@
         {
             $item_id = $_SESSION['item_id'];
 
-            $res = $this->course->Get($item_id);
+            $res = $this->course->Get();
 
             if (!$this->isUser($res[0]['author_id'])) return False;
 

@@ -8,10 +8,16 @@ class CheckFunnelSettingsController extends FunnelController
         $popup_settings = $this->CreatePopupSettings();
         $videoBtnHTMLResult = str_replace('\/', '/', json_encode($popup_settings['json'], JSON_UNESCAPED_UNICODE));
         $saveVersion = $this->funnel_content->Get()[0]['popup'];
-        if ($videoBtnHTMLResult == $saveVersion) {
-            echo $saveVersion;
-        } else {
+        if (!is_null($saveVersion) && ($videoBtnHTMLResult == $saveVersion)) {
             echo 0;
+            return false;
+        } else {
+            if (is_null($saveVersion)) {
+                echo 0;
+                return false;
+            }
+            echo 1;
+            return false;
         }
     }
 
@@ -21,9 +27,15 @@ class CheckFunnelSettingsController extends FunnelController
         $videoBtnHTMLResult = str_replace('\/', '/', json_encode($popup_settings['json'], JSON_UNESCAPED_UNICODE));
         $saveVersion = $this->funnel->Get()[0]['style_settings'];
         if (!is_null($saveVersion) && ($videoBtnHTMLResult == $saveVersion)) {
-            echo $saveVersion;
-        } else {
             echo 0;
+            return false;
+        } else {
+            if (is_null($saveVersion)) {
+                echo 0;
+                return false;
+            }
+            echo 1;
+            return false;
         }
     }
 

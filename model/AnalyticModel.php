@@ -1,5 +1,7 @@
 <?php
     class AnalyticModel extends ConnectDatabase {
+        protected $name = "";
+
         public function GetClientsForMain($get)
         {
             return $this->db->query("SELECT clients.email, clients.first_name, clients.give_money, clients.tel, course.id as 'course_id', course.name FROM clients, course WHERE course.id = clients.course_id AND `creator_id` = ". $_SESSION['user']['id'] ." ORDER BY $get");

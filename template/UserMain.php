@@ -14,6 +14,8 @@
 </head>
 <body class="body">
 
+<div class="error display-none"><?php print_r($_SESSION['error']) ?></div>
+
 <div class="UserMain bcg">
     <div class="_container" style="height: 9%;">
         <div class="User-header">
@@ -322,19 +324,19 @@
                                 <div class="popup__bonus-form-input-account input-img">
                                     <img src="../img/smallPlayer/account.svg" alt="">
                                 </div>
-                                <input type="text" name="first_name" placeholder="Ваше имя">
+                                <input type="text" name="first_name" placeholder="Ваше имя" <?php echo isset($_SESSION['user']['first_name']) ? "value={$_SESSION['user']['first_name']} readonly" : '' ?>>
                             </div>
                             <div class="popup__buy-body-form youChosen-input input">
                                 <div class="popup__bonus-form-input-email input-img">
                                     <img src="../img/smallPlayer/email.svg" alt="">
                                 </div>
-                                <input type="text" value="<?=$_SESSION['user']['email']?>" name="email" placeholder="Ваша почта" readonly>
+                                <input type="text" name="email" placeholder="Ваша почта" <?php echo isset($_SESSION['user']['email']) ? "value={$_SESSION['user']['email']} readonly" : '' ?>>
                             </div>
                             <div class="popup__buy-body-form youChosen-input input">
                                 <div class="popup__bonus-form-input-email input-img">
                                     <img src="../img/smallPlayer/phone.svg" alt="">
                                 </div>
-                                <input type="tel" name="phone" placeholder="Ваш телефон">
+                                <input type="tel" name="phone" placeholder="Ваш телефон" <?php echo isset($_SESSION['user']['telephone']) ? "value={$_SESSION['user']['telephone']} readonly" : '' ?>>
                             </div>
                         </div>
                         <div class="User-form-g">
@@ -547,10 +549,12 @@ unset($_SESSION['course_id']);
                         AddNotifications('Вы успешно купили курс', 'Аккаунт отправлен на почту');
                     },
                     error: function(data) {
-                        AddNotifications('Произошла ошибка', 'Вы уже получали покупали этот курс');
+                        AddNotifications('Произошла ошибка', 'Вы уже покупали этот курс');
                     }
                 });
-                location.reload()
+                setTimeout(function (){
+                    location.reload()
+                }, 500)
             });
         })
     });

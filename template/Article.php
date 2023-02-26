@@ -14,7 +14,8 @@
 
     <link rel="stylesheet" href="/css/Article.css">
     <link rel="stylesheet" href="/css/main.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="/css/lessons.css">
+    <title>Кейс - <?php echo $content['article']['cases_name'] ?></title>
 
 </head>
 
@@ -73,7 +74,7 @@
                                 </div>
                                 <div class="Article-post-item__button">
                                     <form action="">
-                                        <button>Хочу так же</button>
+                                        <button type="button" class="regForCourse">Хочу так же</button>
                                     </form>
                                 </div>
 
@@ -86,8 +87,47 @@
         </div>
     </div>
 </div>
+<div class="popup__background" id="article-reg">
+    <div id="popup">
+        <div class="popup__container">
+            <div class="popup-body">
+
+                    <div class="popup__title">Хотите так же?</div>
+                    <p>Введите ваш телеграмм и с вами свяжется наш специалист и проведет консультацию по внедрению описанных функций</p>
+                <div class="funnel-input input_focus">
+                    <label for="name" class="label_focus activeLabel">Телеграм</label>
+                    <input name="name" maxlength="30" class="videoname video-desc" type="text" value="">
+                    <span class="clear_input_val has_content">
+        <img src="/img/clear_input.svg" alt="">
+        </span>
+                </div>
+                <div class="popup__form">
+
+                        <button type="submit" class="popup__btn popup__blue ">Зарегистрироваться</button>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
 <script src="../js/sidebar.js"></script>
 <script src="/js/getNotifications.js"></script>
+<script src="/js/customInputs.js"></script>
+<script>
+    let popup__back = document.querySelectorAll('.popup__container');
+    let reload = document.querySelector('#article-reg');
+    document.querySelector('.regForCourse').addEventListener('click', function () {
+            reload.classList.add('display-block');
+    })
+    popup__back.forEach(item => {
+        item.onclick = function (event) {
+            if (event.target === item) {
+                reload.classList.remove('display-block');
+            }
+        }
+    })
+</script>
 <script>
     let feed = document.querySelector('.feed');
 
@@ -115,28 +155,6 @@
         });
 
 
-    // let scrollSize
-    //     function scroll() {
-    //
-    //         scrollSize = window.pageYOffset || document.documentElement.scrollTop;
-    //         console.log(scrollSize)
-    //         if(scrollSize >= 250){
-    //             document.querySelector('.Article-post-item').style.position = 'fixed'
-    //             document.querySelector('.Article-post-item').style.left = '24%';
-    //             document.querySelector('.Article-post-item').style.top = '380px';
-    //         }
-    //         setInterval(function(){
-    //             console.log(scrollSize);
-    //         }, 100)
-    //     }
-    //
-    //     window.addEventListener('resize', () => {
-    //         scroll()
-    //     });
-    //
-    //     window.addEventListener('load', () => {
-    //         scroll()
-    //     });
 
 </script>
 </body>

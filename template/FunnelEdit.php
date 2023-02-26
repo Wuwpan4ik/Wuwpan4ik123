@@ -173,12 +173,17 @@
         -webkit-transform: scale(.7);
         transform: scale(.7);
         left: 0;
+        top: 0px;
         -webkit-transition: all .2s ease-in-out;
         transition: all .2s ease-in-out;
     }
 
     input[type="checkbox"].switch_1:checked:after{
         left: calc(100% - 24px);
+    }
+
+    input[type="checkbox"].switch_1:focus:after {
+        top: -1px;
     }
 
     /* Switch 1 Specific Style End */
@@ -410,7 +415,7 @@
 <script type="text/javascript" src="../js/button__settings.js"></script>
 <script src="../js/sidebar.js"></script>
 <script src="/js/getNotifications.js"></script>
-
+<script src="/js/autoTextArea.js"></script>
 <script src="/js/customInputs.js"></script>
 <script src="../js/customSelect.js"> </script>
 <script src="/js/FunnelSettings/CheckSaveVersion.js"></script>
@@ -526,7 +531,8 @@
             dataType: 'html',          /* Тип данных в ответе (xml, json, script, html). */
             data: $("#initButton").serialize(),     /* Параметры передаваемые в запросе. */
             success: function(data){   /* функция которая будет выполнена после успешного запроса.  */
-                if (data == 0) {
+                console.log(data)
+                if (data == 1) {
                     document.querySelector('.exit-funnel-edit').classList.add('display-flex');
                     document.querySelector('.exit-funnel-edit').style.zIndex = '1000';
                     promise();
@@ -711,7 +717,27 @@
         }, 500)
     }
 </script>
+<script>
+    let feed = document.querySelector('.popup__edit');
 
+    feed.addEventListener("scroll", (event) => {
+        let scroll = feed.scrollTop;
+        console.log(scroll)
+        let postItem = document.querySelector('.popup__header-container')
+        if(scroll >= 56){
+            postItem.classList.remove('active');
+            postItem.style.position = 'fixed';
+            postItem.style.top = '23px';
+            postItem.style.bottom = 'null';
+        }
+        else if(scroll <= 56){
+            postItem.classList.add('active');
+            postItem.style.position = 'absolute'
+            postItem.style.left = '';
+            postItem.style.top = '';
+        }
+    });
+</script>
 </body>
 
 </html>

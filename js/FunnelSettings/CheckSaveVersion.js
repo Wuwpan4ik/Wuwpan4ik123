@@ -13,6 +13,7 @@ function getFunnelPopup(funnel_content_id) {
 
         // first_do
         let option_1;
+        defaultPopup(document.querySelector('#first_do'))
         if (popup['first_do']) {
             option_1 = Object.keys(popup['first_do'])[0];
 

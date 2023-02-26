@@ -19,7 +19,7 @@
                     <div class="user__logo-text">Course Creator</div>
                 </div>
             <div class="header-white__burger">
-                <a href="/UserMenu">
+                <a href="/">
                     <div class="main__burger">
                         <span></span>
                     </div>
@@ -41,7 +41,7 @@
                     <? echo htmlspecialchars($content[0]["first_name"]), " ", htmlspecialchars($content[0]["second_name"])?>
                 </div>
                 <div class="aboutTheAuthor__text">
-                    <?echo htmlspecialchars($content[0]["about"])?>
+                    <?echo htmlspecialchars($content[0]["school_desc"])?>
                 </div>
             </div>
             <div class="userPopup__button">

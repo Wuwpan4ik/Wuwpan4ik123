@@ -29,7 +29,7 @@
 
             $files_size = $this->funnel_content->dir_size($this->url_dir);
 
-            if ($_FILES['video_uploader']['size'] + $files_size > $max_file_size) {
+            if ($_FILES['video_uploader']['size'] + $files_size > $max_file_size + $this->CheckTariff()[0]['memory_add']) {
                 return False;
             }
 
@@ -110,10 +110,17 @@
                 }
             }
 
+            if (isset($_POST['disabled__transition'])) {
+                $disabled__transition = 1;
+            } else {
+                $disabled__transition = 0;
+            }
+
             $data = [
                 "name" => $name,
                 "description" => $description,
-                "button_text" => $change__button
+                "button_text" => $change__button,
+                "disabled__transition" => $disabled__transition
             ];
 
             $this->funnel_content->UpdateQuery("funnel_content", $data, "WHERE id = {$item_id}");
@@ -376,6 +383,8 @@
             $funnelSettings = [];
             $funnelSettings['desc__font'] = $_POST['desc__font'];
             $funnelSettings['title__font'] = $_POST['title__font'];
+            $funnelSettings['desc__size'] = $_POST['desc__size'];
+            $funnelSettings['title__size'] = $_POST['title__size'];
             $funnelSettings['button__style-color'] = (string) $_POST['button__style-color'];
             $funnelSettings['button__style-style'] = (string) $_POST['button__style-style'];
             $funnelSettings['number__style'] = (string) $_POST['number-style'];
@@ -413,15 +422,15 @@
             $id = $_SESSION['item_id'];
             $course_id = $_POST['course_id'];
 
-            $course = $this->course->Get();
-            $funnel = $this->funnel->Get(["id" => $course_id]);
+            $funnel = $this->funnel->Get();
+            $course = $this->course->Get(["id" => $course_id]);
 
             if (!$this->isUser($course[0]['author_id'])) return False;
             if (!$this->isUser($funnel[0]['author_id'])) return False;
 
             $this->funnel->UpdateQuery("funnel", ["course_id" => $course_id], "WHERE `id` = $id");
 
-            $this->local_get_content();
+            header("Location: /Funnel");
 
             return True;
         }
