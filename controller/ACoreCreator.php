@@ -28,6 +28,7 @@
         protected $user_class;
         protected $article;
         protected $user_tariff;
+        protected $Hmac;
 
         protected $ourEmail;
         protected $ourPassword;
@@ -63,6 +64,7 @@
             $this->user_class = new UserModel();
             $this->article = new ArticleModel();
             $this->user_tariff = new Tariff();
+            $this->Hmac = new Hmac();
 
             $email_account = $this->email_class->GetEmailAccount();
             $this->ourEmail = $email_account['email'];

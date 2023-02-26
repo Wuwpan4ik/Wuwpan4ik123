@@ -30,7 +30,9 @@
                     </div>
                     <div class="popup-tariff-button">
                         <button class="tariff__button-buy <?php if ($_SESSION['user']['tariff'] == $item['id']) echo 'selected' ?>" data-id="<?=$item['id']?>" type="button" >
-                            <?php echo ($_SESSION['user']['tariff'] == $item['id']) ? 'Выбран сейчас' : 'Выбрать'?>
+                            <?php echo ($_SESSION['user']['tariff'] == $item['id']) ? 'Выбран сейчас' :
+                                "<a href='{$content[5][(int)$item['id'] - 1]}'>Выбрать</a>"
+                            ?>
                         </button>
                     </div>
                 </div>

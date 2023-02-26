@@ -284,6 +284,7 @@ class AccountController extends ACoreCreator {
 
     function AddAdditionally() {
         $this->user_tariff->UpdateQuery("users_tariff", ["clients_add" => $_POST['additionally_user'], "memory_add" => $_POST["additionally_memory"]], "WHERE user_id = {$_SESSION['user']['id']}");
+        $this->tariff_class->InsertQuery('tariff_buy_log', ["user_id" => $_SESSION['user']['id'], "money" => 100, "date" => date("Y-m-d", strtotime(mktime(0, 0, 0, date('m'), date('d'), date('Y'))))]);
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 

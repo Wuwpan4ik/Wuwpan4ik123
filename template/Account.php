@@ -19,11 +19,9 @@
 
 <body>
 
-
-
 <div class="SettingAccount">
     <div class="error display-none">
-        <?php print_r($_SESSION['error']) ?>
+        <?php print_r($content) ?>
     </div>
     <?php include 'default/sidebar.php';?>
 
@@ -637,14 +635,6 @@
 
 <!--Покупка тарифа-->
 <script>
-    $('.tariff__button-buy').not('.selected').each(function (){
-        $(this).click(function (){
-            $('#tariff_buy').val(this.dataset.id)
-            $('#tariff-buy-form').submit();
-            improvementTariff.classList.remove('active');
-            changeTariff.classList.remove('active');
-        })
-    })
 </script>
 
 <script>

@@ -3,8 +3,8 @@
 class TariffController extends ACoreCreator
 {
     public function Buy()
-    {   
-        $user_id = $_SESSION['user']['id'];
+    {
+        $user_id = $_POST['user_id'];
         $tariff_id = $_POST['tariff_id'];
         if ($this->tariff_class->BuyTariff($user_id, $tariff_id)) {
             $tariff_name = $this->tariff_class->GetTariff($user_id);
