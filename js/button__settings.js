@@ -122,29 +122,15 @@ function removeSelect(elem) {
 }
 
 async function addFormSelect(elem, name) {
-    // let count_block = elem.parentElement.querySelectorAll('.form_id').length;
-    // let count_id = elem.parentElement.querySelectorAll('.form_id').length + 1;
-    // if (elem.id === 'second_do-list') {
-    //     count_id = elem.parentElement.querySelectorAll('.form_id').length + 4;
-    // }
-    // let div_container = document.createElement('div');
-    // div_container.style.position = 'relative';
-    // div_container.classList.add("select-account");
-    let div_container =
-        `<div class="select-account select__add">
-                        <div id="myMultiselect " class="multiselet select__add">
-                            <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
-                                <select name="second_do" id="second_do" class="form-select">
-                                    <option value="next_lesson" id="name" selected="">Открыть следующее видео</option>
-                                </select>
-                                <div class="overSelect"></div>
-                            </div>
-                            <div class="mySelectOptions second_do_list ">
-                              
-                            </div>
-                        </div>
-                    </div>`
-    let div = document.querySelector('.select__add select');
+    let count_block = elem.parentElement.querySelectorAll('.form_id').length;
+    let count_id = elem.parentElement.querySelectorAll('.form_id').length + 1;
+    if (elem.id === 'second_do-list') {
+        count_id = elem.parentElement.querySelectorAll('.form_id').length + 4;
+    }
+    let div_container = document.createElement('div');
+    div_container.style.position = 'relative';
+    div_container.classList.add("form-select__container");
+    let div = document.createElement('select');
     let button =
         `<button id="delete_selectForm" style="display: flex;justify-content: center;align-items: center;position: absolute; bottom: 6px; right: 10px; z-index: 100;" onclick="removeSelect(this)"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M8 14C8 14.55 7.55 15 7 15C6.45 15 6 14.55 6 14V10C6 9.45 6.45 9 7 9C7.55 9 8 9.45 8 10V14ZM14 14C14 14.55 13.55 15 13 15C12.45 15 12 14.55 12 14V10C12 9.45 12.45 9 13 9C13.55 9 14 9.45 14 10V14ZM16 17C16 17.551 15.552 18 15 18H5C4.448 18 4 17.551 4 17V6H16V17ZM8 2.328C8 2.173 8.214 2 8.5 2H11.5C11.786 2 12 2.173 12 2.328V4H8V2.328ZM19 4H18H14V2.328C14 1.044 12.879 0 11.5 0H8.5C7.121 0 6 1.044 6 2.328V4H2H1C0.45 4 0 4.45 0 5C0 5.55 0.45 6 1 6H2V17C2 18.654 3.346 20 5 20H15C16.654 20 18 18.654 18 17V6H19C19.55 6 20 5.55 20 5C20 4.45 19.55 4 19 4Z" fill="#757D8A"/>
@@ -154,11 +140,10 @@ async function addFormSelect(elem, name) {
     div.classList.add('input_selector');
     div.name = 'form_id-' + count_id;
     for (const [key, value] of Object.entries(names_option)) {
-        let option = document.createElement('label');
-        option.classList.add('item')
-        option.innerHTML += `<input class="custom-checkbox" type="radio" data-value="1" value="file"><img class="checkMark" src="../img/checkMark.svg" alt="">`
+        let option = document.createElement('option');
         option.value = key;
         option.innerHTML = value;
+        option.style.position = 'relative';
         if (name === key) {
             option.setAttribute('selected', true);
 

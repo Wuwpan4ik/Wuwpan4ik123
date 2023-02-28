@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Creator - Кейсы</title>
+    <title>Course Creator - Создать рассылку</title>
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/aboutuser.css">
@@ -30,32 +30,53 @@
                 <div class="new-mailing__settings">
 
                     <div class="new-mailing__block">
-                        <label class="new-mailing__subtitle" for="">Новая рассылка</label>
+                        <label class="new-mailing__subtitle" for="text">Новая рассылка</label>
 
                         <div class="input_focus ">
-                            <label for="username" class="label_focus">Добавьте текст сообщения</label>
-                            <input min="3" type="text" id="social__inpu" minlength="3">
+                            <label for="text" class="label_focus">Добавьте текст сообщения</label>
+                            <input min="3" type="text" id="social__inpu" minlength="3" value="<?php echo ($content['message__text']) ?? '' ?>">
                             <span class="clear_input_val">
                                 <img src="/img/clear_input.svg" alt="">
                             </span>
                         </div>
-
-                        <div class="new-mailing__block_two">
-                            <div class="input_focus ">
-                                <label for="username" class="label_focus">Кнопка</label>
-                                <input min="3" type="text" id="social__inpu" minlength="3">
-                                <span class="clear_input_val">
-                                <img src="/img/clear_input.svg" alt="">
-                            </span>
+                        <?php if ($content['buttons']) {
+                            $count = 1?>
+                            <?php foreach ($content['buttons'] as $item) {?>
+                                <div class="new-mailing__block_two">
+                                    <div class="input_focus ">
+                                        <label for="username" class="label_focus">Кнопка</label>
+                                        <input min="3" type="text" name="<?php echo "{$count}_button"?>" id="social__inpu" minlength="3" value="<?php echo ($item[0]) ?? '' ?>">
+                                        <span class="clear_input_val">
+                                        <img src="/img/clear_input.svg" alt="">
+                                    </span>
+                                    </div>
+                                    <div class="input_focus ">
+                                        <label for="username" class="label_focus">Ссылка для кнопки</label>
+                                        <input min="3" type="text" name="<?php echo "{$count}_link"?>" id="social__inpu" minlength="3" value="<?php echo ($item[1]) ?? '' ?>">
+                                        <span class="clear_input_val">
+                                        <img src="/img/clear_input.svg" alt="">
+                                    </span>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        <?php } else { ?>
+                            <div class="new-mailing__block_two">
+                                <div class="input_focus ">
+                                    <label for="username" class="label_focus">Кнопка</label>
+                                    <input min="3" type="text" name="1_button" id="social__inpu" minlength="3" value="">
+                                        <span class="clear_input_val">
+                                    <img src="/img/clear_input.svg" alt="">
+                                    </span>
+                                </div>
+                                <div class="input_focus ">
+                                    <label for="username" class="label_focus">Ссылка для кнопки</label>
+                                    <input min="3" type="text" name="2_link" id="social__inpu" minlength="3" value="">
+                                        <span class="clear_input_val">
+                                    <img src="/img/clear_input.svg" alt="">
+                                    </span>
+                                </div>
                             </div>
-                            <div class="input_focus ">
-                                <label for="username" class="label_focus">Ссылка для кнопки</label>
-                                <input min="3" type="text" id="social__inpu" minlength="3">
-                                <span class="clear_input_val">
-                                <img src="/img/clear_input.svg" alt="">
-                            </span>
-                            </div>
-                        </div>
+                        <?php } ?>
 
                         <button class="Mailings__btn"><img src="/img/Mailings/plus_gray.svg" alt="">Добавить кнопку</button>
                     </div>
@@ -79,14 +100,14 @@
                         <div class="new-mailing__block_two">
                             <div class="input_focus ">
                                 <label for="username" class="label_focus"></label>
-                                <input id="username" type="date" required  name="birthday" value="">
+                                <input id="username" type="date" required  name="date__send" value="<?php echo ($content['date__send']) ?? '' ?>">
                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
                             </div>
                             <div class="input_focus ">
-                                <label for="username" class="label_focus">Ссылка для кнопки</label>
-                                <input min="3" type="time" required id="social__inpu" minlength="3">
+                                <label for="username" class="label_focus">Время отправки</label>
+                                <input min="3" type="time" required name="time__send" id="social__inpu" minlength="3" value="<?php echo ($content['time__send']) ?? '' ?>">
                                 <span class="clear_input_val">
                                 <img src="/img/clear_input.svg" alt="">
                             </span>
@@ -94,7 +115,7 @@
                         </div>
                     </div>
 
-                    <h2 class="chapter__title">Куму отправить</h2>
+                    <h2 class="chapter__title">Кому отправить</h2>
 
                     <div class="new-mailing__block">
                         <div class="mytabs new-mailing__menu">
@@ -103,7 +124,7 @@
                             <div class="tab">
                                 <div class="send">
                                     <div class="send__block">
-                                        <label class="new-mailing__subtitle" for="">Выберите продукт</label>
+                                        <label class="new-mailing__subtitle" for="">Выберите аудиторию</label>
                                         <div class="select-account social-network">
                                             <div id="myMultiselect" class="multiselect">
                                                 <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
@@ -113,28 +134,9 @@
                                                     <div class="overSelect"></div>
                                                 </div>
                                                 <div class="mySelectOptions">
-                                                    <label class="item active social__item"><span><img src="/img/Mailings/people.svg" alt="">Все</span><input class="custom-radio_two custom-checkbox social__input" type="radio" data-value="Все" value="vk" /><label for="happy"></label></label>
-                                                    <label class="item social__item"><span><img src="/img/Mailings/people.svg" alt="">Кто оплатил</span><input class="custom-radio_two custom-checkbox social__input" type="radio" data-value="Кто оплатил" value="whatsapp" /><label for="happy"></label></label>
-                                                    <label class="item social__item"><span><img src="/img/Mailings/people.svg" alt="">Кто не оплатил</span><input class="custom-radio_two custom-checkbox social__input" type="radio" data-value="Кто не оплатил" value="twitter" /><label for="happy"></label></label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="send__recipient"></div>
-                                    </div>
-                                    <div class="send__block">
-                                        <label class="new-mailing__subtitle" for="">Выберите продукт</label>
-                                        <div class="select-account social-network">
-                                            <div id="myMultiselect" class="multiselect">
-                                                <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
-                                                    <select class="form-select">
-                                                        <option class="form-select__social-name" value="<?=$options[$i] ?>" id="name"><?=$options[$i] ?></option>
-                                                    </select>
-                                                    <div class="overSelect"></div>
-                                                </div>
-                                                <div class="mySelectOptions">
-                                                    <label class="item active social__item"><span><img src="/img/Mailings/people.svg" alt="">Все</span><input class="custom-radio_two custom-checkbox social__input" type="radio" data-value="Все" value="vk" /><label for="happy"></label></label>
-                                                    <label class="item social__item"><span><img src="/img/Mailings/people.svg" alt="">Кто оплатил</span><input class="custom-radio_two custom-checkbox social__input" type="radio" data-value="Кто оплатил" value="whatsapp" /><label for="happy"></label></label>
-                                                    <label class="item social__item"><span><img src="/img/Mailings/people.svg" alt="">Кто не оплатил</span><input class="custom-radio_two custom-checkbox social__input" type="radio" data-value="Кто не оплатил" value="twitter" /><label for="happy"></label></label>
+                                                    <label class="item active social__item"><span><img src="/img/Mailings/people.svg" alt="">Все</span><input class="custom-radio_two custom-checkbox social__input" type="radio" data-value="Все" value="1" /><label for="happy"></label></label>
+                                                    <label class="item social__item"><span><img src="/img/Mailings/people.svg" alt="">Кто оплатил</span><input class="custom-radio_two custom-checkbox social__input" type="radio" data-value="Кто оплатил" value="2" /><label for="happy"></label></label>
+                                                    <label class="item social__item"><span><img src="/img/Mailings/people.svg" alt="">Кто не оплатил</span><input class="custom-radio_two custom-checkbox social__input" type="radio" data-value="Кто не оплатил" value="3" /><label for="happy"></label></label>
                                                 </div>
                                             </div>
                                         </div>

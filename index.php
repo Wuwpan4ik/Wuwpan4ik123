@@ -136,7 +136,7 @@
 //    } else {
 //        $router->route("/error");
 //    }
-
+    $_SESSION['item_id'] = null;
 
 
 

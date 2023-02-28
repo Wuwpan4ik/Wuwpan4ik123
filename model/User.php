@@ -22,6 +22,11 @@ class User extends ConnectDatabase{
         return $this->db->query("SELECT * FROM user WHERE email = '$email' AND password = '$password'");
     }
 
+    public function GetUserWithUsername($username)
+    {
+        return $this->ClearQuery("SELECT * FROM user WHERE LOWER( username ) LIKE '%$username%'")['id'];
+    }
+
     public function getAuthorizationUserByUsername($username, $password) {
         return $this->db->query("SELECT * FROM user WHERE username = '$username' AND password = '$password'");
     }

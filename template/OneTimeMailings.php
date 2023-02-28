@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Creator - Кейсы</title>
+    <title>Course Creator - Разовая рассылка</title>
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/main.css">
     <!--Favicon-->
@@ -20,7 +20,7 @@
             <div class="ot-mailings__body">
                 <div class="mailing__create" style="width: auto;">
 
-                    <a href="#" class="mailing_new">
+                    <a href="/NewMailing" class="mailing_new">
 
                         <img src="/img/Create_mailing.svg" class="create-ico">
 

@@ -65,6 +65,7 @@
             $this->article = new ArticleModel();
             $this->user_tariff = new Tariff();
             $this->Hmac = new Hmac();
+            $this->mailing = new MailingModel();
 
             $email_account = $this->email_class->GetEmailAccount();
             $this->ourEmail = $email_account['email'];
