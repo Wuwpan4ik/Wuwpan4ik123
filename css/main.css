@@ -1,5 +1,9 @@
 @import url("/css/font.css");
 
+* button, * input, * textarea{
+  font-family: "Inter", sans-serif !important;
+}
+
 html, body{
   scrollbar-color: #E1E3E6 transparent; /* «цвет ползунка» «цвет полосы скроллбара» */
   scrollbar-width: 1px;  /* толщина */
@@ -2124,6 +2128,10 @@ td:nth-child(1){
   max-height: max-content !important;
 }
 
+.mySelectOptions{
+  overflow-x: hidden;
+}
+
 .mySelectOptions span{
   display: flex;
   align-items: center;
@@ -2537,8 +2545,6 @@ td:nth-child(1){
   z-index: 110;
 }
 .mySelectOptions .item {
-
-
   width: 100% ;
   display: flex;
   justify-content: space-between;
@@ -2550,7 +2556,6 @@ td:nth-child(1){
   background-color: #ffffff00;
   padding: 8px 16px;
   border-radius: 8px;
-
 }
 .сurrencies{
   padding: 8px 16px;
@@ -2851,6 +2856,7 @@ td:nth-child(1){
   flex-direction: column;
   gap: 24px;
   width: 100%;
+  max-width: 600px;
   border: 1px solid rgb(225,227,230);
   border-radius: 8px;
   padding: 24px;
@@ -2874,6 +2880,22 @@ td:nth-child(1){
   font-weight: 500;
   font-size: 24px;
   color: #404D61;
+}
+
+@media (max-width: 1248px) {
+  .Mailings__title{
+    font-size: 18px;
+  }
+  .Mailings__status{
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 762px) {
+  .Mailings__types{
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 
 .Mailings__status{
@@ -2939,6 +2961,12 @@ td:nth-child(1){
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
+}
+
+@media (max-width: 1083px) {
+  .ot-mailings__body{
+    justify-content: center;
+  }
 }
 
 .ot-mailing{
@@ -3025,6 +3053,13 @@ td:nth-child(1){
 .new-mailing__body{
   display: flex;
   gap: 24px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1332px) {
+  .new-mailing__settings{
+    width: 100% !important;
+  }
 }
 
 .new-mailing__card{
@@ -3047,7 +3082,7 @@ td:nth-child(1){
   display: flex;
   flex-direction: column;
   gap: 30px;
-  width: 100%;
+  width: 75%;
 }
 
 .new-mailing__block_two{
@@ -3179,9 +3214,23 @@ input[type=date]:invalid::-webkit-datetime-edit, input[type=time]:invalid::-webk
   width: 100%;
 }
 
+@media (max-width: 614px) {
+  .send , .new-mailing__block_two{
+    flex-wrap: wrap;
+  }
+}
+
 .send__block{
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 14px;
+}
+
+.tab .textarea{
+  width: 100%;
+  height: 132px;
+  border: 1px solid #E1E3E6;
+  border-radius: 8px;
+  padding: 20px 16px;
 }

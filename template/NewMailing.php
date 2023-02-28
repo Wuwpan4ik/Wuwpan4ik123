@@ -149,7 +149,8 @@
 
                             <input type="radio" id="EnterEmail" name="mytabs"/>
                             <label class="menu-label" for="EnterEmail" id="cllab"><p>Ввести email вручную</p></label>
-                            <div class="tab">
+                            <div class="tab textarea_focus">
+                                <textarea class="entering-mail textarea" maxlength="1000" placeholder="Введите Email с новой строки" name="body_additional"></textarea>
                                 <div class="about-btn">
                                     <button class="save-btn" id="profile_send" type="submit">Сохранить</button>
                                 </div>
@@ -166,6 +167,7 @@
 <script src="/js/customInputs.js"></script>
 <script src="../js/sidebar.js"></script>
 <script src="/js/getNotifications.js"></script>
+<script src="/js/autoTextArea.js"></script>
 <script>
     /*Select*/
     function checkboxStatusChange(block = document) {

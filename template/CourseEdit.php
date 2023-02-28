@@ -185,9 +185,8 @@
 <script src="/js/button__settings.js"></script>
 <script>
     function uploadFile(target) {
-        console.log(target.parentElement.parentElement)
         target.parentElement.parentElement.querySelector("#file-name").innerHTML = (target.files[0].name);
-        target.parentElement.parentElement.querySelector("#file-size").innerHTML = Math.round(target.files[0].size / 1024) + "кБ из доступных 5мб" ;
+        target.parentElement.parentElement.querySelector("#file-size").innerHTML = Math.round(target.files[0].size / 1024) >= 1024 ? Math.round((target.files[0].size / 1024) / 1024) + "мб из доступных 5мб" : Math.round(target.files[0].size / 1024) + "кБ из доступных 5мб";
     }
 </script>
 <script>
