@@ -53,11 +53,11 @@
                 <div class="popup__body-item">
                     <label class="popup__subtitle" for="first_do">Размер шрифта для заголовка</label>
                     <div class="font-size">
-                        <input type="range" name="title__size" min="0" max="40" value="0"  oninput="rangevalue.value=value">
+                        <input type="range" name="title__size" min="0" max="40" value="30"  oninput="rangevalue.value=value">
 
                         <div class="font-size__info">
                             <div class="font-size__current-value">
-                                <output id="rangevalue">0</output>
+                                <output id="rangevalue">30</output>
                             </div>
                             <div class="font-size__max-value">
                                 40
@@ -92,11 +92,11 @@
                 <div class="popup__body-item">
                     <label class="popup__subtitle" for="first_do">Размер шрифта для описания</label>
                     <div class="font-size">
-                        <input type="range" name="desc__size" min="0" max="40" value="0"  oninput="rangevalueTitle.value=value">
+                        <input type="range" name="desc__size" min="0" max="40" value="14"  oninput="rangevalueTitle.value=value">
 
                         <div class="font-size__info">
                             <div class="font-size__current-value">
-                                <output id="rangevalueTitle">0</output>
+                                <output id="rangevalueTitle">14</output>
                             </div>
                             <div class="font-size__max-value">
                                 40

@@ -393,7 +393,7 @@
                                             <h2>Подключение Albato:  </h2>
                                             <div class="row">
                                                 <div class="input_focus ">
-                                                    <label for="username" class="label_focus">API Ключ</label>
+                                                    <label for="username" class="label_focus">URL Вебхука</label>
                                                     <input class="inf" type="text"  name="albato_key" value="<?php echo $_SESSION['user']['albato_key']?>">
                                                     <span class="clear_input_val">
                                                                  <img src="/img/clear_input.svg" alt="">
@@ -668,7 +668,6 @@
                 setTimeout(function () {
                     saveBtn.removeClass("active");
                     saveBtn.innerHTML = 'Сохранить';
-                    window.location.reload();
                 }, 2000)
                 AddNotifications("Настройки сохранены", '');
             })

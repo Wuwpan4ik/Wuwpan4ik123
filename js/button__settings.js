@@ -6,7 +6,7 @@ const id_item = document.querySelector('#id_item');
 const first_select = document.querySelector('#first_do');
 const second_select = document.querySelector('#second_do');
 // Поля option в форме
-const names_option = {'email': "Ваша почта", 'name': "Ваше имя", 'tel': "Ваш номер телефон"};
+const names_option = {'email': "Ваша почта", 'name': "Ваше имя", 'tel': "Ваш номер телефона"};
 
 // Сохранение / закрытие
 function save() {

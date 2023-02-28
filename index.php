@@ -14,7 +14,7 @@
 //        $user = count((new User())->db->query("SELECT * FROM user WHERE username = '" . $url_array[0] . "' AND is_creator = '1'"));
 //        if ($user == 1) {
 //            echo 1;
-            $url_local = "/". $url_array[0] . "/SmallPlayer/" . $url_array[2];
+            $url_local = "/SmallPlayer/" . $url_array[2];
             $router->addRoute("$url_local", "SmallPlayer.php");
 //        }
     } else {

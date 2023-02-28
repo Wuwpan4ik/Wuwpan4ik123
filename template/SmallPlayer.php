@@ -121,7 +121,7 @@
         ?>
     </div>
 </div>
-<input type="hidden" id="albato_key" value="<?php echo $content['user_info']['albato_key'] ?>">
+<input type="hidden" id="albato_key" value="<?php if ($content['user_info']['albato_key']) echo $content['user_info']['albato_key'] ?>">
 <?php }?>
 <?php include 'template/default/notificationsPopup.php' ?>
 
@@ -200,21 +200,23 @@ cursor: pointer;text-decoration: none;">Вернуться на сайт</a>
         let counter = 0;
         let increase = false;
 
-        document.querySelector(".slider__header-views-count").innerHTML = randomNumber;
+        document.querySelectorAll(".slider__header-views-count").forEach(item => {
+            item.innerHTML = randomNumber;
 
-        setInterval(function() {
-            if (!increase && counter < 4) {
-                randomNumber--;
-                counter++;
-            } else if (increase && counter < 10) {
-                randomNumber++;
-                counter++;
-            } else {
-                increase = !increase;
-                counter = 0;
-            }
-            document.querySelector(".slider__header-views-count").innerHTML = randomNumber;
-        }, 1500);
+            setInterval(function() {
+                if (!increase && counter < 4) {
+                    randomNumber--;
+                    counter++;
+                } else if (increase && counter < 10) {
+                    randomNumber++;
+                    counter++;
+                } else {
+                    increase = !increase;
+                    counter = 0;
+                }
+                item.innerHTML = randomNumber;
+            }, 1500);
+        })
     })
 </script>
 

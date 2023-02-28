@@ -71,10 +71,6 @@
             $this->ourEmail = $email_account['email'];
             $this->ourPassword = $email_account['password'];
             $this->ourNickName = $email_account['name'];
-            $f = $this->user->GetApi();
-            $this->api_key = $f['api_key'];
-            $this->api_endpoint = $f['endpoint'];
-
             $this->url_dir = "./uploads/users/" . $_SESSION['user']['id'] . '/';
         }
 

@@ -273,7 +273,7 @@
                     "username" => $username
                 ];
                 $this->user->UpdateQuery("user", $data, "WHERE id = {$user[0]['id']}");
-                $body = include "./template/templates_email/vosstanovlenie-parolya(client, user).php";
+                $body = include "./template/templates_email/Vost.php";
 
                 $this->SendEmail(
                     [
@@ -308,7 +308,7 @@
                     "password" => $this->password
                 ];
                 $this->user->UpdateQuery("user", $data, "WHERE email = {$this->email}");
-                $body = include "./template/templates_email/vosstanovlenie-parolya(client, user).php";
+                $body = include "./template/templates_email/Vost.php";
 
                 $this->SendEmail(
                     [

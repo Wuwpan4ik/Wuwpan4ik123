@@ -381,32 +381,33 @@
         public function CreateMainSettings()
         {
             $funnelSettings = [];
-            $funnelSettings['desc__font'] = $_POST['desc__font'];
-            $funnelSettings['title__font'] = $_POST['title__font'];
-            $funnelSettings['desc__size'] = $_POST['desc__size'];
-            $funnelSettings['title__size'] = $_POST['title__size'];
+            $funnelSettings['desc__font'] = (string) $_POST['desc__font'];
+            $funnelSettings['title__font'] = (string) $_POST['title__font'];
+            $funnelSettings['desc__size'] = (string) $_POST['desc__size'];
+            $funnelSettings['title__size'] = (string) $_POST['title__size'];
             $funnelSettings['button__style-color'] = (string) $_POST['button__style-color'];
             $funnelSettings['button__style-style'] = (string) $_POST['button__style-style'];
             $funnelSettings['number__style'] = (string) $_POST['number-style'];
             $funnelSettings['number__color'] = (string) $_POST['number-color'];
             $funnelSettings['head__settings'] = (string) $_POST['head__settings'];
 
-            return ['json' => $funnelSettings];
+            return $funnelSettings;
         }
 
         public function MainSettings()
         {
             $check_user = $this->funnel->Get();
 
-            if (!$this->isUser($check_user[0]['author_id'])) return False;
+//            if (!$this->isUser($check_user[0]['author_id'])) return False;
 
             $main_settings = $this->CreateMainSettings();
 
-            $main__settingsResult = json_encode($main_settings['json'], JSON_UNESCAPED_UNICODE);
+            $main__settings = json_encode($this->CreateMainSettings(), JSON_UNESCAPED_UNICODE);
 
-            $this->funnel->UpdateQuery("funnel", ["style_settings" => $main__settingsResult], "WHERE id = {$_SESSION['item_id']}");
+            $this->funnel->UpdateQuery("funnel", ["style_settings" => $main__settings], "WHERE id = {$_POST['id_item']}");
 
             $this->local_get_content();
+
             return True;
         }
 

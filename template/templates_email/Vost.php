@@ -1,5 +1,6 @@
 <?php
-    $first_row = isset($email) ? ['value' => $email, 'key' => 'Ваша почта:'] : ['value' => $username, 'key' => 'Ваш логин:'];
+    if (isset($email)) { $first_row =  ['value' => $email, 'key' => 'Ваша почта:']; };
+    if (isset($username)) {$first_row =  ['value' => $username, 'key' => 'Ваш логин:']; };
     $result = '
         <html lang="RU">
         <head>
@@ -37,7 +38,7 @@
                                 Ваш пароль:
                             </p>
                             <div style="color: #8098AB;background: #EFF3F6;border-radius: 3px;padding-top: 15px;padding-bottom: 15px;padding-right: 20px;padding-left: 20px;">
-                                '. $password .'
+                                '. $this->password .'
                             </div>
                         </div>
                     </div>
