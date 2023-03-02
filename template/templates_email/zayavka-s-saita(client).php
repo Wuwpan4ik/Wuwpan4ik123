@@ -97,8 +97,8 @@ $result = '<html lang="RU">
                                     Смотрите другие заявки на сайте:
                                 </p>
                                 <div style="background: #EFF3F6;border-radius: 3px;padding-top: 15px;padding-bottom: 15px;padding-right: 20px;padding-left: 20px;">
-                                    <a href="https://course-creator.io/" target="_blank" style="color: #8098AB;">
-                                        https://course-creator.io/
+                                    <a href="https://appp.course-creator.io/" target="_blank" style="color: #8098AB;">
+                                        https://appp.course-creator.io/
                                     </a>
                                 </div>
                             </div>

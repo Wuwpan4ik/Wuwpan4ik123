@@ -170,12 +170,9 @@ class AccountController extends ACoreCreator {
             "country" => $country,
             "city" => $city
         ];
-        $this->user->UpdateQuery("user", $data, "WHERE id = {$user[0]['id']}");
+        $this->user->UpdateQuery("user", $data, "WHERE id = {$_SESSION['user']['id']}");
 
-        $data = [
-            "avatar" => $avatar
-        ];
-        $this->user->UpdateQuery("user", $data, "WHERE id = {$user[0]['id']}");
+        $this->user->UpdateQuery("user", ["avatar" => $avatar], "WHERE id = {$_SESSION['user']['id']}");
 
         $_SESSION["user"]['first_name'] = $first_name;
         $_SESSION["user"]['second_name'] = $second_name;

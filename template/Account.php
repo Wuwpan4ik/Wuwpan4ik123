@@ -662,6 +662,7 @@
                     processData: false,
                     contentType: false
                 });
+                console.log(new FormData(this))
                 let saveBtn = $(this).find('#profile_send');
                 saveBtn.addClass("active");
                 saveBtn.innerHTML = 'Сохранено';
