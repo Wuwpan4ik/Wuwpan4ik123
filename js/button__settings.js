@@ -162,6 +162,9 @@ async function addFormSelect(elem, name) {
 }
 
 function addFormLink(elem) {
+    if (document.querySelector('.multiselect').querySelectorAll('.checkbox__wrapper').length > 0) {
+        return false;
+    }
     let count_id = elem.id === 'second_do' ? 2 : 1;
     let div = document.createElement('input');
     div.placeholder = "Переход по ссылке";

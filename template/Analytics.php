@@ -265,6 +265,10 @@
 </body>
 <script src="/js/jquery-3.6.1.min.js"></script>
 <script src="../js/script.js" ></script>
+<script src="../js/sidebar.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<script src="../js/charts.js"></script>
+<script src="/js/getNotifications.js"></script>
 <!--Удаление элементов-->
 <script>
     function checkEmptyAnalyticsArray(arrayTemp, name) {
@@ -578,10 +582,4 @@
           })
       }
   </script>
-
-
-<script src="../js/sidebar.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-<script src="../js/charts.js"></script>
-<script src="/js/getNotifications.js"></script>
 </html>

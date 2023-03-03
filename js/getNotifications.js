@@ -1,5 +1,4 @@
 // Количество уведомлений
-
 function getCount() {
     let requestCount = new XMLHttpRequest();
     document.querySelector('.popupBell-body').classList.add('display-none');
@@ -73,3 +72,11 @@ function GetAllNotif() {
     })
     request.send();
 }
+$(document).mouseup(function (e) {
+    var container = $(".popupBell-body");
+    if (container.has(e.target).length === 0 && $(".button-bell").has(e.target).length !== 1){
+        container.display = 'none';
+        $(".popupBell").removeClass('active')
+    }
+});
+

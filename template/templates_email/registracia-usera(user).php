@@ -41,7 +41,7 @@
                             </div>
                         </div>
                         <div class="link_account" style="margin-top: 20px;">
-                            <a href="https://course-creator.io/UserLogin" target="_blank">
+                            <a href="'. $url .'" target="_blank">
                                 <button style="width:100%; height:48px;border:none;font-size:16px;border-radius: 10px;background: linear-gradient(299.36deg, rgba(55, 101, 223, 0.93) 0%, rgba(100, 162, 255, 0.96) 100%);color:white;cursor: pointer;">
                                     Перейти в аккаунт
                                 </button>

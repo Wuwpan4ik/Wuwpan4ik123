@@ -10,11 +10,11 @@
     $router = new Router();
 
     if (str_contains($url, 'SmallPlayer')) {
-        $_SESSION['item_id'] = $url_array[2];
+        $_SESSION['item_id'] = $url_array[1];
 //        $user = count((new User())->db->query("SELECT * FROM user WHERE username = '" . $url_array[0] . "' AND is_creator = '1'"));
 //        if ($user == 1) {
 //            echo 1;
-            $url_local = "/SmallPlayer/" . $url_array[2];
+            $url_local = "/SmallPlayer/" . $url_array[1];
             $router->addRoute("$url_local", "SmallPlayer.php");
 //        }
     } else {
