@@ -75,10 +75,10 @@
                         type: $(this).attr("method"),
                         data: $(this).serialize(),
                         success: function (data) {
-                            if (document.querySelector('input[name="login"]').value.toLowerCase() !== window.location.host.split('.')[0]) {
-                                document.querySelector(".error").innerHTML = "Вы не можете войти в аккаунт по этой ссылке";
-                                return false
-                            }
+                            // if (document.querySelector('input[name="login"]').value.toLowerCase() !== window.location.host.split('.')[0]) {
+                            //     document.querySelector(".error").innerHTML = "Вы не можете войти в аккаунт по этой ссылке";
+                            //     return false
+                            // }
                             window.location.replace('/');
                         },
                         error: function (data) {

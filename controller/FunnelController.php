@@ -389,7 +389,6 @@
             $funnelSettings['button__style-style'] = (string) $_POST['button__style-style'];
             $funnelSettings['number__style'] = (string) $_POST['number-style'];
             $funnelSettings['number__color'] = (string) $_POST['number-color'];
-            $funnelSettings['head__settings'] = (string) $_POST['head__settings'];
 
             return $funnelSettings;
         }
@@ -404,6 +403,10 @@
 
             $main__settings = json_encode($this->CreateMainSettings(), JSON_UNESCAPED_UNICODE);
 
+            if (isset($_POST['head__settings'])) {
+                $this->funnel->UpdateQuery("funnel", ["html_code" => $_POST['head__settings']], "WHERE id = {$_POST['id_item']}");
+            }
+
             $this->funnel->UpdateQuery("funnel", ["style_settings" => $main__settings], "WHERE id = {$_POST['id_item']}");
 
             $this->local_get_content();
@@ -413,8 +416,7 @@
 
         public function GetMainSettings()
         {
-            $result = $this->funnel->GetStyleSettings()[0]['style_settings'];
-            print_r($result);
+            print_r($this->funnel->GetStyleSettings());
             return True;
         }
 

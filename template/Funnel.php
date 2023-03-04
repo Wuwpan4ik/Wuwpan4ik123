@@ -325,12 +325,14 @@
                     let title;
                     let description;
                     if (data){
+                        console.log(data)
                         let temp_data = JSON.parse(data);
                         description = temp_data['desc__font'];
                         title = temp_data['title__font'];
                         let color__button = temp_data['number__color'];
                         let shadow__button = temp_data['number__style'];
                         document.querySelectorAll('.popup-styles-color')[color__button - 1].click();
+                        document.querySelector('#head').innerHTML = temp_data['html_code']
                         document.querySelectorAll('.popup-styles-button button')[shadow__button - 1].click();
                         document.querySelector('input[name="title__size"]').value =  parseInt(temp_data['title__size'])
                         document.querySelector('input[name="desc__size"]').value = parseInt(temp_data['desc__size'])

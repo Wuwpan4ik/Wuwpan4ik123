@@ -21,7 +21,7 @@
 
             $res = $this->user->getAuthorizationUserByEmail($email, $password);
             if(count($res) != 0) {
-                if ($this->user_class->GetContentForUserCoursePage($this->user->GetUserWithUsername($_POST['subdomain']), $res[0]['id'])) {
+//                if ($this->user_class->GetContentForUserCoursePage($this->user->GetUserWithUsername($_POST['subdomain']), $res[0]['id'])) {
                     if ($res[0]['is_creator'] == 0) {
                         $_SESSION["user"] = [
                             'id' => $res[0]['id'],
@@ -36,11 +36,11 @@
                         echo $response;
                         die(header("HTTP/1.0 404 Not Found"));
                     }
-                } else {
-                    $response = "Вы не можете зайти по этой ссылке";
-                    echo $response;
-                    die(header("HTTP/1.0 404 Not Found"));
-                }
+//                } else {
+//                    $response = "Вы не можете зайти по этой ссылке";
+//                    echo $response;
+//                    die(header("HTTP/1.0 404 Not Found"));
+//                }
             }
             else {
                 $response = "Неверный пароль или логин";

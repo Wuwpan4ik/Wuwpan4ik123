@@ -146,7 +146,7 @@
                 </div>
                 <div class="popup__body-item script">
                     <label class="popup__subtitle" for="head">Скрипты для HEAD</label>
-                    <textarea name="head__settings" id="head" type="text" placeholder="DEFAULT"></textarea>
+                    <textarea name="head__settings" style="resize: vertical" id="head" type="text" placeholder="DEFAULT"></textarea>
                 </div>
                 <button type="submit" hidden id="main__settings-button"></button>
             </div>

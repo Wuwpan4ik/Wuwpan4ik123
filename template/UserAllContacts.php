@@ -66,7 +66,7 @@
                                     </div>
                                 </div>
                                 <div class="aboutTheAuthor-button availableСoursesBtn">
-                                    <button class="buttonUserPopup" onclick="window.location.replace('/UserContacts/<?=$item['id']?>')">
+                                    <button class="buttonUserPopup" onclick="window.location.replace('/UserContacts/<?=$item['author_id']?>')">
                                         Открыть контакты
                                     </button>
                                 </div>
