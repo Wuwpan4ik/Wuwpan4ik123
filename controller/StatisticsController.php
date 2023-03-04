@@ -45,12 +45,9 @@
 
         public function GetAllStatistics() {
             $result = ["prev_week" => $this->GetPrevWeekStatistics(), "week" => $this->GetWeekStatistics(),
-                "prev_month" => $this->GetPrevMonthsStatistics(), "month" => $this->GetMonthsStatistics(), "full_value" => $this->m->GetFullValue(),
+                "prev_month" => $this->GetPrevMonthsStatistics(), "month" => $this->GetMonthsStatistics(), "full_value" => $this->statistic_class->GetFullValue(),
                 "one_user" => $this->GetOneUserValue(), "count_first_buy" => $this->GetCountFirstBuy(), "get_count_application" => $this->GetCountApplication(),
                 "get_count_order" => $this->GetCountOrder(), "get_count_view_funnel" => $this->GetCountViewFunnel()];
-            if (empty($result)) {
-                echo '';
-            }
             echo json_encode($result);
         }
 
