@@ -404,7 +404,7 @@
             $main__settings = json_encode($this->CreateMainSettings(), JSON_UNESCAPED_UNICODE);
 
             if (isset($_POST['head__settings'])) {
-                $this->funnel->UpdateQuery("funnel", ["html_code" => $_POST['head__settings']], "WHERE id = {$_POST['id_item']}");
+                $this->funnel->UpdateQuery("funnel", ["head__settings" => $_POST['head__settings']], "WHERE id = {$_POST['id_item']}");
             }
 
             $this->funnel->UpdateQuery("funnel", ["style_settings" => $main__settings], "WHERE id = {$_POST['id_item']}");
