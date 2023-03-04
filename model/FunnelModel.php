@@ -35,6 +35,6 @@
             $html_code = $this->db->query("SELECT html_code FROM funnel WHERE id = {$_SESSION['item_id']}")[0]["html_code"];
             $decode_style = json_decode($style, true);
             $decode_style['html_code'] = $html_code;
-            print_r(json_encode($decode_style));
+            return json_encode($decode_style);
         }
     }
