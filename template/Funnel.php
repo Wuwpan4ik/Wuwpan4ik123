@@ -325,7 +325,6 @@
                     let title;
                     let description;
                     if (data){
-                        console.log(data)
                         let temp_data = JSON.parse(data);
                         description = temp_data['desc__font'];
                         title = temp_data['title__font'];

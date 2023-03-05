@@ -13,6 +13,7 @@
     <?php include 'default/sidebar.php';?>
     <div class="feed">
         <?php
+        $back = 'Mailings';
         $title = "Разовые рассылки";
         include ('default/header.php');
         ?>
