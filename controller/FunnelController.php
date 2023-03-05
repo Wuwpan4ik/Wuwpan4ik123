@@ -395,11 +395,9 @@
 
         public function MainSettings()
         {
-            $check_user = $this->funnel->Get();
+            $check_user = $this->funnel->Get(["id" => $_POST['id_item']]);
 
-//            if (!$this->isUser($check_user[0]['author_id'])) return False;
-
-            $main_settings = $this->CreateMainSettings();
+            if (!$this->isUser($check_user[0]['author_id'])) return False;
 
             $main__settings = json_encode($this->CreateMainSettings(), JSON_UNESCAPED_UNICODE);
 
