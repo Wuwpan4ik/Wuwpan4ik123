@@ -216,7 +216,7 @@
                         "from" => "{$this->ourEmail}",
                         "to" => "{$course_info['email']}",
                         "sender" => "{$this->ourEmail}",
-                        "subject" => "У вас к упили курс",
+                        "subject" => "У вас купили курс",
                         "content" => "$body",
                         "is_send_now" => 1
                     ]

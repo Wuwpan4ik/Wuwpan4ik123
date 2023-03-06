@@ -9,7 +9,7 @@ $result = '<html lang="RU">
     <div class="envelope-container" style="max-width:500px;margin:0 auto;width:100%;">
         <div class="envelope-body" style="background:white;">
             <div class="first_row">
-                <img style="width:100%;" src="'. $url .'" alt="Добро пожаловать в Course Creator! '. $url .'">
+                <img style="width:100%;" src="https://appp.course-creator.io/envelope-images/envelope-zayavka.jpg" alt="Добро пожаловать в Course Creator!">
             </div>
             <div class="second_row" style="padding:40px 20px;">
                 <div class="info_account" style="margin-top: 40px;">
