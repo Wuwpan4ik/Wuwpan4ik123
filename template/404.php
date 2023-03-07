@@ -11,22 +11,84 @@
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 </head>
+<style>
 
+    /*======================
+        404 page
+    =======================*/
+
+
+    .page_404{
+        padding:40px 0;
+        background:#fff;
+        font-family: 'Inter';
+        font-weight: 200;
+    }
+
+    .page_404  img{
+        width:100%;
+    }
+
+    .four_zero_four_bg {
+        background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+        height: 400px;
+        background-position: center;
+    }
+
+
+    .four_zero_four_bg h1{
+        font-size:80px;
+        font-family: 'Inter';
+        font-weight: 700;
+    }
+
+    .four_zero_four_bg h3{
+        font-size:80px;
+        font-family: 'Inter';
+        font-weight: 200;
+    }
+
+    .link_404{
+        color: #fff!important;
+        padding: 10px 20px;
+        background: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);
+        margin: 20px 0;
+        display: inline-block;
+        border-radius: 8px;
+
+    }
+
+    .contant_box_404{
+        margin-top:-50px;
+
+    }
+</style>
 <body>
 <?php //print_r($_SESSION['error']) ?>
-<div class="userLogin">
-    <div class="userLogin-body _container">
-        <div class="user__logo">
-            <div class="user__logo-img"><img src="../img/Logo.svg" alt=""></div>
-            <div class="user__logo-text">Course Creator</div>
-        </div>
-        <div class="userLogin-popup popup" style="font-size: 18px; font-weight: 600;line-height: 24px;">
-            Произошла ошибка
-        </div>
-        <div class="user-text">
-            <a href="/">Вернуться на сайт</a>
+<section class="page_404">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 ">
+                <div class="col-sm-10 col-sm-offset-1  text-center">
+                    <div class="four_zero_four_bg">
+                        <h1 class="text-center ">404</h1>
+
+
+                    </div>
+
+                    <div class="contant_box_404">
+                        <h3 class="h2">
+                            К сожалению данная страница не существует
+                        </h3>
+
+                        <p>вернитесь на главную что продолжить использование сайта</p>
+
+                        <a href="/" class="link_404">На главную</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</section>
 </body>
 </html>

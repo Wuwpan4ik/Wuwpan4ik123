@@ -35,7 +35,7 @@
             </div>
             <div class="userPopup__body">
                 <div class="aboutTheAuthor-img">
-                    <img src="<? echo (isset($content[0]['avatar']) && (!empty($content[0]['avatar'])))  ? $content[0]['avatar'] : "/uploads/ava/userAvatar.jpg" ?>" alt="">
+                    <img src="<? echo (!empty($content[0]['avatar']))  ? $content[0]['avatar'] : "/uploads/ava/userAvatar.jpg" ?>" alt="">
                 </div>
                 <div class="aboutTheAuthor__name">
                     <? echo htmlspecialchars($content[0]["first_name"]), " ", htmlspecialchars($content[0]["second_name"])?>
