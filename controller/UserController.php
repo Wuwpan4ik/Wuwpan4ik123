@@ -49,7 +49,8 @@
             function getCourseSite()
             {
                 $author_id = $_GET['author_id'];
-                $course_page = $this->user_class->GetContentForUserCoursePage($author_id);
+                $user_id = $_GET['user_id'];
+                $course_page = $this->user_class->GetContentForUserCoursePage($author_id, $user_id);
                 $div = '';
                 foreach ($course_page as $item) {
                     $name = $item['name'];

@@ -69,8 +69,8 @@
                                 </div>
                             </div>
                             <div class="aboutTheAuthor-button availableСoursesBtn">
-                                <button class="buttonUserPopup" onclick="getCoursePage(<?=$item['author_id']?>)">
-                                    <?php if($item['count']%1 === 1) { ?>
+                                <button class="buttonUserPopup" onclick="getCoursePage(<?=$item['id']?>)">
+                                    <?php if($item['count'] % 2 === 1) { ?>
                                         Вам доступен <?=$item['count']?> курс
                                     <?php } else { ?>
                                         Вам доступно <?=$item['count']?> курса
@@ -81,7 +81,7 @@
                     </div>
                     <?php
                         }
-                    ?>
+                       ?>
 
             </div>
         </div>
