@@ -105,7 +105,7 @@
                                 <div style="display:flex;">
                                     <?php $url = include "settings/site_url.php"; ?>
 
-                                    <input id="half_input" value="<?=$url?>/<?=$_SESSION['user']['username']?>/SmallPlayer/<?=$p['id']?>" disabled/>
+                                    <input id="half_input" value="https://<?=$_SESSION['user']['username']?>.course-creator.io/SmallPlayer/<?=$p['id']?>" disabled/>
 
                                     <button class="copy-button" onclick="copy_link(this)" type="submit">Копировать</button>
 
@@ -331,6 +331,7 @@
                         let color__button = temp_data['number__color'];
                         let shadow__button = temp_data['number__style'];
                         document.querySelectorAll('.popup-styles-color')[color__button - 1].click();
+                        document.querySelector('#head').innerHTML = temp_data['html_code']
                         document.querySelectorAll('.popup-styles-button button')[shadow__button - 1].click();
                         document.querySelector('input[name="title__size"]').value =  parseInt(temp_data['title__size'])
                         document.querySelector('input[name="desc__size"]').value = parseInt(temp_data['desc__size'])
@@ -566,6 +567,7 @@
             }
         });
     </script>
+    <script src="/js/jquery-3.6.1.min.js"></script>
     <script src="../js/sidebar.js"></script>
     <script src="../js/getNotifications.js"></script>
 </body>

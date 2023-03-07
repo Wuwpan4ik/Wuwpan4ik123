@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Creator - Кейсы</title>
+    <title>Course Creator - Разовая рассылка</title>
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/main.css">
     <!--Favicon-->
@@ -13,6 +13,7 @@
     <?php include 'default/sidebar.php';?>
     <div class="feed">
         <?php
+        $back = 'Mailings';
         $title = "Разовые рассылки";
         include ('default/header.php');
         ?>
@@ -20,7 +21,7 @@
             <div class="ot-mailings__body">
                 <div class="mailing__create" style="width: auto;">
 
-                    <a href="#" class="mailing_new">
+                    <a href="/NewMailing" class="mailing_new">
 
                         <img src="/img/Create_mailing.svg" class="create-ico">
 
@@ -110,6 +111,7 @@
         </div>
     </div>
 </div>
+<script src="/js/jquery-3.6.1.min.js"></script>
 <script src="../js/sidebar.js"></script>
 <script src="/js/getNotifications.js"></script>
 </body>

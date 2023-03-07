@@ -265,6 +265,10 @@
 </body>
 <script src="/js/jquery-3.6.1.min.js"></script>
 <script src="../js/script.js" ></script>
+<script src="../js/sidebar.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<script src="../js/charts.js"></script>
+<script src="/js/getNotifications.js"></script>
 <!--Удаление элементов-->
 <script>
     function checkEmptyAnalyticsArray(arrayTemp, name) {
@@ -391,8 +395,8 @@
   request1.setRequestHeader('Content-Type', 'application/x-www-form-url');
   request1.addEventListener("readystatechange", () => {
       if (request1.readyState === 4 && request1.status === 200) {
+          console.log(request1.responseText)
           const array = JSON.parse(request1.responseText);
-          console.log(array)
           if (array.prev_week == null) {
               array.prev_week = 0;
           }
@@ -465,6 +469,7 @@
               }
 
               if (month_diff > 0) {
+                  console.log(1)
                   document.querySelectorAll('.month_diff').forEach(item => {
                       item.classList.add('green_text');
                       item.innerHTML = month_diff + currency;
@@ -473,6 +478,7 @@
                       item.innerText = 'больше';
                   })
               } else {
+                  console.log(1)
                   document.querySelectorAll('.month_diff').forEach(item => {
                       item.classList.add('red_text');
                       item.innerHTML = month_diff + currency;
@@ -578,10 +584,4 @@
           })
       }
   </script>
-
-
-<script src="../js/sidebar.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-<script src="../js/charts.js"></script>
-<script src="/js/getNotifications.js"></script>
 </html>

@@ -304,9 +304,6 @@
         location.reload();
     }
 </script>
-<script src="/js/getNotifications.js"></script>
-<script src="../js/jquery-3.6.1.min.js"></script>
-<script src="/js/autoTextArea.js"></script>
 
 <script>
     let form__submit = $(function() {
@@ -325,10 +322,10 @@
         });
     });
 </script>
+<script src="/js/jquery-3.6.1.min.js"></script>
+<script src="/js/autoTextArea.js"></script>
 <script src="../js/sidebar.js"></script>
 <script src="/js/customInputs.js"></script>
-
-
 <script src="/js/getNotifications.js"></script><script>
     let buttonBell =  document.querySelector('.button-bell');
     let popupBell =  document.querySelector('.popupBell')

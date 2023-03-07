@@ -28,6 +28,9 @@
                 </div>
                 <div class="userLogin-form popup-form">
 					<form method="POST" class="login__form" action="/LoginController/UserLogin">
+                        <input type="hidden" value="<?php
+                        $array = explode('.', $_SERVER['HTTP_HOST']);
+                        echo array_shift($array); ?>" name="subdomain">
                         <input type="hidden" value="true" name="userLogin">
                         <div class="input_focus inputLog">
                             <label for="email" class="label_focus">Ваша почта</label>
@@ -72,6 +75,10 @@
                         type: $(this).attr("method"),
                         data: $(this).serialize(),
                         success: function (data) {
+                            // if (document.querySelector('input[name="login"]').value.toLowerCase() !== window.location.host.split('.')[0]) {
+                            //     document.querySelector(".error").innerHTML = "Вы не можете войти в аккаунт по этой ссылке";
+                            //     return false
+                            // }
                             window.location.replace('/');
                         },
                         error: function (data) {

@@ -9,7 +9,7 @@ $result = '<html lang="RU">
     <div class="envelope-container" style="max-width:500px;margin:0 auto;width:100%;">
         <div class="envelope-body" style="background:white;">
             <div class="first_row">
-                <img style="width:100%;" src="'. $url .'" alt="Добро пожаловать в Course Creator! '. $url .'">
+                <img style="width:100%;" src="https://appp.course-creator.io/envelope-images/envelope-zayavka.jpg" alt="Добро пожаловать в Course Creator!">
             </div>
             <div class="second_row" style="padding:40px 20px;">
                 <div class="info_account" style="margin-top: 40px;">
@@ -97,8 +97,8 @@ $result = '<html lang="RU">
                                     Смотрите другие заявки на сайте:
                                 </p>
                                 <div style="background: #EFF3F6;border-radius: 3px;padding-top: 15px;padding-bottom: 15px;padding-right: 20px;padding-left: 20px;">
-                                    <a href="https://course-creator.io/" target="_blank" style="color: #8098AB;">
-                                        https://course-creator.io/
+                                    <a href="https://appp.course-creator.io/" target="_blank" style="color: #8098AB;">
+                                        https://appp.course-creator.io/
                                     </a>
                                 </div>
                             </div>

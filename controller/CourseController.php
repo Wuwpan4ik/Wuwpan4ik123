@@ -234,12 +234,13 @@
 
             $this->course->InsertQuery("course", $data);
 
-
             $directory = $this->course->GetLast($uid);
 
-            mkdir($this->url_dir ."courses/" . $directory[0]['id']);
+            sleep(0.5);
 
-            mkdir($this->url_dir ."thumbnails/" . $directory[0]['id']);
+            mkdir($this->url_dir ."courses/" . $directory[0]['id'] . "/");
+
+            mkdir($this->url_dir ."thumbnails/" . $directory[0]['id'] . "/");
 
             chmod($this->url_dir ."courses/" . $directory[0]['id'], 0777);
 

@@ -3,7 +3,7 @@
 
         public function getContactsByUser()
         {
-            return $this->db->query("SELECT user.id, user.telephone, user.email, contact.vk, contact.instagram, contact.whatsapp, contact.telegram, contact.facebook, contact.youtube, contact.twitter, contact.site FROM user LEFT JOIN user_contacts as contact ON contact.user_id = user.id WHERE user.id = " . $_SESSION['item_id']);
+            return $this->db->query("SELECT EXISTS(SELECT user.id, user.telephone, user.email, contact.vk, contact.instagram, contact.whatsapp, contact.telegram, contact.facebook, contact.youtube, contact.twitter, contact.site FROM user LEFT JOIN user_contacts as contact ON contact.user_id = user.id WHERE user.id = {$_SESSION['item_id']})");
         }
 
         public function getCurrentUserContacts()

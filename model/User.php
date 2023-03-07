@@ -22,6 +22,11 @@ class User extends ConnectDatabase{
         return $this->db->query("SELECT * FROM user WHERE email = '$email' AND password = '$password'");
     }
 
+    public function GetUserWithUsername($username)
+    {
+        return $this->ClearQuery("SELECT * FROM user WHERE LOWER( username ) LIKE '%$username%'")['id'];
+    }
+
     public function getAuthorizationUserByUsername($username, $password) {
         return $this->db->query("SELECT * FROM user WHERE username = '$username' AND password = '$password'");
     }
@@ -97,6 +102,7 @@ class User extends ConnectDatabase{
                                                 user_info.id as 'author_id',
                                                 user_info.avatar,
                                                 user_info.first_name,
+                                                user_info.second_name,
                                                 user_info.currency
                                                 FROM `course` AS course
                                                 INNER JOIN `funnel` AS funnel ON course.id = '$course_id' AND funnel.id = '$id'
@@ -119,10 +125,10 @@ class User extends ConnectDatabase{
                                                 FROM `funnel` AS funnel
                                                 INNER JOIN `course_content` ON course_content.course_id = '$course_id' AND funnel.id = '$id'
                                                 INNER JOIN `course` ON course.id = course_content.course_id LIMIT 1");
-        $main__settings = $this->db->query("SELECT style_settings
+        $main__settings = $this->db->query("SELECT style_settings, html_code
                                                 FROM `funnel` WHERE id = '$id'");
         $user_info = $this->db->query("SELECT * FROM `user_integrations` WHERE user_id = '$author_id'");
-        return ['funnel_content' => $funnel_content, 'course_content' => $course_content, 'course_id' => $course, 'main__settings' => $main__settings[0]['style_settings'], 'user_info' => $user_info[0]];
+        return ['funnel_content' => $funnel_content, 'course_content' => $course_content, 'course_id' => $course, 'main__settings' => $main__settings[0]['style_settings'], 'html_code' => $main__settings[0]['html_code'], 'user_info' => $user_info[0]];
 
     }
 

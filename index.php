@@ -10,11 +10,11 @@
     $router = new Router();
 
     if (str_contains($url, 'SmallPlayer')) {
-        $_SESSION['item_id'] = $url_array[2];
+        $_SESSION['item_id'] = $url_array[1];
 //        $user = count((new User())->db->query("SELECT * FROM user WHERE username = '" . $url_array[0] . "' AND is_creator = '1'"));
 //        if ($user == 1) {
 //            echo 1;
-            $url_local = "/". $url_array[0] . "/SmallPlayer/" . $url_array[2];
+            $url_local = "/SmallPlayer/" . $url_array[1];
             $router->addRoute("$url_local", "SmallPlayer.php");
 //        }
     } else {
@@ -30,13 +30,16 @@
     $router->addRoute("/login", "Login.php");
     $router->addRoute("/recovery", "PasswordRecovery.php");
 
+    $router->addRoute("/Mailings", "Mailings.php");
+    $router->addRoute("/OneTimeMailings", "OneTimeMailings.php");
+    $router->addRoute("/NewMailing/$item_id", "NewMailing.php");
+    $router->addRoute("/NewMailing", "NewMailing.php");
+    $router->addRoute("/NewMailing/create", "MailingController.php", "CreateAndEdit");
+
 
     $router->addRoute("/Analytics", "Analytics.php");
     $router->addRoute("/ConfirmEmail", "ConfirmEmail.php");
     $router->addRoute("/PasswordRecovery", "PasswordRecovery.php");
-    $router->addRoute("/Mailings", "Mailings.php");
-    $router->addRoute("/OneTimeMailings", "OneTimeMailings.php");
-    $router->addRoute("/NewMailing", "NewMailing.php");
     $router->addRoute("/Cases", "Cases.php");
     $router->addRoute("/Account", "Account.php");
     $router->addRoute("/Account/SocialUrls", "AccountController.php", "TakeSocialUrls", false);
@@ -129,14 +132,14 @@
     $router->addRoute("/TariffController/Buy", "TariffController.php", "Buy");
     $router->addRoute("/Tariff-absent", "tariff-absent.php");
     $router->addRoute("/BuyHandler/Buy", "BuyHandler.php", "BuyHandlerCheck");
-    $router->addRoute("/error", "404.php");
+        $router->addRoute("/error", "404.php");
 
 //    if (array_key_exists("/$url", $router->getRoute())) {
         $router->route("/$url");
 //    } else {
 //        $router->route("/error");
 //    }
-
+    $_SESSION['item_id'] = null;
 
 
 

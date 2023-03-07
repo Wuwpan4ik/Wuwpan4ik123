@@ -198,7 +198,7 @@
                                             </script>
                                             <div class="ProfileSetting-body">
                                                 <div class="ProfileSetting-avatar">
-                                                    <img src="<? echo (isset($_SESSION['user']['avatar'])  ? $_SESSION['user']['avatar'] : "/uploads/ava/userAvatar.jpg") ?>" id="ava_preload">
+                                                    <img src="<? echo (!empty($_SESSION['user']['avatar'])  ? $_SESSION['user']['avatar'] : "/uploads/ava/userAvatar.jpg") ?>" id="ava_preload">
                                                     <div class="ProfileSetting-name">
                                                         <?=$_SESSION["user"]["first_name"]?>
                                                         <? if (!isset($_SESSION["user"]["second_name"])) {echo "Фамилия";} else {echo $_SESSION["user"]["second_name"];} ?>
@@ -393,7 +393,7 @@
                                             <h2>Подключение Albato:  </h2>
                                             <div class="row">
                                                 <div class="input_focus ">
-                                                    <label for="username" class="label_focus">API Ключ</label>
+                                                    <label for="username" class="label_focus">URL Вебхука</label>
                                                     <input class="inf" type="text"  name="albato_key" value="<?php echo $_SESSION['user']['albato_key']?>">
                                                     <span class="clear_input_val">
                                                                  <img src="/img/clear_input.svg" alt="">
@@ -401,20 +401,20 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="inner_row scripts">
-                                            <div class="script">
-                                                <h2>Скрипты для HEAD:  </h2>
-                                                <div class="row">
-                                                    <textarea class="additionally" placeholder="Default" name="head_additional"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="script">
-                                                <h2>Скрипты для Body:  </h2>
-                                                <div class="row">
-                                                    <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
+<!--                                        <div class="inner_row scripts">-->
+<!--                                            <div class="script">-->
+<!--                                                <h2>Скрипты для HEAD:  </h2>-->
+<!--                                                <div class="row">-->
+<!--                                                    <textarea class="additionally" placeholder="Default" name="head_additional"></textarea>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="script">-->
+<!--                                                <h2>Скрипты для Body:  </h2>-->
+<!--                                                <div class="row">-->
+<!--                                                    <textarea class="additionally" placeholder="Default" name="body_additional"></textarea>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
                                         <div class="about-btn">
                                             <button class="save-btn" id="profile_send" type="submit">Сохранить</button>
                                         </div>
@@ -662,13 +662,13 @@
                     processData: false,
                     contentType: false
                 });
+                console.log(new FormData(this))
                 let saveBtn = $(this).find('#profile_send');
                 saveBtn.addClass("active");
                 saveBtn.innerHTML = 'Сохранено';
                 setTimeout(function () {
                     saveBtn.removeClass("active");
                     saveBtn.innerHTML = 'Сохранить';
-                    window.location.reload();
                 }, 2000)
                 AddNotifications("Настройки сохранены", '');
             })

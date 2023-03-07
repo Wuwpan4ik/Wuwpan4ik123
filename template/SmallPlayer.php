@@ -13,10 +13,11 @@
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 
+    <?php if (!empty($content['html_code'])) print_r($content['html_code']) ?>
+
 </head>
 <body class="body">
 <div class="display-none">
-<!--    --><?php //print_r($content['course_content']) ?>
 </div>
 <?php if (!empty($content['course_content'])) { ?>
 <div class="mirror_smallPlayer">
@@ -35,7 +36,7 @@
             ?>
             <div class="slider__item">
                 <div class="slider__video">
-                    <video playsinline class="slider__video-item video-<?=$item['video_id']?>" data-player="playing">
+                    <video playsinline class="slider__video-item video-<?=$item['video_id']?> <?php if($item['dis_trans'] == 1) echo 'disable-skip' ?>" data-player="playing">
                         <source class="video" src="/<?=$item['video']?>" id="sourceVideo"  />
                     </video>
                 </div>
@@ -45,7 +46,7 @@
                 <div class="slider__header _conatiner-player ">
                     <div class="slider__header-logo">
                         <div class="slider__header-logo-img">
-                            <img width="48px" src="/<? echo (isset($item['avatar'])  ? $item['avatar'] : "uploads/ava/userAvatar.jpg") ?>" alt="">
+                            <img width="48px" src="/<? echo (!empty($item['avatar'])  ? $item['avatar'] : "uploads/ava/userAvatar.jpg") ?>" alt="">
                         </div>
                         <div class="slider__header-logo-text">
                             <?=$item['first_name']?>
@@ -75,7 +76,7 @@
                     <?php
                     if (isset($item['button_text']) && !empty($item['button_text'])) { ?>
                             <div class="slider__item-button button-open">
-                                <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" <?php if ($popup->first_do->next_lesson) echo 'onclick="NextSlide('. $item["video_id"] .')"' ?> <?php if (isset($popup->first_do->link)) if ($popup->first_do->open_in_new == 'open_new_window') { echo "onClick=\"window.open('". $popup->first_do->link ."')\""; } else { echo "onclick=\"window.location = ('". $popup->first_do->link ."')\""; } ?> class="button"><?=$item['button_text']?></button>
+                                <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" <?php if ($popup->first_do->next_lesson) echo 'onclick="NextSlide()"' ?> <?php if (isset($popup->first_do->link)) if ($popup->first_do->open_in_new == 'open_new_window') { echo "onClick=\"window.open('". $popup->first_do->link ."')\""; } else { echo "onclick=\"window.location = ('". $popup->first_do->link ."')\""; } ?> class="button"><?=$item['button_text']?></button>
                             </div>
                             <?php } else { ?>
                     <?php } ?>
@@ -121,7 +122,7 @@
         ?>
     </div>
 </div>
-<input type="hidden" id="albato_key" value="<?php echo $content['user_info']['albato_key'] ?>">
+<input type="hidden" id="albato_key" value="<?php if ($content['user_info']['albato_key']) echo $content['user_info']['albato_key'] ?>">
 <?php }?>
 <?php include 'template/default/notificationsPopup.php' ?>
 
@@ -188,7 +189,7 @@ cursor: pointer;text-decoration: none;">Вернуться на сайт</a>
         }
     });
     request.send();
-    function NextSlide(count) {
+    function NextSlide() {
         document.querySelector('.slick-active button').style.background = `linear-gradient(to right,white 0%, white 100%,lightgrey 100% , lightgrey 0%)`;
         $('.slick-next').click();
     }
@@ -200,21 +201,23 @@ cursor: pointer;text-decoration: none;">Вернуться на сайт</a>
         let counter = 0;
         let increase = false;
 
-        document.querySelector(".slider__header-views-count").innerHTML = randomNumber;
+        document.querySelectorAll(".slider__header-views-count").forEach(item => {
+            item.innerHTML = randomNumber;
 
-        setInterval(function() {
-            if (!increase && counter < 4) {
-                randomNumber--;
-                counter++;
-            } else if (increase && counter < 10) {
-                randomNumber++;
-                counter++;
-            } else {
-                increase = !increase;
-                counter = 0;
-            }
-            document.querySelector(".slider__header-views-count").innerHTML = randomNumber;
-        }, 1500);
+            setInterval(function() {
+                if (!increase && counter < 4) {
+                    randomNumber--;
+                    counter++;
+                } else if (increase && counter < 10) {
+                    randomNumber++;
+                    counter++;
+                } else {
+                    increase = !increase;
+                    counter = 0;
+                }
+                item.innerHTML = randomNumber;
+            }, 1500);
+        })
     })
 </script>
 
@@ -250,13 +253,9 @@ cursor: pointer;text-decoration: none;">Вернуться на сайт</a>
             item.addEventListener('ended', function (){
 
                 // Каталог
-                let lessons = item.parentElement.parentElement.querySelector('.overlay-allLessons');
-                if (lessons && !lessons.classList.contains("disable-skip")) {
-                    $('.slick-next').click();
-                }
-
-                //
-                if (item.parentElement.parentElement.querySelector('.popup__bonus')) {
+                if (!item.classList.contains("disable-skip")) {
+                    NextSlide();
+                } else {
                     OpenPopup(item.parentElement.parentElement.querySelector('.button').parentElement);
                 }
             })

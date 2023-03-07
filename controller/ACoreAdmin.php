@@ -10,6 +10,7 @@ abstract class ACoreAdmin {
     protected $funnel;
     protected $clients;
     protected $course;
+    protected $user_class;
 
 
     protected $ourEmail;
@@ -28,6 +29,7 @@ abstract class ACoreAdmin {
         $this->funnel = new FunnelModel();
         $this->clients = new ClientsModel();
         $this->course = new CourseModel();
+        $this->user_class = new UserModel();
 
         $email_account = $this->email_class->GetEmailAccount();
         $this->ourEmail = $email_account['email'];

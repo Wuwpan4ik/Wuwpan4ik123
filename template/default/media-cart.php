@@ -48,10 +48,15 @@
                 <img style="width: 25px; transform: translate(0, 0)" src="/img/actions.svg">
                 Действие для кнопки
             </button>
-            <div class="block__button-block" style="display: flex; gap: 20px; color: #5A6474;">
-                <input name="disabled__transition" onchange="if (!this.checked) {this.removeAttribute('checked')}" style="width: 80px;" type="checkbox" class="switch_1" value="1" <?php if ($v['disabled__transition'] == 1) { ?> checked="checked" <?php } ?>>
-                <span>Запретить переход к видео без выполнения действия</span>
-            </div>
+            <?php
+            if ($v['popup']) {
+                $first_do = json_decode($v['popup'], true)['first_do'];
+                if (in_array(key($first_do), ['form', 'pay_form', 'list'])) { ?>
+                <div class="block__button-block" style="display: flex; gap: 20px; color: #5A6474;">
+                    <input name="disabled__transition" onchange="if (!this.checked) {this.removeAttribute('checked')}" style="width: 80px;" type="checkbox" class="switch_1" value="1" <?php if ($v['disabled__transition'] == 1) { ?> checked="checked" <?php } ?>>
+                    <span>Запретить переход к видео без выполнения действия</span>
+                </div>
+            <?php } } ?>
         </div>
         <?php if (!isset($v['button_text']) || empty($v['button_text'])) { ?>
             <button type="button" class="button-add-button-edit"><img src="../img/addSocialNetwork.svg" alt="">Добавить кнопку</button>

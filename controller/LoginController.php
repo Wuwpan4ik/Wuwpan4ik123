@@ -21,20 +21,26 @@
 
             $res = $this->user->getAuthorizationUserByEmail($email, $password);
             if(count($res) != 0) {
-                if ($res[0]['is_creator'] == 0) {
-                    $_SESSION["user"] = [
-                        'id' => $res[0]['id'],
-                        'email' => $res[0]['email'],
-                        'avatar' => $res[0]['avatar'],
-                        'is_creator' => 0
-                    ];
-                    if (!is_null($res[0]['first_name'])) $_SESSION['user']['first_name'] = $res[0]['first_name'];
-                    if (!is_null($res[0]['telephone'])) $_SESSION['user']['telephone'] = $res[0]['telephone'];
-                } else {
-                    $response = "Вам не разрешён доступ";
-                    echo $response;
-                    die(header("HTTP/1.0 404 Not Found"));
-                }
+//                if ($this->user_class->GetContentForUserCoursePage($this->user->GetUserWithUsername($_POST['subdomain']), $res[0]['id'])) {
+                    if ($res[0]['is_creator'] == 0) {
+                        $_SESSION["user"] = [
+                            'id' => $res[0]['id'],
+                            'email' => $res[0]['email'],
+                            'avatar' => $res[0]['avatar'],
+                            'is_creator' => 0
+                        ];
+                        if (!is_null($res[0]['first_name'])) $_SESSION['user']['first_name'] = $res[0]['first_name'];
+                        if (!is_null($res[0]['telephone'])) $_SESSION['user']['telephone'] = $res[0]['telephone'];
+                    } else {
+                        $response = "Вам не разрешён доступ";
+                        echo $response;
+                        die(header("HTTP/1.0 404 Not Found"));
+                    }
+//                } else {
+//                    $response = "Вы не можете зайти по этой ссылке";
+//                    echo $response;
+//                    die(header("HTTP/1.0 404 Not Found"));
+//                }
             }
             else {
                 $response = "Неверный пароль или логин";
@@ -154,14 +160,12 @@
 
                 $this->SendEmail(
                     [
-                        [
-                            "from" => "{$this->ourEmail}",
-                            "to" => "{$email}",
-                            "sender" => "{$this->ourEmail}",
-                            "subject" => "{$title}",
-                            "content" => "$body",
-                            "is_send_now" => 1
-                        ]
+                        "from" => "{$this->ourEmail}",
+                        "to" => "{$email}",
+                        "sender" => "{$this->ourEmail}",
+                        "subject" => "{$title}",
+                        "content" => "$body",
+                        "is_send_now" => 1
                     ]
                 );
             }
@@ -178,7 +182,7 @@
             chmod("./uploads/users/". $_SESSION['user']['id'] . "/files", 0777);
             chmod("./uploads/users/". $_SESSION['user']['id'] . "/course_files", 0777);
             chmod("./uploads/users/". $_SESSION['user']['id'] . "/thumbnails", 0777);
-            shell_exec("ln -s /var/www/www-root/data/www/course-creator.io/subdomains /var/www/www-root/data/www/course-creator.io/" . strtolower($res[0]['username']));
+            shell_exec("ln -s /var/www/www-root/data/www/course-creator.io/ /var/www/www-root/data/www/course-creator.io/subdomains/" . strtolower($res[0]['username']));
             echo true;
             return true;
         }
@@ -269,7 +273,7 @@
                     "username" => $username
                 ];
                 $this->user->UpdateQuery("user", $data, "WHERE id = {$user[0]['id']}");
-                $body = include "./template/templates_email/vosstanovlenie-parolya(client, user).php";
+                $body = include "./template/templates_email/Vost.php";
 
                 $this->SendEmail(
                     [
@@ -304,7 +308,7 @@
                     "password" => $this->password
                 ];
                 $this->user->UpdateQuery("user", $data, "WHERE email = {$this->email}");
-                $body = include "./template/templates_email/vosstanovlenie-parolya(client, user).php";
+                $body = include "./template/templates_email/Vost.php";
 
                 $this->SendEmail(
                     [

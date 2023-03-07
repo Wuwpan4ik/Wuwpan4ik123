@@ -47,7 +47,7 @@
                             <div class="aboutTheAuthor popup-item">
                                 <div class=" popup__allLessons-item-video">
                                     <div class="popup__allLessons-item-video__img">
-                                        <img class="aboutTheAuthor video__img" src="<? echo (isset($item['avatar']) && !is_null($item['avatar'])  ? $item['avatar'] : "/uploads/ava/userAvatar.jpg") ?>" alt="">
+                                        <img class="aboutTheAuthor video__img" src="<? echo (isset($item['avatar']) && (!empty($item['avatar'])))  ? $item['avatar'] : "/uploads/ava/userAvatar.jpg" ?>" alt="">
                                     </div>
                                 </div>
                                 <div class="aboutTheAuthor popup__allLessons-item-info">
@@ -69,7 +69,7 @@
                                 </div>
                             </div>
                             <div class="aboutTheAuthor-button availableСoursesBtn">
-                                <button class="buttonUserPopup" onclick="getCoursePage(<?=$item['id']?>)">
+                                <button class="buttonUserPopup" onclick="getCoursePage(<?=$item['author_id']?>)">
                                     <?php if($item['count']%1 === 1) { ?>
                                         Вам доступен <?=$item['count']?> курс
                                     <?php } else { ?>
@@ -424,7 +424,7 @@ unset($_SESSION['course_id']);
     let questInput = document.getElementById('userQuestion')
     document.querySelector('#sendQuest').addEventListener('click', function () {
         if(questInput.value === ""){
-            return
+            return false;
         }else{
             document.querySelector('#formQuest').submit();
             document.querySelector('.question.userPopup').classList.remove('active')

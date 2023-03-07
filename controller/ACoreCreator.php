@@ -65,15 +65,12 @@
             $this->article = new ArticleModel();
             $this->user_tariff = new Tariff();
             $this->Hmac = new Hmac();
+            $this->mailing = new MailingModel();
 
             $email_account = $this->email_class->GetEmailAccount();
             $this->ourEmail = $email_account['email'];
             $this->ourPassword = $email_account['password'];
             $this->ourNickName = $email_account['name'];
-            $f = $this->user->GetApi();
-            $this->api_key = $f['api_key'];
-            $this->api_endpoint = $f['endpoint'];
-
             $this->url_dir = "./uploads/users/" . $_SESSION['user']['id'] . '/';
         }
 

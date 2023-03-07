@@ -104,6 +104,7 @@
         }
     }
 </script>
+<script src="/js/jquery-3.6.1.min.js"></script>
 <script src="../js/sidebar.js"></script>
 <script src="/js/getNotifications.js"></script>
   </body>
