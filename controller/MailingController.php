@@ -58,7 +58,7 @@
                 } else {
                     $time = false;
                 }
-                $_SESSION['error'] =  $data_get['time_send'];
+                $_SESSION['error'] =  $time;
 //                foreach ($this->mailing->GetUsersByIndexs($data_get['indexs'] - 1) as $user) {
 //
 //                    $data = [
