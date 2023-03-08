@@ -182,6 +182,7 @@ return array(
     'NewMailing' => $baseDir . '/pages/NewMailing.php',
     'Notifications' => $baseDir . '/model/Notifications.php',
     'NotificationsController' => $baseDir . '/controller/NotificationsController.php',
+    'OneTimeMailings' => $baseDir . '/pages/OneTimeMailings.php',
     'OrdersModel' => $baseDir . '/model/OrdersModel.php',
     'PHPMailer\\PHPMailer\\Exception' => $vendorDir . '/phpmailer/phpmailer/src/Exception.php',
     'PHPMailer\\PHPMailer\\OAuth' => $vendorDir . '/phpmailer/phpmailer/src/OAuth.php',

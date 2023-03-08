@@ -1,6 +1,8 @@
 <?php
     class MailingController extends ACoreCreator
     {
+        use SendEmail;
+
         public function CreateAndEdit()
         {
             $data_get = [];
@@ -40,22 +42,52 @@
             }
 //          Работа с файликов
 
+
+            $body = include "./template/templates_email/mail.php";
+
             if (!empty($data_get['id'])) {
                 $this->Edit($data_get);
             } else {
                 $this->Create($data_get);
+                if (empty($data_get['date_send']) && empty($data_get['time_send'])) {
+                    $time = false;
+                } elseif (empty($data_get['date_send'])) {
+                    $time = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y'))) . " " . $data_get['time_send'];
+                } elseif (empty($data_get['time_send'])) {
+                    $time = $data_get['date_send'] . " " .date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
+                }
+
+                foreach ($this->mailing->GetUsersByIndexs($data_get['indexs']) as $user) {
+                    $data = [
+                        "from" => "{$this->ourEmail}",
+                        "to" => "{$data_get['email']}",
+                        "sender" => "{$this->ourNickName}",
+                        "subject" => "Вам пришло письмо от создателя курса!",
+                        "content" => "$body",
+                    ];
+
+                    if (!$time) {
+                        $data['is_send_now'] = 1;
+                    } else {
+                        $data['data_injected'] = $time;
+                    }
+
+                    $this->SendEmail(
+                        $data
+                    );
+                }
             }
             $this->get_content();
         }
 
         public function Create($data)
         {
-            $this->mailing->InsertQuery('mailing', $data);
+            $this->Create($data);
         }
 
         public function Edit($data)
         {
-            $this->mailing->UpdateQuery('mailing', $data, "WHERE id = {$data['id']}");
+            $this->Edit($data);
         }
 
         public function Delete()

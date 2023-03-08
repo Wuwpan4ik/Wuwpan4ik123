@@ -19,6 +19,42 @@
         ?>
         <div class=" _container">
             <div class="ot-mailings__body">
+                <?php foreach ($content['mailings'] as $mail) { ?>
+                <div class="ot-mailing">
+                    <div class="ot-mailing__header">
+                        <span class="ot-mailing__date">Отправлено <?= date("d.m.Y", strtotime($mail['date_send'])) ?> в <?= date("g:i", strtotime($mail['date_send'])) ?></span>
+                        <a href="/mailing-delete/<?=$mail['id']?>" class="delete_btn"><img src="/img/Delete.svg" alt=""></a>
+                    </div>
+
+                    <div class="ot-mailing__info">
+                        <p class="ot-mailing__limit">Текст рассылки до 150 символов тут</p>
+                        <div class="ot-mailing__image"><img src="/img/Mailings/one-time_mailing_lists.jpg" alt=""></div>
+                        <div class="ot-mailing__recipients">
+                            <p class="ot-mailing__subtitle">Сообщение отправиться:</p>
+                            <?php
+                                switch ($mail['indexs']) {
+                                    case 1:
+                                        echo '<div class="ot-mailing__recipient ot-mailing__recipient_all">
+                                                  Всем <img src="/img/x.svg" alt="">
+                                              </div>';
+                                        break;
+                                    case 2:
+                                        echo '<div class="ot-mailing__recipient">
+                                                 Тем кто оплатил <img src="/img/x.svg" alt="">
+                                              </div>';
+                                        break;
+                                    case 3:
+                                        echo '<div class="ot-mailing__recipient ot-mailing__recipient_didnt-pay">
+                                                 Тем кто не оплатил <img src="/img/x.svg" alt="">
+                                              </div>';
+                                        break;
+                                }
+                            ?>
+                        </div>
+                    </div>
+                    <a href="/NewMailing/<?=$mail['id']?>" class="ot-mailing__btn"><img src="/img/Pen.svg" alt="">Редактировать</a>
+                </div>
+                <?php } ?>
                 <div class="mailing__create" style="width: auto;">
 
                     <a href="/NewMailing" class="mailing_new">
@@ -29,83 +65,6 @@
 
                     </a>
 
-                </div>
-
-                <div class="ot-mailing">
-                    <div class="ot-mailing__header">
-                        <span class="ot-mailing__date">Отправлено 16.11.2022 в 16:00</span>
-                        <button class="delete_btn"><img src="/img/Delete.svg" alt=""></button>
-                    </div>
-
-                    <div class="ot-mailing__info">
-                        <p class="ot-mailing__limit">Текст рассылки до 150 символов тут</p>
-                        <div class="ot-mailing__image"><img src="/img/Mailings/one-time_mailing_lists.jpg" alt=""></div>
-                        <div class="ot-mailing__recipients">
-                            <p class="ot-mailing__subtitle">Сообщение отправиться:</p>
-                            <div class="ot-mailing__recipient ot-mailing__recipient_didnt-pay">
-                                Тем кто не оплатил <img src="/img/x.svg" alt="">
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="" class="ot-mailing__btn"><img src="/img/Pen.svg" alt="">Редактировать</a>
-                </div>
-                <div class="ot-mailing">
-                    <div class="ot-mailing__header">
-                        <span class="ot-mailing__date">Отправлено 16.11.2022 в 16:00</span>
-                        <button class="delete_btn"><img src="/img/Delete.svg" alt=""></button>
-                    </div>
-
-                    <div class="ot-mailing__info">
-                        <p class="ot-mailing__limit">Текст рассылки до 150 символов тут</p>
-                        <div class="ot-mailing__image"><img src="/img/Mailings/one-time_mailing_lists.jpg" alt=""></div>
-                        <div class="ot-mailing__recipients">
-                            <p class="ot-mailing__subtitle">Сообщение отправиться:</p>
-                            <div class="ot-mailing__recipient ot-mailing__recipient_all">
-                                Всем <img src="/img/x.svg" alt="">
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="" class="ot-mailing__btn"><img src="/img/Pen.svg" alt="">Редактировать</a>
-                </div>
-                <div class="ot-mailing">
-                    <div class="ot-mailing__header">
-                        <span class="ot-mailing__date">Отправлено 16.11.2022 в 16:00</span>
-                        <button class="delete_btn"><img src="/img/Delete.svg" alt=""></button>
-                    </div>
-
-                    <div class="ot-mailing__info">
-                        <p class="ot-mailing__limit">Текст рассылки до 150 символов тут</p>
-                        <div class="ot-mailing__image"><img src="/img/Mailings/one-time_mailing_lists.jpg" alt=""></div>
-                        <div class="ot-mailing__recipients">
-                            <p class="ot-mailing__subtitle">Сообщение отправиться:</p>
-                            <div class="ot-mailing__recipient ot-mailing__recipient_didnt-pay">
-                                Тем кто не оплатил <img src="/img/x.svg" alt="">
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="" class="ot-mailing__btn"><img src="/img/Pen.svg" alt="">Редактировать</a>
-                </div>
-                <div class="ot-mailing">
-                    <div class="ot-mailing__header">
-                        <span class="ot-mailing__date">Отправлено 16.11.2022 в 16:00</span>
-                        <button class="delete_btn"><img src="/img/Delete.svg" alt=""></button>
-                    </div>
-
-                    <div class="ot-mailing__info">
-                        <p class="ot-mailing__limit">Текст рассылки до 150 символов тут</p>
-                        <div class="ot-mailing__image"><img src="/img/Mailings/one-time_mailing_lists.jpg" alt=""></div>
-                        <div class="ot-mailing__recipients">
-                            <p class="ot-mailing__subtitle">Сообщение отправиться:</p>
-                            <div class="ot-mailing__recipient ot-mailing__recipient_didnt-pay">
-                                Тем кто не оплатил <img src="/img/x.svg" alt="">
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="" class="ot-mailing__btn"><img src="/img/Pen.svg" alt="">Редактировать</a>
                 </div>
             </div>
         </div>

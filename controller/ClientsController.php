@@ -82,7 +82,7 @@
                     [
                         "from" => "{$this->ourEmail}",
                         "to" => "{$creator_email}",
-                        "sender" => "{$this->ourEmail}",
+                        "sender" => "{$this->ourNickName}",
                         "subject" => "{$title}",
                         "content" => "$body",
                         "is_send_now" => 1
@@ -200,7 +200,7 @@
                     [
                         "from" => "{$this->ourEmail}",
                         "to" => "{$this->email}",
-                        "sender" => "{$this->ourEmail}",
+                        "sender" => "{$this->ourNickName}",
                         "subject" => "Покупка курса",
                         "content" => "$body",
                         "is_send_now" => 1
@@ -215,7 +215,7 @@
                     [
                         "from" => "{$this->ourEmail}",
                         "to" => "{$course_info['email']}",
-                        "sender" => "{$this->ourEmail}",
+                        "sender" => "{$this->ourNickName}",
                         "subject" => "У вас купили курс",
                         "content" => "$body",
                         "is_send_now" => 1

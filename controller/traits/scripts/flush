@@ -1,0 +1,2 @@
+#!/bin/sh
+/var/www/www-root/data/www/mail.io/scripts/run flush

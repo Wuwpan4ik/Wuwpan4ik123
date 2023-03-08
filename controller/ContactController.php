@@ -26,7 +26,7 @@ class ContactController extends ACoreCreator {
             [
                 "from" => "{$this->ourEmail}",
                 "to" => "{$author_user[0]['email']}",
-                "sender" => "{$this->ourEmail}",
+                "sender" => "{$this->ourNickName}",
                 "subject" => "{$title}",
                 "content" => "$body",
                 "is_send_now" => 1

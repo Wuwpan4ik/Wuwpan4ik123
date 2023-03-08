@@ -1,23 +1,23 @@
 <?php
     trait SendEmail {
         function SendEmail($message) {
-            $this->EmailQueueApiCall($this->api_endpoint, $this->api_key, $message);
+            $this->EmailQueueApiCall($message);
         }
 
-        function EmailQueueApiCall($endpoint, $key, $messages = false) {
-            $curl = curl_init();
-
-            $request = [
-                "key" => $key,
-                "messages" => $messages
-            ];
-
-            curl_setopt($curl, CURLOPT_URL, $endpoint);
-            curl_setopt($curl, CURLOPT_POST, 1);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, ["q" => json_encode($request)]);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-            $result = curl_exec($curl);
-            curl_close($curl);
-            return json_decode($result, true);
+        function EmailQueueApiCall($messages = false) {
+                    
+            include_once "config/application.config.inc.php"; // Include emailqueue configuration.
+            include_once "config/db.config.inc.php"; // Include Emailqueue's database connection configuration.
+            include_once "scripts/emailqueue_inject.class.php"; // Include Emailqueue's emailqueue_inject class.
+            
+            $emailqueue_inject = new Emailqueue\emailqueue_inject(EMAILQUEUE_DB_HOST, EMAILQUEUE_DB_UID, EMAILQUEUE_DB_PWD, EMAILQUEUE_DB_DATABASE); // Creates an emailqueue_inject object. Needs the database connection information.
+            
+        	// Use a try ... catch statement to capture errors
+        	try {
+        		// Call the emailqueue_inject::inject method to inject an email
+        		$result = $emailqueue_inject->inject($messages);
+        	} catch (Exception $e) {
+        		echo "Emailqueue error: ".$e->getMessage()."<br>";
+        	}
         }
     }
