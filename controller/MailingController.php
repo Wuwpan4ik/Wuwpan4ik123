@@ -72,7 +72,7 @@
                     if (!$time) {
                         $data['is_send_now'] = 1;
                     } else {
-                        $data['date_queued'] = $time;
+                        $data['date_queued'] = $time - 18000;
                     }
 
                     $this->SendEmail(
