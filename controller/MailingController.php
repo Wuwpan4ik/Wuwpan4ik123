@@ -60,7 +60,7 @@
                 foreach ($this->mailing->GetUsersByIndexs($data_get['indexs']) as $user) {
                     $data = [
                         "from" => "{$this->ourEmail}",
-                        "to" => "{$data_get['email']}",
+                        "to" => "{$user['email']}",
                         "sender" => "{$this->ourNickName}",
                         "subject" => "Вам пришло письмо от создателя курса!",
                         "content" => "$body",
@@ -82,12 +82,12 @@
 
         public function Create($data)
         {
-            $this->Create($data);
+            $this->mailing->Create($data);
         }
 
         public function Edit($data)
         {
-            $this->Edit($data);
+            $this->mailing->Edit($data);
         }
 
         public function Delete()
