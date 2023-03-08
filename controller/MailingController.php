@@ -49,12 +49,12 @@
                 $this->Edit($data_get);
             } else {
                 $this->Create($data_get);
-                if (empty($data_get['date_send']) && empty($data_get['time_send'])) {
+                if (!isset($data_get['date_send']) && !isset($data_get['time_send'])) {
                     $time = false;
-                } elseif (empty($data_get['date_send'])) {
+                } elseif (!isset($data_get['date_send'])) {
                     $time = strtotime(date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y'))) . " " . $data_get['time_send']);
-                } elseif (empty($data_get['time_send'])) {
-                    $time = strtotime($data_get['date_send'] . " " .date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y'))));
+                } elseif (!isset($data_get['time_send'])) {
+                    $time = strtotime($data_get['date_send'] . " " . date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y'))));
                 } else {
                     $time = $data_get['date_send'] . $data_get['time_send'];
                 }
