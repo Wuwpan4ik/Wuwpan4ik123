@@ -27,6 +27,6 @@
 
         public function GetUsersByIndexs($id)
         {
-            return $this->ClearQuery("SELECT email, ANY_VALUE(buy_progress) as 'buy_progress' FROM clients WHERE creator_id = {$_SESSION['user']['id']} GROUP BY email HAVING buy_progress >= $id")[0];
+            return $this->ClearQuery("SELECT email, ANY_VALUE(buy_progress) as 'buy_progress' FROM clients WHERE creator_id = {$_SESSION['user']['id']} GROUP BY email HAVING buy_progress >= $id");
         }
     }
