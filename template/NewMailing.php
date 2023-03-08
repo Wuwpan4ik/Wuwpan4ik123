@@ -121,7 +121,7 @@
                                 </div>
                                 <div class="input_focus ">
                                     <label for="username" class="label_focus">Время отправки</label>
-                                    <input min="3" type="time" name="time_send" id="social__inpu" minlength="3" value="<?php echo ($content['time_send']) ?? '' ?>">
+                                    <input type="time" name="time_send" id="social__inpu" value="<?php echo ($content['time_send']) ?? '' ?>">
                                     <span class="clear_input_val">
                                     <img src="/img/clear_input.svg" alt="">
                                 </span>
