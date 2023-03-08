@@ -59,26 +59,27 @@
                     $time = false;
                 }
                 $_SESSION['error'] =  $time;
-//                foreach ($this->mailing->GetUsersByIndexs($data_get['indexs'] - 1) as $user) {
-//
-//                    $data = [
-//                        "from" => "{$this->ourEmail}",
-//                        "to" => "{$user['email']}",
-//                        "sender" => "{$this->ourEmail}",
-//                        "subject" => "Вам пришло письмо от создателя курса!",
-//                        "content" => "$body",
-//                    ];
-//
-//                    if (!$time) {
-//                        $data['is_send_now'] = 1;
-//                    } else {
-//                        $data['data_injected'] = $time;
-//                    }
-//
-//                    $this->SendEmail(
-//                        $data
-//                    );
-//                }
+                foreach ($this->mailing->GetUsersByIndexs($data_get['indexs'] - 1) as $user) {
+
+                    $data = [
+                        "from" => "{$this->ourNickName}",
+                        "to" => "{$user['email']}",
+                        "sender" => "{$this->ourEmail}",
+                        "subject" => "Вам пришло письмо от создателя курса!",
+                        "content" => "$body",
+                        "date_queued" => "$time"
+                    ];
+
+                    if (!$time) {
+                        $data['is_send_now'] = 1;
+                    } else {
+                        $data['data_injected'] = $time;
+                    }
+
+                    $this->SendEmail(
+                        $data
+                    );
+                }
             }
             $this->get_content();
         }
