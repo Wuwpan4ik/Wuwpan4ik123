@@ -66,14 +66,13 @@
                         "to" => "{$user['email']}",
                         "sender" => "{$this->ourEmail}",
                         "subject" => "Вам пришло письмо от создателя курса!",
-                        "content" => "$body",
-                        "date_queued" => "$time"
+                        "content" => "$body"
                     ];
 
                     if (!$time) {
                         $data['is_send_now'] = 1;
                     } else {
-                        $data['data_injected'] = $time;
+                        $data['date_queued'] = $time;
                     }
 
                     $this->SendEmail(
