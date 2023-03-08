@@ -35,6 +35,7 @@
     $router->addRoute("/NewMailing/$item_id", "NewMailing.php");
     $router->addRoute("/NewMailing", "NewMailing.php");
     $router->addRoute("/NewMailing/create", "MailingController.php", "CreateAndEdit");
+    $router->addRoute("/mailing-delete/$item_id", "MailingController.php", "Delete");
 
 
     $router->addRoute("/Analytics", "Analytics.php");
