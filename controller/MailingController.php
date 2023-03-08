@@ -96,6 +96,7 @@
         public function Delete()
         {
             $this->mailing->DeleteQuery("mailing", ["id" => $_SESSION['item_id']]);
+            $this->get_content();
         }
 
         public function get_content()
