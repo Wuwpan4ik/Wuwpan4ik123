@@ -55,6 +55,8 @@
                     $time = strtotime(date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y'))) . " " . $data_get['time_send']);
                 } elseif (empty($data_get['time_send'])) {
                     $time = strtotime($data_get['date_send'] . " " .date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y'))));
+                } else {
+                    $time = $data_get['date_send'] . $data_get['time_send'];
                 }
                 $_SESSION['error'] =  $time;
 //                foreach ($this->mailing->GetUsersByIndexs($data_get['indexs'] - 1) as $user) {
