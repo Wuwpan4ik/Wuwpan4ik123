@@ -49,14 +49,14 @@
                 $this->Edit($data_get);
             } else {
                 $this->Create($data_get);
-                if (!isset($data_get['date_send']) && !isset($data_get['time_send'])) {
-                    $time = false;
-                } elseif (!isset($data_get['date_send'])) {
-                    $time = strtotime(date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y'))) . " " . $data_get['time_send']);
-                } elseif (!isset($data_get['time_send'])) {
-                    $time = strtotime($data_get['date_send'] . " " . date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y'))));
-                } else {
+                if (isset($data_get['date_send']) && isset($data_get['time_send'])) {
                     $time = $data_get['date_send'] . $data_get['time_send'];
+                } elseif (isset($data_get['date_send'])) {
+                    $time = $data_get['date_send'] . " " . date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
+                } elseif (isset($data_get['time_send'])) {
+                    $time = strtotime(date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y'))) . " " . $data_get['time_send']);
+                } else {
+                    $time = false;
                 }
                 $_SESSION['error'] =  $data_get['time_send'];
 //                foreach ($this->mailing->GetUsersByIndexs($data_get['indexs'] - 1) as $user) {
