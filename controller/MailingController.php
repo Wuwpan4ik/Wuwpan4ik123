@@ -62,7 +62,7 @@
                 foreach ($this->mailing->GetUsersByIndexs($data_get['indexs'] - 1) as $user) {
 
                     $data = [
-                        "from" => "{$this->ourNickName}",
+                        "from" => "{$this->ourEmail}",
                         "to" => "{$user['email']}",
                         "sender" => "{$this->ourEmail}",
                         "subject" => "Вам пришло письмо от создателя курса!",
