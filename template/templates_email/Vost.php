@@ -14,7 +14,7 @@
             margin: 0 auto;">
             <div class="envelope-body" style="background:white;">
                 <div class="first_row">
-                    <img style="width:100%;" src="https://course-creator.io/envelope-images/envelope-welcome.jpg" alt="Добро пожаловать в Course Creator!">
+                    <img style="width:100%;" src="https://app.course-creator.io/envelope-images/envelope-welcome.jpg" alt="Добро пожаловать в Course Creator!">
                 </div>
                 <div class="second_row" style="padding:40px;">
                     <h2 style="font-size:24px;font-weight: 400;margin-top: 0px;margin-left:0px;margin-bottom: 20px;margin-right: 0px;">
