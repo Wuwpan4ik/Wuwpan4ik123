@@ -56,27 +56,27 @@
                 } elseif (empty($data_get['time_send'])) {
                     $time = strtotime($data_get['date_send'] . " " .date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y'))));
                 }
-                $_SESSION['error'] =  $this->mailing->GetUsersByIndexs($data_get['indexs']);
-                foreach ($this->mailing->GetUsersByIndexs($data_get['indexs'] - 1) as $user) {
-
-                    $data = [
-                        "from" => "{$this->ourEmail}",
-                        "to" => "{$user['email']}",
-                        "sender" => "{$this->ourEmail}",
-                        "subject" => "Вам пришло письмо от создателя курса!",
-                        "content" => "$body",
-                    ];
-
-                    if (!$time) {
-                        $data['is_send_now'] = 1;
-                    } else {
-                        $data['data_injected'] = $time;
-                    }
-
-                    $this->SendEmail(
-                        $data
-                    );
-                }
+                $_SESSION['error'] =  $time;
+//                foreach ($this->mailing->GetUsersByIndexs($data_get['indexs'] - 1) as $user) {
+//
+//                    $data = [
+//                        "from" => "{$this->ourEmail}",
+//                        "to" => "{$user['email']}",
+//                        "sender" => "{$this->ourEmail}",
+//                        "subject" => "Вам пришло письмо от создателя курса!",
+//                        "content" => "$body",
+//                    ];
+//
+//                    if (!$time) {
+//                        $data['is_send_now'] = 1;
+//                    } else {
+//                        $data['data_injected'] = $time;
+//                    }
+//
+//                    $this->SendEmail(
+//                        $data
+//                    );
+//                }
             }
             $this->get_content();
         }
