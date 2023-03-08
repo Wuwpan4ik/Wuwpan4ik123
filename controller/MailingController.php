@@ -62,7 +62,7 @@
                     $data = [
                         "from" => "{$this->ourEmail}",
                         "to" => "{$user['email']}",
-                        "sender" => "{$this->ourNickName}",
+                        "sender" => "{$this->ourEmail}",
                         "subject" => "Вам пришло письмо от создателя курса!",
                         "content" => "$body",
                     ];
