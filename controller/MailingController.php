@@ -57,7 +57,7 @@
                     $time = strtotime($data_get['date_send'] . " " .date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y'))));
                 }
                 $_SESSION['error'] =  $this->mailing->GetUsersByIndexs($data_get['indexs']);
-                foreach ($this->mailing->GetUsersByIndexs($data_get['indexs'] - 1)[0] as $user) {
+                foreach ($this->mailing->GetUsersByIndexs($data_get['indexs'] - 1) as $user) {
 
                     $data = [
                         "from" => "{$this->ourEmail}",
