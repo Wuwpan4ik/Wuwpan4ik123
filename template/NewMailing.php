@@ -110,7 +110,7 @@
                             </div>
                         </label>
                         <div class="new-mailing__block new-mailing__planning">
-                            <label class="new-mailing__subtitle" for="date">Запланировать отправку</label>
+                            <label class="new-mailing__subtitle" for="date">Запланировать отправку (мск)</label>
                             <span style="color: #5A6474; font-size: 12px;">По умолчанию - сейчас</span>
                             <div class="new-mailing__block_two">
                                 <div class="input_focus">
