@@ -49,7 +49,7 @@
                 $this->Edit($data_get);
             } else {
                 $this->Create($data_get);
-                $mail_id = $this->mailing->Get($data_get)['id'];
+                $mail_id = $this->mailing->ClearQuery("SELECT * FROM mailing WHERE user_id = {$_SESSION['user']['id']} DESC LIMIT 1")[0]['id'];
                 if (isset($data_get['date_send']) && isset($data_get['time_send'])) {
                     $time = strtotime($data_get['date_send'] . ' ' . $data_get['time_send']);
                 } elseif (isset($data_get['date_send'])) {
@@ -63,6 +63,7 @@
 
                     $data = [
                         "foreign_id_a" => "$mail_id",
+                        "foreign_id_b" => $data_get['user_id'],
                         "from" => "{$this->ourEmail}",
                         "to" => "{$user['email']}",
                         "sender" => "{$this->ourEmail}",
