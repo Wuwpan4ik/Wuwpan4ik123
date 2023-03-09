@@ -12,7 +12,6 @@
             $data_get['user_id'] = $_SESSION['user']['id'];
 
             if (empty($data_get['date_send'])) $data_get['date_send'] = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
-            $_SESSION['error'] = $data_get['date_send'];
             unset($data_get['mytabs']);
             unset($data_get['file']);
 
@@ -52,7 +51,7 @@
                 $this->Edit($data_get);
             } else {
                 $this->Create($data_get);
-                $mail_id = $this->mailing->ClearQuery("SELECT * FROM mailing WHERE user_id = {$_SESSION['user']['id']} DESC LIMIT 1")[0]['id'];
+                $mail_id = $this->mailing->ClearQuery("SELECT * FROM mailing WHERE user_id = {$_SESSION['user']['id']} ORDER BY id DESC LIMIT 1")[0]['id'];
                 if (isset($data_get['date_send']) && isset($data_get['time_send'])) {
                     $time = strtotime($data_get['date_send'] . ' ' . $data_get['time_send']);
                 } elseif (isset($data_get['date_send'])) {
@@ -63,7 +62,7 @@
                 foreach ($this->mailing->GetUsersByIndexs($data_get['indexs'] - 1) as $user) {
 
                     $data = [
-                        "foreign_id_a" => "$mail_id",
+                        "foreign_id_a" => $mail_id,
                         "foreign_id_b" => $data_get['user_id'],
                         "from" => "{$this->ourEmail}",
                         "to" => "{$user['email']}",
