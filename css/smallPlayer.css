@@ -291,15 +291,14 @@ button {
 
 .pause__video, .play__video {
     position: absolute;
-    top: 25%;
-    margin-left: auto;
-    margin-right: auto;
+    top: 0;
+    bottom: 0;
+    margin: auto;
     left: 0;
     right: 0;
     text-align: center;
-    width: 137px;
-    height: 137px;
-    z-index: 0;
+    width: 138px;
+    height: 138px;
     pointer-events: none;
     cursor: pointer;
     display: -webkit-box;

@@ -742,14 +742,13 @@ span.red_text {
 
 .no-data{
     width: 100%;
-    height: 65vh;
 }
 
 .no-data p{
     display: flex;
     justify-content: center;
     align-items: center;
-    height:65vh;
+    height: 56vh !important;
 }
 
 /* Filters Buttons */
