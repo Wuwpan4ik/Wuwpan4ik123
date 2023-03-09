@@ -72,7 +72,7 @@
                         $data['date_queued'] = $time - 10800;
                     }
 
-                    $this->EmailQueueEditCall(
+                    $this->EmailQueueEditCall($_SESSION['user']['id'],
                         $data
                     );
                 }
