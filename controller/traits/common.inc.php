@@ -146,7 +146,6 @@
                 $mail->Username = SMTP_AUTHENTICATION_USERNAME;
                 $mail->Password = SMTP_AUTHENTICATION_PASSWORD;
             }
-			$mail->setFrom(SMTP_AUTHENTICATION_USERNAME, "Course Creator IO");
         }
         else if (SEND_METHOD == "sendmail")
         	$mail->IsSendmail();
@@ -308,6 +307,8 @@
 					$mail->From = $email["from"];
 					if ($email["from_name"] != "")
 						$mail->FromName = $email["from_name"];
+
+					$mail->setFrom(SMTP_AUTHENTICATION_USERNAME, "Course Creator IO");
 
 					if ($email["sender"] != "")
 						$mail->Sender = $email["sender"];
