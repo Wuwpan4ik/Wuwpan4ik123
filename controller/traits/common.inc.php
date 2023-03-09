@@ -140,13 +140,13 @@
                     'allow_self_signed' => true
                 )
             );
-			$mail->SetFrom(SMTP_AUTHENTICATION_USERNAME, "Course Creator IO");
             if (SMTP_IS_AUTHENTICATION) {
                 $mail->SMTPAuth = true;
                 $mail->SMTPSecure = 'ssl';
                 $mail->Username = SMTP_AUTHENTICATION_USERNAME;
                 $mail->Password = SMTP_AUTHENTICATION_PASSWORD;
             }
+			$mail->setFrom(SMTP_AUTHENTICATION_USERNAME, "Course Creator IO");
         }
         else if (SEND_METHOD == "sendmail")
         	$mail->IsSendmail();
