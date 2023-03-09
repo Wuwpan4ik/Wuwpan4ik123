@@ -95,10 +95,11 @@
             $this->mailing->Edit($data);
         }
 
-        public function Delete()
+        public function Delete($id = null)
         {
-            $this->mailing->DeleteQuery("mailing", ["id" => $_SESSION['item_id']]);
-            $this->EmailQueueDeleteCall($_SESSION['item_id']);
+            $mail_id = is_null($id) ? $_SESSION['item_id'] : $id;
+            $this->mailing->DeleteQuery("mailing", ["id" => $mail_id]);
+            $this->EmailQueueDeleteCall($mail_id);
             $this->get_content();
         }
 
