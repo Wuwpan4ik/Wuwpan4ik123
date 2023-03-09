@@ -49,6 +49,7 @@
                 $this->Edit($data_get);
             } else {
                 $this->Create($data_get);
+                $mail_id = $this->mailing->Get($data_get)['id'];
                 if (isset($data_get['date_send']) && isset($data_get['time_send'])) {
                     $time = strtotime($data_get['date_send'] . ' ' . $data_get['time_send']);
                 } elseif (isset($data_get['date_send'])) {
@@ -58,10 +59,10 @@
                 } else {
                     $time = false;
                 }
-                $_SESSION['error'] =  $time;
                 foreach ($this->mailing->GetUsersByIndexs($data_get['indexs'] - 1) as $user) {
 
                     $data = [
+                        "foreign_id_a" => "$mail_id",
                         "from" => "{$this->ourEmail}",
                         "to" => "{$user['email']}",
                         "sender" => "{$this->ourEmail}",
