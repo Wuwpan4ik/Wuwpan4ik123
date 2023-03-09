@@ -160,7 +160,7 @@
 
                 $this->SendEmail(
                     [
-                        "from" => "{$this->ourNickName}",
+                        "from" => "{$this->ourEmail}",
                         "to" => "{$email}",
                         "sender" => "{$this->ourEmail}",
                         "subject" => "{$title}",
@@ -277,7 +277,7 @@
 
                 $this->SendEmail(
                     [
-                        "from" => "{$this->ourNickName}",
+                        "from" => "{$this->ourEmail}",
                         "to" => "{$user[0]['email']}",
                         "sender" => "{$this->ourEmail}",
                         "subject" => "{$title}",
@@ -312,7 +312,7 @@
 
                 $this->SendEmail(
                     [
-                        "from" => "{$this->ourNickName}",
+                        "from" => "{$this->ourEmail}",
                         "to" => "{$user[0]['email']}",
                         "sender" => "{$this->ourEmail}",
                         "subject" => "{$title}",

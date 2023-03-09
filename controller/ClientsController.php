@@ -80,7 +80,7 @@
                 $this->api_endpoint = $f['endpoint'];
                 $this->SendEmail(
                     [
-                        "from" => "{$this->ourNickName}",
+                        "from" => "{$this->ourEmail}",
                         "to" => "{$creator_email}",
                         "sender" => "{$this->ourEmail}",
                         "subject" => "{$title}",
@@ -198,7 +198,7 @@
                 $body = include "./template/templates_email/registracia-usera(user).php";
                 $this->SendEmail(
                     [
-                        "from" => "{$this->ourNickName}",
+                        "from" => "{$this->ourEmail}",
                         "to" => "{$this->email}",
                         "sender" => "{$this->ourEmail}",
                         "subject" => "Покупка курса",
@@ -213,7 +213,7 @@
                 $body = $this->GetRegistrationClientHtml($course_info['name'], $course_info['price'], $this->email, $course_info['count'], $res['currency'], $phone, $name, $name_funnel, $number_slide);
                 $this->SendEmail(
                     [
-                        "from" => "{$this->ourNickName}",
+                        "from" => "{$this->ourEmail}",
                         "to" => "{$course_info['email']}",
                         "sender" => "{$this->ourEmail}",
                         "subject" => "У вас купили курс",

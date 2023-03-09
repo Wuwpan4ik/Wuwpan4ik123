@@ -24,7 +24,7 @@ class ContactController extends ACoreCreator {
         $body = $this->GetQuestionHTML($course[0]['name'], $user[0]['email'], date('Y-m-d H:i:s'), $question);
         $this->SendEmail(
             [
-                "from" => "{$this->ourNickName}",
+                "from" => "{$this->ourEmail}",
                 "to" => "{$author_user[0]['email']}",
                 "sender" => "{$this->ourEmail}",
                 "subject" => "{$title}",
