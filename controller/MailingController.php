@@ -64,6 +64,7 @@
                 $data = [
                     "foreign_id_a" => $mail_id,
                     "foreign_id_b" => $data_get['user_id'],
+                    'from_name' => "Course Creator IO",
                     "from" => "{$this->ourEmail}",
                     "to" => "{$user['email']}",
                     "sender" => "{$this->ourEmail}",

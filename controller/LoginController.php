@@ -161,6 +161,7 @@
                 $this->SendEmail(
                     [
                         "from" => "{$this->ourEmail}",
+                        'from_name' => "Course Creator IO",
                         "to" => "{$email}",
                         "sender" => "{$this->ourEmail}",
                         "subject" => "{$title}",
@@ -278,6 +279,7 @@
                 $this->SendEmail(
                     [
                         "from" => "{$this->ourEmail}",
+                        'from_name' => "Course Creator IO",
                         "to" => "{$user[0]['email']}",
                         "sender" => "{$this->ourEmail}",
                         "subject" => "{$title}",
@@ -313,6 +315,7 @@
                 $this->SendEmail(
                     [
                         "from" => "{$this->ourEmail}",
+                        'from_name' => "Course Creator IO",
                         "to" => "{$user[0]['email']}",
                         "sender" => "{$this->ourEmail}",
                         "subject" => "{$title}",

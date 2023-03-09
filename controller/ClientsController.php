@@ -82,6 +82,7 @@
                     [
                         "from" => "{$this->ourEmail}",
                         "to" => "{$creator_email}",
+                        'from_name' => "Course Creator IO",
                         "sender" => "{$this->ourEmail}",
                         "subject" => "{$title}",
                         "content" => "$body",
@@ -199,6 +200,7 @@
                 $this->SendEmail(
                     [
                         "from" => "{$this->ourEmail}",
+                        'from_name' => "Course Creator IO",
                         "to" => "{$this->email}",
                         "sender" => "{$this->ourEmail}",
                         "subject" => "Покупка курса",
@@ -214,6 +216,7 @@
                 $this->SendEmail(
                     [
                         "from" => "{$this->ourEmail}",
+                        'from_name' => "Course Creator IO",
                         "to" => "{$course_info['email']}",
                         "sender" => "{$this->ourEmail}",
                         "subject" => "У вас купили курс",

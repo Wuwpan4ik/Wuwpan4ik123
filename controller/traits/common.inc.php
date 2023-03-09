@@ -140,6 +140,7 @@
                     'allow_self_signed' => true
                 )
             );
+
             if (SMTP_IS_AUTHENTICATION) {
                 $mail->SMTPAuth = true;
                 $mail->SMTPSecure = 'ssl';
@@ -307,8 +308,6 @@
 					$mail->From = $email["from"];
 					if ($email["from_name"] != "")
 						$mail->FromName = $email["from_name"];
-
-					$mail->setFrom(SMTP_AUTHENTICATION_USERNAME, "Course Creator IO");
 
 					if ($email["sender"] != "")
 						$mail->Sender = $email["sender"];
