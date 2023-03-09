@@ -232,8 +232,6 @@
 
         function edit($mail_id, $p) {
             $parameters = [
-                "foreign_id_a"=> ["default" => false],
-                "foreign_id_b"=> ["default" => false],
                 "priority" => ["default" => 10],
                 "is_immediate" => ["default" => true],
                 "date_queued"=> ["default" => false],
@@ -309,7 +307,7 @@
             $result = mysqli_query(
                 $this->connectionid,
                 "
-					insert into emails
+					UPDATE emails SET
 					(
 						priority,
 						is_immediate,
