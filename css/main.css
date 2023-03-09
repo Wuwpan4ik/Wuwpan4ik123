@@ -1674,6 +1674,7 @@ span.name {
   font-size: 14px;
   line-height: 18px;
   color: #404D61;
+  word-break: break-all;
 }
 #file-name p{
   margin: 0; /* Убираем внешний отступ */

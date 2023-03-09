@@ -489,7 +489,7 @@ button {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    gap: 11px;
+    gap: 20px;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
     padding: 10px 0 10px 0;
     margin: 5px 0 0 0;
@@ -504,6 +504,8 @@ button {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    width: 76px;
+    height: 100px;
 
 }
 
@@ -556,6 +558,7 @@ button {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    gap: 5px;
 }
 
 .popup__allLessons-item-info-header-number {
