@@ -56,6 +56,7 @@
 
             if (!empty($data_get['id'])) {
                 $this->Delete($data_get['id']);
+                unset($data_get['id']);
             }
 
             $this->Create($data_get);
