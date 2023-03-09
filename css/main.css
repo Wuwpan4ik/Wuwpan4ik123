@@ -3234,3 +3234,12 @@ input[type=date]:invalid::-webkit-datetime-edit, input[type=time]:invalid::-webk
   border-radius: 8px;
   padding: 20px 16px;
 }
+
+.block__button-block{
+  display: flex;
+  align-items: center;
+}
+
+.block__button-block span{
+  line-height: 20px;
+}
