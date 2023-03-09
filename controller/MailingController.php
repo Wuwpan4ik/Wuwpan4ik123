@@ -12,6 +12,14 @@
             $data_get['user_id'] = $_SESSION['user']['id'];
 
             if (empty($data_get['date_send'])) $data_get['date_send'] = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
+            if (isset($data_get['date_send']) && isset($data_get['time_send'])) {
+                $time = strtotime($data_get['date_send'] . ' ' . $data_get['time_send']);
+            } elseif (isset($data_get['date_send'])) {
+                $time = strtotime($data_get['date_send'] . " " . "00:00:00");
+            } else {
+                $time = false;
+            }
+
             unset($data_get['mytabs']);
             unset($data_get['file']);
 
@@ -49,16 +57,28 @@
 
             if (!empty($data_get['id'])) {
                 $this->Edit($data_get);
+                foreach ($this->mailing->GetUsersByIndexs($data_get['indexs'] - 1) as $user) {
+                    $data = [
+                        "from" => "{$this->ourEmail}",
+                        "to" => "{$user['email']}",
+                        "sender" => "{$this->ourEmail}",
+                        "subject" => "Вам пришло письмо от создателя курса!",
+                        "content" => "$body"
+                    ];
+
+                    if (!$time) {
+                        $data['is_send_now'] = 1;
+                    } else {
+                        $data['date_queued'] = $time - 10800;
+                    }
+
+                    $this->EmailQueueEditCall(
+                        $data
+                    );
+                }
             } else {
                 $this->Create($data_get);
                 $mail_id = $this->mailing->ClearQuery("SELECT * FROM mailing WHERE user_id = {$_SESSION['user']['id']} ORDER BY id DESC LIMIT 1")[0]['id'];
-                if (isset($data_get['date_send']) && isset($data_get['time_send'])) {
-                    $time = strtotime($data_get['date_send'] . ' ' . $data_get['time_send']);
-                } elseif (isset($data_get['date_send'])) {
-                    $time = strtotime($data_get['date_send'] . " " . "00:00:00");
-                } else {
-                    $time = false;
-                }
                 foreach ($this->mailing->GetUsersByIndexs($data_get['indexs'] - 1) as $user) {
 
                     $data = [
@@ -93,6 +113,7 @@
         public function Edit($data)
         {
             $this->mailing->Edit($data);
+            $this->EmailQueueEditCall($_SESSION['item_id'], $data);
         }
 
         public function Delete()
