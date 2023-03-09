@@ -55,13 +55,12 @@
             $body = include "./template/templates_email/mail.php";
 
             if (!empty($data_get['id'])) {
-                $this->Delete();
+                $this->Delete($data_get['id']);
             }
 
             $this->Create($data_get);
             $mail_id = $this->mailing->ClearQuery("SELECT * FROM mailing WHERE user_id = {$_SESSION['user']['id']} ORDER BY id DESC LIMIT 1")[0]['id'];
             foreach ($this->mailing->GetUsersByIndexs($data_get['indexs'] - 1) as $user) {
-
                 $data = [
                     "foreign_id_a" => $mail_id,
                     "foreign_id_b" => $data_get['user_id'],
@@ -88,11 +87,6 @@
         public function Create($data)
         {
             $this->mailing->Create($data);
-        }
-
-        public function Edit($data)
-        {
-            $this->mailing->Edit($data);
         }
 
         public function Delete($id = null)
