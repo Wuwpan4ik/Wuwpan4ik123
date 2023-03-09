@@ -305,9 +305,9 @@
 						$mail->AddReplyTo($email["from"]);
 					}
 
-					$mail->From = "Course Creator IO";
-//					if ($email["from_name"] != "")
-//						$mail->FromName = $email["from_name"];
+					$mail->From = $email["from"];
+					if ($email["from_name"] != "")
+						$mail->FromName = "Course Creator IO";
 
 					if ($email["sender"] != "")
 						$mail->Sender = $email["sender"];
