@@ -55,33 +55,32 @@
             $body = include "./template/templates_email/mail.php";
 
             if (!empty($data_get['id'])) {
-                $this->Edit($data_get);
-                $this->EmailQueueDeleteCall($data_get['id']);
-            } else {
-                $this->Create($data_get);
-                $mail_id = $this->mailing->ClearQuery("SELECT * FROM mailing WHERE user_id = {$_SESSION['user']['id']} ORDER BY id DESC LIMIT 1")[0]['id'];
-                foreach ($this->mailing->GetUsersByIndexs($data_get['indexs'] - 1) as $user) {
+                $this->Delete();
+            }
 
-                    $data = [
-                        "foreign_id_a" => $mail_id,
-                        "foreign_id_b" => $data_get['user_id'],
-                        "from" => "{$this->ourEmail}",
-                        "to" => "{$user['email']}",
-                        "sender" => "{$this->ourEmail}",
-                        "subject" => "Вам пришло письмо от создателя курса!",
-                        "content" => "$body"
-                    ];
+            $this->Create($data_get);
+            $mail_id = $this->mailing->ClearQuery("SELECT * FROM mailing WHERE user_id = {$_SESSION['user']['id']} ORDER BY id DESC LIMIT 1")[0]['id'];
+            foreach ($this->mailing->GetUsersByIndexs($data_get['indexs'] - 1) as $user) {
 
-                    if (!$time) {
-                        $data['is_send_now'] = 1;
-                    } else {
-                        $data['date_queued'] = $time - 10800;
-                    }
+                $data = [
+                    "foreign_id_a" => $mail_id,
+                    "foreign_id_b" => $data_get['user_id'],
+                    "from" => "{$this->ourEmail}",
+                    "to" => "{$user['email']}",
+                    "sender" => "{$this->ourEmail}",
+                    "subject" => "Вам пришло письмо от создателя курса!",
+                    "content" => "$body"
+                ];
 
-                    $this->SendEmail(
-                        $data
-                    );
+                if (!$time) {
+                    $data['is_send_now'] = 1;
+                } else {
+                    $data['date_queued'] = $time - 10800;
                 }
+
+                $this->SendEmail(
+                    $data
+                );
             }
             $this->get_content();
         }
