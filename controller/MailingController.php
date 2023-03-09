@@ -52,7 +52,6 @@
             }
 //          Работа с файликов
 
-
             $body = include "./template/templates_email/mail.php";
 
             if (!empty($data_get['id'])) {
@@ -71,7 +70,7 @@
                     } else {
                         $data['date_queued'] = $time - 10800;
                     }
-                    $_SESSION['error'] = $time;
+                    $_SESSION['error'] = date('Y-m-d H:i:s', $time);
                     $this->EmailQueueEditCall($_SESSION['user']['id'],
                         $data
                     );
