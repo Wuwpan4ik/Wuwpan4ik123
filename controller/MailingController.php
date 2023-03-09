@@ -113,7 +113,7 @@
         public function Edit($data)
         {
             $this->mailing->Edit($data);
-            $this->EmailQueueEditCall($_SESSION['item_id'], $data);
+            $this->EmailQueueEditCall($data['id'], $data);
         }
 
         public function Delete()
