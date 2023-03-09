@@ -56,25 +56,7 @@
 
             if (!empty($data_get['id'])) {
                 $this->Edit($data_get);
-                foreach ($this->mailing->GetUsersByIndexs($data_get['indexs'] - 1) as $user) {
-                    $data = [
-                        "from" => "{$this->ourEmail}",
-                        "to" => "{$user['email']}",
-                        "sender" => "{$this->ourEmail}",
-                        "subject" => "Вам пришло письмо от создателя курса!",
-                        "content" => "$body"
-                    ];
-
-                    if (!$time) {
-                        $data['is_send_now'] = 1;
-                    } else {
-                        $data['date_queued'] = $time - 10800;
-                    }
-                    $_SESSION['error'] = date('Y-m-d H:i:s', $time);
-                    $this->EmailQueueEditCall($_SESSION['item_id'],
-                        $data
-                    );
-                }
+                $this->EmailQueueDeleteCall($data_get['id']);
             } else {
                 $this->Create($data_get);
                 $mail_id = $this->mailing->ClearQuery("SELECT * FROM mailing WHERE user_id = {$_SESSION['user']['id']} ORDER BY id DESC LIMIT 1")[0]['id'];
@@ -112,12 +94,12 @@
         public function Edit($data)
         {
             $this->mailing->Edit($data);
-            $this->EmailQueueEditCall($data['id'], $data);
         }
 
         public function Delete()
         {
             $this->mailing->DeleteQuery("mailing", ["id" => $_SESSION['item_id']]);
+            $this->EmailQueueDeleteCall($_SESSION['item_id']);
             $this->get_content();
         }
 

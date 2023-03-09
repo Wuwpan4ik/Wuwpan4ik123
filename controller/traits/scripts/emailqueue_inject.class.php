@@ -220,7 +220,7 @@
         function GetEmailsQueueApiCall($mail_id) {
             $result = mysqli_query(
                 $this->connectionid,
-                "SELECT * FROM emails WHERE foreign_id_b = $mail_id"
+                "SELECT * FROM emails WHERE foreign_id_a = $mail_id"
             );
 
             if (!$result) {
@@ -230,138 +230,19 @@
             return $result;
         }
 
-        function edit($mail_id, $p) {
-            $parameters = [
-                "priority" => ["default" => 10],
-                "is_immediate" => ["default" => true],
-                "date_queued"=> ["default" => false],
-                "is_html"=> ["default" => true],
-                "from"=> ["default" => false],
-                "from_name"=> ["default" => false],
-                "to"=> ["default" => false],
-                "replyto"=> ["default" => false],
-                "replyto_name"=> ["default" => false],
-                "sender" => ["default" => false],
-                "subject"=> ["default" => false],
-                "content"=> ["default" => false],
-                "content_nonhtml"=> ["default" => false],
-                "list_unsubscribe_url"=> ["default" => false],
-                "attachments"=> ["default" => false],
-                "custom_headers"=> ["default" => false],
-                "is_send_now"=> ["default" => false],
-                "is_embed_images"=> ["default" => false]
-            ];
-
-            foreach ($parameters as $key => $parameter) {
-                if (isset($parameter["default"]) && !isset($p[$key]))
-                    $p[$key] = $parameter["default"];
-            }
-
-            // Cleaning
-            foreach (["from", "to", "replyto", "sender"] as $key)
-                $p[$key] = trim($p[$key]);
-
+        function delete($mail_id) {
             $this->db_connect();
 
-            if ($p["is_send_now"])
-                $p["is_immediate"] = true;
-
-            $p["subject"] = str_replace("\\'", "'", $p["subject"]);
-            $p["subject"] = str_replace("'", "\'", $p["subject"]);
-
-            // Some recommendations have been found about not sending emails longer than 63k bytes, it seems that triggers lots of spam-detection alarms.
-            if(strlen($p["content"]) > 63000)
-                $p["content"] = substr($p["content"], 0, 63000);
-
-            $p["content"] = str_replace("\\'", "'", $p["content"]);
-            $p["content"] = str_replace("'", "\'", $p["content"]);
-
-            $p["content_nonhtml"] = str_replace("\\'", "'", $p["content_nonhtml"]);
-            $p["content_nonhtml"] = str_replace("'", "\'", $p["content_nonhtml"]);
-
-            // Prepare and check attachments array
-            if ($p["attachments"]) {
-                if (!is_array($p["attachments"])) {
-                    $this->error("Attachments parameter must be an array.");
-                    return false;
-                }
-                foreach ($p["attachments"] as $attachment) {
-                    if (!is_array($attachment)) {
-                        $this->error("Each attachment specified on the attachments array must be a hash array.");
-                        return false;
-                    }
-                    if (!file_exists($attachment["path"])) {
-                        $this->error("Can't open attached file for reading.");
-                        return false;
-                    }
-                }
-            }
-
-            if ($p["custom_headers"]) {
-                if (!is_array($p["custom_headers"])) {
-                    $this->error("Custom headers parameter must be an array.");
-                    return false;
-                }
-            }
-
-            $result = mysqli_query(
+            mysqli_query(
                 $this->connectionid,
-                "
-					UPDATE emails SET
-						priority = ".($p["priority"] ? $p["priority"] : $this->default_priority).",
-						is_immediate = ".($p["is_immediate"] ? "1" : "0").",
-						is_sent = 0,
-						is_cancelled = 0,
-						is_blocked = 0,
-						is_sendingnow = 0,
-						send_count = 0,
-						error_count = 0,
-						date_injected = '".date("Y-n-j H:i:s", $this->timestamp_adjust(time(), $this->emailqueue_timezone))."',
-						date_queued = ".($p["date_queued"] ? "'".date("Y-n-j H:i:s", $this->timestamp_adjust($p["date_queued"], $this->emailqueue_timezone))."'" : "null").",
-						date_sent = null,
-						is_html = ".($p["is_html"] ? "1" : "0").",
-						`from` = ".($p["from"] ? "'".$p["from"]."'" : "null").",
-						from_name = ".($p["from_name"] ? "'".$p["from_name"]."'" : "null").",
-						`to` = ".($p["to"] ? "'".$p["to"]."'" : "null").",
-						replyto = ".($p["replyto"] ? "'".$p["replyto"]."'" : "null").",
-                        replyto_name = ".($p["replyto_name"] ? "'".$p["replyto_name"]."'" : "null").",
-                        sender = ".($p["sender"] ? "'".$p["sender"]."'" : "null").",
-						subject = '".$p["subject"]."',
-						content = '".$p["content"]."',
-						content_nonhtml = '".$p["content_nonhtml"]."',
-						list_unsubscribe_url = '".$p["list_unsubscribe_url"]."',
-                        attachments = ".($p["attachments"] ? "'".serialize($p["attachments"])."'" : "null").",
-                        is_embed_images = ".($p["is_embed_images"] ? "1" : "0").",
-                        custom_headers = ".($p["custom_headers"] ? "'".serialize($p["custom_headers"])."'" : "null")."
-					WHERE foreign_id_a = $mail_id
-				"
+                "DELETE FROM emails WHERE foreign_id_a = $mail_id"
             );
-
-            if (!$result) {
-                $this->error("Error inserting message in the queue DB");
-                die;
-            }
-
-            if ($p["is_send_now"]) {
-                $email_id = mysqli_insert_id($this->connectionid);
-                if (!$result = mysqli_query($this->connectionid, "select * from emails where id = ".$email_id)) {
-                    $this->error("Couldn't retrieve the recently inserted email for 'send now' delivery.");
-                    return false;
-                }
-                $email = $result->fetch_assoc();
-                $result->free();
-
-                require_once(dirname(__FILE__)."/../common.inc.php");
-
-                $mail = buildPhpMailer();
-                deliver_email($mail, $email, false);
-                $mail->SmtpClose();
-            }
 
             $this->db_disconnect();
 
             return $result ? true : false;
         }
+
         function timestamp_adjust($timestamp, $to_timezone) {
             $datetime_object = new \DateTime("@".$timestamp);
 
