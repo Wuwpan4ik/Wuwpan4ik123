@@ -12,7 +12,7 @@
 
         public function GetMailingUser()
         {
-            return $this->GetQuery('mailing', ['user_id' => $_SESSION['user']['id']]);
+            return $this->GetQuery('mailing', ['user_id' => $_SESSION['user']['id']], "ORDER BY id DESC");
         }
 
         public function Create($data)
