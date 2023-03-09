@@ -11,7 +11,7 @@
             }
             $data_get['user_id'] = $_SESSION['user']['id'];
 
-            if (empty($data_get['date_send'])) $data_get['date_send'] = strtotime(date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y'))));
+            if (empty($data_get['date_send'])) $data_get['date_send'] = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
             $_SESSION['error'] = $data_get['date_send'];
             unset($data_get['mytabs']);
             unset($data_get['file']);
