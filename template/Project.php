@@ -61,6 +61,15 @@
 
       </div>
   </div>
+      <div class="popup__background display-block" >
+          <div id="popup">
+              <div class="popup__container" id="warning">
+                  <div class="popup-body">
+                      <div class="popup__title">  К большому сожалению, пользователь не оплатил тариф.</div>
+                  </div>
+              </div>
+          </div>
+      </div>
         <div id="popup__background">
             <div id="popup">
                 <div class="popup__container">
@@ -79,6 +88,7 @@
     let deleteButtons = document.querySelectorAll('.reboot');
     let notDelete = document.querySelector('.popup__not-delete');
     let deletes = document.querySelector('.popup__delete');
+    let warning = document.querySelector('#warning')
     let entryDisplay = document.querySelector('#popup__background');
     let body = document.querySelector('body');
     function toggleOverflow () {
@@ -101,6 +111,12 @@
         if (event.target === entryDisplay) {
             toggleOverflow();
             entryDisplay.classList.remove('display-block');
+        }
+    }
+    warning.onclick = function (event) {
+        if (event.target === warning) {
+            toggleOverflow();
+            warning.classList.remove('display-block');
         }
     }
 </script>

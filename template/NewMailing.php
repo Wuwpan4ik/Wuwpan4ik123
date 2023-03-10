@@ -184,6 +184,7 @@
 <script src="../js/sidebar.js"></script>
 <script src="/js/getNotifications.js"></script>
 
+
 <?php if ($content['indexs']) { ?>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -191,6 +192,7 @@
         })
     </script>
 <?php } ?>
+
 <script>
     /*Select*/
     function checkboxStatusChange(block = document) {

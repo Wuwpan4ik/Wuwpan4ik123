@@ -228,7 +228,6 @@ button {
     -ms-flex-pack: justify;
     justify-content: space-between;
     width: 100%;
-    padding: 0 20px;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
@@ -292,15 +291,14 @@ button {
 
 .pause__video, .play__video {
     position: absolute;
-    top: 25%;
-    margin-left: auto;
-    margin-right: auto;
+    top: 0;
+    bottom: 0;
+    margin: auto;
     left: 0;
     right: 0;
     text-align: center;
-    width: 137px;
-    height: 137px;
-    z-index: 0;
+    width: 138px;
+    height: 138px;
     pointer-events: none;
     cursor: pointer;
     display: -webkit-box;
@@ -491,7 +489,7 @@ button {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    gap: 11px;
+    gap: 20px;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
     padding: 10px 0 10px 0;
     margin: 5px 0 0 0;
@@ -506,6 +504,8 @@ button {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    width: 76px;
+    height: 100px;
 
 }
 
@@ -558,6 +558,7 @@ button {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    gap: 5px;
 }
 
 .popup__allLessons-item-info-header-number {
