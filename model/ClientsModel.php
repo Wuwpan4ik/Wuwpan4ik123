@@ -5,4 +5,5 @@
         {
             return $this->db->query("SELECT * FROM `clients` WHERE `course_id` = '$course_id' AND `email` = '$email'");
         }
+
     }

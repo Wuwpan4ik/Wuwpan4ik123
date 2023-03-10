@@ -47,6 +47,11 @@
             return $this->db->query($sql);
         }
 
+        public function GetAllQuery(string $database)
+        {
+            return $this->db->query("SELECT * FROM $database");
+        }
+
         public function DeleteQuery(string $database, $data, $key = "id")
         {
             $values = [];

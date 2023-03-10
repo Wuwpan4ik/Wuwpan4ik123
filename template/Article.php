@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/css/Article.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/lessons.css">
-    <title>Кейс - <?php echo $content['article']['cases_name'] ?></title>
+    <title>Кейс - <?php echo $content['article']['name'] ?></title>
 
 </head>
 
@@ -26,7 +26,7 @@
 
         <?php
         $title = "Доступные проекты";
-        $back = "Project";
+        $back = "Cases";
         include ('default/header.php');
         ?>
         <div class="_container">
@@ -59,18 +59,18 @@
                                     Курс менеджер инстаграмм
                                 </div>
                                 <div class="Article-post-item__main">
-                                    <p>Instakilogram</p>
+                                    <p><?php echo $content['article']['name'] ?></p>
                                     <div class="Article-post-item__rating">
                                         <img src="../img/Article/rating.svg" alt="">
-                                        <span>4.3</span>
+                                        <span><?php echo $content['article']['rating'] ?></span>
                                     </div>
                                 </div>
                                 <div class="Article-post-item__price">
-                                    109 100 ₽ - 160000 ₽ в месяц
+                                    <?php echo $content['article']['price'] ?> ₽ в месяц
                                 </div>
                                 <div class="Article-post-item__time">
                                     <img src="../img/Article/time.svg" alt="">
-                                    недавно
+                                    <?php echo $content['article']['date'] ?>
                                 </div>
                                 <div class="Article-post-item__button">
                                     <form action="">

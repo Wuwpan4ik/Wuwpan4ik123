@@ -2475,9 +2475,14 @@ td:nth-child(1){
 .selectBox {
   position: relative;
 }
+
 .selectBox select {
   width: 100%;
+  appearance: none;
+  background: url("/img/ArrowDownDefault.svg") no-repeat !important;
+  background-position: calc(100% - 20px) 50% !important;
 }
+
 .checkMark{
   filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(178deg) brightness(104%) contrast(1003%);
 }
