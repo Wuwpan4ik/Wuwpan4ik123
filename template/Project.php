@@ -61,15 +61,6 @@
 
       </div>
   </div>
-      <div class="popup__background display-block" >
-          <div id="popup">
-              <div class="popup__container" id="warning">
-                  <div class="popup-body">
-                      <div class="popup__title">  К большому сожалению, пользователь не оплатил тариф.</div>
-                  </div>
-              </div>
-          </div>
-      </div>
         <div id="popup__background">
             <div id="popup">
                 <div class="popup__container">
