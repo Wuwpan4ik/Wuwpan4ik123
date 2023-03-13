@@ -29,6 +29,8 @@
     $router->addRoute("/reg", "Registration.php");
     $router->addRoute("/login", "Login.php");
     $router->addRoute("/recovery", "PasswordRecovery.php");
+    $router->addRoute("/ConfirmEmail", "ConfirmEmail.php");
+    $router->addRoute("/PasswordRecovery", "PasswordRecovery.php");
 
     $router->addRoute("/Mailings", "Mailings.php");
     $router->addRoute("/OneTimeMailings", "OneTimeMailings.php");
@@ -39,8 +41,8 @@
 
 
     $router->addRoute("/Analytics", "Analytics.php");
-    $router->addRoute("/ConfirmEmail", "ConfirmEmail.php");
-    $router->addRoute("/PasswordRecovery", "PasswordRecovery.php");
+    $router->addRoute("/Orders", "Orders.php");
+
     $router->addRoute("/Cases", "Cases.php");
     $router->addRoute("/Account", "Account.php");
     $router->addRoute("/Account/SocialUrls", "AccountController.php", "TakeSocialUrls", false);

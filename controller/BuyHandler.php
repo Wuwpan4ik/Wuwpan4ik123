@@ -1,4 +1,5 @@
 <?php
+// Проверка Хука с Prodamus (Не уверен, что работает)
     class BuyHandler extends ACoreCreator {
         public function BuyHandlerCheck()
         {

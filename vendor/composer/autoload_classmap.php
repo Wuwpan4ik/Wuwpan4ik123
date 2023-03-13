@@ -200,6 +200,7 @@ return array(
     'Notifications' => $baseDir . '/model/Notifications.php',
     'NotificationsController' => $baseDir . '/controller/NotificationsController.php',
     'OneTimeMailings' => $baseDir . '/pages/OneTimeMailings.php',
+    'Orders' => $baseDir . '/pages/Orders.php',
     'OrdersModel' => $baseDir . '/model/OrdersModel.php',
     'PHPMailer\\PHPMailer\\Exception' => $baseDir . '/controller/traits/vendor/phpmailer/phpmailer/src/Exception.php',
     'PHPMailer\\PHPMailer\\OAuth' => $baseDir . '/controller/traits/vendor/phpmailer/phpmailer/src/OAuth.php',

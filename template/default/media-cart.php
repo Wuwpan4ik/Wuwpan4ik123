@@ -37,7 +37,7 @@
         <div class="block__button-add <?php if (!isset($v['button_text']) || empty($v['button_text'])) { ?> display-none <?php } ?>" >
             <div class="funnel-input input_focus">
                 <label for="name" class="label_focus">Текст для кнопки:</label>
-                <input name="button_text" maxlength="15" class="videoname video-desc" type="text" value="<?=$v['button_text']?>">
+                <input name="button_text" maxlength="35" class="videoname video-desc" type="text" value="<?=$v['button_text']?>">
                 <span class="clear_input_val">
                     <img src="/img/clear_input.svg" alt="">
                 </span>

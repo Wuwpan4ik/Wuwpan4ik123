@@ -1,4 +1,5 @@
 <?php
+// Класс для рабоыт с очередью
 class Hmac {
     static function create($data, $key, $algo = 'sha256') {
         if (!in_array($algo, hash_algos()))

@@ -322,6 +322,7 @@ class ComposerStaticInit113aa6f48300210152e47d56e3735559
         'Notifications' => __DIR__ . '/../..' . '/model/Notifications.php',
         'NotificationsController' => __DIR__ . '/../..' . '/controller/NotificationsController.php',
         'OneTimeMailings' => __DIR__ . '/../..' . '/pages/OneTimeMailings.php',
+        'Orders' => __DIR__ . '/../..' . '/pages/Orders.php',
         'OrdersModel' => __DIR__ . '/../..' . '/model/OrdersModel.php',
         'PHPMailer\\PHPMailer\\Exception' => __DIR__ . '/../..' . '/controller/traits/vendor/phpmailer/phpmailer/src/Exception.php',
         'PHPMailer\\PHPMailer\\OAuth' => __DIR__ . '/../..' . '/controller/traits/vendor/phpmailer/phpmailer/src/OAuth.php',

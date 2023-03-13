@@ -128,7 +128,7 @@ button {
     transition: 0.2s ease-in;
 }
 .menu-label{
-    width: 33.33%;
+    width: 50%;
     padding: 4px;
     border: 1px #E1E3E6 solid;
     border-width: 1px 0px 1px 0px;

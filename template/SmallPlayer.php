@@ -189,9 +189,30 @@ cursor: pointer;text-decoration: none;">Вернуться на сайт</a>
         }
     });
     request.send();
+
+    // Проверка на запрет
+    LoadAButtons();
+    $('.slick-next').click(function (){
+        NextSlide();
+    })
+
+    function LoadAButtons() {
+        let video = document.querySelector('.slick-current video')
+        if (video.classList.contains("disable-skip")) {
+            document.querySelectorAll('.slick-arrow').forEach((item) => {
+                item.classList.add('display-none');
+            })
+        } else {
+            document.querySelectorAll('.slick-arrow').forEach((item) => {
+                item.classList.remove('display-none');
+            })
+        }
+    }
+    // Проверка на запрет
+
     function NextSlide() {
         document.querySelector('.slick-active button').style.background = `linear-gradient(to right,white 0%, white 100%,lightgrey 100% , lightgrey 0%)`;
-        $('.slick-next').click();
+        LoadAButtons();
     }
 </script>
 <!---->
@@ -251,17 +272,15 @@ cursor: pointer;text-decoration: none;">Вернуться на сайт</a>
 
             // События при конце видео
             item.addEventListener('ended', function (){
-
                 // Каталог
                 if (!item.classList.contains("disable-skip")) {
+
                     NextSlide();
                 } else {
+
                     OpenPopup(item.parentElement.parentElement.querySelector('.button').parentElement);
                 }
             })
-        })
-        document.querySelectorAll('.slick-arrow').forEach((item) => {
-            item.style.display = 'none';
         })
     })
     //отключает таб

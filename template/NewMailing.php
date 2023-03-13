@@ -48,6 +48,9 @@
                                 </span>
                             </div>
                             <h2 class="chapter__title">Настройки письма</h2>
+                            <div class="textarea_focus">
+                                <textarea name="description" class="videoname video-desc textarea-info" maxlength="100" placeholder="Укажите описание:"><?=$v['description']?></textarea>
+                            </div>
                             <div class="input_focus ">
                                 <label for="text" class="label_focus">Добавьте текст сообщения</label>
                                 <input required min="3" name="text" type="text" id="social__inpu" minlength="3" value="<?php echo ($content['text']) ?? '' ?>">
