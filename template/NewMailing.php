@@ -27,7 +27,7 @@
                         <div class="ot-mailing__image"><img src="/img/Mailings/one-time_mailing_lists.jpg" alt=""></div>
                     </div>
                 </div>
-                <form action="/NewMailing/create" method="POST" style="width: 100%" enctype="multipart/form-data">
+                <form action="/NewMailing/create" method="POST" enctype="multipart/form-data">
                     <?php if ($_SESSION['item_id']) echo "<input hidden name='id' value='{$_SESSION['item_id']}'>"?>
                     <div class="new-mailing__settings">
 
@@ -40,6 +40,7 @@
                                     <img src="/img/clear_input.svg" alt="">
                                 </span>
                             </div>
+
                             <div class="input_focus ">
                                 <label for="text" class="label_focus">Добавьте описание письма</label>
                                 <input required min="3" name="description" type="text" id="social__inpu" minlength="3" value="<?php echo ($content['description']) ?? '' ?>">
@@ -49,14 +50,7 @@
                             </div>
                             <h2 class="chapter__title">Настройки письма</h2>
                             <div class="textarea_focus">
-                                <textarea name="description" class="videoname video-desc textarea-info" maxlength="100" placeholder="Укажите описание:"><?=$v['description']?></textarea>
-                            </div>
-                            <div class="input_focus ">
-                                <label for="text" class="label_focus">Добавьте текст сообщения</label>
-                                <input required min="3" name="text" type="text" id="social__inpu" minlength="3" value="<?php echo ($content['text']) ?? '' ?>">
-                                <span class="clear_input_val">
-                                    <img src="/img/clear_input.svg" alt="">
-                                </span>
+                                <textarea name="text" class="videoname video-desc textarea-info" placeholder="Добавьте текст сообщения:"><?=$v['description']?></textarea>
                             </div>
                             <?php if ($content['buttons']) {
                                 $count = 1?>
@@ -123,7 +117,7 @@
                                     </span>
                                 </div>
                                 <div class="input_focus ">
-                                    <label for="username" class="label_focus">Время отправки</label>
+                                    <label for="username" class="label_focus"></label>
                                     <input type="time" name="time_send" id="social__inpu" value="<?php echo ($content['time_send']) ?? '' ?>">
                                     <span class="clear_input_val">
                                     <img src="/img/clear_input.svg" alt="">
@@ -186,7 +180,7 @@
 <script src="/js/customInputs.js"></script>
 <script src="../js/sidebar.js"></script>
 <script src="/js/getNotifications.js"></script>
-
+<script src="/js/autoTextArea.js"></script>
 
 <?php if ($content['indexs']) { ?>
     <script>

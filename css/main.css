@@ -3063,7 +3063,7 @@ td:nth-child(1){
 }
 
 @media (max-width: 1332px) {
-  .new-mailing__settings{
+  .new-mailing__settings, form{
     width: 100% !important;
   }
 }
@@ -3084,7 +3084,7 @@ td:nth-child(1){
   color: #404D61;
 }
 
-.new-mailing__settings{
+form{
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -3103,7 +3103,7 @@ td:nth-child(1){
   width: 100%;
 }
 
-.new-mailing__settings input {
+.new-mailing__settings input,textarea {
   width: 100%;
   height: 48px;
   border: 1px solid #E1E3E6;
