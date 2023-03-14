@@ -197,23 +197,29 @@ cursor: pointer;text-decoration: none;">Вернуться на сайт</a>
     })
 
     function LoadAButtons() {
-        let video = document.querySelector('.slick-current video')
+        let video = document.querySelector('.slick-active video')
         if (video.classList.contains("disable-skip")) {
             document.querySelectorAll('.slick-arrow').forEach((item) => {
-                item.classList.add('display-none');
+                item.classList.add('slick-disabled');
             })
         } else {
             document.querySelectorAll('.slick-arrow').forEach((item) => {
-                item.classList.remove('display-none');
+                if (!item.classList.contains('slick-disabled')) {
+                    item.classList.remove('slick-disabled');
+                }
             })
         }
     }
     // Проверка на запрет
-
     function NextSlide() {
         document.querySelector('.slick-active button').style.background = `linear-gradient(to right,white 0%, white 100%,lightgrey 100% , lightgrey 0%)`;
         LoadAButtons();
     }
+    function PrevSlide() {
+        document.querySelector('.slick-active button').style.background = `linear-gradient(to right,white 0%, white 100%,lightgrey 100% , lightgrey 0%)`;
+        LoadAButtons();
+    }
+
 </script>
 <!---->
 <script>
