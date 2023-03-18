@@ -2933,7 +2933,7 @@ td:nth-child(1){
   filter: invert(29%) sepia(15%) saturate(1022%) hue-rotate(177deg) brightness(300%) contrast(400%);
 }
 
-.mailing__create, .ot-mailing{
+.mailing__create{
   width: 320.33px !important;
   min-height: 488px;
   border: 1px solid #E1E3E6;
@@ -2963,12 +2963,20 @@ td:nth-child(1){
   text-align: center;
 }
 /**/
-.ot-mailings__body, .ot-mailing{
+.ot-mailing{
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
 }
 
+.ot-mailing__menu{
+  width: 100%;
+  margin: 0 !important;
+}
+
+.ot-mailing__menu label{
+  width: 235px !important;
+}
 @media (max-width: 1083px) {
   .ot-mailings__body{
     justify-content: center;
@@ -2978,16 +2986,16 @@ td:nth-child(1){
 .ot-mailing{
   flex-direction: column;
   justify-content: center;
-  padding: 24px;
 }
 
 .ot-mailing__header{
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  width: 100%;
 }
 
 .ot-mailing__date{
+  width: auto !important;
   background: rgba(7, 162, 135, 0.08);
   border-radius: 8px;
   padding: 10px 16px;
@@ -3007,11 +3015,6 @@ td:nth-child(1){
   font-size: 14px;
 }
 
-.ot-mailing__info{
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
 
 .ot-mailing__image img{
   height: 200px;
@@ -3023,7 +3026,7 @@ td:nth-child(1){
   padding: 6px 8px;
   background: rgba(85, 82, 217, 0.08);
   border-radius: 8px;
-  margin-top: 8px;
+  margin: 0 0 14px 0;
 }
 
 .ot-mailing__recipient_all{
@@ -3088,7 +3091,7 @@ form{
   display: flex;
   flex-direction: column;
   gap: 30px;
-  width: 75%;
+  width: 100%;
 }
 
 .new-mailing__block_two{
@@ -3133,8 +3136,7 @@ input[type=date]:invalid::-webkit-datetime-edit, input[type=time]:invalid::-webk
 }
 
 .new-mailing__planning{
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 0 0 30px 0;
+  padding: 0 0 15px 0;
 }
 
 .chapter__title{
@@ -3248,4 +3250,21 @@ input[type=date]:invalid::-webkit-datetime-edit, input[type=time]:invalid::-webk
 
 .block__button-block span{
   line-height: 20px;
+}
+
+.sent{
+  width: 552px;
+}
+
+/*Quick - text editor*/
+.ql-toolbar.ql-snow{
+  display: flex;
+  justify-content: center;
+  border-radius: 8px 8px 0 0;
+  border: 1px solid #E1E3E6 !important;
+}
+
+.ql-container.ql-snow{
+  border-radius:0 0 8px 8px;
+  border: 1px solid #E1E3E6 !important;
 }
