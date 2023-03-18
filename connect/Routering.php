@@ -1,6 +1,6 @@
 <?php
 require_once './vendor/autoload.php';
-class Router
+class   Router
 {
     private $pages = array();
 
