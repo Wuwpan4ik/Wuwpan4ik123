@@ -1414,7 +1414,8 @@
         display: flex;
         -webkit-box-pack: justify;
         -ms-flex-pack: justify;
-        justify-content: space-between;
+        justify-content: flex-start;
+        gap: 10px;
         margin: 8px 0 0 0;
     }
 }

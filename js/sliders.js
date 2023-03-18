@@ -26,7 +26,6 @@ $('.slider').each(function() {
         swipeToSlide: false,
         touchMove: false,
         swipe: false,
-        appendDots: $(this).parent().find('.slick-dots'),
         prevArrow: "<img src='/img/free-icon-left-arrows-5054206.png' class='slick-prev' alt='1'>",
         nextArrow: "<img src='/img/free-icon-two-arrows-5054205.png' class='slick-next' alt='2'>",
     });

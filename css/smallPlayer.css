@@ -69,13 +69,14 @@ button {
 
 /* Стрелка влево */
 .slick-arrow.slick-prev {
-    left: 30px;
+    left: -50px;
+    background-color: #FFFFFF;
     transition: all 1s ease 0s;
 }
 
 /* Стрелка вправо */
 .slick-arrow.slick-next {
-    right: 30px;
+    right: -50px;
     transition: all 1s ease 0s;
 }
 

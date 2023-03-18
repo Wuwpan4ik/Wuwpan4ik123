@@ -135,13 +135,13 @@
     $router->addRoute("/TariffController/Buy", "TariffController.php", "Buy");
     $router->addRoute("/Tariff-absent", "tariff-absent.php");
     $router->addRoute("/BuyHandler/Buy", "BuyHandler.php", "BuyHandlerCheck");
-        $router->addRoute("/error", "404.php");
+	$router->addRoute("/error", "404.php");
 
-//    if (array_key_exists("/$url", $router->getRoute())) {
+    if (array_key_exists("/$url", $router->getRoute())) {
         $router->route("/$url");
-//    } else {
-//        $router->route("/error");
-//    }
+    } else {
+        $router->route("/error");
+    }
     $_SESSION['item_id'] = null;
 
 
