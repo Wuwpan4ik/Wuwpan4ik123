@@ -3252,26 +3252,41 @@ input[type=date]:invalid::-webkit-datetime-edit, input[type=time]:invalid::-webk
   line-height: 20px;
 }
 
-.sent{
-  width: 552px;
-}
+td:nth-child(1), th:nth-child(1) { width: 200px}
+td:nth-child(2), th:nth-child(2) { width: 600px}
+td:nth-child(3), th:nth-child(3) { width: 200px}
+td:nth-child(4), th:nth-child(4) { width: 120px}
+td:nth-child(5), th:nth-child(5) { width: 175px}
+td:nth-child(6), th:nth-child(6) { width: 100px}
 
-.status{
-  width: 200px;
-}
-.delivered{
-  width: 150px;
-}
-
-.departure_date{
-  width: 130px;
-}
-
-.conrol{
-  width: 120px;
-}
 .ot-mailings__table td, th{
  line-height: 20px;
+}
+
+.control a:first-child{
+  margin: 0 10px 0 0 ;
+}
+
+.control a{
+  padding: 10px;
+  background: #F8F8F8;
+  border-radius: 8px;
+}
+
+.control img{
+  width: 17px;
+}
+.create{
+
+}
+
+.create-new-mailing{
+  width: 100%;
+  text-align: center;
+  background: #F1F4FF;
+  border: 1px solid #E1E3E6;
+  border-radius: 8px;
+  padding: 16px 24px;
 }
 
 /*Quick - text editor*/
