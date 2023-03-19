@@ -32,9 +32,11 @@
         public function GetStyleSettings()
         {
             $style = $this->db->query("SELECT style_settings FROM funnel WHERE id = {$_SESSION['item_id']}")[0]["style_settings"];
-            $html_code = $this->db->query("SELECT html_code FROM funnel WHERE id = {$_SESSION['item_id']}")[0]["html_code"];
+            $html_code = $this->db->query("SELECT head__settings FROM funnel WHERE id = {$_SESSION['item_id']}")[0]["head__settings"];
             $decode_style = json_decode($style, true);
-            $decode_style['html_code'] = $html_code;
+			if (isset($html_code)) {
+				$decode_style['head__settings'] = $html_code;
+			}
             return json_encode($decode_style);
         }
     }

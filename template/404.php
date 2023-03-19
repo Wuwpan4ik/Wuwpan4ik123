@@ -5,23 +5,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Course Creator - Произошла ошибка</title>
-    <link rel="stylesheet" href="/css/nullCss.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/UserMain.css">
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 </head>
 <style>
-
-    /*======================
-        404 page
-    =======================*/
-
-
     .page_404{
         padding:40px 0;
         background:#fff;
         font-family: 'Inter';
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        flex-direction:column;
         font-weight: 200;
     }
 
@@ -31,12 +26,14 @@
 
     .four_zero_four_bg {
         background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+        background-repeat:no-repeat;
         height: 400px;
         background-position: center;
     }
 
 
     .four_zero_four_bg h1{
+        text-align:center;
         font-size:80px;
         font-family: 'Inter';
         font-weight: 700;
@@ -59,6 +56,7 @@
     }
 
     .contant_box_404{
+        text-align:center;
         margin-top:-50px;
 
     }

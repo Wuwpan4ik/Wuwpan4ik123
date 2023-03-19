@@ -76,7 +76,7 @@
                     <?php
                     if (isset($item['button_text']) && !empty($item['button_text'])) { ?>
                             <div class="slider__item-button button-open">
-                                <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" <?php if ($popup->first_do->next_lesson) echo 'onclick="NextSlide()"' ?> <?php if (isset($popup->first_do->link)) if ($popup->first_do->open_in_new == 'open_new_window') { echo "onClick=\"window.open('". $popup->first_do->link ."')\""; } else { echo "onclick=\"window.location = ('". $popup->first_do->link ."')\""; } ?> class="button"><?=$item['button_text']?></button>
+                                <button style="<? echo (json_decode($content['main__settings'], true)['button__style-color'])?>; <? echo (json_decode($content['main__settings'], true)['button__style-style'])?>" <?php if ($popup->first_do->next_lesson) echo 'onclick="NextSlide()"' ?> <?php if (isset($popup->first_do->link)) if ($popup->first_do->open_in_new == 'open_new_window') { echo "onClick=\"window.open('". $popup->first_do->link ."')\""; } else { echo "onclick=\"window.location = ('". $popup->first_do->link ."')\""; } ?> class="button <?php if ((isset($popup->first_do->link) || isset($popup->first_do->next_lesson)) && (int) $item['dis_trans']) echo 'slider__item-button-brightness'?>"><?=$item['button_text']?></button>
                             </div>
                             <?php } else { ?>
                     <?php } ?>
@@ -195,6 +195,9 @@ cursor: pointer;text-decoration: none;">Вернуться на сайт</a>
     $('.slick-next').click(function (){
         NextSlide();
     })
+    $('.slick-prev').click(function (){
+        PrevSlide();
+    })
 
     function LoadAButtons() {
         let video = document.querySelector('.slick-active video')
@@ -211,12 +214,18 @@ cursor: pointer;text-decoration: none;">Вернуться на сайт</a>
         }
     }
     // Проверка на запрет
-    function    NextSlide() {
+    function NextSlide() {
         document.querySelector('.slick-active button').style.background = `linear-gradient(to right,white 0%, white 100%,lightgrey 100% , lightgrey 0%)`;
+        $('video').forEach((elem) => {
+            elem.pause();
+        })
         LoadAButtons();
     }
     function PrevSlide() {
-        document.querySelector('.slick-active button').style.background = `linear-gradient(to right,white 0%, white 100%,lightgrey 100% , lightgrey 0%)`;
+        document.querySelector('.slick-active button').style.background = `linear-gradient(to right,white 0%, white 100%)`;
+        $('video').forEach((elem) => {
+            elem.pause();
+        })
         LoadAButtons();
     }
 
@@ -289,6 +298,7 @@ cursor: pointer;text-decoration: none;">Вернуться на сайт</a>
             })
         })
     })
+    
     //отключает таб
     $(document).ready(function() {
 

@@ -16,7 +16,6 @@
 </head>
 
 <body>
-
     <div class="Project app">
 
         <?php include 'default/sidebar.php'; ?>
@@ -324,8 +323,8 @@
                 success: function (data) {
                     let title;
                     let description;
-                    if (data){
-                        let temp_data = JSON.parse(data);
+                    let temp_data = JSON.parse(data);
+                    if (temp_data){
                         description = temp_data['desc__font'];
                         title = temp_data['title__font'];
                         let color__button = temp_data['number__color'];
@@ -342,6 +341,7 @@
                     } else {
                         title = 'TTTrailers';
                         description = 'Montserrat';
+                        console.log(document.querySelectorAll('.popup-styles-color'))
                         document.querySelectorAll('.popup-styles-color')[0].click();
                         document.querySelectorAll('.popup-styles-button')[0].click();
                         changeStyleBtn(document.querySelector('.button-video'), color, shadow);
@@ -438,6 +438,7 @@
                 dataType: 'html',          /* Тип данных в ответе (xml, json, script, html). */
                 data: $("#initButton").serialize(),     /* Параметры передаваемые в запросе. */
                 success: function(data){   /* функция которая будет выполнена после успешного запроса.  */
+                    console.log($("#initButton").serialize())
                     if (data == 1) {
                         document.querySelector('.exit-funnel-edit').classList.add('display-flex');
                         document.querySelector('.exit-funnel-edit').style.zIndex = '1000';

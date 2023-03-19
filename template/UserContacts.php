@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/nullCss.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/UserMain.css">
+    <link rel="stylesheet" href="/css/notifications.css">
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
 </head>
@@ -75,7 +76,7 @@
                     <?php } ?>
                 </div>
             </div>
-            <form method="POST" action="/ContactController/sendQuestions">
+            <form method="POST" class="popup__form" action="/ContactController/sendQuestions">
                 <input type="hidden" name="author_id" value="<?=$_SESSION['item_id']; ?>">
                 <div class="UserContacts-footer">
                     <div class="UserContacts-footer__title">
@@ -93,7 +94,29 @@
         </div>
     </div>
 </div>
-
+<?php include 'template/default/notificationsPopup.php' ?>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
+<script src="/js/notifications.js"></script>
+<script>
+    $(function() {
+        $('.popup__form').each(function (){
+            $(this).submit(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: $(this).attr("action"),
+                    data: $(this).serialize(),  
+                    success: function (data) {
+                        AddNotifications('Вы успешно отправили вопрос');
+                    },
+                    error: function(data) {
+                        AddNotifications('Произошла ошибка');
+                    }
+                });
+            });
+        })
+    });
+</script>
 </body>
 </html>

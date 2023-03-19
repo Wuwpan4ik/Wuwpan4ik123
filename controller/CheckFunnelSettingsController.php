@@ -24,8 +24,10 @@ class CheckFunnelSettingsController extends FunnelController
     public function CheckMainSettings()
     {
         $popup_settings = $this->CreateMainSettings();
-        $videoBtnHTMLResult = str_replace('\/', '/', json_encode($popup_settings['json'], JSON_UNESCAPED_UNICODE));
+        $videoBtnHTMLResult = str_replace('\/', '/', json_encode($popup_settings, JSON_UNESCAPED_UNICODE));
         $saveVersion = $this->funnel->Get()[0]['style_settings'];
+	    $_SESSION['error'] = $saveVersion;
+	    $_SESSION['error1'] = $videoBtnHTMLResult;
         if (!is_null($saveVersion) && ($videoBtnHTMLResult == $saveVersion)) {
             echo 0;
             return false;

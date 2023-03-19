@@ -125,10 +125,10 @@ class User extends ConnectDatabase{
                                                 FROM `funnel` AS funnel
                                                 INNER JOIN `course_content` ON course_content.course_id = '$course_id' AND funnel.id = '$id'
                                                 INNER JOIN `course` ON course.id = course_content.course_id LIMIT 1");
-        $main__settings = $this->db->query("SELECT style_settings, html_code
+        $main__settings = $this->db->query("SELECT style_settings, head__settings
                                                 FROM `funnel` WHERE id = '$id'");
         $user_info = $this->db->query("SELECT * FROM `user_integrations` WHERE user_id = '$author_id'");
-        return ['funnel_content' => $funnel_content, 'course_content' => $course_content, 'course_id' => $course, 'main__settings' => $main__settings[0]['style_settings'], 'html_code' => $main__settings[0]['html_code'], 'user_info' => $user_info[0]];
+        return ['funnel_content' => $funnel_content, 'course_content' => $course_content, 'course_id' => $course, 'main__settings' => $main__settings[0]['style_settings'], 'html_code' => $main__settings[0]['head__settings'], 'user_info' => $user_info[0]];
 
     }
 

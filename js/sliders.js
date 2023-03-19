@@ -26,8 +26,8 @@ $('.slider').each(function() {
         swipeToSlide: false,
         touchMove: false,
         swipe: false,
-        prevArrow: "<img src='/img/free-icon-left-arrows-5054206.png' class='slick-prev' alt='1'>",
-        nextArrow: "<img src='/img/free-icon-two-arrows-5054205.png' class='slick-next' alt='2'>",
+        prevArrow: "<img src='/img/smallPlayer/left-arrow.png' class='slick-prev' alt='1'>",
+        nextArrow: "<img src='/img/smallPlayer/right-arrow.png' class='slick-next' alt='2'>",
     });
     function stopVideos() {
         $(this).find('.slider__video-item').each(function (){
