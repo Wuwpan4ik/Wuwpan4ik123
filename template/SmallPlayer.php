@@ -216,14 +216,14 @@ cursor: pointer;text-decoration: none;">Вернуться на сайт</a>
     // Проверка на запрет
     function NextSlide() {
         document.querySelector('.slick-active button').style.background = `linear-gradient(to right,white 0%, white 100%,lightgrey 100% , lightgrey 0%)`;
-        Array.from($('.video')).forEach((elem) => {
+        Array.from($('.slider__video-item')).forEach((elem) => {
             elem.pause();
         })
         LoadAButtons();
     }
     function PrevSlide() {
         document.querySelector('.slick-active button').style.background = `linear-gradient(to right,white 0%, white 100%)`;
-        Array.from($('.video')).forEach((elem) => {
+        Array.from($('.slider__video-item')).forEach((elem) => {
             elem.pause();
         })
         LoadAButtons();
