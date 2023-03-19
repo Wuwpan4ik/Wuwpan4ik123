@@ -27,7 +27,7 @@
                             <input type="radio" id="all" name="mytabs" checked="checked"/>
                             <label class="menu-label" for="all" id="oplab"><p>Все</p></label>
                             <div class="tab">
-                                <table class="table" cellSpacing="0">
+                                <table class="table ot-mailings__table" cellSpacing="0">
 
                                     <thead class="fixedHeader">
 
@@ -51,20 +51,20 @@
 
                                     <tbody id="viewTab">
                                     <tr id="grey">
-
-
-                                        <td> <p class="ot-mailing__date">Отправлено</p></td>
+                                        <td class="status"><p class="ot-mailing__date">Отправлено</p></td>
 
                                         <td class="sent">
                                             <b>Заголовок рассылки</b> <br>
                                             Само сообщение из рассылки, в сокращенном формате.,.
                                         </td>
 
-                                        <td>Те кто купил</td>
+                                        <td class="audience">Те кто купил</td>
 
-                                        <td>Email</td>
+                                        <td class="delivered">Email</td>
 
-                                        <td>0</td>
+                                        <td class="departure_date">0</td>
+
+                                        <td class="control">0</td>
                                     </tr>
                                     </tbody>
 

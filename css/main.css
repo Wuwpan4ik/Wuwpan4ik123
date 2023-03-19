@@ -3256,6 +3256,24 @@ input[type=date]:invalid::-webkit-datetime-edit, input[type=time]:invalid::-webk
   width: 552px;
 }
 
+.status{
+  width: 200px;
+}
+.delivered{
+  width: 150px;
+}
+
+.departure_date{
+  width: 130px;
+}
+
+.conrol{
+  width: 120px;
+}
+.ot-mailings__table td, th{
+ line-height: 20px;
+}
+
 /*Quick - text editor*/
 .ql-toolbar.ql-snow{
   display: flex;
