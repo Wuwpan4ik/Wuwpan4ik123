@@ -138,15 +138,15 @@ code {
   margin: 20px 0 0 0;
 }
 .font-size input[type="range"]{
-   width: 100%;
-   height: 8px;
-   -webkit-appearance: none !important;
+  width: 100%;
+  height: 8px;
+  -webkit-appearance: none !important;
 
-   border-radius: 8px;
+  border-radius: 8px;
   background-image: linear-gradient(180deg, #6989FE 0%, #3C64F4 100%);
   background-size: 1% 100%;
   background-repeat: no-repeat;
- }
+}
 .font-size input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none;
   cursor: ew-resize;
@@ -576,8 +576,8 @@ span.button__back {
 }
 @media (max-width: 465px) {
   .popup__edit .popup__header{
-      flex-wrap: wrap;
-      gap: 15px;
+    flex-wrap: wrap;
+    gap: 15px;
     justify-content: center;
   }
 }
@@ -914,7 +914,7 @@ a.button__back {
     padding: 0 0 20px 0;
   }
   #apps{
-      width: 119px;
+    width: 119px;
   }
   .input__wrapper{
     width: 100%;
@@ -3072,7 +3072,7 @@ td:nth-child(1){
 }
 
 .new-mailing__card{
- height: 320px;
+  height: 320px;
   min-height: auto;
 }
 
@@ -3087,7 +3087,7 @@ td:nth-child(1){
   color: #404D61;
 }
 
-form{
+.form{
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -3260,7 +3260,7 @@ td:nth-child(5), th:nth-child(5) { width: 175px}
 td:nth-child(6), th:nth-child(6) { width: 100px}
 
 .ot-mailings__table td, th{
- line-height: 20px;
+  line-height: 20px;
 }
 
 .control a:first-child{

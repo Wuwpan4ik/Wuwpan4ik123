@@ -524,8 +524,8 @@ textarea.videoname{
     color: #fff;
 }
 .button-add:hover img{
-     filter: invert(0%) sepia(4%) saturate(15%) hue-rotate(108deg) brightness(10000%) contrast(106%); !important;
- }
+    filter: invert(0%) sepia(4%) saturate(15%) hue-rotate(108deg) brightness(10000%) contrast(106%); !important;
+}
 .button__edit{
     display: flex;
     justify-content: center;
