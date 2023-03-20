@@ -27,7 +27,7 @@
                             <input type="radio" id="all" name="mytabs" checked="checked"/>
                             <label class="menu-label" for="all" id="oplab"><p>Все</p></label>
                             <div class="tab">
-                                <table class="table" cellSpacing="0">
+                                <table class="table ot-mailings__table" cellSpacing="0">
 
                                     <thead class="fixedHeader">
 
@@ -35,7 +35,7 @@
 
                                         <th><div class="th-title"><button class="order_button order__button" value="money"></button>Статус рассылки</div></th>
 
-                                        <th><div class="th-title"><button class="order_button order__button" value="email"></button>Данные рассылки</div></th>
+                                        <th  ><div class="th-title"><button class="order_button order__button" value="email"></button>Данные рассылки</div></th>
 
                                         <th><div class="th-title"><button class="order_button order__button" value="tel"></button>Аудитория</div></th>
 
@@ -49,23 +49,36 @@
 
                                     </thead>
 
+
+
                                     <tbody id="viewTab">
-                                    <tr id="grey">
 
+                                    <tr>
 
-                                        <td> <p class="ot-mailing__date">Отправлено</p></td>
+                                        <td colspan="5">fsdfds</td>
+                                        <td class="create" colspan="5" ><a class="create-new-mailing" href="">Создать новую рассылку</a></td>
+                                    </tr>
 
-                                        <td class="sent">
+                                    <tr>
+                                        <td class="status"><p class="ot-mailing__date">Отправлено</p></td>
+
+                                        <td class="sent" >
                                             <b>Заголовок рассылки</b> <br>
                                             Само сообщение из рассылки, в сокращенном формате.,.
                                         </td>
 
-                                        <td>Те кто купил</td>
+                                        <td class="audience">Те кто купил</td>
 
-                                        <td>Email</td>
+                                        <td class="delivered">Email</td>
 
-                                        <td>0</td>
+                                        <td class="departure_date">24.08.2022</td>
+
+                                        <td class="control"><a href=""><img src="/img/brush.svg" alt=""></a><a href=""><img src="/img/Delete.svg" alt=""></a></td>
+
+
                                     </tr>
+
+
                                     </tbody>
 
                                 </table>
