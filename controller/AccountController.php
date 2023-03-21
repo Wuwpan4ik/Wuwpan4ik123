@@ -5,11 +5,7 @@ class AccountController extends ACoreCreator {
     {
         $user = $this->user->getCurrentUser();
 
-        if (strlen($_POST['school_name']) == 0) {
-            $school_name = $user[0]['school_name'];
-        } else {
-            $school_name = $_POST['school_name'];
-        }
+		$school_name = $_POST['school_name'];
 
         if (strlen($_POST['niche']) == 0) {
             $niche = $user[0]['niche'];
@@ -17,11 +13,7 @@ class AccountController extends ACoreCreator {
             $niche = $_POST['niche'];
         }
 
-        if (strlen($_POST['school_desc']) == 0) {
-            $school_desc = $user[0]['school_desc'];
-        } else {
-            $school_desc = $_POST['school_desc'];
-        }
+		$school_desc = $_POST['school_desc'];
 
         $data = [
             "school_name" => $school_name,
