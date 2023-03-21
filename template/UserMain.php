@@ -62,10 +62,10 @@
                                         </div>
                                     </div>
                                     <div class="popup__allLessons-item-info-title">
-                                        <?php echo htmlspecialchars(isset($item['school_name']) ? $item['school_name'] : $item['name'] )?>
+                                        <?php echo htmlspecialchars(empty($item['school_name']) ? $item['school_name'] : $item['name'] )?>
                                     </div>
                                     <div class="aboutTheAuthor__info-text hide-content">
-                                        <?php echo htmlspecialchars(isset($item['school_desc']) ? $item['school_desc'] : $item['description'] )?></div>
+                                        <?php echo htmlspecialchars(empty($item['school_desc']) ? $item['school_desc'] : $item['description'] )?></div>
                                 </div>
                             </div>
                             <div class="aboutTheAuthor-button availableСoursesBtn">
