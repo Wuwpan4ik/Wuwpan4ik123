@@ -77,9 +77,6 @@
                                 <input min="5" type="radio" id="EnterEmail" name="mytabs"/>
                                 <label class="menu-label" for="EnterEmail" id="cllab"><p>Ввести email вручную</p></label>
                                 <div class="tab">
-                                    <div class="about-btn">
-                                        <button class="save-btn" id="profile_send" type="submit">Сохранить</button>
-                                    </div>
                                 </div>
 
                             </div>
