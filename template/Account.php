@@ -657,7 +657,6 @@
                 $.ajax({
                     url: $(this).attr("action"),
                     type: $(this).attr("method"),
-                    dataType: "JSON",
                     data: new FormData(this),
                     processData: false,
                     contentType: false
