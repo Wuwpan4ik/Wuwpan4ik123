@@ -44,11 +44,11 @@ class AccountController extends ACoreCreator {
 //                    return False;
 //                }
 
-                if (count($this->user->getUserByEmail($email)) != 0 && $email != $_SESSION['user']['email']) {
-                    $_SESSION['error']['email_message'] = 'Такой email уже зарегистрирован';
-                    header('Location: ' . $_SERVER['HTTP_REFERER']);
-                    return False;
-                }
+//                if (count($this->user->getUserByEmail($email)) != 0 && $email != $_SESSION['user']['email']) {
+//                    $_SESSION['error']['email_message'] = 'Такой email уже зарегистрирован';
+//                    header('Location: ' . $_SERVER['HTTP_REFERER']);
+//                    return False;
+//                }
             }
         }
 
