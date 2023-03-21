@@ -24,9 +24,12 @@
 
                     <div class="ot-mailing__header">
                         <div class="mytabs ot-mailing__menu">
-                            <input type="radio" id="all" name="mytabs" checked="checked"/>
+                            <input type="radio" id="all" name="mytabs" checked="checked" />
                             <label class="menu-label" for="all" id="oplab"><p>Все</p></label>
                             <div class="tab">
+                                
+                                <div class="create" style="width: 100%; display: flex; justify-content: center"><a class="create-new-mailing" style="min-width: 100%;" href="/NewMailing/">Создать новую рассылку</a></div>
+                                
                                 <table class="table ot-mailings__table" cellSpacing="0">
 
                                     <thead class="fixedHeader">
@@ -39,9 +42,7 @@
 
                                         <th><div class="th-title"><button class="order_button order__button" value="tel"></button>Аудитория</div></th>
 
-                                        <th><div class="th-title"><button class="order_button order__button" value="course_id"></button>Доставленно</div></th>
-
-                                        <th style="border-radius: 0px 8px 8px 0px;"><div class="th-title"><button class="order_button order__button" value="achivment_date"></button>Дата отправки</div></th>
+                                         <th style="border-radius: 0px 8px 8px 0px;"><div class="th-title"><button class="order_button order__button" value="achivment_date"></button>Дата отправки</div></th>
 
                                         <th style="border-radius: 0px 8px 8px 0px;"><div class="th-title"><button class="order_button order__button" value="achivment_date"></button>Управление</div></th>
 
@@ -52,31 +53,36 @@
 
 
                                     <tbody id="viewTab">
-
-                                    <tr>
-
-                                        <td colspan="5">fsdfds</td>
-                                        <td class="create" colspan="5" ><a class="create-new-mailing" href="">Создать новую рассылку</a></td>
-                                    </tr>
+                                    
+                                    <?php foreach ($content['mailings'] as $item) { ?>
 
                                     <tr>
                                         <td class="status"><p class="ot-mailing__date">Отправлено</p></td>
 
                                         <td class="sent" >
-                                            <b>Заголовок рассылки</b> <br>
-                                            Само сообщение из рассылки, в сокращенном формате.,.
+                                            <b><?=$item['name'] ?></b> <br>
+	                                        <?php echo mb_strimwidth($item['description'], 0, 30) ?>
                                         </td>
 
-                                        <td class="audience">Те кто купил</td>
+                                        <td class="audience"><?php switch ($item['indexs']) {
+                                                case 1:
+                                                    echo "Всем";
+                                                    break;
+                                                case 2:
+	                                                echo "Кто оплатил";
+	                                                break;
+		                                        case 3:
+			                                        echo "Кто не оплатил";
+			                                        break;
+	                                        }?></td>
 
-                                        <td class="delivered">Email</td>
+                                        <td class="departure_date"><?php echo date("d.m.Y", strtotime($item['date_send'])); ?></td>
 
-                                        <td class="departure_date">24.08.2022</td>
-
-                                        <td class="control"><a href=""><img src="/img/brush.svg" alt=""></a><a href=""><img src="/img/Delete.svg" alt=""></a></td>
-
-
+                                        <td class="control"><a href="/NewMailing/<?=$item['id'] ?>"><img src="/img/brush.svg" alt=""></a><a href="/mailing-delete/<?=$item['id'] ?>"><img src="/img/Delete.svg" alt=""></a></td>
+                                        
                                     </tr>
+
+                                    <?php } ?>
 
 
                                     </tbody>

@@ -2976,6 +2976,11 @@ td:nth-child(1){
   margin: 0 !important;
 }
 
+.ot-mailing__menu .tab{
+  width: 100%;
+  margin: 40px 0 !important;
+}
+
 .ot-mailing__menu label{
   width: 235px !important;
 }
@@ -3061,21 +3066,23 @@ td:nth-child(1){
 }
 
 /*new-mailings*/
-.new-mailing__body{
+.new-mailing__body {
   display: flex;
   gap: 24px;
   flex-wrap: wrap;
 }
 
-@media (max-width: 1332px) {
-  .new-mailing__settings, form{
-    width: 100% !important;
-  }
+.new-mailing__body form {
+  width: 100%;
 }
 
 .new-mailing__card{
   height: 320px;
   min-height: auto;
+}
+
+.ql-editor {
+  height: 300px !important;
 }
 
 .new-mailing__title{
