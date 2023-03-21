@@ -284,9 +284,10 @@
 
     .aboutTheAuthor-button button {
         width: 100%;
-        border: 1px solid #3E8AFB;
-        border-radius: 5px;
+        border: 2px solid #3E8AFB;
+        border-radius: 6px;
         padding: 19px 0;
+        font-weight: 500;
         color: #3E8AFB;
     }
 
@@ -873,10 +874,17 @@
     }
 
     .UserMenu-profile h1 {
+        margin: 0; /* Убираем внешний отступ */
+        -webkit-line-clamp: 1; /* Число отображаемых строк */
+        display: -webkit-box; /* Включаем флексбоксы */
+        -webkit-box-orient: vertical; /* Вертикальная ориентация */
+        overflow: hidden; /* Обрезаем всё за пределами блока */
+        word-break: break-all;
         font-size: 24px;
         font-weight: 600;
         line-height: 32px;
         color: #fff;
+
     }
 
     .UserMenu-profile-name {
@@ -1365,6 +1373,11 @@
         height: auto;
         margin-top:30px;
     }
+
+    .UserContacts .popup__form{
+        flex-direction: column;
+    }
+
     .UserContacts-footer {
         margin: 30px 0 0 0;
     }

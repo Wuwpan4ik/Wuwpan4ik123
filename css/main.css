@@ -3310,3 +3310,171 @@ td:nth-child(6), th:nth-child(6) { width: 100px}
   border-radius:0 0 8px 8px;
   border: 1px solid #E1E3E6 !important;
 }
+
+.editor-controls {
+  display: block;
+  padding-top: 6px;
+  padding-left: 8px;
+  padding-right: 8px;
+  background-color: #bbbbbb;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.35);
+}
+
+.editor-controls .button-group {
+  display: inline-block;
+  margin: 0 2px;
+}
+
+.editor-richText-box {
+  width: 100%;
+  min-height: 380px;
+  border: 2px solid #cccccc;
+  background-color: #efefef;
+  font-family: "Open Sans", helvetica, arial, sans-serif;
+  word-break: break-word;
+  word-wrap: normal;
+  padding: 16px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.35);
+}
+
+.editor-text-box {
+  font-family: "Open Sans", helvetica, arial, sans-serif;
+  word-break: break-word;
+  word-wrap: normal;
+}
+
+.rte.button {
+  display: block;
+  float: left;
+  padding: 6px;
+  margin: 6px;
+  text-align: center;
+}
+
+.rte.button:hover {
+  cursor: pointer;
+}
+
+.rte.main.button {
+  color: white;
+  padding: 6px 12px;
+  margin: 6px;
+  background-color: #2676d5;
+  border: 1px solid #1d5aa3;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.rte.main.button:hover {
+  background-color: #3a3a3a;
+  border-color: #1a1a1a;
+}
+
+.rte.main.button.fileUpload {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.rte.main.button.fileUpload input[type="file"] {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  right: 0;
+}
+
+.rte.editor.button {
+  color: #1a1a1a;
+  background-color: #eeeeee;
+  font-weight: bold;
+  margin: 0;
+  height: 34px;
+}
+
+.rte.editor.button:hover {
+  background-color: #3a3a3a;
+  border-color: #1a1a1a;
+  color: white;
+}
+
+.rte.editor.button:first-of-type {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.rte.editor.button:last-of-type {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.rte.editor.dropdown {
+  display: block;
+  float: left;
+  padding: 5px;
+  margin: 6px;
+  height: 34px;
+  text-align: center;
+  color: #1a1a1a;
+  background-color: #eeeeee;
+  font-weight: bold;
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  display: inline-block;
+  margin: 0 0px;
+  margin-left: 0;
+}
+
+.rte.editor.dropdown:hover {
+  cursor: pointer;
+  border-color: #1a1a1a;
+}
+
+.rte.editor.dropdown option {
+  background-color: inherit;
+  font-weight: bold;
+}
+
+.rte.editor.dropdown-label {
+  color: #1a1a1a;
+  background-color: #eeeeee;
+  font-weight: bold;
+  margin: 0;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  display: block;
+  float: left;
+  padding: 6px;
+  margin: 0;
+  text-align: center;
+}
+/* Editor Dropdown Label */
+.rte.editor.dropdown-label {
+  color: #1a1a1a;
+  background-color: #eeeeee;
+  font-weight: bold;
+  margin: 0;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  display: block;
+  float: left;
+  padding: 6px;
+  margin: 0;
+  text-align: center;
+}
+
+/* Editor Dropdown Fonts */
+.rte.editor.dropdown#fontFamily {
+  width: 150px;
+  font-weight: normal;
+}
+
+
+
+
+
