@@ -214,13 +214,13 @@ wrapper.activeFullscreen{
 .wrapper.has__file{
     opacity: 1 !important;
     pointer-events: all;
-    bottom: 40% !important;
+    bottom: 44% !important;
     z-index: 4;
 }
 .wrapper.non__file{
     opacity: 1 !important;
     pointer-events: all;
-    bottom: 32% !important;
+    bottom: 36% !important;
     z-index: 4;
 }
 .popup__allLessons-item-video__img img{
@@ -250,10 +250,10 @@ wrapper.activeFullscreen{
 /* В случае, если файл присутсвует */
 
 .youWatching.has__file{
-    height:40% !important;
+    height:44% !important;
 }
 .youWatching.non__file{
-    height:32% !important;
+    height:36% !important;
 }
 .UserPlayer.Сourse-form{
     transition: 0.6s all ease;

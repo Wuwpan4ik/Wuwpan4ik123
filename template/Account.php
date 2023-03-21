@@ -72,7 +72,7 @@
                                                 </span>
                                             </div>
 
-
+    
                                         </div>
 
                                         <h2>Расскажите о себе</h2>
@@ -662,10 +662,10 @@
                     processData: false,
                     contentType: false
                 });
-                console.log(new FormData(this))
                 let saveBtn = $(this).find('#profile_send');
                 saveBtn.addClass("active");
                 saveBtn.innerHTML = 'Сохранено';
+                console.log(new FormData(this))
                 setTimeout(function () {
                     saveBtn.removeClass("active");
                     saveBtn.innerHTML = 'Сохранить';
