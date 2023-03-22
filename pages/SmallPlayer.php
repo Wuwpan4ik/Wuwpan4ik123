@@ -11,7 +11,7 @@ class SmallPlayer extends ACoreAdmin
             $duration = $getID3->analyze($content['course_content'][$i]['video'])['playtime_string'];
             $content['course_content'][$i]['duration'] = $duration;
         }
-		$content['rgb_button'] =  mb_substr("rgb:(" . explode("rgb(", explode(":", json_decode($content['main__settings'], true)['button__style-color'])[1])[1], 0, -5);
+		$content['rgb_button'] =  mb_substr("rgb(" . explode("rgb(", explode(":", json_decode($content['main__settings'], true)['button__style-color'])[1])[1], 0, -5);
         return $content;
     }
 
