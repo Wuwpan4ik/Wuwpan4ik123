@@ -38,17 +38,17 @@ class AccountController extends ACoreCreator {
         } else {
             $email = $_POST['email'];
             if ($email != $user[0]['email']) {
-//                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-//                    $_SESSION['error']['email_message'] = 'Неверный email';
-//                    header('Location: ' . $_SERVER['HTTP_REFERER']);
-//                    return False;
-//                }
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $_SESSION['error']['email_message'] = 'Неверный email';
+                    header('Location: ' . $_SERVER['HTTP_REFERER']);
+                    return False;
+                }
 
-//                if (count($this->user->getUserByEmail($email)) != 0 && $email != $_SESSION['user']['email']) {
-//                    $_SESSION['error']['email_message'] = 'Такой email уже зарегистрирован';
-//                    header('Location: ' . $_SERVER['HTTP_REFERER']);
-//                    return False;
-//                }
+                if (count($this->user->getUserByEmail($email)) != 0 && $email != $_SESSION['user']['email']) {
+                    $_SESSION['error']['email_message'] = 'Такой email уже зарегистрирован';
+                    header('Location: ' . $_SERVER['HTTP_REFERER']);
+                    return False;
+                }
             }
         }
 
@@ -69,36 +69,16 @@ class AccountController extends ACoreCreator {
             }
             $second_name = $_POST['second_name'];
         }
-
-        if (strlen($_POST['phone']) == 0) {
-            $phone = $user[0]['telephone'];
-        } else {
-            $phone = $_POST['phone'];
-        }
-
-        if (strlen($_POST['city']) == 0) {
-            $city = $user[0]['city'];
-        } else {
-            $city = $_POST['city'];
-        }
-
-        if (strlen($_POST['country']) == 0) {
-            $country = $user[0]['country'];
-        } else {
-            $country = $_POST['country'];
-        }
-
-        if (strlen($_POST['currency']) == 0) {
-            $currency= $user[0]['currency'];
-        } else {
-            $currency = $_POST['currency'];
-        }
-
-        if (strlen($_POST['birthday']) == 0) {
-            $birthday = $user[0]['birthday'];
-        } else {
-            $birthday = $_POST['birthday'];
-        }
+		
+		$phone = $_POST['phone'];
+		
+		$city = $_POST['city'];
+		
+		$country = $_POST['country'];
+		
+		$currency = $_POST['currency'];
+		
+		$birthday = $_POST['birthday'];
 
         $query_to_update_urls = [];
         if (count($this->user_contacts->getCurrentUserContacts()) === 0) {
@@ -162,16 +142,8 @@ class AccountController extends ACoreCreator {
             "country" => $country,
             "city" => $city
         ];
-        $this->user->UpdateQuery("user", [
-	        "email" => $email,
-	        "birthday" => $birthday,
-	        "first_name" => $first_name,
-	        "second_name" => $second_name,
-	        "telephone" => $phone,
-	        "currency" => $currency,
-	        "country" => $country,
-	        "city" => $city
-        ], "WHERE id = {$_SESSION['user']['id']}");
+		
+        $this->user->UpdateQuery("user", $data, "WHERE id = {$_SESSION['user']['id']}");
 
         $this->user->UpdateQuery("user", ["avatar" => $avatar], "WHERE id = {$_SESSION['user']['id']}");
 
@@ -182,10 +154,9 @@ class AccountController extends ACoreCreator {
         $_SESSION["user"]['currency'] = $currency;
         $_SESSION["user"]['city'] = $city;
         $_SESSION["user"]['country'] = $country;
-        $_SESSION['user']['avatar'] = $avatar;
+//        $_SESSION['user']['avatar'] = $avatar;
         $_SESSION['user']['birthday'] = $birthday;
 
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
         return true;
     }
 

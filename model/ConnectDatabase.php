@@ -18,17 +18,22 @@
             $values  = implode("', '", $escaped_values);
 
             $sql = "INSERT INTO `$database`($columns) VALUES ('$values')";
+			$_SESSION['error'] = $sql;
             $this->db->execute($sql);
         }
 
         public function UpdateQuery(string $database, $data, $where = '')
         {
-            $sql_main = [];
-
-            foreach (array_keys($data) as $colum) {
-                array_push($sql_main, "{$colum} = '{$data[$colum]}'");
-            }
-            $sql_query = implode(", ", $sql_main);
+	        $sql_main = [];
+	
+	        foreach (array_keys($data) as $colum) {
+		        if (empty($data[$colum])) {
+			        array_push($sql_main, "{$colum} = NULL");
+			        continue;
+		        }
+		        array_push($sql_main, "{$colum} = '{$data[$colum]}'");
+	        }
+	        $sql_query = implode(", ", $sql_main);
 
             $sql = "UPDATE $database SET $sql_query $where";
             $this->db->execute($sql);

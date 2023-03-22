@@ -12,6 +12,7 @@
 </head>
 <body>
 <div class="new-mailing">
+    <?php print_r($_SESSION['error']);?>
     <?php include 'default/sidebar.php';?>
     <div class="feed">
         <?php
@@ -21,7 +22,7 @@
         ?>
         <div class=" _container">
             <div class="new-mailing__body">
-                <form action="/NewMailing/create" method="POST" enctype="multipart/form-data">
+                <form id="form" action="/NewMailing/create" method="POST" enctype="multipart/form-data">
                     <?php if ($_SESSION['item_id']) echo "<input hidden name='id' value='{$_SESSION['item_id']}'>"?>
                     <div class="new-mailing__settings">
 
@@ -106,6 +107,7 @@
                             </div>
                         </div>
                     </div>
+                    <textarea name="text" id="text__area" cols="30" rows="10" style="display: none"></textarea>
                 </form>
             </div>
         </div>
@@ -118,6 +120,21 @@
 <script src="../js/sidebar.js"></script>
 <script src="/js/getNotifications.js"></script>
 <script src="/js/autoTextArea.js"></script>
+<script>
+    $("#form").submit(function (e) {
+        e.preventDefault();
+        let div = $('.ql-editor').html()
+        $("#text__area").html(div);
+        $.ajax({
+            url: $(this).attr("action"),
+            type: $(this).attr("method"),
+            data: new FormData(this),
+            processData: false,
+            contentType: false,
+        });
+        location.reload();
+    })
+</script>
 <?php if ($content['indexs']) { ?>
     <script>
         document.addEventListener('DOMContentLoaded', function () {

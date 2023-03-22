@@ -21,7 +21,6 @@
 
 <div class="SettingAccount">
     <div class="error display-none">
-        <?php print_r($content) ?>
     </div>
     <?php include 'default/sidebar.php';?>
 
@@ -659,7 +658,7 @@
                     type: $(this).attr("method"),
                     data: new FormData(this),
                     processData: false,
-                    contentType: false
+                    contentType: false,
                 });
                 let saveBtn = $(this).find('#profile_send');
                 saveBtn.addClass("active");

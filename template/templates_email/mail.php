@@ -1,5 +1,5 @@
 <?php
-$result = \'
+$result = '
         <html lang="RU">
         <head>
             <meta charset="UTF-8">

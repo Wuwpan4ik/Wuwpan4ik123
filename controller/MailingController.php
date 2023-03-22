@@ -10,16 +10,15 @@
                 $data_get[$key] = $_POST[$key];
             }
             $data_get['user_id'] = $_SESSION['user']['id'];
-
-            if (empty($data_get['date_send'])) $data_get['date_send'] = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
-            if (isset($data_get['date_send']) && isset($data_get['time_send'])) {
-                $time = strtotime($data_get['date_send'] . ' ' . $data_get['time_send']);
-            } elseif (isset($data_get['date_send'])) {
-                $time = strtotime($data_get['date_send'] . " " . "00:00:00");
-            } else {
-                $time = false;
-            }
-
+			if (empty($data_get['date_send'])) {
+				$data_get['date_send'] = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
+			}
+	        if (empty($data_get['time_send'])) {
+		        $data_get['time_send'] = "00:00:00";
+			}
+			
+			$time = strtotime($data_get['date_send'] . ' ' . $data_get['time_send']);
+			
             unset($data_get['mytabs']);
             unset($data_get['file']);
 
@@ -43,6 +42,7 @@
                 mkdir($dir_path);
                 chmod($dir_path, 0777);
             }
+	        $_SESSION['error'] = 0;
 
             if ($_FILES['file']['size'] != 0) {
                 $extension = pathinfo($_FILES['file']['name'])['extension'];
@@ -57,10 +57,11 @@
             if (!empty($data_get['id'])) {
                 $this->Delete($data_get['id']);
             }
+			$_SESSION['error'] = 1;
 
             $this->Create($data_get);
             $mail_id = $this->mailing->ClearQuery("SELECT * FROM mailing WHERE user_id = {$_SESSION['user']['id']} ORDER BY id DESC LIMIT 1")[0]['id'];
-            foreach ($this->mailing->GetUsersByIndexs($data_get['indexs'] - 1) as $user) {
+			foreach ($this->mailing->GetUsersByIndexs($data_get['indexs'] - 1) as $user) {
                 $data = [
                     "foreign_id_a" => $mail_id,
                     "foreign_id_b" => $data_get['user_id'],
@@ -87,7 +88,7 @@
 
         public function Create($data)
         {
-            $this->mailing->Create($data);
+			$this->mailing->Create($data);
         }
 
         public function Delete($id = null)
