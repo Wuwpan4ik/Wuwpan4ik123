@@ -16,6 +16,7 @@
     <?php if (!empty($content['html_code'])) print_r($content['html_code']) ?>
 
 </head>
+<body class="body">
 <style>
     @keyframes flicker {
         0% {
@@ -28,7 +29,6 @@
         }
     }
 </style>
-<body class="body">
 <div class="display-none">
 </div>
 <?php if (!empty($content['course_content'])) { ?>
