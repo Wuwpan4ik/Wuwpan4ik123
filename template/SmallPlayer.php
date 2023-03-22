@@ -21,7 +21,7 @@
     @keyframes flicker {
         0% {
             box-shadow:
-                    0 0 30px <?php echo explode("rgb(", explode(":", json_decode($content['main__settings'], true)['button__style-color'])[1])[1] ?>
+                    0 0 30px <?php echo mb_substr("rgb:(" . explode("rgb(", explode(":", json_decode($content['main__settings'], true)['button__style-color'])[1])[1], 0, 5) ?>
         }
         100% {
             box-shadow:
