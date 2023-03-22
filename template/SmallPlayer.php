@@ -21,11 +21,11 @@
     @keyframes flicker {
         0% {
             box-shadow:
-                    0 0 30px <?php echo (json_decode($content['main__settings'], true)['button__style-color']) ?>
+                    0 0 30px <?php echo explode(":", json_decode($content['main__settings'], true)['button__style-color'])[1] ?>
         }
         100% {
             box-shadow:
-                    0 0 10px <?php echo (json_decode($content['main__settings'], true)['button__style-color']) ?>
+                    0 0 10px <?php echo explode(":", json_decode($content['main__settings'], true)['button__style-color'])[1] ?>
         }
     }
 </style>
