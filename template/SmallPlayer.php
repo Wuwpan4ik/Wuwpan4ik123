@@ -16,6 +16,18 @@
     <?php if (!empty($content['html_code'])) print_r($content['html_code']) ?>
 
 </head>
+<style>
+    @keyframes flicker {
+        0% {
+            box-shadow:
+                    0 0 30px <?php echo (json_decode($content['main__settings'], true)['button__style-color']) ?>
+        }
+        100% {
+            box-shadow:
+                    0 0 10px <?php echo (json_decode($content['main__settings'], true)['button__style-color']) ?>
+        }
+    }
+</style>
 <body class="body">
 <div class="display-none">
 </div>

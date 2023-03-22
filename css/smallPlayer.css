@@ -20,21 +20,6 @@ button {
     animation: flicker 3s infinite alternate;
 }
 
-@keyframes flicker {
-
-    0% {
-
-        box-shadow:
-                0 0 50px #fff
-
-    }
-    100% {
-        box-shadow:
-                0 0 10px #fff
-    }
-}
-
-
 .smallPlayer {
     width: 500px;
     height: 100%;
