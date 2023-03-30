@@ -195,7 +195,7 @@
                 $this->notifications_class->addNotifications("Вы купили курс", "Доступный курс - {$course_info['name']}", '/img/Notification/star.svg', 'item-like', $res['id']);
                 $this->notifications_class->addNotifications("У вас купили курс", "Ваш курс - “{$course_info['name']}”, купил {$this->email}", '/img/Notification/star.svg', 'item-like', $creator_id);
                 $creator_username = strtolower($creator[0]['username']);
-                $url = "https://{$creator_username}.course-creator.io/";
+                $url = "https://{$creator_username}.course-creator.io/UserLogin";
                 $body = include "./template/templates_email/registracia-usera(user).php";
                 $this->SendEmail(
                     [

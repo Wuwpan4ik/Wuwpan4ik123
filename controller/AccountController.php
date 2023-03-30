@@ -154,7 +154,7 @@ class AccountController extends ACoreCreator {
         $_SESSION["user"]['currency'] = $currency;
         $_SESSION["user"]['city'] = $city;
         $_SESSION["user"]['country'] = $country;
-//        $_SESSION['user']['avatar'] = $avatar;
+        $_SESSION['user']['avatar'] = $avatar;
         $_SESSION['user']['birthday'] = $birthday;
 
         return true;
@@ -162,25 +162,20 @@ class AccountController extends ACoreCreator {
 
     public function SaveIntegrationsSettings()
     {
-        if (strlen($_POST['prodamus_key']) != 0) {
-            $query_to_update_urls['prodamus_key'] = $_POST['prodamus_key'];
-        } else {
-            $query_to_update_urls['prodamus_key'] = null;
-        }
-
-        if (strlen($_POST['albato_key']) != 0) {
-            $query_to_update_urls['albato_key'] = $_POST['albato_key'];
-        } else {
-            $query_to_update_urls['albato_key'] = null;
-        }
+        $query_to_update_urls['prodamus_url'] = $_POST['prodamus_url'];
+		
+	    $query_to_update_urls['prodamus_key'] = $_POST['prodamus_key'];
+		
+		$query_to_update_urls['albato_key'] = $_POST['albato_key'];
 
         if (count($this->user->getIntegrationsByUser()) === 0) {
             $this->user->InsertQuery("user_integrations", ["user_id" => $_SESSION['user']['id']]);
         }
 
-        $this->user_integrations->UpdateQuery("user_integrations", $query_to_update_urls);
+        $this->user_integrations->UpdateQuery("user_integrations", $query_to_update_urls, "WHERE user_id = {$_SESSION['user']['id']}");
 
-        $_SESSION['user']['prodamus_key'] = $query_to_update_urls['prodamus_key'];
+        $_SESSION['user']['prodamus_url'] = $query_to_update_urls['prodamus_url'];
+	    $_SESSION['user']['prodamus_key'] = 1;
         $_SESSION['user']['albato_key'] = $query_to_update_urls['albato_key'];
 
         header('Location: ' . $_SERVER['HTTP_REFERER']);

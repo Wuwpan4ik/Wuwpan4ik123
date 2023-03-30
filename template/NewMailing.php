@@ -30,7 +30,7 @@
                             <label class="new-mailing__subtitle" for="text">Новая рассылка</label>
                             <div class="input_focus ">
                                 <label for="text" class="label_focus">Тема письма</label>
-                                <input required min="3" name="name" type="text" id="social__inpu" minlength="3" value="<?php echo ($content['name']) ?? '' ?>">
+                                <input required min="3" name="name" type="text" id="social__inpu" minlength="3" value="<?php echo ($content['mailing']['name']) ?? '' ?>">
                                 <span class="clear_input_val">
                                     <img src="/img/clear_input.svg" alt="">
                                 </span>
@@ -54,6 +54,26 @@
                                 <label class="menu-label" for="Audience" id="oplab"><p>Выбрать аудиторию</p></label>
                                 <div class="tab">
                                     <div class="send">
+                                        <div class="send__block">
+                                            <label class="new-mailing__subtitle" for="">Выберите продукт</label>
+                                            <div class="select-account social-network">
+                                                <div id="myMultiselect" class="multiselect">
+                                                    <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea(this)">
+                                                        <select id="Audience" required name="product" class="form-select">
+                                                            <option class="form-select__social-name" value="" id="name"></option>
+                                                        </select>
+                                                        <div class="overSelect"></div>
+                                                    </div>
+                                                    <div class="mySelectOptions">
+                                                        
+                                                        <?php foreach ($content['products'] as $product) { ?>
+                                                        <label class="item audience_item social__item"><span><img src="/img/Proj.svg" alt=""><?=$product['name'] ?></span><input class="custom-radio_two custom-checkbox social__input" type="radio" data-value="<?=$product['name'] ?>" value="<?=$product['id']?>" /><label for="happy"></label></label>
+	                                                    <?php } ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="send__recipient"></div>
+                                        </div>
                                         <div class="send__block">
                                             <label class="new-mailing__subtitle" for="">Выберите аудиторию</label>
                                             <div class="select-account social-network">
@@ -79,21 +99,20 @@
                                 <label class="menu-label" for="EnterEmail" id="cllab"><p>Ввести email вручную</p></label>
                                 <div class="tab">
                                 </div>
-
                             </div>
                                     <div class="new-mailing__block new-mailing__planning">
                                         <label class="new-mailing__subtitle" for="date">Запланировать отправку (мск)</label>
                                         <span style="color: #5A6474; font-size: 12px;">По умолчанию - сейчас</span>
                                         <div class="new-mailing__block_two">
                                             <div class="input_focus">
-                                                <input id="date" type="date" name="date_send" value="<?php echo ($content['date_send']) ?? '' ?>">
+                                                <input id="date" type="date" name="date_send" value="<?php echo ($content['mailing']['date_send']) ?? '' ?>">
                                                 <span class="clear_input_val">
                                                      <img src="/img/clear_input.svg" alt="">
                                                 </span>
                                             </div>
                                             <div class="input_focus ">
                                                 <label for="username" class="label_focus"></label>
-                                                <input type="time" name="time_send" id="social__inpu" value="<?php echo ($content['time_send']) ?? '' ?>">
+                                                <input type="time" name="time_send" id="social__inpu" value="<?php echo ($content['mailing']['time_send']) ?? '' ?>">
                                                 <span class="clear_input_val">
                                                     <img src="/img/clear_input.svg" alt="">
                                                 </span>
@@ -135,10 +154,10 @@
         location.reload();
     })
 </script>
-<?php if ($content['indexs']) { ?>
+<?php if ($content['mailing']['indexs']) { ?>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            document.querySelector(".audience_item:nth-child(<?=$content['indexs']?>) .social__input").click();
+            document.querySelector(".audience_item:nth-child(<?=$content['mailing']['indexs']?>) .social__input").click();
         })
     </script>
 <?php } ?>

@@ -18,7 +18,6 @@
             $values  = implode("', '", $escaped_values);
 
             $sql = "INSERT INTO `$database`($columns) VALUES ('$values')";
-			$_SESSION['error'] = $sql;
             $this->db->execute($sql);
         }
 
@@ -36,6 +35,7 @@
 	        $sql_query = implode(", ", $sql_main);
 
             $sql = "UPDATE $database SET $sql_query $where";
+	        $_SESSION['error'] = $sql;
             $this->db->execute($sql);
         }
 

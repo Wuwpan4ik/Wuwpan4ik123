@@ -68,7 +68,7 @@
             $this->Hmac = new Hmac();
             $this->mailing = new MailingModel();
             $this->cases_class = new CasesModel();
-
+			
             $email_account = $this->email_class->GetEmailAccount();
             $this->ourEmail = $email_account['email'];
             $this->ourPassword = $email_account['password'];

@@ -11,7 +11,7 @@ class Account extends ACoreCreator
         $tariffs_link = [];
         foreach ($content as $item) {
             $_SESSION['product_key'] = $item['id'];
-            array_push($tariffs_link, $this->tariff_class->MakeLinkForBuyInProdamus());
+            array_push($tariffs_link, $this->tariff_class->MakeLinkForBuyInProdamus(1));
         }
         return [$content, (int) $user_info['file_size'], $urls, $tariff_date, $count_users, $tariffs_link];
     }

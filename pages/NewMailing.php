@@ -4,7 +4,9 @@
         {
             $mailing = $this->mailing->Get();
             $mailing["buttons"] = json_decode($mailing['buttons'], 1);
-            return $mailing;
+			$products = $this->course->GetAuthorCourse();
+			$data = ['mailing' => $mailing, 'products' => $products];
+            return $data;
         }
 
         function obr()

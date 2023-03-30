@@ -380,7 +380,16 @@
                                             <h2>Подключение Prodamus:  </h2>
                                             <div class="row">
                                                 <div class="input_focus ">
-                                                    <label for="username" class="label_focus">API Ключ</label>
+                                                    <label for="username" class="label_focus">Url Prodamus</label>
+                                                    <input class="inf" type="text"  name="prodamus_url" value="<?php echo $_SESSION['user']['prodamus_url']?>">
+                                                    <span class="clear_input_val">
+                                                                 <img src="/img/clear_input.svg" alt="">
+                                                            </span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input_focus ">
+                                                    <label for="username" class="label_focus">Секретный Ключ</label>
                                                     <input class="inf" type="text"  name="prodamus_key" value="<?php echo $_SESSION['user']['prodamus_key']?>">
                                                     <span class="clear_input_val">
                                                                  <img src="/img/clear_input.svg" alt="">

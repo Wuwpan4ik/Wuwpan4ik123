@@ -16,9 +16,6 @@ html{
 button {
     cursor: pointer;
 }
-.slider__item-button-brightness {
-    animation: flicker 3s infinite alternate;
-}
 
 .smallPlayer {
     width: 500px;
@@ -80,7 +77,7 @@ button {
     width: 20px;
 }
 
-    /* Стрелка влево */
+/* Стрелка влево */
 .slick-arrow.slick-prev {
     left: -50px;
     transition: all 1s ease 0s;

@@ -9,7 +9,7 @@
                 <button type="button" onclick="save();" class="popup__edit-btn">Сохранить</button>
             </div>
         </div>
-        <form id="initButton" action="/Funnel/$item_id/main_settings" method="POST" class="popup__body-container popup-wrap">
+        <form id="initButton" action="/Funnel/$item_id/main_settings" method="POST" class="main__settings-popup popup__body-container popup-wrap">
             <input id="button__style-color" name="button__style-color" type="hidden" value="">
             <input id="button__style-style" name="button__style-style" type="hidden" value="">
             <input id="id_item" name="id_item" type="hidden" value="">

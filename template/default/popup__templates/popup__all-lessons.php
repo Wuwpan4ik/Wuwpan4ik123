@@ -3,7 +3,7 @@
 
     </div>
     <div class="popup__allLessons popup popup-<?=$name?>">
-        <div class="popup__allLessons-body">
+        <div class="popup__allLessons-body" style="padding: 30px 0px">
             <div class="popup__allLessons-title popup-title">Все уроки курса:</div>
             <div class="popup__allLessons-text popup-text">Курс состоит из <?=count($content['course_content']); ?> уроков</div>
             <div class="popup__allLessons-body__items">

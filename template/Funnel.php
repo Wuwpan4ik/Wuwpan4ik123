@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/lessons.css">
     <link rel="stylesheet" href="/css/font.css">
+    <link type="text/css" rel="stylesheet" href="/css/notifications.css">
 
     <!--Favicon-->
     <link rel="icon" type="image/x-icon" href="/uploads/course-creator/favicon.ico">
@@ -187,13 +188,15 @@
             </div>
         </div>
 
-
+    <?php include 'template/default/notificationsPopup.php' ?>
+    
 
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="../js/slick.min.js"></script>
     <script src="../js/script.js" ></script>
     <script src="../js/sliders.js"></script>
     <script src="../js/customSelect.js"></script>
+    <script src="/js/notifications.js"></script>
     <script>
         document.querySelectorAll(".title__general .item").forEach(item => {
             item.addEventListener('click', () => {
@@ -438,7 +441,6 @@
                 dataType: 'html',          /* Тип данных в ответе (xml, json, script, html). */
                 data: $("#initButton").serialize(),     /* Параметры передаваемые в запросе. */
                 success: function(data){   /* функция которая будет выполнена после успешного запроса.  */
-                    console.log($("#initButton").serialize())
                     if (data == 1) {
                         document.querySelector('.exit-funnel-edit').classList.add('display-flex');
                         document.querySelector('.exit-funnel-edit').style.zIndex = '1000';
@@ -484,7 +486,23 @@
         }
 
         function save() {
-            document.getElementById('main__settings-button').click();
+            $('.main__settings-popup').each(function () {
+                $(this).submit(function (e) {
+                    e.preventDefault();
+                    $.ajax({
+                        url: $(this).attr("action"),
+                        type: $(this).attr("method"),
+                        data: new FormData(this),
+                        processData: false,
+                        contentType: false,
+                    });
+                    AddNotifications("Настройки сохранены", '');
+                    ClearPopupSettings();
+                    document.querySelector('.exit-funnel-edit').classList.remove('display-flex');
+                    document.querySelector('.popup__general').style.display = 'none';
+                })
+            });
+            $("#main__settings-button").click()
         }
 
         function copy_link(elem) {

@@ -503,7 +503,7 @@ unset($_SESSION['course_id']);
                         item.innerHTML = '₽';
                     }
                 });
-                document.querySelector('.form__buy-course-video').action = "/ClientsController/CourseBuy";
+                document.querySelector('.form__buy-course-video').action = "/BuyHandler/CreateLinkProdamus";
                 document.querySelector('.course__buy-title').innerHTML = course['name'];
                 document.querySelector('.course__buy-count').innerHTML = course['count'] + ' урока';
                 document.querySelector('.course__buy-flag').innerHTML = 'Курс';
@@ -545,16 +545,17 @@ unset($_SESSION['course_id']);
                                 }
                             });
                         }
+                        console.log(data)
                         form[0].querySelector('.next__lesson');
-                        AddNotifications('Вы успешно купили курс', 'Аккаунт отправлен на почту');
+                        // window.open(data);
                     },
                     error: function(data) {
                         AddNotifications('Произошла ошибка', 'Вы уже покупали этот курс');
                     }
                 });
-                setTimeout(function (){
-                    location.reload()
-                }, 500)
+                // setTimeout(function (){
+                //     location.reload()
+                // }, 500)
             });
         })
     });

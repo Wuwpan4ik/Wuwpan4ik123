@@ -23,8 +23,7 @@
             $_SESSION['item_id'] = $item_id;
         }
     }
-
-
+	
     $router->addRoute("/", "Main.php");
     $router->addRoute("/reg", "Registration.php");
     $router->addRoute("/login", "Login.php");
@@ -134,7 +133,9 @@
 
     $router->addRoute("/TariffController/Buy", "TariffController.php", "Buy");
     $router->addRoute("/Tariff-absent", "tariff-absent.php");
-    $router->addRoute("/BuyHandler/Buy", "BuyHandler.php", "BuyHandlerCheck");
+    $router->addRoute("/BuyHandler/BuyTariff", "BuyHandler.php", "BuyTariff");
+	$router->addRoute("/BuyHandler/CreateLinkProdamus", "BuyHandler.php", "CreateLinkBuyCourse");
+	$router->addRoute("/BuyHandler/BuyCourse", "BuyHandler.php", "BuyCourse");
 	$router->addRoute("/error", "404.php");
 
     if (array_key_exists("/$url", $router->getRoute())) {

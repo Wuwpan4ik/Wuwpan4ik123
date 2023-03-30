@@ -10,6 +10,11 @@
                 return $this->db->query("SELECT * FROM course WHERE " . array_keys($where)[0] . " = " . $where[array_keys($where)[0]]);
             }
         }
+	
+	    public function GetAuthorCourse()
+	    {
+		    return $this->db->query("SELECT * FROM course WHERE author_id = {$_SESSION['user']['id']}");
+		}
 
         public function GetLast($author_id)
         {

@@ -30,6 +30,7 @@
     }
 </style>
 <div class="display-none">
+	<?php echo $_SESSION['error'] ?>
 </div>
 <?php if (!empty($content['course_content'])) { ?>
 <div class="mirror_smallPlayer">
@@ -48,7 +49,7 @@
             ?>
             <div class="slider__item">
                 <div class="slider__video">
-                    <video playsinline class="slider__video-item video-<?=$item['video_id']?> <?php if($item['dis_trans'] == 1) echo 'disable-skip' ?>" data-player="playing">
+                    <video playsinline class="slider__video-item video-<?=$item['video_id']?> <?php if($item['dis_trans'] == 1 ||    !$item['button_text']) echo 'disable-skip' ?>" data-player="playing">
                         <source class="video" src="/<?=$item['video']?>" id="sourceVideo"  />
                     </video>
                 </div>
@@ -369,6 +370,7 @@ cursor: pointer;text-decoration: none;">Вернуться на сайт</a>
                         if (form.hasClass('popup__application')) {
                             AddNotifications('Вы успешно оставили заявку', 'Сообщение отправлено на почту');
                         } else {
+                            window.open(data);
                             AddNotifications('Вы успешно купили курс', 'Аккаунт отправлен на почту');
                         }
                     },

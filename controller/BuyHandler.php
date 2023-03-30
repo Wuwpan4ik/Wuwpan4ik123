@@ -1,7 +1,7 @@
 <?php
 // Проверка Хука с Prodamus (Не уверен, что работает)
     class BuyHandler extends ACoreCreator {
-        public function BuyHandlerCheck()
+        public function BuyTariff()
         {
             $secret_key = $this->tariff_class->ClearQuery("SELECT prodamus_key FROM secret_prodamus_key")[0]['prodamus_key'];
             $headers = apache_request_headers();
@@ -37,4 +37,42 @@
                 printf('error: %s', $e->getMessage());
             }
         }
+	
+	    public function CreateLinkBuyCourse()
+	    {
+		    if ($_POST['first_name']) $data['customer_name'] = $_POST['first_name'];
+		    if ($_POST['email']) $data['customer_email'] = $_POST['email'];
+		    if ($_POST['phone']) $data['customer_phone'] = $_POST['phone'];
+		
+		    $product = $this->course->Get(['id' => $_POST['course_id']])[0];
+			
+			$secret_key = $this->purchase->GetSecretKey($_POST['creator_id']);
+		
+		    $data = [
+			    'do' => 'pay',
+			
+			    'products' => [
+				    [
+					    'name' => (string)$product['name'],
+					
+					    'price' => (string)$product['price'],
+					
+					    'quantity' => "1",
+					
+					    'sku' => (string)$product['id']
+				    ],
+			    ],
+			    'paid_content' => 'Приятного пользования сервисом Course Creator!'
+		    ];
+			
+		    $data['signature'] = Hmac::create($data, $secret_key);
+		
+		    $url = utf8_encode($this->purchase->GetProdamusUrl($_POST['creator_id']) . '?' . http_build_query($data));
+			print_r($url);
+			return 1;
+		}
+	
+	    public function BuyCourse() {
+		   
+		}
     }

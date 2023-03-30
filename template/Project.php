@@ -12,7 +12,9 @@
   </head>
 
   <body>
-
+    <?php
+        print_r(preg_replace('/^(?:([^\.]+)\.)?domain\.com$/', '\1', $_SERVER['SERVER_NAME']))
+    ?>
   <div class="Project app">
 
       <?php include 'default/sidebar.php'; ?>

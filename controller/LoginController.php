@@ -19,7 +19,7 @@
             $email = $_POST['email'];
             $password = $_POST['pass'];
 
-            $res = $this->user->getAuthorizationUserByEmail($email, $password);
+            $res = $this->user->getAuthorizationUserByEmail($email, $password, 0);
             if(count($res) != 0) {
 //                if ($this->user_class->GetContentForUserCoursePage($this->user->GetUserWithUsername($_POST['subdomain']), $res[0]['id'])) {
                     if ($res[0]['is_creator'] == 0) {
@@ -54,7 +54,7 @@
             $username = $_POST['login'];
             $password = $_POST['pass'];
 
-            $res = $res = $this->user->getAuthorizationUserByUsername($username, $password);
+            $res = $this->user->getAuthorizationUserByUsername($username, $password, 1);
             if(count($res) != 0) {
                 unset($_SESSION["user"]);
                 $_SESSION["user"] = [
@@ -72,6 +72,7 @@
                 if (count($integrations) != 0) {
                     $_SESSION['user']['albato_key'] = $integrations[0]['albato_key'];
                     $_SESSION['user']['prodamus_key'] = $integrations[0]['prodamus_key'];
+	                $_SESSION['user']['prodamus_url'] = $integrations[0]['prodamus_url'];
                 }
 
                 $tariff_id = $this->tariff_class->GetUserTariff()['tariff_id'];
@@ -141,7 +142,7 @@
 
             sleep(0.5);
 
-            $res = $this->user->getAuthorizationUserByUsername($username, $password);
+            $res = $this->user->getAuthorizationUserByUsername($username, $password, 1);
             if(count($res) != 0) {
                 $_SESSION["user"] = [
                     'id' => $res[0]['id'],

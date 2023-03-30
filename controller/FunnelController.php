@@ -101,25 +101,21 @@
 
             if (isset($_POST['button_text']) && strlen($_POST['button_text']) > 0) {
                 $button_text = $_POST['button_text'];
-                $change__button = $button_text;
             } else {
                 if (strlen($_POST['button_text']) == 0) {
-                    $change__button = NULL;
+	                $button_text = NULL;
                 } else {
-                    $change__button = $funnelContent[0]['button_text'];
+	                $button_text = $funnelContent[0]['button_text'];
                 }
             }
-
-            if (isset($_POST['disabled__transition'])) {
-                $disabled__transition = 1;
-            } else {
-                $disabled__transition = 0;
-            }
+		
+	        $disabled__transition = (int) $_POST['disabled__transition'];
+			$_SESSION['error'] = $disabled__transition;
 
             $data = [
                 "name" => $name,
                 "description" => $description,
-                "button_text" => $change__button,
+                "button_text" => $button_text,
                 "disabled__transition" => $disabled__transition
             ];
 
@@ -347,7 +343,7 @@
             }
             //          Если нет значения, то добавляет к кнопке "Посмотреть"
             if (strlen($funnel_content[0]['button_text']) == 0) {
-                $button__standart = 'Посмотреть';
+                $button__standart = null;
             } else {
                 $button__standart = $funnel_content[0]['button_text'];
             }

@@ -6,7 +6,7 @@
         {
             return $this->db->query("SELECT users_tariff.tariff_id, users_tariff.memory_add, users_tariff.clients_add, tariffs.funnel_count, tariffs.course_count, tariffs.file_size, tariffs.children_count FROM `users_tariff` INNER JOIN `tariffs` ON tariffs.id = users_tariff.tariff_id WHERE users_tariff.user_id = {$_SESSION['user']['id']}");
         }
-
+		
         public function GetUserTariff()
         {
             return $this->db->query("SELECT * FROM `users_tariff` WHERE `user_id` = {$_SESSION['user']['id']}")[0];
@@ -61,46 +61,40 @@
             return true;
         }
 
-        public function MakeLinkForBuyInProdamus()
+        public function MakeLinkForBuyInProdamus($for_tariif_buy)
         {
-            $linktoform = 'https://course-creator.payform.ru/';
-            $secret_key = $this ->ClearQuery("SELECT prodamus_key FROM secret_prodamus_key")[0]['prodamus_key'];
-
-            if ($_SESSION['user']['email']) {$email = $_SESSION['user']['email'];} else {$email = 'dimalim110@gmail.com';};
-
-            $product = $this->getTariffs()[$_SESSION['product_key'] - 1];
-
-            $data = [
-                'customer_extra' => 'Текст, который отобразится в поле "Дополнительные данные"',
-
-                'do' => 'pay',
-
-                'products' => [
-                [
-                    'name' => (string)$product['name'],
-
-                    'price' => (string)$product['price'],
-
-                    'quantity' => "1",
-
-                    'sku' => (string)$product['id']
-                    ],
-                ],
-
-                'urlReturn' => 'https://course-creator.io/Account',
-
-                'urlSuccess' => 'https://course-creator.io/Account',
-
-                'urlNotification' => 'https://demo.payform.ru/demo-notification',
-
-                'paid_content' => 'Приятного пользования сервисов Course Creator!'
-            ];
-
-            $data['customer_email'] = $email;
-
-
-            $data['signature'] = Hmac::create($data, $secret_key);
-
-            return  utf8_encode($linktoform . '?' . http_build_query($data));
+			if ($for_tariif_buy) {
+				$linktoform = 'https://course-creator.payform.ru/';
+				$secret_key = $this->ClearQuery("SELECT prodamus_key FROM secret_prodamus_key")[0]['prodamus_key'];
+				
+				if ($_SESSION['user']['email']) {$email = $_SESSION['user']['email'];} else {$email = 'dimalim110@gmail.com';};
+				
+				$product = $this->getTariffs()[$_SESSION['product_key'] - 1];
+				
+				$data = [
+					'customer_extra' => 'Текст, который отобразится в поле "Дополнительные данные"',
+					
+					'do' => 'pay',
+					
+					'products' => [
+						[
+							'name' => (string)$product['name'],
+							
+							'price' => (string)$product['price'],
+							
+							'quantity' => "1",
+							
+							'sku' => (string)$product['id']
+						],
+					],
+					'paid_content' => 'Приятного пользования сервисов Course Creator!'
+				];
+				
+				$data['customer_email'] = $email;
+				
+				$data['signature'] = Hmac::create($data, $secret_key);
+				
+				return  utf8_encode($linktoform . '?' . http_build_query($data));
+			}
         }
     }

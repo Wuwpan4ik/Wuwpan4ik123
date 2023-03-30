@@ -55,7 +55,7 @@
     </div>
     <div class="firstPauseButton active" id="pauseBtn">
         <div class="pauseBtn">
-            <img src="../img/pausePlayer.svg" alt="">
+            <img style="filter: grayscale(100%);" src="../img/smallPlayer/play.svg" alt="">
         </div>
     </div>
 
