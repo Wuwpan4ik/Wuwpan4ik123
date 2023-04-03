@@ -47,9 +47,10 @@
             $duration = $this->db->query("SELECT duration FROM `tariffs` WHERE `id` = {$tariff_id}")[0]['duration'];
 
             if (in_array($duration, ['MONTH', 'WEEK', 'YEAR'])) {
-                $date_end = date("Y-m-d", strtotime("+1 $duration", mktime(0, 0, 0, date('m'), date('d'), date('Y'))));
+				$date = date("Y-m-d", strtotime(mktime(0, 0, 0, date('m'), date('d'), date('Y'))));
+	            $date_end = date("Y-m-d", strtotime("+1 $duration", mktime(0, 0, 0, date('m'), date('d'), date('Y'))));
                 if (!$this->GetTariff($user_id)) {
-                    $this->db->execute("INSERT INTO `users_tariff` (`user_id`, `tariff_id`, `date`) VALUES ('$user_id', '$tariff_id', '$date_end')");
+                    $this->db->execute("INSERT INTO `users_tariff` (`user_id`, `tariff_id`, `date_start`, `date`) VALUES ('$user_id', '$tariff_id','$date', '$date_end')");
                 } else {
                     $this->db->execute("UPDATE `users_tariff` SET `tariff_id` = '$tariff_id', `date` = '$date_end' WHERE `user_id` = '$user_id'");
                 }

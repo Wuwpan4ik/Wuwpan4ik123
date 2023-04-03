@@ -6,6 +6,19 @@
         {
             return $this->db->query("SELECT clients.email, clients.first_name, clients.give_money, clients.tel, course.id as 'course_id', course.name FROM clients, course WHERE course.id = clients.course_id AND `creator_id` = ". $_SESSION['user']['id'] ." ORDER BY $get");
         }
+	
+	    public function GetAllClientsForMain($get)
+	    {
+			$get_item = trim(explode(' ', $get)[0]);
+			if (in_array($get_item, ['email'])) {
+					$get_query = "user.$get";
+			} else if (in_array($get_item, ['name'])) {
+				$get_query = "tariffs.$get";
+			} else {
+				$get_query = "users_tariff.$get";
+			}
+		    return $this->db->query("SELECT user.email, user.id, users_tariff.date_start, users_tariff.date, tariffs.name FROM user INNER JOIN users_tariff ON (users_tariff.user_id = user.id) INNER JOIN tariffs ON tariffs.id = users_tariff.tariff_id  WHERE user.is_creator = 1 GROUP BY user.email ORDER BY $get_query");
+	    }
 
         public function GetClientsForAnalytics($get)
         {

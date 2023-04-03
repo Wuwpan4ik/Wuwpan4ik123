@@ -30,6 +30,7 @@
         protected $user_tariff;
         protected $Hmac;
         protected $cases_class;
+		
 
         protected $ourEmail;
         protected $ourPassword;

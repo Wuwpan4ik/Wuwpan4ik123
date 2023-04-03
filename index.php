@@ -104,7 +104,6 @@
     $router->addRoute("/LoginController/logout", "LoginController.php", 'logout');
 
     $router->addRoute("/ClientsController/application", "ClientsController.php", 'AddApplication');
-    $router->addRoute("/ClientsController/CourseBuy", "ClientsController.php", 'BuyCourse');
     $router->addRoute("/PopupController/get_popup", "PopupController.php", 'get_popup');
 
     $router->addRoute("/SortController/Clients", "SortController.php", "getClientsForMain");
@@ -135,8 +134,22 @@
     $router->addRoute("/Tariff-absent", "tariff-absent.php");
     $router->addRoute("/BuyHandler/BuyTariff", "BuyHandler.php", "BuyTariff");
 	$router->addRoute("/BuyHandler/CreateLinkProdamus", "BuyHandler.php", "CreateLinkBuyCourse");
+	$router->addRoute("/BuyHandler/CourseBuy", "BuyHandler.php", 'BuyCourse');
 	$router->addRoute("/BuyHandler/BuyCourse", "BuyHandler.php", "BuyCourse");
 	$router->addRoute("/error", "404.php");
+	
+	
+	$router->addRoute("/admin/login", "AdminLogin.php");
+	$router->addRoute("/admin", "AdminUserList.php");
+	$router->addRoute("/admin/AddUser", "AdminAddUser.php");
+	$router->addRoute("/admin/UserList", "AdminUserList.php");
+	$router->addRoute("/admin/AdminChangeUser", "AdminChangeUser.php");
+	$router->addRoute("/admin/AdminStatistic", "AdminStatistic.php");
+	$router->addRoute("/admin/$item_id/AdminChangeUser", "AdminChangeUser.php");
+	$router->addRoute("/AdminController/GetClients", "AdminPageController.php", "getAllClients");
+	$router->addRoute("/AdminController/AddUser", "AdminController.php", "AddAdmin");
+	$router->addRoute("/AdminController/ChangeUser", "AdminController.php", "ChangeUser");
+	$router->addRoute("/AdminController/Login", "AdminController.php", "Login");
 
     if (array_key_exists("/$url", $router->getRoute())) {
         $router->route("/$url");
@@ -144,8 +157,6 @@
         $router->route("/error");
     }
     $_SESSION['item_id'] = null;
-
-
 
 
 ?>

@@ -11,6 +11,7 @@ abstract class ACoreAdmin {
     protected $clients;
     protected $course;
     protected $user_class;
+	protected $admin_class;
 
 
     protected $ourEmail;
@@ -30,6 +31,7 @@ abstract class ACoreAdmin {
         $this->clients = new ClientsModel();
         $this->course = new CourseModel();
         $this->user_class = new UserModel();
+	    $this->admin_class = new AdminModel();
 
         $email_account = $this->email_class->GetEmailAccount();
         $this->ourEmail = $email_account['email'];
