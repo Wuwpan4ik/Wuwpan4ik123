@@ -28,7 +28,7 @@
 	<div class="adduser" style="display: flex; justify-content: center; align-items: center; width: 100%;">
   
 		<form action="/AdminController/ChangeUser" method="POST" style="display: flex; justify-content: center">
-            <h3><?php if ($content['user']) { ?>Изменить тариф<?php } else { ?>Добавить тарифф<?php } ?></h3>
+            <h3><?php if ($content['user']) { ?>Изменить данные<?php } else { ?>Добавить данные<?php } ?></h3>
 			<div class="login-inputs">
 				<?php if ($content['user']) { ?>
                     <input type="text" name="user_id" value="<?=$_SESSION['item_id'] ?>" hidden>

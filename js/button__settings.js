@@ -3,14 +3,26 @@ const popup = document.querySelector('#popup');
 const buttonChanges = document.querySelectorAll('.button__edit');
 const form = document.querySelector('#popup__body-form');
 const id_item = document.querySelector('#id_item');
-const first_select = document.querySelector('#first_do');
-const second_select = document.querySelector('#second_do');
+let first_select = document.querySelector('#first_do');
+let second_select = document.querySelector('#second_do');
 // Поля option в форме
 const names_option = {'email': "Ваша почта", 'name': "Ваше имя", 'tel': "Ваш номер телефона"};
 
 // Сохранение / закрытие
 function save() {
-    document.getElementById('send__edit-video').click();
+    $("#initButton").submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: $(this).attr("action"),
+            type: $(this).attr("method"),
+            data: new FormData(this),
+            processData: false,
+            contentType: false,
+        });
+    })
+    $("#initButton").submit()
+    clearPopup();
+    closePopup()
 }
 
 function addPopup(input) {
@@ -84,10 +96,13 @@ function addPopup(input) {
 
 // Очистка Popup
 function clearPopup () {
-    defaultPopup(first_select);
-    defaultPopup(second_select);
+    defaultPopup(document.querySelector('#first_do'));
+    defaultPopup(document.querySelector('#second_do'));
     document.querySelectorAll('.second_do').forEach((elem) => {
         elem.classList.remove('display-block');
+    })
+    document.querySelectorAll('.form-select__container').forEach((elem) => {
+        elem.remove();
     })
     document.querySelector('input[name="form__title"]').value = '';
     document.querySelector('input[name="form__desc"]').value = '';
@@ -99,10 +114,11 @@ function toggleOverflow () {
 
 function closePopup() {
     entryDisplay.classList.toggle('display-flex');
-    defaultPopup();
+    clearPopup();
 }
 
 function defaultPopup(parent_elem){
+    console.log(parent_elem)
     parent_elem.parentElement.querySelectorAll('.form_id').forEach((elem) => {
         elem.remove();
     })

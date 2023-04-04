@@ -469,14 +469,8 @@
         if (document.querySelector('.exit-funnel-edit')) {
             document.querySelector('.exit-funnel-edit').classList.remove('display-flex');
         }
-        if (document.querySelector('.checkbox__wrapper')) {
-            document.querySelector('.checkbox__wrapper').remove();
-        }
         toggleOverflow();
         closePopup();
-        clearPopup();
-        defaultPopup(first_select);
-        defaultPopup(second_select);
     }
 
     let exitFunnelEdit = document.querySelector('.exit-funnel-edit');
@@ -524,7 +518,7 @@
     function SaveOrRemoveSettings() {
 
         document.querySelector('#initButton').action = "/Funnel/"+ document.querySelector('#initButton').parentElement.querySelector('input[type="hidden"]').value +"/checkSettings"
-
+        
         $.ajax({
             url: "/Funnel/"+ document.querySelector('#id_item').value +"/checkSettings",
             method: 'POST',             /* Метод передачи (post или get) */

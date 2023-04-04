@@ -175,7 +175,7 @@ class AccountController extends ACoreCreator {
         $this->user_integrations->UpdateQuery("user_integrations", $query_to_update_urls, "WHERE user_id = {$_SESSION['user']['id']}");
 
         $_SESSION['user']['prodamus_url'] = $query_to_update_urls['prodamus_url'];
-	    $_SESSION['user']['prodamus_key'] = 1;
+	    $_SESSION['user']['prodamus_key'] = $query_to_update_urls['prodamus_key'];
         $_SESSION['user']['albato_key'] = $query_to_update_urls['albato_key'];
 
         header('Location: ' . $_SERVER['HTTP_REFERER']);

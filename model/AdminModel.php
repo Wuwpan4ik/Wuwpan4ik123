@@ -11,9 +11,9 @@
 			$this->ClearQuery("INSERT INTO admin_users (`name`, `username`, `password`, `position_user`) VALUES ('$name', '$username', '$password', $job)");
 		}
 		
-		public function ChangeUser($id, $date_start, $date, $tariff_id)
+		public function CheckUser($id)
 		{
-			$this->UpdateQuery("users_tariff", ['tariff_id' => $tariff_id, 'date_start' => $date_start, 'date' => $date], "WHERE user_id = $id");
+			return $this->ClearQuery("SELECT * FROM users_tariff WHERE `user_id` = $id");
 		}
 		
 		public function GetUser()

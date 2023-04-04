@@ -91,6 +91,15 @@
 
                         <h3><?=$p['name']?></h3>
 
+                        <div style="display:flex; margin-bottom: 20px">
+		                    <?php $url = include "settings/site_url.php"; ?>
+
+                            <input id="half_input" value="https://<?=$_SESSION['user']['username']?>.course-creator.io/UserLogin/" disabled/>
+
+                            <button class="copy-button" onclick="copy_link(this)" type="submit">Копировать</button>
+
+                        </div>
+
                         <div class="course-price">
                             <form action="/Course/<?=$p['id']?>/setPrice" class="media__form" method="POST">
                                 <div class="course__prices" style="position:relative;">
@@ -176,6 +185,21 @@
             });
         })
     });
+
+    function copy_link(elem) {
+        var copyTextarea = document.createElement("textarea");
+        copyTextarea.style.position = "fixed";
+        copyTextarea.style.opacity = "0";
+        copyTextarea.textContent = elem.parentElement.querySelector("#half_input").value;
+        document.body.appendChild(copyTextarea);
+        copyTextarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(copyTextarea);
+        elem.innerHTML = "Скопировано"
+        setTimeout(function (){
+            elem.innerHTML = "Копировать"
+        }, 10000)
+    }
 </script>
 <script src="/js/customInputs.js"></script>
 

@@ -41,14 +41,15 @@
 			$date_start = $_POST['date_start'];
 			$date = $_POST['date'];
 			$tariff_id = $_POST['tariff'];
-			$id = $_POST['id'];
-			if ($user_id) {
+			if (empty($this->admin_class->CheckUser($user_id))) {
 				$this->admin_class->InsertQuery("users_tariff", ["user_id" => $user_id, 'date_start' => $date_start,
 					'date' => $date, "tariff_id" => $tariff_id]);
 			} else {
-				$this->admin_class->ChangeUser($id, $date_start, $date, $tariff_id);
+				$_SESSION['error'] = 1;
+				$this->admin_class->UpdateQuery("users_tariff", ['tariff_id' => $tariff_id, 'date_start' => $date_start,
+					'date' => $date], "WHERE user_id = $user_id");
 			}
-			
+			header('Location: /admin');
 		}
 		
 		function get_content()
