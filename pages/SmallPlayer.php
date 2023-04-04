@@ -1,5 +1,5 @@
 <?php
-class SmallPlayer extends ACoreAdmin
+class SmallPlayer extends ACoreLogin
 {
     public function get_content() {
 //        Проверка на покупку

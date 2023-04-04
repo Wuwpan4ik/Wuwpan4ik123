@@ -25,4 +25,9 @@
 				<?php
 				$i= $i+1;}
 		}
+		
+		function get_content()
+		{
+			// TODO: Implement get_content() method.
+		}
 	}

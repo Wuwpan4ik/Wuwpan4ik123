@@ -1,5 +1,5 @@
 <?php
-class ConfirmEmail extends ACoreAdmin
+class ConfirmEmail extends ACoreLogin
 {
     public function get_content() {}
 }

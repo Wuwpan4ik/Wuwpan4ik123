@@ -85,7 +85,7 @@
         public function obr() {
             if (isset($_SESSION['user']['is_creator']) && $_SESSION['user']['is_creator'] == 0) {
                 header("Location: /UserMain");
-            } else if (!isset($_SESSION['user']) || is_null($_SESSION['user'])) {
+            } else if (!isset($_SESSION['user']['is_creator']) || is_null($_SESSION['user']['is_creator'])) {
                 header("Location: /login");
             }
         }

@@ -1,5 +1,5 @@
 <?php
-    class LoginController extends ACoreAdmin {
+    class LoginController extends ACoreLogin {
         use GenerateRandomPassword;
 
         private function validate_data ($email, $name) {

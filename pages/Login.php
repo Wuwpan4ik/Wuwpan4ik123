@@ -1,5 +1,5 @@
 <?php
-    class Login extends ACoreAdmin
+    class Login extends ACoreLogin
     {
         public function get_content() {}
     }

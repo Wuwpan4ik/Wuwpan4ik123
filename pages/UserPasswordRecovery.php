@@ -1,5 +1,5 @@
 <?php
-class UserPasswordRecovery extends ACoreAdmin
+class UserPasswordRecovery extends ACoreLogin
 {
     public function get_content() {
 

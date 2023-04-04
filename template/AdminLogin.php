@@ -19,7 +19,6 @@
 </head>
 
 <body>
-<?php print_r($_SESSION['error']) ?>
 <div class=" login-account container-reg">
 	
 	<form class="login__form" method="POST" action="/AdminController/Login">
