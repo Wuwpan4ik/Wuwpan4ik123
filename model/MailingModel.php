@@ -29,4 +29,9 @@
         {
             return $this->ClearQuery("SELECT email, ANY_VALUE(buy_progress) as 'buy_progress' FROM clients WHERE creator_id = {$_SESSION['user']['id']} AND course_id = {$product_id} GROUP BY email HAVING buy_progress >= $id");
         }
+	
+	    public function GetUsers($product_id)
+	    {
+		    return $this->ClearQuery("SELECT email, ANY_VALUE(buy_progress) as 'buy_progress' FROM clients WHERE creator_id = {$_SESSION['user']['id']} AND course_id = {$product_id} GROUP BY email");
+	    }
     }

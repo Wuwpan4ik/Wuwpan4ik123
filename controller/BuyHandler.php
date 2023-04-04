@@ -2,8 +2,11 @@
 // Проверка Хука с Prodamus (Не уверен, что работает)
     class BuyHandler extends ACoreCreator {
 	    use GenerateRandomPassword;
-		
-		private $password;
+	    use RequestValidate;
+	
+	    private $password;
+	    private $name;
+	    private $phone;
 	
 	
 	    private function GetRegistrationClientHtml($name, $cost, $email, $course_count, $currency = '₽', $phone = null, $user_name = null, $number_funnel = null, $number_slide = null)
@@ -111,7 +114,38 @@
 			return 1;
 		}
 	
+	    public function GoBuyCourse() {
+		    if (!$this->RequestValidate()) return false;
+		    $buy_progress = include './settings/buy_progress.php';
+		    $comment = 'Не купил курс';
+			
+			$progress = $buy_progress[$comment];
+		    $course_id = $_POST['course_id'];
+		    $creator_id = $_POST['creator_id'];
+			
+		    $client = $this->GetClient($course_id);
+			$_SESSION['error'] = $course_id;
+			
+		
+		    if (isset($client) && ($client[0]['buy_progress'] < $progress)) {
+//          Добавление Clients
+			    if (count($client) == 1) {
+				    $data = [
+					    "buy_progress" => $progress,
+					    "give_money" => 0,
+					    "first_buy" => 0
+				    ];
+				    $this->clients->UpdateQuery("clients", $data, "WHERE `creator_id` = '$creator_id' AND `course_id` = '$course_id' AND `email` = '{$this->email}'");
+			    } else {
+				    $this->InsertToTable($creator_id, $course_id, $progress, 0);
+			    }
+			} else {
+			    $this->InsertToTable($creator_id, $course_id, $progress, 0);
+		    }
+		}
+	
 	    public function BuyCourse() {
+		    if (!$this->RequestValidate()) return false;
 		    $headers = apache_request_headers();
 		    $data = json_decode($headers['customer_extra'], true);
 		    $user = $this->user->getUserById($data['creator_id'])[0];

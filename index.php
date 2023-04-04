@@ -134,6 +134,7 @@
     $router->addRoute("/Tariff-absent", "tariff-absent.php");
     $router->addRoute("/BuyHandler/BuyTariff", "BuyHandler.php", "BuyTariff");
 	$router->addRoute("/BuyHandler/CreateLinkProdamus", "BuyHandler.php", "CreateLinkBuyCourse");
+	$router->addRoute("/BuyHandler/GoBuyCourse", "BuyHandler.php", 'GoBuyCourse');
 	$router->addRoute("/BuyHandler/CourseBuy", "BuyHandler.php", 'BuyCourse');
 	$router->addRoute("/BuyHandler/BuyCourse", "BuyHandler.php", "BuyCourse");
 	$router->addRoute("/error", "404.php");

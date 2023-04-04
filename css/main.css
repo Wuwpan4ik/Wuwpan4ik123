@@ -2538,7 +2538,7 @@ td:nth-child(1){
   opacity: 1;
 }
 .mySelectOptions {
-  position: relative;
+  position: absolute;
   width: 100%;
   display: none;
   flex-direction: column;

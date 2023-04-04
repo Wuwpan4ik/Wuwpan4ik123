@@ -85,9 +85,9 @@
                                                         <div class="overSelect"></div>
                                                     </div>
                                                     <div class="mySelectOptions">
-                                                        <label class="item audience_item social__item"><span><img src="/img/Mailings/people.svg" alt="">Все</span><input class="custom-radio_two custom-checkbox social__input" type="radio" data-value="Все" value="1" /><label for="happy"></label></label>
+                                                        <label class="item audience_item social__item"><span><img src="/img/Mailings/people.svg" alt="">Все</span><input class="custom-radio_two custom-checkbox social__input" type="radio" data-value="Все" value="3" /><label for="happy"></label></label>
                                                         <label class="item audience_item social__item"><span><img src="/img/Mailings/people.svg" alt="">Кто оплатил</span><input class="custom-radio_two custom-checkbox social__input" type="radio" data-value="Кто оплатил" value="2" /><label for="happy"></label></label>
-                                                        <label class="item audience_item social__item"><span><img src="/img/Mailings/people.svg" alt="">Кто не оплатил</span><input class="custom-radio_two custom-checkbox social__input" type="radio" data-value="Кто не оплатил" value="3" /><label for="happy"></label></label>
+                                                        <label class="item audience_item social__item"><span><img src="/img/Mailings/people.svg" alt="">Кто не оплатил</span><input class="custom-radio_two custom-checkbox social__input" type="radio" data-value="Кто не оплатил" value="1" /><label for="happy"></label></label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -98,6 +98,13 @@
                                 <input min="5" type="radio" id="EnterEmail" name="mytabs"/>
                                 <label class="menu-label" for="EnterEmail" id="cllab"><p>Ввести email вручную</p></label>
                                 <div class="tab">
+                                    <div class="input_focus">
+                                        <label for="text" class="label_focus">Email получателя</label>
+                                        <input id="date" type="email" name="once_email">
+                                        <span class="clear_input_val">
+                                                     <img src="/img/clear_input.svg" alt="">
+                                                </span>
+                                    </div>
                                 </div>
                             </div>
                                     <div class="new-mailing__block new-mailing__planning">

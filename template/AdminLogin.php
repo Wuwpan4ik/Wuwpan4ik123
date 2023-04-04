@@ -62,7 +62,7 @@
                         type: $(this).attr("method"),
                         data: $(this).serialize(),
                         success: function (data) {
-                            window.location.replace('/');
+                            window.location.replace('/admin');
                         },
                         error: function (data) {
                             document.querySelector(".error").innerHTML = "<img src='/img/Login/warning.svg' width='20px;' height='20px;'>" + data.responseText;

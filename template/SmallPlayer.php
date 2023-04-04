@@ -28,9 +28,12 @@
                     0 0 10px <?php echo $content['rgb_button'] ?>
         }
     }
+    .mySelectOptions {
+        position: relative !important;
+    }
 </style>
 <div class="display-none">
-	<?php echo $_SESSION['error'] ?>
+	<?php print_r( $_SESSION['error']) ?>
 </div>
 <?php if (!empty($content['course_content'])) { ?>
 <div class="mirror_smallPlayer">
@@ -340,6 +343,7 @@ cursor: pointer;text-decoration: none;">Вернуться на сайт</a>
         $('.popup__form').each(function (){
             $(this).submit(function(e) {
                 e.preventDefault();
+                let temp_data = this;
                 let form = $(this);
                 let form_data = $(this).serialize();
                 let albato_key;
@@ -370,6 +374,14 @@ cursor: pointer;text-decoration: none;">Вернуться на сайт</a>
                         if (form.hasClass('popup__application')) {
                             AddNotifications('Вы успешно оставили заявку', 'Сообщение отправлено на почту');
                         } else {
+                            console.log(form_data)
+                            $.ajax({
+                                url: "/BuyHandler/GoBuyCourse",
+                                type: "POST",
+                                data: new FormData(temp_data),
+                                processData: false,
+                                contentType: false
+                            });
                             window.open(data);
                             AddNotifications('Вы успешно купили курс', 'Аккаунт отправлен на почту');
                         }

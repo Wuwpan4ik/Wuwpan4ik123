@@ -57,11 +57,19 @@
             if (!empty($data_get['id'])) {
                 $this->Delete($data_get['id']);
             }
-			$_SESSION['error'] = 1;
 
             $this->Create($data_get);
-            $mail_id = $this->mailing->ClearQuery("SELECT * FROM mailing WHERE user_id = {$_SESSION['user']['id']} ORDER BY id DESC LIMIT 1")[0]['id'];
-			foreach ($this->mailing->GetUsersByIndexs($data_get['indexs'] - 1, $data_get['product']) as $user) {
+			if (empty($data_get['once_email'])) {
+				if ($data_get['indexs'] == 3) {
+					$users = $this->mailing->GetUsers($data_get['product']);
+				} else {
+					$users = $this->mailing->GetUsersByIndexs($data_get['indexs'], $data_get['product']);
+				}
+				} else {
+				$users = $data_get['once_email'];
+			}
+	        $mail_id = $this->mailing->ClearQuery("SELECT * FROM mailing WHERE user_id = {$_SESSION['user']['id']} ORDER BY id DESC LIMIT 1")[0]['id'];
+	        foreach ($users as $user) {
                 $data = [
                     "foreign_id_a" => $mail_id,
                     "foreign_id_b" => $data_get['user_id'],

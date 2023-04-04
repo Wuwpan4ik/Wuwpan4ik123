@@ -39,13 +39,28 @@ class SortController extends ACoreCreator {
             if (strlen($tel) == 0) {
                 $tel = '—';
             }
+	
+	        $currency = '';
+         
+	        if ($client["give_money"] == 0) {
+                $money = "Не оплатил";
+            } else {
+		        $money = $client["give_money"];
+		        if (isset($_SESSION["user"]['currency'])) {
+			        $currency = $_SESSION["user"]['currency'];
+		        } else {
+			        $currency = "₽";
+		        }
+            }
+            
+            
 
             echo
 
                 '<tr>
 						<td class="nick"> <input type="checkbox" data-id="'. $client["id"] .'" class="check_user">' . mb_strimwidth($client["first_name"], 0, 8, '') . '</td>
 											
-						<td>' . $client["give_money"] . (isset($_SESSION["user"]['currency']) ? $_SESSION["user"]['currency'] : "₽") . '</td>
+						<td>'  .  $money . $currency . '</td>
 						
 						<td>' . $client["email"] . '</td>
 						
