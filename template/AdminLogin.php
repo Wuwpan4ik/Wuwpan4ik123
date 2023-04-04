@@ -52,10 +52,28 @@
 	</form>
 	
 	<!--For Input Holders-->
-	<script src="/js/jquery-3.6.1.min.js"></script>
-	<script>
- 
-	</script>
+    <script src="/js/jquery-3.6.1.min.js"></script>
+    <script>
+        let form__submit = $(function() {
+            $('.login__form').each(function () {
+                $(this).submit(function (e) {
+                    e.preventDefault();
+                    $.ajax({
+                        url: $(this).attr("action"),
+                        type: $(this).attr("method"),
+                        data: $(this).serialize(),
+                        success: function (data) {
+                            window.location.replace('/');
+                        },
+                        error: function (data) {
+                            document.querySelector(".error").innerHTML = "<img src='/img/Login/warning.svg' width='20px;' height='20px;'>" + data.responseText;
+                            document.querySelector(".error").style.margin = "22px 0px 0px 0px";
+                        }
+                    });
+                })
+            });
+        });
+    </script>
     <script>
         window.onload = () =>{
             let inputs = document.querySelectorAll('.input_focus input');
