@@ -128,9 +128,9 @@
                                     <div class="about-btn">
                                         <button class="save-btn" id="profile_send" type="submit">Сохранить</button>
                                     </div>
-                                </div>
                             </div>
                         </div>
+                    </div>
                     <textarea name="text" id="text__area" cols="30" rows="10" style="display: none"></textarea>
                 </form>
             </div>
