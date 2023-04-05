@@ -170,7 +170,7 @@
 
 <script>
     document.querySelectorAll('input[name="mytabs"]').forEach(item => {
-        document.querySelectorAll('.form-select__social-name').forEach(input => {
+        document.querySelectorAll('.form-select').forEach(input => {
             input.disabled = !input.disabled;
         })
     })
