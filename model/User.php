@@ -12,7 +12,7 @@ class User extends ConnectDatabase{
     
     public function GetCreatorUsersWithoutTariff()
     {
-        return $this->db->query("SELECT * FROM user WHERE NOT EXISTS(SELECT * FROM users_tariff WHERE users_tariff.user_id = user.id) GROUP BY user.email");
+        return $this->db->query("SELECT * FROM user WHERE NOT EXISTS(SELECT * FROM users_tariff WHERE users_tariff.user_id = user.id)");
     }
 
     public function getUserByEmail($email) {
