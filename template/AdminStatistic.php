@@ -69,6 +69,10 @@
                 <div class="block__count"><?=$content['count_creator']?></div>
             </div>
             <div class="block__item">
+                <h2 class="block__title">Количество авторов без подписки</h2>
+                <div class="block__count"><?=$content['count_creator_without_tariff']?></div>
+            </div>
+            <div class="block__item">
                 <h2 class="block__title">Количество пользователей</h2>
                 <div class="block__count"><?=$content['count_user']?></div>
             </div>

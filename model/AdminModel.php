@@ -41,11 +41,11 @@
 		public function GetUserWithTariff()
 		{
 			$current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
-			return count($this->ClearQuery("SELECT * FROM users_tariff WHERE cast(date as DATE ) < cast('$current_date' as DATE)"));
+			return count($this->ClearQuery("SELECT * FROM users_tariff WHERE date > NOW()"));
 		}
 		
 		public function GetAuthorWithoutTariffCount()
 		{
-			return $this->GetAuthorCount() - count($this->ClearQuery("SELECT * FROM user"));
+			return MAX($this->GetAuthorCount() - $this->GetUserWithTariff(), 0);
 		}
 	}
