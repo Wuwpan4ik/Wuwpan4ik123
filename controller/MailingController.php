@@ -57,7 +57,7 @@
             if (!empty($data_get['id'])) {
                 $this->Delete($data_get['id']);
             }
-
+			$_SESSION['error'] = $data_get;
             $this->Create($data_get);
 			if (empty($data_get['once_email'])) {
 				if ($data_get['indexs'] == 3) {
@@ -65,7 +65,7 @@
 				} else {
 					$users = $this->mailing->GetUsersByIndexs($data_get['indexs'], $data_get['product']);
 				}
-				} else {
+			} else {
 				$users = $data_get['once_email'];
 			}
 	        $mail_id = $this->mailing->ClearQuery("SELECT * FROM mailing WHERE user_id = {$_SESSION['user']['id']} ORDER BY id DESC LIMIT 1")[0]['id'];
