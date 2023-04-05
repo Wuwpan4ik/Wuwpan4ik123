@@ -42,7 +42,6 @@
                 mkdir($dir_path);
                 chmod($dir_path, 0777);
             }
-	        $_SESSION['error'] = 0;
 
             if ($_FILES['file']['size'] != 0) {
                 $extension = pathinfo($_FILES['file']['name'])['extension'];
@@ -50,6 +49,7 @@
                 move_uploaded_file($_FILES['file']['tmp_name'], "./" . $file_path);
                 $data_get['file'] = $dir_path . "/1.$extension";
             }
+	        $_SESSION['error'] = $data_get;
 //          Работа с файликов
 
             $body = include "./template/templates_email/mail.php";
@@ -57,7 +57,7 @@
             if (!empty($data_get['id'])) {
                 $this->Delete($data_get['id']);
             }
-			$_SESSION['error'] = $data_get;
+			
             $this->Create($data_get);
 			if (empty($data_get['once_email'])) {
 				if ($data_get['indexs'] == 3) {
