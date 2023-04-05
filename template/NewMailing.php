@@ -170,7 +170,7 @@
 
 <script>
     document.querySelectorAll('input[name="mytabs"]').forEach(item => {
-        item.addEventListener('onclick', function () {
+        item.addEventListener('change', function () {
             document.querySelectorAll('.form-select').forEach(input => {
                 console.log(input)
                 input.disabled = !input.disabled;
