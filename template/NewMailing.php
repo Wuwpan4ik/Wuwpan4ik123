@@ -45,7 +45,7 @@
                                     <div id="editor"></div>
                                 </div>
                             </div>
-
+                        </div>
                         <h2 class="chapter__title">Кому отправить</h2>
 
                         <div class="new-mailing__block">
@@ -102,11 +102,10 @@
                                         <label for="text" class="label_focus">Email получателя</label>
                                         <input id="date" type="email" name="once_email">
                                         <span class="clear_input_val">
-                                                     <img src="/img/clear_input.svg" alt="">
-                                                </span>
+                                             <img src="/img/clear_input.svg" alt="">
+                                        </span>
                                     </div>
                                 </div>
-                            </div>
                                     <div class="new-mailing__block new-mailing__planning">
                                         <label class="new-mailing__subtitle" for="date">Запланировать отправку (мск)</label>
                                         <span style="color: #5A6474; font-size: 12px;">По умолчанию - сейчас</span>
@@ -132,7 +131,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                     <textarea name="text" id="text__area" cols="30" rows="10" style="display: none"></textarea>
                 </form>
             </div>
