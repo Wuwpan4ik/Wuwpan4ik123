@@ -17,7 +17,7 @@
 			} else {
 				$get_query = "users_tariff.$get";
 			}
-		    return $this->db->query("SELECT user.email, user.id, users_tariff.date_start, users_tariff.date, tariffs.name FROM user INNER JOIN users_tariff ON (users_tariff.user_id = user.id) INNER JOIN tariffs ON tariffs.id = users_tariff.tariff_id  WHERE user.is_creator = 1 GROUP BY user.email ORDER BY $get_query");
+		    return $this->db->query("SELECT user.email, user.id, users_tariff.date_start, users_tariff.date, tariffs.name FROM user INNER JOIN users_tariff ON (users_tariff.user_id = user.id) INNER JOIN tariffs ON tariffs.id = users_tariff.tariff_id  WHERE user.is_creator = 1 ORDER BY $get_query");
 	    }
 
         public function GetClientsForAnalytics($get)

@@ -25,16 +25,27 @@
 //		Статистика
 		public function GetAuthorCount()
 		{
-			return count($this->ClearQuery("SELECT * FROM user WHERE is_creator = 1 GROUP BY email"));
+			return count($this->ClearQuery("SELECT * FROM user WHERE is_creator = 1"));
 		}
 		
 		public function GetUserCount()
 		{
-			return count($this->ClearQuery("SELECT * FROM user WHERE is_creator = 0 GROUP BY email"));
+			return count($this->ClearQuery("SELECT * FROM user WHERE is_creator = 0"));
 		}
 		
 		public function GetAllCount()
 		{
-			return count($this->ClearQuery("SELECT * FROM user GROUP BY email"));
+			return count($this->ClearQuery("SELECT * FROM user"));
+		}
+		
+		public function GetUserWithTariff()
+		{
+			$current_date = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
+			return count($this->ClearQuery("SELECT * FROM users_tariff WHERE cast(date as DATE ) < cast('$current_date' as DATE)"));
+		}
+		
+		public function GetAuthorWithoutTariffCount()
+		{
+			return $this->GetAuthorCount() - count($this->ClearQuery("SELECT * FROM user"));
 		}
 	}
