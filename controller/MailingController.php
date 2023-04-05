@@ -94,7 +94,7 @@
 				$data = [
 					'from_name' => "Course Creator IO",
 					"from" => "{$this->ourEmail}",
-					"to" => "{$data_get['once_email']}",
+					"to" => "{$once_email}",
 					"sender" => "{$this->ourEmail}",
 					"subject" => "Вам пришло письмо от создателя курса!",
 					"content" => "$body"
