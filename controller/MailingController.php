@@ -57,11 +57,12 @@
             if (!empty($data_get['id'])) {
                 $this->Delete($data_get['id']);
             }
-			$once_email = empty($data_get['once_email']);
+			$once_email_is = empty($data_get['once_email']);
+	        $once_email = $data_get['once_email'];
 	        unset($data_get['once_email']);
 			
             $this->Create($data_get);
-			if ($once_email) {
+			if ($once_email_is) {
 				if ($data_get['indexs'] == 3) {
 					$users = $this->mailing->GetUsers($data_get['product']);
 				} else {
