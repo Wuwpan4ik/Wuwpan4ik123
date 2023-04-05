@@ -16,6 +16,7 @@
 	        if (empty($data_get['time_send'])) {
 		        $data_get['time_send'] = "00:00:00";
 			}
+	        $_SESSION['error'] = $data_get;
 			
 			$time = strtotime($data_get['date_send'] . ' ' . $data_get['time_send']);
 			
@@ -49,7 +50,6 @@
                 move_uploaded_file($_FILES['file']['tmp_name'], "./" . $file_path);
                 $data_get['file'] = $dir_path . "/1.$extension";
             }
-	        $_SESSION['error'] = $data_get;
 //          Работа с файликов
 
             $body = include "./template/templates_email/mail.php";

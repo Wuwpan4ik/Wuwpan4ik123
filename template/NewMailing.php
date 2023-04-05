@@ -106,25 +106,25 @@
                                         </span>
                                     </div>
                                 </div>
-                                    <div class="new-mailing__block new-mailing__planning">
-                                        <label class="new-mailing__subtitle" for="date">Запланировать отправку (мск)</label>
-                                        <span style="color: #5A6474; font-size: 12px;">По умолчанию - сейчас</span>
-                                        <div class="new-mailing__block_two">
-                                            <div class="input_focus">
-                                                <input id="date" type="date" name="date_send" value="<?php echo ($content['mailing']['date_send']) ?? '' ?>">
-                                                <span class="clear_input_val">
-                                                     <img src="/img/clear_input.svg" alt="">
-                                                </span>
-                                            </div>
-                                            <div class="input_focus ">
-                                                <label for="username" class="label_focus"></label>
-                                                <input type="time" name="time_send" id="social__inpu" value="<?php echo ($content['mailing']['time_send']) ?? '' ?>">
-                                                <span class="clear_input_val">
-                                                    <img src="/img/clear_input.svg" alt="">
-                                                </span>
-                                            </div>
-                                        </div>
+                            </div>
+                            <div class="new-mailing__block new-mailing__planning">
+                                <label class="new-mailing__subtitle" for="date">Запланировать отправку (мск)</label>
+                                <span style="color: #5A6474; font-size: 12px;">По умолчанию - сейчас</span>
+                                <div class="new-mailing__block_two">
+                                    <div class="input_focus">
+                                        <input id="date" type="date" name="date_send" value="<?php echo ($content['mailing']['date_send']) ?? '' ?>">
+                                        <span class="clear_input_val">
+                                                 <img src="/img/clear_input.svg" alt="">
+                                            </span>
                                     </div>
+                                    <div class="input_focus ">
+                                        <label for="username" class="label_focus"></label>
+                                        <input type="time" name="time_send" id="social__inpu" value="<?php echo ($content['mailing']['time_send']) ?? '' ?>">
+                                        <span class="clear_input_val">
+                                                <img src="/img/clear_input.svg" alt="">
+                                            </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="about-btn">
