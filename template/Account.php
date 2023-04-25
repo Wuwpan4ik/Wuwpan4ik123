@@ -371,7 +371,7 @@
                             </div>
 
                             <input type="radio" id="Tarif" name="mytabs"/>
-                            <label class="menu-label" for="Tarif" id="cllab"><p>Дополнительно</p></label>
+                            <label class="menu-label" for="Tarif" id="cllab"><p>Интеграции</p></label>
 
                             <div class="tab">
                                 <div class="prodamus-input col">

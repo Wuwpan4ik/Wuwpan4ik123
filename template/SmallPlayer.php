@@ -358,7 +358,7 @@ cursor: pointer;text-decoration: none;">Вернуться на сайт</a>
                     data: form_data,
                     success: function (data) {
                         if (albato_key !== null) {
-                            $.ajax({
+                            $.ajax({    
                                 url: albato_key,
                                 type: "POST",
                                 data: JSON.stringify(form_data),
