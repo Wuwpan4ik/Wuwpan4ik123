@@ -69,6 +69,24 @@
                     }
 
                     $_SESSION['user']['tariff'] = $tariff_id;
+					
+					
+//	                Интеграция с Амо
+	                $array = array(
+		                'tariff_name' => "{$tariff_name[0]['name']}",
+		                'email' => "{$headers['customer_email']}",
+		                'name' => "{$_SESSION['user']['first_name']} ${$_SESSION['user']['second_name']}",
+		                'price' => $tariff_name[0]['price'],
+	                );
+	
+	                $ch = curl_init('https://dev.salesevolution.ru/pub/source-connector/form-getter.php/headdotwocspace/BuyTariff');
+	                curl_setopt($ch, CURLOPT_POST, 1);
+	                curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($array, '', '&'));
+	                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	                curl_setopt($ch, CURLOPT_HEADER, false);
+	                curl_exec($ch);
+	                curl_close($ch);
                 }
             }
             catch (Exception $e) {

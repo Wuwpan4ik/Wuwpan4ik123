@@ -532,6 +532,8 @@
         document.querySelector("input[name='additionally_memory']").value = elem.value;
     }
 </script>
+    <input type="hidden" id="fetchEmail" name="email" value="<?=$_SESSION['user']['email']?>">
+    <input type="hidden" id="fetchName" name="name" value="<?=$_SESSION['user']['first_name'] + $_SESSION['user']['second_name'] ?>">
 <script>
     function uploadFile(target) {
         target.parentElement.parentElement.parentElement.querySelector("#file-name").innerHTML = (target.files[0].name);
@@ -548,9 +550,17 @@
     exitSettingsClose.addEventListener('click', function(){
         exitSettings.classList.remove('active');
     })
-
     changeTariffOpen.addEventListener('click', function(){
         changeTariff.classList.add('active');
+        fetch("/AmoCrmController/checkTariff", {
+            method: "post",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept"
+            },
+        })
     })
 
     improvementTariffOpen.addEventListener('click', function(){

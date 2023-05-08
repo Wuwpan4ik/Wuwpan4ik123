@@ -159,17 +159,33 @@
                 $body = include './template/templates_email/WelcomeClient.php';
 
 
-                $this->SendEmail(
-                    [
-                        "from" => "{$this->ourEmail}",
-                        'from_name' => "Course Creator IO",
-                        "to" => "{$email}",
-                        "sender" => "{$this->ourEmail}",
-                        "subject" => "{$title}",
-                        "content" => "$body",
-                        "is_send_now" => 1
-                    ]
-                );
+//                $this->SendEmail(
+//                    [
+//                        "from" => "{$this->ourEmail}",
+//                        'from_name' => "Course Creator IO",
+//                        "to" => "{$email}",
+//                        "sender" => "{$this->ourEmail}",
+//                        "subject" => "{$title}",
+//                        "content" => "$body",
+//                        "is_send_now" => 1
+//                    ]
+//                );
+	
+	            $array = array(
+		            'email'    => "{$email}",
+		            'name' => "{$first_name} ${second_name}",
+		            'price' => 0,
+		            'pipeline_id' => 6741718,
+	            );
+	
+	            $ch = curl_init('https://dev.salesevolution.ru/pub/source-connector/form-getter.php/headdotwocspace/new');
+	            curl_setopt($ch, CURLOPT_POST, 1);
+	            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($array, '', '&'));
+	            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	            curl_setopt($ch, CURLOPT_HEADER, false);
+				curl_exec($ch);
+	            curl_close($ch);
             }
 
             mkdir("./uploads/users/" . $_SESSION['user']['id']);

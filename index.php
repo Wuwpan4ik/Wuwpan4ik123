@@ -151,6 +151,8 @@
 	$router->addRoute("/AdminController/AddUser", "AdminController.php", "AddAdmin");
 	$router->addRoute("/AdminController/ChangeUser", "AdminController.php", "ChangeUser");
 	$router->addRoute("/AdminController/Login", "AdminController.php", "Login");
+	
+	$router->addRoute("/AmoCrmController/checkTariff", "AmoController.php", 'checkTariffs');
 
     if (array_key_exists("/$url", $router->getRoute())) {
         $router->route("/$url");

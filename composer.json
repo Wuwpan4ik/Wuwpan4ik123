@@ -15,6 +15,9 @@
     "ext-pdo": "*",
     "ext-readline": "*",
     "ext-curl": "*",
-    "ext-mbstring": "*"
+    "ext-mbstring": "*",
+        "amocrm/oauth2-amocrm": "^2.0",
+        "andrey-tech/amocrm-api-php": "^2.7",
+        "amocrm/amocrm-api-library": "^0.13.0"
   }
 }
